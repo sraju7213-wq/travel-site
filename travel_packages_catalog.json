@@ -1,0 +1,723 @@
+{
+  "source_document": "gggg.pdf",
+  "source_pages": 8,
+  "package_count": 27,
+  "note": "This is a structured index derived from the brochure, not an operational confirmation. Fields with content_flags require client/operator review before publication.",
+  "packages": [
+    {
+      "id": "delhi-stopover",
+      "title": "Delhi",
+      "category": "Stopovers",
+      "brochure_code": "S01",
+      "duration": "2 nights / 3 days",
+      "difficulty": null,
+      "region": [
+        "India",
+        "Delhi"
+      ],
+      "summary": "A short introduction to Delhi combining the capital's historic landmarks, major monuments, local markets and city atmosphere.",
+      "highlights": [
+        "Red Fort",
+        "Jama Masjid",
+        "Raj Ghat and Gandhi Samadhi",
+        "India Gate and Presidential Palace",
+        "Local shopping and markets"
+      ],
+      "source_page": 2,
+      "content_flags": []
+    },
+    {
+      "id": "bombay-stopover",
+      "title": "Bombay",
+      "category": "Stopovers",
+      "brochure_code": "S02",
+      "duration": "3 nights / 4 days",
+      "difficulty": null,
+      "region": [
+        "India",
+        "Mumbai"
+      ],
+      "summary": "A four-day Mumbai stopover with city sightseeing, Elephanta Caves and a Bollywood studio experience.",
+      "highlights": [
+        "Mumbai city tour",
+        "Elephanta Caves excursion",
+        "Bollywood studio tour"
+      ],
+      "source_page": 2,
+      "content_flags": []
+    },
+    {
+      "id": "discover-leh",
+      "title": "Discover Leh",
+      "category": "Stopovers",
+      "brochure_code": "S03",
+      "duration": "3 nights / 4 days",
+      "difficulty": null,
+      "region": [
+        "India",
+        "Ladakh",
+        "Leh"
+      ],
+      "summary": "A short Leh visit with time to rest after arrival and explore local sights before departure.",
+      "highlights": [
+        "Arrival and rest day",
+        "Leh local sightseeing",
+        "Leisurely short Ladakh introduction"
+      ],
+      "source_page": 2,
+      "content_flags": []
+    },
+    {
+      "id": "kathmandu-stopover",
+      "title": "Kathmandu",
+      "category": "Stopovers",
+      "brochure_code": "S04",
+      "duration": "3 nights / 4 days",
+      "difficulty": null,
+      "region": [
+        "Nepal",
+        "Kathmandu"
+      ],
+      "summary": "A Kathmandu city break focused on historic squares, temples and Buddhist heritage, with a leisure day.",
+      "highlights": [
+        "Durbar Square",
+        "Swayambhunath",
+        "Patan temples",
+        "Optional leisure excursion mentioned in brochure"
+      ],
+      "source_page": 2,
+      "content_flags": []
+    },
+    {
+      "id": "kathmandu-pokhara",
+      "title": "Kathmandu–Pokhara",
+      "category": "Stopovers",
+      "brochure_code": "S05",
+      "duration": "3 nights / 4 days per contents and itinerary",
+      "difficulty": null,
+      "region": [
+        "Nepal",
+        "Kathmandu",
+        "Pokhara"
+      ],
+      "summary": "A short Kathmandu and Pokhara combination with transfers and leisure time in Pokhara.",
+      "highlights": [
+        "Kathmandu to Pokhara transfer",
+        "Pokhara leisure time",
+        "Return transfer and departure"
+      ],
+      "source_page": 2,
+      "content_flags": [
+        "The card's duration label appears to conflict with the contents page and four-day itinerary. Confirm the intended number of nights and days before publishing."
+      ]
+    },
+    {
+      "id": "discover-ladakh",
+      "title": "Discover Ladakh",
+      "category": "Stopovers",
+      "brochure_code": "S06",
+      "duration": "4 nights / 5 days",
+      "difficulty": null,
+      "region": [
+        "India",
+        "Ladakh",
+        "Nubra Valley",
+        "Pangong"
+      ],
+      "summary": "A five-day Ladakh route linking Leh, Nubra Valley, Turtuk and Pangong Lake.",
+      "highlights": [
+        "Khardung La route",
+        "Nubra Valley and Turtuk",
+        "Pangong Lake",
+        "Return to Leh"
+      ],
+      "source_page": 2,
+      "content_flags": []
+    },
+    {
+      "id": "golden-triangle",
+      "title": "Golden Triangle",
+      "category": "Images of India",
+      "brochure_code": "II7",
+      "duration": "3 nights / 4 days",
+      "difficulty": null,
+      "region": [
+        "India",
+        "Delhi",
+        "Agra",
+        "Jaipur"
+      ],
+      "summary": "A classic Delhi–Agra–Jaipur journey through Mughal landmarks, royal Rajasthan and the Taj Mahal.",
+      "highlights": [
+        "Taj Mahal and Agra",
+        "Fatehpur Sikri en route to Jaipur",
+        "Amber Fort",
+        "Jaipur city sightseeing"
+      ],
+      "source_page": 3,
+      "content_flags": [
+        "The printed package code casing/lettering is visually ambiguous; confirm official code before publishing."
+      ]
+    },
+    {
+      "id": "glorious-goa-stopover",
+      "title": "Glorious Goa Stopover",
+      "category": "Images of India",
+      "brochure_code": "II8",
+      "duration": "4 nights / 5 days",
+      "difficulty": null,
+      "region": [
+        "India",
+        "Goa",
+        "Panjim"
+      ],
+      "summary": "A relaxed Goa stay with time for Panjim sightseeing and leisure on the coast.",
+      "highlights": [
+        "Panjim city tour",
+        "Goa beaches and coastal atmosphere",
+        "Room-only accommodation is specified in the package text"
+      ],
+      "source_page": 3,
+      "content_flags": []
+    },
+    {
+      "id": "glimpses-of-kerala",
+      "title": "Glimpses of Kerala",
+      "category": "Images of India",
+      "brochure_code": "II9",
+      "duration": "5 nights / 6 days",
+      "difficulty": null,
+      "region": [
+        "India",
+        "Kerala",
+        "Trivandrum",
+        "Kovalam",
+        "Periyar",
+        "Cochin"
+      ],
+      "summary": "A southern India itinerary through Kerala's beaches, wildlife, hill-country and backwaters.",
+      "highlights": [
+        "Kovalam beach",
+        "Periyar wildlife sanctuary",
+        "Kottayam–Alleppey backwater cruise",
+        "Cochin city and heritage sights"
+      ],
+      "source_page": 3,
+      "content_flags": [
+        "The package-specific accommodation wording is cut off/unclear in the brochure; confirm before publishing."
+      ]
+    },
+    {
+      "id": "kashmir-package-7-day",
+      "title": "Kashmir Package",
+      "category": "Images of India",
+      "brochure_code": "II10",
+      "duration": "6 nights / 7 days",
+      "difficulty": null,
+      "region": [
+        "India",
+        "Kashmir",
+        "Srinagar",
+        "Gulmarg",
+        "Sonamarg",
+        "Pahalgam"
+      ],
+      "summary": "A Kashmir itinerary combining Srinagar, houseboat stays, Mughal gardens and excursions to mountain destinations.",
+      "highlights": [
+        "Srinagar houseboat",
+        "Gulmarg",
+        "Sonamarg",
+        "Mughal gardens and Shikara ride",
+        "Pahalgam"
+      ],
+      "source_page": 4,
+      "content_flags": []
+    },
+    {
+      "id": "kashmir-package-4-day",
+      "title": "Kashmir Package",
+      "category": "Images of India",
+      "brochure_code": "II11",
+      "duration": "3 nights / 4 days",
+      "difficulty": null,
+      "region": [
+        "India",
+        "Kashmir",
+        "Srinagar"
+      ],
+      "summary": "A shorter Kashmir visit based around Srinagar with a houseboat experience and optional day trips.",
+      "highlights": [
+        "Srinagar houseboat",
+        "Old and new Srinagar sightseeing",
+        "Optional mountain resort excursion"
+      ],
+      "source_page": 4,
+      "content_flags": [
+        "The brochure lists several optional alternatives for Day 3 rather than a single fixed route. Present those as options, not guaranteed inclusions."
+      ]
+    },
+    {
+      "id": "delhi-to-kathmandu",
+      "title": "Delhi to Kathmandu",
+      "category": "Images of India",
+      "brochure_code": "II12",
+      "duration": "7 nights / 8 days",
+      "difficulty": null,
+      "region": [
+        "India",
+        "Nepal",
+        "Delhi",
+        "Agra",
+        "Varanasi",
+        "Kathmandu"
+      ],
+      "summary": "A cross-border route through Delhi, Agra and Varanasi before continuing to Kathmandu.",
+      "highlights": [
+        "Taj Mahal and Agra Fort",
+        "Varanasi and the Ganges",
+        "Kathmandu city sightseeing",
+        "Morning boat cruise in Varanasi mentioned in itinerary"
+      ],
+      "source_page": 4,
+      "content_flags": [
+        "Confirm the exact inclusions and any flight/rail arrangements for this multi-country route."
+      ]
+    },
+    {
+      "id": "heritage-tour-india",
+      "title": "Heritage Tour of India",
+      "category": "Images of India",
+      "brochure_code": "HTI13",
+      "duration": "14 nights / 15 days",
+      "difficulty": null,
+      "region": [
+        "India",
+        "Delhi",
+        "Mandawa",
+        "Bikaner",
+        "Jaisalmer",
+        "Jodhpur",
+        "Udaipur",
+        "Jaipur",
+        "Agra"
+      ],
+      "summary": "A heritage-focused Rajasthan and North India circuit featuring historic cities, forts, palaces and the Taj Mahal.",
+      "highlights": [
+        "Mandawa and Bikaner",
+        "Jaisalmer",
+        "Jodhpur and Udaipur",
+        "Jaipur",
+        "Agra and the Taj Mahal"
+      ],
+      "source_page": 4,
+      "content_flags": []
+    },
+    {
+      "id": "north-india-highlights",
+      "title": "North India Highlights",
+      "category": "India Tours",
+      "brochure_code": "IT14",
+      "duration": "18 nights / 19 days",
+      "difficulty": null,
+      "region": [
+        "India",
+        "Delhi",
+        "Agra",
+        "Jaipur",
+        "Udaipur",
+        "Srinagar",
+        "Leh"
+      ],
+      "summary": "A longer India journey pairing the major heritage cities with Kashmir and Ladakh's Himalayan landscapes and monasteries.",
+      "highlights": [
+        "Delhi, Agra and Jaipur",
+        "Udaipur city sightseeing",
+        "Srinagar and Shikara cruise",
+        "Gulmarg/Pahalgam/Sonamarg excursion options",
+        "Leh monasteries and acclimatisation"
+      ],
+      "source_page": 5,
+      "content_flags": [
+        "This package has its own inclusion text and flight exclusions; do not replace it with the brochure's generic inclusions/exclusions panel."
+      ]
+    },
+    {
+      "id": "india-nepal-combination",
+      "title": "India Nepal Combination Tour",
+      "category": "India Tours",
+      "brochure_code": "IT15",
+      "duration": "15 nights / 16 days",
+      "difficulty": null,
+      "region": [
+        "India",
+        "Nepal",
+        "Delhi",
+        "Udaipur",
+        "Jodhpur",
+        "Jaipur",
+        "Agra",
+        "Varanasi",
+        "Kathmandu"
+      ],
+      "summary": "A multi-city route across India's historic and cultural destinations before finishing in Kathmandu.",
+      "highlights": [
+        "Delhi sightseeing",
+        "Udaipur and Jodhpur",
+        "Jaipur and Agra",
+        "Varanasi and Sarnath",
+        "Kathmandu"
+      ],
+      "source_page": 5,
+      "content_flags": [
+        "Confirm the details of flight and transfer arrangements between cities before publishing."
+      ]
+    },
+    {
+      "id": "south-india-highlight",
+      "title": "South India Highlight",
+      "category": "India Tours",
+      "brochure_code": "IT16",
+      "duration": "13 nights / 14 days",
+      "difficulty": null,
+      "region": [
+        "India",
+        "Kerala",
+        "Tamil Nadu",
+        "Kochi",
+        "Munnar",
+        "Thekkady",
+        "Alleppey",
+        "Varkala",
+        "Kovalam",
+        "Kanyakumari",
+        "Rameshwaram",
+        "Madurai"
+      ],
+      "summary": "A South India circuit through Kerala's hill stations, wildlife and backwaters, continuing to coastal and temple destinations in Tamil Nadu.",
+      "highlights": [
+        "Kochi and Fort Kochi",
+        "Munnar and Thekkady",
+        "Alleppey houseboat",
+        "Varkala and Kovalam",
+        "Kanyakumari and Rameshwaram",
+        "Madurai departure"
+      ],
+      "source_page": 5,
+      "content_flags": [
+        "Package-specific accommodation, meals and exclusions are not fully clear in the brochure. Do not assume the generic panel applies without confirmation."
+      ]
+    },
+    {
+      "id": "markha-valley",
+      "title": "Markha Valley",
+      "category": "Himalayan Expeditions",
+      "brochure_code": "HE17",
+      "duration": "9 nights / 10 days",
+      "difficulty": "Demanding (as printed)",
+      "region": [
+        "India",
+        "Ladakh",
+        "Leh",
+        "Markha Valley"
+      ],
+      "summary": "A high-altitude trek through remote Ladakhi villages and mountain terrain, beginning and ending around Leh.",
+      "highlights": [
+        "Leh acclimatisation",
+        "Spituk and Zingchen",
+        "Markha Valley villages",
+        "Nimaling",
+        "Kongmaru La route"
+      ],
+      "source_page": 6,
+      "content_flags": [
+        "Keep the original difficulty label visible until the operator confirms current grading, route conditions and suitability guidance."
+      ]
+    },
+    {
+      "id": "kashmir-zanskar-ladakh-trek",
+      "title": "Kashmir, Zanskar and Ladakh Trek",
+      "category": "Himalayan Expeditions",
+      "brochure_code": "HE18",
+      "duration": "24-day round trip; 15-day trek (as printed)",
+      "difficulty": "Strenuous (as printed)",
+      "region": [
+        "India",
+        "Kashmir",
+        "Zanskar",
+        "Ladakh",
+        "Srinagar",
+        "Leh"
+      ],
+      "summary": "A long expedition across remote parts of the Kashmir Himalayas, the Zanskar range and Ladakh, including mountain passes and Buddhist heritage.",
+      "highlights": [
+        "Multi-day high-altitude trek",
+        "Zanskar Range and mountain passes",
+        "Suru Valley and Rangdum",
+        "Leh sightseeing"
+      ],
+      "source_page": 6,
+      "content_flags": [
+        "Confirm the full day-by-day sequence: the brochure compresses some dates into ranges and should be checked against the operator's master itinerary."
+      ]
+    },
+    {
+      "id": "kashmir-combinations-little-tibet",
+      "title": "Kashmir Combinations: Little Tibet",
+      "category": "Himalayan Expeditions",
+      "brochure_code": "HE19",
+      "duration": "19-day round trip; 7-day trek (as printed)",
+      "difficulty": "Moderate (as printed)",
+      "region": [
+        "India",
+        "Kashmir",
+        "Ladakh",
+        "Srinagar",
+        "Pahalgam",
+        "Leh"
+      ],
+      "summary": "A combination of Kashmir scenery, a multi-day Himalayan trek, Ladakh sightseeing and time in Srinagar and Leh.",
+      "highlights": [
+        "Srinagar and Pahalgam",
+        "Lidder Valley trek",
+        "Tarsar Lake region",
+        "Kargil and Leh",
+        "Monasteries and Ladakh sightseeing"
+      ],
+      "source_page": 6,
+      "content_flags": [
+        "Confirm current route, trek grading, and the itinerary's day numbering before publishing."
+      ]
+    },
+    {
+      "id": "kashmir-mini-adventure",
+      "title": "Kashmir Mini Adventure",
+      "category": "Mini Trek in Kashmir",
+      "brochure_code": "MTK20",
+      "duration": "6 nights / 7 days",
+      "difficulty": "Demanding (as printed)",
+      "region": [
+        "India",
+        "Kashmir",
+        "Sonamarg",
+        "Vishansar Lake",
+        "Gangabal Lake"
+      ],
+      "summary": "A demanding multi-day Kashmir trek connecting alpine lakes, mountain passes and remote campsites.",
+      "highlights": [
+        "Sonamarg",
+        "Nichnai",
+        "Vishansar Lake",
+        "Gadsar",
+        "Gangabal Lake",
+        "Naranag"
+      ],
+      "source_page": 7,
+      "content_flags": [
+        "Publish clear fitness, altitude, equipment and safety information only after the operator confirms current requirements."
+      ]
+    },
+    {
+      "id": "vale-of-kashmir-trek",
+      "title": "Vale of Kashmir Trek",
+      "category": "Mini Trek in Kashmir",
+      "brochure_code": "MTK21",
+      "duration": "6 nights / 7 days based on itinerary; printed card duration appears inconsistent",
+      "difficulty": "Moderate / Grade C (as printed in body text)",
+      "region": [
+        "India",
+        "Kashmir",
+        "Aru",
+        "Pahalgam",
+        "Lidderwat",
+        "Kolahoi Glacier"
+      ],
+      "summary": "A seven-day walking route through alpine meadows and mountain scenery around the Lidder Valley.",
+      "highlights": [
+        "Aru and Pahalgam",
+        "Lidderwat",
+        "Kolahoi Glacier excursion",
+        "Sekwas",
+        "Sindh Valley road return"
+      ],
+      "source_page": 7,
+      "content_flags": [
+        "Correct the duration label before launch; the card text appears to say 6 nights / 7 nights while the itinerary states 7 days / 6 nights."
+      ]
+    },
+    {
+      "id": "kashmir-ski",
+      "title": "Kashmir Ski",
+      "category": "Mini Trek in Kashmir",
+      "brochure_code": "KS22",
+      "duration": "6 nights / 7 days",
+      "difficulty": null,
+      "region": [
+        "India",
+        "Kashmir",
+        "Gulmarg"
+      ],
+      "summary": "A Gulmarg ski holiday with transfers, lift pass and equipment listed in the brochure, plus time to ski at leisure.",
+      "highlights": [
+        "Srinagar–Gulmarg transfers",
+        "Ski equipment excluding ski clothing",
+        "Ski lift pass",
+        "Accommodation and meals in Gulmarg",
+        "Season stated as January to March in brochure"
+      ],
+      "source_page": 7,
+      "content_flags": [
+        "The contents page lists a Himalaya Enfield Motorbike Tour in this position, but the actual card is Kashmir Ski. Confirm whether a motorbike tour was omitted or the contents page is outdated."
+      ]
+    },
+    {
+      "id": "himalayan-combination-nepal",
+      "title": "Himalayan Combination HC",
+      "category": "Nepal Adventure",
+      "brochure_code": "NA23",
+      "duration": "20-day round trip",
+      "difficulty": "Moderate badge; body text also says Grade D",
+      "region": [
+        "Nepal",
+        "Kathmandu",
+        "Pokhara",
+        "Trisuli",
+        "Chitwan"
+      ],
+      "summary": "A Nepal multi-activity itinerary combining trekking, river rafting and a jungle safari in Chitwan National Park.",
+      "highlights": [
+        "8-day trek",
+        "3-day rafting",
+        "4-day jungle safari",
+        "Chitwan National Park",
+        "Kathmandu"
+      ],
+      "source_page": 8,
+      "content_flags": [
+        "Difficulty is inconsistent: the badge says Moderate while the description references Grade D. Confirm the operator's intended grading and define the grading scale."
+      ]
+    },
+    {
+      "id": "trisuli-rafting",
+      "title": "Trisuli Rafting",
+      "category": "Nepal Adventure",
+      "brochure_code": "NA24",
+      "duration": "Day trip; no fixed duration printed",
+      "difficulty": "Easy (as printed)",
+      "region": [
+        "Nepal",
+        "Kathmandu",
+        "Trisuli River",
+        "Phisling",
+        "Simaltar"
+      ],
+      "summary": "A guided white-water rafting day on the Trisuli River with transfers, rafting equipment and a packed lunch described in the brochure.",
+      "highlights": [
+        "Four major rapids and smaller rapids",
+        "Approx. 24 km rafting section (as printed)",
+        "English-speaking guide",
+        "Daily departures October to March (as printed)",
+        "Minimum 2 persons (as printed)"
+      ],
+      "source_page": 8,
+      "content_flags": [
+        "Confirm current operating season, departure days and minimum group size before publishing; offer 2- and 3-day trips only if still available."
+      ]
+    },
+    {
+      "id": "nepal-mini-trek-4-day",
+      "title": "4 Day Nepal Mini Trek",
+      "category": "Nepal Adventure",
+      "brochure_code": "HE25",
+      "duration": "3 nights / 4 days",
+      "difficulty": "Easy badge; Grade D also printed",
+      "region": [
+        "Nepal",
+        "Kathmandu Valley",
+        "Nagarkot",
+        "Chowki Bhanjyang",
+        "Sundarijal"
+      ],
+      "summary": "A short Nepal foothills trek departing from Kathmandu, with overnight stops around Nagarkot and nearby trail areas.",
+      "highlights": [
+        "Kathmandu departure",
+        "Nagarkot",
+        "Chowki Bhanjyang",
+        "Sundarijal return"
+      ],
+      "source_page": 8,
+      "content_flags": [
+        "The card's Easy badge conflicts with the itinerary's Grade D wording. The Day 2/Day 3 route sequence also appears duplicated; verify the intended itinerary."
+      ]
+    },
+    {
+      "id": "nepal-wildlife-safari",
+      "title": "Nepal Wildlife Safari",
+      "category": "Nepal Adventure",
+      "brochure_code": "NA26",
+      "duration": "3 nights / 4 days",
+      "difficulty": "Easy (as printed)",
+      "region": [
+        "Nepal",
+        "Kathmandu",
+        "Chitwan National Park"
+      ],
+      "summary": "A short wildlife-focused stay in Chitwan with safari activities, nature experiences and guided park visits.",
+      "highlights": [
+        "Chitwan National Park",
+        "Guided park safaris",
+        "Nature walks and canoe trips mentioned in brochure",
+        "Meals at Chitwan Jungle Lodge stated as included"
+      ],
+      "source_page": 8,
+      "content_flags": [
+        "Confirm current lodge, meal plan, transport arrangements, safari types and seasonal availability before publishing."
+      ]
+    },
+    {
+      "id": "nepal-mini-trek-7-day",
+      "title": "7 Day Nepal Mini Trek",
+      "category": "Nepal Adventure",
+      "brochure_code": "HE27",
+      "duration": "6 nights / 7 days",
+      "difficulty": "Easy badge; Grade D also printed",
+      "region": [
+        "Nepal",
+        "Kathmandu Valley",
+        "Nagarkot",
+        "Chisapani",
+        "Shivapuri"
+      ],
+      "summary": "A seven-day trekking route through hill settlements and forested trails near the Kathmandu Valley.",
+      "highlights": [
+        "Nagarkot",
+        "Sinjura",
+        "Chisapani",
+        "Borlang Bhanjyang",
+        "Shivapuri",
+        "Budhanilkantha return"
+      ],
+      "source_page": 8,
+      "content_flags": [
+        "The Easy badge conflicts with the itinerary's Grade D wording. Confirm trek grade, route names/spelling and current departure schedule before publishing."
+      ]
+    }
+  ],
+  "additional_services": [
+    {
+      "id": "kashmir-houseboat-booking",
+      "title": "Houseboat Booking Service for Kashmir",
+      "type": "service, not a numbered package card",
+      "source_page": 2,
+      "summary": "Booking access for houseboats on Nagin and Dal Lake in Srinagar, with options from two to seven bedrooms described in the brochure.",
+      "features": [
+        "Houseboats with private ensuite facilities described",
+        "Veranda/front deck and lake views described",
+        "Deluxe and A-class options mentioned",
+        "Group and individual booking options mentioned"
+      ],
+      "content_flags": [
+        "Confirm houseboat inventory, classification, prices, terms, cancellation policy, contact details and current availability before publishing."
+      ]
+    }
+  ]
+}

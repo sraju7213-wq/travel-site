@@ -1,0 +1,914 @@
+[
+  {
+    "group": "destination",
+    "file": "images/destinations/ladakh-monastery.jpg",
+    "brochure_page": 2,
+    "crop_review_box": [
+      437,
+      345,
+      598,
+      585
+    ],
+    "output_size": [
+      452,
+      673
+    ]
+  },
+  {
+    "group": "destination",
+    "file": "images/destinations/kashmir-shikara.jpg",
+    "brochure_page": 2,
+    "crop_review_box": [
+      618,
+      78,
+      812,
+      268
+    ],
+    "output_size": [
+      544,
+      533
+    ]
+  },
+  {
+    "group": "destination",
+    "file": "images/destinations/kathmandu-stupa.jpg",
+    "brochure_page": 2,
+    "crop_review_box": [
+      22,
+      948,
+      212,
+      1120
+    ],
+    "output_size": [
+      533,
+      483
+    ]
+  },
+  {
+    "group": "destination",
+    "file": "images/destinations/pokhara-lake.jpg",
+    "brochure_page": 2,
+    "crop_review_box": [
+      225,
+      948,
+      418,
+      1120
+    ],
+    "output_size": [
+      542,
+      483
+    ]
+  },
+  {
+    "group": "destination",
+    "file": "images/destinations/gateway-of-india.jpg",
+    "brochure_page": 2,
+    "crop_review_box": [
+      225,
+      532,
+      418,
+      600
+    ],
+    "output_size": [
+      542,
+      191
+    ]
+  },
+  {
+    "group": "destination",
+    "file": "images/destinations/taj-mahal.jpg",
+    "brochure_page": 3,
+    "crop_review_box": [
+      18,
+      68,
+      292,
+      255
+    ],
+    "output_size": [
+      769,
+      524
+    ]
+  },
+  {
+    "group": "destination",
+    "file": "images/destinations/goa-beach.jpg",
+    "brochure_page": 3,
+    "crop_review_box": [
+      296,
+      68,
+      555,
+      255
+    ],
+    "output_size": [
+      727,
+      524
+    ]
+  },
+  {
+    "group": "destination",
+    "file": "images/destinations/kerala-backwaters.jpg",
+    "brochure_page": 3,
+    "crop_review_box": [
+      573,
+      68,
+      833,
+      255
+    ],
+    "output_size": [
+      729,
+      524
+    ]
+  },
+  {
+    "group": "destination",
+    "file": "images/destinations/amber-fort.jpg",
+    "brochure_page": 3,
+    "crop_review_box": [
+      8,
+      1072,
+      840,
+      1198
+    ],
+    "output_size": [
+      1400,
+      212
+    ]
+  },
+  {
+    "group": "destination",
+    "file": "images/destinations/amber-fort-detail.jpg",
+    "brochure_page": 3,
+    "crop_review_box": [
+      8,
+      1072,
+      176,
+      1198
+    ],
+    "output_size": [
+      472,
+      353
+    ]
+  },
+  {
+    "group": "destination",
+    "file": "images/destinations/swayambhu-stupa.jpg",
+    "brochure_page": 4,
+    "crop_review_box": [
+      296,
+      68,
+      560,
+      355
+    ],
+    "output_size": [
+      741,
+      805
+    ]
+  },
+  {
+    "group": "destination",
+    "file": "images/destinations/himalaya-horses.jpg",
+    "brochure_page": 4,
+    "crop_review_box": [
+      573,
+      1005,
+      836,
+      1160
+    ],
+    "output_size": [
+      737,
+      435
+    ]
+  },
+  {
+    "group": "destination",
+    "file": "images/destinations/jodhpur-fort.jpg",
+    "brochure_page": 5,
+    "crop_review_box": [
+      295,
+      68,
+      556,
+      215
+    ],
+    "output_size": [
+      732,
+      412
+    ]
+  },
+  {
+    "group": "destination",
+    "file": "images/destinations/buddhist-statue.jpg",
+    "brochure_page": 5,
+    "crop_review_box": [
+      27,
+      68,
+      288,
+      215
+    ],
+    "output_size": [
+      732,
+      412
+    ]
+  },
+  {
+    "group": "destination",
+    "file": "images/destinations/south-india-backwaters.jpg",
+    "brochure_page": 5,
+    "crop_review_box": [
+      573,
+      68,
+      836,
+      215
+    ],
+    "output_size": [
+      737,
+      412
+    ]
+  },
+  {
+    "group": "destination",
+    "file": "images/destinations/varanasi-ghat.jpg",
+    "brochure_page": 5,
+    "crop_review_box": [
+      573,
+      1085,
+      836,
+      1160
+    ],
+    "output_size": [
+      737,
+      211
+    ]
+  },
+  {
+    "group": "destination",
+    "file": "images/destinations/markha-valley.jpg",
+    "brochure_page": 6,
+    "crop_review_box": [
+      27,
+      96,
+      288,
+      198
+    ],
+    "output_size": [
+      732,
+      286
+    ]
+  },
+  {
+    "group": "destination",
+    "file": "images/destinations/zanskar-river.jpg",
+    "brochure_page": 6,
+    "crop_review_box": [
+      296,
+      96,
+      556,
+      198
+    ],
+    "output_size": [
+      730,
+      286
+    ]
+  },
+  {
+    "group": "destination",
+    "file": "images/destinations/pangong-lake.jpg",
+    "brochure_page": 6,
+    "crop_review_box": [
+      573,
+      96,
+      836,
+      198
+    ],
+    "output_size": [
+      737,
+      286
+    ]
+  },
+  {
+    "group": "destination",
+    "file": "images/destinations/green-valley.jpg",
+    "brochure_page": 6,
+    "crop_review_box": [
+      573,
+      780,
+      836,
+      980
+    ],
+    "output_size": [
+      737,
+      561
+    ]
+  },
+  {
+    "group": "destination",
+    "file": "images/destinations/dal-lake.jpg",
+    "brochure_page": 7,
+    "crop_review_box": [
+      25,
+      100,
+      400,
+      233
+    ],
+    "output_size": [
+      1052,
+      374
+    ]
+  },
+  {
+    "group": "destination",
+    "file": "images/destinations/vale-trek.jpg",
+    "brochure_page": 7,
+    "crop_review_box": [
+      455,
+      100,
+      830,
+      232
+    ],
+    "output_size": [
+      1053,
+      371
+    ]
+  },
+  {
+    "group": "destination",
+    "file": "images/destinations/nepal-collage.jpg",
+    "brochure_page": 8,
+    "crop_review_box": [
+      290,
+      66,
+      552,
+      462
+    ],
+    "output_size": [
+      735,
+      1111
+    ]
+  },
+  {
+    "group": "destination",
+    "file": "images/destinations/rafting.jpg",
+    "brochure_page": 8,
+    "crop_review_box": [
+      573,
+      480,
+      836,
+      690
+    ],
+    "output_size": [
+      737,
+      589
+    ]
+  },
+  {
+    "group": "destination",
+    "file": "images/destinations/rhino.jpg",
+    "brochure_page": 8,
+    "crop_review_box": [
+      293,
+      1000,
+      552,
+      1155
+    ],
+    "output_size": [
+      727,
+      435
+    ]
+  },
+  {
+    "group": "destination",
+    "file": "images/destinations/nepal-trek.jpg",
+    "brochure_page": 8,
+    "crop_review_box": [
+      22,
+      1085,
+      285,
+      1170
+    ],
+    "output_size": [
+      738,
+      239
+    ]
+  },
+  {
+    "group": "destination",
+    "file": "images/destinations/snow-trek.jpg",
+    "brochure_page": 8,
+    "crop_review_box": [
+      573,
+      1052,
+      838,
+      1170
+    ],
+    "output_size": [
+      743,
+      331
+    ]
+  },
+  {
+    "group": "portrait",
+    "file": "images/destinations/founder-welcome.jpg",
+    "brochure_page": 1,
+    "crop_review_box": [
+      22,
+      20,
+      108,
+      108
+    ],
+    "output_size": [
+      241,
+      247
+    ]
+  },
+  {
+    "group": "portrait",
+    "file": "images/destinations/sultan-baktoo.jpg",
+    "brochure_page": 1,
+    "crop_review_box": [
+      503,
+      166,
+      600,
+      250
+    ],
+    "output_size": [
+      272,
+      235
+    ]
+  },
+  {
+    "group": "portrait",
+    "file": "images/destinations/farook-baktoo.jpg",
+    "brochure_page": 1,
+    "crop_review_box": [
+      503,
+      303,
+      600,
+      392
+    ],
+    "output_size": [
+      272,
+      250
+    ]
+  },
+  {
+    "group": "hero",
+    "file": "images/hero/hero-pangong.jpg",
+    "brochure_page": 6,
+    "crop_review_box": [
+      0,
+      1010,
+      848,
+      1175
+    ],
+    "output_size": [
+      2379,
+      463
+    ]
+  },
+  {
+    "group": "hero",
+    "file": "images/hero/hero-amber-fort.jpg",
+    "brochure_page": 3,
+    "crop_review_box": [
+      8,
+      1072,
+      840,
+      1198
+    ],
+    "output_size": [
+      2335,
+      353
+    ]
+  },
+  {
+    "group": "package",
+    "file": "images/packages/delhi-stopover.jpg",
+    "brochure_page": 3,
+    "source_asset": "amber-fort-detail",
+    "crop_review_box": [
+      8,
+      1072,
+      176,
+      1198
+    ],
+    "output_size": [
+      472,
+      353
+    ]
+  },
+  {
+    "group": "package",
+    "file": "images/packages/bombay-stopover.jpg",
+    "brochure_page": 2,
+    "source_asset": "gateway-of-india",
+    "crop_review_box": [
+      225,
+      532,
+      418,
+      600
+    ],
+    "output_size": [
+      542,
+      191
+    ]
+  },
+  {
+    "group": "package",
+    "file": "images/packages/discover-leh.jpg",
+    "brochure_page": 2,
+    "source_asset": "ladakh-monastery",
+    "crop_review_box": [
+      437,
+      345,
+      598,
+      585
+    ],
+    "output_size": [
+      452,
+      673
+    ]
+  },
+  {
+    "group": "package",
+    "file": "images/packages/kathmandu-stopover.jpg",
+    "brochure_page": 2,
+    "source_asset": "kathmandu-stupa",
+    "crop_review_box": [
+      22,
+      948,
+      212,
+      1120
+    ],
+    "output_size": [
+      533,
+      483
+    ]
+  },
+  {
+    "group": "package",
+    "file": "images/packages/kathmandu-pokhara.jpg",
+    "brochure_page": 2,
+    "source_asset": "pokhara-lake",
+    "crop_review_box": [
+      225,
+      948,
+      418,
+      1120
+    ],
+    "output_size": [
+      542,
+      483
+    ]
+  },
+  {
+    "group": "package",
+    "file": "images/packages/discover-ladakh.jpg",
+    "brochure_page": 6,
+    "source_asset": "pangong-lake",
+    "crop_review_box": [
+      573,
+      96,
+      836,
+      198
+    ],
+    "output_size": [
+      737,
+      286
+    ]
+  },
+  {
+    "group": "package",
+    "file": "images/packages/golden-triangle.jpg",
+    "brochure_page": 3,
+    "source_asset": "taj-mahal",
+    "crop_review_box": [
+      18,
+      68,
+      292,
+      255
+    ],
+    "output_size": [
+      769,
+      524
+    ]
+  },
+  {
+    "group": "package",
+    "file": "images/packages/glorious-goa-stopover.jpg",
+    "brochure_page": 3,
+    "source_asset": "goa-beach",
+    "crop_review_box": [
+      296,
+      68,
+      555,
+      255
+    ],
+    "output_size": [
+      727,
+      524
+    ]
+  },
+  {
+    "group": "package",
+    "file": "images/packages/glimpses-of-kerala.jpg",
+    "brochure_page": 3,
+    "source_asset": "kerala-backwaters",
+    "crop_review_box": [
+      573,
+      68,
+      833,
+      255
+    ],
+    "output_size": [
+      729,
+      524
+    ]
+  },
+  {
+    "group": "package",
+    "file": "images/packages/kashmir-package-7-day.jpg",
+    "brochure_page": 2,
+    "source_asset": "kashmir-shikara",
+    "crop_review_box": [
+      618,
+      78,
+      812,
+      268
+    ],
+    "output_size": [
+      544,
+      533
+    ]
+  },
+  {
+    "group": "package",
+    "file": "images/packages/kashmir-package-4-day.jpg",
+    "brochure_page": 7,
+    "source_asset": "dal-lake",
+    "crop_review_box": [
+      25,
+      100,
+      400,
+      233
+    ],
+    "output_size": [
+      900,
+      320
+    ]
+  },
+  {
+    "group": "package",
+    "file": "images/packages/delhi-to-kathmandu.jpg",
+    "brochure_page": 4,
+    "source_asset": "swayambhu-stupa",
+    "crop_review_box": [
+      296,
+      68,
+      560,
+      355
+    ],
+    "output_size": [
+      741,
+      805
+    ]
+  },
+  {
+    "group": "package",
+    "file": "images/packages/heritage-tour-india.jpg",
+    "brochure_page": 5,
+    "source_asset": "jodhpur-fort",
+    "crop_review_box": [
+      295,
+      68,
+      556,
+      215
+    ],
+    "output_size": [
+      732,
+      412
+    ]
+  },
+  {
+    "group": "package",
+    "file": "images/packages/north-india-highlights.jpg",
+    "brochure_page": 5,
+    "source_asset": "buddhist-statue",
+    "crop_review_box": [
+      27,
+      68,
+      288,
+      215
+    ],
+    "output_size": [
+      732,
+      412
+    ]
+  },
+  {
+    "group": "package",
+    "file": "images/packages/india-nepal-combination.jpg",
+    "brochure_page": 4,
+    "source_asset": "himalaya-horses",
+    "crop_review_box": [
+      573,
+      1005,
+      836,
+      1160
+    ],
+    "output_size": [
+      737,
+      435
+    ]
+  },
+  {
+    "group": "package",
+    "file": "images/packages/south-india-highlight.jpg",
+    "brochure_page": 5,
+    "source_asset": "south-india-backwaters",
+    "crop_review_box": [
+      573,
+      68,
+      836,
+      215
+    ],
+    "output_size": [
+      737,
+      412
+    ]
+  },
+  {
+    "group": "package",
+    "file": "images/packages/markha-valley.jpg",
+    "brochure_page": 6,
+    "source_asset": "markha-valley",
+    "crop_review_box": [
+      27,
+      96,
+      288,
+      198
+    ],
+    "output_size": [
+      732,
+      286
+    ]
+  },
+  {
+    "group": "package",
+    "file": "images/packages/kashmir-zanskar-ladakh-trek.jpg",
+    "brochure_page": 6,
+    "source_asset": "zanskar-river",
+    "crop_review_box": [
+      296,
+      96,
+      556,
+      198
+    ],
+    "output_size": [
+      730,
+      286
+    ]
+  },
+  {
+    "group": "package",
+    "file": "images/packages/kashmir-combinations-little-tibet.jpg",
+    "brochure_page": 6,
+    "source_asset": "green-valley",
+    "crop_review_box": [
+      573,
+      780,
+      836,
+      980
+    ],
+    "output_size": [
+      737,
+      561
+    ]
+  },
+  {
+    "group": "package",
+    "file": "images/packages/kashmir-mini-adventure.jpg",
+    "brochure_page": 7,
+    "source_asset": "dal-lake",
+    "crop_review_box": [
+      25,
+      100,
+      400,
+      233
+    ],
+    "output_size": [
+      900,
+      320
+    ]
+  },
+  {
+    "group": "package",
+    "file": "images/packages/vale-of-kashmir-trek.jpg",
+    "brochure_page": 7,
+    "source_asset": "vale-trek",
+    "crop_review_box": [
+      455,
+      100,
+      830,
+      232
+    ],
+    "output_size": [
+      900,
+      317
+    ]
+  },
+  {
+    "group": "package",
+    "file": "images/packages/kashmir-ski.jpg",
+    "brochure_page": 8,
+    "source_asset": "snow-trek",
+    "crop_review_box": [
+      573,
+      1052,
+      838,
+      1170
+    ],
+    "output_size": [
+      743,
+      331
+    ]
+  },
+  {
+    "group": "package",
+    "file": "images/packages/himalayan-combination-nepal.jpg",
+    "brochure_page": 8,
+    "source_asset": "nepal-collage",
+    "crop_review_box": [
+      290,
+      66,
+      552,
+      462
+    ],
+    "output_size": [
+      735,
+      1111
+    ]
+  },
+  {
+    "group": "package",
+    "file": "images/packages/trisuli-rafting.jpg",
+    "brochure_page": 8,
+    "source_asset": "rafting",
+    "crop_review_box": [
+      573,
+      480,
+      836,
+      690
+    ],
+    "output_size": [
+      737,
+      589
+    ]
+  },
+  {
+    "group": "package",
+    "file": "images/packages/nepal-mini-trek-4-day.jpg",
+    "brochure_page": 8,
+    "source_asset": "nepal-trek",
+    "crop_review_box": [
+      22,
+      1085,
+      285,
+      1170
+    ],
+    "output_size": [
+      738,
+      239
+    ]
+  },
+  {
+    "group": "package",
+    "file": "images/packages/nepal-wildlife-safari.jpg",
+    "brochure_page": 8,
+    "source_asset": "rhino",
+    "crop_review_box": [
+      293,
+      1000,
+      552,
+      1155
+    ],
+    "output_size": [
+      727,
+      435
+    ]
+  },
+  {
+    "group": "package",
+    "file": "images/packages/nepal-mini-trek-7-day.jpg",
+    "brochure_page": 8,
+    "source_asset": "snow-trek",
+    "crop_review_box": [
+      573,
+      1052,
+      838,
+      1170
+    ],
+    "output_size": [
+      743,
+      331
+    ]
+  }
+]
