@@ -206,7 +206,7 @@ export default function EnquiryForm({
   if (status === "sent") {
     return (
       <section className="py-16 md:py-24">
-        <div className="mx-auto max-w-2xl text-center rounded-[1.5rem] bg-white border border-border/80 p-10 md:p-14 shadow-2xl">
+        <div className="mx-auto max-w-2xl text-center rounded-[1.5rem] bg-[#132325] border border-white/10 p-10 md:p-14 shadow-2xl text-white">
           <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-forest text-brass shadow-lg">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" className="stroke-current stroke-[2.5]">
               <path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round" />
@@ -216,15 +216,15 @@ export default function EnquiryForm({
           <h1
             ref={successHeadingRef}
             tabIndex={-1}
-            className="text-h2 font-serif text-charcoal focus-visible:outline-none mb-4"
+            className="text-h2 font-serif text-white focus-visible:outline-none mb-4"
           >
             Thank You, {data.fullName.split(" ")[0] || "Traveller"}
           </h1>
-          <p className="font-display text-base text-charcoal-soft leading-relaxed max-w-lg mx-auto">
+          <p className="font-display text-base text-white/75 leading-relaxed max-w-lg mx-auto">
             Your enquiry has been recorded. Our travel designers will review your dates and party requirements and contact you via your preferred channel ({data.preferredContact}).
           </p>
           {chosen && (
-            <div className="mt-8 rounded-[1rem] border border-border/80 bg-ivory-soft p-5 text-left flex items-center gap-4">
+            <div className="mt-8 rounded-[1rem] border border-white/10 bg-white/5 p-5 text-left flex items-center gap-4">
               <div className="relative h-16 w-16 rounded-image overflow-hidden flex-shrink-0 bg-charcoal">
                 <Image
                   src={`/images/packages/${chosen.slug}.jpg`}
@@ -237,8 +237,8 @@ export default function EnquiryForm({
                 <p className="text-xs font-display uppercase tracking-wider text-brass font-semibold">
                   {chosen.category}
                 </p>
-                <p className="font-serif text-base font-bold text-charcoal">{chosen.title}</p>
-                <p className="text-xs font-display text-charcoal-soft">{chosen.duration} · Code {chosen.code}</p>
+                <p className="font-serif text-base font-bold text-white">{chosen.title}</p>
+                <p className="text-xs font-display text-white/70">{chosen.duration} · Code {chosen.code}</p>
               </div>
             </div>
           )}
@@ -273,7 +273,7 @@ export default function EnquiryForm({
         {/* Left Column — Summary & Specialist Trust Cards */}
         <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-28">
           {/* Dynamic Journey Card */}
-          <div className="overflow-hidden rounded-[1.25rem] border border-border/80 bg-white shadow-xl transition-all duration-300">
+          <div className="overflow-hidden rounded-[1.25rem] border border-white/10 bg-[#132325] shadow-xl transition-all duration-300">
             <div className="relative aspect-[16/10] overflow-hidden bg-charcoal">
               <Image
                 src={chosen ? `/images/packages/${chosen.slug}.jpg` : "/images/hero/hero-pangong.jpg"}
@@ -298,19 +298,19 @@ export default function EnquiryForm({
               {chosen ? (
                 <div className="space-y-4">
                   <div className="flex flex-wrap items-center gap-2 text-xs font-display">
-                    <span className="rounded-button border border-border bg-ivory-soft px-3 py-1 font-semibold text-charcoal">
+                    <span className="rounded-button border border-white/10 bg-white/5 px-3 py-1 font-semibold text-white/90">
                       Duration: {chosen.duration}
                     </span>
-                    <span className="rounded-button border border-border bg-ivory-soft px-3 py-1 font-semibold text-charcoal">
+                    <span className="rounded-button border border-white/10 bg-white/5 px-3 py-1 font-semibold text-white/90">
                       Code: {chosen.code}
                     </span>
                   </div>
-                  <p className="text-xs font-display text-charcoal-soft leading-relaxed">
+                  <p className="text-xs font-display text-white/75 leading-relaxed">
                     Personalized departures and tailored accommodation arranged around your schedule.
                   </p>
                 </div>
               ) : (
-                <div className="space-y-2 text-xs font-display text-charcoal-soft leading-relaxed">
+                <div className="space-y-2 text-xs font-display text-white/75 leading-relaxed">
                   <p>
                     Combine Himalayan trekking, Kashmir houseboats, Rajasthan heritage forts, or Kerala backwaters into a seamless private itinerary.
                   </p>
@@ -347,8 +347,8 @@ export default function EnquiryForm({
           </div>
 
           {/* Quiet Operational Notice */}
-          <div className="rounded-[1rem] border border-border/80 bg-ivory-soft p-5 text-[0.75rem] font-display text-charcoal-soft leading-relaxed">
-            <strong className="text-charcoal block mb-1">Direct Brochure Inquiry:</strong>
+          <div className="rounded-[1rem] border border-white/10 bg-white/5 p-5 text-[0.75rem] font-display text-white/70 leading-relaxed">
+            <strong className="text-white block mb-1">Direct Brochure Inquiry:</strong>
             {!configured ? (
               <span>
                 All dates, pricing, and custom itineraries are confirmed by direct specialist consultation. Quotes are shaped individually without obligation.
@@ -363,7 +363,7 @@ export default function EnquiryForm({
 
         {/* Right Column — Modern Form Card */}
         <div className="lg:col-span-7">
-          <div className="rounded-[1.5rem] border border-border/80 bg-white p-7 sm:p-10 shadow-2xl">
+          <div className="rounded-[1.5rem] border border-white/10 bg-[#132325] p-7 sm:p-10 shadow-2xl text-white">
             {status === "failed" && statusMessage && (
               <div
                 ref={errorSummaryRef}
@@ -373,7 +373,7 @@ export default function EnquiryForm({
               >
                 <div className="flex items-start gap-3">
                   <span className="text-brass text-lg leading-none mt-0.5">⚠️</span>
-                  <p className="font-display text-sm leading-relaxed text-charcoal font-medium">
+                  <p className="font-display text-sm leading-relaxed text-white font-medium">
                     {statusMessage}
                   </p>
                 </div>
@@ -385,7 +385,7 @@ export default function EnquiryForm({
               <div className="border-b border-border/80 pb-8">
                 <label
                   htmlFor="journey"
-                  className="block text-xs font-display font-semibold uppercase tracking-[0.2em] text-charcoal mb-3"
+                  className="block text-xs font-display font-semibold uppercase tracking-[0.2em] text-white/80 mb-3"
                 >
                   Selected Journey or Itinerary
                 </label>
@@ -394,7 +394,7 @@ export default function EnquiryForm({
                     id="journey"
                     value={selected}
                     onChange={(e) => setSelected(e.target.value)}
-                    className="w-full appearance-none rounded-button border border-border bg-ivory/30 px-4 py-3.5 text-sm font-display text-charcoal font-medium transition-colors hover:border-brass/60 focus:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass"
+                    className="w-full appearance-none rounded-button border border-white/15 bg-black/40 px-4 py-3.5 text-sm font-display text-white font-medium transition-colors hover:border-brass/60 focus:bg-black/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass"
                   >
                     <option value={CUSTOM}>Tailor-made trip (no specific journey)</option>
                     {grouped.map(([category, items]) => (
@@ -417,7 +417,7 @@ export default function EnquiryForm({
 
               {/* Step 2: Traveller Details */}
               <fieldset disabled={status === "submitting"} className="border-b border-border/80 pb-8">
-                <legend className="mb-5 flex items-center gap-2.5 text-xs font-display font-semibold uppercase tracking-[0.2em] text-charcoal">
+                <legend className="mb-5 flex items-center gap-2.5 text-xs font-display font-semibold uppercase tracking-[0.2em] text-white">
                   <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brass text-white text-[11px] font-bold shadow-sm">
                     1
                   </span>
@@ -426,7 +426,7 @@ export default function EnquiryForm({
 
                 <div className="grid gap-5 sm:grid-cols-2">
                   <div className="space-y-1.5 sm:col-span-2">
-                    <label htmlFor="fullName" className="block text-xs font-display font-semibold uppercase tracking-wider text-charcoal-soft">
+                    <label htmlFor="fullName" className="block text-xs font-display font-semibold uppercase tracking-wider text-white/75">
                       Full Name <span className="text-brass">*</span>
                     </label>
                     <input
@@ -439,8 +439,8 @@ export default function EnquiryForm({
                       onChange={(e) => setField("fullName", e.target.value)}
                       aria-invalid={!!fieldError("fullName")}
                       aria-describedby={fieldError("fullName") ? "fullName-error" : undefined}
-                      className={`w-full rounded-button border px-4 py-3 text-sm font-display transition-colors focus:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass ${
-                        fieldError("fullName") ? "border-brass bg-brass/5" : "border-border bg-ivory/20 hover:border-border/80"
+                      className={`w-full rounded-button border px-4 py-3 text-sm font-display text-white transition-colors focus:bg-black/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass ${
+                        fieldError("fullName") ? "border-brass bg-brass/10" : "border-white/15 bg-black/40 hover:border-white/30"
                       }`}
                     />
                     {fieldError("fullName") && (
@@ -451,7 +451,7 @@ export default function EnquiryForm({
                   </div>
 
                   <div className="space-y-1.5">
-                    <label htmlFor="email" className="block text-xs font-display font-semibold uppercase tracking-wider text-charcoal-soft">
+                    <label htmlFor="email" className="block text-xs font-display font-semibold uppercase tracking-wider text-white/75">
                       Email Address <span className="text-brass">*</span>
                     </label>
                     <input
@@ -465,8 +465,8 @@ export default function EnquiryForm({
                       onChange={(e) => setField("email", e.target.value)}
                       aria-invalid={!!fieldError("email")}
                       aria-describedby={fieldError("email") ? "email-error" : undefined}
-                      className={`w-full rounded-button border px-4 py-3 text-sm font-display transition-colors focus:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass ${
-                        fieldError("email") ? "border-brass bg-brass/5" : "border-border bg-ivory/20 hover:border-border/80"
+                      className={`w-full rounded-button border px-4 py-3 text-sm font-display text-white transition-colors focus:bg-black/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass ${
+                        fieldError("email") ? "border-brass bg-brass/10" : "border-white/15 bg-black/40 hover:border-white/30"
                       }`}
                     />
                     {fieldError("email") && (
@@ -477,7 +477,7 @@ export default function EnquiryForm({
                   </div>
 
                   <div className="space-y-1.5">
-                    <label htmlFor="phone" className="block text-xs font-display font-semibold uppercase tracking-wider text-charcoal-soft">
+                    <label htmlFor="phone" className="block text-xs font-display font-semibold uppercase tracking-wider text-white/75">
                       Phone Number <span className="text-brass">*</span>
                     </label>
                     <input
@@ -491,8 +491,8 @@ export default function EnquiryForm({
                       onChange={(e) => setField("phone", e.target.value)}
                       aria-invalid={!!fieldError("phone")}
                       aria-describedby={fieldError("phone") ? "phone-error" : undefined}
-                      className={`w-full rounded-button border px-4 py-3 text-sm font-display transition-colors focus:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass ${
-                        fieldError("phone") ? "border-brass bg-brass/5" : "border-border bg-ivory/20 hover:border-border/80"
+                      className={`w-full rounded-button border px-4 py-3 text-sm font-display text-white transition-colors focus:bg-black/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass ${
+                        fieldError("phone") ? "border-brass bg-brass/10" : "border-white/15 bg-black/40 hover:border-white/30"
                       }`}
                     />
                     {fieldError("phone") && (
@@ -505,7 +505,7 @@ export default function EnquiryForm({
 
                 {/* Contact Method Chips */}
                 <div className="mt-5">
-                  <span className="block text-xs font-display font-semibold uppercase tracking-wider text-charcoal-soft mb-2.5">
+                  <span className="block text-xs font-display font-semibold uppercase tracking-wider text-white/75 mb-2.5">
                     Preferred Contact Channel
                   </span>
                   <div className="grid grid-cols-2 gap-3">
@@ -518,8 +518,8 @@ export default function EnquiryForm({
                           onClick={() => setField("preferredContact", method)}
                           className={`flex items-center justify-center gap-2 rounded-button border px-4 py-2.5 text-xs font-display uppercase tracking-wider font-semibold transition-all cursor-pointer ${
                             isSelected
-                              ? "border-brass bg-brass/10 text-brass shadow-sm"
-                              : "border-border bg-ivory/20 text-charcoal-soft hover:bg-white hover:text-charcoal"
+                              ? "border-brass bg-brass/20 text-brass shadow-sm"
+                              : "border-white/15 bg-white/5 text-white/75 hover:bg-white/10 hover:text-white"
                           }`}
                         >
                           <span className={`h-2 w-2 rounded-full ${isSelected ? "bg-brass" : "bg-border"}`} />
@@ -533,7 +533,7 @@ export default function EnquiryForm({
 
               {/* Step 3: Trip Timing & Party Size */}
               <fieldset disabled={status === "submitting"} className="border-b border-border/80 pb-8">
-                <legend className="mb-5 flex items-center gap-2.5 text-xs font-display font-semibold uppercase tracking-[0.2em] text-charcoal">
+                <legend className="mb-5 flex items-center gap-2.5 text-xs font-display font-semibold uppercase tracking-[0.2em] text-white">
                   <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brass text-white text-[11px] font-bold shadow-sm">
                     2
                   </span>
@@ -542,7 +542,7 @@ export default function EnquiryForm({
 
                 <div className="grid gap-5 sm:grid-cols-2">
                   <div className="space-y-1.5">
-                    <label htmlFor="travelDate" className="block text-xs font-display font-semibold uppercase tracking-wider text-charcoal-soft">
+                    <label htmlFor="travelDate" className="block text-xs font-display font-semibold uppercase tracking-wider text-white/75">
                       Target Departure Date <span className="text-brass">*</span>
                     </label>
                     <input
@@ -556,8 +556,8 @@ export default function EnquiryForm({
                       onChange={(e) => setField("travelDate", e.target.value)}
                       aria-invalid={!!fieldError("travelDate")}
                       aria-describedby={fieldError("travelDate") ? "travelDate-error" : undefined}
-                      className={`w-full rounded-button border px-4 py-3 text-sm font-display transition-colors focus:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass disabled:opacity-40 ${
-                        fieldError("travelDate") ? "border-brass bg-brass/5" : "border-border bg-ivory/20 hover:border-border/80"
+                      className={`w-full rounded-button border px-4 py-3 text-sm font-display text-white transition-colors focus:bg-black/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass disabled:opacity-40 ${
+                        fieldError("travelDate") ? "border-brass bg-brass/10" : "border-white/15 bg-black/40 hover:border-white/30"
                       }`}
                     />
                     {fieldError("travelDate") && (
@@ -565,7 +565,7 @@ export default function EnquiryForm({
                         {fieldError("travelDate")}
                       </p>
                     )}
-                    <label className="flex cursor-pointer items-center gap-2 pt-1.5 text-xs font-display font-medium text-charcoal-soft hover:text-charcoal">
+                    <label className="flex cursor-pointer items-center gap-2 pt-1.5 text-xs font-display font-medium text-white/75 hover:text-white">
                       <input
                         type="checkbox"
                         name="datesFlexible"
@@ -581,7 +581,7 @@ export default function EnquiryForm({
                   </div>
 
                   <div className="space-y-1.5">
-                    <label htmlFor="travellers" className="block text-xs font-display font-semibold uppercase tracking-wider text-charcoal-soft">
+                    <label htmlFor="travellers" className="block text-xs font-display font-semibold uppercase tracking-wider text-white/75">
                       Number of Guests <span className="text-brass">*</span>
                     </label>
                     <input
@@ -597,8 +597,8 @@ export default function EnquiryForm({
                       onChange={(e) => setField("travellers", e.target.value)}
                       aria-invalid={!!fieldError("travellers")}
                       aria-describedby={fieldError("travellers") ? "travellers-error" : undefined}
-                      className={`w-full rounded-button border px-4 py-3 text-sm font-display transition-colors focus:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass ${
-                        fieldError("travellers") ? "border-brass bg-brass/5" : "border-border bg-ivory/20 hover:border-border/80"
+                      className={`w-full rounded-button border px-4 py-3 text-sm font-display text-white transition-colors focus:bg-black/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass ${
+                        fieldError("travellers") ? "border-brass bg-brass/10" : "border-white/15 bg-black/40 hover:border-white/30"
                       }`}
                     />
                     {fieldError("travellers") && (
@@ -616,7 +616,7 @@ export default function EnquiryForm({
                           className={`flex-1 rounded-button border py-1 text-xs font-display font-semibold transition-colors ${
                             data.travellers === count.replace("+", "")
                               ? "border-brass bg-brass text-white"
-                              : "border-border bg-ivory/30 text-charcoal-soft hover:bg-white"
+                              : "border-white/15 bg-white/5 text-white/75 hover:bg-white/10 hover:text-white"
                           }`}
                         >
                           {count}
@@ -629,7 +629,7 @@ export default function EnquiryForm({
 
               {/* Step 4: Special Wishes */}
               <fieldset disabled={status === "submitting"} className="border-b border-border/80 pb-8">
-                <legend className="mb-4 flex items-center gap-2.5 text-xs font-display font-semibold uppercase tracking-[0.2em] text-charcoal">
+                <legend className="mb-4 flex items-center gap-2.5 text-xs font-display font-semibold uppercase tracking-[0.2em] text-white">
                   <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brass text-white text-[11px] font-bold shadow-sm">
                     3
                   </span>
@@ -637,7 +637,7 @@ export default function EnquiryForm({
                 </legend>
 
                 <div className="space-y-2">
-                  <label htmlFor="message" className="block text-xs font-display font-semibold uppercase tracking-wider text-charcoal-soft">
+                  <label htmlFor="message" className="block text-xs font-display font-semibold uppercase tracking-wider text-white/75">
                     Special Interests, Pacing, or Inquiries
                   </label>
                   <textarea
@@ -648,8 +648,8 @@ export default function EnquiryForm({
                     onChange={(e) => setField("message", e.target.value)}
                     aria-invalid={!!fieldError("message")}
                     aria-describedby={fieldError("message") ? "message-error" : undefined}
-                    className={`w-full rounded-button border p-4 text-sm font-display leading-relaxed transition-colors focus:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass ${
-                      fieldError("message") ? "border-brass bg-brass/5" : "border-border bg-ivory/20 hover:border-border/80"
+                    className={`w-full rounded-button border p-4 text-sm font-display leading-relaxed text-white transition-colors focus:bg-black/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass ${
+                      fieldError("message") ? "border-brass bg-brass/10" : "border-white/15 bg-black/40 hover:border-white/30"
                     }`}
                     placeholder="Tell us any specific requests: dietary preferences, preferred hotel categories, high-altitude trekking fitness, Dal Lake houseboat nights, or flight connections..."
                   />
@@ -669,7 +669,7 @@ export default function EnquiryForm({
 
               {/* Consent checkbox */}
               <div className="space-y-2">
-                <label className="flex cursor-pointer items-start gap-3 text-xs font-display text-charcoal-soft leading-relaxed">
+                <label className="flex cursor-pointer items-start gap-3 text-xs font-display text-white/75 leading-relaxed">
                   <input
                     type="checkbox"
                     name="consent"
@@ -731,7 +731,7 @@ export default function EnquiryForm({
                     setStatusMessage("");
                     submissionIdRef.current = "";
                   }}
-                  className="w-full sm:w-auto px-6 py-4 rounded-button border border-border bg-ivory/30 text-xs font-display font-semibold uppercase tracking-wider text-charcoal-soft transition-colors hover:bg-white hover:text-charcoal cursor-pointer"
+                  className="w-full sm:w-auto px-6 py-4 rounded-button border border-white/15 bg-white/5 text-xs font-display font-semibold uppercase tracking-wider text-white/75 transition-colors hover:bg-white/10 hover:text-white cursor-pointer"
                 >
                   Reset
                 </button>

@@ -58,14 +58,14 @@ export default function DestinationCarousel() {
   }, []);
 
   return (
-    <section className="section-cream py-20 md:py-28 scroll-mt-24" id="destinations">
+    <section className="bg-[#0C1617] py-20 md:py-28 scroll-mt-24 text-white border-t border-white/5" id="destinations">
       <div className="mx-auto max-w-[1400px] px-4 md:px-8">
         <div className="mx-auto mb-10 max-w-3xl text-center">
-          <p className="subtitle-large mb-5 text-brass-ink">Eight regions</p>
-          <h2 className="text-h2 mb-6 text-charcoal">Destinations we operate in</h2>
-          <p className="font-display text-lg leading-relaxed text-charcoal-soft">
+          <p className="subtitle-large mb-5 text-brass">Eight regions</p>
+          <h2 className="text-h2 mb-6 text-white">Destinations we operate in</h2>
+          <p className="font-display text-lg leading-relaxed text-white/75">
             We operate across eight regions of India and Nepal, each selected for the journeys it
-            makes possible — sightseeing, trekking, rafting, wildlife and houseboat stays.
+            makes possible &mdash; sightseeing, trekking, rafting, wildlife and houseboat stays.
           </p>
         </div>
 
@@ -73,7 +73,7 @@ export default function DestinationCarousel() {
         <div
           role="group"
           aria-label="Jump to a destination"
-          className="mb-10 flex flex-wrap justify-center gap-x-2 gap-y-3 border-y border-border py-5"
+          className="mb-10 flex flex-wrap justify-center gap-x-2 gap-y-3 border-y border-white/10 py-5"
         >
           {DESTINATIONS.map((d, i) => (
             <button
@@ -84,7 +84,7 @@ export default function DestinationCarousel() {
               className={`rounded-button px-4 py-2 text-xs font-display font-semibold uppercase tracking-[0.2em] transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 ${
                 active === i
                   ? "bg-brass text-white shadow-[0_6px_16px_rgba(255,110,0,0.35)] scale-105"
-                  : "bg-white/70 text-charcoal-soft hover:bg-white hover:text-brass"
+                  : "bg-white/5 border border-white/10 text-white/75 hover:bg-white/10 hover:text-brass"
               }`}
             >
               {d.name}
@@ -131,7 +131,7 @@ export default function DestinationCarousel() {
                   </span>
                 </span>
               </span>
-              <span className="mt-4 block font-display text-sm leading-relaxed text-charcoal-soft line-clamp-2">
+              <span className="mt-4 block font-display text-sm leading-relaxed text-white/75 line-clamp-2">
                 {d.blurb}
               </span>
               <span className="btn-tertiary mt-5 inline-flex">Enquire now</span>
@@ -154,7 +154,7 @@ export default function DestinationCarousel() {
         </button>
         <span
           aria-live="polite"
-          className="text-xs font-display tabular-nums tracking-[0.3em] text-charcoal-soft"
+          className="text-xs font-display tabular-nums tracking-[0.3em] text-white/70"
         >
           {String(active + 1).padStart(2, "0")} / {String(DESTINATIONS.length).padStart(2, "0")}
         </span>

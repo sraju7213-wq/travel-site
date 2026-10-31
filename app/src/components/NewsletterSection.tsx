@@ -102,14 +102,14 @@ export default function NewsletterSection() {
 
   if (status === "subscribed") {
     return (
-      <section className="bg-ivory-soft py-16 md:py-24">
+      <section className="bg-[#0C1617] py-16 md:py-24 border-t border-white/5 text-white">
         <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-          <div className="rounded-image bg-white p-6 shadow-subtle md:p-12">
-            <p className="subtitle-large mb-4 text-brass-ink">Travel notes</p>
-            <h2 ref={successHeadingRef} tabIndex={-1} className="text-h3 mb-4 text-charcoal">
+          <div className="rounded-[1.25rem] bg-[#132325] border border-white/10 p-6 md:p-12 shadow-2xl">
+            <p className="subtitle-large mb-4 text-brass">Travel notes</p>
+            <h2 ref={successHeadingRef} tabIndex={-1} className="text-h3 mb-4 text-white">
               Subscribed
             </h2>
-            <p className="font-display leading-relaxed text-charcoal-soft">{message}</p>
+            <p className="font-display leading-relaxed text-white/75">{message}</p>
           </div>
         </div>
       </section>
@@ -117,26 +117,25 @@ export default function NewsletterSection() {
   }
 
   return (
-    <section className="bg-ivory-soft py-16 md:py-24">
+    <section className="bg-[#0C1617] py-16 md:py-24 border-t border-white/5 text-white">
       <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-        <div className="grid gap-10 rounded-image bg-white p-6 shadow-subtle md:p-12 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
+        <div className="grid gap-10 rounded-[1.25rem] bg-[#132325] border border-white/10 p-6 shadow-2xl md:p-12 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
           <div>
-            <p className="subtitle-large mb-5 text-brass-ink">Travel notes</p>
-            <h2 className="text-h3 mb-4 text-charcoal">Subscribe for updates</h2>
-            <p className="font-display leading-relaxed text-charcoal-soft">
+            <p className="subtitle-large mb-5 text-brass">Travel notes</p>
+            <h2 className="text-h3 mb-4 text-white">Subscribe for updates</h2>
+            <p className="font-display leading-relaxed text-white/75">
               Receive new itineraries and travel notes from our specialists.
             </p>
           </div>
-
           <form onSubmit={handleSubmit} noValidate>
             {status === "failed" && message && (
               <div
                 ref={errorSummaryRef}
                 role="alert"
                 tabIndex={-1}
-                className="mb-6 rounded-image border border-brass-ink bg-brass-ink/10 p-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass"
+                className="mb-6 rounded-image border border-brass/50 bg-brass/10 p-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass"
               >
-                <p className="font-display text-sm text-charcoal">{message}</p>
+                <p className="font-display text-sm text-brass-soft">{message}</p>
               </div>
             )}
             <div className="grid gap-4 sm:grid-cols-2">
@@ -154,12 +153,12 @@ export default function NewsletterSection() {
                   placeholder="First name"
                   aria-invalid={!!fieldError("firstName")}
                   aria-describedby={fieldError("firstName") ? "nl-first-error" : undefined}
-                  className={`w-full rounded-button border px-4 py-3 font-display text-sm text-charcoal transition-colors placeholder:text-charcoal-soft/70 focus:border-black/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass ${
-                    fieldError("firstName") ? "border-brass" : "border-black/25"
+                  className={`w-full rounded-button border px-4 py-3 font-display text-sm text-white bg-black/40 backdrop-blur-sm transition-colors placeholder:text-white/40 focus:border-brass focus:bg-black/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass ${
+                    fieldError("firstName") ? "border-brass bg-brass/10" : "border-white/15"
                   }`}
                 />
                 {fieldError("firstName") && (
-                  <p id="nl-first-error" className="mt-1 text-[0.8rem] font-display text-brass-ink">
+                  <p id="nl-first-error" className="mt-1 text-[0.8rem] font-display text-brass-soft">
                     {fieldError("firstName")}
                   </p>
                 )}
@@ -178,12 +177,12 @@ export default function NewsletterSection() {
                   placeholder="Surname"
                   aria-invalid={!!fieldError("surname")}
                   aria-describedby={fieldError("surname") ? "nl-surname-error" : undefined}
-                  className={`w-full rounded-button border px-4 py-3 font-display text-sm text-charcoal transition-colors placeholder:text-charcoal-soft/70 focus:border-black/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass ${
-                    fieldError("surname") ? "border-brass" : "border-black/25"
+                  className={`w-full rounded-button border px-4 py-3 font-display text-sm text-white bg-black/40 backdrop-blur-sm transition-colors placeholder:text-white/40 focus:border-brass focus:bg-black/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass ${
+                    fieldError("surname") ? "border-brass bg-brass/10" : "border-white/15"
                   }`}
                 />
                 {fieldError("surname") && (
-                  <p id="nl-surname-error" className="mt-1 text-[0.8rem] font-display text-brass-ink">
+                  <p id="nl-surname-error" className="mt-1 text-[0.8rem] font-display text-brass-soft">
                     {fieldError("surname")}
                   </p>
                 )}
@@ -203,12 +202,12 @@ export default function NewsletterSection() {
                   placeholder="Email address"
                   aria-invalid={!!fieldError("email")}
                   aria-describedby={fieldError("email") ? "nl-email-error" : undefined}
-                  className={`w-full rounded-button border px-4 py-3 font-display text-sm text-charcoal transition-colors placeholder:text-charcoal-soft/70 focus:border-black/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass ${
-                    fieldError("email") ? "border-brass" : "border-black/25"
+                  className={`w-full rounded-button border px-4 py-3 font-display text-sm text-white bg-black/40 backdrop-blur-sm transition-colors placeholder:text-white/40 focus:border-brass focus:bg-black/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass ${
+                    fieldError("email") ? "border-brass bg-brass/10" : "border-white/15"
                   }`}
                 />
                 {fieldError("email") && (
-                  <p id="nl-email-error" className="mt-1 text-[0.8rem] font-display text-brass-ink">
+                  <p id="nl-email-error" className="mt-1 text-[0.8rem] font-display text-brass-soft">
                     {fieldError("email")}
                   </p>
                 )}
@@ -222,20 +221,20 @@ export default function NewsletterSection() {
                   name="country"
                   value={country}
                   onChange={(e) => setCountry(e.target.value)}
-                  className="w-full rounded-button border border-black/25 bg-transparent px-4 py-3 font-display text-sm text-charcoal transition-colors focus:border-black/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass"
+                  className="w-full rounded-button border border-white/15 bg-[#101F21] px-4 py-3 font-display text-sm text-white transition-colors focus:border-brass focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass cursor-pointer"
                 >
-                  <option value="">Country of residence</option>
+                  <option value="" className="bg-[#101F21] text-white">Country of residence</option>
                   {COUNTRIES.map((c) => (
-                    <option key={c} value={c}>
+                    <option key={c} value={c} className="bg-[#101F21] text-white">
                       {c}
                     </option>
                   ))}
                 </select>
-              </div>
+            </div>
             </div>
 
             <div className="mt-4 space-y-2">
-              <label className="flex cursor-pointer items-start gap-2 text-sm font-display text-charcoal-soft">
+              <label className="flex cursor-pointer items-start gap-2 text-sm font-display text-white/75">
                 <input
                   type="checkbox"
                   name="consent"
@@ -243,15 +242,15 @@ export default function NewsletterSection() {
                   onChange={(e) => setConsent(e.target.checked)}
                   aria-invalid={!!fieldError("consent")}
                   aria-describedby={fieldError("consent") ? "nl-consent-error" : undefined}
-                  className="mt-0.5 text-charcoal"
+                  className="mt-0.5 accent-brass"
                 />
                 <span>
                   I would like to receive travel notes from India Nepal Travel Organisation by email.{" "}
-                  <span className="text-brass-ink">*</span>
+                  <span className="text-brass">*</span>
                 </span>
               </label>
               {fieldError("consent") && (
-                <p id="nl-consent-error" className="text-[0.8rem] font-display text-brass-ink">
+                <p id="nl-consent-error" className="text-[0.8rem] font-display text-brass-soft">
                   {fieldError("consent")}
                 </p>
               )}

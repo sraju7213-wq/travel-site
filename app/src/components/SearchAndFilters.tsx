@@ -148,7 +148,7 @@ export default function SearchAndFilters({
     <>
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-6">
         <div className="flex-1">
-          <label htmlFor="package-search" className="block text-xs font-display font-semibold uppercase tracking-wider text-charcoal-soft mb-2">
+          <label htmlFor="package-search" className="block text-xs font-display font-semibold uppercase tracking-wider text-white/70 mb-2">
             Search Brochure Itineraries
           </label>
           <div className="relative">
@@ -158,7 +158,7 @@ export default function SearchAndFilters({
               value={state.q}
               onChange={(e) => setState({ ...state, q: e.target.value })}
               placeholder="Search by package name, code (e.g. S01, II7, HE18) or destination..."
-              className="w-full rounded-button border border-border bg-white px-4 py-3 text-sm font-display text-charcoal shadow-sm transition-colors focus:border-brass focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass"
+              className="w-full rounded-button border border-white/10 bg-[#132325] px-4 py-3 text-sm font-display text-white placeholder:text-white/40 shadow-sm transition-colors focus:border-brass focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass"
             />
           </div>
         </div>
@@ -166,7 +166,7 @@ export default function SearchAndFilters({
           <button
             type="button"
             onClick={() => setMobileFiltersOpen(true)}
-            className="h-[46px] relative rounded-button border border-border px-5 text-xs font-display font-semibold uppercase tracking-wider text-charcoal bg-white transition-all hover:border-brass hover:text-brass focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass shadow-sm cursor-pointer flex items-center justify-center gap-2"
+            className="h-[46px] relative rounded-button border border-white/10 px-5 text-xs font-display font-semibold uppercase tracking-wider text-white bg-[#132325] transition-all hover:border-brass hover:text-brass focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass shadow-sm cursor-pointer flex items-center justify-center gap-2"
             aria-expanded={mobileFiltersOpen}
             aria-controls="mobile-filters"
           >
@@ -192,7 +192,7 @@ export default function SearchAndFilters({
             className={`flex-shrink-0 rounded-button px-4 py-2 text-xs font-display font-semibold uppercase tracking-wider transition-all cursor-pointer ${
               state.category === ALL
                 ? "bg-brass text-white shadow-md scale-102"
-                : "border border-border bg-white text-charcoal-soft hover:border-brass hover:text-brass shadow-sm"
+                : "border border-white/10 bg-[#132325] text-white/75 hover:border-brass hover:text-brass shadow-sm"
             }`}
           >
             All Journeys ({packages.length})
@@ -208,7 +208,7 @@ export default function SearchAndFilters({
                 className={`flex-shrink-0 rounded-button px-4 py-2 text-xs font-display font-semibold uppercase tracking-wider transition-all cursor-pointer ${
                   isSelected
                     ? "bg-brass text-white shadow-md scale-102"
-                    : "border border-border bg-white text-charcoal-soft hover:border-brass hover:text-brass shadow-sm"
+                    : "border border-white/10 bg-[#132325] text-white/75 hover:border-brass hover:text-brass shadow-sm"
                 }`}
               >
                 {cat} ({count})
@@ -310,7 +310,7 @@ export default function SearchAndFilters({
         </div>
 
       <div className="mt-6 flex flex-col md:flex-row md:items-center justify-between gap-3 text-sm">
-        <span aria-live="polite" className="font-display text-charcoal-soft">
+        <span aria-live="polite" className="font-display text-white/70">
           {sorted.length} trip{sorted.length === 1 ? "" : "s"} found
         </span>
         <div className="flex flex-wrap gap-1.5 text-xs font-display font-medium text-charcoal-soft">
@@ -366,7 +366,7 @@ function Select({ id, label, value, onChange, options }: SelectProps) {
     <div className="space-y-2">
       <label
         htmlFor={id}
-        className="block text-xs font-display font-semibold uppercase tracking-wider text-charcoal-soft"
+        className="block text-xs font-display font-semibold uppercase tracking-wider text-white/70"
       >
         {label}
       </label>
@@ -399,11 +399,11 @@ interface FilterPillProps {
 
 function FilterPill({ children, onRemove }: FilterPillProps) {
   return (
-    <span className="inline-flex max-w-full items-center gap-1.5 rounded-button border border-white/10 px-3 py-1 text-[11px] font-display font-medium uppercase text-charcoal-soft bg-transparent transition-colors hover:border-brass-ink hover:text-brass-ink focus-within:ring-1 focus-within:ring-brass">
+    <span className="inline-flex max-w-full items-center gap-1.5 rounded-button border border-white/15 px-3 py-1 text-[11px] font-display font-medium uppercase text-white/75 bg-white/5 transition-colors hover:border-brass hover:text-brass focus-within:ring-1 focus-within:ring-brass">
       <span className="truncate">{children}</span>
       <button
         onClick={onRemove}
-        className="-mr-1 inline-flex h-6 w-6 shrink-0 items-center justify-center text-charcoal-soft hover:text-brass-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass"
+        className="-mr-1 inline-flex h-6 w-6 shrink-0 items-center justify-center text-white/70 hover:text-brass focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass"
         aria-label={`Remove ${String(children)} filter`}
       >
         <span aria-hidden="true">×</span>

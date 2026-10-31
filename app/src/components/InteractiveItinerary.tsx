@@ -80,12 +80,12 @@ export default function InteractiveItinerary({ itinerary }: InteractiveItinerary
 
   if (days.length === 0) {
     return (
-      <section className="border-t border-border bg-ivory-soft py-16 md:py-20" id="itinerary">
+      <section className="border-t border-white/10 bg-[#0C1617] py-16 md:py-20 text-white" id="itinerary">
         <Container>
           <div className="max-w-2xl">
             <p className="subtitle-large mb-3 text-brass">Programme</p>
-            <h2 className="text-h3 mb-4 text-charcoal">Day-by-Day Itinerary</h2>
-            <p className="font-display text-base text-charcoal-soft leading-relaxed">
+            <h2 className="text-h3 mb-4 text-white">Day-by-Day Itinerary</h2>
+            <p className="font-display text-base text-white/70 leading-relaxed">
               No day-by-day programme has been transcribed for this journey yet. Direct consultation provides full departure notes, elevation profiles, and lodge stops.
             </p>
           </div>
@@ -95,25 +95,25 @@ export default function InteractiveItinerary({ itinerary }: InteractiveItinerary
   }
 
   return (
-    <section className="border-t border-border bg-ivory-soft/60 py-16 md:py-24" id="itinerary" aria-label="Day-by-day itinerary">
+    <section className="border-t border-white/10 bg-[#0C1617] py-16 md:py-24 text-white" id="itinerary" aria-label="Day-by-day itinerary">
       <Container>
         {/* Header with Title and Global Toggles */}
-        <div className="mb-8 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 border-b border-border/80 pb-6">
+        <div className="mb-8 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 border-b border-white/10 pb-6">
           <div className="max-w-2xl">
             <p className="subtitle-large mb-2 text-brass">Curated Route</p>
-            <h2 className="text-h3 font-serif text-charcoal">Day-by-Day Itinerary</h2>
-            <p className="font-display text-sm md:text-base text-charcoal-soft leading-relaxed mt-2">
+            <h2 className="text-h3 font-serif text-white">Day-by-Day Itinerary</h2>
+            <p className="font-display text-sm md:text-base text-white/75 leading-relaxed mt-2">
               Transcribed from the India Nepal Travel brochure. Day timings, rest days and optional side excursions are verified by direct enquiry.
             </p>
           </div>
           <div className="flex items-center gap-3 shrink-0">
-            <span className="rounded-button border border-border bg-white px-3 py-1.5 text-xs font-display uppercase tracking-wider font-semibold text-charcoal shadow-sm">
+            <span className="rounded-button border border-white/10 bg-[#132325] px-3 py-1.5 text-xs font-display uppercase tracking-wider font-semibold text-white shadow-sm">
               {days.length} Days Itinerary
             </span>
             <button
               type="button"
               onClick={toggleAll}
-              className="rounded-button border border-border bg-white px-3.5 py-1.5 text-xs font-display font-semibold uppercase tracking-wider text-charcoal-soft hover:border-brass hover:text-brass transition-all shadow-sm cursor-pointer"
+              className="rounded-button border border-white/10 bg-[#132325] px-3.5 py-1.5 text-xs font-display font-semibold uppercase tracking-wider text-white/75 hover:border-brass hover:text-brass transition-all shadow-sm cursor-pointer"
             >
               {allExpanded ? "Collapse All" : "Expand All"}
             </button>
@@ -122,7 +122,7 @@ export default function InteractiveItinerary({ itinerary }: InteractiveItinerary
 
         {/* Quick Jump Day Selector Pills */}
         <div className="mb-10">
-          <p className="text-[0.65rem] font-display uppercase tracking-[0.25em] text-charcoal-soft mb-3">
+          <p className="text-[0.65rem] font-display uppercase tracking-[0.25em] text-white/60 mb-3">
             Quick Jump To Day
           </p>
           <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
@@ -137,7 +137,7 @@ export default function InteractiveItinerary({ itinerary }: InteractiveItinerary
                   className={`flex-shrink-0 rounded-button px-3.5 py-1.5 text-xs font-display font-semibold transition-all cursor-pointer ${
                     isCurrent
                       ? "bg-brass text-white shadow-md scale-105"
-                      : "bg-white border border-border text-charcoal-soft hover:border-brass hover:text-brass"
+                      : "bg-[#132325] border border-white/10 text-white/75 hover:border-brass hover:text-brass"
                   }`}
                 >
                   Day {dayNum}
@@ -160,8 +160,8 @@ export default function InteractiveItinerary({ itinerary }: InteractiveItinerary
               <div
                 key={idx}
                 id={`itinerary-day-${idx}`}
-                className={`overflow-hidden rounded-[1.25rem] border transition-all duration-300 bg-white ${
-                  isExpanded ? "border-border shadow-md" : "border-border/60 shadow-sm hover:border-border"
+                className={`overflow-hidden rounded-[1.25rem] border transition-all duration-300 bg-[#132325] ${
+                  isExpanded ? "border-brass/40 shadow-xl" : "border-white/10 shadow-md hover:border-white/20"
                 }`}
               >
                 {/* Day Header Trigger */}
@@ -170,7 +170,7 @@ export default function InteractiveItinerary({ itinerary }: InteractiveItinerary
                   onClick={() => toggleDay(idx)}
                   aria-expanded={isExpanded}
                   aria-controls={panelId}
-                  className="w-full flex items-center justify-between p-5 md:p-6 text-left transition-colors hover:bg-ivory/20 cursor-pointer"
+                  className="w-full flex items-center justify-between p-5 md:p-6 text-left transition-colors hover:bg-white/5 cursor-pointer"
                 >
                   <div className="flex items-center gap-4">
                     <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brass text-white font-serif text-sm font-bold shadow-sm">
@@ -182,19 +182,19 @@ export default function InteractiveItinerary({ itinerary }: InteractiveItinerary
                           Day {dayNum}
                         </span>
                         {activity && (
-                          <span className="rounded-pill bg-ivory-soft border border-border px-2.5 py-0.5 text-[0.65rem] font-display uppercase tracking-wider text-charcoal-soft flex items-center gap-1">
+                          <span className="rounded-pill bg-white/5 border border-white/10 px-2.5 py-0.5 text-[0.65rem] font-display uppercase tracking-wider text-white/75 flex items-center gap-1">
                             <span>{activity.icon}</span>
                             <span>{activity.label}</span>
                           </span>
                         )}
                       </div>
-                      <h3 className="font-serif text-lg md:text-xl font-bold text-charcoal mt-1">
+                      <h3 className="font-serif text-lg md:text-xl font-bold text-white mt-1">
                         {entry.title || `Day ${dayNum} Programme`}
                       </h3>
                     </div>
                   </div>
 
-                  <span className="ml-4 flex h-8 w-8 items-center justify-center rounded-full border border-border text-charcoal-soft transition-transform duration-200">
+                  <span className="ml-4 flex h-8 w-8 items-center justify-center rounded-full border border-white/15 text-white/70 transition-transform duration-200">
                     <svg
                       width="12"
                       height="8"
@@ -213,10 +213,10 @@ export default function InteractiveItinerary({ itinerary }: InteractiveItinerary
                 <div
                   id={panelId}
                   hidden={!isExpanded}
-                  className="border-t border-border/60 px-5 md:px-6 pb-6 pt-4 space-y-4"
+                  className="border-t border-white/10 px-5 md:px-6 pb-6 pt-4 space-y-4"
                 >
                   {entry.description && (
-                    <p className="font-display text-sm md:text-base leading-relaxed text-charcoal-soft">
+                    <p className="font-display text-sm md:text-base leading-relaxed text-white/75">
                       {entry.description}
                     </p>
                   )}
@@ -224,14 +224,14 @@ export default function InteractiveItinerary({ itinerary }: InteractiveItinerary
                   {/* Stops tags */}
                   {entry.stops && entry.stops.length > 0 && (
                     <div className="pt-2">
-                      <p className="text-[0.65rem] font-display uppercase tracking-wider text-charcoal-soft font-semibold mb-2">
+                      <p className="text-[0.65rem] font-display uppercase tracking-wider text-white/60 font-semibold mb-2">
                         Route Stops &amp; Landmarks:
                       </p>
                       <div className="flex flex-wrap gap-2">
                         {entry.stops.map((stop) => (
                           <span
                             key={stop}
-                            className="inline-flex items-center gap-1.5 rounded-button border border-border bg-ivory-soft px-3 py-1 text-xs font-display font-medium text-charcoal"
+                            className="inline-flex items-center gap-1.5 rounded-button border border-white/10 bg-white/5 px-3 py-1 text-xs font-display font-medium text-white/90"
                           >
                             <span className="text-brass">📍</span>
                             <span>{stop}</span>
@@ -243,7 +243,7 @@ export default function InteractiveItinerary({ itinerary }: InteractiveItinerary
 
                   {/* Transfer Note */}
                   {entry.transfers && (
-                    <div className="rounded-[0.75rem] border border-border/80 bg-ivory/40 p-3.5 text-xs font-display text-charcoal-soft flex items-center gap-2.5">
+                    <div className="rounded-[0.75rem] border border-white/10 bg-white/5 p-3.5 text-xs font-display text-white/75 flex items-center gap-2.5">
                       <span className="text-brass text-base">🚗</span>
                       <span><strong>Transfer details:</strong> {entry.transfers}</span>
                     </div>

@@ -12,7 +12,7 @@ interface PageShellProps {
 
 export default function PageShell({ children, mainClassName }: PageShellProps) {
   return (
-    <div className="flex min-h-full flex-col bg-ivory text-charcoal">
+    <div className="flex min-h-full flex-col bg-[#0C1617] text-[#F5F2EB] selection:bg-brass selection:text-white">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-button focus:bg-forest focus:px-4 focus:py-2 focus:font-display focus:text-sm focus:text-white"

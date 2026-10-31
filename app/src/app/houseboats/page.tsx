@@ -42,7 +42,7 @@ export default async function HouseboatsPage({ params }: HouseboatPageProps) {
               </Link>
             </li>
             <li aria-hidden="true">&rsaquo;</li>
-            <li className="text-charcoal">{svc.title}</li>
+            <li className="text-white font-medium">{svc.title}</li>
           </ol>
         </nav>
 
@@ -62,15 +62,15 @@ export default async function HouseboatsPage({ params }: HouseboatPageProps) {
           <div className="mt-12 grid gap-12 md:grid-cols-2">
             <div>
               <p className="subtitle-large mb-4 text-brass">Booking service</p>
-              <h1 className="text-h3 mb-6 uppercase text-charcoal">{svc.title}</h1>
-              <p className="mb-10 font-display text-lg leading-relaxed text-charcoal-soft">
+              <h1 className="text-h3 mb-6 uppercase text-white">{svc.title}</h1>
+              <p className="mb-10 font-display text-lg leading-relaxed text-white/75">
                 {svc.summary}
               </p>
 
-              <h2 className="text-h4 mb-5 font-serif font-bold text-charcoal">
+              <h2 className="text-h4 mb-5 font-serif font-bold text-white">
                 What the brochure describes
               </h2>
-              <ul className="mb-10 space-y-3 font-display leading-relaxed text-charcoal-soft">
+              <ul className="mb-10 space-y-3 font-display leading-relaxed text-white/75">
                 {svc.features.map((f) => (
                   <li key={f} className="flex gap-3">
                     <span aria-hidden="true" className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brass" />
@@ -85,16 +85,16 @@ export default async function HouseboatsPage({ params }: HouseboatPageProps) {
             </div>
 
             <div className="space-y-6">
-              <div className="rounded-[1rem] border border-border bg-white p-8 shadow-sm transition-all duration-300 hover:shadow-md">
-                <h2 className="mb-4 font-serif text-xl font-bold text-charcoal">
+              <div className="rounded-[1.25rem] border border-white/10 bg-[#132325] p-8 shadow-xl transition-all duration-300 hover:border-brass/40">
+                <h2 className="mb-4 font-serif text-xl font-bold text-white">
                   Confirm before you book
                 </h2>
-                <p className="font-display leading-relaxed text-charcoal-soft">
+                <p className="font-display leading-relaxed text-white/75">
                   Houseboat inventory, classification, prices, terms, cancellation policy, contact
                   details and current availability must be confirmed with the operator before
                   booking. Enquire for current options.
                 </p>
-                <p className="mt-4 font-display leading-relaxed text-charcoal-soft">
+                <p className="mt-4 font-display leading-relaxed text-white/70">
                   This page describes the booking service only. It is not a numbered tour package.
                 </p>
               </div>

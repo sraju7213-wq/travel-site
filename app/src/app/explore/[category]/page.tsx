@@ -33,22 +33,22 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           className="flex items-center gap-3 border-b border-border py-4"
           aria-label="Breadcrumb"
         >
-          <Link href="/explore" className="text-xs font-display font-semibold uppercase tracking-wider text-charcoal hover:text-brass transition-colors">
+          <Link href="/explore" className="text-xs font-display font-semibold uppercase tracking-wider text-white/80 hover:text-brass transition-colors">
             &larr; All journeys
           </Link>
-          <span className="font-display text-sm text-charcoal-soft">{category}</span>
+          <span className="font-display text-sm text-white/60">{category}</span>
         </nav>
 
         <section className="pb-4 pt-10">
           <p className="subtitle-large mb-5 text-brass">Category</p>
-          <h1 className="text-h2 mb-5 uppercase text-charcoal">{category}</h1>
-          <p className="max-w-2xl font-display text-lg leading-relaxed text-charcoal-soft">
+          <h1 className="text-h2 mb-5 uppercase text-white">{category}</h1>
+          <p className="max-w-2xl font-display text-lg leading-relaxed text-white/75">
             {categoryPackages.length} journey{categoryPackages.length === 1 ? "" : "s"} in this
             category. Dates and pricing are confirmed by direct enquiry.
           </p>
         </section>
 
-        <Suspense fallback={<p className="py-20 font-display text-charcoal-soft">Loading journeys…</p>}>
+        <Suspense fallback={<p className="py-20 font-display text-white/70">Loading journeys…</p>}>
           <SearchAndFilters packages={categoryPackages} />
         </Suspense>
       </Container>

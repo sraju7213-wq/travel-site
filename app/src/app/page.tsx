@@ -3,7 +3,7 @@ import { getAllPackages } from "@/data/catalogue";
 import PageShell from "@/components/PageShell";
 import Container from "@/components/Container";
 import PackageGrid from "@/components/PackageGrid";
-import HomeHero from "@/components/HomeHero";
+import HomeVideoExperience from "@/components/HomeVideoExperience";
 import DiscoverSection from "@/components/DiscoverSection";
 import DestinationCarousel from "@/components/DestinationCarousel";
 import JourneysBand from "@/components/JourneysBand";
@@ -46,7 +46,7 @@ export const metadata = {
 export default function Home() {
   return (
     <PageShell mainClassName="">
-      <HomeHero />
+      <HomeVideoExperience />
       <DiscoverSection />
       <DestinationCarousel />
       <JourneysBand />
@@ -54,12 +54,12 @@ export default function Home() {
       <PillarsTabs />
 
       {/* Signature journeys */}
-      <section className="bg-white py-20 text-charcoal md:py-28">
+      <section className="bg-[#0C1617] py-20 text-white md:py-28 border-t border-white/5">
         <Container>
           <div className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
             <div className="max-w-2xl">
               <p className="subtitle-large mb-5 text-brass">Signature journeys</p>
-              <h2 className="text-h2 text-charcoal">
+              <h2 className="text-h2 text-white">
                 Tailor-made tours and small-group journeys
               </h2>
             </div>

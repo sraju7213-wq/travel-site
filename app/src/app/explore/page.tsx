@@ -39,7 +39,7 @@ export default function ExplorePage() {
           </div>
         </section>
 
-        <Suspense fallback={<p className="py-20 font-display text-charcoal-soft">Loading trips…</p>}>
+        <Suspense fallback={<p className="py-20 font-display text-white/70">Loading trips…</p>}>
           <SearchAndFilters packages={allPackages} />
         </Suspense>
       </Container>

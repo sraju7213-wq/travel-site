@@ -191,7 +191,7 @@ export default function AboutPage() {
       </section>
 
       {/* 2. Key Numbers Ribbon: Clean Contrast Band */}
-      <section className="border-y border-border bg-ivory-soft py-14 text-charcoal" aria-label="Key facts about our organisation">
+      <section className="border-y border-white/10 bg-[#101F21] py-14 text-white" aria-label="Key facts about our organisation">
         <div className="mx-auto max-w-[1400px] px-4 md:px-8">
           <dl className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {STATS.map((stat) => (
@@ -199,10 +199,10 @@ export default function AboutPage() {
                 <dt className="text-xs font-display font-semibold uppercase tracking-[0.25em] text-brass-ink mb-1">
                   {stat.label}
                 </dt>
-                <dd className="font-serif text-4xl font-bold tracking-tight text-forest md:text-5xl mb-2">
+                <dd className="font-serif text-4xl font-bold tracking-tight text-white md:text-5xl mb-2">
                   {stat.value}
                 </dd>
-                <p className="font-display text-sm leading-relaxed text-charcoal-soft">
+                <p className="font-display text-sm leading-relaxed text-white/75">
                   {stat.detail}
                 </p>
               </div>
@@ -212,14 +212,14 @@ export default function AboutPage() {
       </section>
 
       {/* 3. The Founders & Visionaries: Editorial Showcase */}
-      <section className="bg-white py-20 text-charcoal md:py-28" id="founders">
+      <section className="bg-[#0C1617] py-20 text-white md:py-28 border-b border-white/10" id="founders">
         <div className="mx-auto max-w-[1400px] px-4 md:px-8">
           <div className="mx-auto max-w-3xl text-center mb-16">
-            <p className="subtitle-large mb-4 text-brass-ink">Founders &amp; Visionaries</p>
-            <h2 className="text-h2 mb-6 text-forest">
+            <p className="subtitle-large mb-4 text-brass">Founders &amp; Visionaries</p>
+            <h2 className="text-h2 mb-6 text-white">
               The Baktoo family
             </h2>
-            <p className="font-display text-lg leading-relaxed text-charcoal-soft">
+            <p className="font-display text-lg leading-relaxed text-white/75">
               The Baktoo family has been promoting and sharing experiences in tourism since 1927. All
               tours are organized in association with our family company based in India.
             </p>
@@ -227,8 +227,8 @@ export default function AboutPage() {
 
           <div className="grid gap-8 lg:grid-cols-2">
             {/* Sultan Baktoo */}
-            <article className="group flex flex-col sm:flex-row gap-6 rounded-[1rem] border border-border bg-white p-6 shadow-subtle transition-all duration-300 hover:shadow-card md:p-8">
-              <div className="relative aspect-[4/5] w-full sm:w-[160px] shrink-0 overflow-hidden rounded-image bg-ivory-soft border border-border">
+            <article className="group flex flex-col sm:flex-row gap-6 rounded-[1.25rem] border border-white/10 bg-[#132325] p-6 shadow-xl transition-all duration-300 hover:border-brass/40 md:p-8 text-white">
+              <div className="relative aspect-[4/5] w-full sm:w-[160px] shrink-0 overflow-hidden rounded-image bg-[#0C1617] border border-white/10">
                 <Image
                   src="/images/destinations/sultan-baktoo.jpg"
                   alt="Sultan Baktoo, pioneer of tourism and travel in Kashmir"
@@ -238,13 +238,13 @@ export default function AboutPage() {
                 />
               </div>
               <div className="flex flex-col justify-center">
-                <span className="text-xs font-display font-semibold uppercase tracking-[0.2em] text-brass-ink mb-1">
+                <span className="text-xs font-display font-semibold uppercase tracking-[0.2em] text-brass mb-1">
                   Founder &amp; Pioneer
                 </span>
-                <h3 className="mb-3 font-serif text-2xl font-bold text-forest">
+                <h3 className="mb-3 font-serif text-2xl font-bold text-white">
                   Sultan Baktoo
                 </h3>
-                <p className="font-display text-sm leading-relaxed text-charcoal-soft">
+                <p className="font-display text-sm leading-relaxed text-white/75">
                   Sultan Baktoo has operated tours and treks to Northern India since 1927. He is the
                   chief operator, with hotels, a fleet of cars in Delhi and luxurious houseboats in
                   Kashmir. KHE operates offices in Delhi, Kashmir and Ladakh and agents/sub-agents in
@@ -254,8 +254,8 @@ export default function AboutPage() {
             </article>
 
             {/* Farook Baktoo */}
-            <article className="group flex flex-col sm:flex-row gap-6 rounded-[1rem] border border-border bg-white p-6 shadow-subtle transition-all duration-300 hover:shadow-card md:p-8">
-              <div className="relative aspect-[4/5] w-full sm:w-[160px] shrink-0 overflow-hidden rounded-image bg-ivory-soft border border-border">
+            <article className="group flex flex-col sm:flex-row gap-6 rounded-[1.25rem] border border-white/10 bg-[#132325] p-6 shadow-xl transition-all duration-300 hover:border-brass/40 md:p-8 text-white">
+              <div className="relative aspect-[4/5] w-full sm:w-[160px] shrink-0 overflow-hidden rounded-image bg-[#0C1617] border border-white/10">
                 <Image
                   src="/images/destinations/farook-baktoo.jpg"
                   alt="Farook Baktoo, Himalayan expedition leader and director"
@@ -265,13 +265,13 @@ export default function AboutPage() {
                 />
               </div>
               <div className="flex flex-col justify-center">
-                <span className="text-xs font-display font-semibold uppercase tracking-[0.2em] text-brass-ink mb-1">
+                <span className="text-xs font-display font-semibold uppercase tracking-[0.2em] text-brass mb-1">
                   Director &amp; Expedition Leader
                 </span>
-                <h3 className="mb-3 font-serif text-2xl font-bold text-forest">
+                <h3 className="mb-3 font-serif text-2xl font-bold text-white">
                   Farook Baktoo
                 </h3>
-                <p className="font-display text-sm leading-relaxed text-charcoal-soft">
+                <p className="font-display text-sm leading-relaxed text-white/75">
                   Farook has been planning and promoting tourism to the sub-continent for the past 20
                   years. Having grown up in the lush Kashmir Valley and born into one of the pioneering
                   families of Himalayan trekking, Farook has led many tours and treks in the Himalayan,
@@ -282,9 +282,9 @@ export default function AboutPage() {
           </div>
 
           {/* Archival Note & Welcome Philosophy */}
-          <div className="mt-12 overflow-hidden rounded-[1rem] border border-border bg-ivory-soft p-8 md:p-10">
+          <div className="mt-12 overflow-hidden rounded-[1.25rem] border border-white/10 bg-[#132325] p-8 md:p-10 text-white shadow-xl">
             <div className="grid items-center gap-8 md:grid-cols-[100px_1fr]">
-              <div className="relative aspect-square w-24 overflow-hidden rounded-full border-2 border-brass/40 bg-ivory-soft">
+              <div className="relative aspect-square w-24 overflow-hidden rounded-full border-2 border-brass/40 bg-[#0C1617]">
                 <Image
                   src="/images/destinations/founder-welcome.jpg"
                   alt="Archival welcome crest from the founding family"
@@ -294,12 +294,12 @@ export default function AboutPage() {
                 />
               </div>
               <div>
-                <blockquote className="font-serif text-lg italic leading-relaxed text-forest md:text-xl">
+                <blockquote className="font-serif text-lg italic leading-relaxed text-white/90 md:text-xl">
                   &ldquo;Our tours are guaranteed to depart and can be enjoyed by a small group of up to 15 or as a
                   solo traveller. Itineraries provided in this brochure are an outline of what you can
                   expect. Detailed information is available on request.&rdquo;
                 </blockquote>
-                <p className="mt-4 text-xs font-display font-semibold uppercase tracking-[0.2em] text-brass-ink">
+                <p className="mt-4 text-xs font-display font-semibold uppercase tracking-[0.2em] text-brass">
                   The Baktoo Family &mdash; India Nepal Travel Organisation
                 </p>
               </div>
@@ -428,12 +428,12 @@ export default function AboutPage() {
       </section>
 
       {/* 5. Core Philosophy: Our 4 Pillars */}
-      <section className="bg-ivory-soft py-20 text-charcoal md:py-28" aria-label="Our travel standards and principles">
+      <section className="bg-[#0C1617] py-20 text-white md:py-28 border-y border-white/10" aria-label="Our travel standards and principles">
         <div className="mx-auto max-w-[1400px] px-4 md:px-8">
           <div className="mx-auto max-w-3xl text-center mb-16">
-            <p className="subtitle-large mb-4 text-brass-ink">Our Standards</p>
-            <h2 className="text-h2 mb-6 text-forest">How we travel</h2>
-            <p className="font-display text-lg leading-relaxed text-charcoal-soft">
+            <p className="subtitle-large mb-4 text-brass">Our Standards</p>
+            <h2 className="text-h2 mb-6 text-white">How we travel</h2>
+            <p className="font-display text-lg leading-relaxed text-white/75">
               Four principles we have worked to since 1927.
             </p>
           </div>
@@ -442,20 +442,20 @@ export default function AboutPage() {
             {PILLARS.map((pillar) => (
               <div
                 key={pillar.number}
-                className="group rounded-[1rem] border border-border bg-white p-8 shadow-subtle transition-all duration-300 hover:shadow-card hover:-translate-y-0.5"
+                className="group rounded-[1.25rem] border border-white/10 bg-[#132325] p-8 shadow-xl transition-all duration-300 hover:border-brass/40 hover:-translate-y-0.5 text-white"
               >
                 <div className="flex items-center justify-between mb-4">
-                  <span className="font-serif text-3xl font-bold text-brass-ink">
+                  <span className="font-serif text-3xl font-bold text-brass">
                     {pillar.number}
                   </span>
-                  <span className="rounded-full bg-ivory-soft px-3 py-1 text-xs font-display font-medium uppercase tracking-wider text-charcoal-soft border border-border">
+                  <span className="rounded-full bg-white/5 px-3 py-1 text-xs font-display font-medium uppercase tracking-wider text-white/70 border border-white/10">
                     {pillar.badge}
                   </span>
                 </div>
-                <h3 className="mb-3 font-serif text-2xl font-bold text-forest">
+                <h3 className="mb-3 font-serif text-2xl font-bold text-white">
                   {pillar.title}
                 </h3>
-                <p className="font-display text-sm leading-relaxed text-charcoal-soft">
+                <p className="font-display text-sm leading-relaxed text-white/75">
                   {pillar.description}
                 </p>
               </div>
@@ -465,14 +465,14 @@ export default function AboutPage() {
       </section>
 
       {/* 6. The Enquiry-Led Process: How We Work */}
-      <section className="bg-white py-20 text-charcoal md:py-28">
+      <section className="bg-[#101F21] py-20 text-white md:py-28 border-b border-white/10">
         <div className="mx-auto max-w-[1400px] px-4 md:px-8">
           <div className="mx-auto max-w-3xl text-center mb-16">
-            <p className="subtitle-large mb-4 text-brass-ink">Personal Service</p>
-            <h2 className="text-h2 mb-6 text-forest">
+            <p className="subtitle-large mb-4 text-brass">Personal Service</p>
+            <h2 className="text-h2 mb-6 text-white">
               From initial idea to your first morning on the trail
             </h2>
-            <p className="font-display text-lg leading-relaxed text-charcoal-soft">
+            <p className="font-display text-lg leading-relaxed text-white/75">
               All tours are guaranteed to depart and can be enjoyed by a small group of up to 15, or as
               a solo traveller. Itineraries in the brochure are an outline; detailed information is
               available on request.
@@ -483,15 +483,15 @@ export default function AboutPage() {
             {PROCESS_STEPS.map((step) => (
               <div
                 key={step.step}
-                className="rounded-[1rem] border border-border bg-ivory-soft p-6 transition-all duration-300 hover:border-brass/40 hover:shadow-subtle"
+                className="rounded-[1.25rem] border border-white/10 bg-[#132325] p-6 transition-all duration-300 hover:border-brass/40 shadow-xl text-white"
               >
                 <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-forest font-serif text-lg font-bold text-brass">
                   {step.step}
                 </span>
-                <h3 className="mb-2 font-serif text-xl font-bold text-forest">
+                <h3 className="mb-2 font-serif text-xl font-bold text-white">
                   {step.title}
                 </h3>
-                <p className="font-display text-sm leading-relaxed text-charcoal-soft">
+                <p className="font-display text-sm leading-relaxed text-white/75">
                   {step.description}
                 </p>
               </div>
@@ -501,9 +501,9 @@ export default function AboutPage() {
       </section>
 
       {/* 7. Integrity & Transparency Commitment: Clean Professional Assurance */}
-      <section className="bg-ivory py-16 border-y border-border">
+      <section className="bg-[#0C1617] py-16 border-y border-white/10 text-white">
         <div className="mx-auto max-w-[1100px] px-4 md:px-8">
-          <div className="rounded-[1rem] border border-border bg-white p-8 md:p-12 shadow-subtle">
+          <div className="rounded-[1.25rem] border border-white/10 bg-[#132325] p-8 md:p-12 shadow-2xl text-white">
             <div className="flex flex-col md:flex-row md:items-start gap-6">
               <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-brass-ink/10 text-brass-ink border border-brass-ink/20">
                 <svg
@@ -516,34 +516,34 @@ export default function AboutPage() {
                 </svg>
               </div>
               <div className="flex-1">
-                <p className="text-xs font-display font-semibold uppercase tracking-[0.2em] text-brass-ink mb-2">
+                <p className="text-xs font-display font-semibold uppercase tracking-[0.2em] text-brass mb-2">
                   Our Operating Standard
                 </p>
-                <h3 className="mb-4 font-serif text-2xl font-bold text-forest">
+                <h3 className="mb-4 font-serif text-2xl font-bold text-white">
                   Grounded in Truth, Not Inflated Claims
                 </h3>
-                <p className="mb-4 font-display text-sm leading-relaxed text-charcoal-soft">
+                <p className="mb-4 font-display text-sm leading-relaxed text-white/75">
                   Every package, duration and route published on this site is drawn from our
                   organisation&rsquo;s brochure catalogue. We intentionally refrain from publishing
                   artificial discount countdowns, fabricated star ratings, or speculative pricing tables.
                 </p>
-                <p className="mb-6 font-display text-sm leading-relaxed text-charcoal-soft">
+                <p className="mb-6 font-display text-sm leading-relaxed text-white/75">
                   Because seasonal weather, flight connections, permit regulations and group sizes vary,
                   we provide accurate, personalised quotations upon enquiry &mdash; ensuring you receive genuine
                   clarity before committing to any journey.
                 </p>
 
                 <div className="grid gap-3 border-t border-border pt-4 sm:grid-cols-3">
-                  <div className="flex items-center gap-2 text-xs font-display font-medium text-charcoal">
-                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-ivory-soft text-brass-ink font-bold text-[0.65rem]">✓</span>
+                  <div className="flex items-center gap-2 text-xs font-display font-medium text-white/90">
+                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-brass/20 text-brass font-bold text-[0.65rem]">✓</span>
                     <span>Brochure-sourced itineraries</span>
                   </div>
-                  <div className="flex items-center gap-2 text-xs font-display font-medium text-charcoal">
-                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-ivory-soft text-brass-ink font-bold text-[0.65rem]">✓</span>
+                  <div className="flex items-center gap-2 text-xs font-display font-medium text-white/90">
+                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-brass/20 text-brass font-bold text-[0.65rem]">✓</span>
                     <span>Per-package inclusions</span>
                   </div>
-                  <div className="flex items-center gap-2 text-xs font-display font-medium text-charcoal">
-                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-ivory-soft text-brass-ink font-bold text-[0.65rem]">✓</span>
+                  <div className="flex items-center gap-2 text-xs font-display font-medium text-white/90">
+                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-brass/20 text-brass font-bold text-[0.65rem]">✓</span>
                     <span>Dates and pricing confirmed by enquiry</span>
                   </div>
                 </div>

@@ -132,29 +132,29 @@ export default async function PackagePage({ params }: PackagePageProps) {
       <Container>
         <section className="py-16 md:py-20">
           {/* Key Facts Ribbon Bar */}
-          <div className="mb-12 grid grid-cols-2 sm:grid-cols-4 gap-4 rounded-[1.25rem] border border-border/80 bg-white p-5 md:p-6 shadow-md">
-            <div className="border-r border-border/80 pr-4">
+          <div className="mb-12 grid grid-cols-2 sm:grid-cols-4 gap-4 rounded-[1.25rem] border border-white/10 bg-[#132325] p-5 md:p-6 shadow-xl">
+            <div className="border-r border-white/10 pr-4">
               <p className="text-[0.65rem] font-display uppercase tracking-widest text-brass font-semibold">Region</p>
-              <p className="font-serif text-base font-bold text-charcoal truncate mt-0.5">{pkg.region.join(", ")}</p>
+              <p className="font-serif text-base font-bold text-white truncate mt-0.5">{pkg.region.join(", ")}</p>
             </div>
-            <div className="sm:border-r border-border/80 pr-4">
+            <div className="sm:border-r border-white/10 pr-4">
               <p className="text-[0.65rem] font-display uppercase tracking-widest text-brass font-semibold">Duration</p>
-              <p className="font-serif text-base font-bold text-charcoal mt-0.5">{pkg.duration}</p>
+              <p className="font-serif text-base font-bold text-white mt-0.5">{pkg.duration}</p>
             </div>
-            <div className="border-r border-border/80 pr-4">
+            <div className="border-r border-white/10 pr-4">
               <p className="text-[0.65rem] font-display uppercase tracking-widest text-brass font-semibold">Group Departures</p>
-              <p className="font-serif text-base font-bold text-charcoal mt-0.5">Up to 15 or Solo</p>
+              <p className="font-serif text-base font-bold text-white mt-0.5">Up to 15 or Solo</p>
             </div>
             <div>
               <p className="text-[0.65rem] font-display uppercase tracking-widest text-brass font-semibold">Brochure Code</p>
-              <p className="font-serif text-base font-bold text-charcoal mt-0.5">{pkg.brochure_code}</p>
+              <p className="font-serif text-base font-bold text-white mt-0.5">{pkg.brochure_code}</p>
             </div>
           </div>
 
           <div className="grid gap-12 lg:grid-cols-3">
             <div className="lg:col-span-2">
-              <h2 className="text-h3 mb-6 text-charcoal">Overview</h2>
-              <p className="mb-8 font-display text-lg leading-relaxed text-charcoal-soft">
+              <h2 className="text-h3 mb-6 text-white">Overview</h2>
+              <p className="mb-8 font-display text-lg leading-relaxed text-white/75">
                 {pkg.summary} Drawn directly from our historic brochure catalogue, every departure is confirmed by personal consultation.
               </p>
 
@@ -162,12 +162,12 @@ export default async function PackagePage({ params }: PackagePageProps) {
               <PackageGallery images={gallery} title={pkg.title} />
 
               {pkg.highlights.length > 0 && (
-                <div className="mb-12 rounded-[1.25rem] border border-border/80 bg-white p-8 shadow-sm">
-                  <h3 className="mb-5 font-serif text-xl font-bold text-charcoal flex items-center gap-2">
+                <div className="mb-12 rounded-[1.25rem] border border-white/10 bg-[#132325] p-8 shadow-xl">
+                  <h3 className="mb-5 font-serif text-xl font-bold text-white flex items-center gap-2">
                     <span className="text-brass">✦</span>
                     <span>Journey Highlights</span>
                   </h3>
-                  <ul className="grid gap-3.5 sm:grid-cols-2 font-display text-sm leading-relaxed text-charcoal-soft">
+                  <ul className="grid gap-3.5 sm:grid-cols-2 font-display text-sm leading-relaxed text-white/75">
                     {pkg.highlights.map((h) => (
                       <li key={h} className="flex items-start gap-2.5">
                         <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brass/10 text-brass text-xs font-bold mt-0.5">
