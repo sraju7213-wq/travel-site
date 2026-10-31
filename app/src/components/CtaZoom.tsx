@@ -4,7 +4,7 @@ import Link from "next/link";
 /** Full-height closing call to action over a landscape photograph, with a watermark monogram. */
 export default function CtaZoom() {
   return (
-    <section className="relative isolate flex min-h-[560px] items-center justify-center overflow-hidden bg-wild-black md:min-h-[720px]">
+    <section className="relative isolate flex min-h-[560px] items-center justify-center overflow-hidden bg-charcoal md:min-h-[720px]">
       <Image
         src="/images/destinations/kashmir-shikara.jpg"
         alt="A shikara boat carrying flowers across Dal Lake in Kashmir"
@@ -28,11 +28,11 @@ export default function CtaZoom() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-3xl px-4 py-24 text-center md:px-8">
-        <p className="subtitle-large mb-5 text-white/70">Let&rsquo;s plan your next journey</p>
-        <h2 className="text-h2 mb-6 text-white">Ready?</h2>
+        <p className="subtitle-large mb-5 text-white/70">Plan your trip</p>
+        <h2 className="text-h2 mb-6 text-white">Enquire about a journey</h2>
         <p className="mb-10 font-display text-lg leading-relaxed text-white/85">
-          We are there every step of the way — from planning the perfect circuit to easing you
-          through customs. Tell us your dates and we will shape a journey around you.
+          Tell us your dates, party size and interests and we will shape an itinerary around you
+          from our brochure catalogue.
         </p>
         <Link href="/enquiry" className="btn-primary">
           Enquire now <span aria-hidden="true">→</span>

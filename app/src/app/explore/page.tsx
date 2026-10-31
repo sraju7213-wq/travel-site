@@ -18,7 +18,7 @@ export default function ExplorePage() {
   return (
     <PageShell>
       <Container>
-        <section className="relative h-[420px] md:h-[520px] overflow-hidden">
+        <section className="relative my-6 h-[420px] overflow-hidden rounded-[1.25rem] shadow-2xl md:my-8 md:h-[520px]">
           <Image
             src="/images/hero/hero-pangong.jpg"
             alt="Himalayan mountain landscape above a high-altitude lake"
@@ -30,7 +30,7 @@ export default function ExplorePage() {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.45)_100%)]" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
           <div className="relative z-10 mx-auto max-w-7xl px-4 md:px-8 pt-16 md:pt-20 pb-10">
-            <p className="subtitle-large mb-5 text-wild-orange">All journeys</p>
+            <p className="subtitle-large mb-5 text-brass">All journeys</p>
             <h1 className="text-h2 mb-5 text-white">Explore our tours</h1>
             <p className="max-w-2xl font-display text-lg leading-relaxed text-white/90">
               Every itinerary in our brochure catalogue — tailor-made tours, small-group journeys,

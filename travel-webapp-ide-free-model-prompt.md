@@ -6,7 +6,7 @@ Act as a practical senior frontend engineer and product designer. **Build and te
 ## Read these project sources first
 1. `india-nepal-travel-web-app-brief.md` — requirements, source audit and design direction.
 2. `travel_packages_catalog.json` — structured source data for all **27 tour packages** and the separate Kashmir houseboat service.
-3. `gggg.pdf` — original 8-page brochure, if present in the repository, for checking unclear source details.
+3. `Brochure.pdf` — original 8-page brochure, if present in the repository, for checking unclear source details.
 
 If a source file is missing, inspect the repository and continue with available material. Do not invent its contents.
 

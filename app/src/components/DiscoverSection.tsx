@@ -2,46 +2,45 @@ import Image from "next/image";
 import Link from "next/link";
 import { STATS } from "@/data/siteContent";
 
-/** The reference site's editorial block: dark panel, portrait image, and a row of stat callouts. */
+/** Editorial block: dark panel, portrait image, and a row of stat callouts. */
 export default function DiscoverSection() {
   return (
     <section id="discover" className="section-dark relative overflow-hidden py-20 md:py-28">
       <p
         aria-hidden="true"
-        className="pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap font-serif text-[13vw] uppercase leading-none tracking-[0.05em] text-white/[0.04] select-none"
-      >
-        #Indianepal
-      </p>
+        data-watermark="#Indianepal"
+        className="watermark-text pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap font-serif text-[13vw] uppercase leading-none tracking-[0.05em] text-white/[0.04] select-none"
+      />
 
       <div className="relative mx-auto max-w-[1400px] px-4 md:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
-            <p className="subtitle-large mb-5 text-wild-orange">We are a travel organisation</p>
-            <h2 className="text-h2 mb-6 text-wild-white">
-              Discover Earth&rsquo;s most untamed places
+            <p className="subtitle-large mb-5 text-brass">Specialist travel since 1927</p>
+            <h2 className="text-h2 mb-6 text-white">
+              Discover India and Nepal
             </h2>
             <p className="mb-5 font-display text-lg leading-relaxed text-white/80">
-              As specialist travel operators for India and Nepal, we are custodians of some of the
-              most significant journeys on the subcontinent — the high passes of Ladakh, the
-              backwaters of Kerala, the temples of Varanasi and the glacier trails of the Nepali
-              Himalaya.
+              India Nepal Travel Organisation is a specialist tour operator for individuals and
+              groups travelling to India and the subcontinent, with offices in Delhi, Kashmir and
+              Ladakh and agents throughout India and Nepal.
             </p>
             <p className="mb-8 font-display text-lg leading-relaxed text-white/80">
-              Our destinations are vast, remote and untamed. We arrange intimate encounters and
-              journeys that stay with you long after you return.
+              Our tours are guaranteed to depart and can be enjoyed by a small group of up to 15
+              travellers, or as a solo traveller. Itineraries in the brochure are an outline; detailed
+              information is available on request.
             </p>
             <Link href="/about" className="btn-ghost-dark">
               Learn more about us <span aria-hidden="true">→</span>
             </Link>
           </div>
 
-          <div className="relative aspect-[4/5] overflow-hidden rounded-image border border-white/10 sm:aspect-[4/3] lg:aspect-[4/5]">
+          <div className="group relative aspect-[4/5] overflow-hidden rounded-[1rem] border border-white/10 shadow-2xl transition-all duration-500 sm:aspect-[4/3] lg:aspect-[4/5]">
             <Image
-              src="/images/destinations/markha-valley.jpg"
-              alt="Snowbound Himalayan ranges above the Markha valley"
+              src="/images/destinations/boats-blue-water.jpg"
+              alt="Traditional boats sailing on blue waters against snow-capped Himalayan mountains"
               fill
               sizes="(min-width: 1024px) 45vw, 100vw"
-              className="object-cover"
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             />
             <div aria-hidden="true" className="absolute inset-0 bg-black/20" />
           </div>
@@ -52,11 +51,11 @@ export default function DiscoverSection() {
             <div key={stat.label} className="flex flex-col items-start gap-3">
               <span
                 aria-hidden="true"
-                className="flex h-[60px] w-[60px] items-center justify-center rounded-full border border-white/15 text-wild-orange"
+                className="flex h-[60px] w-[60px] items-center justify-center rounded-full border border-white/15 text-brass bg-white/5 transition-all duration-300 hover:border-brass hover:bg-brass hover:text-white hover:scale-105"
               >
                 <StatIcon label={stat.label} />
               </span>
-              <dt className="text-h4 font-serif text-wild-white">{stat.value}</dt>
+              <dt className="text-h4 font-serif text-white">{stat.value}</dt>
               <dd className="text-sm font-display text-white/75">
                 <span className="block font-semibold uppercase tracking-[0.15em] text-white">
                   {stat.label}

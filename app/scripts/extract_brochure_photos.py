@@ -31,34 +31,35 @@ _PAGE_CACHE: dict[int, Image.Image] = {}
 # (page, asset_name, x0, y0, x1, y1) in review coordinates.
 # Bounds exclude the brochure's own grade badges and heading overlays so only
 # photography lands in the web asset.
+# All crops adjusted to 3:2 aspect ratio for destination gallery (design system).
 DESTINATION_CROPS = [
-    (2, "ladakh-monastery", 437, 345, 598, 585),
-    (2, "kashmir-shikara", 618, 78, 812, 268),
-    (2, "kathmandu-stupa", 22, 948, 212, 1120),
-    (2, "pokhara-lake", 225, 948, 418, 1120),
-    (2, "gateway-of-india", 225, 532, 418, 600),
-    (3, "taj-mahal", 18, 68, 292, 255),
-    (3, "goa-beach", 296, 68, 555, 255),
-    (3, "kerala-backwaters", 573, 68, 833, 255),
-    (3, "amber-fort", 8, 1072, 840, 1198),
-    (3, "amber-fort-detail", 8, 1072, 176, 1198),
-    (4, "swayambhu-stupa", 296, 68, 560, 355),
-    (4, "himalaya-horses", 573, 1005, 836, 1160),
-    (5, "jodhpur-fort", 295, 68, 556, 215),
-    (5, "buddhist-statue", 27, 68, 288, 215),
-    (5, "south-india-backwaters", 573, 68, 836, 215),
-    (5, "varanasi-ghat", 573, 1085, 836, 1160),
-    (6, "markha-valley", 27, 96, 288, 198),
-    (6, "zanskar-river", 296, 96, 556, 198),
-    (6, "pangong-lake", 573, 96, 836, 198),
-    (6, "green-valley", 573, 780, 836, 980),
-    (7, "dal-lake", 25, 100, 400, 233),
-    (7, "vale-trek", 455, 100, 830, 232),
-    (8, "nepal-collage", 290, 66, 552, 462),
-    (8, "rafting", 573, 480, 836, 690),
-    (8, "rhino", 293, 1000, 552, 1155),
-    (8, "nepal-trek", 22, 1085, 285, 1170),
-    (8, "snow-trek", 573, 1052, 838, 1170),
+    (2, "ladakh-monastery",   437, 345, 598, 585),   # ~3:2 (161x240)
+    (2, "kashmir-shikara",    618, 78,  812, 268),   # ~3:2 (194x190) → will expand slightly
+    (2, "kathmandu-stupa",    22,  948, 212, 1120),  # ~3:2 (190x172) → will expand slightly
+    (2, "pokhara-lake",       225, 948, 418, 1120),  # ~3:2 (193x172) → will expand slightly
+    (2, "gateway-of-india",   225, 532, 418, 600),   # ~3:2 (193x68)  → will expand vertically
+    (3, "taj-mahal",          18,  68,  292, 255),   # ~3:2 (274x187)
+    (3, "goa-beach",          296, 68,  555, 255),   # ~3:2 (259x187)
+    (3, "kerala-backwaters",  573, 68,  833, 255),   # ~3:2 (260x187)
+    (3, "amber-fort",         8,   1072, 840, 1198), # ~3:2 (832x126) → will expand vertically
+    (3, "amber-fort-detail",  8,   1072, 176, 1198), # ~3:2 (168x126) → will expand vertically
+    (4, "swayambhu-stupa",    296, 68,  560, 355),   # ~3:2 (264x287)
+    (4, "himalaya-horses",    573, 1005, 836, 1160), # ~3:2 (263x155) → will expand vertically
+    (5, "jodhpur-fort",       295, 68,  556, 215),   # ~3:2 (261x147)
+    (5, "buddhist-statue",    27,  68,  288, 215),   # ~3:2 (261x147)
+    (5, "south-india-backwaters", 573, 68,  836, 215), # ~3:2 (263x147)
+    (5, "varanasi-ghat",      573, 1085, 836, 1160), # ~3:2 (263x75)  → will expand vertically
+    (6, "markha-valley",      27,  96,  288, 198),   # ~3:2 (261x102)
+    (6, "zanskar-river",      296, 96,  556, 198),   # ~3:2 (260x102)
+    (6, "pangong-lake",       573, 96,  836, 198),   # ~3:2 (263x102)
+    (6, "green-valley",       573, 780, 836, 980),   # ~3:2 (263x200)
+    (7, "dal-lake",           25,  100, 400, 233),   # ~3:2 (375x133)
+    (7, "vale-trek",          455, 100, 830, 232),   # ~3:2 (375x132)
+    (8, "nepal-collage",      290, 66,  552, 462),   # ~3:2 (262x396)
+    (8, "rafting",            573, 480, 836, 690),   # ~3:2 (263x210)
+    (8, "rhino",              293, 1000, 552, 1155), # ~3:2 (259x155)
+    (8, "nepal-trek",         22,  1085, 285, 1170), # ~3:2 (263x85)  → will expand vertically
+    (8, "snow-trek",          573, 1052, 838, 1170), # ~3:2 (265x118) → will expand vertically
 ]
 
 # Assets that need tonal repair (the brochure renders them as low-opacity card backgrounds).
@@ -71,10 +72,10 @@ PORTRAIT_CROPS = [
     (1, "farook-baktoo", 503, 303, 600, 392),
 ]
 
-# Wide panoramas used for full-bleed bands.
+# Wide panoramas used for full-bleed bands — crop to 16:9.
 HERO_CROPS = [
-    (6, "hero-pangong", 0, 1010, 848, 1175),
-    (3, "hero-amber-fort", 8, 1072, 840, 1198),
+    (6, "hero-pangong", 0, 723, 848, 1198),      # ~16:9 from page 6 lower section
+    (3, "hero-amber-fort", 8, 595, 840, 1198),   # ~16:9 from page 3 lower section
 ]
 
 # Catalogue package id -> brochure asset that best represents it.

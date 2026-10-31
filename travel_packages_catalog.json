@@ -1,5 +1,5 @@
 {
-  "source_document": "gggg.pdf",
+  "source_document": "Brochure.pdf",
   "source_pages": 8,
   "package_count": 27,
   "note": "This is a structured index derived from the brochure, not an operational confirmation. Fields with content_flags require client/operator review before publication.",
@@ -24,7 +24,24 @@
         "Local shopping and markets"
       ],
       "source_page": 2,
-      "content_flags": []
+      "content_flags": [],
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Delhi",
+          "description": "On arrival, check into your hotel for an overnight stay."
+        },
+        {
+          "day": 2,
+          "title": "Delhi",
+          "description": "Morning sightseeing tour of iconic landmarks: the Red Fort, Jama Masjid and Gandhi Samadhi, alongside a drive past India Gate and the President's House. Afternoon exploring local manufacturers, wholesalers and markets."
+        },
+        {
+          "day": 3,
+          "title": "Delhi",
+          "description": "Transfer to the airport, or join another tour."
+        }
+      ]
     },
     {
       "id": "bombay-stopover",
@@ -44,7 +61,29 @@
         "Bollywood studio tour"
       ],
       "source_page": 2,
-      "content_flags": []
+      "content_flags": [],
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Mumbai",
+          "description": "Meet your representative and transfer to your hotel, followed by an afternoon city tour."
+        },
+        {
+          "day": 2,
+          "title": "Elephanta Caves",
+          "description": "Morning excursion to the Elephanta Caves."
+        },
+        {
+          "day": 3,
+          "title": "Bollywood",
+          "description": "Full-day tour exploring Bollywood, the world's largest film studios."
+        },
+        {
+          "day": 4,
+          "title": "Mumbai",
+          "description": "Transfer to your onward destination."
+        }
+      ]
     },
     {
       "id": "discover-leh",
@@ -65,7 +104,29 @@
         "Leisurely short Ladakh introduction"
       ],
       "source_page": 2,
-      "content_flags": []
+      "content_flags": [],
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Leh",
+          "description": "Arrive at Leh and rest."
+        },
+        {
+          "day": 2,
+          "title": "Leh",
+          "description": "Leh local sightseeing."
+        },
+        {
+          "day": 3,
+          "title": "Leh",
+          "description": "Local sightseeing."
+        },
+        {
+          "day": 4,
+          "title": "Leh",
+          "description": "Onwards journey, departure/transfer."
+        }
+      ]
     },
     {
       "id": "kathmandu-stopover",
@@ -86,7 +147,29 @@
         "Optional leisure excursion mentioned in brochure"
       ],
       "source_page": 2,
-      "content_flags": []
+      "content_flags": [],
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Kathmandu",
+          "description": "You will be met and transferred to your hotel."
+        },
+        {
+          "day": 2,
+          "title": "Kathmandu",
+          "description": "Morning city sightseeing tour."
+        },
+        {
+          "day": 3,
+          "title": "Kathmandu",
+          "description": "Day at leisure, optional flight to Everest base camp."
+        },
+        {
+          "day": 4,
+          "title": "Kathmandu",
+          "description": "Departure/transfer."
+        }
+      ]
     },
     {
       "id": "kathmandu-pokhara",
@@ -109,6 +192,28 @@
       "source_page": 2,
       "content_flags": [
         "The card's duration label appears to conflict with the contents page and four-day itinerary. Confirm the intended number of nights and days before publishing."
+      ],
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Kathmandu / Pokhara",
+          "description": "Travel by car to Pokhara (203 kms)."
+        },
+        {
+          "day": 2,
+          "title": "Pokhara",
+          "description": "Day at leisure."
+        },
+        {
+          "day": 3,
+          "title": "Pokhara / Kathmandu",
+          "description": "Transfer for your first flight to Kathmandu and transfer on arrival to hotel."
+        },
+        {
+          "day": 4,
+          "title": "Kathmandu",
+          "description": "Departure. Hotel check out time is 12."
+        }
       ]
     },
     {
@@ -132,7 +237,34 @@
         "Return to Leh"
       ],
       "source_page": 2,
-      "content_flags": []
+      "content_flags": [],
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Leh / Nubra Valley",
+          "description": "Leh to Nubra Valley via Khardung La."
+        },
+        {
+          "day": 2,
+          "title": "Nubra / Turtuk",
+          "description": "Nubra to Turtuk."
+        },
+        {
+          "day": 3,
+          "title": "Nubra Valley / Pangong",
+          "description": "Nubra Valley to Pangong."
+        },
+        {
+          "day": 4,
+          "title": "Pangong / Leh",
+          "description": "Pangong to Leh."
+        },
+        {
+          "day": 5,
+          "title": "Leh",
+          "description": "Departure/transfer."
+        }
+      ]
     },
     {
       "id": "golden-triangle",
@@ -157,6 +289,23 @@
       "source_page": 3,
       "content_flags": [
         "The printed package code casing/lettering is visually ambiguous; confirm official code before publishing."
+      ],
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Delhi – Agra",
+          "description": "Drive to Agra; visit the Taj Mahal and Agra Fort."
+        },
+        {
+          "day": 2,
+          "title": "Agra – Jaipur",
+          "description": "Visit Fatehpur Sikri; drive via Bharatpur Bird Sanctuary to Jaipur."
+        },
+        {
+          "day": "03–04",
+          "title": "Jaipur – Delhi",
+          "description": "Jaipur city tour, leisure time and Amber Fort excursion; drive to Delhi."
+        }
       ]
     },
     {
@@ -178,7 +327,23 @@
         "Room-only accommodation is specified in the package text"
       ],
       "source_page": 3,
-      "content_flags": []
+      "content_flags": [],
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Goa",
+          "description": "Arrival, meet and greet; hotel transfer, leisure."
+        },
+        {
+          "day": "02–04",
+          "title": "Goa",
+          "description": "Panjim city tour; remaining time at leisure."
+        }
+      ],
+      "inclusions": [
+        "Transfers and sightseeing as specified by car.",
+        "Accommodation on a room-only basis."
+      ]
     },
     {
       "id": "glimpses-of-kerala",
@@ -205,6 +370,33 @@
       "source_page": 3,
       "content_flags": [
         "The package-specific accommodation wording is cut off/unclear in the brochure; confirm before publishing."
+      ],
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Trivandrum",
+          "description": "Arrival, hotel transfer; leisure."
+        },
+        {
+          "day": 2,
+          "title": "Kovalam",
+          "description": "Morning at leisure; afternoon Trivandrum city tour."
+        },
+        {
+          "day": "03–04",
+          "title": "Kovalam – Periyar – Cochin",
+          "description": "Drive to Periyar; lake wildlife cruise. Proceed via Kottayam and Alleppey, with backwater cruise, to Cochin."
+        },
+        {
+          "day": "05–06",
+          "title": "Cochin",
+          "description": "Backwater cruise, city tour and Kathakali dance; check-out by 12 noon on Day 6."
+        }
+      ],
+      "inclusions": [
+        "All transfers and sightseeing as specified by car.",
+        "Wildlife viewing at Periyar Sanctuary by motor boat.",
+        "Backwater cruise between Kottayam and Alleppey."
       ]
     },
     {
@@ -231,7 +423,41 @@
         "Pahalgam"
       ],
       "source_page": 4,
-      "content_flags": []
+      "content_flags": [
+        "The brochure prints six days for this package while the card states 7 days / 6 nights. Confirm the missing day."
+      ],
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Delhi / Srinagar",
+          "description": "On arrival in Srinagar. Meet at airport and transfer to a deluxe house boat for overnight in the house boat."
+        },
+        {
+          "day": 2,
+          "title": "Srinagar / Gulmarg",
+          "description": "Morning half-day city tour of the old part of Srinagar. After noon at leisure, overnight house boat."
+        },
+        {
+          "day": 3,
+          "title": "Srinagar / Sonmarg",
+          "description": "After breakfast, proceed to Sonmarg, the meadow of gold, and enjoy its scenic beauty. Spend the day exploring the local area, with an optional pony ride or trek to the glacier. Return to Srinagar overnight at the house boat."
+        },
+        {
+          "day": 4,
+          "title": "Mughal Garden & Shikara Tour",
+          "description": "After breakfast, visit Shankaracharya hill for a bird's-eye view of Srinagar. Visit the Mughal gardens, Nishat and Shalimar. After lunch, a shikara ride. Overnight in the house boat."
+        },
+        {
+          "day": 5,
+          "title": "Srinagar / Pahalgam",
+          "description": "After breakfast, drive to Pahalgam and enjoy the day strolling along the Lidder River, or an optional horse ride or trek. Return to Srinagar in the evening, overnight in the house boat."
+        },
+        {
+          "day": 6,
+          "title": "Srinagar / Gulmarg",
+          "description": "After breakfast, drive to Gulmarg, the meadow of flowers. On arrival at the hill top, the option of horse riding, golf or trekking. All activities are optional. Overnight at the house boat in Srinagar."
+        }
+      ]
     },
     {
       "id": "kashmir-package-4-day",
@@ -254,6 +480,28 @@
       "source_page": 4,
       "content_flags": [
         "The brochure lists several optional alternatives for Day 3 rather than a single fixed route. Present those as options, not guaranteed inclusions."
+      ],
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Srinagar",
+          "description": "Reception at Srinagar and transfer to M.S. Baktoo group of houseboats. After lunch, a shikara cruise to the Floating Gardens."
+        },
+        {
+          "day": 2,
+          "title": "Srinagar",
+          "description": "Sightseeing tour of the old and new parts of Srinagar city, visiting the mosques, tombs and handicraft centres."
+        },
+        {
+          "day": 3,
+          "title": "Srinagar",
+          "description": "Day trip to the mountain resort of Pahalgam, Gulmarg or Sonmarg — only one of the three — with optional horse riding for one hour. Return for dinner on the houseboat."
+        },
+        {
+          "day": 4,
+          "title": "Srinagar",
+          "description": "Early morning visit to the floating vegetable market by shikara; after breakfast, transfer to the airport or bus terminal for departure. For passengers arriving by bus, a shikara cruise will be on day 2."
+        }
       ]
     },
     {
@@ -280,7 +528,50 @@
       ],
       "source_page": 4,
       "content_flags": [
-        "Confirm the exact inclusions and any flight/rail arrangements for this multi-country route."
+        "Confirm the exact inclusions and any flight/rail arrangements for this multi-country route.",
+        "The brochure scan for this package is only partly legible: Day 3 shows 'Afternoon Activity' with no further detail, and Day 6 is reconstructed from a fragment. Confirm the full programme with the operator."
+      ],
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Delhi / Agra",
+          "description": "Transfer to Agra; on arrival transfer to hotel. Afternoon sightseeing tour of the Taj Mahal."
+        },
+        {
+          "day": 2,
+          "title": "Agra / Varanasi",
+          "description": "Transfer to the railway station for your train journey to Varanasi. Upon arrival, transfer to the hotel. Afternoon at leisure."
+        },
+        {
+          "day": 3,
+          "title": "Varanasi",
+          "description": "Afternoon activity."
+        },
+        {
+          "day": 4,
+          "title": "Varanasi",
+          "description": "Early morning boat tour on River Ganges. Afternoon at leisure."
+        },
+        {
+          "day": 5,
+          "title": "Varanasi / Kathmandu",
+          "description": "Transfer for flight to Kathmandu and transfer to hotel. Afternoon sightseeing tour of city."
+        },
+        {
+          "day": 6,
+          "title": "Kathmandu",
+          "description": "Morning city sightseeing tour; afternoon at leisure."
+        },
+        {
+          "day": 7,
+          "title": "Kathmandu",
+          "description": "Day at leisure, optional flight to Everest base camp."
+        },
+        {
+          "day": 8,
+          "title": "Kathmandu",
+          "description": "Hotel check out time is 12 Noon. Departure / transfer."
+        }
       ]
     },
     {
@@ -310,7 +601,79 @@
         "Agra and the Taj Mahal"
       ],
       "source_page": 4,
-      "content_flags": []
+      "content_flags": [],
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Delhi",
+          "description": "Arrive in Delhi, meet your guide, transfer to your accommodation and relax."
+        },
+        {
+          "day": 2,
+          "title": "Delhi",
+          "description": "Explore Old and New Delhi, including Humayun's Tomb, Jantar Mantar, Qutub Minar, India Gate and Raj Ghat. Enjoy the Sound and Light Show at Red Fort."
+        },
+        {
+          "day": 3,
+          "title": "Delhi – Mandawa",
+          "description": "Drive to Rajasthan's Shekhawati region and discover Mandawa's historic havelis and colourful streets."
+        },
+        {
+          "day": 4,
+          "title": "Mandawa – Bikaner",
+          "description": "Travel to Bikaner and visit Junagarh Fort and a camel-breeding farm."
+        },
+        {
+          "day": 5,
+          "title": "Bikaner – Jaisalmer",
+          "description": "Drive to the golden desert city of Jaisalmer and enjoy its unique atmosphere."
+        },
+        {
+          "day": 6,
+          "title": "Jaisalmer",
+          "description": "Explore the city's famous havelis and visit the Sam Sand Dunes for spectacular desert views."
+        },
+        {
+          "day": 7,
+          "title": "Jaisalmer – Jodhpur",
+          "description": "Travel to Jodhpur and explore the magnificent Mehrangarh Fort and its museum."
+        },
+        {
+          "day": 8,
+          "title": "Jodhpur – Udaipur",
+          "description": "Drive to romantic Udaipur and visit the grand City Palace Museum."
+        },
+        {
+          "day": 9,
+          "title": "Udaipur",
+          "description": "Enjoy leisure time around Lake Pichola and explore the city's beautiful temples, palaces and cultural attractions."
+        },
+        {
+          "day": 10,
+          "title": "Udaipur – Jaipur",
+          "description": "Travel to Jaipur, Rajasthan's famous Pink City, and enjoy time at leisure."
+        },
+        {
+          "day": 11,
+          "title": "Jaipur",
+          "description": "Visit Amber Fort, City Palace, Hawa Mahal and Jantar Mantar, showcasing Rajasthan's royal heritage and architecture."
+        },
+        {
+          "day": 12,
+          "title": "Jaipur – Agra",
+          "description": "Drive to Agra via Fatehpur Sikri, the historic abandoned Mughal city. Visit the world-famous Taj Mahal."
+        },
+        {
+          "day": 13,
+          "title": "Agra – Delhi",
+          "description": "Enjoy a morning sightseeing tour of Agra before returning to Delhi."
+        },
+        {
+          "day": 14,
+          "title": "Delhi",
+          "description": "Transfer for your onward or homeward journey."
+        }
+      ]
     },
     {
       "id": "north-india-highlights",
@@ -339,6 +702,113 @@
       "source_page": 5,
       "content_flags": [
         "This package has its own inclusion text and flight exclusions; do not replace it with the brochure's generic inclusions/exclusions panel."
+      ],
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Delhi",
+          "description": "Arrival transfer in Delhi."
+        },
+        {
+          "day": 2,
+          "title": "Delhi",
+          "description": "Morning city sightseeing tour."
+        },
+        {
+          "day": 3,
+          "title": "Delhi / Agra",
+          "description": "Transfer for train to Agra on arrival transfer to hotel. Afternoon city sightseeing tour."
+        },
+        {
+          "day": 4,
+          "title": "Agra / Jaipur",
+          "description": "Transfer for train to Jaipur. Arrival transfer to hotel."
+        },
+        {
+          "day": 5,
+          "title": "Jaipur",
+          "description": "Morning sightseeing tour."
+        },
+        {
+          "day": 6,
+          "title": "Jaipur / Udaipur",
+          "description": "Transfer for flight to Udaipur. Arrival transfer to hotel."
+        },
+        {
+          "day": 7,
+          "title": "Udaipur",
+          "description": "Morning city sightseeing tour."
+        },
+        {
+          "day": 8,
+          "title": "Udaipur / Delhi",
+          "description": "Transfer for flight to Delhi. Arrival transfer to hotel."
+        },
+        {
+          "day": 9,
+          "title": "Delhi / Srinagar",
+          "description": "Transfer for flight to Srinagar. Arrival transfer to houseboat."
+        },
+        {
+          "day": 10,
+          "title": "Srinagar",
+          "description": "Shikara cruise on the lake."
+        },
+        {
+          "day": 11,
+          "title": "Srinagar",
+          "description": "Morning city sightseeing tour."
+        },
+        {
+          "day": 12,
+          "title": "Srinagar",
+          "description": "Day trip to mountain resort of Gulmarg, Pahalgham or Sonmarg — only one of the three."
+        },
+        {
+          "day": 13,
+          "title": "Srinagar",
+          "description": "At leisure."
+        },
+        {
+          "day": 14,
+          "title": "Srinagar / Leh",
+          "description": "Transfer for flight to Leh. Arrival transfer to hotel. Remaining day free, climatisation."
+        },
+        {
+          "day": 15,
+          "title": "Leh",
+          "description": "Full day trip of the monasteries."
+        },
+        {
+          "day": 16,
+          "title": "Leh",
+          "description": "Morning city tour."
+        },
+        {
+          "day": 17,
+          "title": "Leh / Delhi",
+          "description": "Transfer for flight to Delhi. Arrival transfer to hotel."
+        },
+        {
+          "day": 18,
+          "title": "Delhi",
+          "description": "At leisure."
+        },
+        {
+          "day": 19,
+          "title": "Delhi",
+          "description": "Fly to destination."
+        }
+      ],
+      "inclusions": [
+        "First-class train travel.",
+        "Hotel accommodation with breakfast.",
+        "Transfers and sightseeing as per the itinerary.",
+        "All meals in Srinagar."
+      ],
+      "exclusions": [
+        "International flights.",
+        "Domestic flights for the Jaipur–Udaipur–Delhi–Srinagar–Leh–Delhi sector."
       ]
     },
     {
@@ -369,7 +839,90 @@
       ],
       "source_page": 5,
       "content_flags": [
-        "Confirm the details of flight and transfer arrangements between cities before publishing."
+        "Confirm the details of flight and transfer arrangements between cities before publishing.",
+        "The brochure scan for Day 11 (Agra / Varanasi) shows only the route, with no description. Confirm the Day 11 transfer and evening programme."
+      ],
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Delhi",
+          "description": "Meet upon arrival and transferred to hotel in Delhi."
+        },
+        {
+          "day": 2,
+          "title": "Delhi",
+          "description": "Full day sightseeing tour of Old and New Delhi."
+        },
+        {
+          "day": 3,
+          "title": "Delhi / Udaipur",
+          "description": "Transfer for flight to the romantic city of Udaipur in Rajasthan. Transfer to hotel."
+        },
+        {
+          "day": 4,
+          "title": "Udaipur",
+          "description": "Morning city sightseeing tour, visiting the temples and palaces of this cultural centre. Afternoon free to relax or take a boat ride to Pichola Lake."
+        },
+        {
+          "day": 5,
+          "title": "Udaipur / Jodhpur",
+          "description": "Transfer for flight to Jodhpur and met upon arrival and transferred to hotel."
+        },
+        {
+          "day": 6,
+          "title": "Jodhpur",
+          "description": "Morning city sightseeing tour visiting the imposing, battle scarred Fort and its fascinating museum."
+        },
+        {
+          "day": 7,
+          "title": "Jodhpur / Jaipur",
+          "description": "Transfer for flight to Jaipur. Met and transferred to hotel."
+        },
+        {
+          "day": 8,
+          "title": "Jaipur",
+          "description": "Morning city sightseeing tour visiting the elaborate City Palace and the Royal Observatory, Amber Fort."
+        },
+        {
+          "day": 9,
+          "title": "Jaipur / Agra",
+          "description": "By road to Agra via Fatehpur Sikri."
+        },
+        {
+          "day": 10,
+          "title": "Agra",
+          "description": "Morning city sightseeing tour of the Taj Mahal and Agra's Red Fort."
+        },
+        {
+          "day": 11,
+          "title": "Agra / Varanasi",
+          "description": "Transfer for onward travel to Varanasi."
+        },
+        {
+          "day": 12,
+          "title": "Varanasi",
+          "description": "Local sightseeing."
+        },
+        {
+          "day": 13,
+          "title": "Varanasi",
+          "description": "Morning tour to Sarnath. Afternoon city sightseeing tour."
+        },
+        {
+          "day": 14,
+          "title": "Varanasi / Kathmandu",
+          "description": "Early morning boat cruise. Transfer for flight to Kathmandu. Arrival transfer to hotel."
+        },
+        {
+          "day": 15,
+          "title": "Kathmandu",
+          "description": "Morning tour to Patan."
+        },
+        {
+          "day": 16,
+          "title": "Kathmandu",
+          "description": "Fly to destination."
+        }
       ]
     },
     {
@@ -405,6 +958,78 @@
       "source_page": 5,
       "content_flags": [
         "Package-specific accommodation, meals and exclusions are not fully clear in the brochure. Do not assume the generic panel applies without confirmation."
+      ],
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Kochi",
+          "description": "Arrival at Cochin Airport. Meet the representative and proceed for local sightseeing covering Mattancherry Palace, Fort Kochi and Chinese Fishing Nets. Overnight stay in Kochi."
+        },
+        {
+          "day": 2,
+          "title": "Kochi – Munnar",
+          "description": "Visit Athirapally Waterfalls, Cardamom Plantation, Spice Garden and Flower Garden."
+        },
+        {
+          "day": 3,
+          "title": "Munnar",
+          "description": "Local sightseeing: Eravikulam National Park, Tea Museum, Mattupetty Dam and Kundala Lake, Echo Point and Photo Point."
+        },
+        {
+          "day": 4,
+          "title": "Munnar – Thekkady",
+          "description": "Visit Periyar Wildlife Sanctuary, Elephant Junction and Kalaripayattu Show."
+        },
+        {
+          "day": 5,
+          "title": "Thekkady – Alleppey",
+          "description": "After breakfast, proceed to Alleppey and board the houseboat by 12:00 noon. Enjoy cruising through the backwaters. Lunch at 13:30 hrs, cruise resumes at 14:30 hrs, with tea and snacks onboard. Houseboat reaches the halt by 18:00 hrs. Overnight stay on the houseboat."
+        },
+        {
+          "day": 6,
+          "title": "Alleppey",
+          "description": "Alleppey Beach, Marari Beach, Alleppey Lighthouse and Alleppey Market."
+        },
+        {
+          "day": 7,
+          "title": "Alleppey – Varkala",
+          "description": "Visit Jatayu Earth Centre and Munroe Island."
+        },
+        {
+          "day": 8,
+          "title": "Varkala",
+          "description": "Local sightseeing: Varkala Beach, Kappil Beach, Varkala Cliff and Sree Janardhan Swamy Temple."
+        },
+        {
+          "day": 9,
+          "title": "Varkala – Kovalam",
+          "description": "Visit Hawah Beach, Samudra Beach, Kovalam Beach and Vizhinjam Lighthouse."
+        },
+        {
+          "day": 10,
+          "title": "Trivandrum",
+          "description": "Local sightseeing: Sree Padmanabha Swamy Temple, Azhimala Shiva Statue, Napier Museum, Sree Chithra Art Gallery and Trivandrum Zoo."
+        },
+        {
+          "day": 11,
+          "title": "Kovalam – Kanyakumari via Poovar",
+          "description": "Visit Poovar Island, Kumari Amman Temple, Vivekanand Memorial, Thiruvalluvar Statue and Triveni Sangam (sunset view)."
+        },
+        {
+          "day": 12,
+          "title": "Kanyakumari – Rameshwaram",
+          "description": "Visit Annai Indira Gandhi Pamban Bridge and Pamban Rail Scissors Bridge."
+        },
+        {
+          "day": 13,
+          "title": "Rameshwaram",
+          "description": "Sightseeing: Sri Arulmigu Ramanathaswamy Temple, Dhanushkodi Beach and Dhanushkodi, Dr. APJ Abdul Kalam Memorial, Sri Panchmukhi Hanuman Temple, Kodanda Ramar Temple and Rama Teertham."
+        },
+        {
+          "day": 14,
+          "title": "Rameshwaram – Madurai and departure",
+          "description": "Proceed to Madurai after breakfast and checkout. Visit Meenakshi Amman Temple, Arulmigu Koodal Azhagar Temple, Gandhi Memorial Museum and Thirumalai Nayakkar Palace. Proceed to Madurai Airport for onward journey."
+        }
       ]
     },
     {
@@ -431,6 +1056,69 @@
       "source_page": 6,
       "content_flags": [
         "Keep the original difficulty label visible until the operator confirms current grading, route conditions and suitability guidance."
+      ],
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Leh",
+          "description": "Arrive Leh."
+        },
+        {
+          "day": 2,
+          "title": "Leh",
+          "description": "Leh."
+        },
+        {
+          "day": 3,
+          "title": "Leh / Spituk",
+          "description": "Leh, Spituk and trek to Zingchen."
+        },
+        {
+          "day": 4,
+          "title": "Zinchen – Yurutse",
+          "description": "Zinchen to Yurutse."
+        },
+        {
+          "day": 5,
+          "title": "Yurutse – Gondola – Skiu",
+          "description": "Yurutse to Gondola to Skiu."
+        },
+        {
+          "day": 6,
+          "title": "Skiu – Markha",
+          "description": "Skiu to Markha."
+        },
+        {
+          "day": 7,
+          "title": "Markha – Tchatchungtse",
+          "description": "Markha to Tchatchungtse."
+        },
+        {
+          "day": 8,
+          "title": "Tchatchungtse – Nimaling",
+          "description": "Tchatchungtse to Nimaling."
+        },
+        {
+          "day": 9,
+          "title": "Nimaling – Knogmarula – Shang Sumdo",
+          "description": "Nimaling to Knogmarula to Shang Sumdo."
+        },
+        {
+          "day": 10,
+          "title": "Shang Sumdo – Hemis – Leh",
+          "description": "Shang Sumdo to Hemis to Leh."
+        }
+      ],
+      "inclusions": [
+        "All camping equipment, sleeping bags, two-man tents and insulated ground mats.",
+        "Pack ponies or porters.",
+        "Experienced English-speaking guides.",
+        "Support crews.",
+        "Sightseeing tours as specified.",
+        "All transfers and transportation as specified in the itinerary.",
+        "Three meals daily during the trek.",
+        "Hotel accommodation on a twin-sharing basis.",
+        "Full board in Leh and on houseboats if trekking in Kashmir."
       ]
     },
     {
@@ -457,7 +1145,66 @@
       ],
       "source_page": 6,
       "content_flags": [
-        "Confirm the full day-by-day sequence: the brochure compresses some dates into ranges and should be checked against the operator's master itinerary."
+        "Confirm the full day-by-day sequence: the brochure compresses some dates into ranges and should be checked against the operator's master itinerary.",
+        "The brochure describes this as a 24-day round trip with a 15-day trek, while the day list shows trekking from Day 4 to Day 18. Confirm the trek length and day numbering."
+      ],
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Delhi",
+          "description": "Arrival in Delhi."
+        },
+        {
+          "day": 2,
+          "title": "Srinagar",
+          "description": "Fly to Srinagar."
+        },
+        {
+          "day": 3,
+          "title": "Srinagar",
+          "description": "Srinagar."
+        },
+        {
+          "day": "04–18",
+          "title": "Trek",
+          "description": "Trekking commences until Day 18."
+        },
+        {
+          "day": "19–20",
+          "title": "Leh",
+          "description": "Leh sightseeing."
+        },
+        {
+          "day": 21,
+          "title": "Delhi",
+          "description": "Fly to Delhi."
+        },
+        {
+          "day": 22,
+          "title": "Delhi",
+          "description": "Delhi."
+        },
+        {
+          "day": 23,
+          "title": "Agra",
+          "description": "Optional trip to Agra."
+        },
+        {
+          "day": 24,
+          "title": "Delhi",
+          "description": "Further travels."
+        }
+      ],
+      "exclusions": [
+        "International and domestic flights.",
+        "Meals outside the package.",
+        "Monument entrance tickets.",
+        "Guides and optional activities not mentioned in the itinerary.",
+        "Horse rides and gondola tickets.",
+        "Travel insurance.",
+        "Personal expenses such as laundry, phone calls, beverages, etc.",
+        "Tips for guides, drivers and support staff.",
+        "Gulf fishing and other non-itinerary activities."
       ]
     },
     {
@@ -485,7 +1232,70 @@
       ],
       "source_page": 6,
       "content_flags": [
-        "Confirm current route, trek grading, and the itinerary's day numbering before publishing."
+        "Confirm current route, trek grading, and the itinerary's day numbering before publishing.",
+        "The brochure describes this as a 19-day round trip but lists 18 stages. Confirm the missing day."
+      ],
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Delhi",
+          "description": "Arrival in Delhi."
+        },
+        {
+          "day": 2,
+          "title": "Srinagar",
+          "description": "Fly to Srinagar."
+        },
+        {
+          "day": 3,
+          "title": "Srinagar",
+          "description": "Srinagar sightseeing."
+        },
+        {
+          "day": 4,
+          "title": "Srinagar",
+          "description": "Srinagar sightseeing."
+        },
+        {
+          "day": "05–11",
+          "title": "Trek",
+          "description": "Trekking commences until day 11."
+        },
+        {
+          "day": 12,
+          "title": "Kargil",
+          "description": "Drive to Kargil."
+        },
+        {
+          "day": 13,
+          "title": "Leh",
+          "description": "Drive to Leh."
+        },
+        {
+          "day": 14,
+          "title": "Leh",
+          "description": "Leh sightseeing."
+        },
+        {
+          "day": 15,
+          "title": "Leh",
+          "description": "Leh."
+        },
+        {
+          "day": 16,
+          "title": "Delhi",
+          "description": "Leh to Delhi."
+        },
+        {
+          "day": 17,
+          "title": "Delhi",
+          "description": "Delhi."
+        },
+        {
+          "day": 18,
+          "title": "Agra",
+          "description": "Delhi Agra."
+        }
       ]
     },
     {
@@ -514,6 +1324,43 @@
       "source_page": 7,
       "content_flags": [
         "Publish clear fitness, altitude, equipment and safety information only after the operator confirms current requirements."
+      ],
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Sonamarg",
+          "description": "Drive to Sonamarg (80 kms), enroute visiting Ganderbal and Kangan."
+        },
+        {
+          "day": 2,
+          "title": "Nichnai",
+          "description": "Trek from Thajiwas to Nichanai (13 kms). The walk involves a steady ascent of 5250 ft. Overnight camp at Nichnai."
+        },
+        {
+          "day": 3,
+          "title": "Nichnai / Vishansar Lake",
+          "description": "Nichnai Vishansar Lake (13 kms). A climb of 2000 ft. over the pass at 13400 ft, overnight camping besides the lake."
+        },
+        {
+          "day": 4,
+          "title": "Gadsar",
+          "description": "Vishansar to Gadsar (10 kms)."
+        },
+        {
+          "day": 5,
+          "title": "Gangabal Lake",
+          "description": "Gadsar to Gangabal Lake. Trek climbing passes to 10,000 ft, overnight camping besides the lake."
+        },
+        {
+          "day": 6,
+          "title": "Gangabal Lake",
+          "description": "Rest day, optional fishing in Gangabal Lake."
+        },
+        {
+          "day": 7,
+          "title": "Naranag / Srinagar",
+          "description": "Descent trek to Naranag Ruin temple. Drive to Srinagar."
+        }
       ]
     },
     {
@@ -542,6 +1389,43 @@
       "source_page": 7,
       "content_flags": [
         "Correct the duration label before launch; the card text appears to say 6 nights / 7 nights while the itinerary states 7 days / 6 nights."
+      ],
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Srinagar – Aru",
+          "description": "Drive from Srinagar to Aru via Pahalgam. Overnight at Aru."
+        },
+        {
+          "day": 2,
+          "title": "Lidderwat",
+          "description": "Aru to Lidderwat."
+        },
+        {
+          "day": 3,
+          "title": "Kolohoi Glacier",
+          "description": "Full day trek to Kolohoi Glacier with overnight at Lidderwat."
+        },
+        {
+          "day": 4,
+          "title": "Sekiwas",
+          "description": "Lidderwat to Sekiwas."
+        },
+        {
+          "day": 5,
+          "title": "Sekiwas",
+          "description": "Sekiwas."
+        },
+        {
+          "day": 6,
+          "title": "Sanmous",
+          "description": "Sekiwas to Sanmous."
+        },
+        {
+          "day": 7,
+          "title": "Sindh Valley",
+          "description": "Sanmous to Sindh Valley Road. Drive to Srinagar."
+        }
       ]
     },
     {
@@ -567,6 +1451,30 @@
       "source_page": 7,
       "content_flags": [
         "The contents page lists a Himalaya Enfield Motorbike Tour in this position, but the actual card is Kashmir Ski. Confirm whether a motorbike tour was omitted or the contents page is outdated."
+      ],
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Srinagar – Gulmarg",
+          "description": "Transfer by car to Gulmarg."
+        },
+        {
+          "day": "02–06",
+          "title": "Gulmarg",
+          "description": "Enjoy skiing at your leisure."
+        },
+        {
+          "day": 7,
+          "title": "Gulmarg – Srinagar",
+          "description": "Return to Srinagar by car."
+        }
+      ],
+      "inclusions": [
+        "Return car transfers from Srinagar.",
+        "Ski equipment (excluding ski clothing).",
+        "Ski lift pass.",
+        "Standard accommodation with private facilities.",
+        "All meals in Gulmarg."
       ]
     },
     {
@@ -593,7 +1501,45 @@
       ],
       "source_page": 8,
       "content_flags": [
-        "Difficulty is inconsistent: the badge says Moderate while the description references Grade D. Confirm the operator's intended grading and define the grading scale."
+        "Difficulty is inconsistent: the badge says Moderate while the description references Grade D. Confirm the operator's intended grading and define the grading scale.",
+        "The brochure lists only the anchor days (1, 2, 3, 11, 14, 17 and 20) for this 20-day programme; the days in between are described in the overview text rather than day by day."
+      ],
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Kathmandu",
+          "description": "Arrival in Kathmandu."
+        },
+        {
+          "day": 2,
+          "title": "Kathmandu",
+          "description": "Sightseeing in Kathmandu."
+        },
+        {
+          "day": 3,
+          "title": "Pokhara / Trek",
+          "description": "Drive to Pokhara, where the trek commences and continues until day 11."
+        },
+        {
+          "day": 11,
+          "title": "Trisuli",
+          "description": "Drive to Trisuli River Camp. Rafting until day 14."
+        },
+        {
+          "day": 14,
+          "title": "Chitwan",
+          "description": "Drive to Royal Chitwan National Park on safari until day 17."
+        },
+        {
+          "day": 17,
+          "title": "Kathmandu",
+          "description": "Drive to Kathmandu where you are at leisure until day 20."
+        },
+        {
+          "day": 20,
+          "title": "Kathmandu",
+          "description": "Fly to destination."
+        }
       ]
     },
     {
@@ -621,6 +1567,18 @@
       "source_page": 8,
       "content_flags": [
         "Confirm current operating season, departure days and minimum group size before publishing; offer 2- and 3-day trips only if still available."
+      ],
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Trisuli River",
+          "description": "Day trip, depart Kathmandu to Phishling. After a brief safety talk and basic demonstration, we set off for an exciting day of whitewater rafting. During the day there will be four major rapids and several smaller ones. We stop for lunch on a sunny beach then continue on to Simaltar after rafting for 24 kms. Return to Kathmandu."
+        }
+      ],
+      "inclusions": [
+        "Return transport to Trisuli River.",
+        "Rafting equipment and experienced English-speaking guide.",
+        "Packed lunch."
       ]
     },
     {
@@ -646,7 +1604,30 @@
       ],
       "source_page": 8,
       "content_flags": [
-        "The card's Easy badge conflicts with the itinerary's Grade D wording. The Day 2/Day 3 route sequence also appears duplicated; verify the intended itinerary."
+        "The card's Easy badge conflicts with the itinerary's Grade D wording. The Day 2/Day 3 route sequence also appears duplicated; verify the intended itinerary.",
+        "The brochure scan repeats the same 'Nagarkot to Chowki Bhanjyang' line for Day 2 and Day 3. One of the two is likely a different stage; confirm the sequence."
+      ],
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Kathmandu / Bhaktapur",
+          "description": "Drive from Kathmandu to Bhaktapur, commence trek. Overnight Nagarkot."
+        },
+        {
+          "day": 2,
+          "title": "Chowki Bhanjyang",
+          "description": "Nagarkot to Chowki Bhanjyang."
+        },
+        {
+          "day": 3,
+          "title": "Chowki Bhanjyang",
+          "description": "Nagarkot to Chowki Bhanjyang."
+        },
+        {
+          "day": 4,
+          "title": "Chisapani / Sundarijal",
+          "description": "Trek from Chisapani to Sundarijal. Return to Kathmandu. Detailed itineraries available on request. Night stops may vary due to local weather conditions."
+        }
       ]
     },
     {
@@ -671,6 +1652,33 @@
       "source_page": 8,
       "content_flags": [
         "Confirm current lodge, meal plan, transport arrangements, safari types and seasonal availability before publishing."
+      ],
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Kathmandu / Chitwan National Park",
+          "description": "Travel to Chitwan by road. Afternoon safari."
+        },
+        {
+          "day": 2,
+          "title": "Chitwan National Park",
+          "description": "Safaris at the Park."
+        },
+        {
+          "day": 3,
+          "title": "Chitwan National Park",
+          "description": "Safaris at the Park."
+        },
+        {
+          "day": 4,
+          "title": "Chitwan National Park / Kathmandu",
+          "description": "Morning safari. Return to Kathmandu by road."
+        }
+      ],
+      "inclusions": [
+        "All meals included at Chitwan Jungle Lodge.",
+        "Round trip transportation to Kathmandu.",
+        "All safaris in the park with guides."
       ]
     },
     {
@@ -699,6 +1707,43 @@
       "source_page": 8,
       "content_flags": [
         "The Easy badge conflicts with the itinerary's Grade D wording. Confirm trek grade, route names/spelling and current departure schedule before publishing."
+      ],
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Kathmandu / Bhaktapur",
+          "description": "Drive from Kathmandu to Bhaktapur. Commence trek. Overnight at Nagarkot."
+        },
+        {
+          "day": 2,
+          "title": "Sinjaruwa",
+          "description": "Nagarkot to Sinjaruwa."
+        },
+        {
+          "day": 3,
+          "title": "Chisapani",
+          "description": "Sinjaruwa to Chisapani."
+        },
+        {
+          "day": 4,
+          "title": "Borlang Bhanjyang",
+          "description": "Chisapani to Borlang Bhanjyang."
+        },
+        {
+          "day": 5,
+          "title": "Borlang Bhanjyang",
+          "description": "Borlang Bhanjyang."
+        },
+        {
+          "day": 6,
+          "title": "Sivapuri",
+          "description": "Borlang Bhanjyang to Sivapuri."
+        },
+        {
+          "day": 7,
+          "title": "Budhanikantha",
+          "description": "Trek from Sivapure to Budhanikantha. Return to Kathmandu."
+        }
       ]
     }
   ],
@@ -713,7 +1758,17 @@
         "Houseboats with private ensuite facilities described",
         "Veranda/front deck and lake views described",
         "Deluxe and A-class options mentioned",
-        "Group and individual booking options mentioned"
+        "Group and individual booking options mentioned",
+        "Houseboats vary in size from two to seven bedrooms, each with private ensuite facilities.",
+        "A veranda at the front with lake view, and a sundeck on the roof.",
+        "A houseboat boy is in attendance at all times.",
+        "An extensive menu with a choice of Western, Indian or Kashmiri cuisine.",
+        "Pleasant dining and living rooms with intricately carved walnut furniture and Kashmir carpets.",
+        "Wood carving, carpet making and papier-mache making.",
+        "Trips to the mountain resorts of Gulmarg and Pahalgam.",
+        "Bookings can be made for groups and individuals, and sole use of a houseboat can be hired.",
+        "Deluxe and \"A\" class houseboats on Nagin or Dal Lake; classification of houseboats is the responsibility of the Kashmir Government.",
+        "Immediate confirmation can be given from all-season allocations."
       ],
       "content_flags": [
         "Confirm houseboat inventory, classification, prices, terms, cancellation policy, contact details and current availability before publishing."

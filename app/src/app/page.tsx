@@ -28,6 +28,10 @@ const featuredPackages = FEATURED_IDS.map((id) => allPackages.find((p) => p.id =
   (p): p is NonNullable<typeof p> => Boolean(p),
 );
 
+// The newsletter form is only shown when a mailing list is actually connected,
+// so visitors never see a signup form that cannot record a subscription.
+const newsletterConfigured = Boolean(process.env.NEWSLETTER_API_URL || process.env.NEXT_PUBLIC_SUPABASE_URL);
+
 export const metadata = {
   title: "India Nepal Travel Organisation — Specialist Travel Since 1927",
   description:
@@ -49,12 +53,12 @@ export default function Home() {
       <ExperienceCarousel />
       <PillarsTabs />
 
-      {/* Signature journeys — the reference site's light "awards" slot, used for real journeys */}
-      <section className="bg-wild-white py-20 text-charcoal md:py-28">
+      {/* Signature journeys */}
+      <section className="bg-white py-20 text-charcoal md:py-28">
         <Container>
           <div className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
             <div className="max-w-2xl">
-              <p className="subtitle-large mb-5 text-wild-orange">Signature journeys</p>
+              <p className="subtitle-large mb-5 text-brass">Signature journeys</p>
               <h2 className="text-h2 text-charcoal">
                 Tailor-made tours and small-group journeys
               </h2>
@@ -70,7 +74,7 @@ export default function Home() {
       <ImpactSection />
       <PromiseCards />
       <CtaZoom />
-      <NewsletterSection />
+      {newsletterConfigured && <NewsletterSection />}
     </PageShell>
   );
 }

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 interface BrandMarkProps {
@@ -5,27 +6,30 @@ interface BrandMarkProps {
   compact?: boolean;
 }
 
-/** The organisation's "IN" monogram and wordmark, styled for the fixed black header. */
 export default function BrandMark({ className = "", compact = false }: BrandMarkProps) {
   return (
     <Link
       href="/"
-      className={`flex items-center gap-3 ${className}`}
-      aria-label="India Nepal Travel Organisation — home"
+      className={`group flex items-center gap-3 transition-opacity hover:opacity-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-button ${className}`}
+      aria-label="KS World Adventure — Home"
     >
-      <span
-        aria-hidden="true"
-        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-wild-white/40 font-serif text-sm font-bold text-wild-white md:h-10 md:w-10 md:text-base"
-      >
-        IN
-      </span>
+      <div className={`relative ${compact ? "h-10 w-16" : "h-12 w-20 md:h-14 md:w-24"} transition-transform duration-300 group-hover:scale-105`}>
+        <Image
+          src="/images/logo.png"
+          alt="KS World Adventure"
+          fill
+          priority
+          sizes="(min-width: 768px) 96px, 80px"
+          className="object-contain object-center"
+        />
+      </div>
       {!compact && (
-        <span className="hidden flex-col leading-none sm:flex">
-          <span className="font-serif text-base font-bold tracking-tight text-wild-white md:text-lg">
-            India Nepal
+        <span className="hidden flex-col leading-tight sm:flex">
+          <span className="font-serif text-sm font-bold tracking-wider text-white md:text-base uppercase">
+            KS World
           </span>
-          <span className="mt-1 text-[0.55rem] font-display uppercase tracking-[0.3em] text-white/70 md:text-[0.6rem]">
-            Travel Organisation
+          <span className="text-[0.55rem] font-display uppercase tracking-[0.25em] text-brass md:text-[0.6rem]">
+            Adventure
           </span>
         </span>
       )}

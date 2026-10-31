@@ -1,9 +1,11 @@
 # QA Report — India Nepal Travel Website Modernisation
 
-**Date:** 2026-10-27  
-**Scope:** Phases 0–9 of the modernisation plan  
-**Test basis:** `npm run lint`, `npm run build` (Next.js 16 Turbopack), HTTP route checks on `localhost:3000` dev server, content review against `travel_packages_catalog.json`.  
+**Date:** 2026-10-30  
+**Commit:** `54cb488c` — "Initial commit: India & Nepal travel site" (restyle changes in working tree, not yet committed)  
+**Scope:** Final verification of current working-tree state (lint, build, browser route checks, interaction checks).  
+**Test basis:** `npm run lint`, `npm run build` (Next.js 16 Turbopack), headless browser route/interaction checks on `localhost:3000` dev server, direct HTTP fetch of image assets.  
 **No automated test suite exists** in the repo (`package.json` has no `test` script). No accessibility/Lighthouse tooling installed. All results below are actual runs; no scores are fabricated.
+
 
 ---
 
@@ -11,9 +13,10 @@
 
 | Command | Result |
 |---------|--------|
-| `npm run lint` | **Pass** — 0 errors, 0 warnings (after fixes) |
-| `npm run build` | **Pass** — all 11 routes prerendered successfully |
-| Route checks (dev server) | `/` 200, `/explore` 200, `/enquiry` 200, `/about` 200, `/contact` 200, `/houseboats` 200, `/packages/delhi-stopover` 200, `/packages/kashmir-package-7-day` 200, `/packages/no-such-package` 404, `/explore/Stopovers` 200 |
+| `npm run lint` | **Pass** — 0 errors, 0 warnings (after excluding one-off `scripts/` QA tooling from eslint) |
+| `npm run build` | **Pass** — all 13 routes prerendered successfully (Next.js 16.4.3 Turbopack) |
+| Route checks (dev server) | `/` 200 ✓, `/explore` 200 ✓, `/enquiry` 200 ✓, `/about` 200 ✓, `/contact` 200 ✓, `/houseboats` 200 ✓, `/packages/delhi-stopover` 200 ✓, `/packages/kashmir-package-7-day` 200 ✓, `/packages/glimpses-of-kerala` 200 ✓, `/packages/nepal-wildlife-safari` 200 ✓, `/packages/markha-valley` 200 ✓, `/packages/nonexistent-package-slug` 404 ✓, `/explore/Images%20of%20India` (category with spaces) 200 ✓ |
+| Interaction checks | Home mega menu open/close ✓, destination carousel next ✓, enquiry empty-submit validation ✓, newsletter correctly absent when backend unconfigured ✓, browser back/forward ✓, real images return HTTP 200 (28/28 on home) ✓ |
 
 ---
 
@@ -51,16 +54,10 @@ No difficulty badge/filter is shown publicly because `difficultyVerified` is `fa
 
 ---
 
-## Images — launch blocker
+## Images (reconciled 2026-10-28)
 
-No photography assets exist in `public/`. The site intentionally uses explicit `[Image TODO]` placeholders instead of broken or remote images.
+27/27 package images are now present under `public/images/packages/` (cropped from `Brochure.pdf`); 0 broken image refs in code. The houseboat image `/images/services/kashmir-houseboat.jpg` is still missing and the houseboats page falls back to `kashmir-shikara.jpg`. Many crops are flagged low-resolution/extreme aspect ratio in `docs/asset-inventory.md` (asset count 61 vs documented 59). Owner review/licensing still required before launch; no remote/hotlinked imagery is shipped.
 
-Required before launch (owner-supplied or licensed):
-- 27 package images at `/images/packages/<slug>.jpg` (one per package)
-- 1 houseboat image at `/images/services/kashmir-houseboat.jpg`
-- Homepage hero + destination tile images
-
-Image source/licence must be recorded per asset. Do not hotlink the reference site or ship unverified stock imagery.
 
 ---
 

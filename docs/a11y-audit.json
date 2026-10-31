@@ -1,0 +1,3690 @@
+{
+  "base": "http://localhost:3000",
+  "browser": "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe",
+  "results": [
+    {
+      "target": "/",
+      "width": 320,
+      "overflow": {
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 27,
+          "nodes": [
+            {
+              "target": ".gap-4.flex-wrap.justify-center &gt; .btn-primary[href$=\"explore\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".-top-6",
+              "summary": "  Element has insufficient color contrast of 1.12 (foreground color: #1f3023, background color: #16271a, font size: 31.2pt (41.6px), font weight: normal). Expected contrast ratio of 3:1"
+            },
+            {
+              "target": "#destinations &gt; .max-w-\\[1400px\\].md\\:px-8.mx-auto:nth-child(1) &gt; .max-w-3xl.mb-10.mx-auto &gt; .subtitle-large.text-brass.mb-5",
+              "summary": "  Element has insufficient color contrast of 2.96 (foreground color: #b18a51, background color: #faf7ef, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".bg-brass",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".focus-visible\\:ring-offset-4.focus-visible\\:ring-offset-ivory-soft[href=\"/explore?region=Ladakh\"] &gt; .mt-5.btn-tertiary.inline-flex",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/",
+      "width": 375,
+      "overflow": {
+        "scrollWidth": 375,
+        "clientWidth": 375,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 27,
+          "nodes": [
+            {
+              "target": ".gap-4.flex-wrap.justify-center &gt; .btn-primary[href$=\"explore\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".-top-6",
+              "summary": "  Element has insufficient color contrast of 1.12 (foreground color: #1f3023, background color: #16271a, font size: 36.6pt (48.75px), font weight: normal). Expected contrast ratio of 3:1"
+            },
+            {
+              "target": "#destinations &gt; .max-w-\\[1400px\\].md\\:px-8.mx-auto:nth-child(1) &gt; .max-w-3xl.mb-10.mx-auto &gt; .subtitle-large.text-brass.mb-5",
+              "summary": "  Element has insufficient color contrast of 2.96 (foreground color: #b18a51, background color: #faf7ef, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".bg-brass",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".focus-visible\\:ring-offset-4.focus-visible\\:ring-offset-ivory-soft[href=\"/explore?region=Ladakh\"] &gt; .mt-5.btn-tertiary.inline-flex",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/",
+      "width": 390,
+      "overflow": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 27,
+          "nodes": [
+            {
+              "target": ".gap-4.flex-wrap.justify-center &gt; .btn-primary[href$=\"explore\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".-top-6",
+              "summary": "  Element has insufficient color contrast of 1.12 (foreground color: #1f3023, background color: #16271a, font size: 38.0pt (50.7px), font weight: normal). Expected contrast ratio of 3:1"
+            },
+            {
+              "target": "#destinations &gt; .max-w-\\[1400px\\].md\\:px-8.mx-auto:nth-child(1) &gt; .max-w-3xl.mb-10.mx-auto &gt; .subtitle-large.text-brass.mb-5",
+              "summary": "  Element has insufficient color contrast of 2.96 (foreground color: #b18a51, background color: #faf7ef, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".bg-brass",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".focus-visible\\:ring-offset-4.focus-visible\\:ring-offset-ivory-soft[href=\"/explore?region=Ladakh\"] &gt; .mt-5.btn-tertiary.inline-flex",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/",
+      "width": 768,
+      "overflow": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 28,
+          "nodes": [
+            {
+              "target": ".px-5",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".gap-4.flex-wrap.justify-center &gt; .btn-primary[href$=\"explore\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".-top-6",
+              "summary": "  Element has insufficient color contrast of 1.12 (foreground color: #1f3023, background color: #16271a, font size: 74.9pt (99.84px), font weight: normal). Expected contrast ratio of 3:1"
+            },
+            {
+              "target": "#destinations &gt; .max-w-\\[1400px\\].md\\:px-8.mx-auto:nth-child(1) &gt; .max-w-3xl.mb-10.mx-auto &gt; .subtitle-large.text-brass.mb-5",
+              "summary": "  Element has insufficient color contrast of 2.96 (foreground color: #b18a51, background color: #faf7ef, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".bg-brass",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/",
+      "width": 1440,
+      "overflow": {
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 28,
+          "nodes": [
+            {
+              "target": ".px-5",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".gap-4.flex-wrap.justify-center &gt; .btn-primary[href$=\"explore\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".-top-6",
+              "summary": "  Element has insufficient color contrast of 1.12 (foreground color: #1f3023, background color: #16271a, font size: 140.4pt (187.2px), font weight: normal). Expected contrast ratio of 3:1"
+            },
+            {
+              "target": "#destinations &gt; .max-w-\\[1400px\\].md\\:px-8.mx-auto:nth-child(1) &gt; .max-w-3xl.mb-10.mx-auto &gt; .subtitle-large.text-brass.mb-5",
+              "summary": "  Element has insufficient color contrast of 2.96 (foreground color: #b18a51, background color: #faf7ef, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".bg-brass",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "empty-heading",
+          "impact": "minor",
+          "help": "Headings should not be empty",
+          "count": 4,
+          "nodes": [
+            {
+              "target": ".lg\\:grid-cols-4 &gt; div:nth-child(1) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            },
+            {
+              "target": ".lg\\:grid-cols-4 &gt; div:nth-child(2) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            },
+            {
+              "target": "div:nth-child(3) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            },
+            {
+              "target": "div:nth-child(4) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/explore",
+      "width": 320,
+      "overflow": {
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 29,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"] &gt; .shrink-0.border-white\\/40.md\\:h-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "article:nth-child(1) &gt; .p-6.flex-1.gap-3 &gt; .pt-4.mt-auto.border-t &gt; .btn-tertiary",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "article:nth-child(2) &gt; .p-6.flex-1.gap-3 &gt; .pt-4.mt-auto.border-t &gt; .btn-tertiary",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-tertiary[href$=\"bombay-stopover\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-tertiary[href$=\"delhi-stopover\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "count": 1,
+          "nodes": [
+            {
+              "target": "article:nth-child(1) &gt; .p-6.flex-1.gap-3 &gt; .block &gt; h3",
+              "summary": "  Heading order invalid"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/explore",
+      "width": 375,
+      "overflow": {
+        "scrollWidth": 375,
+        "clientWidth": 375,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 29,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"] &gt; .shrink-0.border-white\\/40.md\\:h-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "article:nth-child(1) &gt; .p-6.flex-1.gap-3 &gt; .pt-4.mt-auto.border-t &gt; .btn-tertiary",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "article:nth-child(2) &gt; .p-6.flex-1.gap-3 &gt; .pt-4.mt-auto.border-t &gt; .btn-tertiary",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-tertiary[href$=\"bombay-stopover\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-tertiary[href$=\"delhi-stopover\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "count": 1,
+          "nodes": [
+            {
+              "target": "article:nth-child(1) &gt; .p-6.flex-1.gap-3 &gt; .block &gt; h3",
+              "summary": "  Heading order invalid"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/explore",
+      "width": 390,
+      "overflow": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 29,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"] &gt; .shrink-0.border-white\\/40.md\\:h-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "article:nth-child(1) &gt; .p-6.flex-1.gap-3 &gt; .pt-4.mt-auto.border-t &gt; .btn-tertiary",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "article:nth-child(2) &gt; .p-6.flex-1.gap-3 &gt; .pt-4.mt-auto.border-t &gt; .btn-tertiary",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-tertiary[href$=\"bombay-stopover\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-tertiary[href$=\"delhi-stopover\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "count": 1,
+          "nodes": [
+            {
+              "target": "article:nth-child(1) &gt; .p-6.flex-1.gap-3 &gt; .block &gt; h3",
+              "summary": "  Heading order invalid"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/explore",
+      "width": 768,
+      "overflow": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 33,
+          "nodes": [
+            {
+              "target": ".tracking-\\[2\\.4px\\]",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"] &gt; .shrink-0.border-white\\/40.md\\:h-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .tracking-tight.md\\:text-lg.text-base",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .mt-1.text-\\[0\\.55rem\\].tracking-\\[0\\.3em\\]",
+              "summary": "  Element has insufficient color contrast of 2.01 (foreground color: #e3e3e1, background color: #a2a19a, font size: 7.2pt (9.6px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".px-5",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "count": 1,
+          "nodes": [
+            {
+              "target": "article:nth-child(1) &gt; .p-6.flex-1.gap-3 &gt; .block &gt; h3",
+              "summary": "  Heading order invalid"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/explore",
+      "width": 1440,
+      "overflow": {
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 33,
+          "nodes": [
+            {
+              "target": ".tracking-\\[2\\.4px\\]",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"] &gt; .shrink-0.border-white\\/40.md\\:h-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .tracking-tight.md\\:text-lg.text-base",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .mt-1.text-\\[0\\.55rem\\].tracking-\\[0\\.3em\\]",
+              "summary": "  Element has insufficient color contrast of 2.01 (foreground color: #e3e3e1, background color: #a2a19a, font size: 7.2pt (9.6px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".px-5",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "empty-heading",
+          "impact": "minor",
+          "help": "Headings should not be empty",
+          "count": 4,
+          "nodes": [
+            {
+              "target": "div:nth-child(1) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            },
+            {
+              "target": "div:nth-child(2) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            },
+            {
+              "target": "div:nth-child(3) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            },
+            {
+              "target": "div:nth-child(4) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            }
+          ]
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "count": 1,
+          "nodes": [
+            {
+              "target": "article:nth-child(1) &gt; .p-6.flex-1.gap-3 &gt; .block &gt; h3",
+              "summary": "  Heading order invalid"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/explore/Stopovers",
+      "width": 320,
+      "overflow": {
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 10,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"] &gt; .shrink-0.border-white\\/40.md\\:h-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".nav-link",
+              "summary": "  Element has insufficient color contrast of 1.07 (foreground color: #fcfbf8, background color: #f6f2e9, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".subtitle-large",
+              "summary": "  Element has insufficient color contrast of 2.83 (foreground color: #b18a51, background color: #f6f2e9, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-tertiary[href$=\"bombay-stopover\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-tertiary[href$=\"delhi-stopover\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "count": 1,
+          "nodes": [
+            {
+              "target": ".block[href$=\"bombay-stopover\"] &gt; h3",
+              "summary": "  Heading order invalid"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/explore/Stopovers",
+      "width": 375,
+      "overflow": {
+        "scrollWidth": 375,
+        "clientWidth": 375,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 10,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"] &gt; .shrink-0.border-white\\/40.md\\:h-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".nav-link",
+              "summary": "  Element has insufficient color contrast of 1.07 (foreground color: #fcfbf8, background color: #f6f2e9, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".subtitle-large",
+              "summary": "  Element has insufficient color contrast of 2.83 (foreground color: #b18a51, background color: #f6f2e9, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-tertiary[href$=\"bombay-stopover\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-tertiary[href$=\"delhi-stopover\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "count": 1,
+          "nodes": [
+            {
+              "target": ".block[href$=\"bombay-stopover\"] &gt; h3",
+              "summary": "  Heading order invalid"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/explore/Stopovers",
+      "width": 390,
+      "overflow": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 10,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"] &gt; .shrink-0.border-white\\/40.md\\:h-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".nav-link",
+              "summary": "  Element has insufficient color contrast of 1.07 (foreground color: #fcfbf8, background color: #f6f2e9, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".subtitle-large",
+              "summary": "  Element has insufficient color contrast of 2.83 (foreground color: #b18a51, background color: #f6f2e9, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-tertiary[href$=\"bombay-stopover\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-tertiary[href$=\"delhi-stopover\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "count": 1,
+          "nodes": [
+            {
+              "target": ".block[href$=\"bombay-stopover\"] &gt; h3",
+              "summary": "  Heading order invalid"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/explore/Stopovers",
+      "width": 768,
+      "overflow": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 14,
+          "nodes": [
+            {
+              "target": ".tracking-\\[2\\.4px\\]",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"] &gt; .shrink-0.border-white\\/40.md\\:h-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .tracking-tight.md\\:text-lg.text-base",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .mt-1.text-\\[0\\.55rem\\].tracking-\\[0\\.3em\\]",
+              "summary": "  Element has insufficient color contrast of 2.01 (foreground color: #e3e3e1, background color: #a2a19a, font size: 7.2pt (9.6px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".px-5",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "count": 1,
+          "nodes": [
+            {
+              "target": ".block[href$=\"bombay-stopover\"] &gt; h3",
+              "summary": "  Heading order invalid"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/explore/Stopovers",
+      "width": 1440,
+      "overflow": {
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 14,
+          "nodes": [
+            {
+              "target": ".tracking-\\[2\\.4px\\]",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"] &gt; .shrink-0.border-white\\/40.md\\:h-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .tracking-tight.md\\:text-lg.text-base",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .mt-1.text-\\[0\\.55rem\\].tracking-\\[0\\.3em\\]",
+              "summary": "  Element has insufficient color contrast of 2.01 (foreground color: #e3e3e1, background color: #a2a19a, font size: 7.2pt (9.6px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".px-5",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "empty-heading",
+          "impact": "minor",
+          "help": "Headings should not be empty",
+          "count": 4,
+          "nodes": [
+            {
+              "target": "div:nth-child(1) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            },
+            {
+              "target": "div:nth-child(2) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            },
+            {
+              "target": "div:nth-child(3) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            },
+            {
+              "target": "div:nth-child(4) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            }
+          ]
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "count": 1,
+          "nodes": [
+            {
+              "target": ".block[href$=\"bombay-stopover\"] &gt; h3",
+              "summary": "  Heading order invalid"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/packages/delhi-stopover",
+      "width": 320,
+      "overflow": {
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 12,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"] &gt; .border-white\\/40.md\\:h-10.md\\:w-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".gap-3.flex-wrap.items-center &gt; .btn-primary",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".mt-8.btn-tertiary.gap-1",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".pl-10.last\\:mb-0.lg\\:mb-14:nth-child(2) &gt; .lg\\:ml-auto.p-5.md\\:p-6 &gt; .mb-2.gap-2.flex-wrap &gt; .border-brass\\/40.bg-brass\\/10.text-\\[0\\.7rem\\]",
+              "summary": "  Element has insufficient color contrast of 2.86 (foreground color: #b18a51, background color: #f7f3ee, font size: 8.4pt (11.2px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".lg\\:mr-auto &gt; .mb-2.gap-2.flex-wrap &gt; .border-brass\\/40.bg-brass\\/10.text-\\[0\\.7rem\\]",
+              "summary": "  Element has insufficient color contrast of 2.86 (foreground color: #b18a51, background color: #f7f3ee, font size: 8.4pt (11.2px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/packages/delhi-stopover",
+      "width": 375,
+      "overflow": {
+        "scrollWidth": 375,
+        "clientWidth": 375,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 12,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"] &gt; .border-white\\/40.md\\:h-10.md\\:w-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".gap-3.flex-wrap.items-center &gt; .btn-primary",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".mt-8.btn-tertiary.gap-1",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".pl-10.last\\:mb-0.lg\\:mb-14:nth-child(2) &gt; .lg\\:ml-auto.p-5.md\\:p-6 &gt; .mb-2.gap-2.flex-wrap &gt; .border-brass\\/40.bg-brass\\/10.text-\\[0\\.7rem\\]",
+              "summary": "  Element has insufficient color contrast of 2.86 (foreground color: #b18a51, background color: #f7f3ee, font size: 8.4pt (11.2px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".lg\\:mr-auto &gt; .mb-2.gap-2.flex-wrap &gt; .border-brass\\/40.bg-brass\\/10.text-\\[0\\.7rem\\]",
+              "summary": "  Element has insufficient color contrast of 2.86 (foreground color: #b18a51, background color: #f7f3ee, font size: 8.4pt (11.2px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/packages/delhi-stopover",
+      "width": 390,
+      "overflow": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 12,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"] &gt; .border-white\\/40.md\\:h-10.md\\:w-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".gap-3.flex-wrap.items-center &gt; .btn-primary",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".mt-8.btn-tertiary.gap-1",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".pl-10.last\\:mb-0.lg\\:mb-14:nth-child(2) &gt; .lg\\:ml-auto.p-5.md\\:p-6 &gt; .mb-2.gap-2.flex-wrap &gt; .border-brass\\/40.bg-brass\\/10.text-\\[0\\.7rem\\]",
+              "summary": "  Element has insufficient color contrast of 2.86 (foreground color: #b18a51, background color: #f7f3ee, font size: 8.4pt (11.2px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".lg\\:mr-auto &gt; .mb-2.gap-2.flex-wrap &gt; .border-brass\\/40.bg-brass\\/10.text-\\[0\\.7rem\\]",
+              "summary": "  Element has insufficient color contrast of 2.86 (foreground color: #b18a51, background color: #f7f3ee, font size: 8.4pt (11.2px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/packages/delhi-stopover",
+      "width": 768,
+      "overflow": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 16,
+          "nodes": [
+            {
+              "target": ".tracking-\\[2\\.4px\\]",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"] &gt; .border-white\\/40.md\\:h-10.md\\:w-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .tracking-tight.md\\:text-lg.text-base",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .mt-1.text-\\[0\\.55rem\\].tracking-\\[0\\.3em\\]",
+              "summary": "  Element has insufficient color contrast of 2.01 (foreground color: #e3e3e1, background color: #a2a19a, font size: 7.2pt (9.6px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".px-5",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/packages/delhi-stopover",
+      "width": 1440,
+      "overflow": {
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 16,
+          "nodes": [
+            {
+              "target": ".tracking-\\[2\\.4px\\]",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"] &gt; .border-white\\/40.md\\:h-10.md\\:w-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .tracking-tight.md\\:text-lg.text-base",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .mt-1.text-\\[0\\.55rem\\].tracking-\\[0\\.3em\\]",
+              "summary": "  Element has insufficient color contrast of 2.01 (foreground color: #e3e3e1, background color: #a2a19a, font size: 7.2pt (9.6px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".px-5",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "empty-heading",
+          "impact": "minor",
+          "help": "Headings should not be empty",
+          "count": 4,
+          "nodes": [
+            {
+              "target": ".gap-8 &gt; div:nth-child(1) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            },
+            {
+              "target": "div:nth-child(2) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            },
+            {
+              "target": "div:nth-child(3) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            },
+            {
+              "target": "div:nth-child(4) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.items-center[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/packages/north-india-highlights",
+      "width": 320,
+      "overflow": {
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 38,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3[href=\"/\"] &gt; .border-white\\/40.md\\:h-10.md\\:w-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".gap-3.flex-wrap.items-center &gt; .btn-primary",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".mt-8.btn-tertiary.gap-1",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".pl-10.last\\:mb-0.lg\\:mb-14:nth-child(2) &gt; .lg\\:ml-auto.p-5.md\\:p-6 &gt; .mb-2.gap-2.flex-wrap &gt; .border-brass\\/40.bg-brass\\/10.text-\\[0\\.7rem\\]",
+              "summary": "  Element has insufficient color contrast of 2.86 (foreground color: #b18a51, background color: #f7f3ee, font size: 8.4pt (11.2px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".pl-10.last\\:mb-0.lg\\:mb-14:nth-child(3) &gt; .lg\\:mr-auto.p-5.md\\:p-6 &gt; .mb-2.gap-2.flex-wrap &gt; .border-brass\\/40.bg-brass\\/10.text-\\[0\\.7rem\\]",
+              "summary": "  Element has insufficient color contrast of 2.86 (foreground color: #b18a51, background color: #f7f3ee, font size: 8.4pt (11.2px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/packages/north-india-highlights",
+      "width": 375,
+      "overflow": {
+        "scrollWidth": 375,
+        "clientWidth": 375,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 38,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3[href=\"/\"] &gt; .border-white\\/40.md\\:h-10.md\\:w-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".gap-3.flex-wrap.items-center &gt; .btn-primary",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".mt-8.btn-tertiary.gap-1",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".pl-10.last\\:mb-0.lg\\:mb-14:nth-child(2) &gt; .lg\\:ml-auto.p-5.md\\:p-6 &gt; .mb-2.gap-2.flex-wrap &gt; .border-brass\\/40.bg-brass\\/10.text-\\[0\\.7rem\\]",
+              "summary": "  Element has insufficient color contrast of 2.86 (foreground color: #b18a51, background color: #f7f3ee, font size: 8.4pt (11.2px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".pl-10.last\\:mb-0.lg\\:mb-14:nth-child(3) &gt; .lg\\:mr-auto.p-5.md\\:p-6 &gt; .mb-2.gap-2.flex-wrap &gt; .border-brass\\/40.bg-brass\\/10.text-\\[0\\.7rem\\]",
+              "summary": "  Element has insufficient color contrast of 2.86 (foreground color: #b18a51, background color: #f7f3ee, font size: 8.4pt (11.2px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/packages/north-india-highlights",
+      "width": 390,
+      "overflow": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 38,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3[href=\"/\"] &gt; .border-white\\/40.md\\:h-10.md\\:w-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".gap-3.flex-wrap.items-center &gt; .btn-primary",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".mt-8.btn-tertiary.gap-1",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".pl-10.last\\:mb-0.lg\\:mb-14:nth-child(2) &gt; .lg\\:ml-auto.p-5.md\\:p-6 &gt; .mb-2.gap-2.flex-wrap &gt; .border-brass\\/40.bg-brass\\/10.text-\\[0\\.7rem\\]",
+              "summary": "  Element has insufficient color contrast of 2.86 (foreground color: #b18a51, background color: #f7f3ee, font size: 8.4pt (11.2px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".pl-10.last\\:mb-0.lg\\:mb-14:nth-child(3) &gt; .lg\\:mr-auto.p-5.md\\:p-6 &gt; .mb-2.gap-2.flex-wrap &gt; .border-brass\\/40.bg-brass\\/10.text-\\[0\\.7rem\\]",
+              "summary": "  Element has insufficient color contrast of 2.86 (foreground color: #b18a51, background color: #f7f3ee, font size: 8.4pt (11.2px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/packages/north-india-highlights",
+      "width": 768,
+      "overflow": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 42,
+          "nodes": [
+            {
+              "target": ".tracking-\\[2\\.4px\\]",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3[href=\"/\"] &gt; .border-white\\/40.md\\:h-10.md\\:w-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .tracking-tight.md\\:text-lg.text-base",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .mt-1.text-\\[0\\.55rem\\].tracking-\\[0\\.3em\\]",
+              "summary": "  Element has insufficient color contrast of 2.01 (foreground color: #e3e3e1, background color: #a2a19a, font size: 7.2pt (9.6px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".px-5",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/packages/north-india-highlights",
+      "width": 1440,
+      "overflow": {
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 42,
+          "nodes": [
+            {
+              "target": ".tracking-\\[2\\.4px\\]",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3[href=\"/\"] &gt; .border-white\\/40.md\\:h-10.md\\:w-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .tracking-tight.md\\:text-lg.text-base",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .mt-1.text-\\[0\\.55rem\\].tracking-\\[0\\.3em\\]",
+              "summary": "  Element has insufficient color contrast of 2.01 (foreground color: #e3e3e1, background color: #a2a19a, font size: 7.2pt (9.6px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".px-5",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "empty-heading",
+          "impact": "minor",
+          "help": "Headings should not be empty",
+          "count": 4,
+          "nodes": [
+            {
+              "target": ".gap-8 &gt; div:nth-child(1) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            },
+            {
+              "target": "div:nth-child(2) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            },
+            {
+              "target": "div:nth-child(3) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            },
+            {
+              "target": "div:nth-child(4) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/houseboats",
+      "width": 320,
+      "overflow": {
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 5,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .items-center.gap-3[href=\"/\"] &gt; .border-white\\/40.md\\:h-10.md\\:w-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".subtitle-large",
+              "summary": "  Element has insufficient color contrast of 2.83 (foreground color: #b18a51, background color: #f6f2e9, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".mt-12 &gt; div:nth-child(1) &gt; .btn-primary[href$=\"enquiry\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-tertiary",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".mt-8",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .items-center.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.items-center[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/houseboats",
+      "width": 375,
+      "overflow": {
+        "scrollWidth": 375,
+        "clientWidth": 375,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 5,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .items-center.gap-3[href=\"/\"] &gt; .border-white\\/40.md\\:h-10.md\\:w-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".subtitle-large",
+              "summary": "  Element has insufficient color contrast of 2.83 (foreground color: #b18a51, background color: #f6f2e9, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".mt-12 &gt; div:nth-child(1) &gt; .btn-primary[href$=\"enquiry\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-tertiary",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".mt-8",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .items-center.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.items-center[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/houseboats",
+      "width": 390,
+      "overflow": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 5,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .items-center.gap-3[href=\"/\"] &gt; .border-white\\/40.md\\:h-10.md\\:w-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".subtitle-large",
+              "summary": "  Element has insufficient color contrast of 2.83 (foreground color: #b18a51, background color: #f6f2e9, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".mt-12 &gt; div:nth-child(1) &gt; .btn-primary[href$=\"enquiry\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-tertiary",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".mt-8",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .items-center.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.items-center[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/houseboats",
+      "width": 768,
+      "overflow": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 9,
+          "nodes": [
+            {
+              "target": ".tracking-\\[2\\.4px\\]",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .items-center.gap-3[href=\"/\"] &gt; .border-white\\/40.md\\:h-10.md\\:w-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .items-center.gap-3[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .tracking-tight.md\\:text-lg.text-base",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .items-center.gap-3[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .mt-1.text-\\[0\\.55rem\\].tracking-\\[0\\.3em\\]",
+              "summary": "  Element has insufficient color contrast of 2.01 (foreground color: #e3e3e1, background color: #a2a19a, font size: 7.2pt (9.6px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".px-5",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .items-center.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.items-center[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/houseboats",
+      "width": 1440,
+      "overflow": {
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 9,
+          "nodes": [
+            {
+              "target": ".tracking-\\[2\\.4px\\]",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .items-center.gap-3[href=\"/\"] &gt; .border-white\\/40.md\\:h-10.md\\:w-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .items-center.gap-3[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .tracking-tight.md\\:text-lg.text-base",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .items-center.gap-3[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .mt-1.text-\\[0\\.55rem\\].tracking-\\[0\\.3em\\]",
+              "summary": "  Element has insufficient color contrast of 2.01 (foreground color: #e3e3e1, background color: #a2a19a, font size: 7.2pt (9.6px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".px-5",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "empty-heading",
+          "impact": "minor",
+          "help": "Headings should not be empty",
+          "count": 4,
+          "nodes": [
+            {
+              "target": ".gap-8 &gt; div:nth-child(1) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            },
+            {
+              "target": ".gap-8 &gt; div:nth-child(2) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            },
+            {
+              "target": "div:nth-child(3) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            },
+            {
+              "target": "div:nth-child(4) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .items-center.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.items-center[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/enquiry",
+      "width": 320,
+      "overflow": {
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 3,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .shrink-0.border-white\\/40.md\\:h-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-primary.justify-center[type=\"submit\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-primary.mt-8[href$=\"enquiry\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        },
+        {
+          "id": "page-has-heading-one",
+          "impact": "moderate",
+          "help": "Page should contain a level-one heading",
+          "count": 1,
+          "nodes": [
+            {
+              "target": "html",
+              "summary": "  Page must have a level-one heading"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/enquiry",
+      "width": 375,
+      "overflow": {
+        "scrollWidth": 375,
+        "clientWidth": 375,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 3,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .shrink-0.border-white\\/40.md\\:h-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-primary.justify-center[type=\"submit\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-primary.mt-8[href$=\"enquiry\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        },
+        {
+          "id": "page-has-heading-one",
+          "impact": "moderate",
+          "help": "Page should contain a level-one heading",
+          "count": 1,
+          "nodes": [
+            {
+              "target": "html",
+              "summary": "  Page must have a level-one heading"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/enquiry",
+      "width": 390,
+      "overflow": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 3,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .shrink-0.border-white\\/40.md\\:h-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-primary.justify-center[type=\"submit\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-primary.mt-8[href$=\"enquiry\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        },
+        {
+          "id": "page-has-heading-one",
+          "impact": "moderate",
+          "help": "Page should contain a level-one heading",
+          "count": 1,
+          "nodes": [
+            {
+              "target": "html",
+              "summary": "  Page must have a level-one heading"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/enquiry",
+      "width": 768,
+      "overflow": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 7,
+          "nodes": [
+            {
+              "target": ".tracking-\\[2\\.4px\\]",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .shrink-0.border-white\\/40.md\\:h-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .tracking-tight.md\\:text-lg.font-serif",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .mt-1.text-\\[0\\.55rem\\].tracking-\\[0\\.3em\\]",
+              "summary": "  Element has insufficient color contrast of 2.01 (foreground color: #e3e3e1, background color: #a2a19a, font size: 7.2pt (9.6px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".px-5",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        },
+        {
+          "id": "page-has-heading-one",
+          "impact": "moderate",
+          "help": "Page should contain a level-one heading",
+          "count": 1,
+          "nodes": [
+            {
+              "target": "html",
+              "summary": "  Page must have a level-one heading"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/enquiry",
+      "width": 1440,
+      "overflow": {
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 7,
+          "nodes": [
+            {
+              "target": ".tracking-\\[2\\.4px\\]",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .shrink-0.border-white\\/40.md\\:h-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .tracking-tight.md\\:text-lg.font-serif",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .mt-1.text-\\[0\\.55rem\\].tracking-\\[0\\.3em\\]",
+              "summary": "  Element has insufficient color contrast of 2.01 (foreground color: #e3e3e1, background color: #a2a19a, font size: 7.2pt (9.6px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".px-5",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "empty-heading",
+          "impact": "minor",
+          "help": "Headings should not be empty",
+          "count": 4,
+          "nodes": [
+            {
+              "target": ".gap-8 &gt; div:nth-child(1) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            },
+            {
+              "target": "div:nth-child(2) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            },
+            {
+              "target": "div:nth-child(3) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            },
+            {
+              "target": "div:nth-child(4) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        },
+        {
+          "id": "page-has-heading-one",
+          "impact": "moderate",
+          "help": "Page should contain a level-one heading",
+          "count": 1,
+          "nodes": [
+            {
+              "target": "html",
+              "summary": "  Page must have a level-one heading"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/enquiry?package=delhi-stopover",
+      "width": 320,
+      "overflow": {
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 3,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .shrink-0.border-white\\/40.md\\:h-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-primary.justify-center[type=\"submit\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-primary.mt-8[href$=\"enquiry\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        },
+        {
+          "id": "page-has-heading-one",
+          "impact": "moderate",
+          "help": "Page should contain a level-one heading",
+          "count": 1,
+          "nodes": [
+            {
+              "target": "html",
+              "summary": "  Page must have a level-one heading"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/enquiry?package=delhi-stopover",
+      "width": 375,
+      "overflow": {
+        "scrollWidth": 375,
+        "clientWidth": 375,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 3,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .shrink-0.border-white\\/40.md\\:h-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-primary.justify-center[type=\"submit\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-primary.mt-8[href$=\"enquiry\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        },
+        {
+          "id": "page-has-heading-one",
+          "impact": "moderate",
+          "help": "Page should contain a level-one heading",
+          "count": 1,
+          "nodes": [
+            {
+              "target": "html",
+              "summary": "  Page must have a level-one heading"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/enquiry?package=delhi-stopover",
+      "width": 390,
+      "overflow": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 3,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .shrink-0.border-white\\/40.md\\:h-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-primary.justify-center[type=\"submit\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-primary.mt-8[href$=\"enquiry\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        },
+        {
+          "id": "page-has-heading-one",
+          "impact": "moderate",
+          "help": "Page should contain a level-one heading",
+          "count": 1,
+          "nodes": [
+            {
+              "target": "html",
+              "summary": "  Page must have a level-one heading"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/enquiry?package=delhi-stopover",
+      "width": 768,
+      "overflow": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 7,
+          "nodes": [
+            {
+              "target": ".tracking-\\[2\\.4px\\]",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .shrink-0.border-white\\/40.md\\:h-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .tracking-tight.md\\:text-lg.font-serif",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .mt-1.text-\\[0\\.55rem\\].tracking-\\[0\\.3em\\]",
+              "summary": "  Element has insufficient color contrast of 2.01 (foreground color: #e3e3e1, background color: #a2a19a, font size: 7.2pt (9.6px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".px-5",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        },
+        {
+          "id": "page-has-heading-one",
+          "impact": "moderate",
+          "help": "Page should contain a level-one heading",
+          "count": 1,
+          "nodes": [
+            {
+              "target": "html",
+              "summary": "  Page must have a level-one heading"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/enquiry?package=delhi-stopover",
+      "width": 1440,
+      "overflow": {
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 7,
+          "nodes": [
+            {
+              "target": ".tracking-\\[2\\.4px\\]",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .shrink-0.border-white\\/40.md\\:h-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .tracking-tight.md\\:text-lg.font-serif",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .mt-1.text-\\[0\\.55rem\\].tracking-\\[0\\.3em\\]",
+              "summary": "  Element has insufficient color contrast of 2.01 (foreground color: #e3e3e1, background color: #a2a19a, font size: 7.2pt (9.6px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".px-5",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "empty-heading",
+          "impact": "minor",
+          "help": "Headings should not be empty",
+          "count": 4,
+          "nodes": [
+            {
+              "target": ".gap-8 &gt; div:nth-child(1) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            },
+            {
+              "target": "div:nth-child(2) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            },
+            {
+              "target": "div:nth-child(3) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            },
+            {
+              "target": "div:nth-child(4) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        },
+        {
+          "id": "page-has-heading-one",
+          "impact": "moderate",
+          "help": "Page should contain a level-one heading",
+          "count": 1,
+          "nodes": [
+            {
+              "target": "html",
+              "summary": "  Page must have a level-one heading"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/about",
+      "width": 320,
+      "overflow": {
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 19,
+          "nodes": [
+            {
+              "target": ".-top-8",
+              "summary": "  Element has insufficient color contrast of 1.08 (foreground color: #1d2d21, background color: #16271a, font size: 33.6pt (44.8px), font weight: normal). Expected contrast ratio of 3:1"
+            },
+            {
+              "target": ".border-brass\\/30 &gt; span:nth-child(1)",
+              "summary": "  Element has insufficient color contrast of 4.29 (foreground color: #b18a51, background color: #263120, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".border-brass\\/30 &gt; span:nth-child(3)",
+              "summary": "  Element has insufficient color contrast of 4.29 (foreground color: #b18a51, background color: #263120, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".pt-2 &gt; .btn-primary[href$=\"enquiry\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".border-l-2.border-brass.pl-5:nth-child(1) &gt; dt",
+              "summary": "  Element has insufficient color contrast of 2.96 (foreground color: #b18a51, background color: #faf7ef, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "definition-list",
+          "impact": "serious",
+          "help": "&lt;dl&gt; elements must only directly contain properly-ordered &lt;dt&gt; and &lt;dd&gt; groups, &lt;script&gt;, &lt;template&gt; or &lt;div&gt; elements",
+          "count": 1,
+          "nodes": [
+            {
+              "target": "dl",
+              "summary": "  dl element has direct children that are not allowed: div &gt; p"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".gap-3.mb-6[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/about",
+      "width": 375,
+      "overflow": {
+        "scrollWidth": 375,
+        "clientWidth": 375,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 19,
+          "nodes": [
+            {
+              "target": ".-top-8",
+              "summary": "  Element has insufficient color contrast of 1.08 (foreground color: #1d2d21, background color: #16271a, font size: 39.4pt (52.5px), font weight: normal). Expected contrast ratio of 3:1"
+            },
+            {
+              "target": ".border-brass\\/30 &gt; span:nth-child(1)",
+              "summary": "  Element has insufficient color contrast of 4.29 (foreground color: #b18a51, background color: #263120, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".border-brass\\/30 &gt; span:nth-child(3)",
+              "summary": "  Element has insufficient color contrast of 4.29 (foreground color: #b18a51, background color: #263120, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".pt-2 &gt; .btn-primary[href$=\"enquiry\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".border-l-2.border-brass.pl-5:nth-child(1) &gt; dt",
+              "summary": "  Element has insufficient color contrast of 2.96 (foreground color: #b18a51, background color: #faf7ef, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "definition-list",
+          "impact": "serious",
+          "help": "&lt;dl&gt; elements must only directly contain properly-ordered &lt;dt&gt; and &lt;dd&gt; groups, &lt;script&gt;, &lt;template&gt; or &lt;div&gt; elements",
+          "count": 1,
+          "nodes": [
+            {
+              "target": "dl",
+              "summary": "  dl element has direct children that are not allowed: div &gt; p"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".gap-3.mb-6[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/about",
+      "width": 390,
+      "overflow": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 19,
+          "nodes": [
+            {
+              "target": ".-top-8",
+              "summary": "  Element has insufficient color contrast of 1.08 (foreground color: #1d2d21, background color: #16271a, font size: 41.0pt (54.6px), font weight: normal). Expected contrast ratio of 3:1"
+            },
+            {
+              "target": ".border-brass\\/30 &gt; span:nth-child(1)",
+              "summary": "  Element has insufficient color contrast of 4.29 (foreground color: #b18a51, background color: #263120, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".border-brass\\/30 &gt; span:nth-child(3)",
+              "summary": "  Element has insufficient color contrast of 4.29 (foreground color: #b18a51, background color: #263120, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".pt-2 &gt; .btn-primary[href$=\"enquiry\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".border-l-2.border-brass.pl-5:nth-child(1) &gt; dt",
+              "summary": "  Element has insufficient color contrast of 2.96 (foreground color: #b18a51, background color: #faf7ef, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "definition-list",
+          "impact": "serious",
+          "help": "&lt;dl&gt; elements must only directly contain properly-ordered &lt;dt&gt; and &lt;dd&gt; groups, &lt;script&gt;, &lt;template&gt; or &lt;div&gt; elements",
+          "count": 1,
+          "nodes": [
+            {
+              "target": "dl",
+              "summary": "  dl element has direct children that are not allowed: div &gt; p"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".gap-3.mb-6[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/about",
+      "width": 768,
+      "overflow": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 21,
+          "nodes": [
+            {
+              "target": ".px-5",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".-top-8",
+              "summary": "  Element has insufficient color contrast of 1.08 (foreground color: #1d2d21, background color: #16271a, font size: 80.6pt (107.52px), font weight: normal). Expected contrast ratio of 3:1"
+            },
+            {
+              "target": ".border-brass\\/30 &gt; span:nth-child(1)",
+              "summary": "  Element has insufficient color contrast of 4.29 (foreground color: #b18a51, background color: #263120, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".border-brass\\/30 &gt; span:nth-child(3)",
+              "summary": "  Element has insufficient color contrast of 4.29 (foreground color: #b18a51, background color: #263120, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".pt-2 &gt; .btn-primary[href$=\"enquiry\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "definition-list",
+          "impact": "serious",
+          "help": "&lt;dl&gt; elements must only directly contain properly-ordered &lt;dt&gt; and &lt;dd&gt; groups, &lt;script&gt;, &lt;template&gt; or &lt;div&gt; elements",
+          "count": 1,
+          "nodes": [
+            {
+              "target": "dl",
+              "summary": "  dl element has direct children that are not allowed: div &gt; p"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".gap-3.mb-6[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/about",
+      "width": 1440,
+      "overflow": {
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 21,
+          "nodes": [
+            {
+              "target": ".px-5",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".-top-8",
+              "summary": "  Element has insufficient color contrast of 1.08 (foreground color: #1d2d21, background color: #16271a, font size: 151.2pt (201.6px), font weight: normal). Expected contrast ratio of 3:1"
+            },
+            {
+              "target": ".border-brass\\/30 &gt; span:nth-child(1)",
+              "summary": "  Element has insufficient color contrast of 4.29 (foreground color: #b18a51, background color: #263120, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".border-brass\\/30 &gt; span:nth-child(3)",
+              "summary": "  Element has insufficient color contrast of 4.29 (foreground color: #b18a51, background color: #263120, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".pt-2 &gt; .btn-primary[href$=\"enquiry\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "definition-list",
+          "impact": "serious",
+          "help": "&lt;dl&gt; elements must only directly contain properly-ordered &lt;dt&gt; and &lt;dd&gt; groups, &lt;script&gt;, &lt;template&gt; or &lt;div&gt; elements",
+          "count": 1,
+          "nodes": [
+            {
+              "target": "dl",
+              "summary": "  dl element has direct children that are not allowed: div &gt; p"
+            }
+          ]
+        },
+        {
+          "id": "empty-heading",
+          "impact": "minor",
+          "help": "Headings should not be empty",
+          "count": 4,
+          "nodes": [
+            {
+              "target": ".lg\\:grid-cols-4.gap-8.sm\\:grid-cols-2 &gt; div:nth-child(1) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            },
+            {
+              "target": ".lg\\:grid-cols-4.gap-8.sm\\:grid-cols-2 &gt; div:nth-child(2) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            },
+            {
+              "target": "div:nth-child(3) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            },
+            {
+              "target": "div:nth-child(4) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".gap-3.mb-6[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/contact",
+      "width": 320,
+      "overflow": {
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 3,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .shrink-0.border-white\\/40.md\\:h-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-tertiary",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".mt-8",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/contact",
+      "width": 375,
+      "overflow": {
+        "scrollWidth": 375,
+        "clientWidth": 375,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 3,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .shrink-0.border-white\\/40.md\\:h-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-tertiary",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".mt-8",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/contact",
+      "width": 390,
+      "overflow": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 3,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .shrink-0.border-white\\/40.md\\:h-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-tertiary",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".mt-8",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/contact",
+      "width": 768,
+      "overflow": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 7,
+          "nodes": [
+            {
+              "target": ".font-medium",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .shrink-0.border-white\\/40.md\\:h-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .tracking-tight.md\\:text-lg.font-serif",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .mt-1.text-\\[0\\.55rem\\].tracking-\\[0\\.3em\\]",
+              "summary": "  Element has insufficient color contrast of 2.01 (foreground color: #e3e3e1, background color: #a2a19a, font size: 7.2pt (9.6px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".px-5",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/contact",
+      "width": 1440,
+      "overflow": {
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 7,
+          "nodes": [
+            {
+              "target": ".font-medium",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .shrink-0.border-white\\/40.md\\:h-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .tracking-tight.md\\:text-lg.font-serif",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .mt-1.text-\\[0\\.55rem\\].tracking-\\[0\\.3em\\]",
+              "summary": "  Element has insufficient color contrast of 2.01 (foreground color: #e3e3e1, background color: #a2a19a, font size: 7.2pt (9.6px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".px-5",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "empty-heading",
+          "impact": "minor",
+          "help": "Headings should not be empty",
+          "count": 4,
+          "nodes": [
+            {
+              "target": "div:nth-child(1) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            },
+            {
+              "target": "div:nth-child(2) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            },
+            {
+              "target": ".gap-8 &gt; div:nth-child(3) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            },
+            {
+              "target": "div:nth-child(4) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/no-such-page",
+      "width": 320,
+      "overflow": {
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 5,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .shrink-0.border-white\\/40.md\\:h-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".subtitle-large",
+              "summary": "  Element has insufficient color contrast of 2.83 (foreground color: #b18a51, background color: #f6f2e9, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-primary[href$=\"explore\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-tertiary",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".mt-8",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/no-such-page",
+      "width": 375,
+      "overflow": {
+        "scrollWidth": 375,
+        "clientWidth": 375,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 5,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .shrink-0.border-white\\/40.md\\:h-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".subtitle-large",
+              "summary": "  Element has insufficient color contrast of 2.83 (foreground color: #b18a51, background color: #f6f2e9, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-primary[href$=\"explore\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-tertiary",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".mt-8",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/no-such-page",
+      "width": 390,
+      "overflow": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 5,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .shrink-0.border-white\\/40.md\\:h-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".subtitle-large",
+              "summary": "  Element has insufficient color contrast of 2.83 (foreground color: #b18a51, background color: #f6f2e9, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-primary[href$=\"explore\"]",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".btn-tertiary",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #b18a51, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".mt-8",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/no-such-page",
+      "width": 768,
+      "overflow": {
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 9,
+          "nodes": [
+            {
+              "target": ".font-medium",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .shrink-0.border-white\\/40.md\\:h-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .tracking-tight.md\\:text-lg.font-serif",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .mt-1.text-\\[0\\.55rem\\].tracking-\\[0\\.3em\\]",
+              "summary": "  Element has insufficient color contrast of 2.01 (foreground color: #e3e3e1, background color: #a2a19a, font size: 7.2pt (9.6px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".px-5",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    },
+    {
+      "target": "/no-such-page",
+      "width": 1440,
+      "overflow": {
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "overflow": false,
+        "offenders": []
+      },
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 9,
+          "nodes": [
+            {
+              "target": ".font-medium",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .shrink-0.border-white\\/40.md\\:h-10",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .tracking-tight.md\\:text-lg.font-serif",
+              "summary": "  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #a2a19a, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"] &gt; .leading-none.sm\\:flex.hidden &gt; .mt-1.text-\\[0\\.55rem\\].tracking-\\[0\\.3em\\]",
+              "summary": "  Element has insufficient color contrast of 2.01 (foreground color: #e3e3e1, background color: #a2a19a, font size: 7.2pt (9.6px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".px-5",
+              "summary": "  Element has insufficient color contrast of 3.17 (foreground color: #ffffff, background color: #b18a51, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "empty-heading",
+          "impact": "minor",
+          "help": "Headings should not be empty",
+          "count": 4,
+          "nodes": [
+            {
+              "target": "div:nth-child(1) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            },
+            {
+              "target": "div:nth-child(2) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            },
+            {
+              "target": "div:nth-child(3) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            },
+            {
+              "target": "div:nth-child(4) &gt; h2",
+              "summary": "  Element does not have text that is visible to screen readers"
+            }
+          ]
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "help": "Elements must have their visible text as part of their accessible name",
+          "count": 2,
+          "nodes": [
+            {
+              "target": ".justify-self-center &gt; .gap-3.flex[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            },
+            {
+              "target": ".mb-6.gap-3[href=\"/\"]",
+              "summary": "  Text inside the element is not included in the accessible name"
+            }
+          ]
+        }
+      ],
+      "axeError": null
+    }
+  ],
+  "shots": [
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_-320.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_-375.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_-390.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_-768.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_-1440.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_explore-320.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_explore-375.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_explore-390.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_explore-768.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_explore-1440.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_explore_Stopovers-320.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_explore_Stopovers-375.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_explore_Stopovers-390.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_explore_Stopovers-768.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_explore_Stopovers-1440.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_packages_delhi-stopover-320.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_packages_delhi-stopover-375.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_packages_delhi-stopover-390.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_packages_delhi-stopover-768.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_packages_delhi-stopover-1440.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_packages_north-india-highlights-320.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_packages_north-india-highlights-375.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_packages_north-india-highlights-390.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_packages_north-india-highlights-768.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_packages_north-india-highlights-1440.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_houseboats-320.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_houseboats-375.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_houseboats-390.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_houseboats-768.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_houseboats-1440.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_enquiry-320.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_enquiry-375.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_enquiry-390.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_enquiry-768.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_enquiry-1440.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_enquiry_package_delhi-stopover-320.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_enquiry_package_delhi-stopover-375.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_enquiry_package_delhi-stopover-390.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_enquiry_package_delhi-stopover-768.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_enquiry_package_delhi-stopover-1440.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_about-320.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_about-375.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_about-390.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_about-768.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_about-1440.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_contact-320.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_contact-375.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_contact-390.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_contact-768.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_contact-1440.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_no-such-page-320.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_no-such-page-375.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_no-such-page-390.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_no-such-page-768.png",
+    "C:\\Users\\pc\\AppData\\Local\\Temp\\a11y-shots\\_no-such-page-1440.png"
+  ]
+}

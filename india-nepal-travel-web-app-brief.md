@@ -197,7 +197,7 @@ Technical requirements:
 
 ## 11. Ready-to-use build prompt for a coding agent
 
-> Act as a senior product designer and senior full-stack engineer. Build a complete, production-quality, mobile-first website for India Nepal Travel Organisation using the package inventory in `travel_packages_catalog.json` and the source brochure `gggg.pdf` if it is available in the project. Do not merely create a landing-page mockup: implement the catalogue, category browsing, filters, package-detail pages, day-by-day itineraries, inclusions/exclusions, Kashmir houseboat service page and enquiry flow.
+> Act as a senior product designer and senior full-stack engineer. Build a complete, production-quality, mobile-first website for India Nepal Travel Organisation using the package inventory in `travel_packages_catalog.json` and the source brochure `Brochure.pdf` if it is available in the project. Do not merely create a landing-page mockup: implement the catalogue, category browsing, filters, package-detail pages, day-by-day itineraries, inclusions/exclusions, Kashmir houseboat service page and enquiry flow.
 >
 > Before coding, inspect the current repository, identify its framework and existing conventions, and make a short implementation plan. Reuse sound existing code; do not overwrite working configuration unnecessarily. If subagents are available, delegate independent work such as content audit, responsive UI review and SEO/accessibility review, then integrate their findings.
 >

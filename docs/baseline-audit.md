@@ -1,5 +1,7 @@
 # Phase 0 — Repository Baseline Audit
 
+> **Reconciled 2026-10-28 (Phase 0).** This document records the *original* pre-implementation baseline and is now partly stale. Current reality: git is initialized on `main`; `node_modules` is installed; all 8 routes exist and build; 27/27 package images are present (only the houseboat image is missing). See `docs/current-state-checklist.md` for the authoritative current state. Do not treat the "missing route/image" lines below as live defects.
+
 **Date:** 2026-10-27  
 **Repo root:** `D:/ks world Adventure site` (app lives in `app/`)  
 **Constraint honored:** No files modified in Phase 0.

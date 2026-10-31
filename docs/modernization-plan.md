@@ -7,13 +7,12 @@
 
 ---
 
-## Design system (implemented — matches reference-site visual language)
-
-- Colors: wild-orange `#ff6e00` (primary), hover `#e56300`; wild-dark `#123438` / wild-darker `#221f20` (dark sections); wild-black `#000` (nav); wild-sand `#817162` (nav labels); wild-cream `#eeebe5`; wild-accent `#b6a28f` (circular borders); borders `#E2DDCE`.
-- Typography: serif (Georgia/system-ui fallback) for headings; sans (Inter/system-ui) for UI, buttons, body; Geist Mono retained.
-- Buttons: `btn-primary` (orange), `btn-primary-dark` (dark bg), `btn-ghost-dark` (ghost on dark), `btn-tertiary` (orange border).
-- Nav: fixed blur header `#000/40`, centered logo, "Menu" left, search + "Enquire Now" right; mobile right-slide dark panel with accordion categories.
-- Radii: card 12px, button 10px, pill, circle. Focus: 2px orange ring + 2px offset.
+## Design system (implemented — India Nepal Travel brand)
+- Colors: forest `#16271A` (primary), brass `#B18A51` (accent, hover `#9A7342`), ivory `#F6F2E9`, ivory-soft `#FAF7EF`, charcoal `#252824`, charcoal-soft `#4A4E48`, brass-soft `#D9C7A8`, border `#E2DDCE`. Reference-site orange (`#ff6e00`) is intentionally not used.
+- Typography: serif (Georgia stack) for headings; sans (Inter) for UI, buttons, body; Geist Mono retained.
+- Buttons: `btn-primary` (brass), `btn-primary-dark` (forest), `btn-ghost-dark` (ghost on dark), `btn-tertiary` (brass outline).
+- Nav: fixed blur header `black/40`, centered logo, "Menu" left, search + "Enquire Now" right; mobile right-slide dark panel with accordion categories.
+- Radii: card 12px, button 10px, pill, circle. Focus: 2px brass ring + 2px offset.
 
 ---
 
@@ -41,12 +40,10 @@
 
 ---
 
-## Remaining launch blockers (unchanged)
+## Remaining launch blockers (reconciled 2026-10-28)
+- Photography quality: 27/27 package images now present (cropped from `Brochure.pdf`), but many are low-resolution/extreme-aspect per `docs/asset-inventory.md`; houseboat image `/images/services/kashmir-houseboat.jpg` is still missing. Owner review/licensing of crops still required before launch.
+- Enquiry backend: no endpoint configured; dev `setTimeout` placeholder shows truthful "no message was actually sent". Configure real endpoint + `ENQUIRY_API_URL`/`ENQUIRY_API_KEY` env vars before launch.
 
-| Blocker | Detail |
-|---------|--------|
-| Photography assets | None exist in `public/`; `[Image TODO]` placeholders used throughout. Required: 27 package images, 1 houseboat image, hero + destination tile imagery. Owner-supplied or licensed only; record source/licence. |
-| Enquiry backend | No endpoint configured; dev `setTimeout` placeholder shows truthful "no message was actually sent". Configure real endpoint + `ENQUIRY_API_URL`/`ENQUIRY_API_KEY` env vars before launch. |
 
 ---
 

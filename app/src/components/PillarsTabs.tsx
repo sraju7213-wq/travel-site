@@ -2,44 +2,62 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { PILLARS } from "@/data/siteContent";
 
-/**
- * Tabbed pillars — the reference site's "Why travel with Wilderness?" module, with tab
- * pills that cross-fade an image/video block and its copy.
- */
 export default function PillarsTabs() {
   const [active, setActive] = useState(0);
-  const pillar = PILLARS[active];
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  const selectTab = (index: number, focus = false) => {
+    setActive(index);
+    if (focus) tabRefs.current[index]?.focus();
+  };
+
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    const last = PILLARS.length - 1;
+    let next: number | null = null;
+    if (e.key === "ArrowRight") next = active === last ? 0 : active + 1;
+    else if (e.key === "ArrowLeft") next = active === 0 ? last : active - 1;
+    else if (e.key === "Home") next = 0;
+    else if (e.key === "End") next = last;
+    if (next === null) return;
+    e.preventDefault();
+    selectTab(next, true);
+  };
 
   return (
     <section className="section-darker border-t border-white/10 py-20 md:py-28" id="why-us">
       <div className="mx-auto max-w-[1400px] px-4 md:px-8">
         <div className="mx-auto mb-10 max-w-3xl text-center">
-          <p className="subtitle-large mb-5 text-wild-orange">Travel with purpose</p>
-          <h2 className="text-h2 text-wild-white">Why travel with us?</h2>
+          <p className="subtitle-large mb-5 text-brass">Why travel with us</p>
+          <h2 className="text-h2 text-white">How we travel</h2>
         </div>
 
         {/* Tab pills */}
         <div
           role="tablist"
           aria-label="Why travel with us"
-          className="mb-12 flex flex-wrap items-center justify-center gap-x-1 gap-y-2 border-b border-white/15 pb-4"
+          onKeyDown={onKeyDown}
+          className="mb-12 flex flex-wrap items-center justify-center gap-2 border-b border-white/10 pb-6"
         >
           {PILLARS.map((p, i) => (
             <button
               key={p.key}
+              ref={(el) => {
+                tabRefs.current[i] = el;
+              }}
               role="tab"
               type="button"
               id={`pillar-tab-${p.key}`}
               aria-selected={active === i}
               aria-controls={`pillar-panel-${p.key}`}
-              onClick={() => setActive(i)}
-              className={`border-b-2 px-4 py-3 text-xs font-display font-semibold uppercase tracking-[0.2em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wild-orange ${
+              tabIndex={active === i ? 0 : -1}
+              onClick={() => selectTab(i)}
+              className={`rounded-button px-5 py-2.5 text-xs font-display font-semibold uppercase tracking-[0.2em] transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass ${
                 active === i
-                  ? "border-wild-orange text-wild-orange"
-                  : "border-transparent text-white/60 hover:text-wild-white"
+                  ? "bg-brass text-white shadow-[0_8px_20px_-4px_rgba(255,110,0,0.4)] scale-105"
+                  : "bg-white/5 text-white/75 hover:bg-white/10 hover:text-white"
               }`}
             >
               {p.label}
@@ -47,44 +65,30 @@ export default function PillarsTabs() {
           ))}
         </div>
 
-        {/* Panels — absolutely stacked so they cross-fade */}
-        <div className="relative">
-          {PILLARS.map((p, i) => (
-            <div
-              key={p.key}
-              role="tabpanel"
-              id={`pillar-panel-${p.key}`}
-              aria-labelledby={`pillar-tab-${p.key}`}
-              hidden={active !== i}
-              className={`grid items-center gap-10 lg:grid-cols-2 lg:gap-16 ${
-                active === i ? "opacity-100" : "pointer-events-none opacity-0"
-              } transition-opacity duration-500`}
-            >
-              <div className="relative aspect-[4/3] overflow-hidden rounded-image bg-wild-dark">
-                <Image
-                  src={p.image}
-                  alt={p.title}
-                  fill
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-cover"
-                  priority={i === 0}
-                />
-                <div aria-hidden="true" className="absolute inset-0 bg-black/20" />
-              </div>
-              <div>
-                <h3 className="text-h3 mb-5 text-wild-white">{p.title}</h3>
-                <p className="mb-8 font-display text-lg leading-relaxed text-white/75">{p.body}</p>
-                <Link href={p.href} className="btn-tertiary">
-                  {p.linkLabel} <span aria-hidden="true">→</span>
-                </Link>
-              </div>
+        {/* Panels — only the active panel is rendered, so its image is the only one requested */}
+        <div role="tabpanel" id={`pillar-panel-${PILLARS[active].key}`} aria-labelledby={`pillar-tab-${PILLARS[active].key}`}>
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+            <div className="group relative aspect-[4/3] overflow-hidden rounded-[1rem] border border-white/10 bg-forest shadow-2xl transition-all duration-500">
+              <Image
+                src={PILLARS[active].image}
+                alt={PILLARS[active].title}
+                fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+              <div aria-hidden="true" className="absolute inset-0 bg-black/20 transition-colors group-hover:bg-black/10" />
             </div>
-          ))}
+            <div>
+              <h3 className="text-h3 mb-5 text-white">{PILLARS[active].title}</h3>
+              <p className="mb-8 font-display text-lg leading-relaxed text-white/80">
+                {PILLARS[active].body}
+              </p>
+              <Link href={PILLARS[active].href} className="btn-tertiary">
+                {PILLARS[active].linkLabel} <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+          </div>
         </div>
-
-        <p className="sr-only" aria-live="polite">
-          {pillar.title}
-        </p>
       </div>
     </section>
   );

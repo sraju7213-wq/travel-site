@@ -13,32 +13,29 @@ export default function ContactPage() {
     <PageShell>
       <Container>
         <section className="px-4 py-16 md:px-8 lg:px-12">
-          <h1 className="text-4xl md:text-6xl font-serif font-bold text-charcoal mb-6 uppercase">
-            Contact us
-          </h1>
-          <p className="text-lg font-display text-charcoal leading-relaxed mb-10 max-w-2xl">
-            The quickest way to reach us is through the enquiry form below. Tell us which journey
-            interests you, your dates, party size and any preferences, and we will reply directly.
+          <h1 className="text-h2 mb-6 uppercase text-charcoal">Contact us</h1>
+          <p className="mb-10 max-w-2xl font-display text-lg leading-relaxed text-charcoal">
+            Use the enquiry form to tell us which journey interests you, your dates, party size and any
+            preferences.
           </p>
-          <div className="rounded-image border border-wild-border-light bg-ivory-soft p-8 mb-12">
-            <h2 className="text-xl font-serif font-bold text-charcoal mb-4">
-              Contact notes
-            </h2>
-            <p className="text-sm font-display text-charcoal-soft leading-relaxed">
-              Direct phone numbers, email addresses and office locations have not been supplied by
-              the organisation and are intentionally not published here. Use the enquiry form to
-              get in touch; we will respond with the appropriate contact details.
+
+          <div className="mb-12 space-y-4 rounded-[1rem] border border-border bg-white p-8 shadow-sm">
+            <h2 className="font-serif text-xl font-bold text-charcoal">Contact notes</h2>
+            <p className="font-display leading-relaxed text-charcoal-soft">
+              Direct phone numbers, email addresses and office locations have not been supplied by the
+              organisation and are therefore not published here. The brochure directs travellers to
+              contact India Nepal Travel Centre or their travel agent, and those details will be
+              published here once they are confirmed.
             </p>
-            <p className="mt-4 text-sm font-display text-charcoal-soft leading-relaxed">
-              We do not share or sell your details. Enquiries are used only to respond to your trip
-              request.
+            <p className="font-display leading-relaxed text-charcoal-soft">
+              The enquiry form on this site is not yet connected to a receiving system, so anything
+              submitted through it is not transmitted or stored. A full privacy notice is being
+              prepared by the organisation and will be published here before launch.
             </p>
           </div>
-          <Link
-            href="/enquiry"
-            className="btn-tertiary"
-          >
-            Send an enquiry <span aria-hidden="true">→</span>
+
+          <Link href="/enquiry" className="btn-primary">
+            Send an enquiry <span aria-hidden="true">&rarr;</span>
           </Link>
         </section>
       </Container>

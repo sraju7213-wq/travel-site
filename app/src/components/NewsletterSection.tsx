@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { validateNewsletter } from "@/lib/enquiryValidation";
 
 const COUNTRIES = [
   "India",
@@ -16,55 +17,128 @@ const COUNTRIES = [
   "Other",
 ];
 
-/** Newsletter sign-up on the cream panel, mirroring the reference site's closing form. */
+type Status = "idle" | "submitting" | "subscribed" | "failed";
+
 export default function NewsletterSection() {
   const [firstName, setFirstName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
   const [country, setCountry] = useState("");
-  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [consent, setConsent] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const errorSummaryRef = useRef<HTMLDivElement>(null);
+  const successHeadingRef = useRef<HTMLHeadingElement>(null);
+  const firstInvalidRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (status !== "failed") return;
+    const target = firstInvalidRef.current
+      ? document.getElementById(firstInvalidRef.current)
+      : null;
+    if (target instanceof HTMLElement) target.focus();
+    else errorSummaryRef.current?.focus();
+  }, [status]);
+
+  useEffect(() => {
+    if (status === "subscribed") successHeadingRef.current?.focus();
+  }, [status]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setStatus("error");
-      setMessage("Please enter a valid email address.");
-      return;
-    }
-
-    setStatus("submitting");
     setMessage("");
 
-    // --- INTEGRATION BOUNDARY ---
-    // No mailing-list service is configured in this repository, so nothing is sent.
-    // Point this at the operator's ESP before launch (server action / API route only).
-    const { promise } = Promise.withResolvers<void>();
-    setTimeout(() => {
-      setStatus("success");
+    const validationErrors = validateNewsletter({ firstName, surname, email, country, consent });
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      setStatus("failed");
+      setMessage("Please correct the highlighted fields and try again.");
+      firstInvalidRef.current = Object.keys(validationErrors)[0] ?? null;
+      return;
+    }
+    setErrors({});
+    setStatus("submitting");
+
+    try {
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ firstName, surname, email, country, consent, website: "" }),
+      });
+      const result = (await response.json().catch(() => ({}))) as {
+        ok?: boolean;
+        code?: string;
+        message?: string;
+        errors?: Record<string, string>;
+      };
+
+      if (response.ok && result.ok) {
+        setStatus("subscribed");
+        setMessage("You are subscribed to our travel notes.");
+        return;
+      }
+
+      if (result.code === "validation_failed" && result.errors) {
+        setErrors(result.errors);
+        setStatus("failed");
+        setMessage("Please correct the highlighted fields and try again.");
+        firstInvalidRef.current = Object.keys(result.errors)[0] ?? null;
+        return;
+      }
+
+      setStatus("failed");
       setMessage(
-        "Thank you. (This is a development placeholder — no subscription was actually recorded.)",
+        result.message ??
+          "Your subscription could not be recorded. Please try again later.",
       );
-    }, 900);
-    await promise;
-    // --- END INTEGRATION BOUNDARY ---
+    } catch {
+      setStatus("failed");
+      setMessage("Your subscription could not be recorded because of a network problem.");
+    }
   };
 
+  const fieldError = (name: string) => errors[name];
+
+  if (status === "subscribed") {
+    return (
+      <section className="bg-ivory-soft py-16 md:py-24">
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+          <div className="rounded-image bg-white p-6 shadow-subtle md:p-12">
+            <p className="subtitle-large mb-4 text-brass-ink">Travel notes</p>
+            <h2 ref={successHeadingRef} tabIndex={-1} className="text-h3 mb-4 text-charcoal">
+              Subscribed
+            </h2>
+            <p className="font-display leading-relaxed text-charcoal-soft">{message}</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
-    <section className="bg-wild-cream py-16 md:py-24">
+    <section className="bg-ivory-soft py-16 md:py-24">
       <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-        <div className="grid gap-10 rounded-image bg-wild-white p-6 shadow-subtle md:p-12 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
+        <div className="grid gap-10 rounded-image bg-white p-6 shadow-subtle md:p-12 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
           <div>
-            <p className="subtitle-large mb-5 text-wild-orange">Need some inspiration?</p>
-            <h2 className="text-h3 mb-4 text-charcoal">Be inspired by our latest journeys</h2>
+            <p className="subtitle-large mb-5 text-brass-ink">Travel notes</p>
+            <h2 className="text-h3 mb-4 text-charcoal">Subscribe for updates</h2>
             <p className="font-display leading-relaxed text-charcoal-soft">
-              Subscribe to receive new itineraries, seasonal openings and travel notes from our
-              specialists.
+              Receive new itineraries and travel notes from our specialists.
             </p>
           </div>
 
           <form onSubmit={handleSubmit} noValidate>
+            {status === "failed" && message && (
+              <div
+                ref={errorSummaryRef}
+                role="alert"
+                tabIndex={-1}
+                className="mb-6 rounded-image border border-brass-ink bg-brass-ink/10 p-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass"
+              >
+                <p className="font-display text-sm text-charcoal">{message}</p>
+              </div>
+            )}
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
                 <label htmlFor="nl-first" className="sr-only">
@@ -78,8 +152,17 @@ export default function NewsletterSection() {
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   placeholder="First name"
-                  className="w-full rounded-button border border-black/25 bg-transparent px-4 py-3 font-display text-sm text-charcoal transition-colors placeholder:text-charcoal-soft/70 focus:border-black/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wild-orange"
+                  aria-invalid={!!fieldError("firstName")}
+                  aria-describedby={fieldError("firstName") ? "nl-first-error" : undefined}
+                  className={`w-full rounded-button border px-4 py-3 font-display text-sm text-charcoal transition-colors placeholder:text-charcoal-soft/70 focus:border-black/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass ${
+                    fieldError("firstName") ? "border-brass" : "border-black/25"
+                  }`}
                 />
+                {fieldError("firstName") && (
+                  <p id="nl-first-error" className="mt-1 text-[0.8rem] font-display text-brass-ink">
+                    {fieldError("firstName")}
+                  </p>
+                )}
               </div>
               <div>
                 <label htmlFor="nl-surname" className="sr-only">
@@ -93,8 +176,17 @@ export default function NewsletterSection() {
                   value={surname}
                   onChange={(e) => setSurname(e.target.value)}
                   placeholder="Surname"
-                  className="w-full rounded-button border border-black/25 bg-transparent px-4 py-3 font-display text-sm text-charcoal transition-colors placeholder:text-charcoal-soft/70 focus:border-black/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wild-orange"
+                  aria-invalid={!!fieldError("surname")}
+                  aria-describedby={fieldError("surname") ? "nl-surname-error" : undefined}
+                  className={`w-full rounded-button border px-4 py-3 font-display text-sm text-charcoal transition-colors placeholder:text-charcoal-soft/70 focus:border-black/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass ${
+                    fieldError("surname") ? "border-brass" : "border-black/25"
+                  }`}
                 />
+                {fieldError("surname") && (
+                  <p id="nl-surname-error" className="mt-1 text-[0.8rem] font-display text-brass-ink">
+                    {fieldError("surname")}
+                  </p>
+                )}
               </div>
               <div>
                 <label htmlFor="nl-email" className="sr-only">
@@ -105,11 +197,21 @@ export default function NewsletterSection() {
                   name="email"
                   type="email"
                   autoComplete="email"
+                  required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Email address"
-                  className="w-full rounded-button border border-black/25 bg-transparent px-4 py-3 font-display text-sm text-charcoal transition-colors placeholder:text-charcoal-soft/70 focus:border-black/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wild-orange"
+                  aria-invalid={!!fieldError("email")}
+                  aria-describedby={fieldError("email") ? "nl-email-error" : undefined}
+                  className={`w-full rounded-button border px-4 py-3 font-display text-sm text-charcoal transition-colors placeholder:text-charcoal-soft/70 focus:border-black/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass ${
+                    fieldError("email") ? "border-brass" : "border-black/25"
+                  }`}
                 />
+                {fieldError("email") && (
+                  <p id="nl-email-error" className="mt-1 text-[0.8rem] font-display text-brass-ink">
+                    {fieldError("email")}
+                  </p>
+                )}
               </div>
               <div>
                 <label htmlFor="nl-country" className="sr-only">
@@ -120,7 +222,7 @@ export default function NewsletterSection() {
                   name="country"
                   value={country}
                   onChange={(e) => setCountry(e.target.value)}
-                  className="w-full rounded-button border border-black/25 bg-transparent px-4 py-3 font-display text-sm text-charcoal transition-colors focus:border-black/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wild-orange"
+                  className="w-full rounded-button border border-black/25 bg-transparent px-4 py-3 font-display text-sm text-charcoal transition-colors focus:border-black/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass"
                 >
                   <option value="">Country of residence</option>
                   {COUNTRIES.map((c) => (
@@ -132,20 +234,33 @@ export default function NewsletterSection() {
               </div>
             </div>
 
+            <div className="mt-4 space-y-2">
+              <label className="flex cursor-pointer items-start gap-2 text-sm font-display text-charcoal-soft">
+                <input
+                  type="checkbox"
+                  name="consent"
+                  checked={consent}
+                  onChange={(e) => setConsent(e.target.checked)}
+                  aria-invalid={!!fieldError("consent")}
+                  aria-describedby={fieldError("consent") ? "nl-consent-error" : undefined}
+                  className="mt-0.5 text-charcoal"
+                />
+                <span>
+                  I would like to receive travel notes from India Nepal Travel Organisation by email.{" "}
+                  <span className="text-brass-ink">*</span>
+                </span>
+              </label>
+              {fieldError("consent") && (
+                <p id="nl-consent-error" className="text-[0.8rem] font-display text-brass-ink">
+                  {fieldError("consent")}
+                </p>
+              )}
+            </div>
+
             <div className="mt-6 flex flex-wrap items-center gap-4">
               <button type="submit" disabled={status === "submitting"} className="btn-primary">
-                {status === "submitting" ? "Subscribing…" : "Submit"}
+                {status === "submitting" ? "Subscribing…" : "Subscribe"}
               </button>
-              {status === "success" && (
-                <p role="status" className="font-display text-sm text-charcoal-soft">
-                  {message}
-                </p>
-              )}
-              {status === "error" && (
-                <p role="alert" className="font-display text-sm text-wild-orange">
-                  {message}
-                </p>
-              )}
             </div>
           </form>
         </div>

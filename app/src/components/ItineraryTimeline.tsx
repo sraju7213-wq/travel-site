@@ -1,6 +1,3 @@
-"use client";
-
-import { useState } from "react";
 import Container from "@/components/Container";
 
 interface ItineraryDay {
@@ -16,19 +13,13 @@ interface ItineraryTimelineProps {
 }
 
 export default function ItineraryTimeline({ itinerary }: ItineraryTimelineProps) {
-  const [openDay, setOpenDay] = useState<number | null>(null);
-
-  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-
   const days = itinerary ?? [];
 
   if (days.length === 0) {
     return (
-      <section className="px-4 py-16 md:px-8 lg:px-12 border-t border-wild-border-light">
+      <section className="border-t border-border bg-ivory-soft py-16 md:py-20">
         <Container>
-          <h2 className="text-3xl font-serif font-bold text-charcoal mb-6 uppercase">
-            Day-by-day itinerary
-          </h2>
+          <h2 className="text-h3 mb-5 text-charcoal">Day-by-day itinerary</h2>
           <p className="max-w-xl font-display text-lg leading-relaxed text-charcoal-soft">
             No day-by-day programme has been transcribed for this journey yet. Enquire for the
             full itinerary.
@@ -39,189 +30,90 @@ export default function ItineraryTimeline({ itinerary }: ItineraryTimelineProps)
   }
 
   return (
-    <section className="px-4 py-16 md:px-8 lg:px-12 border-t border-wild-border-light">
+    <section className="border-t border-border bg-ivory-soft py-16 md:py-20">
       <Container>
-        <div className="flex flex-col lg:flex-row lg:items-start gap-12 mb-12">
-          <div className="flex-1">
-            <h2 className="text-3xl font-serif font-bold text-charcoal mb-4 uppercase">
-              Day-by-day itinerary
-            </h2>
-            <p className="font-display text-lg leading-relaxed text-charcoal-soft">
-              A day-by-day outline of the journey. Details are drawn from the brochure and
-              transcribed per package — enquire for the full programme.
+        <div className="mb-10 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-2xl">
+            <h2 className="text-h3 mb-4 text-charcoal">Day-by-day itinerary</h2>
+            <p className="font-display leading-relaxed text-charcoal-soft">
+              The programme below is transcribed from the India Nepal Travel brochure. Night stops,
+              timings and optional activities are confirmed with the operator before booking.
             </p>
           </div>
-          <div className="flex flex-wrap gap-2 text-xs font-display uppercase tracking-wider text-wild-sand">
-            <span className="inline-flex items-center rounded-button border border-wild-border-light px-3 py-1">
-              {days.length} days
-            </span>
-          </div>
+          <span className="inline-flex shrink-0 items-center self-start rounded-button border border-border bg-white px-3 py-1.5 text-xs font-display uppercase tracking-wider text-charcoal-soft">
+            Programme outline · {days.length} entries listed
+          </span>
         </div>
 
-        {/* Desktop: vertical timeline */}
-        {!isMobile && (
-          <ol className="relative space-y-0">
-            <span
-              className="hidden lg:block absolute left-[calc(50%-1px)] top-0 bottom-0 w-px bg-wild-border-light z-0"
-              aria-hidden="true"
-            />
-            {days.map((day, index) => (
-              <li key={index} className="relative mb-16 z-10">
-                {/* Day marker */}
-                <div
-                  className={`absolute left-[calc(50%-14px)] top-3 z-20 flex h-8 w-8 items-center justify-center rounded-full border-2 font-display font-bold text-white transition-all duration-300 group-hover:scale-110 ${
-                    openDay === index
-                      ? "bg-wild-orange border-wild-orange"
-                      : "bg-wild-cream border-wild-border-light text-charcoal"
-                  }`}
-                >
-                  {dayLabel(day)}
-                </div>
-
-                <div
-                  className={`relative w-full max-w-[480px] ${
-                    index % 2 === 0 ? "ml-auto" : "mr-auto"
-                  }`}
-                >
-                  <div className="relative rounded-image border border-wild-border-light bg-ivory shadow-sm transition-all duration-300 group-hover:border-wild-orange group-hover:shadow-md">
-                    <div className="p-6 md:p-8">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="text-xs font-display font-semibold uppercase tracking-wider text-wild-sand">
-                          Day {day.day ?? index + 1}
-                        </span>
-                        <span
-                          className="inline-flex items-center rounded-button border border-wild-border-light px-2 py-0.5 text-[0.7rem] font-display font-medium uppercase text-wild-orange"
-                        >
-                          {day.title}
-                        </span>
-                      </div>
-                      {day.description && (
-                        <p className="mb-4 text-lg font-display leading-relaxed text-charcoal-soft">
-                          {day.description}
-                        </p>
-                      )}
-                      {day.stops && day.stops.length > 0 && (
-                        <div className="mb-4 flex flex-wrap gap-2">
-                          {day.stops.map((stop) => (
-                            <span
-                              key={stop}
-                              className="rounded-button border border-wild-border-light px-3 py-1 text-sm font-display font-medium text-charcoal-soft bg-wild-cream/50"
-                            >
-                              {stop}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-                      {day.transfers && (
-                        <p className="mb-6 text-sm font-display italic text-charcoal-soft">
-                          Transfers: {day.transfers}
-                        </p>
-                      )}
-                      {openDay === index && (
-                        <div className="pt-4 border-t border-wild-border-light">
-                          <p className="text-sm font-display text-white/80 leading-relaxed">
-                            Detailed day notes are drawn from the brochure and transcribed per
-                            package. Enquire for the full day-by-day programme.
-                          </p>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Expand trigger */}
-                  <button
-                    onClick={() => setOpenDay(openDay === index ? null : index)}
-                    className="mt-4 inline-flex items-center gap-1.5 font-display font-semibold text-wild-orange hover:text-wild-dark transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wild-orange focus-visible:ring-offset-2"
-                    aria-expanded={openDay === index}
-                    aria-controls={`itinerary-day-${index}`}
-                  >
-                    {openDay === index ? "Show less" : "Read more"}
-                    <span
-                      className={`transition-transform duration-300 ${
-                        openDay === index ? "rotate-180" : ""
-                      }`}
-                      aria-hidden="true"
-                    >
-                      ▾
-                    </span>
-                  </button>
-                </div>
-              </li>
-            ))}
-          </ol>
-        )}
-
-        {/* Mobile: accordion sections */}
-        {isMobile && (
-          <div className="space-y-3">
-            {days.map((day, index) => (
-              <div key={index} className="overflow-hidden rounded-image border border-wild-border-light bg-ivory shadow-sm transition-all duration-300">
-                <button
-                  onClick={() => setOpenDay(openDay === index ? null : index)}
-                  className="flex w-full items-center justify-between px-5 py-4 text-left bg-transparent hover:bg-wild-cream/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wild-orange focus-visible:ring-offset-2"
-                  aria-expanded={openDay === index}
-                  aria-controls={`itinerary-day-${index}`}
-                >
-                  <div className="flex-1 pr-4">
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="text-[0.7rem] font-display font-semibold uppercase tracking-wider text-wild-sand">
-                        Day {day.day ?? index + 1}
-                      </span>
-                      <span
-                        className="inline-flex items-center rounded-button border border-wild-border-light px-2 py-0.5 text-[0.65rem] font-display font-medium uppercase text-wild-orange"
-                      >
-                        {day.title}
-                      </span>
-                    </div>
-                    {day.description && (
-                      <p className="text-sm font-display leading-relaxed text-charcoal-soft">
-                        {day.description}
-                      </p>
-                    )}
-                    {day.stops && day.stops.length > 0 && (
-                      <div className="mt-2 flex flex-wrap gap-1.5">
-                        {day.stops.map((stop) => (
-                          <span
-                            key={stop}
-                            className="rounded-button border border-wild-border-light px-2.5 py-0.5 text-[0.7rem] font-display font-medium text-charcoal-soft bg-wild-cream/40"
-                          >
-                            {stop}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                    {day.transfers && (
-                      <p className="mt-2 text-[0.75rem] font-display italic text-charcoal-soft">
-                        Transfers: {day.transfers}
-                      </p>
-                    )}
-                  </div>
-                  <span
-                    className={`ml-2 transition-transform duration-300 ${
-                      openDay === index ? "rotate-180" : ""
-                    }`}
-                    aria-hidden="true"
-                  >
-                    ▾
+        <ol className="relative">
+          <span
+            aria-hidden="true"
+            className="absolute left-[15px] top-2 bottom-2 w-px bg-border lg:left-1/2 lg:-translate-x-1/2"
+          />
+          {days.map((entry, index) => (
+            <li
+              key={index}
+              className="relative mb-8 pl-10 last:mb-0 lg:mb-14 lg:w-1/2 lg:pl-0 lg:pr-8 lg:last:mb-0"
+            >
+              <span
+                aria-hidden="true"
+                className="absolute left-[15px] top-1 flex h-8 w-8 -translate-x-1/2 items-center justify-center rounded-full border border-brass-ink bg-white font-display text-xs font-semibold text-brass-ink lg:left-1/2"
+              >
+                {shortLabel(entry)}
+              </span>
+              <div
+                className={`rounded-[1rem] border border-border/80 bg-white p-5 md:p-6 shadow-sm transition-shadow hover:shadow-md ${
+                  index % 2 === 0 ? "lg:ml-auto" : "lg:mr-auto"
+                }`}
+              >
+                <div className="mb-2 flex flex-wrap items-center gap-2">
+                  <span className="text-xs font-display font-semibold uppercase tracking-wider text-charcoal-soft">
+                    Day {dayLabel(entry)}
                   </span>
-                </button>
-                {openDay === index && (
-                  <div className="px-5 pb-5 border-t border-wild-border-light/50">
-                    <p className="text-sm font-display text-charcoal-soft leading-relaxed">
-                      Detailed day notes are drawn from the brochure and transcribed per package.
-                      Enquire for the full day-by-day programme.
-                    </p>
-                  </div>
+                  {entry.title && (
+                    <span className="rounded-button border border-brass-ink/40 bg-brass-ink/10 px-2 py-0.5 text-[0.7rem] font-display font-medium uppercase text-brass-ink">
+                      {entry.title}
+                    </span>
+                  )}
+                </div>
+                {entry.description && (
+                  <p className="font-display leading-relaxed text-charcoal-soft">
+                    {entry.description}
+                  </p>
+                )}
+                {entry.stops && entry.stops.length > 0 && (
+                  <ul className="mt-3 flex flex-wrap gap-2">
+                    {entry.stops.map((stop) => (
+                      <li
+                        key={stop}
+                        className="rounded-button border border-border bg-ivory-soft px-3 py-1 text-sm font-display text-charcoal-soft"
+                      >
+                        {stop}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                {entry.transfers && (
+                  <p className="mt-3 font-display text-sm italic text-charcoal-soft">
+                    Transfers: {entry.transfers}
+                  </p>
                 )}
               </div>
-            ))}
-          </div>
-        )}
+            </li>
+          ))}
+        </ol>
       </Container>
     </section>
   );
 }
 
 function dayLabel(day: ItineraryDay): string {
-  return typeof day.day === "number" ? String(day.day) : day.day ?? String("");
+  if (day.day === undefined || day.day === null) return "";
+  return String(day.day);
+}
+
+function shortLabel(day: ItineraryDay): string {
+  const label = dayLabel(day);
+  const match = label.match(/\d+/);
+  return match ? match[0] : label;
 }
