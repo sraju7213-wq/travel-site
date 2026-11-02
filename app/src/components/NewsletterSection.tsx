@@ -102,11 +102,11 @@ export default function NewsletterSection() {
 
   if (status === "subscribed") {
     return (
-      <section className="bg-[#0C1617] py-16 md:py-24 border-t border-white/5 text-white">
+      <section className="bg-[#0C1617] py-12 md:py-16 border-t border-white/5 text-white">
         <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-          <div className="rounded-[1.25rem] bg-[#132325] border border-white/10 p-6 md:p-12 shadow-2xl">
-            <p className="subtitle-large mb-4 text-brass">Travel notes</p>
-            <h2 ref={successHeadingRef} tabIndex={-1} className="text-h3 mb-4 text-white">
+          <div className="rounded-[1.25rem] bg-[#132325] border border-white/10 p-6 md:p-8 shadow-2xl">
+            <p className="subtitle-large mb-3 text-brass font-accent">Travel Notes</p>
+            <h2 ref={successHeadingRef} tabIndex={-1} className="text-h3 mb-3 text-white font-serif font-light">
               Subscribed
             </h2>
             <p className="font-display leading-relaxed text-white/75">{message}</p>
@@ -117,13 +117,13 @@ export default function NewsletterSection() {
   }
 
   return (
-    <section className="bg-[#0C1617] py-16 md:py-24 border-t border-white/5 text-white">
+    <section className="bg-[#0C1617] py-12 md:py-16 border-t border-white/5 text-white">
       <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-        <div className="grid gap-10 rounded-[1.25rem] bg-[#132325] border border-white/10 p-6 shadow-2xl md:p-12 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
+        <div className="grid gap-8 rounded-[1.25rem] bg-[#132325] border border-white/10 p-6 shadow-2xl md:p-8 lg:grid-cols-[1fr_1.4fr] lg:gap-12">
           <div>
-            <p className="subtitle-large mb-5 text-brass">Travel notes</p>
-            <h2 className="text-h3 mb-4 text-white">Subscribe for updates</h2>
-            <p className="font-display leading-relaxed text-white/75">
+            <p className="subtitle-large mb-3 text-brass font-accent">Travel Notes</p>
+            <h2 className="text-h3 mb-3 text-white font-serif font-light">Subscribe for Updates</h2>
+            <p className="font-sans font-light text-sm leading-relaxed text-white/70">
               Receive new itineraries and travel notes from our specialists.
             </p>
           </div>
@@ -257,7 +257,7 @@ export default function NewsletterSection() {
             </div>
 
             <div className="mt-6 flex flex-wrap items-center gap-4">
-              <button type="submit" disabled={status === "submitting"} className="btn-primary">
+              <button type="submit" disabled={status === "submitting"} className="btn-ghost-dark">
                 {status === "submitting" ? "Subscribing…" : "Subscribe"}
               </button>
             </div>

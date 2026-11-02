@@ -20,7 +20,7 @@ export default function NotFound() {
             or the link may be incomplete.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <Link href="/explore" className="btn-primary">
+            <Link href="/explore" className="btn-ghost-dark">
               Browse all journeys <span aria-hidden="true">→</span>
             </Link>
             <Link href="/enquiry" className="btn-tertiary">

@@ -34,7 +34,7 @@ export default function ContactPage() {
             </p>
           </div>
 
-          <Link href="/enquiry" className="btn-primary">
+          <Link href="/enquiry" className="btn-ghost-dark">
             Send an enquiry <span aria-hidden="true">&rarr;</span>
           </Link>
         </section>

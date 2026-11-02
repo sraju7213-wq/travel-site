@@ -1,0 +1,13 @@
+{
+  "name": "ks-world-adventure-site",
+  "version": "0.1.0",
+  "private": true,
+  "description": "KS World Adventure travel site (Next.js app lives in ./app)",
+  "scripts": {
+    "dev": "npm --prefix app run dev",
+    "build": "npm --prefix app run build",
+    "start": "npm --prefix app run start",
+    "lint": "npm --prefix app run lint",
+    "install:app": "npm --prefix app install"
+  }
+}

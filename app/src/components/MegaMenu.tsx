@@ -149,7 +149,7 @@ export default function MegaMenu({ open, onClose }: MegaMenuProps) {
             <Link
               href="/enquiry"
               onClick={onClose}
-              className="btn-primary px-6 py-2.5 text-xs font-semibold uppercase tracking-[0.2em]"
+              className="btn-ghost-dark px-6 py-2.5 text-xs font-semibold uppercase tracking-[0.2em]"
             >
               Enquire now
             </Link>
@@ -403,7 +403,7 @@ export default function MegaMenu({ open, onClose }: MegaMenuProps) {
                       <Link
                         href="/houseboats"
                         onClick={onClose}
-                        className="btn-primary text-xs px-5 py-2.5"
+                        className="btn-ghost-dark text-xs px-5 py-2.5"
                       >
                         Explore houseboats &rarr;
                       </Link>
@@ -464,7 +464,7 @@ export default function MegaMenu({ open, onClose }: MegaMenuProps) {
                       <Link
                         href="/about"
                         onClick={onClose}
-                        className="btn-primary text-xs px-5 py-2.5"
+                        className="btn-ghost-dark text-xs px-5 py-2.5"
                       >
                         Read our story &rarr;
                       </Link>
@@ -491,7 +491,7 @@ export default function MegaMenu({ open, onClose }: MegaMenuProps) {
                     <Link
                       href="/enquiry"
                       onClick={onClose}
-                      className="btn-primary"
+                      className="btn-ghost-dark"
                     >
                       Start your enquiry &rarr;
                     </Link>

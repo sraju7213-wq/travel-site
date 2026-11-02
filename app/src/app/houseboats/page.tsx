@@ -79,7 +79,7 @@ export default async function HouseboatsPage({ params }: HouseboatPageProps) {
                 ))}
               </ul>
 
-              <Link href="/enquiry" className="btn-primary">
+              <Link href="/enquiry" className="btn-ghost-dark">
                 Enquire about houseboats <span aria-hidden="true">→</span>
               </Link>
             </div>

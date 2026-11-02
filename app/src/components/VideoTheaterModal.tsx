@@ -6,6 +6,8 @@ interface VideoTheaterModalProps {
   isOpen: boolean;
   onClose: () => void;
   streamId?: string;
+  videoUrl?: string;
+  posterUrl?: string;
   title?: string;
   subtitle?: string;
 }
@@ -17,6 +19,8 @@ export default function VideoTheaterModal({
   isOpen,
   onClose,
   streamId = CLOUDFLARE_STREAM_ID,
+  videoUrl,
+  posterUrl,
   title = "India & Nepal — The Expedition Experience",
   subtitle = "27.7172° N, 85.3240° E • High Himalaya, Pangong Tso & Royal Valleys",
 }: VideoTheaterModalProps) {
@@ -71,7 +75,7 @@ export default function VideoTheaterModal({
             <div className="mb-1 flex items-center gap-2">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-brass/40 bg-brass/20 px-2.5 py-0.5 font-mono text-[10px] text-brass-soft">
                 <span className="h-1.5 w-1.5 rounded-full bg-brass animate-pulse" />
-                CLOUDFLARE 1080P STREAM
+                {videoUrl ? "ULTRA HD CINEMA" : "CLOUDFLARE 1080P STREAM"}
               </span>
               <span className="font-mono text-[11px] text-white/60">
                 1920×1080 • ADAPTIVE BITRATE
@@ -84,14 +88,24 @@ export default function VideoTheaterModal({
           </div>
         </div>
 
-        {/* Cloudflare Stream Smart Embed Iframe */}
-        <iframe
-          src={embedUrl}
-          title={title}
-          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen"
-          allowFullScreen
-          className="h-full w-full rounded-2xl border-0 sm:rounded-3xl"
-        />
+        {videoUrl ? (
+          <video
+            src={videoUrl}
+            poster={posterUrl}
+            controls
+            autoPlay
+            playsInline
+            className="h-full w-full rounded-2xl border-0 sm:rounded-3xl object-contain bg-black"
+          />
+        ) : (
+          <iframe
+            src={embedUrl}
+            title={title}
+            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen"
+            allowFullScreen
+            className="h-full w-full rounded-2xl border-0 sm:rounded-3xl"
+          />
+        )}
       </div>
     </div>
   );

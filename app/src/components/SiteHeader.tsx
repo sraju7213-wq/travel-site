@@ -63,10 +63,8 @@ export default function SiteHeader() {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 border-b border-white/10 transition-all duration-300 ${
-          solid
-            ? "bg-black/95 backdrop-blur-md shadow-lg shadow-black/20"
-            : "bg-black/40 backdrop-blur-md"
+        className={`fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-black/55 backdrop-blur-md transition-all duration-300 ${
+          solid ? "shadow-lg shadow-black/50" : ""
         }`}
         aria-label="Site header"
       >
@@ -96,7 +94,7 @@ export default function SiteHeader() {
                   ))}
                 </span>
               </div>
-              <span className="hidden text-xs font-display font-medium uppercase tracking-[2.4px] md:inline group-hover:text-brass transition-colors">
+              <span className="hidden text-xs font-accent font-semibold uppercase tracking-[0.25em] md:inline group-hover:text-brass transition-colors">
                 Menu
               </span>
             </button>
@@ -123,7 +121,7 @@ export default function SiteHeader() {
                 <path d="m20 20-3.6-3.6" strokeLinecap="round" />
               </svg>
             </Link>
-            <Link href="/enquiry" className="btn-primary hidden px-6 py-2.5 text-xs sm:inline-flex">
+            <Link href="/enquiry" className="btn-ghost-dark hidden px-6 py-2.5 text-xs sm:inline-flex">
               Enquire now
             </Link>
             <button

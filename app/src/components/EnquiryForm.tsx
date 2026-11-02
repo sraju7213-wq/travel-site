@@ -243,7 +243,7 @@ export default function EnquiryForm({
             </div>
           )}
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <Link href="/explore" className="btn-primary">
+            <Link href="/explore" className="btn-ghost-dark">
               Explore more journeys &rarr;
             </Link>
             <Link href="/" className="btn-tertiary">
@@ -695,7 +695,7 @@ export default function EnquiryForm({
                 <button
                   type="submit"
                   disabled={status === "submitting"}
-                  className="btn-primary w-full sm:flex-1 py-4 text-xs font-semibold uppercase tracking-[0.2em] shadow-lg cursor-pointer"
+                  className="btn-ghost-dark w-full sm:flex-1 py-4 text-xs font-semibold uppercase tracking-[0.2em] shadow-lg cursor-pointer"
                 >
                   {status === "submitting" ? (
                     <span className="flex items-center justify-center gap-2">

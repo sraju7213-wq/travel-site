@@ -989,7 +989,7 @@ export default function AdminDashboardPage() {
             <div className="mt-8 pt-4 border-t border-white/10 flex gap-3">
               <a
                 href={`mailto:${selectedEnquiry.email}?subject=KS%20World%20Adventure%20Itinerary%20Quote%20${selectedEnquiry.id}`}
-                className="btn-primary flex-1 justify-center py-2.5 text-xs text-center"
+                className="btn-ghost-dark flex-1 justify-center py-2.5 text-xs text-center"
               >
                 Send Email Quote &rarr;
               </a>
@@ -1087,7 +1087,7 @@ export default function AdminDashboardPage() {
               <Link
                 href={`/packages/${selectedPackage.slug}`}
                 target="_blank"
-                className="btn-primary flex-1 justify-center py-2.5 text-xs text-center"
+                className="btn-ghost-dark flex-1 justify-center py-2.5 text-xs text-center"
               >
                 View Public Page &rarr;
               </Link>

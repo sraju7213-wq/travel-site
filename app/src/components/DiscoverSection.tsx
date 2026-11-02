@@ -5,7 +5,7 @@ import { STATS } from "@/data/siteContent";
 /** Editorial block: dark panel, portrait image, and a row of stat callouts. */
 export default function DiscoverSection() {
   return (
-    <section id="discover" className="section-dark relative overflow-hidden py-20 md:py-28">
+    <section id="discover" className="section-dark relative overflow-hidden py-12 md:py-16">
       <p
         aria-hidden="true"
         data-watermark="#Indianepal"
@@ -13,28 +13,24 @@ export default function DiscoverSection() {
       />
 
       <div className="relative mx-auto max-w-[1400px] px-4 md:px-8">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
           <div>
-            <p className="subtitle-large mb-5 text-brass">Specialist travel since 1927</p>
-            <h2 className="text-h2 mb-6 text-white">
+            <p className="subtitle-large mb-4 text-brass font-accent">Specialist Travel Since 1927</p>
+            <h2 className="text-h2 mb-6 text-white font-serif font-light">
               Discover India and Nepal
             </h2>
-            <p className="mb-5 font-display text-lg leading-relaxed text-white/80">
-              India Nepal Travel Organisation is a specialist tour operator for individuals and
-              groups travelling to India and the subcontinent, with offices in Delhi, Kashmir and
-              Ladakh and agents throughout India and Nepal.
+            <p className="mb-4 font-serif italic font-light text-lg sm:text-xl leading-relaxed text-brass-soft/90">
+              &ldquo;Specialist expeditions for discerning travellers, with direct operator hubs across Delhi, Kashmir, Ladakh and Kathmandu.&rdquo;
             </p>
-            <p className="mb-8 font-display text-lg leading-relaxed text-white/80">
-              Our tours are guaranteed to depart and can be enjoyed by a small group of up to 15
-              travellers, or as a solo traveller. Itineraries in the brochure are an outline; detailed
-              information is available on request.
+            <p className="mb-6 font-sans font-light text-sm leading-relaxed text-white/75">
+              Our journeys depart with guaranteed departures for small private groups or solo travellers, crafted as bespoke templates tailored to your season, dates and regional interests.
             </p>
             <Link href="/about" className="btn-ghost-dark">
               Learn more about us <span aria-hidden="true">→</span>
             </Link>
           </div>
 
-          <div className="group relative aspect-[4/5] overflow-hidden rounded-[1rem] border border-white/10 shadow-2xl transition-all duration-500 sm:aspect-[4/3] lg:aspect-[4/5]">
+          <div className="group relative aspect-[16/10] sm:aspect-[4/3] lg:aspect-[16/11] max-h-[380px] overflow-hidden rounded-[1rem] border border-white/10 shadow-2xl transition-all duration-500">
             <Image
               src="/images/destinations/boats-blue-water.jpg"
               alt="Traditional boats sailing on blue waters against snow-capped Himalayan mountains"
@@ -46,21 +42,23 @@ export default function DiscoverSection() {
           </div>
         </div>
 
-        <dl className="mt-16 grid gap-8 border-t border-white/10 pt-12 sm:grid-cols-2 lg:grid-cols-5">
+        <dl className="mt-10 grid gap-6 border-t border-white/10 pt-8 sm:grid-cols-2 lg:grid-cols-5">
           {STATS.map((stat) => (
-            <div key={stat.label} className="flex flex-col items-start gap-3">
+            <div key={stat.label} className="flex flex-col items-start gap-2.5">
               <span
                 aria-hidden="true"
-                className="flex h-[60px] w-[60px] items-center justify-center rounded-full border border-white/15 text-brass bg-white/5 transition-all duration-300 hover:border-brass hover:bg-brass hover:text-white hover:scale-105"
+                className="flex h-[46px] w-[46px] items-center justify-center rounded-full border border-white/15 text-brass bg-white/5 transition-all duration-300 hover:border-brass hover:bg-brass hover:text-white hover:scale-105"
               >
                 <StatIcon label={stat.label} />
               </span>
-              <dt className="text-h4 font-serif text-white">{stat.value}</dt>
-              <dd className="text-sm font-display text-white/75">
-                <span className="block font-semibold uppercase tracking-[0.15em] text-white">
+              <dt className="font-serif text-2xl md:text-3xl font-light text-white tracking-tight">{stat.value}</dt>
+              <dd className="font-sans text-xs text-white/75">
+                <span className="block font-accent text-[11px] font-semibold uppercase tracking-[0.22em] text-brass mb-1">
                   {stat.label}
                 </span>
-                {stat.note}
+                <span className="font-sans text-xs font-light text-white/60 leading-relaxed block">
+                  {stat.note}
+                </span>
               </dd>
             </div>
           ))}

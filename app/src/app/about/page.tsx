@@ -140,7 +140,7 @@ export default function AboutPage() {
               </p>
 
               <div className="flex flex-wrap items-center gap-4 pt-2">
-                <Link href="/enquiry" className="btn-primary">
+                <Link href="/enquiry" className="btn-ghost-dark">
                   Plan your journey <span aria-hidden="true">→</span>
                 </Link>
                 <Link href="/explore" className="btn-ghost-dark">
@@ -571,7 +571,7 @@ export default function AboutPage() {
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <Link href="/enquiry" className="btn-primary">
+            <Link href="/enquiry" className="btn-ghost-dark">
               Plan your tailor-made trip <span aria-hidden="true">→</span>
             </Link>
             <Link href="/explore" className="btn-ghost-dark">

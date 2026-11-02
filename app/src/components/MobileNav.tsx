@@ -175,7 +175,7 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
         </nav>
 
         <div className="border-t border-white/10 p-5">
-          <Link href="/enquiry" onClick={close} className="btn-primary w-full">
+          <Link href="/enquiry" onClick={close} className="btn-ghost-dark w-full">
             Enquire now <span aria-hidden="true">→</span>
           </Link>
         </div>

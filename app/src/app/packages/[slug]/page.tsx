@@ -119,7 +119,7 @@ export default async function PackagePage({ params }: PackagePageProps) {
                 <span className="inline-flex items-center rounded-button border border-white/30 px-3 py-1.5 font-display text-xs font-medium uppercase text-white/90">
                   {pkg.brochure_code}
                 </span>
-                <Link href={enquiryHref} className="btn-primary">
+                <Link href={enquiryHref} className="btn-ghost-dark">
                   Enquire about this journey <span aria-hidden="true">→</span>
                 </Link>
               </div>
@@ -209,7 +209,7 @@ export default async function PackagePage({ params }: PackagePageProps) {
                 </dl>
                 <Link
                   href={enquiryHref}
-                  className="btn-primary mt-8 flex w-full items-center justify-center gap-1.5"
+                  className="btn-ghost-dark mt-8 flex w-full items-center justify-center gap-1.5"
                 >
                   Enquire about this journey <span aria-hidden="true">&rarr;</span>
                 </Link>

@@ -58,14 +58,14 @@ export default function DestinationCarousel() {
   }, []);
 
   return (
-    <section className="bg-[#0C1617] py-20 md:py-28 scroll-mt-24 text-white border-t border-white/5" id="destinations">
+    <section className="bg-[#0C1617] py-12 md:py-16 scroll-mt-24 text-white border-t border-white/5" id="destinations">
       <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-        <div className="mx-auto mb-10 max-w-3xl text-center">
-          <p className="subtitle-large mb-5 text-brass">Eight regions</p>
-          <h2 className="text-h2 mb-6 text-white">Destinations we operate in</h2>
-          <p className="font-display text-lg leading-relaxed text-white/75">
+        <div className="mx-auto mb-6 max-w-3xl text-center">
+          <p className="subtitle-large mb-4 text-brass font-accent">Eight Distinct Regions</p>
+          <h2 className="text-h2 mb-5 text-white font-serif font-light">Destinations We Operate In</h2>
+          <p className="font-sans font-light text-base md:text-lg leading-relaxed text-white/75">
             We operate across eight regions of India and Nepal, each selected for the journeys it
-            makes possible &mdash; sightseeing, trekking, rafting, wildlife and houseboat stays.
+            makes possible &mdash; high-altitude trekking, cultural circuits, wildlife and private houseboat stays.
           </p>
         </div>
 
@@ -73,7 +73,7 @@ export default function DestinationCarousel() {
         <div
           role="group"
           aria-label="Jump to a destination"
-          className="mb-10 flex flex-wrap justify-center gap-x-2 gap-y-3 border-y border-white/10 py-5"
+          className="mb-6 flex flex-wrap justify-center gap-x-2 gap-y-2.5 border-y border-white/10 py-3.5"
         >
           {DESTINATIONS.map((d, i) => (
             <button
@@ -81,7 +81,7 @@ export default function DestinationCarousel() {
               type="button"
               aria-pressed={active === i}
               onClick={() => scrollToIndex(i)}
-              className={`rounded-button px-4 py-2 text-xs font-display font-semibold uppercase tracking-[0.2em] transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 ${
+              className={`rounded-button px-4 py-2 text-[11px] font-accent font-semibold uppercase tracking-[0.22em] transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 ${
                 active === i
                   ? "bg-brass text-white shadow-[0_6px_16px_rgba(255,110,0,0.35)] scale-105"
                   : "bg-white/5 border border-white/10 text-white/75 hover:bg-white/10 hover:text-brass"
@@ -107,13 +107,13 @@ export default function DestinationCarousel() {
             ref={(el) => {
               cardRefs.current[i] = el;
             }}
-            className="w-[86vw] shrink-0 snap-center sm:w-[400px] lg:w-[460px]"
+            className="w-[84vw] shrink-0 snap-center sm:w-[340px] lg:w-[380px]"
           >
             <Link
               href={d.href}
               className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-4 focus-visible:ring-offset-ivory-soft"
             >
-              <span className="relative block aspect-[3/4] overflow-hidden rounded-[1rem] bg-charcoal shadow-lg transition-all duration-500 group-hover:shadow-2xl">
+              <span className="relative block aspect-[4/5] overflow-hidden rounded-[1rem] bg-charcoal shadow-lg transition-all duration-500 group-hover:shadow-2xl">
                 <Image
                   src={d.image}
                   alt={`${d.name} — ${d.tagline}`}
@@ -123,18 +123,18 @@ export default function DestinationCarousel() {
                 />
                 <span aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/30 via-40% to-transparent transition-opacity duration-500 group-hover:opacity-95" />
                 <span className="absolute inset-0 flex flex-col items-center justify-start gap-2.5 p-7 text-center">
-                  <span className="text-xs font-display font-medium uppercase tracking-[0.25em] text-white/90 drop-shadow-md">
+                  <span className="text-[11px] font-accent font-medium uppercase tracking-[0.3em] text-brass-soft drop-shadow-md">
                     {d.tagline}
                   </span>
-                  <span className="font-serif text-3xl uppercase leading-tight tracking-[0.14em] text-white drop-shadow-lg transition-transform duration-500 group-hover:scale-105 sm:text-4xl">
+                  <span className="font-serif text-3xl uppercase leading-tight tracking-[0.16em] text-white drop-shadow-lg transition-transform duration-500 group-hover:scale-105 sm:text-4xl font-light">
                     {d.name}
                   </span>
                 </span>
               </span>
-              <span className="mt-4 block font-display text-sm leading-relaxed text-white/75 line-clamp-2">
+              <span className="mt-3 block font-sans font-light text-xs leading-relaxed text-white/70 line-clamp-2">
                 {d.blurb}
               </span>
-              <span className="btn-tertiary mt-5 inline-flex">Enquire now</span>
+              <span className="btn-tertiary mt-3.5 inline-flex py-1.5 px-3.5 text-[10px]">Enquire now</span>
             </Link>
           </li>
         ))}
@@ -154,7 +154,7 @@ export default function DestinationCarousel() {
         </button>
         <span
           aria-live="polite"
-          className="text-xs font-display tabular-nums tracking-[0.3em] text-white/70"
+          className="text-xs font-mono tabular-nums tracking-[0.3em] text-brass-soft"
         >
           {String(active + 1).padStart(2, "0")} / {String(DESTINATIONS.length).padStart(2, "0")}
         </span>

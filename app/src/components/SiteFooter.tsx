@@ -14,11 +14,11 @@ export default function SiteFooter() {
         <div className="grid gap-12 lg:grid-cols-[1fr_2fr]">
           <div className="max-w-sm">
             <BrandMark className="mb-6" />
-            <p className="text-sm font-display leading-relaxed text-white/80">
-              Specialist travel across India and Nepal — tailor-made tours, small-group journeys,
-              Himalayan trekking, cultural itineraries and Kashmir houseboats. Since 1927.
+            <p className="text-xs md:text-sm font-sans font-light leading-relaxed text-white/70">
+              Specialist expeditions across India and Nepal &mdash; bespoke journeys, small-group trekking,
+              cultural circuits and heritage Kashmir houseboats. Est. 1927.
             </p>
-            <Link href="/enquiry" className="btn-primary mt-8">
+            <Link href="/enquiry" className="btn-ghost-dark mt-8">
               Enquire now <span aria-hidden="true">→</span>
             </Link>
           </div>
@@ -37,7 +37,7 @@ export default function SiteFooter() {
                       onClick={() => setOpenColumn(isOpen ? null : i)}
                       aria-expanded={isOpen}
                       aria-controls={panelId}
-                      className="flex w-full items-center justify-between border-b border-white/10 pb-3 text-left text-xs font-display font-semibold uppercase tracking-[0.2em] text-white lg:hidden"
+                      className="flex w-full items-center justify-between border-b border-white/10 pb-3 text-left text-[11px] font-accent font-semibold uppercase tracking-[0.24em] text-white lg:hidden"
                     >
                       {col.title}
                       <span
@@ -49,7 +49,7 @@ export default function SiteFooter() {
                         +
                       </span>
                     </button>
-                    <span className="hidden border-b border-white/10 pb-3 text-xs font-display font-semibold uppercase tracking-[0.2em] text-white lg:block">
+                    <span className="hidden border-b border-white/10 pb-3 text-[11px] font-accent font-semibold uppercase tracking-[0.24em] text-white lg:block">
                       {col.title}
                     </span>
                   </h2>

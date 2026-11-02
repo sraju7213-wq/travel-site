@@ -1,8 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0C1617;
-  --foreground: #F5F2EB;
+  --background: #F6F2E9;            /* ivory – page bg */
+  --foreground: #252824;           /* charcoal – body text */
+
+  --color-forest: #16271A;         /* primary */
+  --color-forest-soft: #1F3A2E;    /* secondary forest */
+  --color-ivory: #F6F2E9;          /* already the same */
+  --color-ivory-soft: #FAF7EF;     /* card/section alt */
+  --color-charcoal: #252824;       /* body / headings */
+  --color-brass: #B18A51;          /* accent */
+  --color-brass-soft: #D9C7A8;     /* low‑key accents, borders */
+  --color-border: #E2DDCE;         /* subtle dividers */
 }
 
 @theme inline {
@@ -33,11 +42,12 @@
   --color-wild-sand: #9BA9AB;
   --color-wild-cream: #0C1617;
 
-  /* Typography: Athelas / serif headings, Atyp Display / Inter sans body */
-  --font-serif: Athelas, Georgia, "Times New Roman", Baskerville, ui-serif, serif;
-  --font-display: var(--font-inter), "Atyp Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: var(--font-geist-mono);
-
+  /* Typography System: Multi-font Luxury Editorial & Minimalist Modern Hierarchy */
+  --font-serif: var(--font-serif), "Cormorant Garamond", Georgia, serif;
+  --font-sans: var(--font-sans), "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: var(--font-sans), "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-accent: var(--font-accent), "Cinzel", Georgia, serif;
+  --font-mono: var(--font-geist-mono), monospace;
   /* Radii */
   --radius-card: 0.75rem;    /* 12px */
   --radius-button: 0.625rem; /* 10px */
@@ -54,37 +64,43 @@
 @layer base {
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-serif);
-    letter-spacing: 0.04em;
+    letter-spacing: 0.02em;
+    font-weight: 300;
   }
   .font-serif { font-family: var(--font-serif); }
+  .font-sans { font-family: var(--font-sans); }
   .font-display { font-family: var(--font-display); }
+  .font-accent { font-family: var(--font-accent); }
+  .font-mono { font-family: var(--font-mono); }
 
   body {
     background: var(--background);
     color: var(--foreground);
-    font-family: var(--font-display), Arial, Helvetica, sans-serif;
+    font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-button border border-transparent px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-white bg-brass hover:bg-brass-hover transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 active:scale-95 cursor-pointer;
+    @apply inline-flex items-center justify-center gap-2 rounded-button border border-transparent px-6 py-3 font-accent text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-charcoal)] bg-[var(--color-brass)] hover:bg-[var(--color-brass-soft)] transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 active:scale-95 cursor-pointer;
     box-shadow: 0 8px 20px -4px rgba(255, 110, 0, 0.35);
   }
   .btn-primary:hover {
     box-shadow: 0 12px 28px -4px rgba(255, 110, 0, 0.5);
   }
   .btn-primary-dark {
-    @apply inline-flex items-center justify-center gap-2 rounded-button border border-transparent px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-white bg-forest hover:bg-brass transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 active:scale-95 cursor-pointer;
+    @apply inline-flex items-center justify-center gap-2 rounded-button border border-transparent px-6 py-3 font-accent text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-charcoal)] bg-[var(--color-forest)] hover:bg-[var(--color-brass-soft)] transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 active:scale-95 cursor-pointer;
   }
   .btn-ghost-dark {
-    @apply inline-flex items-center justify-center gap-2 rounded-button border border-white/30 px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-white bg-black/30 backdrop-blur-sm hover:bg-brass hover:border-brass transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 active:scale-95 cursor-pointer;
+    @apply inline-flex items-center justify-center gap-2 rounded-button border border-white/30 px-6 py-3 font-accent text-xs font-semibold uppercase tracking-[0.24em] text-white bg-black/30 backdrop-blur-sm hover:bg-brass hover:border-brass transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 active:scale-95 cursor-pointer;
   }
   .btn-tertiary {
-    @apply inline-flex items-center gap-1 rounded-button border border-brass px-5 py-2 text-sm font-semibold uppercase tracking-[0.2em] text-brass bg-transparent hover:bg-brass hover:text-white transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 active:scale-95 cursor-pointer;
+    @apply inline-flex items-center gap-1 rounded-button border border-brass px-5 py-2 font-accent text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-charcoal)] bg-[var(--color-brass-soft)] hover:bg-[var(--color-brass)] hover:text-[var(--color-charcoal)] transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 active:scale-95 cursor-pointer;
   }
   .nav-link {
-    @apply text-xs font-medium uppercase tracking-[2.4px] text-white/70 transition-colors duration-200 hover:text-brass focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2;
+    @apply font-accent text-[11px] font-medium uppercase tracking-[2.8px] text-[var(--color-charcoal)]/40 transition-colors duration-200 hover:text-[var(--color-brass)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2;
   }
   .section-dark {
     @apply bg-[#0C1617] text-white;
@@ -113,44 +129,57 @@
   /* Type scale - serif display headings, sans for UI and body. */
   .hero-title {
     font-family: var(--font-serif);
-    font-weight: 400;
+    font-weight: 300;
     text-transform: uppercase;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.18em;
     line-height: 1.08;
-    font-size: clamp(2rem, 1.2rem + 5.2vw, 6rem);
+    font-size: clamp(1.9rem, 1.05rem + 3.85vw, 4.75rem);
   }
   @media (max-width: 639px) {
     .hero-title {
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
     }
   }
   .text-h2 {
     font-family: var(--font-serif);
-    line-height: 1.12;
-    font-size: clamp(1.75rem, 1.1rem + 3.2vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: 0.015em;
+    font-size: clamp(2rem, 1.25rem + 3.2vw, 3.85rem);
   }
   .text-h3 {
     font-family: var(--font-serif);
+    font-weight: 400;
     line-height: 1.18;
-    font-size: clamp(1.5rem, 1.1rem + 2.1vw, 3rem);
+    letter-spacing: 0.015em;
+    font-size: clamp(1.5rem, 1.1rem + 2vw, 2.75rem);
   }
   .text-h4 {
     font-family: var(--font-serif);
+    font-weight: 400;
     line-height: 1.25;
-    font-size: clamp(1.25rem, 1rem + 1.2vw, 2rem);
+    letter-spacing: 0.015em;
+    font-size: clamp(1.25rem, 1rem + 1vw, 1.85rem);
   }
   .subtitle-large {
-    font-family: var(--font-display);
-    font-size: 0.75rem;
+    font-family: var(--font-accent);
+    color: var(--color-brass);
+    font-size: 0.72rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.3em;
+    letter-spacing: 0.32em;
   }
   @media (min-width: 768px) {
     .subtitle-large {
-      font-size: 0.8125rem;
-      letter-spacing: 0.35em;
+      font-size: 0.8rem;
+      letter-spacing: 0.38em;
     }
+  }
+  .lead-editorial {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 300;
+    letter-spacing: 0.01em;
   }
   .btn-large-circle {
     @apply inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition-all duration-300 hover:bg-brass hover:border-brass hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass active:scale-95 cursor-pointer;
@@ -182,8 +211,6 @@
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-display), Arial, Helvetica, sans-serif;
+.-top-6 {
+  color: var(--color-charcoal);
 }

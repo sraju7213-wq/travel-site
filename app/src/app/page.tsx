@@ -54,13 +54,13 @@ export default function Home() {
       <PillarsTabs />
 
       {/* Signature journeys */}
-      <section className="bg-[#0C1617] py-20 text-white md:py-28 border-t border-white/5">
+      <section className="bg-[#0C1617] py-12 text-white md:py-16 border-t border-white/5">
         <Container>
-          <div className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+          <div className="mb-8 flex flex-col items-start justify-between gap-5 md:flex-row md:items-end">
             <div className="max-w-2xl">
-              <p className="subtitle-large mb-5 text-brass">Signature journeys</p>
-              <h2 className="text-h2 text-white">
-                Tailor-made tours and small-group journeys
+              <p className="subtitle-large mb-4 text-brass font-accent">Signature Journeys</p>
+              <h2 className="text-h2 text-white font-serif font-light">
+                Tailor-Made Tours &amp; Small-Group Expeditions
               </h2>
             </div>
             <Link href="/explore" className="btn-tertiary">

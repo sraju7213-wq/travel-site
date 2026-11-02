@@ -25,10 +25,10 @@ export default function BrandMark({ className = "", compact = false }: BrandMark
       </div>
       {!compact && (
         <span className="hidden flex-col leading-tight sm:flex">
-          <span className="font-serif text-sm font-bold tracking-wider text-white md:text-base uppercase">
+          <span className="font-accent text-xs sm:text-sm font-semibold tracking-[0.22em] text-white uppercase">
             KS World
           </span>
-          <span className="text-[0.55rem] font-display uppercase tracking-[0.25em] text-brass md:text-[0.6rem]">
+          <span className="text-[0.6rem] font-sans font-medium uppercase tracking-[0.3em] text-brass">
             Adventure
           </span>
         </span>

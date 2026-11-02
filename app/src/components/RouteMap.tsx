@@ -7,428 +7,299 @@ interface RouteMapProps {
   pkg: TravelPackage;
 }
 
-interface CoordinateStop {
+interface Waypoint {
   id: string;
   name: string;
-  day: string;
-  x: number; // 0 - 100% SVG coordinates
-  y: number; // 0 - 100% SVG coordinates
+  dayLabel: string;
+  query: string;
   description?: string;
-  transport?: string;
-}
-
-// Subcontinent geographic reference points mapped to a responsive 800x500 SVG canvas
-const KNOWN_COORDINATES: Record<string, { x: number; y: number; region: string }> = {
-  // North & Golden Triangle
-  delhi: { x: 380, y: 220, region: "North India" },
-  agra: { x: 420, y: 250, region: "Uttar Pradesh" },
-  jaipur: { x: 340, y: 260, region: "Rajasthan" },
-  jodhpur: { x: 260, y: 280, region: "Rajasthan" },
-  udaipur: { x: 280, y: 340, region: "Rajasthan" },
-  varanasi: { x: 540, y: 270, region: "Uttar Pradesh" },
-
-  // Kashmir & Ladakh
-  srinagar: { x: 310, y: 90, region: "Kashmir" },
-  gulmarg: { x: 290, y: 85, region: "Kashmir" },
-  sonamarg: { x: 325, y: 80, region: "Kashmir" },
-  pahalgam: { x: 320, y: 105, region: "Kashmir" },
-  leh: { x: 380, y: 95, region: "Ladakh" },
-  nubra: { x: 395, y: 75, region: "Ladakh" },
-  pangong: { x: 415, y: 100, region: "Ladakh" },
-  markha: { x: 375, y: 110, region: "Ladakh" },
-  zanskar: { x: 350, y: 125, region: "Ladakh" },
-
-  // Nepal
-  kathmandu: { x: 620, y: 230, region: "Nepal" },
-  pokhara: { x: 570, y: 225, region: "Nepal" },
-  chitwan: { x: 585, y: 245, region: "Nepal" },
-  trisuli: { x: 595, y: 230, region: "Nepal" },
-  annapurna: { x: 560, y: 215, region: "Nepal" },
-
-  // West & South
-  bombay: { x: 240, y: 410, region: "Maharashtra" },
-  mumbai: { x: 240, y: 410, region: "Maharashtra" },
-  goa: { x: 250, y: 470, region: "Goa" },
-  cochin: { x: 290, y: 550, region: "Kerala" },
-  kochi: { x: 290, y: 550, region: "Kerala" },
-  munnar: { x: 310, y: 540, region: "Kerala" },
-  alleppey: { x: 295, y: 565, region: "Kerala" },
-  thekkady: { x: 315, y: 555, region: "Kerala" },
-  kovalam: { x: 300, y: 585, region: "Kerala" },
-};
-
-function normalizeName(str: string): string {
-  return str.toLowerCase().replace(/[^a-z]/g, "");
-}
-
-function findCoords(name: string): { x: number; y: number; region: string } | null {
-  const norm = normalizeName(name);
-  for (const [key, coords] of Object.entries(KNOWN_COORDINATES)) {
-    if (norm.includes(key) || key.includes(norm)) {
-      return coords;
-    }
-  }
-  return null;
 }
 
 export default function RouteMap({ pkg }: RouteMapProps) {
-  const [activeStopIndex, setActiveStopIndex] = useState<number>(0);
-  const [mapMode, setMapMode] = useState<"route" | "elevation">("route");
+  const [selectedId, setSelectedId] = useState<string>("all");
+  const [mapType, setMapType] = useState<"p" | "k" | "m">("p"); // p: terrain, k: satellite, m: standard roadmap
 
-  // Derive stops from itinerary days
-  const stops: CoordinateStop[] = useMemo(() => {
-    const list: CoordinateStop[] = [];
+  // Determine country context from regions or package properties
+  const regions = pkg.region || [];
+  const isNepal =
+    regions.some((r) => r.toLowerCase().includes("nepal") || r.toLowerCase().includes("kathmandu")) ||
+    pkg.title.toLowerCase().includes("nepal");
+  const defaultCountry = isNepal ? "Nepal" : "India";
+  const primaryRegion = regions.find((r) => r.toLowerCase() !== "india" && r.toLowerCase() !== "nepal") || "";
+
+  // Extract waypoints from itinerary or fallback to regions
+  const waypoints = useMemo(() => {
+    const list: Waypoint[] = [];
     const itinerary = pkg.itinerary || [];
 
     if (itinerary.length > 0) {
-      itinerary.forEach((dayEntry, idx) => {
-        const dayLabel = String(dayEntry.day ?? idx + 1);
-        const dayStops = dayEntry.stops && dayEntry.stops.length > 0 ? dayEntry.stops : [dayEntry.title || `Day ${dayLabel}`];
+      itinerary.forEach((day, idx) => {
+        const dayLabel = day.day ? `Day ${day.day}` : `Day ${idx + 1}`;
+        const rawStops =
+          day.stops && day.stops.length > 0
+            ? day.stops
+            : day.title
+            ? [day.title]
+            : [];
 
-        dayStops.forEach((stopName) => {
-          const coords = findCoords(stopName);
-          if (coords) {
-            // Avoid duplicate consecutive identical stops
-            const last = list[list.length - 1];
-            if (!last || last.name !== stopName) {
-              list.push({
-                id: `${stopName}-${idx}`,
-                name: stopName,
-                day: dayLabel,
-                x: coords.x,
-                y: coords.y,
-                description: dayEntry.description,
-                transport: dayEntry.transfers,
-              });
-            }
+        rawStops.forEach((raw, sIdx) => {
+          // Clean prefixes like "Drive to", "Flight to", "Excursion to", "Trek to"
+          const cleanName = raw
+            .replace(/^(drive to|flight to|excursion to|trek to|transfer to|visit|explore|travel to)\s+/i, "")
+            .replace(/\s*\/\s*/g, " & ")
+            .trim();
+
+          if (!cleanName) return;
+
+          // Avoid repeating identical stop name consecutively
+          const prev = list[list.length - 1];
+          if (prev && prev.name.toLowerCase() === cleanName.toLowerCase()) {
+            return;
           }
+
+          // Build query with regional context for accurate Google Maps lookup
+          const query = primaryRegion && !cleanName.toLowerCase().includes(primaryRegion.toLowerCase())
+            ? `${cleanName}, ${primaryRegion}, ${defaultCountry}`
+            : `${cleanName}, ${defaultCountry}`;
+
+          list.push({
+            id: `stop-${idx}-${sIdx}`,
+            name: cleanName,
+            dayLabel,
+            query,
+            description: day.description || day.title,
+          });
         });
       });
     }
 
-    // Fallback: If no itinerary stops mapped, use pkg.region
+    // Fallback if no itinerary entries found
     if (list.length === 0) {
-      pkg.region.forEach((r, idx) => {
-        const coords = findCoords(r) || { x: 350 + idx * 70, y: 220 + idx * 40, region: r };
+      const fallbackStops = regions.length > 0 ? regions : [pkg.title];
+      fallbackStops.forEach((r, idx) => {
         list.push({
           id: `region-${idx}`,
           name: r,
-          day: `${idx + 1}`,
-          x: coords.x,
-          y: coords.y,
-          description: `Key region explored during ${pkg.title}.`,
+          dayLabel: `Point ${idx + 1}`,
+          query: `${r}, ${defaultCountry}`,
+          description: `Regional waypoint across ${r}`,
         });
-      });
-    }
-
-    // Default fallbacks if still minimal
-    if (list.length === 1) {
-      list.push({
-        id: "return-stop",
-        name: `${list[0].name} (Return)`,
-        day: "Departure",
-        x: list[0].x + 35,
-        y: list[0].y + 25,
-        description: "Return transfer and departure.",
       });
     }
 
     return list;
-  }, [pkg]);
+  }, [pkg, primaryRegion, defaultCountry, regions]);
 
-  // Generate SVG path connecting stops
-  const pathD = useMemo(() => {
-    if (stops.length < 2) return "";
-    return stops.reduce((acc, curr, i) => {
-      if (i === 0) return `M ${curr.x} ${curr.y}`;
-      // Smooth quadratic curve towards each point
-      const prev = stops[i - 1];
-      const cx = (prev.x + curr.x) / 2;
-      const cy = (prev.y + curr.y) / 2 - 15;
-      return `${acc} Q ${cx} ${cy} ${curr.x} ${curr.y}`;
-    }, "");
-  }, [stops]);
+  // Derive active location query & Google Maps embed URL
+  const { embedUrl, externalUrl, activeWaypoint } = useMemo(() => {
+    let query = "";
+    let extUrl = "";
+    let activeWp: Waypoint | null = null;
 
-  const activeStop = stops[activeStopIndex] ?? stops[0];
+    if (selectedId === "all" || !waypoints.some((w) => w.id === selectedId)) {
+      // Full route overview query
+      const routeStops = waypoints.slice(0, 4).map((w) => w.name);
+      if (routeStops.length > 1) {
+        query = `${routeStops.join(" to: ")}, ${defaultCountry}`;
+        extUrl = `https://www.google.com/maps/dir/${routeStops.map(encodeURIComponent).join("/")}`;
+      } else if (routeStops.length === 1) {
+        query = `${routeStops[0]}, ${defaultCountry}`;
+        extUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+      } else {
+        query = `${pkg.title}, ${defaultCountry}`;
+        extUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+      }
+    } else {
+      activeWp = waypoints.find((w) => w.id === selectedId) || waypoints[0];
+      query = activeWp.query;
+      extUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+    }
+
+    const zoom = selectedId === "all" ? (waypoints.length > 3 ? "8" : "9") : "12";
+    const src = `https://maps.google.com/maps?q=${encodeURIComponent(query)}&t=${mapType}&z=${zoom}&output=embed`;
+
+    return { embedUrl: src, externalUrl: extUrl, activeWaypoint: activeWp };
+  }, [selectedId, waypoints, defaultCountry, pkg.title, mapType]);
 
   return (
-    <section className="mb-14" aria-label="Interactive itinerary route map">
+    <section className="mb-14 scroll-mt-24" id="route-map" aria-label="Journey Google Map">
+      {/* Header Bar */}
       <div className="mb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
-          <p className="subtitle-large mb-1 text-brass">Journey Route &amp; Navigation</p>
-          <h2 className="font-serif text-2xl md:text-3xl font-bold text-charcoal">
+          <div className="mb-1.5 inline-flex items-center gap-2">
+            <span className="h-2 w-2 rounded-full bg-brass animate-pulse" />
+            <p className="subtitle-large text-brass font-accent">Google Maps Cartography</p>
+          </div>
+          <h2 className="font-serif text-2xl md:text-3xl font-light text-white">
             Interactive Route Map
           </h2>
-          <p className="font-display text-sm text-charcoal-soft mt-1">
-            Explore the departure waypoints, transit legs, and overnight stays for {pkg.title}.
+          <p className="font-sans font-light text-xs sm:text-sm text-white/70 mt-1 max-w-xl">
+            Live topographic navigation, terrain waypoints and satellite imagery for {pkg.title}.
           </p>
         </div>
 
-        {/* View mode toggle tabs */}
-        <div className="flex items-center gap-1.5 rounded-button border border-border bg-white p-1 shadow-sm shrink-0">
-          <button
-            type="button"
-            onClick={() => setMapMode("route")}
-            className={`rounded-button px-3.5 py-1.5 text-xs font-display uppercase tracking-wider font-semibold transition-all cursor-pointer ${
-              mapMode === "route"
-                ? "bg-forest text-white shadow-sm"
-                : "text-charcoal-soft hover:text-charcoal"
-            }`}
+        {/* Action Controls: Map Type Toggles + External Link */}
+        <div className="flex flex-wrap items-center gap-2 shrink-0">
+          <div className="inline-flex rounded-button border border-white/10 bg-white/5 p-1 backdrop-blur-md">
+            <button
+              type="button"
+              onClick={() => setMapType("p")}
+              className={`rounded-button px-3 py-1 text-[11px] font-accent uppercase tracking-wider transition-all cursor-pointer ${
+                mapType === "p"
+                  ? "bg-brass text-white font-semibold shadow-sm"
+                  : "text-white/70 hover:text-white"
+              }`}
+            >
+              Terrain
+            </button>
+            <button
+              type="button"
+              onClick={() => setMapType("k")}
+              className={`rounded-button px-3 py-1 text-[11px] font-accent uppercase tracking-wider transition-all cursor-pointer ${
+                mapType === "k"
+                  ? "bg-brass text-white font-semibold shadow-sm"
+                  : "text-white/70 hover:text-white"
+              }`}
+            >
+              Satellite
+            </button>
+            <button
+              type="button"
+              onClick={() => setMapType("m")}
+              className={`rounded-button px-3 py-1 text-[11px] font-accent uppercase tracking-wider transition-all cursor-pointer ${
+                mapType === "m"
+                  ? "bg-brass text-white font-semibold shadow-sm"
+                  : "text-white/70 hover:text-white"
+              }`}
+            >
+              Roadmap
+            </button>
+          </div>
+
+          <a
+            href={externalUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Open route in Google Maps app or website"
+            className="btn-ghost-dark inline-flex items-center gap-1.5 py-2 px-3 text-[11px] font-accent tracking-wider uppercase"
           >
-            Route Map
-          </button>
-          <button
-            type="button"
-            onClick={() => setMapMode("elevation")}
-            className={`rounded-button px-3.5 py-1.5 text-xs font-display uppercase tracking-wider font-semibold transition-all cursor-pointer ${
-              mapMode === "elevation"
-                ? "bg-forest text-white shadow-sm"
-                : "text-charcoal-soft hover:text-charcoal"
-            }`}
-          >
-            Elevation &amp; Leg Guide
-          </button>
+            <span>Open in Google Maps</span>
+            <svg aria-hidden="true" viewBox="0 0 24 24" className="h-3.5 w-3.5 fill-none stroke-current stroke-[2]">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </a>
         </div>
       </div>
 
-      {/* Main Luxury Map Canvas Container */}
-      <div className="relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#123438] text-white shadow-2xl">
-        {/* Atmospheric Topographic Canvas Background */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 opacity-20 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px]"
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30"
-        />
+      {/* Main Map Box */}
+      <div className="relative overflow-hidden rounded-[1.25rem] border border-white/10 bg-[#132325] text-white shadow-2xl">
+        <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr]">
+          {/* Waypoints Sidebar Selector */}
+          <div className="border-b border-white/10 lg:border-b-0 lg:border-r p-4 sm:p-5 flex flex-col justify-between max-h-[540px] overflow-y-auto">
+            <div>
+              <div className="mb-3 flex items-center justify-between text-xs text-white/60">
+                <span className="font-accent uppercase tracking-wider text-brass-soft">
+                  Route Waypoints
+                </span>
+                <span className="font-mono text-[10px] text-white/50">
+                  {waypoints.length} stops
+                </span>
+              </div>
 
-        {/* Wilderness Brand Map Coordinates Eyebrow */}
-        <div className="absolute left-6 top-6 z-10 hidden sm:flex items-center gap-4 text-[0.65rem] font-display uppercase tracking-[0.3em] text-white/60">
-          <span>{stops.length} Waypoints Recorded</span>
-          <span className="h-1 w-1 rounded-full bg-brass" />
-          <span>India &amp; Nepal Subcontinent Trail</span>
-        </div>
+              {/* Waypoint list buttons */}
+              <div className="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0 scrollbar-hide">
+                {/* Full Route Overview Button */}
+                <button
+                  type="button"
+                  onClick={() => setSelectedId("all")}
+                  className={`w-full text-left rounded-xl p-3 border transition-all cursor-pointer shrink-0 ${
+                    selectedId === "all"
+                      ? "border-brass bg-brass/20 text-white shadow-md ring-1 ring-brass/50"
+                      : "border-white/5 bg-white/5 text-white/80 hover:bg-white/10 hover:border-white/20"
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="font-accent text-[11px] font-semibold uppercase tracking-wider text-brass-soft">
+                      Complete Circuit
+                    </span>
+                    <span className="font-mono text-[10px] rounded-full bg-white/10 px-2 py-0.5 text-white/70">
+                      All Legs
+                    </span>
+                  </div>
+                  <p className="font-serif text-sm font-light text-white mt-1">
+                    Full Route Overview
+                  </p>
+                </button>
 
-        {mapMode === "route" ? (
-          <div className="relative p-6 pt-14 sm:p-10 sm:pt-16">
-            {/* SVG Visual Stage */}
-            <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full max-h-[520px]">
-              <svg
-                viewBox="200 50 500 350"
-                className="h-full w-full overflow-visible"
-                aria-label="Route map illustration"
-              >
-                <defs>
-                  {/* Glowing golden-orange trail gradient */}
-                  <linearGradient id="routeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#ff6e00" stopOpacity="0.8" />
-                    <stop offset="50%" stopColor="#ffa866" stopOpacity="1" />
-                    <stop offset="100%" stopColor="#ff6e00" stopOpacity="0.9" />
-                  </linearGradient>
-
-                  {/* Soft trail glow filter */}
-                  <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-                    <feGaussianBlur stdDeviation="3" result="blur" />
-                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                  </filter>
-                </defs>
-
-                {/* Subtle topographic contour background curves */}
-                <g opacity="0.12" stroke="white" strokeWidth="1" fill="none">
-                  <path d="M 220 180 Q 350 140 480 200 T 700 160" />
-                  <path d="M 200 240 Q 320 200 460 260 T 680 220" />
-                  <path d="M 240 300 Q 380 260 520 320 T 720 280" />
-                  <path d="M 220 360 Q 360 320 500 380 T 700 340" />
-                </g>
-
-                {/* Connecting Route Trail Line */}
-                {pathD && (
-                  <>
-                    {/* Shadow halo */}
-                    <path
-                      d={pathD}
-                      fill="none"
-                      stroke="#000000"
-                      strokeWidth="6"
-                      opacity="0.5"
-                      strokeLinecap="round"
-                    />
-                    {/* Glowing trail */}
-                    <path
-                      d={pathD}
-                      fill="none"
-                      stroke="url(#routeGradient)"
-                      strokeWidth="3.5"
-                      strokeDasharray="6 4"
-                      filter="url(#glow)"
-                      strokeLinecap="round"
-                    />
-                  </>
-                )}
-
-                {/* Stops Marker Pins */}
-                {stops.map((stop, idx) => {
-                  const isActive = activeStopIndex === idx;
+                {/* Individual Itinerary Waypoint Stops */}
+                {waypoints.map((wp, index) => {
+                  const isSelected = selectedId === wp.id;
                   return (
-                    <g
-                      key={stop.id}
-                      onClick={() => setActiveStopIndex(idx)}
-                      className="cursor-pointer group"
+                    <button
+                      key={wp.id}
+                      type="button"
+                      onClick={() => setSelectedId(wp.id)}
+                      className={`w-full text-left rounded-xl p-3 border transition-all cursor-pointer shrink-0 ${
+                        isSelected
+                          ? "border-brass bg-brass/20 text-white shadow-md ring-1 ring-brass/50"
+                          : "border-white/5 bg-white/5 text-white/80 hover:bg-white/10 hover:border-white/20"
+                      }`}
                     >
-                      {/* Active pulsed halo ring */}
-                      {isActive && (
-                        <circle
-                          cx={stop.x}
-                          cy={stop.y}
-                          r="16"
-                          fill="none"
-                          stroke="#ff6e00"
-                          strokeWidth="2"
-                          opacity="0.6"
-                          className="animate-ping origin-center"
-                        />
-                      )}
-
-                      {/* Exterior pin ring */}
-                      <circle
-                        cx={stop.x}
-                        cy={stop.y}
-                        r={isActive ? "10" : "7"}
-                        fill={isActive ? "#ff6e00" : "#123438"}
-                        stroke="#ffffff"
-                        strokeWidth="2"
-                        className="transition-all duration-300 group-hover:r-[10] group-hover:fill-[#ff6e00]"
-                      />
-
-                      {/* Numbered inner marker */}
-                      <text
-                        x={stop.x}
-                        y={stop.y + (isActive ? 3.5 : 3)}
-                        fontSize={isActive ? "8" : "7"}
-                        fontFamily="sans-serif"
-                        fontWeight="bold"
-                        textAnchor="middle"
-                        fill="#ffffff"
-                        className="pointer-events-none select-none"
-                      >
-                        {idx + 1}
-                      </text>
-
-                      {/* Name label beside pin */}
-                      <text
-                        x={stop.x}
-                        y={stop.y - 12}
-                        fontSize="9"
-                        fontFamily="serif"
-                        fontWeight="bold"
-                        letterSpacing="0.05em"
-                        textAnchor="middle"
-                        fill={isActive ? "#ffffff" : "rgba(255, 255, 255, 0.75)"}
-                        className="transition-colors group-hover:fill-white select-none pointer-events-none drop-shadow-md"
-                      >
-                        {stop.name}
-                      </text>
-                    </g>
+                      <div className="flex items-center justify-between">
+                        <span className="font-mono text-[10px] text-brass-soft">
+                          {wp.dayLabel}
+                        </span>
+                        <span className="font-mono text-[10px] text-white/50">
+                          Leg {index + 1}
+                        </span>
+                      </div>
+                      <p className="font-serif text-sm font-light text-white mt-0.5 truncate">
+                        {wp.name}
+                      </p>
+                    </button>
                   );
                 })}
-              </svg>
-            </div>
-
-            {/* Interactive Stop Detail Card Floating at Bottom of Map */}
-            <div className="mt-6 rounded-[1rem] border border-white/15 bg-black/60 p-5 md:p-6 backdrop-blur-md flex flex-col md:flex-row md:items-center justify-between gap-5">
-              <div className="flex items-start gap-4">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brass text-white font-serif text-base font-bold shadow-md">
-                  {activeStopIndex + 1}
-                </span>
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-[0.65rem] font-display font-semibold uppercase tracking-wider text-brass">
-                      Day {activeStop.day}
-                    </span>
-                    {activeStop.transport && (
-                      <span className="text-white/60 text-xs font-display">
-                        · {activeStop.transport}
-                      </span>
-                    )}
-                  </div>
-                  <h3 className="font-serif text-xl font-bold text-white mt-0.5">
-                    {activeStop.name}
-                  </h3>
-                  {activeStop.description && (
-                    <p className="mt-1 font-display text-xs md:text-sm text-white/80 line-clamp-2 max-w-2xl leading-relaxed">
-                      {activeStop.description}
-                    </p>
-                  )}
-                </div>
-              </div>
-
-              {/* Waypoint step buttons */}
-              <div className="flex items-center gap-2 shrink-0 self-end md:self-center">
-                <button
-                  type="button"
-                  onClick={() => setActiveStopIndex((prev) => Math.max(0, prev - 1))}
-                  disabled={activeStopIndex === 0}
-                  aria-label="Previous route stop"
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition-all hover:bg-brass hover:border-brass disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
-                >
-                  &larr;
-                </button>
-                <span className="px-2 text-xs font-display tabular-nums tracking-wider text-white/70">
-                  {activeStopIndex + 1} of {stops.length}
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setActiveStopIndex((prev) => Math.min(stops.length - 1, prev + 1))}
-                  disabled={activeStopIndex === stops.length - 1}
-                  aria-label="Next route stop"
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition-all hover:bg-brass hover:border-brass disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
-                >
-                  &rarr;
-                </button>
               </div>
             </div>
-          </div>
-        ) : (
-          /* Elevation & Leg Guide Mode */
-          <div className="p-6 sm:p-10 space-y-6 pt-14">
-            <div className="border-b border-white/10 pb-4">
-              <h3 className="font-serif text-xl font-bold text-white">Route Transit &amp; Leg Profile</h3>
-              <p className="font-display text-xs text-white/70 mt-1">
-                Sequential transit legs, transfers, and day-by-day exploration pace for {pkg.title}.
-              </p>
-            </div>
 
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {stops.map((stop, idx) => (
-                <div
-                  key={stop.id}
-                  onClick={() => {
-                    setActiveStopIndex(idx);
-                    setMapMode("route");
-                  }}
-                  className="group rounded-[1rem] border border-white/10 bg-white/5 p-4 transition-all hover:bg-white/10 hover:border-brass/40 cursor-pointer"
-                >
-                  <div className="flex items-center justify-between text-xs font-display text-brass mb-2">
-                    <span className="font-bold">Leg {idx + 1}</span>
-                    <span className="text-white/60">Day {stop.day}</span>
-                  </div>
-                  <h4 className="font-serif text-lg font-bold text-white group-hover:text-brass transition-colors">
-                    {stop.name}
-                  </h4>
-                  <p className="font-display text-xs text-white/75 mt-1 line-clamp-2 leading-relaxed">
-                    {stop.description || "Scenic waypoint and scheduled itinerary programme."}
-                  </p>
-                  {stop.transport && (
-                    <span className="mt-3 inline-block rounded-pill bg-black/40 px-2.5 py-0.5 text-[0.65rem] font-display text-white/80 border border-white/10">
-                      🚗 {stop.transport}
-                    </span>
-                  )}
-                </div>
-              ))}
+            {/* Active Waypoint Brief Note */}
+            {activeWaypoint && activeWaypoint.description && (
+              <div className="mt-4 pt-4 border-t border-white/10 hidden lg:block">
+                <p className="font-mono text-[10px] uppercase tracking-wider text-brass-soft">
+                  {activeWaypoint.dayLabel} Destination Focus
+                </p>
+                <p className="font-sans font-light text-xs text-white/70 mt-1 line-clamp-3 leading-relaxed">
+                  {activeWaypoint.description}
+                </p>
+              </div>
+            )}
+          </div>
+
+          {/* Google Maps Interactive Frame */}
+          <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-auto min-h-[380px] sm:min-h-[460px] lg:min-h-[540px] w-full bg-[#0C1617]">
+            <iframe
+              key={`${embedUrl}-${mapType}`}
+              src={embedUrl}
+              title={`Google Map for ${pkg.title}`}
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
+              className="absolute inset-0 h-full w-full border-0 filter brightness-[0.92] contrast-[1.05]"
+            />
+
+            {/* Interactive Overlay Badge */}
+            <div className="pointer-events-none absolute bottom-4 left-4 z-10 flex items-center gap-2 rounded-full border border-white/15 bg-black/70 px-3.5 py-1.5 backdrop-blur-md shadow-lg">
+              <span className="h-1.5 w-1.5 rounded-full bg-brass" />
+              <span className="font-accent text-[10px] uppercase tracking-wider text-brass-soft font-semibold">
+                Google Maps Live View
+              </span>
+              <span className="text-white/40">&bull;</span>
+              <span className="font-sans text-[11px] font-light text-white/80">
+                {selectedId === "all" ? "Subcontinent Trail Overview" : activeWaypoint?.name}
+              </span>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </section>
   );

@@ -57,14 +57,14 @@ export default function ExperienceCarousel() {
   }, []);
 
   return (
-    <section className="section-darker py-20 md:py-28" id="experiences">
+    <section className="section-darker py-12 md:py-16" id="experiences">
       <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-        <div className="mx-auto mb-12 max-w-3xl text-center">
-          <p className="subtitle-large mb-5 text-brass">Our experiences</p>
-          <h2 className="text-h2 mb-6 text-white">Journeys from our brochure</h2>
-          <p className="font-display text-lg leading-relaxed text-white/75">
-            Trekking, rafting, houseboat stays, wildlife safaris and cultural programmes are among
-            the journeys listed in our brochure catalogue.
+        <div className="mx-auto mb-6 max-w-3xl text-center">
+          <p className="subtitle-large mb-4 text-brass font-accent">Curated Brochure Expeditions</p>
+          <h2 className="text-h2 mb-5 text-white font-serif font-light">Iconic Subcontinent Experiences</h2>
+          <p className="font-sans font-light text-base md:text-lg leading-relaxed text-white/75">
+            Himalayan trekking, whitewater rafting, heritage houseboat stays, wildlife safaris and cultural immersions
+            drawn directly from our 1927 heritage archives.
           </p>
         </div>
       </div>
@@ -74,7 +74,7 @@ export default function ExperienceCarousel() {
         tabIndex={0}
         role="group"
         aria-label="Experiences carousel — scroll horizontally to see all experiences"
-        className="scrollbar-hide flex snap-x snap-mandatory gap-8 overflow-x-auto px-4 pb-6 pt-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass md:px-8"
+        className="scrollbar-hide flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-4 pt-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass md:px-8"
       >
         {EXPERIENCES.map((exp, i) => (
           <li
@@ -82,10 +82,10 @@ export default function ExperienceCarousel() {
             ref={(el) => {
               cardRefs.current[i] = el;
             }}
-            className="group flex w-[315px] shrink-0 snap-center flex-col items-center sm:w-[304px]"
+            className="group flex w-[260px] shrink-0 snap-center flex-col items-center sm:w-[260px]"
           >
-            <div className="relative mb-6 pt-2">
-              <div className="relative h-[245px] w-[245px] overflow-hidden rounded-full bg-forest border-2 border-white/10 shadow-[0_0_0_10px_var(--color-charcoal)] transition-all duration-500 group-hover:scale-105 group-hover:shadow-[0_0_0_6px_var(--color-brass),0_0_0_14px_var(--color-charcoal)]">
+            <div className="relative mb-4 pt-1">
+              <div className="relative h-[180px] w-[180px] overflow-hidden rounded-full bg-forest border-2 border-white/10 shadow-[0_0_0_8px_var(--color-charcoal)] transition-all duration-500 group-hover:scale-105 group-hover:shadow-[0_0_0_5px_var(--color-brass),0_0_0_10px_var(--color-charcoal)]">
                 <Image
                   src={exp.image}
                   alt={exp.title}
@@ -96,11 +96,10 @@ export default function ExperienceCarousel() {
                 />
                 <span aria-hidden="true" className="absolute inset-0 bg-black/15 transition-colors group-hover:bg-black/5" />
               </div>
-              <span className="absolute -bottom-1 left-1/2 inline-flex max-w-[260px] -translate-x-1/2 items-center gap-1.5 truncate whitespace-nowrap rounded-pill bg-charcoal px-3 py-1 text-[0.65rem] font-display uppercase tracking-[0.15em] text-white/80">
+              <span className="absolute -bottom-1 left-1/2 inline-flex max-w-[260px] -translate-x-1/2 items-center gap-1.5 truncate whitespace-nowrap rounded-pill bg-charcoal px-3 py-1 text-[0.65rem] font-accent uppercase tracking-[0.2em] text-brass-soft border border-white/10 shadow-sm">
                 <svg
                   aria-hidden="true"
                   viewBox="0 0 24 24"
-                  className="h-3 w-3 fill-none stroke-current stroke-[2]"
                 >
                   <path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11Z" />
                   <circle cx="12" cy="10" r="2.4" />
@@ -109,15 +108,15 @@ export default function ExperienceCarousel() {
               </span>
             </div>
 
-            <h3 className="mb-3 text-center font-serif text-2xl font-bold text-white">
+            <h3 className="mb-2 text-center font-serif text-2xl font-light text-white tracking-wide">
               {exp.title}
             </h3>
-            <p className="mb-5 max-w-xs text-center font-display text-sm leading-relaxed text-white/75">
+            <p className="mb-4 max-w-xs text-center font-sans font-light text-xs leading-relaxed text-white/70">
               {exp.description}
             </p>
             <Link
               href={exp.href}
-              className="inline-flex items-center gap-1.5 text-xs font-display font-semibold uppercase tracking-[0.2em] text-brass transition-all duration-300 hover:text-white hover:translate-x-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass"
+              className="inline-flex items-center gap-1.5 text-xs font-accent font-semibold uppercase tracking-[0.22em] text-brass transition-all duration-300 hover:text-white hover:translate-x-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass"
             >
               {exp.title} <span aria-hidden="true">&rarr;</span>
             </Link>
