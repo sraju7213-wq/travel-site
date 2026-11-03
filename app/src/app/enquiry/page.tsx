@@ -3,11 +3,13 @@ import PageShell from "@/components/PageShell";
 import Container from "@/components/Container";
 import EnquiryForm from "@/components/EnquiryForm";
 import { getAllPackages, getPackageBySlug } from "@/data/catalogue";
+import { isEnquiryBackendConfigured } from "@/lib/enquiryConfig";
+import { BRAND } from "@/data/brandConfig";
 
 export const metadata: Metadata = {
-  title: "Enquire — India Nepal Travel Organisation",
+  title: `Enquire — ${BRAND.name}`,
   description:
-    "Send an enquiry about a journey from the India Nepal Travel brochure catalogue, or ask us to plan a tailor-made trip across India and Nepal.",
+    `Send an enquiry about a journey from the ${BRAND.operatorName} brochure catalogue, or ask us to plan a tailor-made trip across India and Nepal.`,
 };
 
 export const instant = false;
@@ -32,7 +34,7 @@ export default async function EnquiryPage({ searchParams }: EnquiryPageProps) {
     category: pkg.category,
   }));
 
-  const configured = Boolean(process.env.ENQUIRY_API_URL || process.env.NEXT_PUBLIC_SUPABASE_URL);
+  const configured = isEnquiryBackendConfigured();
 
   return (
     <PageShell>

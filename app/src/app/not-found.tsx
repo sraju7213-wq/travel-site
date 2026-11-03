@@ -1,9 +1,10 @@
 import Link from "next/link";
 import PageShell from "@/components/PageShell";
 import Container from "@/components/Container";
+import { BRAND } from "@/data/brandConfig";
 
 export const metadata = {
-  title: "Journey not found — India Nepal Travel Organisation",
+  title: `Journey not found — ${BRAND.name}`,
   description:
     "The journey you are looking for is not in our catalogue. Browse all India and Nepal tours, or send us an enquiry.",
 };

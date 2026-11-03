@@ -1,5 +1,3 @@
-"use client";
-
 import HomeHero from "@/components/HomeHero";
 
 export default function HomeVideoExperience() {

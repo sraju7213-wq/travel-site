@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback, useSyncExternalStore } from "react";
 import Image from "next/image";
 import { HERO_VIDEOS, HeroVideo, generateShuffledPlaylist } from "@/data/heroVideos";
 
@@ -9,27 +9,33 @@ const TICK_INTERVAL_MS = 50; // smooth 20fps progress update
 const TOTAL_TICKS = (ROTATION_SECONDS * 1000) / TICK_INTERVAL_MS;
 
 export default function HeroVideoShuffler() {
-  const [isMounted, setIsMounted] = useState(false);
+  const isMounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
+
   const [playlist, setPlaylist] = useState<HeroVideo[]>(HERO_VIDEOS);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [activeLayer, setActiveLayer] = useState<"A" | "B">("A");
 
-  // Video sources for dual-buffer cross-fader
-  const [videoSrcA, setVideoSrcA] = useState<string>(HERO_VIDEOS[0].videoUrl);
+  // Dual-buffer video sources
+  const [videoSrcA, setVideoSrcA] = useState<string>(HERO_VIDEOS[0]?.videoUrl || "");
   const [videoSrcB, setVideoSrcB] = useState<string>(
-    HERO_VIDEOS.length > 1 ? HERO_VIDEOS[1].videoUrl : HERO_VIDEOS[0].videoUrl
+    HERO_VIDEOS.length > 1 ? HERO_VIDEOS[1].videoUrl : HERO_VIDEOS[0]?.videoUrl || ""
   );
 
-  const [progress, setProgress] = useState(0); // 0 to 100 percent
+  // Track if current video is actively rendering frames
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
   // Video element references
   const videoRefA = useRef<HTMLVideoElement | null>(null);
   const videoRefB = useRef<HTMLVideoElement | null>(null);
   const progressTickRef = useRef<number>(0);
+  const isTransitioningRef = useRef<boolean>(false);
 
-  // Initialize randomized shuffler on client mount (never repeating last seen)
+  // Initialize diverse non-repeating shuffled playlist on client mount
   useEffect(() => {
-    setIsMounted(true);
     let lastSeenId: string | null = null;
     try {
       lastSeenId = sessionStorage.getItem("last_hero_video_id");
@@ -38,15 +44,24 @@ export default function HeroVideoShuffler() {
     }
 
     const shuffled = generateShuffledPlaylist(HERO_VIDEOS, lastSeenId || undefined);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setPlaylist(shuffled);
     setCurrentIndex(0);
     setActiveLayer("A");
     setVideoSrcA(shuffled[0].videoUrl);
     setVideoSrcB(shuffled.length > 1 ? shuffled[1].videoUrl : shuffled[0].videoUrl);
-    // Ensure video A plays immediately on mount
+
+    // Ensure audio is muted to comply with browser autoplay policies
     if (videoRefA.current) {
       videoRefA.current.muted = true;
+      videoRefA.current.defaultMuted = true;
+      videoRefA.current.playsInline = true;
       videoRefA.current.play().catch(() => {});
+    }
+    if (videoRefB.current) {
+      videoRefB.current.muted = true;
+      videoRefB.current.defaultMuted = true;
+      videoRefB.current.playsInline = true;
     }
 
     try {
@@ -55,16 +70,20 @@ export default function HeroVideoShuffler() {
       // ignore
     }
   }, []);
+
   const currentVideo = playlist[currentIndex] || HERO_VIDEOS[0];
 
-  // Helper to switch to target index
+  // Helper to switch to target index with smooth dual-buffer crossfade
   const goToIndex = useCallback(
     (targetIndex: number) => {
+      if (isTransitioningRef.current) return;
+      isTransitioningRef.current = true;
+
       let nextList = playlist;
       let finalIndex = targetIndex;
 
-      // When reaching the end of the current cycle, generate a NEW shuffled cycle
-      // guaranteed not to repeat the previous cycle's final video.
+      // When reaching the end of the 23-item cycle, generate a NEW diverse cycle
+      // guaranteed not to repeat the previous cycle's final video place.
       if (targetIndex >= playlist.length) {
         const lastId = playlist[playlist.length - 1]?.id;
         nextList = generateShuffledPlaylist(HERO_VIDEOS, lastId);
@@ -74,41 +93,52 @@ export default function HeroVideoShuffler() {
         finalIndex = playlist.length - 1;
       }
 
-      const targetVideo = nextList[finalIndex];
-      const subsequentVideo =
-        nextList[(finalIndex + 1) % nextList.length] || HERO_VIDEOS[0];
+      const subsequentIndex = (finalIndex + 1) % nextList.length;
+      const subsequentVideo = nextList[subsequentIndex] || HERO_VIDEOS[0];
 
-      // Cross-fade to other layer
       if (activeLayer === "A") {
-        setVideoSrcB(targetVideo.videoUrl);
+        // Switch to Layer B
         if (videoRefB.current) {
+          videoRefB.current.muted = true;
+          videoRefB.current.defaultMuted = true;
           videoRefB.current.currentTime = 0;
           videoRefB.current.play().catch(() => {});
         }
         setActiveLayer("B");
-        // Pre-arm layer A with the video that will follow next
+
+        // After crossfade completes (1000ms), pause outgoing A and pre-arm it with subsequent video
         setTimeout(() => {
+          if (videoRefA.current) {
+            videoRefA.current.pause();
+          }
           setVideoSrcA(subsequentVideo.videoUrl);
-        }, 1200);
+          isTransitioningRef.current = false;
+        }, 1100);
       } else {
-        setVideoSrcA(targetVideo.videoUrl);
+        // Switch to Layer A
         if (videoRefA.current) {
+          videoRefA.current.muted = true;
+          videoRefA.current.defaultMuted = true;
           videoRefA.current.currentTime = 0;
           videoRefA.current.play().catch(() => {});
         }
         setActiveLayer("A");
-        // Pre-arm layer B with the video that will follow next
+
+        // After crossfade completes (1000ms), pause outgoing B and pre-arm it with subsequent video
         setTimeout(() => {
+          if (videoRefB.current) {
+            videoRefB.current.pause();
+          }
           setVideoSrcB(subsequentVideo.videoUrl);
-        }, 1200);
+          isTransitioningRef.current = false;
+        }, 1100);
       }
 
       setCurrentIndex(finalIndex);
-      setProgress(0);
       progressTickRef.current = 0;
 
       try {
-        sessionStorage.setItem("last_hero_video_id", targetVideo.id);
+        sessionStorage.setItem("last_hero_video_id", nextList[finalIndex].id);
       } catch {
         // ignore
       }
@@ -126,12 +156,9 @@ export default function HeroVideoShuffler() {
 
     const timer = setInterval(() => {
       progressTickRef.current += 1;
-      const pct = Math.min(100, (progressTickRef.current / TOTAL_TICKS) * 100);
-      setProgress(pct);
 
       if (progressTickRef.current >= TOTAL_TICKS) {
         progressTickRef.current = 0;
-        setProgress(0);
         handleNext();
       }
     }, TICK_INTERVAL_MS);
@@ -141,17 +168,19 @@ export default function HeroVideoShuffler() {
 
   return (
     <div className="absolute inset-0 overflow-hidden bg-black select-none">
-      {/* Underlying Instant High-Res Poster Layer */}
+      {/* Underlying Instant High-Res Poster Layer — never shows black void */}
       <Image
         src={currentVideo.posterUrl}
         alt={currentVideo.title}
         fill
         priority
         sizes="100vw"
-        className="object-cover filter brightness-[0.76] contrast-[1.08] transition-opacity duration-1000"
+        className={`object-cover filter brightness-[0.76] contrast-[1.08] transition-opacity duration-1000 ${
+          isVideoPlaying ? "opacity-0" : "opacity-100"
+        }`}
       />
 
-      {/* Layer A Dual-Buffer Video */}
+      {/* Layer A Video */}
       <video
         ref={videoRefA}
         src={videoSrcA}
@@ -160,6 +189,9 @@ export default function HeroVideoShuffler() {
         muted
         loop
         preload="auto"
+        onPlaying={() => {
+          if (activeLayer === "A") setIsVideoPlaying(true);
+        }}
         className={`absolute inset-0 h-full w-full object-cover filter brightness-[0.76] contrast-[1.08] transition-opacity duration-1000 ease-in-out ${
           activeLayer === "A" ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
         }`}
@@ -168,7 +200,7 @@ export default function HeroVideoShuffler() {
         }}
       />
 
-      {/* Layer B Dual-Buffer Video */}
+      {/* Layer B Video */}
       <video
         ref={videoRefB}
         src={videoSrcB}
@@ -177,6 +209,9 @@ export default function HeroVideoShuffler() {
         muted
         loop
         preload="auto"
+        onPlaying={() => {
+          if (activeLayer === "B") setIsVideoPlaying(true);
+        }}
         className={`absolute inset-0 h-full w-full object-cover filter brightness-[0.76] contrast-[1.08] transition-opacity duration-1000 ease-in-out ${
           activeLayer === "B" ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
         }`}
@@ -195,55 +230,21 @@ export default function HeroVideoShuffler() {
         className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-black/75 via-black/20 to-black/60"
       />
 
-      {/* Enhanced Place Details — Positioned on the Right Side with Balanced Glass Contrast */}
-      <div className="pointer-events-none absolute bottom-6 sm:bottom-10 right-4 sm:right-8 md:right-12 z-30 max-w-sm sm:max-w-md">
-        <div className="pointer-events-auto rounded-2xl border border-white/20 bg-black/60 p-4 sm:p-5 backdrop-blur-md shadow-[0_12px_40px_rgba(0,0,0,0.85)] text-left transition-all duration-500">
-          {/* Header Row: Live pulse + region + coordinates */}
-          <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-2.5">
-            <div className="flex items-center gap-2 truncate">
-              <span className="h-2 w-2 rounded-full bg-brass animate-pulse shrink-0" />
-              <span className="font-accent text-[10px] font-semibold uppercase tracking-[0.22em] text-brass-soft truncate">
-                {currentVideo.region}
-              </span>
-            </div>
-            <span className="font-mono text-[10px] text-white/50 shrink-0">
-              {currentVideo.coordinates}
+      {/* Place Details Card — minimal, top-right, below fixed header */}
+      <div className="hidden sm:block pointer-events-none absolute top-[76px] sm:top-[92px] right-3 sm:right-8 md:right-12 z-30 max-w-[240px]">
+        <div className="pointer-events-auto rounded-lg border border-white/15 bg-black/25 p-3 backdrop-blur-sm shadow-[0_2px_12px_rgba(0,0,0,0.45)] text-left transition-all duration-300">
+          <div className="flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-brass animate-pulse shrink-0" />
+            <span className="font-accent text-[9px] sm:text-[10px] font-semibold uppercase tracking-[0.2em] text-brass-soft">
+              {currentVideo.region}
             </span>
           </div>
-
-          {/* Place title and specific location */}
-          <h2 className="mt-2.5 font-serif text-lg sm:text-xl font-light tracking-wide text-white leading-snug drop-shadow-md">
+          <h2 className="mt-1 font-serif text-[10px] sm:text-[12px] font-light tracking-wide text-white leading-tight drop-shadow-md">
             {currentVideo.title}
           </h2>
-          <p className="font-sans text-xs font-light text-white/75 drop-shadow mt-0.5">
+          <p className="mt-0.5 font-sans text-[9px] sm:text-[11px] font-light text-white/70 drop-shadow">
             {currentVideo.location}
           </p>
-
-          {/* Extra Place Details / Highlight Note */}
-          <p className="mt-2 font-serif italic font-light text-xs sm:text-[13px] leading-relaxed text-brass-soft/95">
-            &ldquo;{currentVideo.highlights}&rdquo;
-          </p>
-
-          {/* Micro Expedition Badges */}
-          <div className="mt-3 flex flex-wrap items-center gap-2">
-            <span className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 font-mono text-[10px] text-white/80">
-              <span className="text-brass">Alt:</span> {currentVideo.altitude}
-            </span>
-            <span className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 font-mono text-[10px] text-white/80">
-              <span className="text-brass">Best:</span> {currentVideo.bestSeason}
-            </span>
-          </div>
-
-          {/* 5-Second Linear Progress Bar */}
-          <div className="mt-3.5 h-0.5 w-full overflow-hidden rounded-full bg-white/20">
-            <div
-              className="h-full bg-gradient-to-r from-brass via-brass-soft to-brass transition-all ease-linear"
-              style={{
-                width: `${progress}%`,
-                transitionDuration: `${TICK_INTERVAL_MS}ms`,
-              }}
-            />
-          </div>
         </div>
       </div>
     </div>

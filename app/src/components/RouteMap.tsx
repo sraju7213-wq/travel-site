@@ -20,7 +20,7 @@ export default function RouteMap({ pkg }: RouteMapProps) {
   const [mapType, setMapType] = useState<"p" | "k" | "m">("p"); // p: terrain, k: satellite, m: standard roadmap
 
   // Determine country context from regions or package properties
-  const regions = pkg.region || [];
+  const regions = useMemo(() => pkg.region || [], [pkg.region]);
   const isNepal =
     regions.some((r) => r.toLowerCase().includes("nepal") || r.toLowerCase().includes("kathmandu")) ||
     pkg.title.toLowerCase().includes("nepal");

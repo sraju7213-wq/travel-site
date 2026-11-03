@@ -2,10 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import PageShell from "@/components/PageShell";
 
+import { BRAND } from "@/data/brandConfig";
+
 export const metadata = {
-  title: "About Us — Specialist Travel Across India & Nepal Since 1927",
+  title: `About Us — ${BRAND.name} & ${BRAND.operatorName}`,
   description:
-    "Specialist tour operator for India and Nepal since 1927, with offices in Delhi, Kashmir and Ladakh and agents throughout India and Nepal.",
+    "Specialist tour operator heritage for India and Nepal descending from the Baktoo family operations founded in 1927.",
 };
 
 const STATS = [
@@ -28,7 +30,7 @@ const STATS = [
     value: "Up to 15",
     label: "Guests per Group",
     detail:
-      "Guaranteed to depart, as a small group of up to 15 travellers or as a solo traveller.",
+      "Departures operate without minimum passenger quotas, for small private groups of up to 15 or solo itineraries (subject to weather & pass safety).",
   },
 ];
 
@@ -37,7 +39,7 @@ const PILLARS = [
     number: "01",
     title: "Guides and support crews",
     description:
-      "Special-interest tours are escorted by a team leader from Australia who specialises in a particular area. All of our special interest tours are arranged through India Nepal Travel Centre or your travel agent.",
+      "Special-interest tours are escorted by designated expedition leaders, regional mountaineering specialists, and local trackers, arranged through our concierge desk or your travel agent.",
     badge: "Escorted Tours",
   },
   {
@@ -84,9 +86,9 @@ const PROCESS_STEPS = [
   },
   {
     step: "04",
-    title: "Guaranteed departures",
+    title: "Guaranteed departures*",
     description:
-      "All tours are guaranteed to depart and can be enjoyed by a small group of up to 15 travellers, or as a solo traveller.",
+      "Departures operate without minimum group quotas for solo travellers or small private groups up to 15, subject to mountain weather safety and pass access.",
   },
 ];
 
@@ -217,11 +219,10 @@ export default function AboutPage() {
           <div className="mx-auto max-w-3xl text-center mb-16">
             <p className="subtitle-large mb-4 text-brass">Founders &amp; Visionaries</p>
             <h2 className="text-h2 mb-6 text-white">
-              The Baktoo family
+              The Baktoo family heritage
             </h2>
             <p className="font-display text-lg leading-relaxed text-white/75">
-              The Baktoo family has been promoting and sharing experiences in tourism since 1927. All
-              tours are organized in association with our family company based in India.
+              The Baktoo family has been promoting and sharing experiences in tourism since 1927. Journeys presented by {BRAND.name} are operated in historical association with {BRAND.operatorName} based in India.
             </p>
           </div>
 
@@ -245,10 +246,7 @@ export default function AboutPage() {
                   Sultan Baktoo
                 </h3>
                 <p className="font-display text-sm leading-relaxed text-white/75">
-                  Sultan Baktoo has operated tours and treks to Northern India since 1927. He is the
-                  chief operator, with hotels, a fleet of cars in Delhi and luxurious houseboats in
-                  Kashmir. KHE operates offices in Delhi, Kashmir and Ladakh and agents/sub-agents in
-                  all parts of India and Nepal.
+                  Haji Mohammed Sultan Baktoo pioneered tourism and trekking in Northern India beginning in 1927. Historically recorded as the chief operator with hotel partnerships, transport fleet in Delhi, and the M.S. Baktoo luxury houseboat group in Kashmir, KHE (Kashmir Himalayan Expeditions / Baktoo family operations) established operational links across India and Nepal.
                 </p>
               </div>
             </article>
@@ -295,12 +293,12 @@ export default function AboutPage() {
               </div>
               <div>
                 <blockquote className="font-serif text-lg italic leading-relaxed text-white/90 md:text-xl">
-                  &ldquo;Our tours are guaranteed to depart and can be enjoyed by a small group of up to 15 or as a
+                  &ldquo;Our tours are planned without minimum group cancellations and can be enjoyed by a small group of up to 15 or as a
                   solo traveller. Itineraries provided in this brochure are an outline of what you can
                   expect. Detailed information is available on request.&rdquo;
                 </blockquote>
                 <p className="mt-4 text-xs font-display font-semibold uppercase tracking-[0.2em] text-brass">
-                  The Baktoo Family &mdash; India Nepal Travel Organisation
+                  The Baktoo Family Archives &mdash; {BRAND.operatorName} (Presented by {BRAND.name})
                 </p>
               </div>
             </div>

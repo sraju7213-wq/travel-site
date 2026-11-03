@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Plus_Jakarta_Sans, Cinzel, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { BRAND } from "@/data/brandConfig";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-serif",
@@ -32,13 +33,13 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | India Nepal Travel Organisation",
-    default: "India Nepal Travel Organisation — Specialist Travel Since 1927",
+    template: `%s | ${BRAND.name}`,
+    default: `${BRAND.name} — ${BRAND.tagline}`,
   },
   description:
-    "Specialist travel across India and Nepal: tailor-made tours, small-group journeys, Himalayan trekking, cultural itineraries and Kashmir houseboats. Enquire today.",
+    "Specialist travel across India and Nepal: tailor-made tours, small-group journeys, Himalayan trekking, cultural itineraries and Kashmir houseboats.",
   openGraph: {
-    siteName: "India Nepal Travel Organisation",
+    siteName: BRAND.name,
     locale: "en_IN",
     type: "website",
   },

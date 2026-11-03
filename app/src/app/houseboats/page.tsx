@@ -4,6 +4,7 @@ import { getServiceBySlug } from "@/data/catalogue";
 import PageShell from "@/components/PageShell";
 import Container from "@/components/Container";
 import { notFound } from "next/navigation";
+import { BRAND } from "@/data/brandConfig";
 
 interface HouseboatPageProps {
   params: Promise<Record<string, never>>;
@@ -13,10 +14,10 @@ export async function generateMetadata({ params }: HouseboatPageProps) {
   await params;
   const svc = getServiceBySlug("kashmir-houseboat-booking");
   if (!svc) {
-    return { title: "Service not found — India Nepal Travel Organisation" };
+    return { title: `Service not found — ${BRAND.name}` };
   }
   return {
-    title: `${svc.title} — India Nepal Travel Organisation`,
+    title: `${svc.title} — ${BRAND.name}`,
     description: svc.summary,
   };
 }

@@ -9,20 +9,25 @@ import PackageGallery from "@/components/PackageGallery";
 import RouteMap from "@/components/RouteMap";
 import InclusionsExclusions from "@/components/InclusionsExclusions";
 import { notFound } from "next/navigation";
+import { BRAND } from "@/data/brandConfig";
 interface PackagePageProps {
   params: Promise<{ slug: string }>;
 }
 
 export const instant = false;
 
+export async function generateStaticParams() {
+  return getAllPackages().map((pkg) => ({ slug: pkg.slug }));
+}
+
 export async function generateMetadata({ params }: PackagePageProps) {
   const { slug } = await params;
   const pkg = getPackageBySlug(slug);
   if (!pkg) {
-    return { title: "Journey not found — India Nepal Travel Organisation" };
+    return { title: `Journey not found — ${BRAND.name}` };
   }
   return {
-    title: `${pkg.title} — India Nepal Travel Organisation`,
+    title: `${pkg.title} — ${BRAND.name}`,
     description: pkg.summary,
     openGraph: {
       title: pkg.title,

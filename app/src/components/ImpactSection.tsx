@@ -1,23 +1,111 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-/** Editorial block on the deep forest panel. */
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
+/**
+ * Editorial block matching Wilderness Destinations TextPlusTwoImageModule
+ * with opposing dual-image scroll parallax.
+ */
 export default function ImpactSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const img1Ref = useRef<HTMLDivElement>(null);
+  const img2Ref = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const ctx = gsap.context(() => {
+      // Image 1 shifts up as you scroll down
+      if (img1Ref.current && sectionRef.current) {
+        gsap.fromTo(
+          img1Ref.current,
+          { y: 25 },
+          {
+            y: -25,
+            ease: "none",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1.2,
+            },
+          }
+        );
+      }
+
+      // Image 2 shifts down as you scroll down (opposing parallax)
+      if (img2Ref.current && sectionRef.current) {
+        gsap.fromTo(
+          img2Ref.current,
+          { y: -20 },
+          {
+            y: 30,
+            ease: "none",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1.2,
+            },
+          }
+        );
+      }
+
+      // Text reveal
+      if (textRef.current && sectionRef.current) {
+        gsap.fromTo(
+          textRef.current,
+          { y: 35, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 75%",
+              once: true,
+            },
+          }
+        );
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="section-dark py-12 md:py-16" id="impact">
+    <section ref={sectionRef} className="section-dark py-16 md:py-24" id="impact">
       <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-        <div className="grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:items-center lg:gap-12">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="relative aspect-[4/5] max-h-[320px] overflow-hidden rounded-[1rem] border border-white/10 bg-charcoal shadow-2xl transition-transform duration-500 hover:scale-[1.02]">
+        <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center lg:gap-14">
+          {/* Dual-image with opposing scroll parallax */}
+          <div className="grid grid-cols-2 gap-4 sm:gap-6">
+            <div
+              ref={img1Ref}
+              className="relative aspect-[4/5] max-h-[360px] overflow-hidden rounded-[1.25rem] border border-white/10 bg-charcoal shadow-2xl transition-transform duration-500 hover:scale-[1.03] will-change-transform"
+            >
               <Image
-                src="/images/destinations/nepal-trek.jpg"
-                alt="Trekkers crossing a high Himalayan snowfield"
+                src="/images/destinations/jodhpur-fort.jpg"
+                alt="Jodhpur blue city and Mehrangarh Fort"
                 fill
                 sizes="(min-width: 1024px) 22vw, 45vw"
                 className="object-cover"
               />
             </div>
-            <div className="relative mt-4 aspect-[4/5] max-h-[320px] overflow-hidden rounded-[1rem] border border-white/10 bg-charcoal shadow-2xl transition-transform duration-500 hover:scale-[1.02]">
+            <div
+              ref={img2Ref}
+              className="relative mt-8 aspect-[4/5] max-h-[360px] overflow-hidden rounded-[1.25rem] border border-white/10 bg-charcoal shadow-2xl transition-transform duration-500 hover:scale-[1.03] will-change-transform"
+            >
               <Image
                 src="/images/destinations/nepal-collage.jpg"
                 alt="A montage of Nepalese temples, prayer flags and mountain landscapes"
@@ -28,9 +116,10 @@ export default function ImpactSection() {
             </div>
           </div>
 
-          <div>
+          {/* Right editorial content */}
+          <div ref={textRef}>
             <p className="subtitle-large mb-4 text-brass font-accent">Curated Regional Programmes</p>
-            <h2 className="text-h2 mb-5 text-white font-serif font-light">
+            <h2 className="text-h2 mb-5 text-white font-serif font-light leading-tight">
               Special-Interest &amp; Student Expeditions
             </h2>
             <p className="font-serif italic font-light text-xl md:text-2xl leading-relaxed text-brass-soft/90 mb-4">
@@ -39,8 +128,14 @@ export default function ImpactSection() {
             <p className="mb-8 font-sans font-light text-base leading-relaxed text-white/75">
               All special-interest programmes are escorted by qualified team leaders. Every itinerary is drawn directly from our brochure archives and shaped with meticulous care around your travel season, party size and regional interests.
             </p>
-            <Link href="/about" className="btn-ghost-dark">
-              Read about us <span aria-hidden="true">→</span>
+            <Link
+              href="/about"
+              className="btn-ghost-dark group inline-flex items-center gap-2 hover:border-[var(--color-wild-orange,#ff6e00)] hover:text-[var(--color-wild-orange,#ff6e00)] transition-all"
+            >
+              <span>Read about us</span>
+              <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1.5">
+                →
+              </span>
             </Link>
           </div>
         </div>
@@ -48,4 +143,3 @@ export default function ImpactSection() {
     </section>
   );
 }
-

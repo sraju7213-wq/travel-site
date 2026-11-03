@@ -22,6 +22,11 @@ export interface Experience {
   href: string;
 }
 
+export interface PillarHighlight {
+  title: string;
+  detail: string;
+}
+
 export interface Pillar {
   key: string;
   label: string;
@@ -30,6 +35,11 @@ export interface Pillar {
   body: string;
   href: string;
   linkLabel: string;
+  tagline?: string;
+  statBadge?: string;
+  statLabel?: string;
+  regionTag?: string;
+  highlights?: PillarHighlight[];
 }
 
 export interface Stat {
@@ -173,77 +183,140 @@ export const PILLARS: Pillar[] = [
   {
     key: "destinations",
     label: "Destinations",
-    title: "Iconic destinations",
+    title: "Iconic Destinations",
     image: "/images/destinations/pokhara-lake.jpg",
+    tagline: "Unrivalled Subcontinent Heritage Across Two Himalayan Nations",
+    statBadge: "Since 1927",
+    statLabel: "Pioneer Operator",
+    regionTag: "India & Nepal",
     body:
       "A specialist operator for India and Nepal since 1927. Each destination opens a whole new world of landscapes, cultures, sights and sounds for you to discover, from the Himalaya to the backwaters.",
     href: "/explore",
     linkLabel: "Discover India & Nepal",
+    highlights: [
+      { title: "Specialist Route Design", detail: "Custom itineraries spanning high Himalayan passes down to tranquil backwaters." },
+      { title: "No Minimum Group Quotas", detail: "Itineraries operate for solo adventurers, couples, or private parties at your own pace." },
+      { title: "Brochure-Verified Catalogues", detail: "Every route is rooted in verified itineraries refined across four generations." },
+    ],
   },
   {
     key: "wildlife",
     label: "Wildlife",
-    title: "Best wildlife experiences",
+    title: "Best Wildlife Experiences",
     image: "/images/destinations/rhino.jpg",
+    tagline: "Rare Habitat Encounters Guided by Resident Naturalists",
+    statBadge: "Protected Reserves",
+    statLabel: "Resident Trackers",
+    regionTag: "Chitwan, Periyar & Terai",
     body:
       "Wildlife journeys reach Chitwan, Periyar and the Terai, with resident naturalists, elephant and jeep safaris, nature walks and canoe trips among the programme options.",
     href: "/explore?activity=wildlife",
     linkLabel: "Explore wildlife journeys",
+    highlights: [
+      { title: "Diverse Safari Formats", detail: "Jeep safaris, jungle nature walks, and tranquil river canoe expeditions across reserves." },
+      { title: "Resident Naturalists", detail: "Accredited wildlife trackers and regional specialists interpret native flora and fauna." },
+      { title: "Low-Impact Field Ethos", detail: "Respectful, ethical observation in premier national parks and protected habitats." },
+    ],
   },
   {
     key: "guides",
     label: "Guides",
-    title: "Guides and support",
+    title: "Guides & Dedicated Support",
     image: "/images/destinations/vale-trek.jpg",
+    tagline: "Experienced Field Crews & Dedicated Expedition Leaders",
+    statBadge: "100% Escorted",
+    statLabel: "Mountain Field Crews",
+    regionTag: "Himalayas & High Passes",
     body:
       "Trekking itineraries in our catalogue are escorted by experienced English-speaking guides and support crews. Special-interest tours are led by a team leader from Australia who specialises in a particular area.",
     href: "/explore",
     linkLabel: "See trekking journeys",
+    highlights: [
+      { title: "English-Speaking Guides", detail: "Seasoned mountain leaders fluent in regional trails, local dialects, and high-altitude safety." },
+      { title: "Dedicated Support Crews", detail: "Full camp staff, porter crews, and kitchen teams accompanying every trekking stage." },
+      { title: "Specialist Tour Leaders", detail: "Specialist itineraries accompanied by experienced leaders dedicated to the field." },
+    ],
   },
   {
     key: "architecture",
-    label: "Architecture",
-    title: "Accommodation",
+    label: "Accommodation",
+    title: "Character & Heritage Accommodation",
     image: "/images/destinations/jodhpur-fort.jpg",
+    tagline: "Handpicked Heritage Havelis, Palace Hotels & Boutique Stays",
+    statBadge: "Handpicked",
+    statLabel: "Historic Character",
+    regionTag: "Centrally Located Stays",
     body:
       "All accommodation is carefully selected: well serviced and centrally located, chosen for ambience, comfort, architecture and history, from deluxe categories to family-run establishments.",
     href: "/explore?category=India%20Tours",
     linkLabel: "See India tours",
+    highlights: [
+      { title: "Historic Character & Ambience", detail: "Properties chosen for distinct architecture, history, and authentic sense of place." },
+      { title: "Centrally Located Stays", detail: "Well-serviced hotels located near key sights to eliminate unnecessary transit delays." },
+      { title: "Family-Run Hospitality", detail: "Warmth, character, and attentive service across vetted boutique and deluxe categories." },
+    ],
   },
   {
     key: "culture",
     label: "Culture",
-    title: "Cultural exploration",
+    title: "Living Cultural Exploration",
     image: "/images/destinations/kashmir-shikara.jpg",
+    tagline: "Living Sacred Ceremonies, Monasteries & Ancient Ways",
+    statBadge: "Authentic Access",
+    statLabel: "Living Traditions",
+    regionTag: "Varanasi to Ladakh",
     body:
       "From dawn on the ghats of Varanasi to Buddhist monasteries in Ladakh, each place honours its own traditions. Special-interest programmes can be arranged for clubs, schools and groups on request.",
     href: "/explore?activity=culture",
     linkLabel: "Explore cultural journeys",
+    highlights: [
+      { title: "Sacred Rituals & Monasteries", detail: "Dawn ceremonies on the Ganges ghats, serene Ladakh gompas, and floating Dal Lake markets." },
+      { title: "Living Traditions", detail: "Insightful cultural exchanges honouring regional customs and local communities." },
+      { title: "Special-Interest Programmes", detail: "Tailored arrangements for photography societies, study groups, and special clubs." },
+    ],
   },
   {
     key: "travel",
     label: "Travel",
-    title: "Seamless, trusted travel",
+    title: "Seamless, Trusted Travel",
     image: "/images/destinations/himalaya-horses.jpg",
+    tagline: "Private Road Transfers & Complete Peace of Mind",
+    statBadge: "Seamless",
+    statLabel: "Private Road Transit",
+    regionTag: "Door-to-Door Pacing",
     body:
       "Road transfers, accommodation and sightseeing are planned around your dates and party, with arrival and departure transfers included in the package inclusions.",
     href: "/enquiry",
     linkLabel: "Talk to a travel designer",
+    highlights: [
+      { title: "Private Chauffeur Transfers", detail: "Comfortable air-conditioned vehicles and vetted professional drivers for all road routes." },
+      { title: "Arrival & Departure Inclusions", detail: "Seamless airport greetings and station transfer logistics handled without stress." },
+      { title: "Individual Tailor-Made Pacing", detail: "Flexible itineraries adapted to your specific dates, travel party, and desired rhythm." },
+    ],
   },
   {
     key: "impact",
     label: "Impact",
-    title: "Programmes",
+    title: "Programmes & Heritage Stewardship",
     image: "/images/destinations/nepal-trek.jpg",
+    tagline: "Pioneering Educational Expeditions & Local Community Ties",
+    statBadge: "Community First",
+    statLabel: "Shared Stewardship",
+    regionTag: "Subcontinent Wide",
     body:
       "Escorted student tours run for schools in both India and Nepal, and special-interest programmes can be arranged for clubs, schools and groups.",
     href: "/about",
-    linkLabel: "Read about us",
+    linkLabel: "Read about our heritage",
+    highlights: [
+      { title: "Escorted Student Expeditions", detail: "Curated educational journeys fostering global empathy and outdoor experiential learning." },
+      { title: "Direct Community Investment", detail: "Direct engagement supporting regional guides, boatmen, local artisans, and family lodges." },
+      { title: "Centuries of Local Kinship", detail: "Rooted in four generations of family hospitality and regional stewardship since 1927." },
+    ],
   },
 ];
 
 export const STATS: Stat[] = [
-  { value: "Since 1927", label: "Specialist travel", note: "Operators for India and Nepal" },
+  { value: "Since 1927", label: "Founding heritage", note: "Baktoo family regional tourism pioneer" },
   { value: "27", label: "Journeys", note: "In the brochure catalogue" },
   { value: "Two", label: "Countries", note: "India and the Nepali Himalaya" },
   { value: "Up to 15", label: "Travellers", note: "Per group, or a solo itinerary" },
@@ -252,9 +325,9 @@ export const STATS: Stat[] = [
 
 export const PROMISES: Promise[] = [
   {
-    title: "Small groups, or solo",
+    title: "Small groups, or solo departures",
     body:
-      "Our tours are guaranteed to depart and can be enjoyed by a small group of up to 15 travellers, or as a solo traveller on the same itinerary.",
+      "Our tours run without minimum group quotas, accommodating small private parties of up to 15 travellers or bespoke solo departures, subject to seasonal weather safety and high-pass access.",
   },
   {
     title: "Hotels chosen for comfort",
@@ -308,6 +381,7 @@ export const FOOTER_COLUMNS = [
       { label: "Contact", href: "/contact" },
       { label: "Plan your trip", href: "/enquiry" },
       { label: "Kashmir houseboats", href: "/houseboats" },
+      { label: "Privacy Notice", href: "/privacy" },
     ],
   },
   {

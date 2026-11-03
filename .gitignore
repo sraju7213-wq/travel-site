@@ -21,3 +21,13 @@ yarn-error.log*
 # TypeScript cache
 *.tsbuildinfo
 next-env.d.ts
+
+# Tooling / generated artifacts
+.kilo/
+.commandcode/
+.muxel/
+artifacts/
+
+# Large media (use external storage/CDN)
+*.pdf
+*.psd

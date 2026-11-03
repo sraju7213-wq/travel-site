@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-
+import { BRAND } from "@/data/brandConfig";
 interface BrandMarkProps {
   className?: string;
   compact?: boolean;
@@ -11,12 +11,12 @@ export default function BrandMark({ className = "", compact = false }: BrandMark
     <Link
       href="/"
       className={`group flex items-center gap-3 transition-opacity hover:opacity-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-button ${className}`}
-      aria-label="KS World Adventure — Home"
+      aria-label={`${BRAND.name} — Home`}
     >
       <div className={`relative ${compact ? "h-10 w-16" : "h-12 w-20 md:h-14 md:w-24"} transition-transform duration-300 group-hover:scale-105`}>
         <Image
-          src="/images/logo.png"
-          alt="KS World Adventure"
+          src="/logo.png"
+          alt={BRAND.name}
           fill
           priority
           sizes="(min-width: 768px) 96px, 80px"

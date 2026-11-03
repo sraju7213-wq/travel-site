@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { FOOTER_COLUMNS } from "@/data/siteContent";
+import { BRAND } from "@/data/brandConfig";
 import BrandMark from "./BrandMark";
 
 export default function SiteFooter() {
@@ -15,12 +16,9 @@ export default function SiteFooter() {
           <div className="max-w-sm">
             <BrandMark className="mb-6" />
             <p className="text-xs md:text-sm font-sans font-light leading-relaxed text-white/70">
-              Specialist expeditions across India and Nepal &mdash; bespoke journeys, small-group trekking,
-              cultural circuits and heritage Kashmir houseboats. Est. 1927.
+              {BRAND.name} presents bespoke expeditions across India and Nepal, operated in association with{" "}
+              {BRAND.operatorName} (Baktoo family heritage since 1927).
             </p>
-            <Link href="/enquiry" className="btn-ghost-dark mt-8">
-              Enquire now <span aria-hidden="true">→</span>
-            </Link>
           </div>
 
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -55,8 +53,9 @@ export default function SiteFooter() {
                   </h2>
                   <ul
                     id={panelId}
-                    hidden={!isOpen}
-                    className="mt-4 space-y-2.5 overflow-hidden transition-all duration-300 ease-in-out lg:!block lg:max-h-none"
+                    className={`mt-4 space-y-2.5 overflow-hidden transition-all duration-300 ease-in-out ${
+                      isOpen ? "block" : "hidden"
+                    } lg:block`}
                   >
                     {col.links.map((l) => (
                       <li key={`${col.title}-${l.label}`}>
@@ -76,10 +75,14 @@ export default function SiteFooter() {
         </div>
 
         <div className="mt-16 flex flex-col gap-4 border-t border-white/10 pt-8 text-xs font-display text-white/60 md:flex-row md:items-center md:justify-between">
-          <p>&copy; 2026 India Nepal Travel Organisation. All rights reserved. &middot; <Link href="/admin" className="text-white/40 hover:text-brass transition-colors">Admin Portal</Link></p>
+          <p>
+            &copy; 2026 {BRAND.name} &bull; {BRAND.operatorName}. All rights reserved. &middot;{" "}
+            <Link href="/privacy" className="text-white/40 hover:text-brass transition-colors">Privacy Notice</Link> &middot;{" "}
+            <Link href="/contact" className="text-white/40 hover:text-brass transition-colors">Contact Desk</Link> &middot;{" "}
+            <Link href="/admin" className="text-white/40 hover:text-brass transition-colors">Admin Portal</Link>
+          </p>
           <p className="max-w-2xl md:text-right">
-            Content sourced from the organisation brochure. Prices, availability and booking terms
-            are confirmed by direct enquiry.
+            Itineraries transcribed from the {BRAND.operatorName} brochure catalogue. Prices, seasonal availability and departure terms are confirmed by direct consultation.
           </p>
         </div>
       </div>

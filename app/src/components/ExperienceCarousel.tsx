@@ -2,66 +2,68 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { EXPERIENCES } from "@/data/siteContent";
 
-/**
- * Experience carousel — circular image cards on a dark panel, with a
- * counter and circular previous/next controls.
- */
-export default function ExperienceCarousel() {
-  const trackRef = useRef<HTMLUListElement>(null);
-  const cardRefs = useRef<(HTMLLIElement | null)[]>([]);
-  const [active, setActive] = useState(0);
+function ExperienceCircleImage({ src, alt }: { src: string; alt: string }) {
+  const circleRef = useRef<HTMLDivElement>(null);
+  const [tilt, setTilt] = useState({ rx: 0, ry: 0 });
 
-  const scrollToIndex = useCallback((index: number) => {
-    const track = trackRef.current;
-    const card = cardRefs.current[index];
-    if (!track || !card) return;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    track.scrollTo({
-      left: card.offsetLeft - track.offsetLeft,
-      behavior: reduce ? "auto" : "smooth",
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const el = circleRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    setTilt({
+      rx: -(y / (rect.height / 2)) * 8,
+      ry: (x / (rect.width / 2)) * 8,
     });
-    setActive(index);
-  }, []);
+  };
 
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-
-    let frame = 0;
-    const onScroll = () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => {
-        const trackLeft = track.scrollLeft;
-        let nearest = 0;
-        let best = Number.POSITIVE_INFINITY;
-        cardRefs.current.forEach((card, i) => {
-          if (!card) return;
-          const distance = Math.abs(card.offsetLeft - track.offsetLeft - trackLeft);
-          if (distance < best) {
-            best = distance;
-            nearest = i;
-          }
-        });
-        setActive(nearest);
-      });
-    };
-
-    track.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      cancelAnimationFrame(frame);
-      track.removeEventListener("scroll", onScroll);
-    };
-  }, []);
+  const handleMouseLeave = () => {
+    setTilt({ rx: 0, ry: 0 });
+  };
 
   return (
-    <section className="section-darker py-12 md:py-16" id="experiences">
+    <div
+      ref={circleRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        transform: `perspective(600px) rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)`,
+        transition: tilt.rx === 0 ? "transform 0.5s ease-out" : "none",
+      }}
+      className="relative z-20 shrink-0 w-[240px] h-[240px] sm:w-[320px] sm:h-[320px] md:w-[360px] md:h-[360px] lg:w-[400px] lg:h-[400px] rounded-full overflow-hidden shadow-2xl bg-[#1a1c1d] sm:-mr-24 md:-mr-32 lg:-mr-36 -mb-16 sm:mb-0 will-change-transform"
+    >
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes="(max-width: 640px) 240px, (max-width: 1024px) 360px, 400px"
+        className="object-cover transition-transform duration-700 ease-out hover:scale-105"
+      />
+      {/* Subtle ring border around circle */}
+      <div className="absolute inset-0 rounded-full border-2 border-white/20 pointer-events-none transition-colors duration-500 hover:border-[var(--color-wild-orange,#ff6e00)]" />
+    </div>
+  );
+}
+
+export default function ExperienceCarousel() {
+  const trackRef = useRef<HTMLUListElement>(null);
+
+  // Duplicating experiences ensures a 100% seamless infinite scroll loop with no visual jump
+  const duplicatedExperiences = [...EXPERIENCES, ...EXPERIENCES];
+
+  return (
+    <section className="section-darker py-16 md:py-24 overflow-hidden relative" id="experiences">
       <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-        <div className="mx-auto mb-6 max-w-3xl text-center">
-          <p className="subtitle-large mb-4 text-brass font-accent">Curated Brochure Expeditions</p>
-          <h2 className="text-h2 mb-5 text-white font-serif font-light">Iconic Subcontinent Experiences</h2>
+        <div className="mx-auto mb-12 max-w-3xl text-center">
+          <p className="subtitle-large mb-3 text-brass font-accent">Curated Brochure Expeditions</p>
+          <h2 className="text-h2 mb-4 text-white font-serif font-light leading-tight">
+            Iconic Subcontinent Experiences
+          </h2>
           <p className="font-sans font-light text-base md:text-lg leading-relaxed text-white/75">
             Himalayan trekking, whitewater rafting, heritage houseboat stays, wildlife safaris and cultural immersions
             drawn directly from our 1927 heritage archives.
@@ -69,92 +71,92 @@ export default function ExperienceCarousel() {
         </div>
       </div>
 
-      <ul
-        ref={trackRef}
-        tabIndex={0}
-        role="group"
-        aria-label="Experiences carousel — scroll horizontally to see all experiences"
-        className="scrollbar-hide flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-4 pt-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass md:px-8"
-      >
-        {EXPERIENCES.map((exp, i) => (
-          <li
-            key={exp.title}
-            ref={(el) => {
-              cardRefs.current[i] = el;
-            }}
-            className="group flex w-[260px] shrink-0 snap-center flex-col items-center sm:w-[260px]"
-          >
-            <div className="relative mb-4 pt-1">
-              <div className="relative h-[180px] w-[180px] overflow-hidden rounded-full bg-forest border-2 border-white/10 shadow-[0_0_0_8px_var(--color-charcoal)] transition-all duration-500 group-hover:scale-105 group-hover:shadow-[0_0_0_5px_var(--color-brass),0_0_0_10px_var(--color-charcoal)]">
-                <Image
-                  src={exp.image}
-                  alt={exp.title}
-                  fill
-                  quality={90}
-                  sizes="(min-width: 640px) 500px, 320px"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                />
-                <span aria-hidden="true" className="absolute inset-0 bg-black/15 transition-colors group-hover:bg-black/5" />
-              </div>
-              <span className="absolute -bottom-1 left-1/2 inline-flex max-w-[260px] -translate-x-1/2 items-center gap-1.5 truncate whitespace-nowrap rounded-pill bg-charcoal px-3 py-1 text-[0.65rem] font-accent uppercase tracking-[0.2em] text-brass-soft border border-white/10 shadow-sm">
-                <svg
-                  aria-hidden="true"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11Z" />
-                  <circle cx="12" cy="10" r="2.4" />
-                </svg>
-                {exp.locations}
-              </span>
-            </div>
+      {/* Parent container with scroll-container-fix to suppress scrollbars & isolate horizontal overflow */}
+      <div className="scroll-container-fix relative w-full overflow-hidden">
+        {/* Subtle left & right edge gradient vignettes for seamless entry & exit */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 sm:w-24 md:w-36 z-20 bg-gradient-to-r from-[var(--color-wild-darker,#221f20)] to-transparent"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 sm:w-24 md:w-36 z-20 bg-gradient-to-l from-[var(--color-wild-darker,#221f20)] to-transparent"
+        />
 
-            <h3 className="mb-2 text-center font-serif text-2xl font-light text-white tracking-wide">
-              {exp.title}
-            </h3>
-            <p className="mb-4 max-w-xs text-center font-sans font-light text-xs leading-relaxed text-white/70">
-              {exp.description}
-            </p>
-            <Link
-              href={exp.href}
-              className="inline-flex items-center gap-1.5 text-xs font-accent font-semibold uppercase tracking-[0.22em] text-brass transition-all duration-300 hover:text-white hover:translate-x-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass"
-            >
-              {exp.title} <span aria-hidden="true">&rarr;</span>
-            </Link>
-          </li>
-        ))}
-      </ul>
+        {/* Continuous Horizontal Auto-Scroll Track (GPU hardware-accelerated linear infinite) */}
+        <ul
+          ref={trackRef}
+          tabIndex={0}
+          role="region"
+          aria-label="Continuous experiences carousel — hover or focus to pause"
+          className="animate-slow-scroll flex gap-10 md:gap-16 py-8 will-change-transform select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange,#ff6e00)]"
+        >
+          {duplicatedExperiences.map((exp, i) => {
+            const ctaLabel = exp.title.toLowerCase().includes("experience")
+              ? exp.title.toUpperCase()
+              : `${exp.title.toUpperCase()} EXPERIENCES`;
 
-      <div className="mt-8 flex items-center justify-center gap-6">
-        <button
-          type="button"
-          onClick={() => scrollToIndex(Math.max(0, active - 1))}
-          disabled={active === 0}
-          aria-label="Previous experience"
-          className="btn-large-circle disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5 fill-none stroke-current stroke-[1.8]">
-            <path d="M15 6l-6 6 6 6" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </button>
-        <span
-          aria-live="polite"
-          className="text-xs font-display tabular-nums tracking-[0.3em] text-white/80"
-        >
-          {String(active + 1).padStart(2, "0")} / {String(EXPERIENCES.length).padStart(2, "0")}
-        </span>
-        <button
-          type="button"
-          onClick={() => scrollToIndex(Math.min(EXPERIENCES.length - 1, active + 1))}
-          disabled={active === EXPERIENCES.length - 1}
-          aria-label="Next experience"
-          className="btn-large-circle disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5 fill-none stroke-current stroke-[1.8]">
-            <path d="M9 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </button>
+            return (
+              <li
+                key={`${exp.title}-${i}`}
+                className="group shrink-0 w-[88vw] max-w-[420px] sm:w-[700px] sm:max-w-[700px] md:w-[780px] md:max-w-[780px] lg:w-[860px] lg:max-w-[860px]"
+              >
+                <article className="relative flex flex-col sm:flex-row items-center w-full transition-all duration-500 ease-out">
+                  {/* 1. Large Circular Image overlapping the box with 3D tilt */}
+                  <ExperienceCircleImage src={exp.image} alt={exp.title} />
+
+                  {/* 2. Deep Forest Teal Content Box */}
+                  <div className="relative z-10 flex-1 w-full bg-[#0d2a2d] text-white pt-20 pb-8 px-6 sm:py-10 sm:pr-8 sm:pl-28 md:py-12 md:pr-12 md:pl-36 lg:py-14 lg:pr-14 lg:pl-44 min-h-[360px] sm:min-h-[380px] md:min-h-[420px] flex flex-col justify-between rounded-sm shadow-xl border border-white/5 transition-colors duration-300 group-hover:border-white/15">
+                    <div>
+                      {/* Title */}
+                      <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] font-light text-white leading-[1.15] mb-4">
+                        {exp.title}
+                      </h3>
+
+                      {/* Description */}
+                      <p className="font-sans font-light text-sm md:text-base leading-relaxed text-[#9ab3b7] max-w-[420px] mb-8">
+                        {exp.description}
+                      </p>
+
+                      {/* CTA with orange circular arrow icon */}
+                      <Link
+                        href={exp.href}
+                        className="group/cta inline-flex items-center gap-3.5 text-xs md:text-sm font-semibold uppercase tracking-[0.16em] text-white transition-all duration-300"
+                      >
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[var(--color-wild-orange,#ff6e00)] text-[var(--color-wild-orange,#ff6e00)] transition-all duration-300 group-hover/cta:bg-[var(--color-wild-orange,#ff6e00)] group-hover/cta:text-white group-hover/cta:shadow-[0_0_15px_rgba(255,110,0,0.5)]">
+                          <svg
+                            aria-hidden="true"
+                            viewBox="0 0 24 24"
+                            className="h-4 w-4 fill-none stroke-current stroke-2 transition-transform duration-300 group-hover/cta:translate-x-0.5"
+                          >
+                            <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </span>
+                        <span className="transition-colors group-hover/cta:text-[var(--color-wild-orange,#ff6e00)]">
+                          {ctaLabel}
+                        </span>
+                      </Link>
+                    </div>
+
+                    {/* Location Pin Footer */}
+                    <div className="mt-8 pt-4 flex items-center gap-2 text-xs text-[#728d92]">
+                      <svg
+                        aria-hidden="true"
+                        viewBox="0 0 24 24"
+                        className="h-4 w-4 fill-none stroke-current stroke-[1.8] text-[#728d92] shrink-0"
+                      >
+                        <path d="M12 21s-6-5.33-6-10a6 6 0 0 1 12 0c0 4.67-6 10-6 10Z" />
+                        <circle cx="12" cy="11" r="2" />
+                      </svg>
+                      <span className="font-sans font-light tracking-wide">{exp.locations}</span>
+                    </div>
+                  </div>
+                </article>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </section>
   );
 }
-

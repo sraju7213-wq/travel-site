@@ -18,29 +18,31 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  /* Unified Wilderness Luxury Dark Palette (Zero Stark White) */
-  --color-forest: #101F21;
-  --color-forest-soft: #162B2E;
-  --color-ivory: #0C1617;
-  --color-ivory-soft: #132325;
-  --color-charcoal: #0C1617;
-  --color-charcoal-soft: #9BA9AB;
-  --color-brass: #FF6E00;
-  --color-brass-soft: #FFA866;
-  --color-brass-ink: #FF6E00;
-  --color-brass-hover: #E56300;
-  --color-border: rgba(255, 255, 255, 0.1);
-  --color-focus: #FF6E00;
-  --color-white: #F5F2EB;
+  /* Wilderness Destinations Color Palette */
+  --color-wild-orange: #ff6e00;
+  --color-wild-orange-hover: #e56300;
+  --color-wild-orange-dark: #c64b00;
+  --color-wild-dark: #123438;
+  --color-wild-darker: #221f20;
+  --color-wild-black: #000000;
+  --color-wild-sand: #817162;
+  --color-wild-cream: #eeebe5;
+  --color-wild-brown: #221f20;
 
-  /* Additional Wilderness & Antigravity tokens */
-  --color-wild-orange: #FF6E00;
-  --color-wild-orange-hover: #E56300;
-  --color-wild-orange-dark: #C64B00;
-  --color-wild-dark: #101F21;
-  --color-wild-darker: #0C1617;
-  --color-wild-sand: #9BA9AB;
-  --color-wild-cream: #0C1617;
+  /* Mapped to existing tokens for backward compatibility */
+  --color-forest: #123438;
+  --color-forest-soft: #1a4a4f;
+  --color-ivory: #eeebe5;
+  --color-ivory-soft: #f5f2eb;
+  --color-charcoal: #221f20;
+  --color-charcoal-soft: #4a4e48;
+  --color-brass: #ff6e00;
+  --color-brass-soft: #ffb366;
+  --color-brass-ink: #ff6e00;
+  --color-brass-hover: #e56300;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-focus: #ff6e00;
+  --color-white: #ffffff;
 
   /* Typography System: Multi-font Luxury Editorial & Minimalist Modern Hierarchy */
   --font-serif: var(--font-serif), "Cormorant Garamond", Georgia, serif;
@@ -62,16 +64,17 @@
 }
 
 @layer base {
+  /* Wilderness: Serif (Athelas/Georgia) for headings, Sans (Atyp/Inter) for body */
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-serif);
+    font-family: Georgia, "Times New Roman", Baskerville, ui-serif, system-ui, -apple-system;
     letter-spacing: 0.02em;
     font-weight: 300;
   }
-  .font-serif { font-family: var(--font-serif); }
-  .font-sans { font-family: var(--font-sans); }
-  .font-display { font-family: var(--font-display); }
-  .font-accent { font-family: var(--font-accent); }
-  .font-mono { font-family: var(--font-mono); }
+  .font-serif { font-family: Georgia, "Times New Roman", Baskerville, ui-serif, system-ui, -apple-system; }
+  .font-sans { font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  .font-display { font-family: var(--font-display), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  .font-accent { font-family: "Cinzel", Georgia, serif; }
+  .font-mono { font-family: var(--font-mono), monospace; }
 
   body {
     background: var(--background);
@@ -83,106 +86,127 @@
 }
 
 @layer components {
+  /* Primary button - Wilderness orange */
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-button border border-transparent px-6 py-3 font-accent text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-charcoal)] bg-[var(--color-brass)] hover:bg-[var(--color-brass-soft)] transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 active:scale-95 cursor-pointer;
+    @apply inline-flex items-center justify-center gap-2 rounded-button border border-transparent px-6 py-3 font-accent text-xs font-semibold uppercase tracking-[0.24em] text-white bg-[var(--color-wild-orange)] hover:bg-[var(--color-wild-orange-hover)] transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)] focus-visible:ring-offset-2 active:scale-95 cursor-pointer;
     box-shadow: 0 8px 20px -4px rgba(255, 110, 0, 0.35);
   }
   .btn-primary:hover {
     box-shadow: 0 12px 28px -4px rgba(255, 110, 0, 0.5);
   }
+  
+  /* Dark primary button - white bg, orange text on hover */
   .btn-primary-dark {
-    @apply inline-flex items-center justify-center gap-2 rounded-button border border-transparent px-6 py-3 font-accent text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-charcoal)] bg-[var(--color-forest)] hover:bg-[var(--color-brass-soft)] transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 active:scale-95 cursor-pointer;
+    @apply inline-flex items-center justify-center gap-2 rounded-button border border-transparent px-6 py-3 font-accent text-xs font-semibold uppercase tracking-[0.24em] text-white bg-[var(--color-wild-black)] hover:bg-white hover:text-[var(--color-wild-orange)] transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)] focus-visible:ring-offset-2 active:scale-95 cursor-pointer;
   }
+  
+  /* Ghost dark button - transparent, white text, orange hover */
   .btn-ghost-dark {
-    @apply inline-flex items-center justify-center gap-2 rounded-button border border-white/30 px-6 py-3 font-accent text-xs font-semibold uppercase tracking-[0.24em] text-white bg-black/30 backdrop-blur-sm hover:bg-brass hover:border-brass transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 active:scale-95 cursor-pointer;
+    @apply inline-flex items-center justify-center gap-2 rounded-button border border-white/30 px-6 py-3 font-accent text-xs font-semibold uppercase tracking-[0.24em] text-white bg-transparent hover:text-[var(--color-wild-orange)] hover:border-[var(--color-wild-orange)] transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)] focus-visible:ring-offset-2 active:scale-95 cursor-pointer;
   }
+  
+  /* Tertiary button - orange outline */
   .btn-tertiary {
-    @apply inline-flex items-center gap-1 rounded-button border border-brass px-5 py-2 font-accent text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-charcoal)] bg-[var(--color-brass-soft)] hover:bg-[var(--color-brass)] hover:text-[var(--color-charcoal)] transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 active:scale-95 cursor-pointer;
+    @apply inline-flex items-center gap-1 rounded-full border border-[var(--color-wild-orange)]/60 bg-[var(--color-wild-orange)]/10 px-5 py-2 font-accent text-xs font-semibold uppercase tracking-[0.2em] text-white hover:shadow-[0_6px_20px_rgba(255,110,0,0.35)] hover:bg-[var(--color-wild-orange)] hover:text-white transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)] focus-visible:ring-offset-2 active:scale-95 cursor-pointer;
   }
+  
   .nav-link {
-    @apply font-accent text-[11px] font-medium uppercase tracking-[2.8px] text-[var(--color-charcoal)]/40 transition-colors duration-200 hover:text-[var(--color-brass)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2;
+    @apply font-accent text-[11px] font-medium uppercase tracking-[2.8px] text-[var(--color-wild-sand)] transition-colors duration-200 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)] focus-visible:ring-offset-2;
   }
+  
+  /* Section backgrounds matching Wilderness */
   .section-dark {
-    @apply bg-[#0C1617] text-white;
+    @apply bg-[var(--color-wild-dark)] text-white;
   }
   .section-darker {
-    @apply bg-[#091011] text-white;
+    @apply bg-[var(--color-wild-darker)] text-white;
   }
   .section-cream {
-    @apply bg-[#101F21] text-white;
+    @apply bg-[var(--color-wild-cream)] text-[var(--color-charcoal)];
   }
+  
   .image-placeholder {
-    @apply relative flex items-center justify-center rounded-image border border-white/10 bg-[#132325] text-white/60 text-[0.75rem] font-medium uppercase tracking-wider;
+    @apply relative flex items-center justify-center rounded-image border border-white/10 bg-[var(--color-wild-darker)] text-white/60 text-[0.75rem] font-medium uppercase tracking-wider;
   }
+  
   .focus-ring {
-    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)] focus-visible:ring-offset-2;
   }
+  
   .circular-btn {
-    @apply relative inline-flex items-center justify-center rounded-full border border-white/20 text-white transition-all duration-300 hover:bg-brass hover:border-brass focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass active:scale-95 cursor-pointer;
+    @apply relative inline-flex items-center justify-center rounded-full border border-white/20 text-white transition-all duration-300 hover:bg-[var(--color-wild-orange)] hover:border-[var(--color-wild-orange)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)] active:scale-95 cursor-pointer;
   }
+  
   .card-elevated {
-    @apply rounded-image border border-white/10 bg-[#132325] text-white transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg hover:border-brass/40;
+    @apply rounded-image border border-white/10 bg-[var(--color-wild-darker)] text-white transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg hover:border-[var(--color-wild-orange)]/40;
   }
+  
   .glass-panel {
     @apply backdrop-blur-md bg-black/60 border border-white/10 text-white;
   }
-  /* Type scale - serif display headings, sans for UI and body. */
+  /* Type scale - Wilderness: serif (Georgia/Athelas) for headings, sans (Atyp/Inter) for body */
   .hero-title {
-    font-family: var(--font-serif);
+    font-family: Georgia, "Times New Roman", Baskerville, ui-serif, system-ui, -apple-system;
     font-weight: 300;
     text-transform: uppercase;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.4em;
     line-height: 1.08;
-    font-size: clamp(1.9rem, 1.05rem + 3.85vw, 4.75rem);
+    font-size: clamp(2rem, 1.2rem + 5.2vw, 6rem);
   }
   @media (max-width: 639px) {
     .hero-title {
-      letter-spacing: 0.12em;
+      letter-spacing: 0.1em;
     }
   }
+  .text-h1 {
+    font-family: Georgia, "Times New Roman", Baskerville, ui-serif, system-ui, -apple-system;
+    font-weight: 400;
+    line-height: 1.1;
+    font-size: clamp(3.5rem, 2rem + 5vw, 5.5rem);
+  }
   .text-h2 {
-    font-family: var(--font-serif);
+    font-family: Georgia, "Times New Roman", Baskerville, ui-serif, system-ui, -apple-system;
     font-weight: 300;
     line-height: 1.1;
     letter-spacing: 0.015em;
-    font-size: clamp(2rem, 1.25rem + 3.2vw, 3.85rem);
+    font-size: clamp(3rem, 1.75rem + 4vw, 4.5rem);
   }
   .text-h3 {
-    font-family: var(--font-serif);
+    font-family: Georgia, "Times New Roman", Baskerville, ui-serif, system-ui, -apple-system;
     font-weight: 400;
     line-height: 1.18;
     letter-spacing: 0.015em;
-    font-size: clamp(1.5rem, 1.1rem + 2vw, 2.75rem);
+    font-size: clamp(2.5rem, 1.5rem + 3vw, 3.5rem);
   }
   .text-h4 {
-    font-family: var(--font-serif);
+    font-family: Georgia, "Times New Roman", Baskerville, ui-serif, system-ui, -apple-system;
     font-weight: 400;
     line-height: 1.25;
     letter-spacing: 0.015em;
-    font-size: clamp(1.25rem, 1rem + 1vw, 1.85rem);
+    font-size: clamp(2rem, 1.25rem + 2vw, 2.5rem);
   }
   .subtitle-large {
-    font-family: var(--font-accent);
-    color: var(--color-brass);
-    font-size: 0.72rem;
+    font-family: "Cinzel", Georgia, serif;
+    color: var(--color-wild-orange);
+    font-size: 0.875rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.32em;
+    letter-spacing: 0.4em;
   }
   @media (min-width: 768px) {
     .subtitle-large {
-      font-size: 0.8rem;
-      letter-spacing: 0.38em;
+      font-size: 0.875rem;
+      letter-spacing: 0.4em;
     }
   }
   .lead-editorial {
-    font-family: var(--font-serif);
+    font-family: Georgia, "Times New Roman", Baskerville, ui-serif, system-ui, -apple-system;
     font-style: italic;
     font-weight: 300;
     letter-spacing: 0.01em;
   }
   .btn-large-circle {
-    @apply inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition-all duration-300 hover:bg-brass hover:border-brass hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass active:scale-95 cursor-pointer;
+    @apply inline-flex items-center justify-center rounded-full border border-[var(--color-wild-sand)] bg-transparent text-white transition-all duration-300 hover:bg-[var(--color-wild-orange)] hover:border-[var(--color-wild-orange)] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)] active:scale-95 cursor-pointer;
     width: 3.5rem;
     height: 3.5rem;
   }
@@ -211,6 +235,100 @@
   }
 }
 
-.-top-6 {
-  color: var(--color-charcoal);
+/* Horizontal auto-scroll animation keyframes for experiences & carousels */
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-100% + 100vw)); }
+}
+
+@keyframes slowScrollLoop {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+.animate-scroll {
+  display: flex;
+  width: max-content;
+  animation: slowScrollLoop 80s linear infinite;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
+
+/* Continuous slow-scroll for section#experiences (relaxed 95s luxury glide) */
+.animate-slow-scroll {
+  display: flex !important;
+  width: max-content;
+  animation: slowScrollLoop var(--scroll-duration, 95s) linear infinite;
+  will-change: transform;
+}
+
+.animate-slow-scroll:hover,
+.animate-slow-scroll:focus-within {
+  animation-play-state: paused;
+}
+
+/* Parent container override suppressing scrollbars & preventing page stretch */
+.scroll-container-fix {
+  overflow: hidden !important;
+  width: 100%;
+}
+
+/* Menu panel animation utilities */
+.menu-crossfade {
+  transition: opacity 180ms ease-out, transform 180ms ease-out;
+}
+.menu-crossfade-enter {
+  opacity: 0;
+  transform: translateY(6px);
+}
+.menu-crossfade-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+.menu-accordion {
+  transition: max-height 220ms ease-out, opacity 180ms ease-out;
+  overflow: hidden;
+}
+.menu-accordion-collapsed {
+  max-height: 0;
+  opacity: 0;
+}
+.menu-accordion-expanded {
+  max-height: 40rem;
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-crossfade,
+  .menu-accordion {
+    transition: none !important;
+  }
+}
+
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-150%) skewX(-15deg); }
+  100% { transform: translateX(250%) skewX(-15deg); }
+}
+
+.animate-shimmer {
+  animation: shimmer 1.6s ease-in-out infinite;
 }

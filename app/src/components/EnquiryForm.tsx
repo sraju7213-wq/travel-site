@@ -8,6 +8,7 @@ import {
   validateEnquiry,
   type EnquiryPayload,
 } from "@/lib/enquiryValidation";
+import { BRAND } from "@/data/brandConfig";
 
 export interface PackageOption {
   slug: string;
@@ -174,8 +175,8 @@ export default function EnquiryForm({
         setStatus("failed");
         setStatusMessage(
           chosen
-            ? `Not sent. This form is not connected to a receiving system yet, so nothing was transmitted or stored. Please contact India Nepal Travel Centre or your travel agent, quoting ${chosen.title} (${chosen.code}).`
-            : "Not sent. This form is not connected to a receiving system yet, so nothing was transmitted or stored. Please contact India Nepal Travel Centre or your travel agent.",
+            ? `Not sent. This form is not connected to a receiving system yet, so nothing was transmitted or stored. Please contact our concierge desk (${BRAND.name}) or your travel agent, quoting ${chosen.title} (${chosen.code}).`
+            : `Not sent. This form is not connected to a receiving system yet, so nothing was transmitted or stored. Please contact our concierge desk (${BRAND.name}) or your travel agent.`
         );
         return;
       }
@@ -183,7 +184,7 @@ export default function EnquiryForm({
       if (response.status === 409) {
         setStatus("failed");
         setStatusMessage(
-          "This enquiry was already submitted. Please wait for our reply, or contact India Nepal Travel Centre or your travel agent.",
+          `This enquiry was already submitted. Please wait for our reply, or contact our concierge desk (${BRAND.name}) or your travel agent.`
         );
         return;
       }
@@ -191,12 +192,12 @@ export default function EnquiryForm({
       setStatus("failed");
       setStatusMessage(
         result.message ??
-          "The enquiry could not be delivered. Please try again, or contact India Nepal Travel Centre or your travel agent.",
+          `The enquiry could not be delivered. Please try again, or contact our concierge desk (${BRAND.name}) or your travel agent.`
       );
     } catch {
       setStatus("failed");
       setStatusMessage(
-        "The enquiry could not be delivered because of a network problem. Please try again, or contact India Nepal Travel Centre or your travel agent.",
+        `The enquiry could not be delivered because of a network problem. Please try again, or contact our concierge desk (${BRAND.name}) or your travel agent.`
       );
     }
   };
@@ -212,7 +213,7 @@ export default function EnquiryForm({
               <path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </div>
-          <p className="subtitle-large mb-3 text-brass">Enquiry Received</p>
+          <p className="subtitle-large mb-3 text-brass">Enquiry Received for Review</p>
           <h1
             ref={successHeadingRef}
             tabIndex={-1}
@@ -220,9 +221,13 @@ export default function EnquiryForm({
           >
             Thank You, {data.fullName.split(" ")[0] || "Traveller"}
           </h1>
-          <p className="font-display text-base text-white/75 leading-relaxed max-w-lg mx-auto">
-            Your enquiry has been recorded. Our travel designers will review your dates and party requirements and contact you via your preferred channel ({data.preferredContact}).
+          <p className="font-display text-base text-white/80 leading-relaxed max-w-lg mx-auto mb-5">
+            Your enquiry has been received and recorded. Our travel designers will review your dates ({data.datesFlexible ? "Flexible dates" : data.travelDate || "Dates to be confirmed"}) and party size ({data.travellers} {Number(data.travellers) === 1 ? "guest" : "guests"}) and contact you via {data.preferredContact === "phone" ? "telephone" : "email"}.
           </p>
+          <div className="rounded-xl border border-brass/35 bg-brass/10 p-4 text-xs font-sans text-brass-soft max-w-lg mx-auto text-left leading-relaxed">
+            <strong className="font-semibold block mb-1 uppercase tracking-wider text-white">Notice of Non-Binding Enquiry:</strong>
+            This submission is an itinerary consultation request and does not constitute a confirmed booking, reservation, or payment guarantee. No reservations are held and no charges have been applied until you have reviewed and approved a formal travel itinerary and contract.
+          </div>
           {chosen && (
             <div className="mt-8 rounded-[1rem] border border-white/10 bg-white/5 p-5 text-left flex items-center gap-4">
               <div className="relative h-16 w-16 rounded-image overflow-hidden flex-shrink-0 bg-charcoal">
@@ -322,14 +327,14 @@ export default function EnquiryForm({
           {/* Specialist Trust Card */}
           <div className="rounded-[1.25rem] border border-white/10 bg-forest p-7 text-white shadow-xl">
             <p className="text-xs font-display uppercase tracking-[0.25em] text-brass font-semibold mb-3">
-              Why Travel With KS World Adventure
+              Why Travel With {BRAND.name}
             </p>
             <ul className="space-y-3.5 text-xs font-display text-white/80 leading-relaxed">
               <li className="flex items-start gap-2.5">
                 <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brass/20 text-brass mt-0.5">
                   ✓
                 </span>
-                <span><strong>Guaranteed Departures:</strong> Small groups up to 15 travellers, or bespoke solo arrangements.</span>
+                <span><strong>No Minimum Quotas:</strong> Itineraries operate for solo travellers or small private groups up to 15 (subject to seasonal pass &amp; weather safety).</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brass/20 text-brass mt-0.5">
@@ -364,6 +369,37 @@ export default function EnquiryForm({
         {/* Right Column — Modern Form Card */}
         <div className="lg:col-span-7">
           <div className="rounded-[1.5rem] border border-white/10 bg-[#132325] p-7 sm:p-10 shadow-2xl text-white">
+            {/* System Status Banner */}
+            {!configured ? (
+              <div
+                role="status"
+                className="mb-8 rounded-image border border-amber-500/40 bg-amber-500/10 p-5 text-white"
+              >
+                <div className="flex items-start gap-3">
+                  <span className="text-amber-400 text-xl leading-none mt-0.5">ℹ️</span>
+                  <div>
+                    <h3 className="font-accent text-xs font-semibold uppercase tracking-wider text-amber-300 mb-1">
+                      Online Intake System Pending Activation
+                    </h3>
+                    <p className="font-sans text-xs leading-relaxed text-white/80">
+                      Online enquiry submission is currently inactive while backend intake systems are being finalized. Form inputs are disabled so that no personal contact data is collected or stored prematurely. To discuss an itinerary, please contact your travel agent directly quoting the journey code.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="mb-6 flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="font-accent text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-400">
+                  Concierge Intake Active
+                </span>
+                <span className="text-white/40">&bull;</span>
+                <span className="font-sans text-xs text-white/70">
+                  Encrypted transmission directly to reservations desk
+                </span>
+              </div>
+            )}
+
             {status === "failed" && statusMessage && (
               <div
                 ref={errorSummaryRef}
@@ -392,9 +428,10 @@ export default function EnquiryForm({
                 <div className="relative">
                   <select
                     id="journey"
+                    disabled={!configured || status === "submitting"}
                     value={selected}
                     onChange={(e) => setSelected(e.target.value)}
-                    className="w-full appearance-none rounded-button border border-white/15 bg-black/40 px-4 py-3.5 text-sm font-display text-white font-medium transition-colors hover:border-brass/60 focus:bg-black/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass"
+                    className="w-full appearance-none rounded-button border border-white/15 bg-black/40 px-4 py-3.5 text-sm font-display text-white font-medium transition-colors hover:border-brass/60 focus:bg-black/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass disabled:opacity-40"
                   >
                     <option value={CUSTOM}>Tailor-made trip (no specific journey)</option>
                     {grouped.map(([category, items]) => (
@@ -416,7 +453,7 @@ export default function EnquiryForm({
               </div>
 
               {/* Step 2: Traveller Details */}
-              <fieldset disabled={status === "submitting"} className="border-b border-border/80 pb-8">
+              <fieldset disabled={!configured || status === "submitting"} className="border-b border-border/80 pb-8">
                 <legend className="mb-5 flex items-center gap-2.5 text-xs font-display font-semibold uppercase tracking-[0.2em] text-white">
                   <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brass text-white text-[11px] font-bold shadow-sm">
                     1
@@ -532,7 +569,7 @@ export default function EnquiryForm({
               </fieldset>
 
               {/* Step 3: Trip Timing & Party Size */}
-              <fieldset disabled={status === "submitting"} className="border-b border-border/80 pb-8">
+              <fieldset disabled={!configured || status === "submitting"} className="border-b border-border/80 pb-8">
                 <legend className="mb-5 flex items-center gap-2.5 text-xs font-display font-semibold uppercase tracking-[0.2em] text-white">
                   <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brass text-white text-[11px] font-bold shadow-sm">
                     2
@@ -628,7 +665,7 @@ export default function EnquiryForm({
               </fieldset>
 
               {/* Step 4: Special Wishes */}
-              <fieldset disabled={status === "submitting"} className="border-b border-border/80 pb-8">
+              <fieldset disabled={!configured || status === "submitting"} className="border-b border-border/80 pb-8">
                 <legend className="mb-4 flex items-center gap-2.5 text-xs font-display font-semibold uppercase tracking-[0.2em] text-white">
                   <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brass text-white text-[11px] font-bold shadow-sm">
                     3
@@ -674,13 +711,22 @@ export default function EnquiryForm({
                     type="checkbox"
                     name="consent"
                     checked={data.consent}
+                    disabled={!configured || status === "submitting"}
                     onChange={(e) => setField("consent", e.target.checked)}
                     aria-invalid={!!fieldError("consent")}
                     aria-describedby={fieldError("consent") ? "consent-error" : undefined}
-                    className="mt-0.5 h-4 w-4 rounded accent-brass text-brass shrink-0"
+                    className="mt-0.5 h-4 w-4 rounded accent-brass text-brass shrink-0 disabled:opacity-40"
                   />
                   <span>
-                    I agree that KS World Adventure may contact me regarding this enquiry and provide tailored travel arrangements. <span className="text-brass">*</span>
+                    I agree that {BRAND.name} (in association with {BRAND.operatorName}) may contact me regarding this enquiry and provide tailored travel arrangements in accordance with the{" "}
+                    <Link
+                      href="/privacy"
+                      target="_blank"
+                      className="text-brass underline hover:text-brass-soft font-medium"
+                    >
+                      Privacy Notice
+                    </Link>
+                    . <span className="text-brass">*</span>
                   </span>
                 </label>
                 {fieldError("consent") && (
@@ -694,10 +740,12 @@ export default function EnquiryForm({
               <div className="pt-2 flex flex-col sm:flex-row gap-4 items-center">
                 <button
                   type="submit"
-                  disabled={status === "submitting"}
-                  className="btn-ghost-dark w-full sm:flex-1 py-4 text-xs font-semibold uppercase tracking-[0.2em] shadow-lg cursor-pointer"
+                  disabled={!configured || status === "submitting"}
+                  className="btn-ghost-dark w-full sm:flex-1 py-4 text-xs font-semibold uppercase tracking-[0.2em] shadow-lg cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {status === "submitting" ? (
+                  {!configured ? (
+                    <span>Enquiries Currently Inactive</span>
+                  ) : status === "submitting" ? (
                     <span className="flex items-center justify-center gap-2">
                       <svg className="animate-spin h-4 w-4 text-white" viewBox="0 0 24 24" fill="none">
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
