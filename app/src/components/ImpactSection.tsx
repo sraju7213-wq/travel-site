@@ -85,11 +85,11 @@ export default function ImpactSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="section-dark py-16 md:py-24" id="impact">
+    <section ref={sectionRef} className="section-darker py-16 md:py-24" id="impact">
       <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-        <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center lg:gap-14">
-          {/* Dual-image with opposing scroll parallax */}
-          <div className="grid grid-cols-2 gap-4 sm:gap-6">
+        <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-14">
+          {/* Dual-image with opposing scroll parallax — moved right of the copy on desktop */}
+          <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:order-2">
             <div
               ref={img1Ref}
               className="relative aspect-[4/5] max-h-[360px] overflow-hidden rounded-[1.25rem] border border-white/10 bg-charcoal shadow-2xl transition-transform duration-500 hover:scale-[1.03] will-change-transform"
@@ -116,8 +116,8 @@ export default function ImpactSection() {
             </div>
           </div>
 
-          {/* Right editorial content */}
-          <div ref={textRef}>
+          {/* Editorial content — first in the visual order on desktop */}
+          <div ref={textRef} className="lg:order-1">
             <p className="subtitle-large mb-4 text-brass font-accent">Curated Regional Programmes</p>
             <h2 className="text-h2 mb-5 text-white font-serif font-light leading-tight">
               Special-Interest &amp; Student Expeditions

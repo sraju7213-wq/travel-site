@@ -86,7 +86,7 @@ export default function SiteHeader() {
         }`}
         aria-label="Site header"
       >
-        <div className="mx-auto grid h-[72px] max-w-7xl grid-cols-[1fr_auto_1fr] items-center gap-2 sm:gap-4 px-3 sm:px-6 md:h-[88px] md:px-8">
+        <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between gap-2 sm:gap-4 px-3 sm:px-6 md:h-[88px] md:px-8">
           {/* Left Column — Single unified, accessible Menu control (WCAG 44x44px touch target) */}
           <div className="flex items-center justify-self-start">
             <button
@@ -144,13 +144,14 @@ export default function SiteHeader() {
             {/* Prominent Enquire Action (Visible and prominent across all screen sizes) */}
             <Link
               href="/enquiry"
-              className="group relative inline-flex min-h-[44px] items-center justify-center gap-2 overflow-hidden rounded-full border border-brass/60 bg-brass/10 px-4 sm:px-6 py-2 text-[10px] sm:text-xs font-accent font-semibold uppercase tracking-[0.16em] sm:tracking-[0.22em] text-brass backdrop-blur-sm transition-all duration-300 ease-out hover:border-brass hover:bg-brass hover:text-forest focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-transparent active:scale-95 cursor-pointer shrink-0"
+              className="group relative inline-flex min-h-[44px] max-sm:min-h-[36px] max-sm:h-[36px] items-center justify-center gap-2 max-sm:gap-1 overflow-hidden rounded-full border border-brass/60 bg-brass/10 px-4 max-sm:px-2.5 sm:px-6 py-2 max-sm:py-1.5 text-[10px] max-sm:text-[9px] sm:text-xs font-accent font-semibold uppercase tracking-[0.16em] max-sm:tracking-[0.05em] sm:tracking-[0.22em] text-brass max-sm:text-white max-sm:border-white/40 max-sm:bg-white/10 backdrop-blur-sm transition-all duration-300 ease-out hover:border-brass hover:bg-brass hover:text-forest max-sm:hover:border-white/60 max-sm:hover:bg-white/20 max-sm:hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-transparent active:scale-95 cursor-pointer shrink-0"
             >
-              <span className="relative z-10">Enquire now</span>
+              <span className="relative z-10 max-sm:hidden">Enquire now</span>
+              <span className="relative z-10 hidden max-sm:inline">Enquire</span>
               <svg
                 aria-hidden="true"
                 viewBox="0 0 24 24"
-                className="relative z-10 h-3.5 w-3.5 fill-none stroke-current stroke-[2] transition-transform duration-300 ease-out group-hover:translate-x-0.5"
+                className="relative z-10 h-3.5 w-3.5 fill-none stroke-current stroke-[2] transition-transform duration-300 ease-out group-hover:translate-x-0.5 max-sm:hidden"
               >
                 <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
               </svg>

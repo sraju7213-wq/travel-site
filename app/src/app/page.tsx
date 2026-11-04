@@ -51,20 +51,29 @@ export default function Home() {
 
       {/* Signature journeys */}
       <ScrollReveal start="top 90%" once>
-        <section className="bg-[#0C1617] py-16 text-white md:py-24 border-t border-white/5">
+        <section className="border-t border-white/5 bg-[#0C1617] py-14 text-white md:py-20">
           <Container>
-            <div className="mb-10 flex flex-col items-start justify-between gap-5 md:flex-row md:items-end">
+            <div className="mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
               <div className="max-w-2xl">
-                <p className="subtitle-large mb-4 text-brass font-accent">Signature Journeys</p>
+                <p className="subtitle-large mb-3 text-brass font-accent">Signature Journeys</p>
                 <h2 className="text-h2 text-white font-serif font-light leading-tight">
                   Tailor-Made Tours &amp; Small-Group Expeditions
                 </h2>
               </div>
-              <Link href="/explore" className="btn-tertiary">
-                View all {allPackages.length} journeys <span aria-hidden="true">→</span>
+              <Link
+                href="/explore"
+                className="group inline-flex items-center gap-2 text-[11px] font-accent uppercase tracking-[0.18em] text-white/60 transition-colors hover:text-white"
+              >
+                View all {allPackages.length} journeys
+                <span
+                  aria-hidden="true"
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                >
+                  →
+                </span>
               </Link>
             </div>
-            <PackageGrid packages={featuredPackages} />
+            <PackageGrid packages={featuredPackages} className="my-0" />
           </Container>
         </section>
       </ScrollReveal>
