@@ -6,7 +6,6 @@
 **Test basis:** `npm run lint`, `npm run build` (Next.js 16 Turbopack), headless browser route/interaction checks on `localhost:3000` dev server, direct HTTP fetch of image assets.  
 **No automated test suite exists** in the repo (`package.json` has no `test` script). No accessibility/Lighthouse tooling installed. All results below are actual runs; no scores are fabricated.
 
-
 ---
 
 ## Commands run & results
@@ -38,7 +37,7 @@
 
 ## Remaining content-data flags (require operator confirmation — not silently fixed)
 
-Per the brochure/catalogue, these are intentionally **left as-is** in the data and flagged internally; they are not public UI defects:
+Per the brochure/catalogue, these are intentionally **left as-is** in the data and flagged internally; they aren't public UI defects:
 
 | # | Package | Issue |
 |---|---------|-------|
@@ -57,7 +56,6 @@ No difficulty badge/filter is shown publicly because `difficultyVerified` is `fa
 ## Images (reconciled 2026-10-28)
 
 27/27 package images are now present under `public/images/packages/` (cropped from `Brochure.pdf`); 0 broken image refs in code. The houseboat image `/images/services/kashmir-houseboat.jpg` is still missing and the houseboats page falls back to `kashmir-shikara.jpg`. Many crops are flagged low-resolution/extreme aspect ratio in `docs/asset-inventory.md` (asset count 61 vs documented 59). Owner review/licensing still required before launch; no remote/hotlinked imagery is shipped.
-
 
 ---
 

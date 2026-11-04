@@ -4,7 +4,7 @@
 
 Transform the eight-page brochure into a polished, responsive travel website for **India Nepal Travel Organisation**. The brochure states that the organisation was established in 1927 and describes specialist travel across India and Nepal, including tailor-made arrangements, small-group tours, Himalayan trekking, cultural itineraries and Kashmir houseboats. Treat those as brochure-sourced claims; verify current company details before launch.
 
-**Do not reproduce the brochure layout page-for-page.** Build a data-driven discovery and enquiry experience: visitors should be able to find a trip, compare duration and activity level, understand the itinerary, see exactly what is included, and enquire easily from mobile or desktop.
+**Don't reproduce the brochure layout page-for-page.** Build a data-driven discovery and enquiry experience: visitors should be able to find a trip, compare duration and activity level, understand the itinerary, see exactly what is included, and enquire easily from mobile or desktop.
 
 The source contains **27 numbered/standalone package cards** across six brochure categories, plus a separate Kashmir houseboat booking service. A machine-readable starter index is provided in `travel_packages_catalog.json`.
 
@@ -71,15 +71,15 @@ Page 2 also has a **Kashmir houseboat booking service**. Treat this as a service
 
 ## 3. Content QA — resolve before public launch
 
-1. **Contents page mismatch:** the page 1 contents list says “Himalaya Enfield Motorbike Tour” where page 7 actually shows “Kashmir Ski” (code KS22). The Nepal Adventure packages on page 8 are also missing from the contents list. Confirm whether any tour is missing or whether the contents page is outdated.
+1. **Contents page mismatch:** the page 1 contents list says "Himalaya Enfield Motorbike Tour" where page 7 actually shows "Kashmir Ski" (code KS22). The Nepal Adventure packages on page 8 are also missing from the contents list. Confirm whether any tour is missing or whether the contents page is outdated.
 2. **Kathmandu–Pokhara duration:** page 1 and the itinerary imply 3 nights / 4 days, while the card label appears different. Confirm the sellable duration.
 3. **Vale of Kashmir Trek duration:** the card's printed duration appears to conflict with the itinerary's 7 days / 6 nights. Correct the label.
 4. **Difficulty grading:** Himalayan Combination HC and both Nepal mini treks have badges/body text that conflict (Moderate/Easy badge versus Grade D). Confirm the operator's intended scale and explain it consistently.
 5. **Golden Triangle code:** the code is visually printed as `ii7`; confirm whether the official code is `II7` before normalising it.
-6. **Package-specific inclusions and exclusions:** the brochure reuses a generic panel mentioning 3–4-star twin-share accommodation, daily breakfast, hotel/houseboat taxes, transfers and vehicle/coach sightseeing. It must not automatically be applied to every package. Some itineraries have package-specific inclusions/exclusions, and some wording is incomplete.
+6. **Package-specific inclusions and exclusions:** the brochure reuses a generic panel mentioning 3–4-star twin-share accommodation, daily breakfast, hotel/houseboat taxes, transfers and vehicle/coach sightseeing. It mustn't automatically be applied to every package. Some itineraries have package-specific inclusions/exclusions, and some wording is incomplete.
 7. **Itinerary errors:** the 4-day Nepal Mini Trek appears to repeat a route/day in its itinerary. Validate the sequence with the trip operator.
 8. **Current operating details:** seasonality, departures, group minimums, lodges, transport, equipment and trek difficulty may be old. Confirm before displaying them as current facts.
-9. **Unspecified commercial information:** the brochure has no clear prices, booking terms, cancellation policy, live availability or complete enquiry contact details. Do not invent them; make the site enquiry-led until real data is supplied.
+9. **Unspecified commercial information:** the brochure has no clear prices, booking terms, cancellation policy, live availability or complete enquiry contact details. Don't invent them; make the site enquiry-led until real data is supplied.
 10. **Houseboats:** verify available houseboats/room counts, classification, price, policies, photos and current inventory before accepting bookings.
 
 Use a review flag in data/CMS for every uncertain field. Keep internal content warnings out of public UI.
@@ -88,7 +88,7 @@ Use a review flag in data/CMS for every uncertain field. Keep internal content w
 
 - **Home** — strong destination-led hero, trip finder, categories, selected experiences, houseboat feature and a custom-trip CTA.
 - **Explore Tours** — all packages in a searchable/filterable catalogue.
-- **Category pages** — Stopovers; India Getaways (based on “Images of India”); India Tours; Himalayan Expeditions; Kashmir Treks & Ski; Nepal Adventure.
+- **Category pages** — Stopovers; India Getaways (based on "Images of India"); India Tours; Himalayan Expeditions; Kashmir Treks & Ski; Nepal Adventure.
 - **Package detail** — overview, key facts, itinerary timeline, inclusions, exclusions, route/region, practical notes and enquiry CTA.
 - **Kashmir Houseboats** — dedicated service page with verified options and enquiry form.
 - **Tailor-made Trips** — custom enquiry for travellers who want to combine itineraries.
@@ -112,7 +112,7 @@ Aim for **premium, editorial, modern travel**, with a calm outdoors palette rath
 
 ### Package card
 
-Each card should show: photo, package title, destination/region, duration, difficulty only where verified, one concise description and a clear “View itinerary” link. Use consistent card heights and a clear focus/hover state. Don't show empty rating stars, fake badges, fabricated prices or made-up “best seller” labels.
+Each card should show: photo, package title, destination/region, duration, difficulty only where verified, one concise description and a clear "View itinerary" link. Use consistent card heights and a clear focus/hover state. Don't show empty rating stars, fake badges, fabricated prices or made-up "best seller" labels.
 
 ### Package details page
 
@@ -129,7 +129,7 @@ Each card should show: photo, package title, destination/region, duration, diffi
 ## 6. Mobile and desktop behaviour
 
 - Build mobile-first; support phone widths around 320px through tablet and large desktop.
-- Mobile: single-column cards, filters in a drawer/sheet, itinerary in accordions, clear tap targets (about 44px minimum), short paragraphs, and a sticky “Enquire about this trip” action that does not obscure content.
+- Mobile: single-column cards, filters in a drawer/sheet, itinerary in accordions, clear tap targets (about 44px minimum), short paragraphs, and a sticky "Enquire about this trip" action that doesn't obscure content.
 - Desktop: responsive multi-column catalogue, optional filter sidebar, spacious package detail layout with itinerary and enquiry panel arranged side by side where it improves scanning.
 - Keep navigation usable by keyboard and touch. Avoid tiny body text, long unbroken itinerary paragraphs, horizontal overflow and text embedded in images.
 
@@ -149,21 +149,21 @@ Provide sort options such as title and shortest/longest duration. Do **not** add
 
 Build the site from package records rather than hand-coded package pages. A package record should support:
 
-- stable internal `id`/slug (never rely on brochure code as the database key)
-- title, category, brochure code, short description, full overview
-- destinations/regions, duration fields, activity tags
-- difficulty label, difficulty scale and verification status
-- hero/gallery assets with alt text and image rights/source
-- itinerary days with title, description, stops and optional transfer notes
-- inclusions, exclusions, meals/accommodation notes
-- departures/season/minimum group only when operator-confirmed
-- related package IDs
+- Stable internal `id`/slug (never rely on brochure code as the database key)
+- Title, category, brochure code, short description, full overview
+- Destinations/regions, duration fields, activity tags
+- Difficulty label, difficulty scale and verification status
+- Hero/gallery assets with alt text and image rights/source
+- Itinerary days with title, description, stops and optional transfer notes
+- Inclusions, exclusions, meals/accommodation notes
+- Departures/season/minimum group only when operator-confirmed
+- Related package IDs
 - SEO title/description and social image
-- enquiry routing fields
-- content status: draft / needs review / approved / published
-- internal editorial warnings that must never be shown to visitors
+- Enquiry routing fields
+- Content status: draft / needs review / approved / published
+- Internal editorial warnings that must never be shown to visitors
 
-Keep unknown information null or flagged for review. Do not fill missing fields with generic text just to make every card look complete.
+Keep unknown information null or flagged for review. Don't fill missing fields with generic text just to make every card look complete.
 
 ## 9. Recommended implementation
 
@@ -176,8 +176,8 @@ Technical requirements:
 - Make search/filter state functional, not decorative.
 - Use responsive image sizes, modern image formats and lazy-load below-the-fold imagery.
 - Generate unique page titles, descriptions, canonical URLs and Open Graph metadata.
-- Add appropriate structured data only when the content supports it; do not fabricate reviews, ratings, prices or offers.
-- Use an accessible form with validation, success/error states and a real configured destination for submissions. If no backend is connected yet, clearly implement a development placeholder rather than showing a false “sent” confirmation.
+- Add appropriate structured data only when the content supports it; don't fabricate reviews, ratings, prices or offers.
+- Use an accessible form with validation, success/error states and a real configured destination for submissions. If no backend is connected yet, clearly implement a development placeholder rather than showing a false "sent" confirmation.
 - Use a lightweight, maintainable animation library only if needed; avoid excessive dependencies.
 - Add empty, loading and error states where data is fetched.
 - Test at mobile, tablet and desktop widths; keyboard navigation; filter combinations; deep links; and slow-network image loading.

@@ -3,7 +3,7 @@
 **Sources:** `docs/baseline-audit.md`, `docs/reference-site-analysis.md`, `travel_packages_catalog.json`, `india-nepal-travel-web-app-brief.md`
 **Stack (preserved):** Next.js 16 App Router, React 19, TypeScript strict, Tailwind v4, CSS variables
 **Status:** Phases 0–8 complete; Phase 9 sign-off pending.
-**Constraint:** Do not invent package details, prices, reviews, ratings, availability, awards, or booking functionality. Flag conflicting source details for review.
+**Constraint:** Don't invent package details, prices, reviews, ratings, availability, awards, or booking functionality. Flag conflicting source details for review.
 
 ---
 
@@ -20,11 +20,11 @@
 
 ### Phase 3 — Design foundation & core navigation (done)
 - `globals.css` tokens + component classes; `SiteHeader`, `MobileNav`, `SiteFooter` restyled.
-- Acceptance: logo preserved; desktop nav + mobile drawer 320–1440px, keyboard accessible; focus visible; contrast compliant; reduced motion respected; no horizontal overflow; lint + build pass; existing routes unchanged.
+- Acceptance: logo preserved. Desktop nav + mobile drawer 320–1440px, keyboard accessible; focus visible; contrast compliant; reduced motion respected; no horizontal overflow; lint + build pass; existing routes unchanged.
 
 ### Phase 4 — Homepage redesign (done)
 - Rhythm: cinematic hero → dark editorial section → destination carousel → signature journeys → circular experience carousel → tabbed pillars → final CTA → footer.
-- All copy source-grounded; no invented testimonials/awards/prices; all CTAs link to real routes; responsive images/lazy placeholders.
+- All copy source-grounded. No invented testimonials/awards/prices; all CTAs link to real routes; responsive images/lazy placeholders.
 
 ### Phase 5 — Catalogue, destinations, filters (done)
 - Search by name/code; filters category/region/duration/activity/sort; result count; reset; empty state; URL query state; no difficulty filter until verified; mobile drawer.
@@ -33,7 +33,7 @@
 - `/packages/[slug]` template: breadcrumbs, dark hero, package identity, overview, highlights, day-by-day itinerary timeline, inclusions/exclusions, related journeys, enquiry prefill, not-found state, unique metadata.
 
 ### Phase 7 — Enquiry & custom journey (done)
-- `/enquiry` package prefill from `?package=`; custom trip option; validation + accessible errors + loading + truthful success/error; no "sent" claim without backend; no API keys in client bundle; integration boundary documented.
+- `/enquiry` package prefill from `?package=`; custom trip option. Validation + accessible errors + loading + truthful success/error; no "sent" claim without backend; no API keys in client bundle; integration boundary documented.
 
 ### Phase 8 — Visual polish & accessibility (done)
 - Checked at standard breakpoints; overflow, focus, contrast, alt text addressed; all pages use new palette; build + lint clean.
@@ -43,7 +43,6 @@
 ## Remaining launch blockers (reconciled 2026-10-28)
 - Photography quality: 27/27 package images now present (cropped from `Brochure.pdf`), but many are low-resolution/extreme-aspect per `docs/asset-inventory.md`; houseboat image `/images/services/kashmir-houseboat.jpg` is still missing. Owner review/licensing of crops still required before launch.
 - Enquiry backend: no endpoint configured; dev `setTimeout` placeholder shows truthful "no message was actually sent". Configure real endpoint + `ENQUIRY_API_URL`/`ENQUIRY_API_KEY` env vars before launch.
-
 
 ---
 

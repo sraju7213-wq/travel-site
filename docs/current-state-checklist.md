@@ -56,7 +56,7 @@ C-1 S05 Kathmandu–Pokhara duration conflict; C-2 II7 code casing; C-3 MTK21 Va
 4. Houseboat image missing
 5. Image quality/resolution (low-res crops)
 6. No test suite / accessibility tooling / Lighthouse
-7. No contact details supplied (do not invent)
+7. No contact details supplied (don't invent)
 
 ## Enquiry / newsletter integration (Phase 6)
 - `app/src/app/api/enquiry/route.ts` — POST only. Server-side validation, honeypot, duplicate `submissionId` rejection (10-min window), package resolved server-side, bearer token from `ENQUIRY_API_KEY`. Success only on upstream 2xx.

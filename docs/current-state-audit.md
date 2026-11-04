@@ -131,7 +131,7 @@ Per `docs/current-state-checklist.md` (C-1…C-7) plus 7 additional flags from p
 - Nepal difficulty grade conflicts (badge vs Grade D wording)
 - Kashmir Ski vs contents-page "Himalaya Enfield Motorbike Tour" mismatch
 - Nepal packages missing from contents page
-- Package-specific inclusions/exclusions must not be blindly replaced with generic panel
+- Package-specific inclusions/exclusions mustn't be blindly replaced with generic panel
 
 `difficultyVerified` is false for every package → no difficulty badge/filter shown publicly.
 
@@ -139,8 +139,8 @@ Per `docs/current-state-checklist.md` (C-1…C-7) plus 7 additional flags from p
 
 1. **Enquiry backend** — `ENQUIRY_API_URL` / `ENQUIRY_API_KEY` not configured; route returns 503, UI states nothing transmitted.
 2. **Newsletter backend** — `NEWSLETTER_API_URL` / `NEWSLETTER_API_KEY` not configured; section hidden entirely.
-3. **Contact details** — none supplied; do not invent phone/email/address.
-4. **Privacy notice & consent wording** — not approved; `/privacy` route does not exist.
+3. **Contact details** — none supplied; don't invent phone/email/address.
+4. **Privacy notice & consent wording** — not approved; `/privacy` route doesn't exist.
 5. **Business name wording** — "India Nepal Travel Centre" vs "India Nepal Travel Organisation" unconfirmed per context.
 6. **Photography licensing** — all crops derived from `Brochure.pdf`; owner review/licensing required before launch.
 
@@ -171,7 +171,7 @@ Stale "missing route / missing image" claims:
 ## Basis for later-phase decisions
 
 All implementation decisions in later phases must be based on this live source:
-- Stack preserved: Next.js 16 + Tailwind v4 + TypeScript strict; no framework swap.
+- Stack preserved: Next.js 16 + Tailwind v4 + TypeScript strict. No framework swap.
 - `catalogue.ts` accessors + `travel_packages_catalog.json` remain the single typed source of truth; package titles, codes, durations, categories come from data, not hardcoded JSX.
 - Existing working components reused; no competing design system introduced.
 - Current URLs preserved (`/`, `/explore`, `/explore/[category]`); new pages added without breaking existing routes.

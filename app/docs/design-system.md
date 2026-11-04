@@ -7,7 +7,7 @@ Premium, editorial travel. Destination-led, calm outdoors palette, strong readab
 - Core: deep forest `#16271A`, charcoal `#252824`, ivory `#F6F2E9`.
 - Accent: restrained brass `#B18A51` (hover `#9A7342`) for sparing details, active states, small badges and focus rings.
 - Reference-site orange (`#ff6e00`) is intentionally not used; the India Nepal Travel accent stays brass/earth.
-- **Brand approval pending:** this palette is documented as a design recommendation only. Do not claim it is approved brand until the organisation confirms.
+- **Brand approval pending:** this palette is documented as a design recommendation only. Don't claim it is approved brand until the organisation confirms.
 
 ## Color tokens
 | Token | CSS var | Value | Usage |
@@ -76,7 +76,7 @@ Type scale (clamp-based classes defined in `globals.css`):
 - Badge: `difficulty` (only where verified), `category` (small, brass outline), `duration` (charcoal text).
 
 ## States
-- Hover: slight lift + brass tint on cards; buttons shift to forest-soft/brass-hover.
+- Hover: slight lift + brass tint on cards. Buttons shift to forest-soft/brass-hover.
 - Focus: visible 2px brass ring (`ring-2 ring-brass`), offset 2px.
 - Active: 95% scale.
 - Disabled: opacity 50%, no pointer events.
@@ -93,7 +93,7 @@ Type scale (clamp-based classes defined in `globals.css`):
 - No scroll-jacking, no parallax, no layout-shift animation.
 
 ## Accessibility
-- Contrast: charcoal on ivory ≥ 7:1; white on forest ≥ 7:1.
+- Contrast: charcoal on ivory ≥ 7:1. White on forest ≥ 7:1.
 - Focus visible on all interactive elements.
 - Semantic HTML: `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<footer>`.
 - Form labels visible; errors announced via `aria-describedby`.

@@ -102,8 +102,8 @@ Source/permission status: all raster assets are cropped from the organisation's 
 | `images/packages/nepal-mini-trek-7-day.jpg` | package | Package cards and package detail | 743x331 | p8 | Nepal Mini Trek 7 Day - Photograph of nepal mini trek 7 day from the India Nepal Travel brochure | Brochure.pdf (own asset) |
 
 ## Missing / not yet inventoried
-- `public/images/services/kashmir-houseboat.jpg` is not generated; the `/houseboats` page uses `images/destinations/kashmir-shikara.jpg` as its photograph. A dedicated houseboat image (interior, veranda or sundeck) is still needed.
-- Favicons and social share images are not defined.
+- `public/images/services/kashmir-houseboat.jpg` isn't generated; the `/houseboats` page uses `images/destinations/kashmir-shikara.jpg` as its photograph. A dedicated houseboat image (interior, veranda or sundeck) is still needed.
+- Favicons and social share images aren't defined.
 - No verified photography outside the brochure; any new imagery requires owner approval/licensing.
 - Package detail pages use the same package crop as the card, stretched across a full-bleed 16:9 hero. Package crops with extreme aspect ratios (`bombay-stopover` 542x191, `nepal-mini-trek-4-day` 738x239, `kashmir-package-4-day` 900x320, `kashmir-mini-adventure` 900x320, `vale-of-kashmir-trek` 900x317) lose most of the frame at that size. These need re-cropping from the brochure before launch.
 

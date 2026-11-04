@@ -11,19 +11,18 @@ The site is a brochure skeleton with broken links, fake image refs, empty
 content shells, no data-driven detail pages, an unconnected enquiry form and
 no photography. It also reads like a generic AI travel template because
 brief/general flow, vague labels, unverified badges, decorative motion and
-placeholder copy run everywhere. The anti-slop fix is not a coat of paint;
-it is replacing invented detail with verified, sourced, per-item data and
+placeholder copy run everywhere. The anti-slop fix isn't a coat of paint. It is replacing invented detail with verified, sourced, per-item data and
 tying every UI element to a real route.
 
 ## P0 defects (must land first)
 
-1. **Package cards link to `/packages/[slug]` which does not exist.**
+1. **Package cards link to `/packages/[slug]` which doesn't exist.**
    Fix: build the data-driven package page (brief §5). This unlocks the whole
    catalogue.
 2. **Header/footer link to `/enquiry`, `/about`, `/contact`, `/houseboats`
-   which do not exist.** Fix: create the four pages.
-3. **All 27 `src="` package images are broken references; the files do not
-   exist.** Do not hotlink the reference site and do not ship `alt=""`.
+   which don't exist.** Fix: create the four pages.
+3. **All 27 `src="` package images are broken references; the files don't
+   exist.** Don't hotlink the reference site and don't ship `alt=""`.
    Fix: explicit `[Image TODO: title]` placeholders until owner-supplied or
    licensed photography is recorded. Add asset inventory + source/licence
    column before launch (brief §10).
@@ -46,7 +45,7 @@ tying every UI element to a real route.
   must keep their own wording), departures/season/minimum only when operator
   confirmed, related package IDs, SEO title/desc + social image, enquiry
   routing fields, and `status: draft | needs review | approved | published`.
-- Unknown fields stay `null` or flagged for review; do not fill with generic
+- Unknown fields stay `null` or flagged for review; don't fill with generic
   text just to make cards look complete.
 - `content_flags` are internal editorial warnings; they must never render to
   visitors. Surface a review flag in data/CMS for every uncertain field.
@@ -55,17 +54,17 @@ tying every UI element to a real route.
 
 - No prices, no reviews/ratings, no availability, no awards, no testimonials,
   no made-up departure schedules, no generic placeholder copy.
-- Brief/general beauty statements do not appear on cards or detail pages.
+- Brief/general beauty statements don't appear on cards or detail pages.
 - One strong image per card with consistent crop, meaningful `alt`, original
   source/licence. No low-res crops, no repeated stock fills.
 - One rule per card: photo, title, destination/region, duration, verified
-  difficulty (if any), one concise description, “View itinerary” link.
+  difficulty (if any), one concise description, "View itinerary" link.
 - Difficulty badge + filter only when `difficultyVerified` (currently never).
 - Motion: subtle reveal/hover only; `prefers-reduced-motion` respected;
   no scroll-jacking, no parallax that harms mobile.
 - Brand warmth: deep forest `#16271A`, ivory `#F6F2E9`, charcoal,
   muted brass/saffron sparingly. Use clean cards, 12–18px radii,
-  generous whitespace. Do not copy the reference site’s names, claims or
+  generous whitespace. Don't copy the reference site's names, claims or
   imagery.
 
 ## Routes to build (additive; preserve `/`, `/explore`, `/explore/[category]`)
@@ -101,7 +100,7 @@ tying every UI element to a real route.
   travellers, message.
 - Validation, accessible errors, loading state, truthful success/error.
 - Real endpoint if configured; otherwise explicit integration boundary with
-  a dev-safe fallback. Never claim “sent” without backend confirmation.
+  a dev-safe fallback. Never claim "sent" without backend confirmation.
 
 ## Image strategy
 
@@ -131,7 +130,7 @@ tying every UI element to a real route.
 - Difficulty never verified: hide until confirmed.
 - Conflicting catalogue data: preserve, flag, never silently correct.
 - No enquiry backend: documented boundary + dev fallback.
-- No contact details supplied: don’t invent; minimal or omitted contact page.
+- No contact details supplied: don't invent; minimal or omitted contact page.
 - No git history: incremental, reviewable changes; no rollback via git.
 
 ## Immediate next steps (this session)

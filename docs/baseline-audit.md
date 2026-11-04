@@ -65,7 +65,7 @@ All navigation/CTA links point to routes that have no pages. These are the highe
 | 7 | Nepal packages missing from contents page | NA23–NA27 |
 | 8 | Generic inclusions/exclusions panel must not be auto-applied to every package | all (esp. IT14, IT15, IT16) |
 
-`difficultyVerified` is `false` for every package (all difficulties are null or flagged). Per the brief, difficulty badges/filters must not be shown unless verified.
+`difficultyVerified` is `false` for every package (all difficulties are null or flagged). Per the brief, difficulty badges/filters mustn't be shown unless verified.
 
 ## Brand / design system
 
@@ -81,11 +81,11 @@ This is usable as the foundation; no competing design system exists.
 
 ## Assets
 
-`public/` contains only `file.svg`, `globe.svg`, `next.svg`, `vercel.svg`, `window.svg` — **no photography**. Two image references exist in code but the files do not exist:
+`public/` contains only `file.svg`, `globe.svg`, `next.svg`, `vercel.svg`, `window.svg` — **no photography**. Two image references exist in code but the files don't exist:
 - `/images/packages/${pkg.slug}.jpg` (27 package cards)
 - `/images/services/kashmir-houseboat.jpg` (houseboat feature)
 
-**Action needed:** create an image asset TODO/inventory; do not ship broken `` tags or hotlink reference-site imagery. Owner-approved or licensed India/Nepal photography is required before launch.
+**Action needed:** create an image asset TODO/inventory; don't ship broken `` tags or hotlink reference-site imagery. Owner-approved or licensed India/Nepal photography is required before launch.
 
 ## Existing brand assets
 
@@ -116,7 +116,7 @@ This is usable as the foundation; no competing design system exists.
 
 ## Preservation guidance
 
-- Keep Next.js 16 + Tailwind v4 + TypeScript stack; do not swap framework.
+- Keep Next.js 16 + Tailwind v4 + TypeScript stack; don't swap framework.
 - Keep `src/data/catalogue.ts` accessors and `travel_packages_catalog.json` as the single typed source of truth.
 - Keep existing `IN` logo/wordmark and brand color tokens from `globals.css` / `design-system.md`.
 - Keep existing working components (`PackageCard`, `PackageGrid`, `SearchAndFilters`, `SiteHeader`, `MobileNav`, `SiteFooter`) and reuse them in the redesign.
