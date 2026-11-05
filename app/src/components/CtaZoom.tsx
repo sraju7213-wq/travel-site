@@ -114,7 +114,7 @@ export default function CtaZoom() {
       <div aria-hidden="true" className="absolute inset-0 bg-black/60" />
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.7)_100%)]"
+        className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.3)_100%)]"
       />
 
       {/* Floating Monogram Watermark */}
