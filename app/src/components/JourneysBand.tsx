@@ -21,7 +21,10 @@ export default function JourneysBand() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const ctx = gsap.context(() => {
-      if (imageWrapperRef.current && sectionRef.current) {
+      const trigger = sectionRef.current;
+      if (!trigger) return;
+
+      if (imageWrapperRef.current) {
         // Parallax image scrub
         gsap.fromTo(
           imageWrapperRef.current,
@@ -31,16 +34,16 @@ export default function JourneysBand() {
             scale: 1.02,
             ease: "none",
             scrollTrigger: {
-              trigger: sectionRef.current,
+              trigger,
               start: "top bottom",
               end: "bottom top",
-              scrub: 1,
+              scrub: 0.8,
             },
           }
         );
       }
 
-      if (textRef.current && sectionRef.current) {
+      if (textRef.current) {
         // Subtle text reveal
         gsap.fromTo(
           textRef.current,
@@ -51,7 +54,7 @@ export default function JourneysBand() {
             duration: 1.1,
             ease: "power3.out",
             scrollTrigger: {
-              trigger: sectionRef.current,
+              trigger,
               start: "top 75%",
               once: true,
             },
@@ -66,7 +69,7 @@ export default function JourneysBand() {
   return (
     <section
       ref={sectionRef}
-      className="relative isolate flex min-h-[420px] items-center overflow-hidden bg-charcoal md:min-h-[500px]"
+      className="relative isolate flex min-h-[420px] items-center overflow-hidden section-journeys md:min-h-[500px]"
     >
       {/* Parallax Image Container */}
       <div

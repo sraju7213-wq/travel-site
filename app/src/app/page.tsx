@@ -51,7 +51,7 @@ export default function Home() {
 
       {/* Signature journeys */}
       <ScrollReveal start="top 90%" once>
-        <section className="border-t border-white/5 bg-[#0C1617] py-14 text-white md:py-20">
+        <section className="section-signature border-t border-white/5 py-14 text-white md:py-20">
           <Container>
             <div className="mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
               <div className="max-w-2xl">

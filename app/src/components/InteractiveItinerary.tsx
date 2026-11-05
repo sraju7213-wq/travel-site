@@ -27,22 +27,105 @@ function getActivityBadge(text: string): { label: string; icon: string } | null 
   if (lower.includes("trek") || lower.includes("walk") || lower.includes("hike") || lower.includes("climb")) {
     return { label: "Trek / Hike", icon: "🥾" };
   }
-  if (lower.includes("drive") || lower.includes("transfer") || lower.includes("coach") || lower.includes("road")) {
+  if (lower.includes("drive") || lower.includes("transfer") || lower.includes("coach") || lower.includes("road") || lower.includes("by road")) {
     return { label: "Scenic Transfer", icon: "🚗" };
   }
-  if (lower.includes("boat") || lower.includes("shikara") || lower.includes("raft") || lower.includes("houseboat")) {
+  if (lower.includes("boat") || lower.includes("shikara") || lower.includes("raft") || lower.includes("houseboat") || lower.includes("cruise")) {
     return { label: "Water / Boat", icon: "🚣" };
   }
   if (lower.includes("flight") || lower.includes("fly") || lower.includes("airport")) {
     return { label: "Flight", icon: "✈️" };
   }
-  if (lower.includes("temple") || lower.includes("fort") || lower.includes("palace") || lower.includes("sightseeing")) {
+  if (lower.includes("temple") || lower.includes("fort") || lower.includes("palace") || lower.includes("sightseeing") || lower.includes("monument") || lower.includes("museum")) {
     return { label: "Heritage Tour", icon: "🏛️" };
   }
-  if (lower.includes("safari") || lower.includes("wildlife") || lower.includes("rhino") || lower.includes("tiger")) {
+  if (lower.includes("safari") || lower.includes("wildlife") || lower.includes("rhino") || lower.includes("tiger") || lower.includes("national park") || lower.includes("sanctuary")) {
     return { label: "Wildlife", icon: "🐅" };
   }
+  if (lower.includes("leisure") || lower.includes("free") || lower.includes("relax") || lower.includes("at leisure")) {
+    return { label: "Leisure Day", icon: "☕" };
+  }
   return null;
+}
+
+function extractLocations(text: string): string[] {
+  // Extract potential place names (capitalized words, common Indian/Nepal locations)
+  const locations: string[] = [];
+  const commonPlaces = [
+    "Delhi", "Agra", "Jaipur", "Udaipur", "Jodhpur", "Varanasi", "Kathmandu", "Leh", "Srinagar",
+    "Mumbai", "Bombay", "Kochi", "Munnar", "Thekkady", "Alleppey", "Varkala", "Kovalam",
+    "Kanyakumari", "Rameshwaram", "Madurai", "Kashmir", "Zanskar", "Ladakh", "Markha",
+    "Nimaling", "Kongmaru", "Shang", "Sumdo", "Hemis", "Spituk", "Zingchen", "Yurutse",
+    "Gondola", "Skiu", "Tchatchungtse", "Gulmarg", "Pahalgam", "Sonamarg", "Fatehpur Sikri",
+    "Poovar", "Trivandrum", "Triveni", "Vivekanand", "Thiruvalluvar", "Annai Indira",
+    "Pamban", "Dhanushkodi", "Kalam", "Meenakshi", "Koodal", "Azhagar", "Gandhi Memorial",
+    "Thirumalai", "Nayakkar", "Patan", "Sarnath", "Bodhgaya", "Rajgir", "Nalanda"
+  ];
+  
+  for (const place of commonPlaces) {
+    if (text.includes(place) && !locations.includes(place)) {
+      locations.push(place);
+    }
+  }
+  return locations;
+}
+
+function highlightKeywords(text: string): React.ReactNode {
+  // Highlight key terms in description
+  const keywords = [
+    { word: /(arrival|arrive|check.?in|meet|transfer|transfer to|transfer for)/gi, className: "text-brass/90 font-medium" },
+    { word: /(sightseeing|visit|tour|excursion|explore|discover)/gi, className: "text-white/90 font-medium" },
+    { word: /(flight|fly|airport|train|road|drive|coach)/gi, className: "text-brass/80 font-medium" },
+    { word: /(houseboat|shikara|cruise|boat|raft)/gi, className: "text-white/90 font-medium" },
+    { word: /(trek|hike|walk|climb|acclimat|altitude)/gi, className: "text-brass/80 font-medium" },
+    { word: /(temple|fort|palace|monument|museum|heritage|monastery)/gi, className: "text-white/90 font-medium" },
+    { word: /(wildlife|safari|national park|sanctuary|rhino|tiger)/gi, className: "text-brass/80 font-medium" },
+    { word: /(leisure|free|relax|optional)/gi, className: "text-white/70 italic" },
+    { word: /(overnight|stay|hotel|accommodation)/gi, className: "text-white/80 font-medium" },
+    { word: /(morning|afternoon|evening|full.day|day.trip)/gi, className: "text-white/80 font-medium" },
+  ];
+
+  let parts: Array<string | React.ReactNode> = [text];
+  
+  for (const { word, className } of keywords) {
+    const newParts: Array<string | React.ReactNode> = [];
+    for (const part of parts) {
+      if (typeof part === "string") {
+        const regex = word;
+        const segments = part.split(regex);
+        const matches = [...part.matchAll(regex)].map(m => m[0]);
+        for (let i = 0; i < segments.length; i++) {
+          if (segments[i]) newParts.push(segments[i]);
+          if (i < matches.length) {
+            newParts.push(<span key={`match-${i}`} className={className}>{matches[i]}</span>);
+          }
+        }
+      } else {
+        newParts.push(part);
+      }
+    }
+    parts = newParts;
+  }
+  
+  return <span>{parts}</span>;
+}
+
+function formatDescription(text: string): React.ReactNode {
+  // Split into sentences and format
+  const sentences = text.split(/(?<=[.!?])\s+/).filter(s => s.trim());
+  if (sentences.length <= 1) {
+    return highlightKeywords(text);
+  }
+  
+  return (
+    <div className="space-y-1.5">
+      {sentences.map((sentence, i) => (
+        <p key={i} className="font-display text-sm md:text-base leading-relaxed text-white/75">
+          {highlightKeywords(sentence.trim())}
+        </p>
+      ))}
+    </div>
+  );
 }
 
 export default function InteractiveItinerary({ itinerary }: InteractiveItineraryProps) {
@@ -61,32 +144,30 @@ export default function InteractiveItinerary({ itinerary }: InteractiveItinerary
   };
 
   const toggleDay = (idx: number) => {
-    setExpandedDays((prev) => {
-      const next = new Set(prev);
-      if (next.has(idx)) next.delete(idx);
-      else next.add(idx);
-      return next;
-    });
+    const newSet = new Set(expandedDays);
+    if (newSet.has(idx)) {
+      newSet.delete(idx);
+    } else {
+      newSet.add(idx);
+    }
+    setExpandedDays(newSet);
   };
 
   const scrollToDay = (idx: number) => {
     setSelectedDay(idx);
-    setExpandedDays((prev) => new Set([...prev, idx]));
     const el = document.getElementById(`itinerary-day-${idx}`);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
+    el?.scrollIntoView({ behavior: "smooth", block: "center" });
   };
 
   if (days.length === 0) {
     return (
-      <section className="border-t border-white/10 bg-[#0C1617] py-16 md:py-20 text-white" id="itinerary">
+      <section className="border-t border-white/10 bg-[#0C1617] py-16 md:py-24 text-white" id="itinerary" aria-label="Day-by-day itinerary">
         <Container>
-          <div className="max-w-2xl">
-            <p className="subtitle-large mb-3 text-brass">Programme</p>
-            <h2 className="text-h3 mb-4 text-white">Day-by-Day Itinerary</h2>
-            <p className="font-display text-base text-white/70 leading-relaxed">
-              No day-by-day programme has been transcribed for this journey yet. Direct consultation provides full departure notes, elevation profiles, and lodge stops.
+          <div className="text-center py-12">
+            <p className="subtitle-large mb-2 text-brass">Curated Route</p>
+            <h2 className="text-h3 font-serif text-white mb-4">Day-by-Day Itinerary</h2>
+            <p className="font-display text-base text-white/60 max-w-xl mx-auto">
+              Detailed day-by-day itinerary will be available upon enquiry. Each journey is tailor-made; exact routing, timings and inclusions are confirmed directly.
             </p>
           </div>
         </Container>
@@ -154,6 +235,7 @@ export default function InteractiveItinerary({ itinerary }: InteractiveItinerary
             const isExpanded = expandedDays.has(idx);
             const combinedText = `${entry.title || ""} ${entry.description || ""}`;
             const activity = getActivityBadge(combinedText);
+            const locations = extractLocations(combinedText);
             const panelId = `day-panel-${idx}`;
 
             return (
@@ -187,6 +269,12 @@ export default function InteractiveItinerary({ itinerary }: InteractiveItinerary
                             <span>{activity.label}</span>
                           </span>
                         )}
+                        {locations.length > 0 && (
+                          <span className="rounded-pill bg-white/5 border border-white/10 px-2.5 py-0.5 text-[0.65rem] font-display uppercase tracking-wider text-white/75 flex items-center gap-1 text-white/60">
+                            <span>📍</span>
+                            <span>{locations.slice(0, 2).join(", ")}{locations.length > 2 ? ` +${locations.length - 2}` : ""}</span>
+                          </span>
+                        )}
                       </div>
                       <h3 className="font-serif text-lg md:text-xl font-bold text-white mt-1">
                         {entry.title || `Day ${dayNum} Programme`}
@@ -213,28 +301,33 @@ export default function InteractiveItinerary({ itinerary }: InteractiveItinerary
                 <div
                   id={panelId}
                   hidden={!isExpanded}
-                  className="border-t border-white/10 px-5 md:px-6 pb-6 pt-4 space-y-4"
+                  className="border-t border-white/10 px-5 md:px-6 pb-6 pt-4 space-y-4 animate-fade-in-up"
                 >
                   {entry.description && (
-                    <p className="font-display text-sm md:text-base leading-relaxed text-white/75">
-                      {entry.description}
-                    </p>
+                    <div className="space-y-2">
+                      <p className="text-[0.65rem] font-display uppercase tracking-wider text-white/60 font-semibold">
+                        Description
+                      </p>
+                      <div className="font-display text-sm md:text-base leading-relaxed text-white/75">
+                        {formatDescription(entry.description)}
+                      </div>
+                    </div>
                   )}
 
-                  {/* Stops tags */}
-                  {entry.stops && entry.stops.length > 0 && (
+                  {/* Extracted Locations */}
+                  {locations.length > 0 && (
                     <div className="pt-2">
                       <p className="text-[0.65rem] font-display uppercase tracking-wider text-white/60 font-semibold mb-2">
-                        Route Stops &amp; Landmarks:
+                        Key Locations
                       </p>
                       <div className="flex flex-wrap gap-2">
-                        {entry.stops.map((stop) => (
+                        {locations.map((loc) => (
                           <span
-                            key={stop}
+                            key={loc}
                             className="inline-flex items-center gap-1.5 rounded-button border border-white/10 bg-white/5 px-3 py-1 text-xs font-display font-medium text-white/90"
                           >
                             <span className="text-brass">📍</span>
-                            <span>{stop}</span>
+                            <span>{loc}</span>
                           </span>
                         ))}
                       </div>
@@ -246,6 +339,14 @@ export default function InteractiveItinerary({ itinerary }: InteractiveItinerary
                     <div className="rounded-[0.75rem] border border-white/10 bg-white/5 p-3.5 text-xs font-display text-white/75 flex items-center gap-2.5">
                       <span className="text-brass text-base">🚗</span>
                       <span><strong>Transfer details:</strong> {entry.transfers}</span>
+                    </div>
+                  )}
+
+                  {/* Activity Type Indicator */}
+                  {activity && (
+                    <div className="rounded-[0.75rem] border border-white/10 bg-white/5 p-3.5 text-xs font-display text-white/75 flex items-center gap-2.5">
+                      <span className="text-brass text-base">{activity.icon}</span>
+                      <span><strong>Activity type:</strong> {activity.label}</span>
                     </div>
                   )}
                 </div>

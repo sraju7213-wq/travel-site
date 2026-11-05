@@ -23,10 +23,9 @@ export default function SearchAndFilters({
 }) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const mounted = true;
   const isInitial = useRef(true);
   const [state, setState] = useState<FilterState>(() => ({
-    q: decodeURIComponent(searchParams.get("q") ?? ""),
+    q: searchParams.get("q") ?? "",
     category: searchParams.get("category") ?? ALL,
     region: searchParams.get("region") ?? ALL,
     duration: searchParams.get("duration") ?? ALL,
@@ -35,41 +34,18 @@ export default function SearchAndFilters({
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const closeFiltersRef = useRef<HTMLButtonElement>(null);
   const filtersPanelRef = useRef<HTMLDivElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
 
   useEffect(() => {
-    if (!mobileFiltersOpen) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    const t = setTimeout(() => closeFiltersRef.current?.focus(), 0);
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        e.preventDefault();
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && mobileFiltersOpen) {
         setMobileFiltersOpen(false);
-        return;
-      }
-      if (e.key !== "Tab") return;
-      const panel = filtersPanelRef.current;
-      if (!panel) return;
-      const focusable = panel.querySelectorAll<HTMLElement>(
-        'a[href], button:not([disabled]), select, input, [tabindex]:not([tabindex="-1"])',
-      );
-      if (focusable.length === 0) return;
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
+        closeFiltersRef.current?.focus();
       }
     };
-    document.addEventListener("keydown", onKey);
-    return () => {
-      document.body.style.overflow = prev;
-      document.removeEventListener("keydown", onKey);
-      clearTimeout(t);
-    };
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
   }, [mobileFiltersOpen]);
 
   const lastPushedRef = useRef<string>("");
@@ -85,23 +61,23 @@ export default function SearchAndFilters({
     if (state.region !== ALL) params.set("region", state.region);
     if (state.duration !== ALL) params.set("duration", state.duration);
     if (state.sort !== "title") params.set("sort", state.sort);
-    const qs = params.toString();
-    lastPushedRef.current = qs;
-    router.replace(`/explore?${qs}`, { scroll: false });
-  }, [router, state, mounted]);
+    const newUrl = `/explore${params.toString() ? `?${params.toString()}` : ""}`;
+    if (newUrl !== lastPushedRef.current) {
+      router.push(newUrl, { scroll: false });
+      lastPushedRef.current = newUrl;
+    }
+  }, [router, state]);
 
-  // Sync controls when the URL changes externally (back/forward, direct links).
   useEffect(() => {
-    const qs = searchParams.toString();
-    if (qs === lastPushedRef.current) return;
-    setState({
-      q: decodeURIComponent(searchParams.get("q") ?? ""),
+    if (isInitial.current) return;
+    const nextState: FilterState = {
+      q: searchParams.get("q") ?? "",
       category: searchParams.get("category") ?? ALL,
       region: searchParams.get("region") ?? ALL,
       duration: searchParams.get("duration") ?? ALL,
       sort: searchParams.get("sort") ?? "title",
-    });
-    lastPushedRef.current = qs;
+    };
+    setState(nextState);
   }, [searchParams]);
 
   const activeFilterCount =
@@ -114,230 +90,296 @@ export default function SearchAndFilters({
   const durations = getAllDurations();
 
   const filtered = packages.filter((pkg) => {
-    if (state.q) {
-      const q = state.q.toLowerCase();
-      const matches =
-        pkg.title.toLowerCase().includes(q) ||
-        pkg.brochure_code.toLowerCase().includes(q) ||
-        pkg.summary.toLowerCase().includes(q) ||
-        pkg.region.some((r) => r.toLowerCase().includes(q)) ||
-        pkg.highlights.some((h) => h.toLowerCase().includes(q));
-      if (!matches) return false;
-    }
-    if (state.category !== ALL && pkg.category !== state.category) return false;
-    if (state.region !== ALL && !pkg.region.includes(state.region)) return false;
-    if (state.duration !== ALL && pkg.duration !== state.duration) return false;
-    return true;
+    const matchesQuery =
+      !state.q ||
+      pkg.title.toLowerCase().includes(state.q.toLowerCase()) ||
+      pkg.slug.toLowerCase().includes(state.q.toLowerCase()) ||
+      pkg.brochure_code.toLowerCase().includes(state.q.toLowerCase()) ||
+      pkg.region.some((r: string) => r.toLowerCase().includes(state.q.toLowerCase()));
+    const matchesCategory = state.category === ALL || pkg.category === state.category;
+    const matchesRegion = state.region === ALL || pkg.region.includes(state.region);
+    const matchesDuration = state.duration === ALL || pkg.duration === state.duration;
+    return matchesQuery && matchesCategory && matchesRegion && matchesDuration;
   });
 
   const sorted = [...filtered].sort((a, b) => {
-    if (state.sort === "duration-short") {
-      const na = parseDurationNights(a.duration);
-      const nb = parseDurationNights(b.duration);
-      return na - nb || a.title.localeCompare(b.title);
+    switch (state.sort) {
+      case "duration-short":
+        return parseDurationNights(a.duration) - parseDurationNights(b.duration);
+      case "duration-long":
+        return parseDurationNights(b.duration) - parseDurationNights(a.duration);
+      default:
+        return a.title.localeCompare(b.title);
     }
-    if (state.sort === "duration-long") {
-      const na = parseDurationNights(a.duration);
-      const nb = parseDurationNights(b.duration);
-      return nb - na || a.title.localeCompare(b.title);
-    }
-    return a.title.localeCompare(b.title);
   });
+
+  const handleClearAll = () => {
+    setState({
+      q: "",
+      category: ALL,
+      region: ALL,
+      duration: ALL,
+      sort: "title",
+    });
+    setMobileFiltersOpen(false);
+  };
 
   return (
     <>
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-6">
-        <div className="flex-1">
-          <label htmlFor="package-search" className="block text-xs font-display font-semibold uppercase tracking-wider text-white/70 mb-2">
-            Search Brochure Itineraries
-          </label>
-          <div className="relative">
-            <input
-              id="package-search"
-              type="search"
-              value={state.q}
-              onChange={(e) => setState({ ...state, q: e.target.value })}
-              placeholder="Search by package name, code (e.g. S01, II7, HE18) or destination..."
-              className="w-full rounded-button border border-white/10 bg-[#132325] px-4 py-3 text-sm font-display text-white placeholder:text-white/40 shadow-sm transition-colors focus:border-brass focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass"
-            />
+      {/* Search & Primary Actions Bar */}
+      <div className="relative mb-8">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+          {/* Search Input */}
+          <div className="flex-1 relative">
+            <label htmlFor="package-search" className="sr-only">
+              Search Brochure Itineraries
+            </label>
+            <div
+              className={`relative transition-all duration-300 ${
+                isSearchFocused ? "scale-[1.02] shadow-[0_0_0_1px_rgba(177,138,81,0.4)]" : ""
+              }`}
+            >
+              <div className="absolute inset-0 rounded-button bg-gradient-to-r from-brass/10 to-transparent opacity-0 transition-opacity pointer-events-none" aria-hidden="true" />
+              <svg
+                className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-white/40 transition-colors duration-200 group-focus-within:text-brass"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <path d="M21 21l-4.35-4.35" />
+              </svg>
+              <input
+                ref={searchInputRef}
+                id="package-search"
+                type="search"
+                value={state.q}
+                onChange={(e) => setState({ ...state, q: e.target.value })}
+                onFocus={() => setIsSearchFocused(true)}
+                onBlur={() => setIsSearchFocused(false)}
+                placeholder="Search by name, code (S01, II7, HE18) or destination…"
+                className="w-full rounded-button border border-white/10 bg-[#132325] px-12 py-3.5 text-sm font-display text-white placeholder:text-white/40 transition-all duration-300 focus:border-brass focus:bg-[#1a2a2c] focus:outline-none focus:ring-2 focus:ring-brass/20"
+                autoComplete="off"
+              />
+              {state.q && (
+                <button
+                  type="button"
+                  onClick={() => setState({ ...state, q: "" })}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 p-1.5 text-white/40 hover:text-brass transition-colors rounded-full hover:bg-white/5"
+                  aria-label="Clear search"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                  </svg>
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex items-center gap-3 sm:flex-nowrap">
+            {/* Clear All Filters */}
+            {activeFilterCount > 0 && (
+              <button
+                type="button"
+                onClick={handleClearAll}
+                className="hidden sm:flex items-center gap-2 rounded-button border border-white/10 bg-transparent px-4 py-3.5 text-xs font-display font-semibold uppercase tracking-wider text-white/70 hover:border-brass hover:text-brass hover:bg-white/5 transition-all duration-300"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                </svg>
+                Clear all
+              </button>
+            )}
+
+            {/* Mobile Filters Trigger */}
+            <button
+              type="button"
+              onClick={() => setMobileFiltersOpen(true)}
+              className="flex sm:hidden items-center justify-center gap-2 h-[52px] rounded-button border border-white/10 bg-[#132325] px-5 text-xs font-display font-semibold uppercase tracking-wider text-white transition-all hover:border-brass hover:text-brass hover:bg-[#1a2a2c] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass shadow-sm cursor-pointer"
+              aria-expanded={mobileFiltersOpen}
+              aria-controls="mobile-filters"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <span>Filters</span>
+              {activeFilterCount > 0 && (
+                <span className="inline-flex h-5 min-w-[20px] items-center justify-center rounded-full bg-brass px-1.5 text-xs font-semibold text-white">
+                  {activeFilterCount}
+                </span>
+              )}
+            </button>
           </div>
         </div>
-        <div className="flex items-end">
-          <button
-            type="button"
-            onClick={() => setMobileFiltersOpen(true)}
-            className="h-[46px] relative rounded-button border border-white/10 px-5 text-xs font-display font-semibold uppercase tracking-wider text-white bg-[#132325] transition-all hover:border-brass hover:text-brass focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass shadow-sm cursor-pointer flex items-center justify-center gap-2"
-            aria-expanded={mobileFiltersOpen}
-            aria-controls="mobile-filters"
-          >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="stroke-current stroke-2">
-              <path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            <span>More Filters</span>
-            {activeFilterCount > 0 && (
-              <span className="inline-flex h-5 min-w-[20px] items-center justify-center rounded-full bg-brass px-1.5 text-xs font-semibold text-white">
-                {activeFilterCount}
-              </span>
+
+        {/* Category Chips - always visible */}
+        <div className="mt-6">
+          <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+            <FilterChip
+              label={`All Journeys (${packages.length})`}
+              isActive={state.category === ALL}
+              onClick={() => setState({ ...state, category: ALL })}
+              isPrimary={state.category === ALL}
+            />
+            {CATEGORIES.map((cat) => {
+              const count = packages.filter((p) => p.category === cat).length;
+              const isSelected = state.category === cat;
+              return (
+                <FilterChip
+                  key={cat}
+                  label={`${cat} (${count})`}
+                  isActive={isSelected}
+                  onClick={() => setState({ ...state, category: isSelected ? ALL : cat })}
+                />
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Active Filter Pills */}
+        {activeFilterCount > 0 && (
+          <div className="mt-4 flex flex-wrap gap-2" role="group" aria-label="Active filters">
+            {state.q && (
+              <FilterPill label={`Search: "${state.q}"`} onRemove={() => setState({ ...state, q: "" })} />
             )}
-          </button>
-        </div>
+            {state.category !== ALL && (
+              <FilterPill label={state.category} onRemove={() => setState({ ...state, category: ALL })} />
+            )}
+            {state.region !== ALL && (
+              <FilterPill label={state.region} onRemove={() => setState({ ...state, region: ALL })} />
+            )}
+            {state.duration !== ALL && (
+              <FilterPill label={state.duration} onRemove={() => setState({ ...state, duration: ALL })} />
+            )}
+            <button
+              type="button"
+              onClick={handleClearAll}
+              className="inline-flex items-center gap-1.5 rounded-button border border-white/10 bg-transparent px-3 py-1.5 text-xs font-display font-medium uppercase tracking-wider text-white/60 hover:border-brass hover:text-brass hover:bg-white/5 transition-all"
+            >
+              Clear all
+            </button>
+          </div>
+        )}
       </div>
 
-      {/* Interactive Category Chips */}
-      <div className="mb-6">
-        <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-          <button
-            type="button"
-            onClick={() => setState({ ...state, category: ALL })}
-            className={`flex-shrink-0 rounded-button px-4 py-2 text-xs font-display font-semibold uppercase tracking-wider transition-all cursor-pointer ${
-              state.category === ALL
-                ? "bg-brass text-white shadow-md scale-102"
-                : "border border-white/10 bg-[#132325] text-white/75 hover:border-brass hover:text-brass shadow-sm"
-            }`}
-          >
-            All Journeys ({packages.length})
-          </button>
-          {CATEGORIES.map((cat) => {
-            const count = packages.filter((p) => p.category === cat).length;
-            const isSelected = state.category === cat;
-            return (
-              <button
-                key={cat}
-                type="button"
-                onClick={() => setState({ ...state, category: isSelected ? ALL : cat })}
-                className={`flex-shrink-0 rounded-button px-4 py-2 text-xs font-display font-semibold uppercase tracking-wider transition-all cursor-pointer ${
-                  isSelected
-                    ? "bg-brass text-white shadow-md scale-102"
-                    : "border border-white/10 bg-[#132325] text-white/75 hover:border-brass hover:text-brass shadow-sm"
-                }`}
-              >
-                {cat} ({count})
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
+      {/* Mobile Filter Drawer */}
       <div
         ref={filtersPanelRef}
         id="mobile-filters"
         hidden={!mobileFiltersOpen}
-        className="fixed inset-0 z-50 bg-forest flex flex-col"
+        className="fixed inset-0 z-50 flex flex-col bg-[#0C1617] animate-slide-in"
         role="dialog"
         aria-modal="true"
         aria-label="Filters"
       >
-          <div className="flex items-center justify-between px-6 py-5 border-b border-white/10">
-            <h2 className="text-lg font-serif font-bold text-white">
-              Filters{activeFilterCount > 0 ? ` (${activeFilterCount})` : ""}
-            </h2>
-            <button
-              ref={closeFiltersRef}
-              onClick={() => setMobileFiltersOpen(false)}
-              className="p-2 text-white hover:text-brass focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2"
-              aria-label="Close filters"
-            >
-              <span className="relative inline-flex h-6 w-3 flex-col justify-between">
-                {[0, 1].map((i) => (
-                  <span
-                    key={i}
-                    className="h-0.5 w-full bg-white transition-all duration-200"
-                    aria-hidden="true"
-                  />
-                ))}
-              </span>
-            </button>
-          </div>
-          <div className="flex-1 px-6 py-6 overflow-y-auto">
-            <div className="space-y-6">
-              <div className="min-w-[200px]">
-                <Select
-                  id="filter-category"
-                  label="Category"
-                  value={state.category}
-                  onChange={(v) => setState({ ...state, category: v })}
-                  options={[ALL, ...categories]}
-                />
-              </div>
-              <div className="min-w-[200px]">
-                <Select
-                  id="filter-region"
-                  label="Region"
-                  value={state.region}
-                  onChange={(v) => setState({ ...state, region: v })}
-                  options={[ALL, ...regions]}
-                />
-              </div>
-              <div className="min-w-[200px]">
-                <Select
-                  id="filter-duration"
-                  label="Duration"
-                  value={state.duration}
-                  onChange={(v) => setState({ ...state, duration: v })}
-                  options={[ALL, ...durations]}
-                />
-              </div>
-              <div className="min-w-[200px]">
-                <Select
-                  id="filter-sort"
-                  label="Sort by"
-                  value={state.sort}
-                  onChange={(v) => setState({ ...state, sort: v })}
-                  options={[
-                    { label: "Title (A–Z)", value: "title" },
-                    { label: "Shortest duration", value: "duration-short" },
-                    { label: "Longest duration", value: "duration-long" },
-                  ]}
-                />
-              </div>
-              <button
-                onClick={() => {
-                  setState({
-                    q: "",
-                    category: ALL,
-                    region: ALL,
-                    duration: ALL,
-                    sort: "title",
-                  });
-                  setMobileFiltersOpen(false);
-                }}
-                className="flex w-full items-center gap-1.5 rounded-button border border-brass-ink px-4 py-3 text-sm font-display font-medium text-brass-ink bg-transparent hover:bg-brass-ink hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2"
-              >
-                Reset filters
-              </button>
-            </div>
+        <div className="flex items-center justify-between px-6 py-5 border-b border-white/10">
+          <h2 className="text-lg font-serif font-bold text-white">
+            Filters{activeFilterCount > 0 ? ` <span className="font-display text-brass">(${activeFilterCount})</span>` : ""}
+          </h2>
+          <button
+            ref={closeFiltersRef}
+            onClick={() => setMobileFiltersOpen(false)}
+            className="p-2 text-white/70 hover:text-brass hover:bg-white/5 rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-[#0C1617]"
+            aria-label="Close filters"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+
+        <div className="flex-1 px-6 py-6 overflow-y-auto">
+          <div className="space-y-6">
+            <FilterSection
+              label="Category"
+              options={[{ value: ALL, label: "All categories", count: packages.length }, ...categories.map((c) => ({ value: c, label: c, count: packages.filter((p) => p.category === c).length }))]}
+              value={state.category}
+              onChange={(v) => setState({ ...state, category: v })}
+            />
+            <FilterSection
+              label="Region"
+              options={[{ value: ALL, label: "All regions", count: packages.length }, ...regions.map((r) => ({ value: r, label: r, count: packages.filter((p) => p.region.includes(r)).length }))]}
+              value={state.region}
+              onChange={(v) => setState({ ...state, region: v })}
+            />
+            <FilterSection
+              label="Duration"
+              options={[{ value: ALL, label: "All durations", count: packages.length }, ...durations.map((d) => ({ value: d, label: d, count: packages.filter((p) => p.duration === d).length }))]}
+              value={state.duration}
+              onChange={(v) => setState({ ...state, duration: v })}
+            />
+            <FilterSection
+              label="Sort by"
+              options={[
+                { value: "title", label: "Title (A–Z)" },
+                { value: "duration-short", label: "Shortest duration" },
+                { value: "duration-long", label: "Longest duration" },
+              ]}
+              value={state.sort}
+              onChange={(v) => setState({ ...state, sort: v })}
+            />
           </div>
         </div>
 
-      <div className="mt-6 flex flex-col md:flex-row md:items-center justify-between gap-3 text-sm">
-        <span aria-live="polite" className="font-display text-white/70">
-          {sorted.length} trip{sorted.length === 1 ? "" : "s"} found
-        </span>
-        <div className="flex flex-wrap gap-1.5 text-xs font-display font-medium text-charcoal-soft">
-          {state.category !== ALL && (
-            <FilterPill onRemove={() => setState({ ...state, category: ALL })}>{state.category}</FilterPill>
-          )}
-          {state.region !== ALL && (
-            <FilterPill onRemove={() => setState({ ...state, region: ALL })}>{state.region}</FilterPill>
-          )}
-          {state.duration !== ALL && (
-            <FilterPill onRemove={() => setState({ ...state, duration: ALL })}>{state.duration}</FilterPill>
-          )}
-          {state.q && <FilterPill onRemove={() => setState({ ...state, q: "" })}>{state.q}</FilterPill>}
+        <div className="border-t border-white/10 px-6 py-4">
+          <button
+            onClick={handleClearAll}
+            className="flex w-full items-center justify-center gap-2 rounded-button border border-brass px-4 py-3 text-sm font-display font-medium text-brass bg-transparent hover:bg-brass hover:text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+            </svg>
+            Reset all filters
+          </button>
         </div>
       </div>
 
-      <div className="py-12">
+      {/* Results Count & Desktop Filter Summary */}
+      <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-4 text-sm">
+        <span aria-live="polite" className="font-display text-white/70">
+          {sorted.length} trip{sorted.length === 1 ? "" : "s"} found
+        </span>
+        <div className="flex flex-wrap items-center gap-2 text-xs font-display font-medium">
+          {state.sort !== "title" && (
+            <span className="inline-flex items-center gap-1 rounded-button border border-white/10 bg-white/5 px-2.5 py-1 text-white/60">
+              Sorted by:{' '}
+              <span className="text-white">
+                {state.sort === "duration-short"
+                  ? "Shortest first"
+                  : state.sort === "duration-long"
+                  ? "Longest first"
+                  : "Title"}
+              </span>
+            </span>
+          )}
+        </div>
+      </div>
+
+      {/* Results Grid */}
+      <div className="mt-8">
         {sorted.length === 0 ? (
-          <div className="flex flex-col items-center gap-4 py-16 text-center">
-            <p className="font-display text-lg text-charcoal-soft">No journeys match these filters.</p>
+          <div className="flex flex-col items-center gap-6 py-20 text-center">
+            <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-white/5">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-white/30">
+                <circle cx="11" cy="11" r="8" />
+                <path d="M21 21l-4.35-4.35" />
+                <line x1="9" y1="15" x2="15" y2="9" strokeWidth="2" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="font-serif text-xl font-light text-white">No journeys match</h3>
+              <p className="mt-2 font-display text-white/50">Try adjusting your filters or search terms</p>
+            </div>
             <button
-              onClick={() => {
-                setState({ q: "", category: ALL, region: ALL, duration: ALL, sort: "title" });
-              }}
+              onClick={handleClearAll}
               className="btn-tertiary"
             >
-              Reset filters
+              Reset all filters
             </button>
           </div>
         ) : (
@@ -353,61 +395,99 @@ function parseDurationNights(duration: string): number {
   return match ? parseInt(match[1], 10) : 0;
 }
 
-interface SelectProps {
-  id: string;
+interface FilterChipProps {
   label: string;
-  value: string;
-  onChange: (v: string) => void;
-  options: string[] | { label: string; value: string }[];
+  isActive: boolean;
+  onClick: () => void;
+  isPrimary?: boolean;
 }
 
-function Select({ id, label, value, onChange, options }: SelectProps) {
+function FilterChip({ label, isActive, onClick, isPrimary = false }: FilterChipProps) {
   return (
-    <div className="space-y-2">
-      <label
-        htmlFor={id}
-        className="block text-xs font-display font-semibold uppercase tracking-wider text-white/70"
-      >
-        {label}
-      </label>
-      <select
-        id={id}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className="w-full rounded-button border border-white/10 bg-forest px-3 py-2 text-sm font-display text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass"
-      >
-        {options.map((opt) => {
-          const label =
-            typeof opt === "string" ? opt : opt.label;
-          const val =
-            typeof opt === "string" ? opt : opt.value;
-          return (
-            <option key={val} value={val}>
-              {label}
-            </option>
-          );
-        })}
-      </select>
-    </div>
+    <button
+      type="button"
+      onClick={onClick}
+      className={`flex-shrink-0 rounded-button px-4 py-2.5 text-xs font-display font-semibold uppercase tracking-wider transition-all duration-300 cursor-pointer relative overflow-hidden ${
+        isActive
+          ? "bg-brass text-white shadow-[0_8px_25px_-5px_rgba(177,138,81,0.4)] scale-102"
+          : "border border-white/10 bg-[#132325] text-white/75 hover:border-brass hover:text-brass hover:bg-[#1a2a2c] hover:shadow-[0_4px_15px_-3px_rgba(177,138,81,0.2)]"
+      }`}
+    >
+      {label}
+      {isActive && !isPrimary && (
+        <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 w-3/4 bg-white" aria-hidden="true" />
+      )}
+    </button>
   );
 }
 
 interface FilterPillProps {
-  children: React.ReactNode;
+  label: string;
   onRemove: () => void;
 }
 
-function FilterPill({ children, onRemove }: FilterPillProps) {
+function FilterPill({ label, onRemove }: FilterPillProps) {
   return (
-    <span className="inline-flex max-w-full items-center gap-1.5 rounded-button border border-white/15 px-3 py-1 text-[11px] font-display font-medium uppercase text-white/75 bg-white/5 transition-colors hover:border-brass hover:text-brass focus-within:ring-1 focus-within:ring-brass">
-      <span className="truncate">{children}</span>
-      <button
-        onClick={onRemove}
-        className="-mr-1 inline-flex h-6 w-6 shrink-0 items-center justify-center text-white/70 hover:text-brass focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass"
-        aria-label={`Remove ${String(children)} filter`}
-      >
-        <span aria-hidden="true">×</span>
-      </button>
-    </span>
+    <button
+      type="button"
+      onClick={onRemove}
+      className="inline-flex items-center gap-1.5 rounded-button border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-display font-medium uppercase tracking-wider text-white/70 hover:border-brass hover:text-brass hover:bg-white/10 transition-all"
+    >
+      {label}
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </svg>
+    </button>
+  );
+}
+
+interface FilterSectionProps {
+  label: string;
+  options: Array<{ value: string; label: string; count?: number }>;
+  value: string;
+  onChange: (value: string) => void;
+}
+
+function FilterSection({ label, options, value, onChange }: FilterSectionProps) {
+  return (
+    <fieldset className="min-w-[200px]">
+      <legend className="mb-3 text-xs font-display font-semibold uppercase tracking-wider text-white/70">
+        {label}
+      </legend>
+      <div className="space-y-2">
+        {options.map((opt) => {
+          const isSelected = value === opt.value;
+          return (
+            <label
+              key={opt.value}
+              className={`flex items-center justify-between rounded-button px-4 py-3 text-sm font-display transition-all duration-300 cursor-pointer ${
+                isSelected
+                  ? "bg-brass/10 border border-brass/30 text-white"
+                  : "border border-white/10 bg-[#132325] text-white/75 hover:border-brass/50 hover:text-white hover:bg-[#1a2a2c]"
+              }`}
+            >
+              <span>{opt.label}</span>
+              {opt.count !== undefined && (
+                <span
+                  className={`ml-3 inline-flex h-5 min-w-[20px] items-center justify-center rounded-full text-xs font-semibold ${
+                    isSelected
+                      ? "bg-brass text-white"
+                      : "bg-white/10 text-white/50"
+                  }`}
+                >
+                  {opt.count}
+                </span>
+              )}
+              {isSelected && (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-brass ml-3 flex-shrink-0">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              )}
+            </label>
+          );
+        })}
+      </div>
+    </fieldset>
   );
 }

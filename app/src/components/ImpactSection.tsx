@@ -25,8 +25,11 @@ export default function ImpactSection() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const ctx = gsap.context(() => {
+      const trigger = sectionRef.current;
+      if (!trigger) return;
+
       // Image 1 shifts up as you scroll down
-      if (img1Ref.current && sectionRef.current) {
+      if (img1Ref.current) {
         gsap.fromTo(
           img1Ref.current,
           { y: 25 },
@@ -34,17 +37,17 @@ export default function ImpactSection() {
             y: -25,
             ease: "none",
             scrollTrigger: {
-              trigger: sectionRef.current,
+              trigger,
               start: "top bottom",
               end: "bottom top",
-              scrub: 1.2,
+              scrub: 0.8,
             },
           }
         );
       }
 
       // Image 2 shifts down as you scroll down (opposing parallax)
-      if (img2Ref.current && sectionRef.current) {
+      if (img2Ref.current) {
         gsap.fromTo(
           img2Ref.current,
           { y: -20 },
@@ -52,17 +55,17 @@ export default function ImpactSection() {
             y: 30,
             ease: "none",
             scrollTrigger: {
-              trigger: sectionRef.current,
+              trigger,
               start: "top bottom",
               end: "bottom top",
-              scrub: 1.2,
+              scrub: 0.8,
             },
           }
         );
       }
 
       // Text reveal
-      if (textRef.current && sectionRef.current) {
+      if (textRef.current) {
         gsap.fromTo(
           textRef.current,
           { y: 35, opacity: 0 },
@@ -72,7 +75,7 @@ export default function ImpactSection() {
             duration: 1,
             ease: "power3.out",
             scrollTrigger: {
-              trigger: sectionRef.current,
+              trigger,
               start: "top 75%",
               once: true,
             },
@@ -85,7 +88,7 @@ export default function ImpactSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="section-darker py-16 md:py-24" id="impact">
+    <section ref={sectionRef} className="section-impact py-16 md:py-24" id="impact">
       <div className="mx-auto max-w-[1400px] px-4 md:px-8">
         <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-14">
           {/* Dual-image with opposing scroll parallax — moved right of the copy on desktop */}

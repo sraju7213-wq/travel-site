@@ -109,7 +109,7 @@ export default function HomeHero() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex min-h-[100dvh] w-full flex-col items-center justify-end overflow-hidden bg-black"
+      className="relative flex min-h-[100dvh] w-full flex-col items-center justify-end overflow-hidden section-hero"
       aria-label="India and Nepal — specialist travel since 1927"
     >
       {/* 5-Second Seamless Non-Repeating Shuffled Video Experience with Right-Side Place Details */}

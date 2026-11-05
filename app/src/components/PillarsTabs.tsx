@@ -56,7 +56,7 @@ export default function PillarsTabs() {
   return (
     <section
       id="why-us"
-      className="section-darker scroll-mt-24 border-y border-white/10 py-14 md:py-20"
+      className="section-pillars scroll-mt-24 border-y border-white/10 py-14 md:py-20"
     >
       <div className="mx-auto max-w-[1400px] px-4 md:px-8">
         <div className="max-w-2xl">

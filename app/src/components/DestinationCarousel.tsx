@@ -108,7 +108,7 @@ export default function DestinationCarousel() {
       ref={sectionRef}
       id="destinations"
       aria-label="Our Luxury Safari Destinations"
-      className="relative overflow-hidden bg-[#a58f79] py-16 md:py-24 select-none transition-colors duration-700"
+      className="relative overflow-hidden section-destinations py-16 md:py-24 select-none transition-colors duration-700"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >

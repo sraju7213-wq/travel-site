@@ -57,7 +57,7 @@ export default function ExperienceCarousel() {
   const duplicatedExperiences = [...EXPERIENCES, ...EXPERIENCES];
 
   return (
-    <section className="section-darker py-16 md:py-24 overflow-hidden relative" id="experiences">
+    <section className="section-experiences py-16 md:py-24 overflow-hidden relative" id="experiences">
       <div className="mx-auto max-w-[1400px] px-4 md:px-8">
         <div className="mx-auto mb-12 max-w-3xl text-center">
           <p className="subtitle-large mb-3 text-brass font-accent">Curated Brochure Expeditions</p>

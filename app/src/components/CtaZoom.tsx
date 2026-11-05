@@ -26,8 +26,11 @@ export default function CtaZoom() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const ctx = gsap.context(() => {
+      const trigger = sectionRef.current;
+      if (!trigger) return;
+
       // 1. Scroll-driven zoom effect on the background image
-      if (imageRef.current && sectionRef.current) {
+      if (imageRef.current) {
         gsap.fromTo(
           imageRef.current,
           { scale: 1.25 },
@@ -35,17 +38,17 @@ export default function CtaZoom() {
             scale: 1.02,
             ease: "none",
             scrollTrigger: {
-              trigger: sectionRef.current,
+              trigger,
               start: "top bottom",
               end: "bottom top",
-              scrub: 1.2,
+              scrub: 0.8,
             },
           }
         );
       }
 
       // 2. Parallax floating effect on the giant watermark monogram
-      if (watermarkRef.current && sectionRef.current) {
+      if (watermarkRef.current) {
         gsap.fromTo(
           watermarkRef.current,
           { scale: 0.9, yPercent: -10, opacity: 0.15 },
@@ -55,17 +58,17 @@ export default function CtaZoom() {
             opacity: 0.28,
             ease: "none",
             scrollTrigger: {
-              trigger: sectionRef.current,
+              trigger,
               start: "top bottom",
               end: "bottom top",
-              scrub: 1,
+              scrub: 0.8,
             },
           }
         );
       }
 
       // 3. Staggered text entrance
-      if (textRef.current && sectionRef.current) {
+      if (textRef.current) {
         const textElements = textRef.current.children;
         gsap.fromTo(
           textElements,
@@ -77,7 +80,7 @@ export default function CtaZoom() {
             duration: 1,
             ease: "power3.out",
             scrollTrigger: {
-              trigger: sectionRef.current,
+              trigger,
               start: "top 70%",
               once: true,
             },
@@ -92,7 +95,7 @@ export default function CtaZoom() {
   return (
     <section
       ref={sectionRef}
-      className="relative isolate flex min-h-[440px] items-center justify-center overflow-hidden bg-charcoal md:min-h-[520px]"
+      className="relative isolate flex min-h-[440px] items-center justify-center overflow-hidden section-cta md:min-h-[520px]"
     >
       {/* Zooming background image wrapper */}
       <div

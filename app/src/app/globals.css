@@ -29,6 +29,17 @@
   --color-wild-cream: #eeebe5;
   --color-wild-brown: #221f20;
 
+  /* Section-specific backgrounds for distinct visual separation */
+  --color-section-hero: #0a0a0a;           /* Hero - deep black */
+  --color-section-discover: #0f1415;       /* Discover - dark teal-black */
+  --color-section-destinations: #1a1612;   /* Destinations - warm dark brown */
+  --color-section-journeys: #14282c;       /* Journeys - dark forest teal */
+  --color-section-experiences: #1d1610;    /* Experiences - deep warm brown */
+  --color-section-pillars: #181412;        /* Pillars - dark warm brown */
+  --color-section-signature: #0c1617;      /* Signature - dark teal (existing) */
+  --color-section-impact: #161c1a;         /* Impact - dark green-teal */
+  --color-section-cta: #11181a;            /* CTA - dark blue-black */
+
   /* Mapped to existing tokens for backward compatibility */
   --color-forest: #123438;
   --color-forest-soft: #1a4a4f;
@@ -121,6 +132,34 @@
   .section-darker {
     @apply bg-[var(--color-wild-darker)] text-white;
   }
+  /* Section-specific backgrounds for 9 distinct landing page sections */
+  .section-hero {
+    @apply bg-[var(--color-section-hero)] text-white;
+  }
+  .section-discover {
+    @apply bg-[var(--color-section-discover)] text-white;
+  }
+  .section-destinations {
+    @apply bg-[var(--color-section-destinations)] text-white;
+  }
+  .section-journeys {
+    @apply bg-[var(--color-section-journeys)] text-white;
+  }
+  .section-experiences {
+    @apply bg-[var(--color-section-experiences)] text-white;
+  }
+  .section-pillars {
+    @apply bg-[var(--color-section-pillars)] text-white;
+  }
+  .section-signature {
+    @apply bg-[var(--color-section-signature)] text-white;
+  }
+  .section-impact {
+    @apply bg-[var(--color-section-impact)] text-white;
+  }
+  .section-cta {
+    @apply bg-[var(--color-section-cta)] text-white;
+  }
   .section-cream {
     @apply bg-[var(--color-wild-cream)] text-[var(--color-charcoal)];
   }
@@ -132,6 +171,22 @@
   .focus-ring {
     @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)] focus-visible:ring-offset-2;
   }
+
+/* GSAP Performance: will-change utilities for animated elements */
+.will-change-transform {
+  will-change: transform;
+}
+.will-change-opacity {
+  will-change: opacity;
+}
+.will-change-transform-opacity {
+  will-change: transform, opacity;
+}
+
+/* Disable will-change after animation completes (used via JS) */
+.will-change-auto {
+  will-change: auto;
+}
   
   .circular-btn {
     @apply relative inline-flex items-center justify-center rounded-full border border-white/20 text-white transition-all duration-300 hover:bg-[var(--color-wild-orange)] hover:border-[var(--color-wild-orange)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)] active:scale-95 cursor-pointer;
@@ -283,6 +338,49 @@
   opacity: 0;
   transform: translateY(6px);
 }
+
+/* Fade in up animation for staggered card entrances */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+/* Slide in from right for mobile filter drawer */
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slideInRight 0.4s ease-out forwards;
+}
+
+/* Staggered animation delays */
+.stagger-1 { animation-delay: 0.05s; }
+.stagger-2 { animation-delay: 0.1s; }
+.stagger-3 { animation-delay: 0.15s; }
+.stagger-4 { animation-delay: 0.2s; }
+.stagger-5 { animation-delay: 0.25s; }
+.stagger-6 { animation-delay: 0.3s; }
+.stagger-7 { animation-delay: 0.35s; }
+.stagger-8 { animation-delay: 0.4s; }
 .menu-crossfade-enter-active {
   opacity: 1;
   transform: translateY(0);
@@ -331,4 +429,88 @@
 
 .animate-shimmer {
   animation: shimmer 1.6s ease-in-out infinite;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-scale-in {
+  animation: scale-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Staggered entrance for grid items */
+.stagger-in > * {
+  opacity: 0;
+  animation: fade-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.stagger-in > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-in > *:nth-child(2) { animation-delay: 60ms; }
+.stagger-in > *:nth-child(3) { animation-delay: 120ms; }
+.stagger-in > *:nth-child(4) { animation-delay: 180ms; }
+.stagger-in > *:nth-child(5) { animation-delay: 240ms; }
+.stagger-in > *:nth-child(6) { animation-delay: 300ms; }
+.stagger-in > *:nth-child(7) { animation-delay: 360ms; }
+.stagger-in > *:nth-child(8) { animation-delay: 420ms; }
+.stagger-in > *:nth-child(9) { animation-delay: 480ms; }
+.stagger-in > *:nth-child(10) { animation-delay: 540ms; }
+.stagger-in > *:nth-child(11) { animation-delay: 600ms; }
+.stagger-in > *:nth-child(12) { animation-delay: 660ms; }
+
+/* Focus visible ring using wild orange */
+.focus-ring-wild {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wild-orange focus-visible:ring-offset-2 focus-visible:ring-offset-wild-black;
+}
+
+/* Glass morphism for menus */
+.glass-menu {
+  @apply backdrop-blur-xl bg-black/80 border border-white/10;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .animate-slide-in-right,
+  .animate-scale-in,
+  .stagger-in > * {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

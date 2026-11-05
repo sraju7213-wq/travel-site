@@ -62,7 +62,7 @@ function StatIcon({ label }: { label: string }) {
  */
 export default function DiscoverSection() {
   return (
-    <section id="discover" className="section-dark relative overflow-hidden py-10 md:py-14 border-b border-white/5">
+    <section id="discover" className="section-discover relative overflow-hidden py-10 md:py-14 border-b border-white/5">
       <div className="relative mx-auto max-w-[1400px] px-4 md:px-8">
         <dl className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
           {STATS.map((stat) => (
