@@ -104,7 +104,7 @@ export default function AboutPage() {
           className="watermark-text pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap font-serif text-[14vw] uppercase leading-none tracking-[0.05em] text-white/[0.03] select-none"
         />
 
-        <div className="relative mx-auto max-w-[1400px] px-4 md:px-8">
+<div className="relative mx-auto max-w-[1100px] px-4 md:px-8">
           {/* Breadcrumb navigation */}
           <nav aria-label="Breadcrumb" className="mb-8 text-xs font-display font-medium uppercase tracking-[0.2em] text-white/60">
             <ol className="flex items-center gap-2">
@@ -194,7 +194,7 @@ export default function AboutPage() {
 
       {/* 2. Key Numbers Ribbon: Clean Contrast Band */}
       <section className="border-y border-white/10 bg-[#101F21] py-14 text-white" aria-label="Key facts about our organisation">
-        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+<div className="mx-auto max-w-[1100px] px-4 md:px-8">
           <dl className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {STATS.map((stat) => (
               <div key={stat.label} className="border-l-2 border-brass pl-5">
@@ -215,7 +215,7 @@ export default function AboutPage() {
 
       {/* 3. The Founders & Visionaries: Editorial Showcase */}
       <section className="bg-[#0C1617] py-20 text-white md:py-28 border-b border-white/10" id="founders">
-        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+<div className="mx-auto max-w-[1100px] px-4 md:px-8">
           <div className="mx-auto max-w-3xl text-center mb-16">
             <p className="subtitle-large mb-4 text-brass">Founders &amp; Visionaries</p>
             <h2 className="text-h2 mb-6 text-white">
@@ -308,7 +308,7 @@ export default function AboutPage() {
 
       {/* 4. Two Extraordinary Realms: India & Nepal Contrast */}
       <section className="section-dark relative overflow-hidden py-20 text-white md:py-28" aria-label="Our destinations: India and Nepal">
-        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+<div className="mx-auto max-w-[1100px] px-4 md:px-8">
           <div className="mx-auto max-w-3xl text-center mb-16">
             <p className="subtitle-large mb-4 text-brass">Two Diverse Lands</p>
             <h2 className="text-h2 mb-6 text-white">
@@ -427,7 +427,7 @@ export default function AboutPage() {
 
       {/* 5. Core Philosophy: Our 4 Pillars */}
       <section className="bg-[#0C1617] py-20 text-white md:py-28 border-y border-white/10" aria-label="Our travel standards and principles">
-        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+<div className="mx-auto max-w-[1100px] px-4 md:px-8">
           <div className="mx-auto max-w-3xl text-center mb-16">
             <p className="subtitle-large mb-4 text-brass">Our Standards</p>
             <h2 className="text-h2 mb-6 text-white">How we travel</h2>
@@ -464,7 +464,7 @@ export default function AboutPage() {
 
       {/* 6. The Enquiry-Led Process: How We Work */}
       <section className="bg-[#101F21] py-20 text-white md:py-28 border-b border-white/10">
-        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+<div className="mx-auto max-w-[1100px] px-4 md:px-8">
           <div className="mx-auto max-w-3xl text-center mb-16">
             <p className="subtitle-large mb-4 text-brass">Personal Service</p>
             <h2 className="text-h2 mb-6 text-white">

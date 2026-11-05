@@ -1,5 +1,13 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { STATS } from "@/data/siteContent";
 
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 function StatIcon({ label }: { label: string }) {
   const common = {
     "aria-hidden": true,
@@ -61,15 +69,91 @@ function StatIcon({ label }: { label: string }) {
  * Serves as the landing anchor for the hero "Discover" action.
  */
 export default function DiscoverSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const ctx = gsap.context(() => {
+      const validCards = cardsRef.current.filter((c): c is HTMLDivElement => Boolean(c));
+      if (validCards.length === 0) return;
+
+      // Animate stat cards sliding up with staggered fade
+      gsap.fromTo(
+        validCards,
+        {
+          opacity: 0,
+          y: 40,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.85,
+          ease: "power3.out",
+          stagger: 0.12,
+          scrollTrigger: {
+            trigger: section,
+            start: "top 85%",
+            once: true,
+          },
+        }
+      );
+
+      // Subtle pop-in on the circular icons
+      const icons = validCards
+        .map((card) => card.querySelector(".stat-icon"))
+        .filter(Boolean);
+
+      if (icons.length > 0) {
+        gsap.fromTo(
+          icons,
+          {
+            scale: 0.7,
+            opacity: 0,
+          },
+          {
+            scale: 1,
+            opacity: 1,
+            duration: 0.8,
+            ease: "back.out(1.6)",
+            stagger: 0.12,
+            scrollTrigger: {
+              trigger: section,
+              start: "top 85%",
+              once: true,
+            },
+          }
+        );
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="discover" className="section-discover relative overflow-hidden py-10 md:py-14 border-b border-white/5">
-      <div className="relative mx-auto max-w-[1400px] px-4 md:px-8">
+    <section
+      ref={sectionRef}
+      id="discover"
+      className="section-discover relative overflow-hidden py-10 md:py-14 border-b border-white/5"
+    >
+<div className="relative mx-auto max-w-[1100px] px-4 md:px-8">
         <dl className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-          {STATS.map((stat) => (
-            <div key={stat.label} className="flex flex-col items-start gap-2.5">
+          {STATS.map((stat, i) => (
+            <div
+              key={stat.label}
+              ref={(el) => {
+                cardsRef.current[i] = el;
+              }}
+              className="stat-card flex flex-col items-start gap-2.5 will-change-transform"
+            >
               <span
                 aria-hidden="true"
-                className="flex h-[46px] w-[46px] items-center justify-center rounded-full border border-white/15 text-brass bg-white/5 transition-all duration-300 hover:border-brass hover:bg-brass hover:text-white hover:scale-105"
+                className="stat-icon flex h-[46px] w-[46px] items-center justify-center rounded-full border border-white/15 text-brass bg-white/5 transition-all duration-300 hover:border-brass hover:bg-brass hover:text-white hover:scale-105"
               >
                 <StatIcon label={stat.label} />
               </span>

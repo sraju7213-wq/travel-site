@@ -2,16 +2,16 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { PILLARS, type Pillar } from "@/data/siteContent";
 
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 
 export default function PillarsTabs() {
   const [active, setActive] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const tabListRef = useRef<HTMLDivElement>(null);
-
   const total = PILLARS.length;
   const currentPillar: Pillar = PILLARS[active];
 
@@ -52,13 +52,47 @@ export default function PillarsTabs() {
     e.preventDefault();
     selectTab(next, true);
   };
+  // Scroll-triggered entrance animation via Intersection Observer
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.matchMedia(REDUCED_MOTION_QUERY).matches) return;
+
+    const section = sectionRef.current;
+    if (!section) return;
+
+    section.style.opacity = "0";
+    section.style.transform = "translateY(20px)";
+    section.style.willChange = "opacity, transform";
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            section.style.transition = "opacity 0.8s ease-out, transform 0.8s ease-out";
+            section.style.opacity = "1";
+            section.style.transform = "translateY(0)";
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        root: null,
+        threshold: 0.1,
+      }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
 
   return (
     <section
+      ref={sectionRef}
       id="why-us"
       className="section-pillars scroll-mt-24 border-y border-white/10 py-14 md:py-20"
     >
-      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+<div className="mx-auto max-w-[1100px] px-4 md:px-8">
         <div className="max-w-2xl">
           <p className="subtitle-large mb-4 font-accent text-brass">Why Travel With Us</p>
           <h2 className="text-h2 font-serif font-light leading-tight text-white">

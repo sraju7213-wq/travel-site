@@ -29,16 +29,16 @@
   --color-wild-cream: #eeebe5;
   --color-wild-brown: #221f20;
 
-  /* Section-specific backgrounds for distinct visual separation */
-  --color-section-hero: #0a0a0a;           /* Hero - deep black */
-  --color-section-discover: #0f1415;       /* Discover - dark teal-black */
-  --color-section-destinations: #1a1612;   /* Destinations - warm dark brown */
-  --color-section-journeys: #14282c;       /* Journeys - dark forest teal */
-  --color-section-experiences: #1d1610;    /* Experiences - deep warm brown */
-  --color-section-pillars: #181412;        /* Pillars - dark warm brown */
-  --color-section-signature: #0c1617;      /* Signature - dark teal (existing) */
-  --color-section-impact: #161c1a;         /* Impact - dark green-teal */
-  --color-section-cta: #11181a;            /* CTA - dark blue-black */
+  /* Section-specific backgrounds - 9 dark muted sage/eucalyptus greens (all dark) */
+  --color-section-hero: #0f1210;           /* Hero - near black sage */
+  --color-section-discover: #131815;       /* Discover - very dark sage */
+  --color-section-destinations: #171e1a;   /* Destinations - dark sage */
+  --color-section-journeys: #1b241f;       /* Journeys - deep sage */
+  --color-section-experiences: #1f2a23;    /* Experiences - medium-dark sage */
+  --color-section-pillars: #233027;        /* Pillars - sage */
+  --color-section-signature: #27362b;      /* Signature - muted sage (brand) */
+  --color-section-impact: #2b3c2f;         /* Impact - slightly lighter sage */
+  --color-section-cta: #2f4233;            /* CTA - dark sage (still dark) */
 
   /* Mapped to existing tokens for backward compatibility */
   --color-forest: #123438;
@@ -204,13 +204,16 @@
     font-family: Georgia, "Times New Roman", Baskerville, ui-serif, system-ui, -apple-system;
     font-weight: 300;
     text-transform: uppercase;
-    letter-spacing: 0.4em;
-    line-height: 1.08;
-    font-size: clamp(2rem, 1.2rem + 5.2vw, 6rem);
+    letter-spacing: 0.2em;
+    line-height: 1.15;
+    font-size: clamp(2rem, 1.4rem + 3vw, 4.75rem);
+    white-space: normal;
   }
   @media (max-width: 639px) {
     .hero-title {
-      letter-spacing: 0.1em;
+      letter-spacing: 0.14em;
+      line-height: 1.18;
+      font-size: clamp(2rem, 1.4rem + 3.8vw, 3rem);
     }
   }
   .text-h1 {

@@ -34,7 +34,7 @@ export default function ExplorePage() {
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.45)_100%)]" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
             <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(177,138,81,0.08)_0%,transparent_50%,rgba(255,110,0,0.05)_100%)]" />
-            <div className="relative z-10 mx-auto max-w-7xl px-4 md:px-8 pt-16 md:pt-20 pb-10">
+<div className="relative z-10 mx-auto max-w-5xl px-4 md:px-8 pt-16 md:pt-20 pb-10">
               <p className="subtitle-large mb-5 text-brass">All journeys</p>
               <h1 className="text-h2 mb-5 text-white">Explore our tours</h1>
               <p className="max-w-2xl font-display text-lg leading-relaxed text-white/90">

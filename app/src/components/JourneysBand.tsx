@@ -89,7 +89,7 @@ export default function JourneysBand() {
       <div aria-hidden="true" className="absolute inset-0 bg-black/45" />
       <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/40" />
 
-      <div className="relative z-10 mx-auto w-full max-w-[1400px] px-4 py-16 md:px-8 md:py-20">
+<div className="relative z-10 mx-auto w-full max-w-[1100px] px-4 py-16 md:px-8 md:py-20">
         <div ref={textRef} className="max-w-2xl">
           <p className="subtitle-large mb-4 text-brass font-accent">Private &amp; Custom Expeditions</p>
           <h2 className="text-h2 mb-5 text-white font-serif font-light leading-tight">

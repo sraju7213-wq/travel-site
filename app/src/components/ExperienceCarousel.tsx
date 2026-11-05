@@ -57,19 +57,7 @@ export default function ExperienceCarousel() {
   const duplicatedExperiences = [...EXPERIENCES, ...EXPERIENCES];
 
   return (
-    <section className="section-experiences py-16 md:py-24 overflow-hidden relative" id="experiences">
-      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-        <div className="mx-auto mb-12 max-w-3xl text-center">
-          <p className="subtitle-large mb-3 text-brass font-accent">Curated Brochure Expeditions</p>
-          <h2 className="text-h2 mb-4 text-white font-serif font-light leading-tight">
-            Iconic Subcontinent Experiences
-          </h2>
-          <p className="font-sans font-light text-base md:text-lg leading-relaxed text-white/75">
-            Himalayan trekking, whitewater rafting, heritage houseboat stays, wildlife safaris and cultural immersions
-            drawn directly from our 1927 heritage archives.
-          </p>
-        </div>
-      </div>
+    <section className="section-experiences py-12 md:py-16 overflow-hidden relative" id="experiences">
 
       {/* Parent container with scroll-container-fix to suppress scrollbars & isolate horizontal overflow */}
       <div className="scroll-container-fix relative w-full overflow-hidden">

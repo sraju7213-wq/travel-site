@@ -89,7 +89,7 @@ export default function ImpactSection() {
 
   return (
     <section ref={sectionRef} className="section-impact py-16 md:py-24" id="impact">
-      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+<div className="mx-auto max-w-[1100px] px-4 md:px-8">
         <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-14">
           {/* Dual-image with opposing scroll parallax — moved right of the copy on desktop */}
           <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:order-2">

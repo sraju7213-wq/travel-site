@@ -108,7 +108,7 @@ export default async function PackagePage({ params }: PackagePageProps) {
           className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/30"
         />
         <div className="relative z-10 w-full px-4 pb-16 pt-32 md:px-8 md:pb-20">
-          <div className="mx-auto max-w-[1400px]">
+<div className="mx-auto max-w-[1100px]">
             <div className="max-w-4xl">
               <span className="mb-4 inline-block font-display text-sm font-semibold uppercase tracking-wider text-brass">
                 {pkg.category}

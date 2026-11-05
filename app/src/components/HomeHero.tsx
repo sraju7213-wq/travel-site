@@ -4,12 +4,12 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { HERO_VIDEOS, HeroVideo } from "@/data/heroVideos";
 import dynamic from "next/dynamic";
 const HeroVideoShuffler = dynamic(() => import("@/components/HeroVideoShuffler"), {
   ssr: false,
   loading: () => null,
 });
-
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
@@ -20,8 +20,14 @@ export default function HomeHero() {
   const kickerRef = useRef<HTMLSpanElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const buttonRef = useRef<HTMLAnchorElement>(null);
+  const geoRef = useRef<HTMLDivElement>(null);
+  const placeRef = useRef<HTMLDivElement>(null);
   const [magneticOffset, setMagneticOffset] = useState({ x: 0, y: 0 });
+  const [currentVideo, setCurrentVideo] = useState<HeroVideo>(HERO_VIDEOS[0]);
 
+  const handleVideoChange = useCallback((v: HeroVideo) => {
+    setCurrentVideo(v);
+  }, []);
   // Magnetic hover effect on the circular Discover button
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
     if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -41,60 +47,50 @@ export default function HomeHero() {
 
   const handleDiscoverClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    const target = document.getElementById("discover") || document.getElementById("heritage-details");
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
+    const discoverSection = document.getElementById("discover");
+    if (discoverSection) {
+      discoverSection.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   // Hero entrance animation & scroll-driven parallax fade
   useEffect(() => {
-    if (typeof window === "undefined") return undefined;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
-
-    const targets = [kickerRef.current, titleRef.current, buttonRef.current].filter(
-      Boolean,
-    ) as HTMLElement[];
-
-    targets.forEach((el) => {
-      el.style.willChange = "opacity, transform";
-    });
-
+    const section = sectionRef.current;
+    if (!section) return;
+    const targets: HTMLElement[] = [];
+    if (kickerRef.current) targets.push(kickerRef.current);
+    if (titleRef.current) targets.push(titleRef.current);
+    if (buttonRef.current) targets.push(buttonRef.current);
+    if (geoRef.current) targets.push(geoRef.current);
+    if (placeRef.current) targets.push(placeRef.current);
     const ctx = gsap.context(() => {
-      // 1. Entrance animation
-      gsap.fromTo(
-        targets,
-        { y: 45, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1.2,
-          ease: "power3.out",
-          stagger: 0.18,
-          onComplete: () => {
-            targets.forEach((el) => {
-              el.style.willChange = "auto";
-            });
-          },
-        },
-      );
+      targets.forEach((el) => {
+        gsap.set(el, { opacity: 0, y: 18, willChange: "transform, opacity" });
+      });
 
-      // 2. Scroll-driven parallax fade-out (Wilderness Destinations style)
-      if (contentRef.current && sectionRef.current) {
-        gsap.to(contentRef.current, {
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top top",
-            end: "bottom 30%",
-            scrub: 0.8,
-          },
-          y: -90,
-          opacity: 0.15,
-          scale: 0.96,
-          ease: "none",
-        });
-      }
-    }, sectionRef);
+      const tl = gsap.timeline({ delay: 0.15 });
+      targets.forEach((el, i) => {
+        tl.to(
+          el,
+          { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" },
+          i * 0.12
+        );
+      });
+
+      // Scroll-driven fade out when leaving hero
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top top",
+        end: "bottom top",
+        scrub: 1,
+        onUpdate: (self) => {
+          const prog = Math.min(Math.max(self.progress, 0), 1);
+          targets.forEach((el) => {
+            gsap.set(el, { opacity: 1 - prog * 1.1, y: prog * -30 });
+          });
+        },
+      });
+    }, section);
 
     return () => {
       targets.forEach((el) => {
@@ -109,19 +105,18 @@ export default function HomeHero() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex min-h-[100dvh] w-full flex-col items-center justify-end overflow-hidden section-hero"
-      aria-label="India and Nepal — specialist travel since 1927"
+      className="relative flex min-h-[100dvh] w-full flex-col items-center justify-center overflow-hidden section-hero"
+      aria-label="KS World Adventure — specialist travel since 1927"
     >
-      {/* 5-Second Seamless Non-Repeating Shuffled Video Experience with Right-Side Place Details */}
-      <HeroVideoShuffler />
-
-      {/* Centered Composition: Title + Discover Button pinned above bottom */}
+      {/* 5-Second Seamless Non-Repeating Shuffled Video Experience */}
+      <HeroVideoShuffler onVideoChange={handleVideoChange} />
+      {/* Centered Composition: Title + Discover Button */}
       <div
         ref={contentRef}
-        className="relative z-20 w-full flex flex-col items-center justify-end text-center px-4 max-w-7xl mx-auto pb-[max(env(safe-area-inset-bottom,0px),1.5rem)] sm:pb-12 md:pb-16"
+        className="relative z-20 w-full flex flex-col items-center justify-center text-center px-4 max-w-7xl mx-auto pt-16 md:pt-20 pb-8 md:pb-12"
       >
         {/* Main Title with 'Welcome to' */}
-        <div className="mb-5 sm:mb-9 text-center">
+        <div className="mb-5 sm:mb-9 text-center w-full">
           <span
             ref={kickerRef}
             className="font-serif italic font-light text-lg sm:text-2xl md:text-3xl text-white/75 tracking-wide mb-1.5 block drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]"
@@ -132,14 +127,34 @@ export default function HomeHero() {
             ref={titleRef}
             className="hero-title text-white font-serif font-light drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]"
           >
-            India &amp; Nepal
+            <span className="block">KS World</span>
+            <span className="block">Adventure</span>
           </h1>
         </div>
 
         {/* Horizontal Line with Centered Discover Button directly beneath title */}
         <div className="w-full flex items-center justify-center px-2 sm:px-8 md:px-16">
           {/* Left Line */}
-          <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-white/20 to-white/40" />
+          <div className="relative h-[1px] flex-1 bg-gradient-to-r from-transparent via-white/20 to-white/40">
+            {/* Geo Location Codes & Information — Text only, below left-side line */}
+            <div
+              ref={geoRef}
+              className="hidden sm:block absolute top-3.5 left-2 md:left-4 text-left pointer-events-none max-w-[280px]"
+            >
+              <div className="flex items-center justify-start gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-brass animate-pulse shrink-0" />
+                <span className="font-accent text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] text-brass-soft drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)]">
+                  Geo Coordinates
+                </span>
+              </div>
+              <p className="mt-1 font-mono text-sm sm:text-base font-light tracking-wide text-white leading-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
+                {currentVideo.coordinates}
+              </p>
+              <p className="mt-0.5 font-sans text-xs sm:text-sm font-light text-white/75 drop-shadow-[0_2px_6px_rgba(0,0,0,0.95)]">
+                {currentVideo.location} &bull; {currentVideo.altitude.split("/")[0].trim()}
+              </p>
+            </div>
+          </div>
 
           {/* Centered Discover Button with magnetic cursor pull & subtle pulse */}
           <div className="relative mx-3 sm:mx-6 shrink-0 flex items-center justify-center">
@@ -166,7 +181,7 @@ export default function HomeHero() {
               aria-label="Discover more — scroll to heritage details"
               className="group flex h-[90px] w-[90px] shrink-0 flex-col items-center justify-center rounded-full border-2 border-white/50 bg-black/45 backdrop-blur-md text-white transition-colors duration-500 ease-out hover:scale-105 hover:border-[var(--color-wild-orange,#ff6e00)] hover:bg-[var(--color-wild-orange,#ff6e00)] hover:shadow-[0_0_35px_rgba(255,110,0,0.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange,#ff6e00)] focus-visible:ring-offset-2 focus-visible:ring-offset-transparent cursor-pointer shadow-[0_8px_24px_rgba(0,0,0,0.6)]"
             >
-              <span className="font-accent text-[0.55rem] sm:text-[0.65rem] md:text-[0.7rem] font-semibold uppercase leading-none tracking-[0.18em] sm:tracking-[0.26em] text-white/90 transition-colors group-hover:text-white">
+              <span className="font-accent text-[0.45rem] sm:text-[0.52rem] md:text-[0.58rem] font-semibold uppercase leading-none tracking-[0.16em] sm:tracking-[0.22em] text-white/90 transition-colors group-hover:text-white">
                 Discover
               </span>
               <svg
@@ -181,9 +196,27 @@ export default function HomeHero() {
               </svg>
             </Link>
           </div>
-
           {/* Right Line */}
-          <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent via-white/20 to-white/40" />
+          <div className="relative h-[1px] flex-1 bg-gradient-to-l from-transparent via-white/20 to-white/40">
+            {/* Location & Experience Info — Text only, below right-side line */}
+            <div
+              ref={placeRef}
+              className="hidden sm:block absolute top-3.5 right-2 md:right-4 text-right pointer-events-none max-w-[280px]"
+            >
+              <div className="flex items-center justify-end gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-brass animate-pulse shrink-0" />
+                <span className="font-accent text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] text-brass-soft drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)]">
+                  {currentVideo.region}
+                </span>
+              </div>
+              <h2 className="mt-1 font-serif text-sm sm:text-base font-light tracking-wide text-white leading-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
+                {currentVideo.title}
+              </h2>
+              <p className="mt-0.5 font-sans text-xs sm:text-sm font-light text-white/75 drop-shadow-[0_2px_6px_rgba(0,0,0,0.95)]">
+                {currentVideo.location}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

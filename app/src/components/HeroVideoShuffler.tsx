@@ -7,8 +7,11 @@ import { HERO_VIDEOS, HeroVideo, generateShuffledPlaylist } from "@/data/heroVid
 const ROTATION_SECONDS = 5;
 const TICK_INTERVAL_MS = 50; // smooth 20fps progress update
 const TOTAL_TICKS = (ROTATION_SECONDS * 1000) / TICK_INTERVAL_MS;
+interface HeroVideoShufflerProps {
+  onVideoChange?: (video: HeroVideo) => void;
+}
 
-export default function HeroVideoShuffler() {
+export default function HeroVideoShuffler({ onVideoChange }: HeroVideoShufflerProps = {}) {
   const isMounted = useSyncExternalStore(
     () => () => {},
     () => true,
@@ -36,114 +39,51 @@ export default function HeroVideoShuffler() {
 
   // Initialize diverse non-repeating shuffled playlist on client mount
   useEffect(() => {
-    let lastSeenId: string | null = null;
-    try {
-      lastSeenId = sessionStorage.getItem("last_hero_video_id");
-    } catch {
-      // safe fallback if storage unavailable
-    }
-
-    const shuffled = generateShuffledPlaylist(HERO_VIDEOS, lastSeenId || undefined);
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+    const shuffled = generateShuffledPlaylist();
     setPlaylist(shuffled);
     setCurrentIndex(0);
-    setActiveLayer("A");
-    setVideoSrcA(shuffled[0].videoUrl);
-    setVideoSrcB(shuffled.length > 1 ? shuffled[1].videoUrl : shuffled[0].videoUrl);
-
-    // Ensure audio is muted to comply with browser autoplay policies
-    if (videoRefA.current) {
-      videoRefA.current.muted = true;
-      videoRefA.current.defaultMuted = true;
-      videoRefA.current.playsInline = true;
-      videoRefA.current.play().catch(() => {});
-    }
-    if (videoRefB.current) {
-      videoRefB.current.muted = true;
-      videoRefB.current.defaultMuted = true;
-      videoRefB.current.playsInline = true;
-    }
-
-    try {
-      sessionStorage.setItem("last_hero_video_id", shuffled[0].id);
-    } catch {
-      // ignore
-    }
+    setVideoSrcA(shuffled[0]?.videoUrl || "");
+    setVideoSrcB(shuffled.length > 1 ? shuffled[1].videoUrl : shuffled[0]?.videoUrl || "");
   }, []);
 
   const currentVideo = playlist[currentIndex] || HERO_VIDEOS[0];
+  useEffect(() => {
+    onVideoChange?.(currentVideo);
+  }, [currentVideo, onVideoChange]);
+
 
   // Helper to switch to target index with smooth dual-buffer crossfade
   const goToIndex = useCallback(
     (targetIndex: number) => {
       if (isTransitioningRef.current) return;
+      const clamped = targetIndex >= playlist.length ? 0 : targetIndex;
+      if (clamped === currentIndex) return;
+
       isTransitioningRef.current = true;
+      const nextLayer = activeLayer === "A" ? "B" : "A";
+      const nextSrc = playlist[clamped]?.videoUrl || HERO_VIDEOS[0].videoUrl;
 
-      let nextList = playlist;
-      let finalIndex = targetIndex;
-
-      // When reaching the end of the 23-item cycle, generate a NEW diverse cycle
-      // guaranteed not to repeat the previous cycle's final video place.
-      if (targetIndex >= playlist.length) {
-        const lastId = playlist[playlist.length - 1]?.id;
-        nextList = generateShuffledPlaylist(HERO_VIDEOS, lastId);
-        setPlaylist(nextList);
-        finalIndex = 0;
-      } else if (targetIndex < 0) {
-        finalIndex = playlist.length - 1;
-      }
-
-      const subsequentIndex = (finalIndex + 1) % nextList.length;
-      const subsequentVideo = nextList[subsequentIndex] || HERO_VIDEOS[0];
-
-      if (activeLayer === "A") {
-        // Switch to Layer B
-        if (videoRefB.current) {
-          videoRefB.current.muted = true;
-          videoRefB.current.defaultMuted = true;
-          videoRefB.current.currentTime = 0;
-          videoRefB.current.play().catch(() => {});
-        }
-        setActiveLayer("B");
-
-        // After crossfade completes (1000ms), pause outgoing A and pre-arm it with subsequent video
-        setTimeout(() => {
-          if (videoRefA.current) {
-            videoRefA.current.pause();
-          }
-          setVideoSrcA(subsequentVideo.videoUrl);
-          isTransitioningRef.current = false;
-        }, 1100);
+      if (nextLayer === "A") {
+        setVideoSrcA(nextSrc);
       } else {
-        // Switch to Layer A
-        if (videoRefA.current) {
-          videoRefA.current.muted = true;
-          videoRefA.current.defaultMuted = true;
-          videoRefA.current.currentTime = 0;
-          videoRefA.current.play().catch(() => {});
-        }
-        setActiveLayer("A");
-
-        // After crossfade completes (1000ms), pause outgoing B and pre-arm it with subsequent video
-        setTimeout(() => {
-          if (videoRefB.current) {
-            videoRefB.current.pause();
-          }
-          setVideoSrcB(subsequentVideo.videoUrl);
-          isTransitioningRef.current = false;
-        }, 1100);
+        setVideoSrcB(nextSrc);
       }
 
-      setCurrentIndex(finalIndex);
-      progressTickRef.current = 0;
+      setActiveLayer(nextLayer);
+      setCurrentIndex(clamped);
+      setIsVideoPlaying(false);
 
-      try {
-        sessionStorage.setItem("last_hero_video_id", nextList[finalIndex].id);
-      } catch {
-        // ignore
+      const nextVideoEl = nextLayer === "A" ? videoRefA.current : videoRefB.current;
+      const onPlayingHandler = () => {
+        setIsVideoPlaying(true);
+        isTransitioningRef.current = false;
+        nextVideoEl?.removeEventListener("playing", onPlayingHandler);
+      };
+      if (nextVideoEl) {
+        nextVideoEl.addEventListener("playing", onPlayingHandler);
       }
     },
-    [playlist, activeLayer]
+    [playlist, currentIndex, activeLayer]
   );
 
   const handleNext = useCallback(() => {
@@ -153,10 +93,9 @@ export default function HeroVideoShuffler() {
   // Main 5-second rotation ticker
   useEffect(() => {
     if (!isMounted) return;
-
+    progressTickRef.current = 0;
     const timer = setInterval(() => {
       progressTickRef.current += 1;
-
       if (progressTickRef.current >= TOTAL_TICKS) {
         progressTickRef.current = 0;
         handleNext();
@@ -230,23 +169,6 @@ export default function HeroVideoShuffler() {
         className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-black/75 via-black/20 to-black/60"
       />
 
-      {/* Place Details Card — minimal, top-right, below fixed header */}
-      <div className="hidden sm:block pointer-events-none absolute top-[76px] sm:top-[92px] right-3 sm:right-8 md:right-12 z-30 max-w-[240px]">
-        <div className="pointer-events-auto rounded-lg border border-white/15 bg-black/25 p-3 backdrop-blur-sm shadow-[0_2px_12px_rgba(0,0,0,0.45)] text-left transition-all duration-300">
-          <div className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-brass animate-pulse shrink-0" />
-            <span className="font-accent text-[9px] sm:text-[10px] font-semibold uppercase tracking-[0.2em] text-brass-soft">
-              {currentVideo.region}
-            </span>
-          </div>
-          <h2 className="mt-1 font-serif text-[10px] sm:text-[12px] font-light tracking-wide text-white leading-tight drop-shadow-md">
-            {currentVideo.title}
-          </h2>
-          <p className="mt-0.5 font-sans text-[9px] sm:text-[11px] font-light text-white/70 drop-shadow">
-            {currentVideo.location}
-          </p>
-        </div>
-      </div>
     </div>
   );
 }

@@ -36,7 +36,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           <section className="relative my-6 h-[360px] overflow-hidden rounded-[1.25rem] shadow-2xl md:my-8 md:h-[440px] border border-white/5">
             <div className="absolute inset-0 bg-gradient-to-br from-[#1a2a2c] via-[#132325] to-[#0C1617]" />
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(177,138,81,0.15)_0%,transparent_70%)]" />
-            <div className="relative z-10 mx-auto max-w-7xl px-4 md:px-8 pt-12 md:pt-16 pb-8">
+<div className="relative z-10 mx-auto max-w-5xl px-4 md:px-8 pt-12 md:pt-16 pb-8">
               {/* Breadcrumb */}
               <nav className="mb-6 flex items-center gap-2 text-xs font-display" aria-label="Breadcrumb">
                 <Link
