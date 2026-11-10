@@ -1,16 +1,22 @@
-import Link from "next/link";
-import Image from "next/image";
-import { getServiceBySlug } from "@/data/catalogue";
-import PageShell from "@/components/PageShell";
-import Container from "@/components/Container";
 import { notFound } from "next/navigation";
+import CtaZoom from "@/components/CtaZoom";
+import PageShell from "@/components/PageShell";
+import PillarsTabs from "@/components/PillarsTabs";
+import HouseboatCollection from "@/components/houseboats/HouseboatCollection";
+import HouseboatDiscover from "@/components/houseboats/HouseboatDiscover";
+import HouseboatHero from "@/components/houseboats/HouseboatHero";
+import HouseboatJourneys from "@/components/houseboats/HouseboatJourneys";
+import HouseboatNotes from "@/components/houseboats/HouseboatNotes";
+import HouseboatStay from "@/components/houseboats/HouseboatStay";
 import { BRAND } from "@/data/brandConfig";
+import { getAllPackages, getServiceBySlug } from "@/data/catalogue";
+import { HOUSEBOAT_PILLARS } from "@/data/houseboats";
 
-interface HouseboatPageProps {
+interface HouseboatsPageProps {
   params: Promise<Record<string, never>>;
 }
 
-export async function generateMetadata({ params }: HouseboatPageProps) {
+export async function generateMetadata({ params }: HouseboatsPageProps) {
   await params;
   const svc = getServiceBySlug("kashmir-houseboat-booking");
   if (!svc) {
@@ -18,105 +24,74 @@ export async function generateMetadata({ params }: HouseboatPageProps) {
   }
   return {
     title: `${svc.title} — ${BRAND.name}`,
-    description: svc.summary,
+    description:
+      "Booking access to carved cedar houseboats on Dal and Nagin Lake in Srinagar — two to seven bedrooms, private ensuite facilities, veranda and sundeck, deluxe and A-class options.",
+    openGraph: {
+      title: "Houseboats on Dal Lake, Srinagar",
+      description: svc.summary,
+      type: "website",
+    },
   };
 }
 
-export default async function HouseboatsPage({ params }: HouseboatPageProps) {
+export default async function HouseboatsPage({ params }: HouseboatsPageProps) {
   await params;
   const svc = getServiceBySlug("kashmir-houseboat-booking");
   if (!svc) {
     notFound();
   }
 
+  // Kashmir routes that a houseboat stay can be stitched onto.
+  const kashmirPackages = getAllPackages().filter((pkg) => pkg.region.includes("Kashmir"));
+  const preferredOrder = ["kashmir-package-7-day", "kashmir-package-4-day", "kashmir-mini-adventure"];
+  const kashmirHighlights = [
+    ...preferredOrder
+      .map((id) => kashmirPackages.find((pkg) => pkg.id === id))
+      .filter((pkg): pkg is NonNullable<typeof pkg> => Boolean(pkg)),
+    ...kashmirPackages.filter((pkg) => !preferredOrder.includes(pkg.id)),
+  ].slice(0, 3);
+
   return (
-    <PageShell>
-      <Container>
-        <nav
-          className="mb-6 text-xs font-display font-medium uppercase tracking-wider text-charcoal-soft"
-          aria-label="Breadcrumb"
-        >
-          <ol className="flex flex-wrap gap-2 list-none">
-            <li>
-              <Link href="/" className="transition-colors hover:text-brass">
-                Home
-              </Link>
-            </li>
-            <li aria-hidden="true">&rsaquo;</li>
-            <li className="text-white font-medium">{svc.title}</li>
-          </ol>
-        </nav>
+    <PageShell mainClassName="">
+      <HouseboatHero />
 
-        <section className="py-10 md:py-14">
-          <div className="relative aspect-[16/9] overflow-hidden rounded-[1.25rem] border border-border shadow-2xl bg-forest">
-            <Image
-              src="/images/services/kashmir-houseboat.jpg"
-              alt="Luxurious traditional Kashmir houseboat on Dal Lake against the Himalayan mountains"
-              fill
-              sizes="(min-width: 1280px) 1280px, 100vw"
-              className="object-cover object-center"
-              priority
-            />
-            <div aria-hidden="true" className="absolute inset-0 bg-black/25" />
-          </div>
+      <HouseboatDiscover />
 
-          <div className="mt-12 grid gap-12 md:grid-cols-2">
-            <div>
-              <p className="subtitle-large mb-4 text-brass">Booking service</p>
-              <h1 className="text-h3 mb-6 uppercase text-white">{svc.title}</h1>
-              <p className="mb-10 font-display text-lg leading-relaxed text-white/75">
-                {svc.summary}
-              </p>
+      <HouseboatCollection />
 
-              <h2 className="text-h4 mb-5 font-serif font-bold text-white">
-                What the brochure describes
-              </h2>
-              <ul className="mb-10 space-y-3 font-display leading-relaxed text-white/75">
-                {svc.features.map((f) => (
-                  <li key={f} className="flex gap-3">
-                    <span aria-hidden="true" className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brass" />
-                    <span>{f}</span>
-                  </li>
-                ))}
-              </ul>
+      <HouseboatJourneys packages={kashmirHighlights} />
 
-              <Link href="/enquiry" className="btn-ghost-dark">
-                Enquire about houseboats <span aria-hidden="true">→</span>
-              </Link>
-            </div>
+      <PillarsTabs
+        pillars={HOUSEBOAT_PILLARS}
+        id="houseboat-details"
+        eyebrow="Inside the stay"
+        heading={
+          <>
+            Cedar, water <span className="text-white/60">and the craft around it</span>
+          </>
+        }
+        intro="Five angles on a houseboat stay, each taken from the printed record rather than from us."
+        tabListLabel="Houseboat stay details"
+      />
 
-            <div className="space-y-6">
-              <div className="rounded-[1.25rem] border border-white/10 bg-[#132325] p-8 shadow-xl transition-all duration-300 hover:border-brass/40">
-                <h2 className="mb-4 font-serif text-xl font-bold text-white">
-                  Confirm before you book
-                </h2>
-                <p className="font-display leading-relaxed text-white/75">
-                  Houseboat inventory, classification, prices, terms, cancellation policy, contact
-                  details and current availability must be confirmed with the operator before
-                  booking. Enquire for current options.
-                </p>
-                <p className="mt-4 font-display leading-relaxed text-white/70">
-                  This page describes the booking service only. It is not a numbered tour package.
-                </p>
-              </div>
+      <HouseboatStay flags={svc.content_flags} />
 
-              <div className="rounded-[1rem] border border-white/10 bg-forest p-8 shadow-xl">
-                <h2 className="mb-4 font-serif text-xl font-bold text-white">
-                  Alongside the houseboats
-                </h2>
-                <p className="font-display leading-relaxed text-white/80">
-                  The brochure also describes wood carving, carpet making and papier-mâché making,
-                  and trips to the mountain resorts of Gulmarg and Pahalgam. These are arranged
-                  separately from the houseboat stay — mention them in your enquiry.
-                </p>
-                <Link href="/explore" className="btn-tertiary mt-6">
-                  Browse related journeys <span aria-hidden="true">→</span>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-      </Container>
+      <HouseboatNotes />
+
+      <CtaZoom
+        image="/images/services/houseboats.jpg"
+        imageAlt="A shikara crossing Dal Lake in Srinagar towards the carved houseboats moored along the far shore"
+        eyebrow="Plan your stay"
+        title={
+          <>
+            Ready to take
+            <br className="hidden sm:block" /> to the water?
+          </>
+        }
+        body="Tell us your dates, your party and how you would like to spend the nights on the lake. We’ll confirm what is actually available."
+        ctaLabel="Enquire now"
+        ctaHref="/enquiry?service=houseboats"
+      />
     </PageShell>
   );
 }

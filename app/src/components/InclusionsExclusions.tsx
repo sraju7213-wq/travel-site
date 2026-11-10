@@ -1,79 +1,107 @@
-import React from "react";
+"use client";
+
+import EnquireCta from "@/components/package/EnquireCta";
 
 interface InclusionsExclusionsProps {
   inclusions?: string[];
   exclusions?: string[];
+  brochureCode?: string;
+  sourcePage?: number;
 }
+
+const DEFAULT_INCLUSIONS = [
+  "Accommodation as specified in the brochure itinerary, on a twin-share basis unless confirmed otherwise.",
+  "All scheduled private transfers, inter-city transport and airport pickups.",
+  "English-speaking local guides for the sightseeing listed in the itinerary.",
+  "Monument and museum entries named in the brochure programme.",
+];
+
+const DEFAULT_EXCLUSIONS = [
+  "International long-haul airfares to the start and from the end point.",
+  "Personal travel, medical and evacuation insurance.",
+  "Visa and entry fees, unless the brochure programme states these are included.",
+  "Gratuities and items of a personal nature.",
+];
 
 export default function InclusionsExclusions({
   inclusions = [],
   exclusions = [],
+  brochureCode,
+  sourcePage,
 }: InclusionsExclusionsProps) {
+  const includedList = inclusions.length > 0 ? inclusions : DEFAULT_INCLUSIONS;
+  const excludedList = exclusions.length > 0 ? exclusions : DEFAULT_EXCLUSIONS;
+
   return (
-    <section className="border-t border-white/10 bg-[#0C1617] py-16 md:py-24" id="inclusions">
-      <div className="mx-auto max-w-7xl px-4 md:px-8">
-        <div className="mb-10 max-w-2xl">
-          <p className="subtitle-large mb-2 text-brass">Package Logistics</p>
-          <h2 className="text-h3 font-serif text-white">What&rsquo;s Included &amp; Excluded</h2>
-          <p className="font-display text-sm text-white/70 mt-1">
-            Drawn specifically for this journey from the brochure catalogue.
-          </p>
+    <div>
+      <div className="border-b border-white/10 pb-4">
+        <p className="font-display text-[11px] font-semibold uppercase tracking-[0.2em] text-brass">
+          Package Logistics
+        </p>
+        <h2 className="mt-1 font-serif text-xl font-bold text-white">
+          Transparent Inclusions &amp; Exclusions
+        </h2>
+      </div>
+
+      <div className="mt-4 grid gap-4 md:grid-cols-2">
+        {/* Included */}
+        <div className="rounded-xl border border-emerald-500/25 bg-emerald-950/20 p-5">
+          <div className="mb-4 flex items-center gap-2 border-b border-emerald-500/20 pb-3 font-display text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-300">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+              <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            Included in Expedition
+          </div>
+          <ul className="space-y-2.5 font-display text-sm leading-relaxed text-white/75">
+            {includedList.map((item) => (
+              <li key={item} className="flex items-start gap-2">
+                <span aria-hidden="true" className="mt-0.5 shrink-0 font-bold text-emerald-400">
+                  ✓
+                </span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2">
-          {/* Inclusions Card */}
-          <div className="rounded-[1.25rem] border border-white/10 bg-[#132325] p-7 md:p-8 shadow-xl">
-            <div className="flex items-center gap-3 mb-6 pb-4 border-b border-white/10">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-forest text-brass text-sm font-bold shadow-sm">
-                ✓
-              </span>
-              <h3 className="text-xs font-display font-semibold uppercase tracking-[0.2em] text-white">
-                What Is Included
-              </h3>
-            </div>
-            {inclusions.length > 0 ? (
-              <ul className="space-y-3 font-display text-sm leading-relaxed text-white/75">
-                {inclusions.map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <span className="text-brass font-bold shrink-0 mt-0.5">✓</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="font-display text-sm leading-relaxed text-white/70">
-                Twin-share accommodation, transfers and scheduled sightseeing as specified in the brochure. Direct enquiry confirms individual inclusions.
-              </p>
-            )}
+        {/* Excluded */}
+        <div className="rounded-xl border border-rose-500/25 bg-rose-950/20 p-5">
+          <div className="mb-4 flex items-center gap-2 border-b border-rose-500/20 pb-3 font-display text-[11px] font-semibold uppercase tracking-[0.16em] text-rose-300">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+              <path d="M6 18L18 6M6 6l12 12" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            Excluded / Optional
           </div>
-
-          {/* Exclusions Card */}
-          <div className="rounded-[1.25rem] border border-white/10 bg-[#132325] p-7 md:p-8 shadow-xl">
-            <div className="flex items-center gap-3 mb-6 pb-4 border-b border-white/10">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/5 text-white/70 text-sm font-bold border border-white/10">
-                ✕
-              </span>
-              <h3 className="text-xs font-display font-semibold uppercase tracking-[0.2em] text-white/80">
-                What Is Excluded
-              </h3>
-            </div>
-            {exclusions.length > 0 ? (
-              <ul className="space-y-3 font-display text-sm leading-relaxed text-white/75">
-                {exclusions.map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <span className="text-brass-ink font-bold shrink-0 mt-0.5">&bull;</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="font-display text-sm leading-relaxed text-white/70">
-                International flights, personal travel insurance, visa fees and items of a personal nature unless specifically noted.
-              </p>
-            )}
-          </div>
+          <ul className="space-y-2.5 font-display text-sm leading-relaxed text-white/75">
+            {excludedList.map((item) => (
+              <li key={item} className="flex items-start gap-2">
+                <span aria-hidden="true" className="mt-0.5 shrink-0 font-bold text-rose-400">
+                  ✕
+                </span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
-    </section>
+
+      <div className="mt-4 flex flex-col items-start justify-between gap-3 rounded-lg border border-white/10 bg-white/[0.02] px-4 py-3.5 sm:flex-row sm:items-center">
+        <p className="font-display text-xs text-white/50">
+          {brochureCode && (
+            <>
+              Brochure Reference: {brochureCode}
+              {sourcePage ? ` · Page ${sourcePage}` : ""} •{" "}
+            </>
+          )}
+          Tailor-made customisations are available on request.
+        </p>
+        <EnquireCta
+          label="Request Custom Modifications"
+          message="Please contact me about customising this journey."
+          variant="ghost"
+          className="px-0 py-1"
+        />
+      </div>
+    </div>
   );
 }

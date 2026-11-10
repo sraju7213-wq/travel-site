@@ -1,16 +1,19 @@
 import PackageCard from "./PackageCard";
+import CardGrid from "@/components/ui/CardGrid";
 import type { PackageViewModel } from "@/types/travel";
 
 interface PackageGridProps {
   packages: PackageViewModel[];
   heading?: string;
   className?: string;
+  compact?: boolean;
 }
 
 export default function PackageGrid({
   packages,
   heading,
   className,
+  compact = false,
 }: PackageGridProps) {
   if (!packages || packages.length === 0) {
     return (
@@ -36,13 +39,11 @@ export default function PackageGrid({
   return (
     <section className={className ?? "my-12"}>
       {heading && <h2 className="text-h3 font-serif font-bold text-white mb-8">{heading}</h2>}
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-10 xl:gap-x-8 xl:gap-y-12">
-        {packages.map((pkg, index) => (
-          <div key={pkg.id} className="animate-fade-in-up" style={{ animationDelay: `${Math.min(index * 0.05, 0.4)}s` }}>
-            <PackageCard pkg={pkg} />
-          </div>
+      <CardGrid className={`grid grid-cols-1 gap-x-6 ${compact ? "gap-y-8 sm:grid-cols-2 lg:grid-cols-3" : "gap-y-10 sm:grid-cols-2 xl:grid-cols-3 xl:gap-x-8 xl:gap-y-12"}`}>
+        {packages.map((pkg) => (
+          <PackageCard key={pkg.id} pkg={pkg} compact={compact} />
         ))}
-      </div>
+      </CardGrid>
     </section>
   );
 }

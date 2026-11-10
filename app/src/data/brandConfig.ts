@@ -33,11 +33,69 @@ export const BRAND = {
   compositeTitle: "KS World Adventure — India Nepal Travel Organisation",
 
   /**
-   * Legal entity name placeholder (pending site owner confirmation).
+   * Published Booking Bureau and corporate details from Preview Brouchure.pdf (page 10).
    */
-  legalEntityPlaceholder:
-    "[Owner to confirm: Registered corporate entity name and jurisdiction]",
-
+  bookingOffice: {
+    name: "Asian Bazaar / India Nepal Travel Centre",
+    legalName: "Asian Bazaar",
+    address: "68 Beauchamp St., Wiley Park, NSW 2195, Australia",
+    phoneMobile: "0409 155 229",
+    phoneLandline: "02 9579 0044",
+    email: "indianepaltravel@yahoo.com.au",
+    altEmail: "asianbazaar@live.com.au",
+    websites: [
+      "www.indianepaltravel.com",
+      "www.asianbazaar.org",
+      "www.exportofindia.com",
+    ],
+    deposit: "$200 per person (non-refundable deposit)",
+    amendmentFee: "$25 per amendment",
+  },
+  /**
+   * Official Grade and Activity Level definitions from Preview Brouchure.pdf (page 2).
+   */
+  grades: [
+    {
+      grade: "Easy",
+      description: "Suitable for beginners. Relaxed walks on good paths, 6–12 km per day, up to 2,500 m altitude.",
+      altitude: "Up to 2,500m",
+      dailyDistance: "6–12 km/day",
+    },
+    {
+      grade: "Moderate",
+      description: "Requires reasonable fitness. Some steep ascents and descents, 6–12 km per day, up to 4,200 m altitude.",
+      altitude: "Up to 4,200m",
+      dailyDistance: "6–12 km/day",
+    },
+    {
+      grade: "Demanding",
+      description: "For experienced hill-walkers. Challenging terrain and longer days, 10–15 km per day, up to 4,500 m altitude.",
+      altitude: "Up to 4,500m",
+      dailyDistance: "10–15 km/day",
+    },
+    {
+      grade: "Strenuous",
+      description: "For very fit, experienced trekkers. Difficult terrain, high passes and possible rope use, 10–15 km per day, up to 5,500 m altitude.",
+      altitude: "Up to 5,500m",
+      dailyDistance: "10–15 km/day",
+    },
+  ],
+  /**
+   * Published booking conditions and cancellation schedule from Preview Brouchure.pdf (page 10).
+   */
+  bookingConditions: {
+    deposit: "$200 non-refundable deposit upon booking",
+    finalPayment: "Due no later than 8 weeks prior to departure",
+    cancellationSchedule: [
+      { window: "More than 8 weeks prior", penalty: "30% of holiday price deposit" },
+      { window: "Less than 8 weeks prior", penalty: "45% of holiday price deposit" },
+      { window: "Less than 4 weeks prior", penalty: "60% of holiday price deposit" },
+      { window: "Less than 7 days prior", penalty: "No refund (100% forfeiture)" },
+    ],
+    amendments: "$25 administration charge per amendment",
+    surchargesPolicy: "Surcharges kept to a minimum; fluctuations over 10% absorbed or refundable if cancelled within 7 days",
+    insuranceRequirement: "Comprehensive travel and medical insurance is a mandatory condition of booking",
+  },
   /**
    * Tagline derived from brochure founding heritage.
    */

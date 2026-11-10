@@ -28,6 +28,8 @@ next-env.d.ts
 .muxel/
 artifacts/
 
+.claude/
+.delta/
 # Large media (use external storage/CDN)
 *.pdf
 *.psd

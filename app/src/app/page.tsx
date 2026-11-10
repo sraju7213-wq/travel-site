@@ -51,29 +51,29 @@ export default function Home() {
 
       {/* Signature journeys */}
       <ScrollReveal start="top 90%" once>
-        <section className="section-signature border-t border-white/5 py-14 text-white md:py-20">
-          <Container>
-            <div className="mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
-              <div className="max-w-2xl">
-                <p className="subtitle-large mb-3 text-brass font-accent">Signature Journeys</p>
-                <h2 className="text-h2 text-white font-serif font-light leading-tight">
-                  Tailor-Made Tours &amp; Small-Group Expeditions
+        <section className="section-signature relative overflow-hidden border-t border-white/5 py-10 text-white md:py-12">
+          <Container className="max-w-7xl">
+            <div className="mb-6 flex flex-col items-start justify-between gap-4 border-b border-white/10 pb-5 sm:flex-row sm:items-end">
+              <div>
+                <p className="mb-2 flex items-center gap-3 font-sans text-[10px] font-medium uppercase tracking-[0.28em] text-[var(--color-wild-orange)]"><span className="h-px w-8 bg-[var(--color-wild-orange)]" />Journeys, thoughtfully chosen</p>
+                <h2 className="max-w-3xl font-serif text-3xl font-light leading-tight tracking-normal text-white md:text-4xl">
+                  Find your way through India &amp; Nepal
                 </h2>
               </div>
               <Link
                 href="/explore"
-                className="group inline-flex items-center gap-2 text-[11px] font-accent uppercase tracking-[0.18em] text-white/60 transition-colors hover:text-white"
+                className="group inline-flex shrink-0 items-center gap-3 border-b border-white/30 pb-2 text-[10px] font-sans uppercase tracking-[0.18em] text-white/65 transition-colors hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)]"
               >
                 View all {allPackages.length} journeys
                 <span
                   aria-hidden="true"
-                  className="transition-transform duration-300 group-hover:translate-x-1"
+                  className="text-base transition-transform duration-300 group-hover:translate-x-1"
                 >
                   →
                 </span>
               </Link>
             </div>
-            <PackageGrid packages={featuredPackages} className="my-0" />
+            <PackageGrid packages={featuredPackages.slice(0, 3)} className="my-0" compact />
           </Container>
         </section>
       </ScrollReveal>

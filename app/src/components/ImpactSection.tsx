@@ -88,56 +88,58 @@ export default function ImpactSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="section-impact py-16 md:py-24" id="impact">
-<div className="mx-auto max-w-[1100px] px-4 md:px-8">
-        <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-14">
-          {/* Dual-image with opposing scroll parallax — moved right of the copy on desktop */}
-          <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:order-2">
+    <section ref={sectionRef} className="section-impact relative overflow-hidden py-20 md:py-28" id="impact">
+      <div aria-hidden="true" className="pointer-events-none absolute -right-36 top-0 h-[34rem] w-[34rem] rounded-full border border-white/[0.06]" />
+      <div className="mx-auto max-w-[1240px] px-5 md:px-10">
+        <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-20">
+          <div className="relative grid grid-cols-2 items-start gap-4 sm:gap-6 lg:order-2">
             <div
               ref={img1Ref}
-              className="relative aspect-[4/5] max-h-[360px] overflow-hidden rounded-[1.25rem] border border-white/10 bg-charcoal shadow-2xl transition-transform duration-500 hover:scale-[1.03] will-change-transform"
+              className="group relative mt-10 aspect-[4/5] overflow-hidden bg-charcoal shadow-2xl sm:mt-16"
             >
               <Image
                 src="/images/destinations/jodhpur-fort.jpg"
                 alt="Jodhpur blue city and Mehrangarh Fort"
                 fill
                 sizes="(min-width: 1024px) 22vw, 45vw"
-                className="object-cover"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
+              <span className="absolute bottom-4 left-4 bg-black/45 px-3 py-2 text-[10px] uppercase tracking-[0.22em] text-white backdrop-blur-sm">Rajasthan · India</span>
             </div>
             <div
               ref={img2Ref}
-              className="relative mt-8 aspect-[4/5] max-h-[360px] overflow-hidden rounded-[1.25rem] border border-white/10 bg-charcoal shadow-2xl transition-transform duration-500 hover:scale-[1.03] will-change-transform"
+              className="group relative aspect-[4/5] overflow-hidden bg-charcoal shadow-2xl"
             >
               <Image
                 src="/images/destinations/nepal-collage.jpg"
                 alt="A montage of Nepalese temples, prayer flags and mountain landscapes"
                 fill
                 sizes="(min-width: 1024px) 22vw, 45vw"
-                className="object-cover"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
+              <span className="absolute bottom-4 left-4 bg-black/45 px-3 py-2 text-[10px] uppercase tracking-[0.22em] text-white backdrop-blur-sm">Nepal · Himalaya</span>
             </div>
+            <div aria-hidden="true" className="absolute -bottom-7 left-1/2 z-10 hidden -translate-x-1/2 border border-white/20 bg-[var(--color-section-impact)] px-5 py-3 font-serif text-sm italic text-white/75 sm:block">Journeys with purpose</div>
           </div>
 
-          {/* Editorial content — first in the visual order on desktop */}
-          <div ref={textRef} className="lg:order-1">
-            <p className="subtitle-large mb-4 text-brass font-accent">Curated Regional Programmes</p>
-            <h2 className="text-h2 mb-5 text-white font-serif font-light leading-tight">
-              Special-Interest &amp; Student Expeditions
+          <div ref={textRef} className="relative lg:order-1">
+            <p className="mb-6 flex items-center gap-4 font-sans text-[11px] font-medium uppercase tracking-[0.28em] text-[var(--color-wild-orange)]"><span className="h-px w-10 bg-[var(--color-wild-orange)]" />Curated regional programmes</p>
+            <h2 className="mb-7 max-w-xl font-serif text-4xl font-light leading-[1.08] tracking-normal text-white sm:text-5xl lg:text-[3.65rem]">
+              Travel deeper.<br /><span className="text-white/65">Learn along the way.</span>
             </h2>
-            <p className="font-serif italic font-light text-xl md:text-2xl leading-relaxed text-brass-soft/90 mb-4">
-              &ldquo;Escorted specialist journeys for clubs, botanical groups, yoga retreats, and academic institutions across India and Nepal.&rdquo;
+            <p className="mb-5 max-w-lg font-serif text-xl font-light italic leading-relaxed text-white/85 md:text-2xl">
+              Special-interest and student expeditions across India and Nepal.
             </p>
-            <p className="mb-8 font-sans font-light text-base leading-relaxed text-white/75">
+            <p className="mb-9 max-w-lg font-sans text-base font-light leading-7 text-white/65">
               All special-interest programmes are escorted by qualified team leaders. Every itinerary is drawn directly from our brochure archives and shaped with meticulous care around your travel season, party size and regional interests.
             </p>
             <Link
               href="/about"
-              className="btn-ghost-dark group inline-flex items-center gap-2 hover:border-[var(--color-wild-orange,#ff6e00)] hover:text-[var(--color-wild-orange,#ff6e00)] transition-all"
+              className="group inline-flex items-center gap-5 border-b border-white/35 pb-3 font-sans text-xs font-medium uppercase tracking-[0.2em] text-white transition-colors hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)]"
             >
-              <span>Read about us</span>
-              <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1.5">
-                →
+              <span>Discover our approach</span>
+              <span aria-hidden="true" className="text-lg transition-transform duration-300 group-hover:translate-x-1.5">
+                ↗
               </span>
             </Link>
           </div>

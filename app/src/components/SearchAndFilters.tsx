@@ -186,7 +186,7 @@ export default function SearchAndFilters({
               <button
                 type="button"
                 onClick={handleClearAll}
-                className="hidden sm:flex items-center gap-2 rounded-button border border-white/10 bg-transparent px-4 py-3.5 text-xs font-display font-semibold uppercase tracking-wider text-white/70 hover:border-brass hover:text-brass hover:bg-white/5 transition-all duration-300"
+                className="hidden sm:flex items-center gap-2 rounded-none border border-white/10 bg-transparent px-4 py-3.5 text-xs font-display font-semibold uppercase tracking-wider text-white/70 hover:border-brass hover:text-brass hover:bg-white/5 transition-all duration-300"
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
@@ -199,7 +199,7 @@ export default function SearchAndFilters({
             <button
               type="button"
               onClick={() => setMobileFiltersOpen(true)}
-              className="flex sm:hidden items-center justify-center gap-2 h-[52px] rounded-button border border-white/10 bg-[#132325] px-5 text-xs font-display font-semibold uppercase tracking-wider text-white transition-all hover:border-brass hover:text-brass hover:bg-[#1a2a2c] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass shadow-sm cursor-pointer"
+              className="flex sm:hidden items-center justify-center gap-2 h-[52px] rounded-none border border-white/10 bg-[#132325] px-5 text-xs font-display font-semibold uppercase tracking-wider text-white transition-all hover:border-brass hover:text-brass hover:bg-[#1a2a2c] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass shadow-sm cursor-pointer"
               aria-expanded={mobileFiltersOpen}
               aria-controls="mobile-filters"
             >
@@ -208,7 +208,7 @@ export default function SearchAndFilters({
               </svg>
               <span>Filters</span>
               {activeFilterCount > 0 && (
-                <span className="inline-flex h-5 min-w-[20px] items-center justify-center rounded-full bg-brass px-1.5 text-xs font-semibold text-white">
+                <span className="inline-flex h-5 min-w-[20px] items-center justify-center rounded-none bg-brass px-1.5 text-xs font-semibold text-white">
                   {activeFilterCount}
                 </span>
               )}
@@ -258,7 +258,7 @@ export default function SearchAndFilters({
             <button
               type="button"
               onClick={handleClearAll}
-              className="inline-flex items-center gap-1.5 rounded-button border border-white/10 bg-transparent px-3 py-1.5 text-xs font-display font-medium uppercase tracking-wider text-white/60 hover:border-brass hover:text-brass hover:bg-white/5 transition-all"
+              className="inline-flex items-center gap-1.5 rounded-none border border-white/10 bg-transparent px-3 py-1.5 text-xs font-display font-medium uppercase tracking-wider text-white/60 hover:border-brass hover:text-brass hover:bg-white/5 transition-all"
             >
               Clear all
             </button>
@@ -283,7 +283,7 @@ export default function SearchAndFilters({
           <button
             ref={closeFiltersRef}
             onClick={() => setMobileFiltersOpen(false)}
-            className="p-2 text-white/70 hover:text-brass hover:bg-white/5 rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-[#0C1617]"
+            className="p-2 text-white/70 hover:text-brass hover:bg-white/5 rounded-none transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-[#0C1617]"
             aria-label="Close filters"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -329,7 +329,7 @@ export default function SearchAndFilters({
         <div className="border-t border-white/10 px-6 py-4">
           <button
             onClick={handleClearAll}
-            className="flex w-full items-center justify-center gap-2 rounded-button border border-brass px-4 py-3 text-sm font-display font-medium text-brass bg-transparent hover:bg-brass hover:text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2"
+            className="flex w-full items-center justify-center gap-2 rounded-none border border-brass px-4 py-3 text-sm font-display font-medium text-brass bg-transparent hover:bg-brass hover:text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
@@ -407,7 +407,7 @@ function FilterChip({ label, isActive, onClick, isPrimary = false }: FilterChipP
     <button
       type="button"
       onClick={onClick}
-      className={`flex-shrink-0 rounded-button px-4 py-2.5 text-xs font-display font-semibold uppercase tracking-wider transition-all duration-300 cursor-pointer relative overflow-hidden ${
+      className={`flex-shrink-0 rounded-none px-4 py-2.5 text-xs font-display font-semibold uppercase tracking-wider transition-all duration-300 cursor-pointer relative overflow-hidden ${
         isActive
           ? "bg-brass text-white shadow-[0_8px_25px_-5px_rgba(177,138,81,0.4)] scale-102"
           : "border border-white/10 bg-[#132325] text-white/75 hover:border-brass hover:text-brass hover:bg-[#1a2a2c] hover:shadow-[0_4px_15px_-3px_rgba(177,138,81,0.2)]"
@@ -431,7 +431,7 @@ function FilterPill({ label, onRemove }: FilterPillProps) {
     <button
       type="button"
       onClick={onRemove}
-      className="inline-flex items-center gap-1.5 rounded-button border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-display font-medium uppercase tracking-wider text-white/70 hover:border-brass hover:text-brass hover:bg-white/10 transition-all"
+      className="inline-flex items-center gap-1.5 rounded-none border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-display font-medium uppercase tracking-wider text-white/70 hover:border-brass hover:text-brass hover:bg-white/10 transition-all"
     >
       {label}
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -449,7 +449,7 @@ interface FilterSectionProps {
   onChange: (value: string) => void;
 }
 
-function FilterSection({ label, options, value, onChange }: FilterSectionProps) {
+function FilterSection({ label, options, value }: FilterSectionProps) {
   return (
     <fieldset className="min-w-[200px]">
       <legend className="mb-3 text-xs font-display font-semibold uppercase tracking-wider text-white/70">
@@ -461,7 +461,7 @@ function FilterSection({ label, options, value, onChange }: FilterSectionProps) 
           return (
             <label
               key={opt.value}
-              className={`flex items-center justify-between rounded-button px-4 py-3 text-sm font-display transition-all duration-300 cursor-pointer ${
+              className={`flex items-center justify-between rounded-none px-4 py-3 text-sm font-display transition-all duration-300 cursor-pointer ${
                 isSelected
                   ? "bg-brass/10 border border-brass/30 text-white"
                   : "border border-white/10 bg-[#132325] text-white/75 hover:border-brass/50 hover:text-white hover:bg-[#1a2a2c]"

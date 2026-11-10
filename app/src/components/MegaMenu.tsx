@@ -71,11 +71,11 @@ export default function MegaMenu({ open, onClose }: MegaMenuProps) {
 
   useEffect(() => {
     if (open) {
-      setIsOpen(true);
-    } else {
-      const t = setTimeout(() => setIsOpen(false), 200);
-      return () => clearTimeout(t);
+      const t = window.setTimeout(() => setIsOpen(true), 0);
+      return () => window.clearTimeout(t);
     }
+    const t = setTimeout(() => setIsOpen(false), 200);
+    return () => clearTimeout(t);
   }, [open]);
 
   useEffect(() => {
@@ -353,7 +353,7 @@ export default function MegaMenu({ open, onClose }: MegaMenuProps) {
             </div>
           </div>
           <div className="space-y-6 pt-4 lg:pt-12">
-            <p className="lead-editorial text-lg md:text-xl text-white/80 leading-relaxed">"For nearly a century, our family has pioneered journeys across the Indian subcontinent, combining deep local knowledge with uncompromising standards of comfort and authenticity."</p>
+            <p className="lead-editorial text-lg md:text-xl text-white/80 leading-relaxed">“For nearly a century, our family has pioneered journeys across the Indian subcontinent, combining deep local knowledge with uncompromising standards of comfort and authenticity.”</p>
             <div className="space-y-4">
               <div className="flex items-center gap-4 p-4 rounded-xl border border-white/10 bg-white/5 hover:border-wild-orange/50 hover:bg-white/10 transition-all duration-300">
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-wild-orange/20 text-wild-orange">
@@ -402,7 +402,7 @@ export default function MegaMenu({ open, onClose }: MegaMenuProps) {
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="space-y-6">
-            <p className="lead-editorial text-lg md:text-xl text-white/80 leading-relaxed">"Every journey begins with a conversation. Our travel designers craft each itinerary around your interests, pace, and preferred travel style."</p>
+            <p className="lead-editorial text-lg md:text-xl text-white/80 leading-relaxed">“Every journey begins with a conversation. Our travel designers craft each itinerary around your interests, pace, and preferred travel style.”</p>
             <div className="space-y-4 pt-4">
               <div className="flex items-center gap-4 p-4 rounded-xl border border-white/10 bg-white/5 hover:border-wild-orange/50 hover:bg-white/10 transition-all duration-300">
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-wild-orange/20 text-wild-orange">
@@ -475,7 +475,7 @@ export default function MegaMenu({ open, onClose }: MegaMenuProps) {
 
           <div className="justify-self-center flex-shrink-0">
             <Link href="/" onClick={onClose} className="block" aria-label="Home">
-              <img src="/logo.png" alt="" className="h-10 md:h-12 w-auto" />
+              <Image src="/logo.png" alt="KS World Adventure" width={120} height={48} className="h-10 md:h-12 w-auto" />
             </Link>
           </div>
 
@@ -488,7 +488,7 @@ export default function MegaMenu({ open, onClose }: MegaMenuProps) {
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Quick jump…"
                 aria-label="Search menu"
-                className="w-56 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs font-display text-white placeholder:text-white/40 focus:border-wild-orange focus:outline-none focus:ring-1 focus:ring-wild-orange transition-all duration-200"
+                className="w-56 rounded-none border border-white/20 bg-white/5 px-4 py-2 text-xs font-display text-white placeholder:text-white/40 focus:border-wild-orange focus:outline-none focus:ring-1 focus:ring-wild-orange transition-all duration-200"
               />
               {query && (
                 <button
@@ -516,7 +516,7 @@ export default function MegaMenu({ open, onClose }: MegaMenuProps) {
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Quick jump…"
             aria-label="Search menu"
-            className="w-full rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs font-display text-white placeholder:text-white/40 focus:border-wild-orange focus:outline-none focus:ring-1 focus:ring-wild-orange transition-all duration-200"
+            className="w-full rounded-none border border-white/20 bg-white/5 px-4 py-2 text-xs font-display text-white placeholder:text-white/40 focus:border-wild-orange focus:outline-none focus:ring-1 focus:ring-wild-orange transition-all duration-200"
           />
           {query && (
             <button type="button" onClick={() => setQuery("")} aria-label="Clear search" className="absolute right-3 top-1/2 -translate-y-1/2 text-white/50 hover:text-wild-orange transition-colors">
@@ -534,7 +534,7 @@ export default function MegaMenu({ open, onClose }: MegaMenuProps) {
                 <p className="text-[0.65rem] font-display uppercase tracking-[0.25em] text-wild-orange mb-2">Pinned</p>
                 <div className="flex flex-wrap gap-2">
                   {pinnedItems.map((it) => (
-                    <Link key={it.href} href={it.href} onClick={() => handleLinkClick(it.href)} className="rounded-full border border-wild-orange/40 bg-wild-orange/10 px-3 py-1.5 text-xs font-display text-white hover:bg-wild-orange/20 transition-all duration-200">
+                    <Link key={it.href} href={it.href} onClick={() => handleLinkClick(it.href)} className="rounded-none border border-wild-orange/40 bg-wild-orange/10 px-3 py-1.5 text-xs font-display text-white hover:bg-wild-orange/20 transition-all duration-200">
                       {it.label}
                     </Link>
                   ))}
@@ -546,7 +546,7 @@ export default function MegaMenu({ open, onClose }: MegaMenuProps) {
                 <p className="text-[0.65rem] font-display uppercase tracking-[0.25em] text-white/40 mb-2">Recently viewed</p>
                 <div className="flex flex-wrap gap-2">
                   {recentItems.map((it) => (
-                    <Link key={it.href} href={it.href} onClick={() => handleLinkClick(it.href)} className="rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-display text-white/80 hover:text-white hover:border-white/30 transition-all duration-200">
+                    <Link key={it.href} href={it.href} onClick={() => handleLinkClick(it.href)} className="rounded-none border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-display text-white/80 hover:text-white hover:border-white/30 transition-all duration-200">
                       {it.label}
                     </Link>
                   ))}

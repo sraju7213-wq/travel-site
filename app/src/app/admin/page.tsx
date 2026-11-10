@@ -776,7 +776,7 @@ export default function AdminDashboardPage() {
             type="button"
             onClick={() => exportToCSV(enquiries)}
             title="Download complete enquiries dataset as CSV"
-            className="hidden md:inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 font-mono text-xs font-semibold uppercase tracking-wider text-white/80 transition-all hover:bg-white/10 hover:text-white hover:border-[var(--color-wild-orange,#ff6e00)] cursor-pointer"
+            className="hidden md:inline-flex items-center gap-1.5 rounded-none border border-white/15 bg-white/5 px-3.5 py-1.5 font-mono text-xs font-semibold uppercase tracking-wider text-white/80 transition-all hover:bg-white/10 hover:text-white hover:border-[var(--color-wild-orange,#ff6e00)] cursor-pointer"
           >
             <IconDownload className="h-3.5 w-3.5 text-[var(--color-wild-orange,#ff6e00)]" />
             <span>Export CSV</span>
@@ -786,7 +786,7 @@ export default function AdminDashboardPage() {
           <button
             type="button"
             onClick={() => setIsNewModalOpen(true)}
-            className="inline-flex items-center gap-1.5 rounded-full bg-[var(--color-wild-orange,#ff6e00)] px-3.5 py-1.5 font-mono text-xs font-semibold uppercase tracking-wider text-white shadow-[0_4px_14px_rgba(255,110,0,0.35)] transition-all hover:brightness-110 active:scale-95 cursor-pointer"
+            className="inline-flex items-center gap-1.5 rounded-none bg-[var(--color-wild-orange,#ff6e00)] px-3.5 py-1.5 font-mono text-xs font-semibold uppercase tracking-wider text-white shadow-[0_4px_14px_rgba(255,110,0,0.35)] transition-all hover:brightness-110 active:scale-95 cursor-pointer"
           >
             <IconPlus className="h-3.5 w-3.5" />
             <span className="hidden sm:inline">New Enquiry</span>
@@ -797,7 +797,7 @@ export default function AdminDashboardPage() {
           <Link
             href="/"
             target="_blank"
-            className="hidden lg:inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-white/70 hover:text-white transition-colors"
+            className="hidden lg:inline-flex items-center gap-1.5 rounded-none border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-white/70 hover:text-white transition-colors"
           >
             <span>Live Site</span>
             <IconExternalLink className="h-3 w-3 text-[var(--color-wild-orange,#ff6e00)]" />
@@ -816,7 +816,7 @@ export default function AdminDashboardPage() {
             type="button"
             onClick={handleLogout}
             title="Log out and lock workspace"
-            className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-mono font-semibold uppercase tracking-wider text-white/70 transition-all hover:bg-rose-500/20 hover:border-rose-500/40 hover:text-rose-200 cursor-pointer"
+            className="inline-flex items-center gap-1.5 rounded-none border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-mono font-semibold uppercase tracking-wider text-white/70 transition-all hover:bg-rose-500/20 hover:border-rose-500/40 hover:text-rose-200 cursor-pointer"
           >
             <span className="hidden sm:inline">Lock</span>
             <svg aria-hidden="true" viewBox="0 0 24 24" className="h-3.5 w-3.5 fill-none stroke-current stroke-[2]">

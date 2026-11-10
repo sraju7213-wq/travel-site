@@ -1,18 +1,18 @@
 import { Suspense } from "react";
-import { getPackagesByCategory } from "@/data/catalogue";
 import Link from "next/link";
-import SearchAndFilters from "@/components/SearchAndFilters";
-import PageShell from "@/components/PageShell";
+import type { Metadata } from "next";
 import Container from "@/components/Container";
-import { Metadata } from "next";
-import ScrollReveal from "@/components/ui/ScrollReveal";
-import BackgroundShapes from "@/components/ui/BackgroundShapes";
+import PageShell from "@/components/PageShell";
+import SearchAndFilters from "@/components/SearchAndFilters";
+import PageHero from "@/components/ui/PageHero";
+import { getPackagesByCategory } from "@/data/catalogue";
 
 interface CategoryPageProps {
   params: { category: string };
 }
 
 export const instant = false;
+
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
   const category = ((await params).category as string) ?? "";
   const packages = getPackagesByCategory(category);
@@ -27,71 +27,100 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const category = decodeURIComponent((await params).category as string);
   const categoryPackages = getPackagesByCategory(category);
+  const normalizedCategory = category.toLowerCase();
+  const categoryHero = normalizedCategory.includes("nepal")
+    ? { image: "/images/destinations/nepal-boudhanath-dusk.jpg", alt: "Boudhanath Stupa in Kathmandu at dusk" }
+    : normalizedCategory.includes("kashmir") || normalizedCategory.includes("houseboat")
+      ? { image: "/images/destinations/kashmir-shikara.jpg", alt: "Shikara boats on Dal Lake in Srinagar, Kashmir" }
+      : normalizedCategory.includes("himalaya") || normalizedCategory.includes("trek") || normalizedCategory.includes("ladakh")
+        ? { image: "/images/destinations/ladakh-key-monastery.jpg", alt: "A Buddhist monastery in the high Himalaya of Ladakh" }
+        : normalizedCategory.includes("kerala") || normalizedCategory.includes("south india")
+          ? { image: "/images/destinations/kerala-backwaters.jpg", alt: "A traditional houseboat on Kerala's palm-lined backwaters" }
+          : normalizedCategory.includes("wildlife") || normalizedCategory.includes("safari")
+            ? { image: "/images/destinations/rhino.jpg", alt: "Wildlife in the forested landscapes of India and Nepal" }
+            : { image: "/images/destinations/taj-mahal.jpg", alt: "The Taj Mahal in Agra, India" };
 
   return (
-    <PageShell>
-      <BackgroundShapes />
-      <Container>
-        <ScrollReveal start="top 90%" once>
-          <section className="relative my-6 h-[360px] overflow-hidden rounded-[1.25rem] shadow-2xl md:my-8 md:h-[440px] border border-white/5">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#1a2a2c] via-[#132325] to-[#0C1617]" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(177,138,81,0.15)_0%,transparent_70%)]" />
-<div className="relative z-10 mx-auto max-w-5xl px-4 md:px-8 pt-12 md:pt-16 pb-8">
-              {/* Breadcrumb */}
-              <nav className="mb-6 flex items-center gap-2 text-xs font-display" aria-label="Breadcrumb">
-                <Link
-                  href="/explore"
-                  className="flex items-center gap-1.5 text-white/60 hover:text-brass transition-colors"
-                >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M19 12H5M12 5l-7 7 7 7" />
-                  </svg>
-                  <span className="font-semibold uppercase tracking-wider">All journeys</span>
-                </Link>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-white/30 flex-shrink-0">
-                  <path d="M9 18l6-6-6-6" />
-                </svg>
-                <span className="font-medium text-white/90">{category}</span>
-              </nav>
+    <PageShell mainClassName="">
+      <PageHero
+        align="left"
+        image={categoryHero.image}
+        imageAlt={categoryHero.alt}
+        eyebrow="Journey collection"
+        title={
+          <>
+            {category}
+            <span className="block text-white/60">
+              {categoryPackages.length} journey{categoryPackages.length === 1 ? "" : "s"}
+            </span>
+          </>
+        }
+        lead="Every itinerary below is transcribed from the printed brochure catalogue. Dates, routing and inclusions are confirmed directly with a travel designer — small private groups, or a single traveller."
+        meta={[{ value: `${categoryPackages.length} routes`, label: "From the brochure" }]}
+        primaryCta={{ label: "Enquire about these journeys", href: `/enquiry?category=${encodeURIComponent(category)}` }}
+        secondaryCta={{ label: "All journeys", href: "/explore" }}
+        scrollCue
+      />
 
-              <p className="subtitle-large mb-4 text-brass">Category</p>
-              <h1 className="text-h2 mb-4 text-white">{category}</h1>
-              <p className="max-w-2xl font-display text-lg leading-relaxed text-white/80">
-                {categoryPackages.length} journey{categoryPackages.length === 1 ? "" : "s"} in this category.
-                Dates and pricing are confirmed by direct enquiry.
-              </p>
+      {/* Breadcrumb + collection facts */}
+      <section className="section-discover border-b border-white/5 py-10 md:py-12">
+        <Container wide>
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 font-sans text-[11px] uppercase tracking-[0.16em] text-white/50">
+            <Link href="/explore" className="transition-colors hover:text-brass">
+              All journeys
+            </Link>
+            <span aria-hidden="true" className="text-white/25">
+              /
+            </span>
+            <span className="text-white/90">{category}</span>
+          </nav>
 
-              {/* Category Stats */}
-              <div className="mt-8 flex flex-wrap items-center gap-4 text-sm font-display text-white/60">
-                <span className="flex items-center gap-1.5">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-brass">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                    <circle cx="12" cy="10" r="3" />
-                  </svg>
-                  {categoryPackages.length} itinerar{categoryPackages.length === 1 ? "y" : "ies"}
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-brass">
-                    <circle cx="12" cy="12" r="10" />
-                    <path d="M12 6v6l4 2" />
-                  </svg>
-                  Small groups & private tours
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-brass">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                  </svg>
-                  Tailor-made available
-                </span>
-              </div>
+          <dl className="mt-8 grid gap-x-10 gap-y-6 sm:grid-cols-3">
+            <div className="border-t border-white/10 pt-4">
+              <dt className="font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-[var(--color-wild-orange)]">
+                Itineraries
+              </dt>
+              <dd className="mt-2 font-serif text-3xl font-light text-white">{categoryPackages.length}</dd>
             </div>
-          </section>
-        </ScrollReveal>
+            <div className="border-t border-white/10 pt-4">
+              <dt className="font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-[var(--color-wild-orange)]">
+                Regions covered
+              </dt>
+              <dd className="mt-2 font-serif text-2xl font-light leading-tight text-white">
+                {Array.from(new Set(categoryPackages.flatMap((p) => p.region))).filter((r) => r !== "India" && r !== "Nepal").length}
+              </dd>
+            </div>
+            <div className="border-t border-white/10 pt-4">
+              <dt className="font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-[var(--color-wild-orange)]">
+                Group size
+              </dt>
+              <dd className="mt-2 font-serif text-2xl font-light leading-tight text-white">
+                Up to 15, or solo
+              </dd>
+            </div>
+          </dl>
+        </Container>
+      </section>
 
-        <Suspense fallback={<p className="py-20 font-display text-white/70">Loading journeys…</p>}>
-          <SearchAndFilters packages={categoryPackages} />
-        </Suspense>
-      </Container>
+      {/* Catalogue + filters */}
+      <section className="section-journeys py-14 md:py-20">
+        <Container wide>
+          <div className="mb-10 max-w-3xl">
+            <p className="mb-5 flex items-center gap-4 font-sans text-[10px] font-medium uppercase tracking-[0.3em] text-[var(--color-wild-orange)]">
+              <span className="h-px w-10 bg-[var(--color-wild-orange)]" />
+              Browse the collection
+            </p>
+            <h2 className="font-serif text-4xl font-light leading-[1.08] tracking-normal text-white md:text-5xl">
+              {category}
+              <span className="block text-white/55">from the brochure catalogue</span>
+            </h2>
+          </div>
+
+          <Suspense fallback={<p className="py-20 font-display text-white/70">Loading journeys…</p>}>
+            <SearchAndFilters packages={categoryPackages} />
+          </Suspense>
+        </Container>
+      </section>
     </PageShell>
   );
 }

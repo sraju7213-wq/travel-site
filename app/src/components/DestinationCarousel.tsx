@@ -3,7 +3,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { DESTINATIONS } from "@/data/siteContent";
+import MagneticButton from "@/components/ui/MagneticButton";
+import { DURATION, EASE, prefersReducedMotion } from "@/lib/motion";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 /**
  * Our Luxury Safari Destinations
@@ -18,6 +26,7 @@ export default function DestinationCarousel() {
   const [cardTilt, setCardTilt] = useState({ rx: 0, ry: 0 });
   const sectionRef = useRef<HTMLElement>(null);
   const cardRef = useRef<HTMLAnchorElement>(null);
+  const blurbRef = useRef<HTMLParagraphElement>(null);
   const touchStartX = useRef<number | null>(null);
 
   const total = DESTINATIONS.length;
@@ -85,7 +94,7 @@ export default function DestinationCarousel() {
 
   // Subtle 3D tilt on card hover
   const handleCardMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (prefersReducedMotion()) return;
     const card = cardRef.current;
     if (!card) return;
     const rect = card.getBoundingClientRect();
@@ -100,6 +109,28 @@ export default function DestinationCarousel() {
   const handleCardMouseLeave = () => {
     setCardTilt({ rx: 0, ry: 0 });
   };
+
+  // The standfirst re-enters behind a mask each time the destination changes.
+  useEffect(() => {
+    const el = blurbRef.current;
+    if (!el) return;
+    if (prefersReducedMotion()) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        el,
+        { opacity: 0, y: 14 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: DURATION.base,
+          ease: EASE.expo,
+        }
+      );
+    }, el);
+
+    return () => ctx.revert();
+  }, [active]);
 
   const parallaxOffset = (scrollY * 0.04) % 40;
 
@@ -209,6 +240,12 @@ export default function DestinationCarousel() {
               aria-hidden="true"
             />
 
+            {/* A light sweep travels across the frame on hover. */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 z-20 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-[1100ms] ease-out group-hover:translate-x-full"
+            />
+
             {/* Giant Centered Serif Country Name */}
             <div className="absolute inset-0 z-30 flex items-center justify-center p-6 text-center">
               <h2 className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-light uppercase tracking-[0.28em] text-white drop-shadow-[0_8px_24px_rgba(0,0,0,0.6)] transition-all duration-700 transform group-hover:scale-[1.02]">
@@ -223,7 +260,8 @@ export default function DestinationCarousel() {
             <div className="max-w-xl">
               <p
                 key={current.name}
-                className="font-sans font-light text-sm sm:text-base leading-relaxed text-white/95 animate-fadeIn"
+                ref={blurbRef}
+                className="font-sans font-light text-sm sm:text-base leading-relaxed text-white/95"
               >
                 {current.blurb}
               </p>
@@ -237,7 +275,7 @@ export default function DestinationCarousel() {
                   type="button"
                   onClick={prev}
                   aria-label="Previous destination"
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/10 text-white hover:border-[var(--color-wild-orange,#ff6e00)] hover:text-[var(--color-wild-orange,#ff6e00)] hover:bg-black/30 transition-all duration-300 hover:scale-105 cursor-pointer"
+                  className="group flex h-10 w-10 items-center justify-center rounded-none border border-white/20 bg-black/10 text-white hover:border-[var(--color-wild-orange,#ff6e00)] hover:text-[var(--color-wild-orange,#ff6e00)] hover:bg-black/30 transition-all duration-300 hover:scale-105 cursor-pointer"
                 >
                   <svg
                     aria-hidden="true"
@@ -249,6 +287,7 @@ export default function DestinationCarousel() {
                     strokeWidth="1.8"
                     strokeLinecap="round"
                     strokeLinejoin="round"
+                    className="transition-transform duration-300 group-hover:-translate-x-0.5"
                   >
                     <line x1="19" y1="12" x2="5" y2="12"></line>
                     <polyline points="12 19 5 12 12 5"></polyline>
@@ -258,7 +297,7 @@ export default function DestinationCarousel() {
                   type="button"
                   onClick={next}
                   aria-label="Next destination"
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/10 text-white hover:border-[var(--color-wild-orange,#ff6e00)] hover:text-[var(--color-wild-orange,#ff6e00)] hover:bg-black/30 transition-all duration-300 hover:scale-105 cursor-pointer"
+                  className="group flex h-10 w-10 items-center justify-center rounded-none border border-white/20 bg-black/10 text-white hover:border-[var(--color-wild-orange,#ff6e00)] hover:text-[var(--color-wild-orange,#ff6e00)] hover:bg-black/30 transition-all duration-300 hover:scale-105 cursor-pointer"
                 >
                   <svg
                     aria-hidden="true"
@@ -270,6 +309,7 @@ export default function DestinationCarousel() {
                     strokeWidth="1.8"
                     strokeLinecap="round"
                     strokeLinejoin="round"
+                    className="transition-transform duration-300 group-hover:translate-x-0.5"
                   >
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>
@@ -278,12 +318,14 @@ export default function DestinationCarousel() {
               </div>
 
               {/* Solid Wilderness Orange CTA Button */}
-              <Link
+              <MagneticButton
+                as={Link}
                 href={current.href}
+                strength={0.22}
                 className="inline-flex items-center justify-center bg-[var(--color-wild-orange,#ff6e00)] hover:bg-[#e56300] text-white font-accent text-xs font-semibold uppercase tracking-[0.24em] px-8 py-3.5 shadow-md hover:shadow-[0_8px_24px_rgba(255,110,0,0.5)] transition-all duration-300 active:scale-95 cursor-pointer min-w-[140px] text-center"
               >
                 {current.name}
-              </Link>
+              </MagneticButton>
             </div>
           </div>
         </div>

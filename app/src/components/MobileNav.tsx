@@ -3,8 +3,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { NAV_CATEGORIES, DESTINATIONS, EXPERIENCES } from "@/data/siteContent";
-import { getRecentSlugs, pushRecent, getPins, togglePin, isPinned } from "@/lib/menuStorage";
+import { DESTINATIONS, EXPERIENCES } from "@/data/siteContent";
+import { getRecentSlugs, pushRecent, getPins } from "@/lib/menuStorage";
 
 interface NavItem {
   label: string;
@@ -107,18 +107,21 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
   }, [open]);
 
   useEffect(() => {
-    setMounted(true);
-    setRecentSlugs(getRecentSlugs());
-    setPins(getPins());
+    const t = window.setTimeout(() => {
+      setMounted(true);
+      setRecentSlugs(getRecentSlugs());
+      setPins(getPins());
+    }, 0);
+    return () => window.clearTimeout(t);
   }, []);
 
   useEffect(() => {
     if (open) {
-      setIsOpen(true);
-    } else {
-      const t = setTimeout(() => setIsOpen(false), 200);
-      return () => clearTimeout(t);
+      const t = window.setTimeout(() => setIsOpen(true), 0);
+      return () => window.clearTimeout(t);
     }
+    const t = setTimeout(() => setIsOpen(false), 200);
+    return () => clearTimeout(t);
   }, [open]);
 
   useEffect(() => {
@@ -178,13 +181,6 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
     close();
   };
 
-  const handlePinToggle = (slug: string, e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    const next = togglePin(slug);
-    setPins(next);
-  };
-
   if (!isOpen) return null;
 
   const allEntries = MOBILE_NAV_CATEGORIES.flatMap((g) => g.items);
@@ -234,7 +230,7 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
 
           <div className="justify-self-center flex-shrink-0">
             <Link href="/" onClick={close} className="block" aria-label="Home">
-              <img src="/logo.png" alt="" className="h-9 w-auto" />
+              <Image src="/logo.png" alt="KS World Adventure" width={108} height={40} className="h-9 w-auto" />
             </Link>
           </div>
 
@@ -254,7 +250,7 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Quick jump…"
             aria-label="Search menu"
-            className="w-full rounded-full border border-white/20 bg-white/5 px-4 py-2.5 text-xs font-display text-white placeholder:text-white/40 focus:border-wild-orange focus:outline-none focus:ring-1 focus:ring-wild-orange transition-all duration-200 pr-12"
+            className="w-full rounded-none border border-white/20 bg-white/5 px-4 py-2.5 text-xs font-display text-white placeholder:text-white/40 focus:border-wild-orange focus:outline-none focus:ring-1 focus:ring-wild-orange transition-all duration-200 pr-12"
           />
           {query && (
             <button type="button" onClick={() => setQuery("")} aria-label="Clear search" className="absolute right-3 top-1/2 -translate-y-1/2 text-white/50 hover:text-wild-orange transition-colors">
@@ -272,7 +268,7 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
                 <p className="text-[0.65rem] font-display uppercase tracking-[0.25em] text-wild-orange mb-2">Pinned</p>
                 <div className="flex flex-wrap gap-2">
                   {pinnedItems.map((it) => (
-                    <Link key={it.href} href={it.href} onClick={() => handleLinkClick(it.href)} className="rounded-full border border-wild-orange/40 bg-wild-orange/10 px-3 py-1.5 text-xs font-display text-white hover:bg-wild-orange/20 transition-all duration-200">
+                    <Link key={it.href} href={it.href} onClick={() => handleLinkClick(it.href)} className="rounded-none border border-wild-orange/40 bg-wild-orange/10 px-3 py-1.5 text-xs font-display text-white hover:bg-wild-orange/20 transition-all duration-200">
                       {it.label}
                     </Link>
                   ))}
@@ -284,7 +280,7 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
                 <p className="text-[0.65rem] font-display uppercase tracking-[0.25em] text-white/40 mb-2">Recently viewed</p>
                 <div className="flex flex-wrap gap-2">
                   {recentItems.map((it) => (
-                    <Link key={it.href} href={it.href} onClick={() => handleLinkClick(it.href)} className="rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-display text-white/80 hover:text-white hover:border-white/30 transition-all duration-200">
+                    <Link key={it.href} href={it.href} onClick={() => handleLinkClick(it.href)} className="rounded-none border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-display text-white/80 hover:text-white hover:border-white/30 transition-all duration-200">
                       {it.label}
                     </Link>
                   ))}

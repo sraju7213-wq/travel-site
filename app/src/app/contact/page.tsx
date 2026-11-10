@@ -1,193 +1,332 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import PageShell from "@/components/PageShell";
+import CtaZoom from "@/components/CtaZoom";
 import Container from "@/components/Container";
-import { isEnquiryBackendConfigured } from "@/lib/enquiryConfig";
+import PageShell from "@/components/PageShell";
+import PageHero from "@/components/ui/PageHero";
 import { BRAND } from "@/data/brandConfig";
+import { isEnquiryBackendConfigured } from "@/lib/enquiryConfig";
 
 export const metadata: Metadata = {
   title: `Contact Desk — ${BRAND.name}`,
-  description:
-    `Direct contact details, regional operating desks, and online enquiry information for ${BRAND.name} (in association with ${BRAND.operatorName}).`,
+  description: `Direct contact details, regional operating desks, and online enquiry information for ${BRAND.name} (in association with ${BRAND.operatorName}).`,
 };
+
+const CHANNELS = [
+  {
+    eyebrow: "Journey planning",
+    title: "Plan a tailor-made trip",
+    body:
+      "Tell us your dates, party size and the places you want to see. A travel designer replies with a proposal drawn from the brochure catalogue.",
+    href: "/enquiry",
+    action: "Open the enquiry form",
+  },
+  {
+    eyebrow: "Kashmir houseboats",
+    title: "Reserve a houseboat",
+    body:
+      "Houseboats on Dal and Nagin Lake, from a two-bedroom craft to a seven-bedroom boat in sole use. Quoted and confirmed separately from our tour packages.",
+    href: "/houseboats",
+    action: "See houseboat options",
+  },
+  {
+    eyebrow: "Your data",
+    title: "Privacy & data requests",
+    body:
+      "How the details you send us are handled, how long we keep them, and how to ask for a copy or erasure of what we hold.",
+    href: "/privacy",
+    action: "Read the privacy notice",
+  },
+];
+
+const DESKS = [
+  {
+    city: "Sydney",
+    role: "International Booking Bureau",
+    coordinates: "33.9167° S, 151.0667° E",
+    timezone: "Australia/Sydney",
+    detail: "68 Beauchamp St., Wiley Park, NSW 2195 (M: 0409 155 229 · T: 02 9579 0044).",
+  },
+  {
+    city: "Delhi",
+    role: "Subcontinent Headquarters",
+    coordinates: "28.6139° N, 77.2090° E",
+    timezone: "Asia/Kolkata",
+    detail: "Central transit hub, hotel affiliations and private transport fleet dispatch.",
+  },
+  {
+    city: "Srinagar",
+    role: "Kashmir Houseboat Moorings",
+    coordinates: "34.0837° N, 74.7973° E",
+    timezone: "Asia/Kolkata",
+    detail: "Dal & Nigeen Lake moorings office and M.S. Baktoo luxury houseboat base.",
+  },
+  {
+    city: "Leh",
+    role: "Ladakh & Zanskar Operations",
+    coordinates: "34.1526° N, 77.5771° E",
+    timezone: "Asia/Kolkata",
+    detail: "High-altitude expedition liaison desk, mountaineering guides and pack crews.",
+  },
+];
+
+const STEPS = [
+  {
+    step: "01",
+    title: "Enquiry & Quotation",
+    body:
+      "Send your preferred journey, dates and party size. We provide a comprehensive outline quote and tailor the itinerary to your schedule.",
+  },
+  {
+    step: "02",
+    title: "$200 Deposit Confirmation",
+    body:
+      "Secure your departures with the standard $200 per person brochure deposit. Balance is payable 8 weeks before departure.",
+  },
+  {
+    step: "03",
+    title: "Vouchers & Expedition Pack",
+    body:
+      "Your final itinerary, accommodation vouchers, houseboat moorings, vehicle dispatch, and permits are confirmed directly to you.",
+  },
+];
 
 export default function ContactPage() {
   const isConfigured = isEnquiryBackendConfigured();
 
   return (
-    <PageShell>
-      <Container>
-        <section className="py-14 md:py-20 max-w-4xl mx-auto px-4 text-white">
-          {/* Header */}
-          <div className="border-b border-white/10 pb-6 mb-10">
-            <div className="inline-flex items-center gap-2 rounded-full border border-brass/35 bg-black/40 px-3.5 py-1 backdrop-blur-md mb-4">
-              <span className="h-1.5 w-1.5 rounded-full bg-brass" />
-              <p className="font-accent text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.32em] text-brass-soft">
-                Concierge &amp; Specialist Operations
-              </p>
-            </div>
-            <h1 className="text-h2 font-serif font-light text-white mb-3">
-              Contact Us
-            </h1>
-            <p className="font-sans font-light text-sm md:text-base text-white/75 leading-relaxed max-w-2xl">
-              Connect with our subcontinent specialists for tailor-made itineraries, small-group expeditions, Himalayan trekking, and Kashmir houseboat reservations, operated in association with {BRAND.operatorName}.
-            </p>
-          </div>
+    <PageShell mainClassName="">
+      <PageHero
+        align="left"
+        image="/images/destinations/contact.jpg"
+        imageClassName="object-[center_70%]"
+        imageAlt="Sunrise illumination over the snow-covered Himalayan peaks of the Annapurna range"
+        eyebrow="Concierge & specialist operations"
+        title={
+          <>
+            Speak to a
+            <span className="block text-white/60">travel designer</span>
+          </>
+        }
+        lead={`Connect with our subcontinent specialists for tailor-made itineraries, small-group expeditions, Himalayan trekking and Kashmir houseboat reservations, operated in association with ${BRAND.operatorName}.`}
+        meta={[
+          { value: "28.6139° N, 77.2090° E", label: "Delhi · Srinagar · Leh Desks" },
+        ]}
+        primaryCta={{ label: "Open the enquiry form", href: "/enquiry" }}
+        secondaryCta={{ label: "Browse all journeys", href: "/explore" }}
+        scrollCue
+      />
 
-          {/* System Status Banner */}
-          <div className="mb-10 rounded-2xl border border-white/15 bg-[#132325] p-6 shadow-xl">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div className="flex items-start gap-3">
-                <span
-                  className={`mt-1 h-2.5 w-2.5 rounded-full shrink-0 ${
-                    isConfigured ? "bg-emerald-400 animate-pulse" : "bg-amber-400"
-                  }`}
-                />
-                <div>
-                  <h2 className="font-serif text-lg font-normal text-white">
-                    {isConfigured
-                      ? "Online Enquiry System: Active"
-                      : "Online Enquiry System: Configuration Pending"}
-                  </h2>
-                  <p className="font-sans font-light text-xs sm:text-sm text-white/70 mt-1 leading-relaxed">
-                    {isConfigured
-                      ? "Online journey enquiries submitted via our portal are securely transmitted to our reservations database for review by our travel designers."
-                      : "The online submission backend is currently being finalized. Submissions will remain disabled until destination credentials are set."}
-                  </p>
-                </div>
-              </div>
-              <Link
-                href="/enquiry"
-                className="btn-ghost-dark text-xs py-2.5 px-5 self-start sm:self-auto shrink-0"
-              >
-                Go to Enquiry Form &rarr;
-              </Link>
-            </div>
-          </div>
-
-          {/* Operator Contact Details & Required Placeholders */}
-          <div className="space-y-8">
-            <div>
-              <h2 className="font-serif text-xl sm:text-2xl font-light text-white mb-2">
-                Operational Channels &amp; Office Desks
-              </h2>
-              <p className="font-sans font-light text-xs sm:text-sm text-white/60 mb-6">
-                Verified public telephone numbers, dedicated email channels, and physical office addresses are pending supply by the business owner. The placeholders below identify the specific details to be published prior to full commercial rollout:
-              </p>
-            </div>
-
-            <div className="grid gap-6 sm:grid-cols-2">
-              {/* Card 1: Direct Helpline & Email */}
-              <div className="rounded-xl border border-white/10 bg-[#132325]/70 p-5 space-y-3">
-                <div className="flex items-center gap-2 text-brass">
-                  <span className="font-serif text-lg">☎</span>
-                  <h3 className="font-accent text-xs font-semibold uppercase tracking-wider text-white">
-                    Telephone &amp; Messaging
-                  </h3>
-                </div>
-                <div className="space-y-1 text-xs">
-                  <p className="text-white/50 uppercase font-mono text-[10px]">Primary Helpline</p>
-                  <p className="font-mono text-brass-soft bg-black/40 px-2.5 py-1.5 rounded border border-white/5">
-                    [Owner to provide: Verified public telephone / WhatsApp helpline]
-                  </p>
-                </div>
-                <div className="space-y-1 text-xs pt-1">
-                  <p className="text-white/50 uppercase font-mono text-[10px]">Operating Hours</p>
-                  <p className="font-mono text-white/70 bg-black/40 px-2.5 py-1.5 rounded border border-white/5">
-                    [Owner to provide: Monitored hours &amp; response time window]
-                  </p>
-                </div>
-              </div>
-
-              {/* Card 2: Electronic Mail */}
-              <div className="rounded-xl border border-white/10 bg-[#132325]/70 p-5 space-y-3">
-                <div className="flex items-center gap-2 text-brass">
-                  <span className="font-serif text-lg">✉</span>
-                  <h3 className="font-accent text-xs font-semibold uppercase tracking-wider text-white">
-                    Enquiry &amp; Support Email
-                  </h3>
-                </div>
-                <div className="space-y-1 text-xs">
-                  <p className="text-white/50 uppercase font-mono text-[10px]">Reservations Desk</p>
-                  <p className="font-mono text-brass-soft bg-black/40 px-2.5 py-1.5 rounded border border-white/5">
-                    [Owner to provide: Official monitored concierge email, e.g. bookings@...]
-                  </p>
-                </div>
-                <div className="space-y-1 text-xs pt-1">
-                  <p className="text-white/50 uppercase font-mono text-[10px]">Privacy &amp; Data Erasure</p>
-                  <p className="font-mono text-white/70 bg-black/40 px-2.5 py-1.5 rounded border border-white/5">
-                    [Owner to provide: Dedicated privacy contact email, e.g. privacy@...]
-                  </p>
-                </div>
-              </div>
-
-              {/* Card 3: Regional Hubs */}
-              <div className="rounded-xl border border-white/10 bg-[#132325]/70 p-5 space-y-3">
-                <div className="flex items-center gap-2 text-brass">
-                  <span className="font-serif text-lg">📍</span>
-                  <h3 className="font-accent text-xs font-semibold uppercase tracking-wider text-white">
-                    Subcontinent Operational Bases
-                  </h3>
-                </div>
-                <div className="space-y-2 text-xs">
-                  <div>
-                    <span className="text-brass-soft font-semibold block">Headquarters:</span>
-                    <span className="font-mono text-white/70">[Owner to provide: New Delhi registered office address]</span>
-                  </div>
-                  <div>
-                    <span className="text-brass-soft font-semibold block">Kashmir Houseboat Base:</span>
-                    <span className="font-mono text-white/70">[Owner to provide: Srinagar Dal Lake moorings office]</span>
-                  </div>
-                  <div>
-                    <span className="text-brass-soft font-semibold block">Ladakh &amp; Zanskar:</span>
-                    <span className="font-mono text-white/70">[Owner to provide: Leh expedition liaison address]</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Card 4: Legal & Regulatory */}
-              <div className="rounded-xl border border-white/10 bg-[#132325]/70 p-5 space-y-3">
-                <div className="flex items-center gap-2 text-brass">
-                  <span className="font-serif text-lg">⚖</span>
-                  <h3 className="font-accent text-xs font-semibold uppercase tracking-wider text-white">
-                    Entity &amp; Regulatory Identity
-                  </h3>
-                </div>
-                <div className="space-y-2 text-xs">
-                  <div>
-                    <span className="text-brass-soft font-semibold block">Registered Entity Name:</span>
-                    <span className="font-mono text-white/70">[Owner to provide: Full legal business identity &amp; jurisdiction]</span>
-                  </div>
-                  <div>
-                    <span className="text-brass-soft font-semibold block">Tourism &amp; Travel License:</span>
-                    <span className="font-mono text-white/70">[Owner to provide: Travel regulatory licence / registration number]</span>
-                  </div>
-                  <div>
-                    <span className="text-brass-soft font-semibold block">Emergency Duty Contact:</span>
-                    <span className="font-mono text-white/70">[Owner to provide: 24/7 emergency dispatch line for active tours]</span>
-                  </div>
-                </div>
+      {/* System status */}
+      <section className="border-b border-white/5 bg-[#101F21] py-6">
+        <Container wide>
+          <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+            <div className="flex items-start gap-3">
+              <span
+                aria-hidden="true"
+                className={`mt-1.5 h-2 w-2 shrink-0 rounded-full ${
+                  isConfigured ? "bg-emerald-400" : "bg-amber-400"
+                }`}
+              />
+              <div>
+                <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-white">
+                  {isConfigured ? "Online enquiry system: active" : "Online enquiry system: configuration pending"}
+                </p>
+                <p className="mt-1 font-sans text-xs font-light leading-relaxed text-white/55">
+                  {isConfigured
+                    ? "Enquiries submitted through this site are transmitted to our reservations desk for review by a travel designer."
+                    : "The submission backend is being finalised. Until it is connected, please use the enquiry form and we will reply by email."}
+                </p>
               </div>
             </div>
-          </div>
-
-          {/* Action Row */}
-          <div className="mt-12 pt-8 border-t border-white/10 flex flex-wrap gap-4 items-center justify-between">
-            <Link href="/enquiry" className="btn-ghost-dark text-xs py-3 px-6">
-              Plan Your Trip &rarr;
+            <Link
+              href="/enquiry"
+              className="shrink-0 border-b border-white/35 pb-1 font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-white transition-colors hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)]"
+            >
+              Go to enquiry form →
             </Link>
-            <div className="flex items-center gap-4 text-xs font-sans text-white/60">
-              <Link href="/privacy" className="hover:text-brass transition-colors underline">
-                Privacy Notice
-              </Link>
-              <span>&bull;</span>
-              <Link href="/explore" className="hover:text-brass transition-colors">
-                Explore All Journeys
-              </Link>
+          </div>
+        </Container>
+      </section>
+
+      {/* Ways to reach us */}
+      <section className="section-discover border-b border-white/5 py-16 md:py-24">
+        <Container wide>
+          <div className="max-w-3xl">
+            <p className="mb-5 flex items-center gap-4 font-sans text-[10px] font-medium uppercase tracking-[0.3em] text-[var(--color-wild-orange)]">
+              <span className="h-px w-10 bg-[var(--color-wild-orange)]" />
+              Ways to reach us
+            </p>
+            <h2 className="font-serif text-4xl font-light leading-[1.08] tracking-normal text-white md:text-5xl">
+              One desk, routed
+              <span className="block text-white/55">to the right specialist</span>
+            </h2>
+          </div>
+
+          <div className="mt-12 grid gap-px border border-white/10 bg-white/10 md:grid-cols-3">
+            {CHANNELS.map((channel) => (
+              <article key={channel.title} className="group bg-[#0C1617] p-7 md:p-9 hover:border-[var(--color-wild-orange)]/50 transition-colors">
+                <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--color-wild-orange)]">
+                  {channel.eyebrow}
+                </p>
+                <h3 className="mt-3 font-serif text-2xl font-light text-white">{channel.title}</h3>
+                <p className="mt-4 font-sans text-sm font-light leading-relaxed text-white/65">
+                  {channel.body}
+                </p>
+                <Link
+                  href={channel.href}
+                  className="group/link mt-7 inline-flex items-center gap-3 font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-white transition-colors hover:text-[var(--color-wild-orange)]"
+                >
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-wild-orange)] text-[var(--color-wild-orange)] transition-colors duration-300 group-hover/link:bg-[var(--color-wild-orange)] group-hover/link:text-white">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+                      <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
+                  {channel.action}
+                </Link>
+              </article>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Regional desks + pending publication */}
+      <section className="section-journeys border-b border-white/5 py-16 md:py-24">
+        <Container wide>
+          <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+            {/* Desks */}
+            <div>
+              <p className="mb-5 flex items-center gap-4 font-sans text-[10px] font-medium uppercase tracking-[0.3em] text-[var(--color-wild-orange)]">
+                <span className="h-px w-10 bg-[var(--color-wild-orange)]" />
+                Operational bases
+              </p>
+              <h2 className="font-serif text-4xl font-light leading-[1.08] tracking-normal text-white md:text-5xl">
+                Where we work
+              </h2>
+
+              <ul className="mt-10 divide-y divide-white/10 border-y border-white/10">
+                {DESKS.map((desk) => (
+                  <li key={desk.city} className="grid gap-3 py-6 sm:grid-cols-[1fr_auto] sm:items-baseline">
+                    <div>
+                      <p className="font-serif text-2xl font-light text-white">{desk.city}</p>
+                      <p className="mt-1 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--color-wild-orange)]">
+                        {desk.role}
+                      </p>
+                      <p className="mt-3 font-sans text-xs font-light leading-relaxed text-white/55">
+                        {desk.detail}
+                      </p>
+                    </div>
+                    <div className="font-mono text-[11px] tracking-[0.12em] text-white/40 sm:text-right">
+                      <p>{desk.coordinates}</p>
+                      <p className="mt-1">{desk.timezone}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Published Booking Bureau from Brochure Page 10 */}
+            <div className="border border-white/10 bg-[#132325] p-7 md:p-9 rounded-none">
+              <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-[var(--color-wild-orange)]">
+                Brochure Published Bureau
+              </p>
+              <h3 className="mt-3 font-serif text-2xl font-light text-white md:text-3xl">
+                Booking Desk &amp; Reservations Office
+              </h3>
+              <p className="mt-4 font-sans text-sm font-light leading-relaxed text-white/65">
+                Official contact channels and Australian reservations bureau as published on the {BRAND.operatorName} and {BRAND.bookingDeskName} brochure registry:
+              </p>
+
+              <div className="mt-7 space-y-5 border-t border-white/10 pt-6">
+                <div>
+                  <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-white">
+                    Primary Office Address
+                  </p>
+                  <p className="mt-1 font-sans text-xs font-light leading-relaxed text-white/75">
+                    {BRAND.bookingOffice.address}
+                  </p>
+                </div>
+                <div>
+                  <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-white">
+                    Direct Telephones &amp; Mobile
+                  </p>
+                  <p className="mt-1 font-mono text-xs text-[var(--color-wild-orange)]">
+                    M: {BRAND.bookingOffice.phoneMobile} &bull; T: {BRAND.bookingOffice.phoneLandline}
+                  </p>
+                </div>
+                <div>
+                  <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-white">
+                    Monitored Concierge Emails
+                  </p>
+                  <p className="mt-1 font-mono text-xs text-white/80">
+                    {BRAND.bookingOffice.email} &bull; {BRAND.bookingOffice.altEmail}
+                  </p>
+                </div>
+                <div>
+                  <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-white">
+                    Booking Deposit &amp; Terms
+                  </p>
+                  <p className="mt-1 font-sans text-xs font-light leading-relaxed text-white/75">
+                    {BRAND.bookingOffice.deposit}. Balance due 8 weeks prior to departure. {BRAND.bookingOffice.amendmentFee}.
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-7 border-t border-white/10 pt-5 flex flex-wrap gap-2 text-[10px] font-mono text-white/50">
+                {BRAND.bookingOffice.websites.map((url) => (
+                  <span key={url} className="border border-white/10 bg-white/[0.03] px-2 py-0.5">
+                    {url}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
-        </section>
-      </Container>
+        </Container>
+      </section>
+
+      {/* What happens next */}
+      <section className="section-darker border-b border-white/5 py-16 md:py-24">
+        <Container wide>
+          <div className="max-w-3xl">
+            <p className="mb-5 flex items-center gap-4 font-sans text-[10px] font-medium uppercase tracking-[0.3em] text-[var(--color-wild-orange)]">
+              <span className="h-px w-10 bg-[var(--color-wild-orange)]" />
+              What happens next
+            </p>
+            <h2 className="font-serif text-4xl font-light leading-[1.08] tracking-normal text-white md:text-5xl">
+              From enquiry to departure
+            </h2>
+          </div>
+
+          <ol className="mt-12 grid gap-x-10 gap-y-10 sm:grid-cols-3">
+            {STEPS.map((step) => (
+              <li key={step.step} className="border-t border-white/15 pt-5">
+                <span className="font-mono text-[11px] tracking-[0.2em] text-[var(--color-wild-orange)]">
+                  {step.step}
+                </span>
+                <h3 className="mt-3 font-serif text-xl font-light text-white">{step.title}</h3>
+                <p className="mt-3 font-sans text-sm font-light leading-relaxed text-white/60">
+                  {step.body}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </Container>
+      </section>
+
+      <CtaZoom
+        image="/images/destinations/kashmir-shikara.jpg"
+        imageAlt="Houseboats moored on Dal Lake in Srinagar beneath snow-covered mountains"
+        eyebrow="Plan your journey"
+        title={
+          <>
+            Tell us where
+            <br className="hidden sm:block" /> you want to go.
+          </>
+        }
+        body="Dates, party size, travel pace and the landscapes that call to you — we will shape the rest."
+        ctaLabel="Enquire now"
+        ctaHref="/enquiry"
+      />
     </PageShell>
   );
 }

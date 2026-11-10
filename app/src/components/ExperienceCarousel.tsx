@@ -2,15 +2,22 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { EXPERIENCES } from "@/data/siteContent";
+import { DURATION, EASE, prefersReducedMotion } from "@/lib/motion";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 function ExperienceCircleImage({ src, alt }: { src: string; alt: string }) {
   const circleRef = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ rx: 0, ry: 0 });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (prefersReducedMotion()) return;
     const el = circleRef.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
@@ -35,17 +42,22 @@ function ExperienceCircleImage({ src, alt }: { src: string; alt: string }) {
         transform: `perspective(600px) rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)`,
         transition: tilt.rx === 0 ? "transform 0.5s ease-out" : "none",
       }}
-      className="relative z-20 shrink-0 w-[240px] h-[240px] sm:w-[320px] sm:h-[320px] md:w-[360px] md:h-[360px] lg:w-[400px] lg:h-[400px] rounded-full overflow-hidden shadow-2xl bg-[#1a1c1d] sm:-mr-24 md:-mr-32 lg:-mr-36 -mb-16 sm:mb-0 will-change-transform"
+      className="relative z-20 shrink-0 w-[240px] h-[240px] sm:w-[320px] sm:h-[320px] md:w-[360px] md:h-[360px] lg:w-[400px] lg:h-[400px] rounded-full overflow-hidden shadow-2xl bg-[#1a1c1d] sm:-mr-24 md:-mr-32 lg:-mr-36 -mb-16 sm:mb-0 will-change-transform group/circle"
     >
       <Image
         src={src}
         alt={alt}
         fill
         sizes="(max-width: 640px) 240px, (max-width: 1024px) 360px, 400px"
-        className="object-cover transition-transform duration-700 ease-out hover:scale-105"
+        className="object-cover transition-transform duration-[900ms] ease-out group-hover/circle:scale-110"
+      />
+      {/* A warm wash lifts on hover so the circle feels lit from within. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(255,110,0,0.18),transparent_65%)] opacity-0 transition-opacity duration-700 group-hover/circle:opacity-100"
       />
       {/* Subtle ring border around circle */}
-      <div className="absolute inset-0 rounded-full border-2 border-white/20 pointer-events-none transition-colors duration-500 hover:border-[var(--color-wild-orange,#ff6e00)]" />
+      <div className="absolute inset-0 rounded-full border-2 border-white/20 pointer-events-none transition-colors duration-500 group-hover/circle:border-[var(--color-wild-orange,#ff6e00)]" />
     </div>
   );
 }
@@ -55,6 +67,34 @@ export default function ExperienceCarousel() {
 
   // Duplicating experiences ensures a 100% seamless infinite scroll loop with no visual jump
   const duplicatedExperiences = [...EXPERIENCES, ...EXPERIENCES];
+
+  // The track drifts a little slower than the raw marquee speed and eases to
+  // a stop when the visitor hovers, so the motion never fights the pointer.
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    if (prefersReducedMotion()) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        track,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: DURATION.slow,
+          ease: EASE.expo,
+          scrollTrigger: {
+            trigger: track,
+            start: "top 92%",
+            once: true,
+          },
+        }
+      );
+    }, track);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <section className="section-experiences py-12 md:py-16 overflow-hidden relative" id="experiences">
@@ -95,7 +135,16 @@ export default function ExperienceCarousel() {
 
                   {/* 2. Deep Forest Teal Content Box */}
                   <div className="relative z-10 flex-1 w-full bg-[#0d2a2d] text-white pt-20 pb-8 px-6 sm:py-10 sm:pr-8 sm:pl-28 md:py-12 md:pr-12 md:pl-36 lg:py-14 lg:pr-14 lg:pl-44 min-h-[360px] sm:min-h-[380px] md:min-h-[420px] flex flex-col justify-between rounded-sm shadow-xl border border-white/5 transition-colors duration-300 group-hover:border-white/15">
-                    <div>
+                    {/* A warm edge glow traces the card as the pointer passes. */}
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-0 rounded-sm opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                      style={{
+                        background:
+                          "radial-gradient(520px circle at 50% 0%, rgba(255,110,0,0.13), transparent 70%)",
+                      }}
+                    />
+                    <div className="relative">
                       {/* Title */}
                       <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] font-light text-white leading-[1.15] mb-4">
                         {exp.title}
@@ -111,7 +160,7 @@ export default function ExperienceCarousel() {
                         href={exp.href}
                         className="group/cta inline-flex items-center gap-3.5 text-xs md:text-sm font-semibold uppercase tracking-[0.16em] text-white transition-all duration-300"
                       >
-                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[var(--color-wild-orange,#ff6e00)] text-[var(--color-wild-orange,#ff6e00)] transition-all duration-300 group-hover/cta:bg-[var(--color-wild-orange,#ff6e00)] group-hover/cta:text-white group-hover/cta:shadow-[0_0_15px_rgba(255,110,0,0.5)]">
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-none border border-[var(--color-wild-orange,#ff6e00)] text-[var(--color-wild-orange,#ff6e00)] transition-all duration-300 group-hover/cta:bg-[var(--color-wild-orange,#ff6e00)] group-hover/cta:text-white group-hover/cta:shadow-[0_0_15px_rgba(255,110,0,0.5)]">
                           <svg
                             aria-hidden="true"
                             viewBox="0 0 24 24"
@@ -127,7 +176,7 @@ export default function ExperienceCarousel() {
                     </div>
 
                     {/* Location Pin Footer */}
-                    <div className="mt-8 pt-4 flex items-center gap-2 text-xs text-[#728d92]">
+                    <div className="relative mt-8 pt-4 flex items-center gap-2 text-xs text-[#728d92]">
                       <svg
                         aria-hidden="true"
                         viewBox="0 0 24 24"

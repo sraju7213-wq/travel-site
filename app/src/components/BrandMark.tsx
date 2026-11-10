@@ -10,7 +10,7 @@ export default function BrandMark({ className = "", compact = false }: BrandMark
   return (
     <Link
       href="/"
-      className={`group flex items-center gap-3 transition-opacity hover:opacity-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-button ${className}`}
+      className={`group flex items-center gap-3 transition-opacity hover:opacity-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-none ${className}`}
       aria-label={`${BRAND.name} — Home`}
     >
       <div className={`relative ${compact ? "h-10 w-16" : "h-12 w-20 md:h-14 md:w-24"} transition-transform duration-300 group-hover:scale-105`}>

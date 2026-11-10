@@ -56,7 +56,7 @@ export default function VideoTheaterModal({
       <button
         onClick={onClose}
         aria-label="Close cinematic theater"
-        className="absolute top-4 right-4 sm:top-6 sm:right-6 z-30 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/80 text-white/80 transition-all hover:bg-brass hover:text-white hover:border-brass active:scale-95 shadow-xl cursor-pointer"
+        className="absolute top-4 right-4 sm:top-6 sm:right-6 z-30 flex h-11 w-11 items-center justify-center rounded-none border border-white/20 bg-black/80 text-white/80 transition-all hover:bg-brass hover:text-white hover:border-brass active:scale-95 shadow-xl cursor-pointer"
       >
         <svg
           aria-hidden="true"

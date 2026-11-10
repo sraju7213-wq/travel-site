@@ -39,11 +39,14 @@ export default function HeroVideoShuffler({ onVideoChange }: HeroVideoShufflerPr
 
   // Initialize diverse non-repeating shuffled playlist on client mount
   useEffect(() => {
-    const shuffled = generateShuffledPlaylist();
-    setPlaylist(shuffled);
-    setCurrentIndex(0);
-    setVideoSrcA(shuffled[0]?.videoUrl || "");
-    setVideoSrcB(shuffled.length > 1 ? shuffled[1].videoUrl : shuffled[0]?.videoUrl || "");
+    const timer = window.setTimeout(() => {
+      const shuffled = generateShuffledPlaylist();
+      setPlaylist(shuffled);
+      setCurrentIndex(0);
+      setVideoSrcA(shuffled[0]?.videoUrl || "");
+      setVideoSrcB(shuffled.length > 1 ? shuffled[1].videoUrl : shuffled[0]?.videoUrl || "");
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, []);
 
   const currentVideo = playlist[currentIndex] || HERO_VIDEOS[0];

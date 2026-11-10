@@ -553,7 +553,7 @@ export default function EnquiryForm({
                           key={method}
                           type="button"
                           onClick={() => setField("preferredContact", method)}
-                          className={`flex items-center justify-center gap-2 rounded-button border px-4 py-2.5 text-xs font-display uppercase tracking-wider font-semibold transition-all cursor-pointer ${
+                          className={`flex items-center justify-center gap-2 rounded-none border px-4 py-2.5 text-xs font-display uppercase tracking-wider font-semibold transition-all cursor-pointer ${
                             isSelected
                               ? "border-brass bg-brass/20 text-brass shadow-sm"
                               : "border-white/15 bg-white/5 text-white/75 hover:bg-white/10 hover:text-white"
@@ -779,7 +779,7 @@ export default function EnquiryForm({
                     setStatusMessage("");
                     submissionIdRef.current = "";
                   }}
-                  className="w-full sm:w-auto px-6 py-4 rounded-button border border-white/15 bg-white/5 text-xs font-display font-semibold uppercase tracking-wider text-white/75 transition-colors hover:bg-white/10 hover:text-white cursor-pointer"
+                  className="w-full sm:w-auto px-6 py-4 rounded-none border border-white/15 bg-white/5 text-xs font-display font-semibold uppercase tracking-wider text-white/75 transition-colors hover:bg-white/10 hover:text-white cursor-pointer"
                 >
                   Reset
                 </button>

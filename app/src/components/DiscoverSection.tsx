@@ -4,6 +4,8 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { STATS } from "@/data/siteContent";
+import StatValue from "@/components/ui/StatValue";
+import { DURATION, EASE, prefersReducedMotion } from "@/lib/motion";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -74,7 +76,7 @@ export default function DiscoverSection() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (prefersReducedMotion()) return;
 
     const section = sectionRef.current;
     if (!section) return;
@@ -93,9 +95,9 @@ export default function DiscoverSection() {
         {
           opacity: 1,
           y: 0,
-          duration: 0.85,
-          ease: "power3.out",
-          stagger: 0.12,
+          duration: DURATION.base,
+          ease: EASE.expo,
+          stagger: 0.1,
           scrollTrigger: {
             trigger: section,
             start: "top 85%",
@@ -119,9 +121,9 @@ export default function DiscoverSection() {
           {
             scale: 1,
             opacity: 1,
-            duration: 0.8,
-            ease: "back.out(1.6)",
-            stagger: 0.12,
+            duration: DURATION.base,
+            ease: EASE.back,
+            stagger: 0.1,
             scrollTrigger: {
               trigger: section,
               start: "top 85%",
@@ -158,7 +160,7 @@ export default function DiscoverSection() {
                 <StatIcon label={stat.label} />
               </span>
               <dt className="font-serif text-2xl md:text-3xl font-light text-white tracking-tight">
-                {stat.value}
+                <StatValue value={stat.value} />
               </dt>
               <dd className="font-sans text-xs text-white/75">
                 <span className="block font-accent text-[11px] font-semibold uppercase tracking-[0.22em] text-brass mb-1">
