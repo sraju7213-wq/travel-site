@@ -66,7 +66,11 @@ travel-site-main/
 │   └── evidence/                 # brochure OCR/text extracts and audit screenshots
 ├── package.json                  # root script forwards
 ├── .gitignore
-└── README.md
+├── README.md                     # project overview, quick start, repo map, env vars
+├── CONTRIBUTING.md               # how to contribute
+├── ARCHITECTURE.md               # system architecture overview
+├── CHANGELOG.md                  # release history
+└── AGENTS.md                     # AI assistant context
 ```
 
 `docs/README.md` is the index for every document, with what each one is for and
@@ -88,7 +92,8 @@ which are still current.
   local-only (gitignored) because the optimized, served copies already live in
   `app/public`. Don't reference it from code.
 - **Documents** → `docs/<briefs|design|audits|planning|evidence>/`. Nothing
-  markdown should sit at the repo root except this README.
+  markdown should sit at the repo root except README.md, CONTRIBUTING.md,
+  ARCHITECTURE.md, CHANGELOG.md, and AGENTS.md.
 - **Generated output** → `app/.next`, `app/tsconfig.tsbuildinfo`: regenerable,
   gitignored, delete with `npm run clean`.
 

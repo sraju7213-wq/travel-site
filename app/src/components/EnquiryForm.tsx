@@ -248,7 +248,7 @@ export default function EnquiryForm({
             </div>
           )}
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <Link href="/explore" className="btn-ghost-dark">
+            <Link href="/journeys" className="btn-ghost-dark">
               Explore more journeys &rarr;
             </Link>
             <Link href="/" className="btn-tertiary">

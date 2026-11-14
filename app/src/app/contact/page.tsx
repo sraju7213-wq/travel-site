@@ -98,6 +98,7 @@ export default function ContactPage() {
     <PageShell mainClassName="">
       <PageHero
         align="left"
+        height="full"
         image="/images/destinations/contact.jpg"
         imageClassName="object-[center_70%]"
         imageAlt="Sunrise illumination over the snow-covered Himalayan peaks of the Annapurna range"
@@ -113,7 +114,7 @@ export default function ContactPage() {
           { value: "28.6139° N, 77.2090° E", label: "Delhi · Srinagar · Leh Desks" },
         ]}
         primaryCta={{ label: "Open the enquiry form", href: "/enquiry" }}
-        secondaryCta={{ label: "Browse all journeys", href: "/explore" }}
+        secondaryCta={{ label: "Browse all journeys", href: "/journeys" }}
         scrollCue
       />
 

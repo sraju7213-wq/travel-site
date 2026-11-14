@@ -63,9 +63,9 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
     const core = coreRef.current;
     if (!section || !ring || !core) return undefined;
 
-    const cards: OrbitCard[] = [];
+    const allCards: OrbitCard[] = [];
     ring.querySelectorAll<HTMLAnchorElement>("[data-orbit-card]").forEach((el, index) => {
-      cards.push({
+      allCards.push({
         el,
         tilt: el.querySelector<HTMLElement>("[data-orbit-tilt]") as HTMLElement,
         shade: el.querySelector<HTMLElement>("[data-orbit-shade]") as HTMLElement,
@@ -81,8 +81,10 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
         shadeOp: "",
       });
     });
-    cardsRef.current = cards;
-    if (cards.length === 0) return undefined;
+    cardsRef.current = allCards;
+    if (allCards.length === 0) return undefined;
+
+    let activeCards: OrbitCard[] = allCards;
 
     const reduced = prefersReducedMotion();
 
@@ -132,10 +134,45 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
       metrics.cx = stageRect.left - rect.left + stageRect.width / 2;
       metrics.baseCy = coreRect.top + coreRect.height / 2 - rect.top;
       metrics.cy = metrics.baseCy;
-      // The ring bleeds past the viewport edges so the cards cover the whole
-      // first screen instead of floating in a band.
-      metrics.rx = Math.max(140, stageRect.width * 0.52);
-      metrics.ry = Math.max(140, metrics.height * 0.4);
+
+      // Card density by device breakpoint:
+      // Phone (< 768px): lesser density (5 cards) — generous spacing, zero card overlap
+      // Tablet (768px - 1024px): medium density (8 cards) — balanced ring without crowding
+      // Desktop (>= 1024px): full catalogue density
+      const targetCount =
+        metrics.width < 768
+          ? Math.min(5, allCards.length)
+          : metrics.width < 1024
+            ? Math.min(8, allCards.length)
+            : allCards.length;
+
+      activeCards = allCards.slice(0, targetCount);
+
+      allCards.forEach((card, i) => {
+        if (i < targetCount) {
+          card.index = i;
+          card.el.style.display = "";
+          card.el.style.pointerEvents = "";
+        } else {
+          card.el.style.display = "none";
+          card.el.style.pointerEvents = "none";
+          card.el.style.opacity = "0";
+        }
+      });
+
+      if (metrics.width < 768) {
+        // Phone: orbit radius fitted to smaller screen so 5 cards orbit with guaranteed clearance
+        metrics.rx = Math.max(140, Math.min(210, stageRect.width * 0.48));
+        metrics.ry = Math.max(130, Math.min(240, metrics.height * 0.32));
+      } else if (metrics.width < 1024) {
+        // Tablet: medium radius for 8 cards
+        metrics.rx = Math.max(220, Math.min(360, stageRect.width * 0.5));
+        metrics.ry = Math.max(160, Math.min(300, metrics.height * 0.36));
+      } else {
+        // Desktop: wide cinematic spread
+        metrics.rx = Math.max(280, stageRect.width * 0.52);
+        metrics.ry = Math.max(180, metrics.height * 0.4);
+      }
     };
 
     const render = () => {
@@ -143,8 +180,8 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
       const cosTilt = Math.cos(ringTilt);
       const sinTilt = Math.sin(ringTilt);
 
-      cards.forEach((card) => {
-        const angle = state.phase + (card.index / cards.length) * Math.PI * 2;
+      activeCards.forEach((card) => {
+        const angle = state.phase + (card.index / activeCards.length) * Math.PI * 2;
         const sin = Math.sin(angle);
         const cos = Math.cos(angle);
 
@@ -160,8 +197,9 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
         const isHot = state.hot === card;
         card.lift += ((isHot ? 1 : 0) - card.lift) * 0.18;
 
-        let scale = 0.5 + depth * 0.62;
-        scale += (Math.max(scale, 1) * 1.22 - scale) * card.lift;
+        const maxDepthScale = metrics.width < 768 ? 0.36 : 0.62;
+        let scale = (metrics.width < 768 ? 0.7 : 0.5) + depth * maxDepthScale;
+        scale += (Math.max(scale, 1) * 1.15 - scale) * card.lift;
 
         const yaw = -cos * 24 * (1 - card.lift);
 
@@ -236,7 +274,7 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
     };
 
     // Pointer interaction: hovering a card tilts it, dragging spins the ring.
-    cards.forEach((card) => {
+    allCards.forEach((card) => {
       card.el.addEventListener("pointerenter", () => {
         if (state.dragging) return;
         if (state.hot && state.hot !== card) {
@@ -335,7 +373,7 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
 
     if (!reduced) {
       gsap.fromTo(
-        cards.map((card) => card.el),
+        activeCards.map((card) => card.el),
         { opacity: 0, scale: 0.7 },
         {
           opacity: 1,
@@ -365,20 +403,28 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
     <section ref={sectionRef} className="jy-orbit" aria-labelledby="jy-hero-title">
       <div className="jy-orbit-stage">
         <div ref={ringRef} className="jy-orbit-ring" aria-hidden="true">
-          {journeys.map((pkg, index) => (
-            <Link
-              key={pkg.id}
-              href={`/packages/${pkg.slug}`}
-              data-orbit-card
-              className="jy-orbit-card"
-              aria-label={`${pkg.title} — ${cleanDuration(pkg.duration)}, ${placeLine(pkg)}. Open the itinerary.`}
-            >
+          {journeys.map((pkg, index) => {
+            const densityClass =
+              index >= 8
+                ? "hidden lg:block"
+                : index >= 5
+                  ? "hidden md:block"
+                  : "";
+            return (
+              <Link
+                key={pkg.id}
+                href={`/packages/${pkg.slug}`}
+                data-orbit-card
+                className={`jy-orbit-card ${densityClass}`}
+                aria-label={`${pkg.title} — ${cleanDuration(pkg.duration)}, ${placeLine(pkg)}. Open the itinerary.`}
+              >
               <span className="jy-orbit-tilt" data-orbit-tilt>
                 <Image
                   src={`/images/packages/${pkg.slug}.jpg`}
                   alt=""
                   fill
-                  sizes="250px"
+                  sizes="(min-width: 768px) 450px, 320px"
+                  quality={90}
                   className="object-cover"
                 />
                 <span className="jy-orbit-veil" aria-hidden="true" />
@@ -405,7 +451,8 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
                 </span>
               </span>
             </Link>
-          ))}
+            );
+          })}
         </div>
 
         <div ref={coreRef} className="jy-orbit-core">
@@ -419,7 +466,7 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
           {/* Search field — the reelipse-style primary action */}
           <form
             className="mt-7 flex w-full max-w-lg items-center gap-3 rounded-full bg-[var(--color-wild-orange)] px-6 py-4 text-left font-medium text-[#0C1617] shadow-[0_0_60px_-10px_var(--color-wild-orange)] transition-colors hover:bg-[var(--color-wild-orange-hover)]"
-            action="/explore"
+            action="/journeys#catalogue"
             method="get"
             role="search"
           >
@@ -456,7 +503,7 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
                 {place.name}
               </Link>
             ))}
-            <Link href="/explore" className="jy-chip">
+            <Link href="#catalogue" className="jy-chip">
               All {allPackages.length} journeys
             </Link>
           </div>

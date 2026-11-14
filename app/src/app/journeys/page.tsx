@@ -1,11 +1,12 @@
+import { Suspense } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import PageShell from "@/components/PageShell";
 import Container from "@/components/Container";
 import CtaZoom from "@/components/CtaZoom";
+import SearchAndFilters from "@/components/SearchAndFilters";
 import PlaceOrbitHero from "@/components/journeys/PlaceOrbitHero";
-import TrendingJourneys from "@/components/journeys/TrendingJourneys";
 import PosterRail from "@/components/journeys/PosterRail";
 import TiltPoster from "@/components/journeys/TiltPoster";
 import { getAllPackages } from "@/data/catalogue";
@@ -20,14 +21,14 @@ const places = getPlaces();
 const heroJourneys = getHeroJourneys();
 
 const MOODS = [
-  { label: "Trekking", href: "/explore?category=Himalayan+Expeditions" },
-  { label: "Houseboats", href: "/explore?q=houseboat" },
-  { label: "Heritage", href: "/explore?category=Images+of+India" },
-  { label: "Wildlife", href: "/explore?q=wildlife" },
-  { label: "Culture", href: "/explore?q=culture" },
-  { label: "Rafting", href: "/explore?q=rafting" },
-  { label: "Stopovers", href: "/explore?category=Stopovers" },
-  { label: "Nepal", href: "/explore?category=Nepal+Adventure" },
+  { label: "Trekking", href: "/journeys?category=Himalayan+Expeditions#catalogue" },
+  { label: "Houseboats", href: "/journeys?q=houseboat#catalogue" },
+  { label: "Heritage", href: "/journeys?category=Images+of+India#catalogue" },
+  { label: "Wildlife", href: "/journeys?q=wildlife#catalogue" },
+  { label: "Culture", href: "/journeys?q=culture#catalogue" },
+  { label: "Rafting", href: "/journeys?q=rafting#catalogue" },
+  { label: "Stopovers", href: "/journeys?category=Stopovers#catalogue" },
+  { label: "Nepal", href: "/journeys?category=Nepal+Adventure#catalogue" },
 ];
 
 export const metadata: Metadata = {
@@ -37,7 +38,6 @@ export const metadata: Metadata = {
 };
 
 export default function JourneysPage() {
-  const trending = allPackages.slice(0, 12);
   const inSeason = allPackages.slice(0, 10);
   const byCategory = (category: string) =>
     allPackages.filter((pkg) => pkg.category === category).slice(0, 5);
@@ -50,26 +50,38 @@ export default function JourneysPage() {
       {/* Hero — 3D orbit of marquee journeys; every card opens its itinerary */}
       <PlaceOrbitHero places={places} journeys={heroJourneys} />
 
-      {/* Trending this week */}
-      <section className="mt-24" aria-labelledby="trending-h">
+      {/* Search & Filters Catalogue */}
+      <section id="catalogue" className="section-journeys scroll-mt-20 py-16 md:py-24">
         <Container wide>
-          <h2 id="trending-h" className="jy-section-title">
-            Trending this week
-          </h2>
-          <p className="mb-10 mt-4 text-lg text-white/70">
-            What travellers are booking right now, from Himalayan treks to houseboat
-            weekends.
-          </p>
+          <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8">
+            <div className="max-w-2xl">
+              <p className="mb-3 flex items-center gap-3 font-sans text-[10px] font-semibold uppercase tracking-[0.28em] text-[var(--color-wild-orange)]">
+                <span className="h-px w-8 bg-[var(--color-wild-orange)]" />
+                Complete Itinerary Catalogue
+              </p>
+              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light leading-tight text-white tracking-tight">
+                Journeys shaped around you
+                <span className="block text-white/50 text-2xl sm:text-3xl md:text-4xl mt-1 font-serif italic">
+                  from the Himalaya to the backwaters
+                </span>
+              </h2>
+            </div>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 text-xs font-sans text-white/60">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 backdrop-blur-sm">
+                <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-wild-orange)]" />
+                27 Verified Brochure Routes
+              </span>
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 backdrop-blur-sm">
+                <span className="h-1.5 w-1.5 rounded-full bg-brass" />
+                Custom Private Departures
+              </span>
+            </div>
+          </div>
+
+          <Suspense fallback={<p className="py-20 font-display text-white/70">Loading journeys…</p>}>
+            <SearchAndFilters packages={allPackages} />
+          </Suspense>
         </Container>
-        <TrendingJourneys packages={trending} />
-        <div className="mt-10 text-center">
-          <Link
-            href="/explore"
-            className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-2.5 font-sans text-sm font-medium text-white transition-colors hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)]"
-          >
-            See all {allPackages.length} journeys
-          </Link>
-        </div>
       </section>
 
       {/* In season now */}
@@ -89,8 +101,9 @@ export default function JourneysPage() {
             aria-label="Journeys in season now"
             tabIndex={0}
           >
+            {/* Primary slide set */}
             {inSeason.map((pkg, index) => (
-              <div key={pkg.id} className="jy-coverflow-slide">
+              <div key={`${pkg.id}-primary`} className="jy-coverflow-slide">
                 <article className="jy-coverflow-card" data-tilt>
                   <Link
                     href={`/packages/${pkg.slug}`}
@@ -101,7 +114,50 @@ export default function JourneysPage() {
                       src={`/images/packages/${pkg.slug}.jpg`}
                       alt={pkg.title}
                       fill
-                      sizes="(min-width: 768px) 320px, 64vw"
+                      sizes="(min-width: 768px) 450px, 80vw"
+                      quality={90}
+                      className="object-cover"
+                    />
+                  </Link>
+                  <span className="jy-coverflow-veil" aria-hidden="true" />
+                  <span className="jy-coverflow-sheen" aria-hidden="true" />
+                  <div className="jy-coverflow-info">
+                    <span className="jy-coverflow-rank" aria-hidden="true">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <div className="grid gap-2.5">
+                      <h3 className="jy-coverflow-title">{pkg.title}</h3>
+                      <div className="jy-coverflow-meta">
+                        <span className="font-mono text-[0.8125rem] text-white/70">
+                          {placeLine(pkg)}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            ))}
+
+            {/* Duplicated slide set for seamless 50% infinite translation loop */}
+            {inSeason.map((pkg, index) => (
+              <div
+                key={`${pkg.id}-duplicate`}
+                className="jy-coverflow-slide"
+                aria-hidden="true"
+              >
+                <article className="jy-coverflow-card" data-tilt>
+                  <Link
+                    href={`/packages/${pkg.slug}`}
+                    className="jy-coverflow-poster"
+                    tabIndex={-1}
+                    aria-hidden="true"
+                  >
+                    <Image
+                      src={`/images/packages/${pkg.slug}.jpg`}
+                      alt=""
+                      fill
+                      sizes="(min-width: 768px) 450px, 80vw"
+                      quality={90}
                       className="object-cover"
                     />
                   </Link>
@@ -136,32 +192,119 @@ export default function JourneysPage() {
           <p className="mb-10 mt-4 text-lg text-white/70">
             Every place, with the journeys that pass through it.
           </p>
-          <div className="jy-rail">
-            {places.map((place) => (
-              <article key={place.name} className="jy-rail-card group">
-                <Link href={place.href} aria-label={`${place.name} — ${place.journeys} journeys`}>
-                  <div className="jy-rail-poster" data-tilt>
+        </Container>
+        <div className="jy-coverflow">
+          <div
+            className="jy-coverflow-track jy-coverflow-track--reverse"
+            role="region"
+            aria-label="Places we travel"
+            tabIndex={0}
+          >
+            {/* Primary slide set */}
+            {places.map((place, index) => (
+              <div key={`${place.name}-primary`} className="jy-coverflow-slide">
+                <article className="jy-coverflow-card" data-tilt>
+                  <Link
+                    href={place.href}
+                    className="jy-coverflow-poster"
+                    aria-label={`${place.name} — ${place.journeys} journeys`}
+                  >
                     <Image
                       src={place.image}
                       alt={place.alt}
                       fill
-                      sizes="(min-width: 1024px) 240px, (min-width: 640px) 30vw, 45vw"
+                      sizes="(min-width: 768px) 450px, 80vw"
+                      quality={90}
                       className="object-cover"
                     />
-                    <span className="jy-rail-glare" aria-hidden="true" />
-                  </div>
-                  <h3 className="jy-rail-title">{place.name}</h3>
-                  <div className="jy-rail-meta">
-                    <span className="font-mono text-xs text-white/55">
-                      {place.journeys} {place.journeys === 1 ? "journey" : "journeys"}
+                  </Link>
+                  <span className="jy-coverflow-veil" aria-hidden="true" />
+                  <span className="jy-coverflow-sheen" aria-hidden="true" />
+                  <div className="jy-coverflow-info">
+                    <span className="jy-coverflow-rank" aria-hidden="true">
+                      {String(index + 1).padStart(2, "0")}
                     </span>
-                    <span className="jy-pill jy-pill--essential">Explore</span>
+                    <div className="grid gap-2.5">
+                      <h3 className="jy-coverflow-title">{place.name}</h3>
+                      <div className="jy-coverflow-meta">
+                        <span className="font-mono text-[0.8125rem] text-white/70">
+                          {place.journeys} {place.journeys === 1 ? "journey" : "journeys"}
+                        </span>
+                        <span className="jy-pill jy-pill--essential">Explore</span>
+                      </div>
+                      <p className="jy-coverflow-summary text-xs sm:text-[0.875rem] text-white/80 line-clamp-2">
+                        {place.blurb}
+                      </p>
+                      <div className="jy-coverflow-actions mt-1">
+                        <Link
+                          href={place.href}
+                          className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--color-wild-orange)] px-4 py-2 font-sans text-xs sm:text-sm font-semibold text-[#0C1617] transition-all hover:bg-[var(--color-wild-orange-hover)]"
+                        >
+                          View {place.name} journeys
+                        </Link>
+                      </div>
+                    </div>
                   </div>
-                </Link>
-              </article>
+                </article>
+              </div>
+            ))}
+
+            {/* Duplicated slide set for seamless 50% infinite reverse translation loop */}
+            {places.map((place, index) => (
+              <div
+                key={`${place.name}-duplicate`}
+                className="jy-coverflow-slide"
+                aria-hidden="true"
+              >
+                <article className="jy-coverflow-card" data-tilt>
+                  <Link
+                    href={place.href}
+                    className="jy-coverflow-poster"
+                    tabIndex={-1}
+                    aria-hidden="true"
+                  >
+                    <Image
+                      src={place.image}
+                      alt=""
+                      fill
+                      sizes="(min-width: 768px) 450px, 80vw"
+                      quality={90}
+                      className="object-cover"
+                    />
+                  </Link>
+                  <span className="jy-coverflow-veil" aria-hidden="true" />
+                  <span className="jy-coverflow-sheen" aria-hidden="true" />
+                  <div className="jy-coverflow-info">
+                    <span className="jy-coverflow-rank" aria-hidden="true">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <div className="grid gap-2.5">
+                      <h3 className="jy-coverflow-title">{place.name}</h3>
+                      <div className="jy-coverflow-meta">
+                        <span className="font-mono text-[0.8125rem] text-white/70">
+                          {place.journeys} {place.journeys === 1 ? "journey" : "journeys"}
+                        </span>
+                        <span className="jy-pill jy-pill--essential">Explore</span>
+                      </div>
+                      <p className="jy-coverflow-summary text-xs sm:text-[0.875rem] text-white/80 line-clamp-2">
+                        {place.blurb}
+                      </p>
+                      <div className="jy-coverflow-actions mt-1">
+                        <Link
+                          href={place.href}
+                          tabIndex={-1}
+                          className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--color-wild-orange)] px-4 py-2 font-sans text-xs sm:text-sm font-semibold text-[#0C1617] transition-all hover:bg-[var(--color-wild-orange-hover)]"
+                        >
+                          View {place.name} journeys
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </div>
             ))}
           </div>
-        </Container>
+        </div>
       </section>
 
       {/* Rails by category */}

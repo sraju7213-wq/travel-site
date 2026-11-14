@@ -18,7 +18,7 @@ export interface PlaceFeature {
 export const PLACE_FEATURES: PlaceFeature[] = [
   {
     name: "Kashmir",
-    image: "/images/destinations/dal-lake.jpg",
+    image: "/images/destinations/kashmir.png",
     alt: "Houseboats on Dal Lake, Srinagar",
     blurb: "Shikara mornings on Dal Lake, Mughal gardens and Himalayan passes.",
     match: [
@@ -34,7 +34,7 @@ export const PLACE_FEATURES: PlaceFeature[] = [
   },
   {
     name: "Ladakh",
-    image: "/images/destinations/ladakh-monastery.jpg",
+    image: "/images/destinations/ladakh.png",
     alt: "Monastery above the Indus in Ladakh",
     blurb: "Buddhist monasteries, the cold desert of Nubra and the shore of Pangong.",
     match: [
@@ -57,14 +57,14 @@ export const PLACE_FEATURES: PlaceFeature[] = [
   },
   {
     name: "Rajasthan",
-    image: "/images/destinations/rajasthan-desert-camels.jpg",
+    image: "/images/destinations/rajasthan.png",
     alt: "Camel caravan crossing the Thar desert",
     blurb: "Forts, palaces and desert camps from Jaipur to Jaisalmer and Udaipur.",
     match: ["Rajasthan", "Jaipur", "Jodhpur", "Jaisalmer", "Udaipur", "Bikaner", "Mandawa"],
   },
   {
     name: "Kerala",
-    image: "/images/destinations/kerala-backwaters.jpg",
+    image: "/images/destinations/kerala.png",
     alt: "Houseboat on the Kerala backwaters",
     blurb: "Kettuvallam houseboats, hill stations and the tea slopes of Munnar.",
     match: [
@@ -104,21 +104,21 @@ export const PLACE_FEATURES: PlaceFeature[] = [
   },
   {
     name: "Agra",
-    image: "/images/destinations/taj-mahal.jpg",
+    image: "/images/destinations/taj-mahal-reflection.png",
     alt: "The Taj Mahal in Agra",
     blurb: "Mughal landmarks on the classic Delhi–Agra–Jaipur circuit.",
     match: ["Agra"],
   },
   {
     name: "Goa",
-    image: "/images/destinations/goa-beach.jpg",
+    image: "/images/destinations/goa.png",
     alt: "Goa coastline at golden hour",
     blurb: "A relaxed coast stay with Panjim's old town and the beaches beyond.",
     match: ["Goa", "Panjim"],
   },
   {
     name: "Varanasi",
-    image: "/images/destinations/varanasi-ghat.jpg",
+    image: "/images/destinations/varanasi.png",
     alt: "Ghat steps along the Ganges at Varanasi",
     blurb: "Boating on the Ganges and the ghats of the oldest living city.",
     match: ["Varanasi"],
@@ -150,7 +150,7 @@ export function getPlaces(): ResolvedPlace[] {
     return {
       ...place,
       journeys,
-      href: `/explore?q=${encodeURIComponent(place.name)}`,
+      href: `/journeys?q=${encodeURIComponent(place.name)}#catalogue`,
     };
   });
 }

@@ -100,6 +100,7 @@ export default function AboutPage() {
       {/* Hero */}
       <PageHero
         align="left"
+        height="full"
         image="/images/destinations/about-hero.jpg"
         imageAlt="Desert expedition caravan with camels and travelers crossing sand dunes at sunset"
         eyebrow="Est. 1927 · Specialist travel"
@@ -112,7 +113,7 @@ export default function AboutPage() {
         lead="Founded on the mountain waters of Kashmir and forged along the high trails of the Himalayas, our organisation has arranged specialist travel for nearly one hundred years — with offices in Delhi, Kashmir and Ladakh, and a fleet of cars in Delhi and luxurious houseboats in Kashmir."
         meta={[{ value: "Since 1927", label: "Baktoo family heritage" }]}
         primaryCta={{ label: "Plan your journey", href: "/enquiry" }}
-        secondaryCta={{ label: "View all 27 journeys", href: "/explore" }}
+        secondaryCta={{ label: "View all 27 journeys", href: "/journeys" }}
         scrollCue
       />
 

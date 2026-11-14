@@ -38,3 +38,7 @@ yarn-error.log*
 # Large binary formats that must be optimised into app/public first
 *.pdf
 *.psd
+
+# Working upload directories
+to be updated images/
+

@@ -90,10 +90,6 @@ export default function JourneysBand() {
         aria-hidden="true"
         className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-transparent"
       />
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30"
-      />
 
       <div className="relative z-10 mx-auto w-full max-w-[1100px] px-5 py-16 md:px-8 md:py-24">
         <div ref={textRef} className="max-w-2xl">
@@ -107,7 +103,7 @@ export default function JourneysBand() {
             Wild places. Deeper encounters. A journey shaped around you.
           </p>
           <Link
-            href="/explore"
+            href="/journeys"
             className="btn-ghost-dark group inline-flex items-center gap-2 hover:border-[var(--color-wild-orange,#ff6e00)] hover:text-[var(--color-wild-orange,#ff6e00)] transition-all"
           >
             <span>Plan your journey</span>

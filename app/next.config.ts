@@ -30,6 +30,20 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  async redirects() {
+    return [
+      {
+        source: "/explore",
+        destination: "/journeys",
+        permanent: true,
+      },
+      {
+        source: "/explore/:path*",
+        destination: "/journeys",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

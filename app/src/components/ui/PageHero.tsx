@@ -29,8 +29,8 @@ interface PageHeroProps {
   /** Optional element pinned to the bottom of the hero (e.g. a stat strip). */
   footer?: React.ReactNode;
   priority?: boolean;
-  /** "tall" gives the hero more presence on long-form pages. */
-  height?: "default" | "tall";
+  /** "tall" gives the hero more presence on long-form pages; "full" takes full viewport height (100dvh). */
+  height?: "default" | "tall" | "full";
   /** "normal" renders a contained, normally-sized image banner instead of full-bleed. */
   size?: "full" | "normal";
   /** Extra classes applied to the hero content container (e.g. to shift it upward). */
@@ -159,7 +159,13 @@ export default function PageHero({
       className={`relative isolate overflow-hidden ${
         isNormal
           ? "min-h-[560px] md:min-h-[740px] flex flex-col justify-center items-center"
-          : `flex flex-col justify-center overflow-hidden ${height === "tall" ? "min-h-[88vh] md:min-h-[92vh]" : "min-h-[78vh] md:min-h-[86vh]"}`
+          : `flex flex-col justify-center overflow-hidden ${
+              height === "full"
+                ? "min-h-screen min-h-[100dvh]"
+                : height === "tall"
+                ? "min-h-[88vh] md:min-h-[92vh]"
+                : "min-h-[78vh] md:min-h-[86vh]"
+            }`
       }`}
     >
       {isNormal ? (

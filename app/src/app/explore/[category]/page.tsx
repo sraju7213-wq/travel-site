@@ -58,7 +58,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         lead="Every itinerary below is transcribed from the printed brochure catalogue. Dates, routing and inclusions are confirmed directly with a travel designer — small private groups, or a single traveller."
         meta={[{ value: `${categoryPackages.length} routes`, label: "From the brochure" }]}
         primaryCta={{ label: "Enquire about these journeys", href: `/enquiry?category=${encodeURIComponent(category)}` }}
-        secondaryCta={{ label: "All journeys", href: "/explore" }}
+        secondaryCta={{ label: "All journeys", href: "/journeys" }}
         scrollCue
       />
 
@@ -66,7 +66,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       <section className="section-discover border-b border-white/5 py-10 md:py-12">
         <Container wide>
           <nav aria-label="Breadcrumb" className="flex items-center gap-2 font-sans text-[11px] uppercase tracking-[0.16em] text-white/50">
-            <Link href="/explore" className="transition-colors hover:text-brass">
+            <Link href="/journeys" className="transition-colors hover:text-brass">
               All journeys
             </Link>
             <span aria-hidden="true" className="text-white/25">

@@ -156,7 +156,7 @@ export default function MegaMenu({ open, onClose }: MegaMenuProps) {
     entries.push({ label: "Kashmir Houseboats", href: "/houseboats", image: "/images/destinations/kashmir-shikara.jpg", blurb: "Cedarwood carved interiors on Dal Lake.", group: "Houseboats", tab: "houseboats" });
     entries.push({ label: "About our heritage", href: "/about", blurb: "The Baktoo family since 1927.", group: "Company", tab: "about" });
     entries.push({ label: "Plan your trip", href: "/enquiry", blurb: "Enquire with a travel designer.", group: "Company", tab: "contact" });
-    entries.push({ label: "All journeys", href: "/explore", blurb: "Browse the full catalogue.", group: "Journeys", tab: "journeys" });
+    entries.push({ label: "All journeys", href: "/journeys", blurb: "Browse the full catalogue.", group: "Journeys", tab: "journeys" });
     return entries;
   }, []);
 
@@ -193,7 +193,7 @@ export default function MegaMenu({ open, onClose }: MegaMenuProps) {
             <p className="text-[0.65rem] font-display uppercase tracking-[0.25em] text-wild-orange">Eight Iconic Regions</p>
             <h2 className="font-serif text-2xl md:text-3xl text-white mt-1 font-light tracking-tight">Destinations We Operate In</h2>
           </div>
-          <Link href="/explore" onClick={onClose} className="text-xs font-display uppercase tracking-widest text-white/70 hover:text-wild-orange transition-colors">View all regions →</Link>
+          <Link href="/journeys#catalogue" onClick={onClose} className="text-xs font-display uppercase tracking-widest text-white/70 hover:text-wild-orange transition-colors">View all regions →</Link>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 stagger-in">
           {DESTINATIONS.slice(0, 6).map((dest) => {
@@ -243,7 +243,7 @@ export default function MegaMenu({ open, onClose }: MegaMenuProps) {
             <p className="text-[0.65rem] font-display uppercase tracking-[0.25em] text-wild-orange">Curated Itineraries</p>
             <h2 className="font-serif text-2xl md:text-3xl text-white mt-1 font-light tracking-tight">Journeys & Tours</h2>
           </div>
-          <Link href="/explore" onClick={onClose} className="text-xs font-display uppercase tracking-widest text-white/70 hover:text-wild-orange transition-colors">View all journeys →</Link>
+          <Link href="/journeys" onClick={onClose} className="text-xs font-display uppercase tracking-widest text-white/70 hover:text-wild-orange transition-colors">View all journeys →</Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 stagger-in">
           {JOURNEY_CATEGORIES.map((cat) => (

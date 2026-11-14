@@ -45,7 +45,7 @@ export default function HouseboatJourneys({ packages }: HouseboatJourneysProps) 
             the nights on the lake alongside it.
           </p>
           <Link
-            href="/explore"
+            href="/journeys?region=Kashmir#catalogue"
             className="group mt-9 inline-flex items-center gap-4 border-b border-white/35 pb-2 font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-white transition-colors hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
             Explore Kashmir journeys

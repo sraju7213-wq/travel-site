@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { getAllRegions, getAllDurations } from "@/data/catalogue";
+import { getAllRegions } from "@/data/catalogue";
 import PackageGrid from "./PackageGrid";
+import CoverflowSwiper from "./journeys/CoverflowSwiper";
 import { CATEGORIES, type PackageViewModel } from "@/types/travel";
 
 interface FilterState {
@@ -16,6 +17,22 @@ interface FilterState {
 
 const ALL = "All";
 
+const DURATION_BUCKETS = [
+  { value: ALL, label: "All Durations" },
+  { value: "short", label: "Short Getaway (1–4 days)", min: 1, max: 4 },
+  { value: "classic", label: "Classic Journey (5–8 days)", min: 5, max: 8 },
+  { value: "extended", label: "Extended Route (9–14 days)", min: 9, max: 14 },
+  { value: "expedition", label: "Grand Expedition (15+ days)", min: 15, max: 99 },
+];
+
+function parseDays(durationStr: string): number {
+  const nightMatch = durationStr.match(/(\d+)\s*nights?/i);
+  if (nightMatch) return parseInt(nightMatch[1], 10) + 1;
+  const dayMatch = durationStr.match(/(\d+)\s*days?/i);
+  if (dayMatch) return parseInt(dayMatch[1], 10);
+  return 1;
+}
+
 export default function SearchAndFilters({
   packages,
 }: {
@@ -24,6 +41,7 @@ export default function SearchAndFilters({
   const router = useRouter();
   const searchParams = useSearchParams();
   const isInitial = useRef(true);
+
   const [state, setState] = useState<FilterState>(() => ({
     q: searchParams.get("q") ?? "",
     category: searchParams.get("category") ?? ALL,
@@ -31,12 +49,14 @@ export default function SearchAndFilters({
     duration: searchParams.get("duration") ?? ALL,
     sort: searchParams.get("sort") ?? "title",
   }));
+
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const closeFiltersRef = useRef<HTMLButtonElement>(null);
-  const filtersPanelRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [viewMode, setViewMode] = useState<"coverflow" | "grid">("coverflow");
 
+  // Sync keyboard escape for mobile drawer
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape" && mobileFiltersOpen) {
@@ -48,6 +68,7 @@ export default function SearchAndFilters({
     return () => document.removeEventListener("keydown", handleEscape);
   }, [mobileFiltersOpen]);
 
+  // URL Query Sync
   const lastPushedRef = useRef<string>("");
 
   useEffect(() => {
@@ -61,7 +82,7 @@ export default function SearchAndFilters({
     if (state.region !== ALL) params.set("region", state.region);
     if (state.duration !== ALL) params.set("duration", state.duration);
     if (state.sort !== "title") params.set("sort", state.sort);
-    const newUrl = `/explore${params.toString() ? `?${params.toString()}` : ""}`;
+    const newUrl = `/journeys${params.toString() ? `?${params.toString()}` : ""}#catalogue`;
     if (newUrl !== lastPushedRef.current) {
       router.push(newUrl, { scroll: false });
       lastPushedRef.current = newUrl;
@@ -85,33 +106,59 @@ export default function SearchAndFilters({
     (state.category !== ALL ? 1 : 0) +
     (state.region !== ALL ? 1 : 0) +
     (state.duration !== ALL ? 1 : 0);
-  const categories = Array.from(new Set(packages.map((p) => p.category))).sort();
-  const regions = getAllRegions();
-  const durations = getAllDurations();
 
-  const filtered = packages.filter((pkg) => {
-    const matchesQuery =
-      !state.q ||
-      pkg.title.toLowerCase().includes(state.q.toLowerCase()) ||
-      pkg.slug.toLowerCase().includes(state.q.toLowerCase()) ||
-      pkg.brochure_code.toLowerCase().includes(state.q.toLowerCase()) ||
-      pkg.region.some((r: string) => r.toLowerCase().includes(state.q.toLowerCase()));
-    const matchesCategory = state.category === ALL || pkg.category === state.category;
-    const matchesRegion = state.region === ALL || pkg.region.includes(state.region);
-    const matchesDuration = state.duration === ALL || pkg.duration === state.duration;
-    return matchesQuery && matchesCategory && matchesRegion && matchesDuration;
-  });
+  // Region options sorted by package presence
+  const regions = useMemo(() => {
+    const all = getAllRegions();
+    return all.sort((a, b) => {
+      const countA = packages.filter((p) => p.region.includes(a)).length;
+      const countB = packages.filter((p) => p.region.includes(b)).length;
+      return countB - countA || a.localeCompare(b);
+    });
+  }, [packages]);
 
-  const sorted = [...filtered].sort((a, b) => {
-    switch (state.sort) {
-      case "duration-short":
-        return parseDurationNights(a.duration) - parseDurationNights(b.duration);
-      case "duration-long":
-        return parseDurationNights(b.duration) - parseDurationNights(a.duration);
-      default:
-        return a.title.localeCompare(b.title);
-    }
-  });
+  // Filter packages
+  const filtered = useMemo(() => {
+    return packages.filter((pkg) => {
+      const q = state.q.trim().toLowerCase();
+      const matchesQuery =
+        !q ||
+        pkg.title.toLowerCase().includes(q) ||
+        pkg.slug.toLowerCase().includes(q) ||
+        pkg.brochure_code.toLowerCase().includes(q) ||
+        pkg.region.some((r: string) => r.toLowerCase().includes(q));
+
+      const matchesCategory = state.category === ALL || pkg.category === state.category;
+      const matchesRegion = state.region === ALL || pkg.region.includes(state.region);
+
+      let matchesDuration = true;
+      if (state.duration !== ALL) {
+        const days = parseDays(pkg.duration);
+        const bucket = DURATION_BUCKETS.find((b) => b.value === state.duration);
+        if (bucket && bucket.min !== undefined && bucket.max !== undefined) {
+          matchesDuration = days >= bucket.min && days <= bucket.max;
+        } else {
+          matchesDuration = pkg.duration === state.duration;
+        }
+      }
+
+      return matchesQuery && matchesCategory && matchesRegion && matchesDuration;
+    });
+  }, [packages, state]);
+
+  // Sort packages
+  const sorted = useMemo(() => {
+    return [...filtered].sort((a, b) => {
+      switch (state.sort) {
+        case "duration-short":
+          return parseDays(a.duration) - parseDays(b.duration);
+        case "duration-long":
+          return parseDays(b.duration) - parseDays(a.duration);
+        default:
+          return a.title.localeCompare(b.title);
+      }
+    });
+  }, [filtered, state.sort]);
 
   const handleClearAll = () => {
     setState({
@@ -126,22 +173,25 @@ export default function SearchAndFilters({
 
   return (
     <>
-      {/* Search & Primary Actions Bar */}
-      <div className="relative mb-8">
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-          {/* Search Input */}
-          <div className="flex-1 relative">
+      {/* Sleek Command & Filter Bar */}
+      <div className="relative mb-8 rounded-2xl border border-white/10 bg-[#101b1d]/85 p-3.5 sm:p-5 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] backdrop-blur-xl">
+        <div className="flex flex-col gap-3.5 lg:flex-row lg:items-center">
+          {/* Main Search Input */}
+          <div className="relative flex-1">
             <label htmlFor="package-search" className="sr-only">
-              Search Brochure Itineraries
+              Search Itineraries
             </label>
             <div
-              className={`relative transition-all duration-300 ${
-                isSearchFocused ? "scale-[1.02] shadow-[0_0_0_1px_rgba(177,138,81,0.4)]" : ""
+              className={`relative flex items-center rounded-xl border bg-black/30 transition-all duration-300 ${
+                isSearchFocused
+                  ? "border-[var(--color-wild-orange)] shadow-[0_0_20px_rgba(212,147,104,0.25)] ring-1 ring-[var(--color-wild-orange)]/40"
+                  : "border-white/10 hover:border-white/20"
               }`}
             >
-              <div className="absolute inset-0 rounded-button bg-gradient-to-r from-brass/10 to-transparent opacity-0 transition-opacity pointer-events-none" aria-hidden="true" />
               <svg
-                className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-white/40 transition-colors duration-200 group-focus-within:text-brass"
+                className={`ml-4 h-5 w-5 transition-colors duration-200 ${
+                  isSearchFocused ? "text-[var(--color-wild-orange)]" : "text-white/40"
+                }`}
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
@@ -159,18 +209,18 @@ export default function SearchAndFilters({
                 onChange={(e) => setState({ ...state, q: e.target.value })}
                 onFocus={() => setIsSearchFocused(true)}
                 onBlur={() => setIsSearchFocused(false)}
-                placeholder="Search by name, code (S01, II7, HE18) or destination…"
-                className="w-full rounded-button border border-white/10 bg-[#132325] px-12 py-3.5 text-sm font-display text-white placeholder:text-white/40 transition-all duration-300 focus:border-brass focus:bg-[#1a2a2c] focus:outline-none focus:ring-2 focus:ring-brass/20"
+                placeholder="Search by destination, route, or brochure code (e.g. Kashmir, S01, II7)…"
+                className="w-full bg-transparent px-3.5 py-3 text-sm font-sans text-white placeholder:text-white/40 focus:outline-none"
                 autoComplete="off"
               />
               {state.q && (
                 <button
                   type="button"
                   onClick={() => setState({ ...state, q: "" })}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 p-1.5 text-white/40 hover:text-brass transition-colors rounded-full hover:bg-white/5"
+                  className="mr-3 p-1.5 text-white/40 hover:text-white transition-colors rounded-full hover:bg-white/10"
                   aria-label="Clear search"
                 >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <line x1="18" y1="6" x2="6" y2="18" />
                     <line x1="6" y1="6" x2="18" y2="18" />
                   </svg>
@@ -179,315 +229,425 @@ export default function SearchAndFilters({
             </div>
           </div>
 
-          {/* Action Buttons */}
-          <div className="flex items-center gap-3 sm:flex-nowrap">
-            {/* Clear All Filters */}
+          {/* Direct Desktop Dropdown Filters */}
+          <div className="hidden sm:flex items-center gap-2.5">
+            {/* Region Dropdown */}
+            <div className="relative">
+              <select
+                value={state.region}
+                onChange={(e) => setState({ ...state, region: e.target.value })}
+                aria-label="Filter by region"
+                className={`h-11 appearance-none rounded-xl border px-4 pr-9 font-sans text-xs font-medium uppercase tracking-wider transition-all duration-200 cursor-pointer focus:outline-none focus:ring-1 focus:ring-brass ${
+                  state.region !== ALL
+                    ? "border-[var(--color-wild-orange)]/60 bg-[var(--color-wild-orange)]/15 text-white shadow-[0_0_15px_rgba(212,147,104,0.2)]"
+                    : "border-white/10 bg-black/30 text-white/75 hover:border-white/25 hover:text-white"
+                }`}
+              >
+                <option value={ALL} className="bg-[#121B20] text-white">
+                  All Regions ({packages.length})
+                </option>
+                {regions.map((r) => {
+                  const count = packages.filter((p) => p.region.includes(r)).length;
+                  return (
+                    <option key={r} value={r} className="bg-[#121B20] text-white">
+                      {r} ({count})
+                    </option>
+                  );
+                })}
+              </select>
+              <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white/40">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </div>
+            </div>
+
+            {/* Duration Dropdown */}
+            <div className="relative">
+              <select
+                value={state.duration}
+                onChange={(e) => setState({ ...state, duration: e.target.value })}
+                aria-label="Filter by duration"
+                className={`h-11 appearance-none rounded-xl border px-4 pr-9 font-sans text-xs font-medium uppercase tracking-wider transition-all duration-200 cursor-pointer focus:outline-none focus:ring-1 focus:ring-brass ${
+                  state.duration !== ALL
+                    ? "border-[var(--color-wild-orange)]/60 bg-[var(--color-wild-orange)]/15 text-white shadow-[0_0_15px_rgba(212,147,104,0.2)]"
+                    : "border-white/10 bg-black/30 text-white/75 hover:border-white/25 hover:text-white"
+                }`}
+              >
+                {DURATION_BUCKETS.map((d) => (
+                  <option key={d.value} value={d.value} className="bg-[#121B20] text-white">
+                    {d.label}
+                  </option>
+                ))}
+              </select>
+              <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white/40">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </div>
+            </div>
+
+            {/* Sort Dropdown */}
+            <div className="relative">
+              <select
+                value={state.sort}
+                onChange={(e) => setState({ ...state, sort: e.target.value })}
+                aria-label="Sort journeys"
+                className="h-11 appearance-none rounded-xl border border-white/10 bg-black/30 px-4 pr-9 font-sans text-xs font-medium uppercase tracking-wider text-white/75 transition-all duration-200 cursor-pointer hover:border-white/25 hover:text-white focus:outline-none focus:ring-1 focus:ring-brass"
+              >
+                <option value="title" className="bg-[#121B20] text-white">
+                  Sort: Title (A–Z)
+                </option>
+                <option value="duration-short" className="bg-[#121B20] text-white">
+                  Sort: Shortest First
+                </option>
+                <option value="duration-long" className="bg-[#121B20] text-white">
+                  Sort: Longest First
+                </option>
+              </select>
+              <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white/40">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </div>
+            </div>
+
+            {/* Clear All Reset Pill */}
             {activeFilterCount > 0 && (
               <button
                 type="button"
                 onClick={handleClearAll}
-                className="hidden sm:flex items-center gap-2 rounded-none border border-white/10 bg-transparent px-4 py-3.5 text-xs font-display font-semibold uppercase tracking-wider text-white/70 hover:border-brass hover:text-brass hover:bg-white/5 transition-all duration-300"
+                className="inline-flex h-11 items-center gap-1.5 rounded-xl border border-white/15 bg-white/5 px-3.5 font-sans text-xs font-semibold uppercase tracking-wider text-white/70 transition-all hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)] hover:bg-white/10"
               >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
                 </svg>
-                Clear all
+                <span>Reset</span>
               </button>
             )}
+          </div>
 
-            {/* Mobile Filters Trigger */}
+          {/* Mobile Filter Trigger Button */}
+          <div className="flex sm:hidden items-center gap-2">
             <button
               type="button"
               onClick={() => setMobileFiltersOpen(true)}
-              className="flex sm:hidden items-center justify-center gap-2 h-[52px] rounded-none border border-white/10 bg-[#132325] px-5 text-xs font-display font-semibold uppercase tracking-wider text-white transition-all hover:border-brass hover:text-brass hover:bg-[#1a2a2c] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass shadow-sm cursor-pointer"
-              aria-expanded={mobileFiltersOpen}
-              aria-controls="mobile-filters"
+              className="flex-1 flex items-center justify-center gap-2 h-11 rounded-xl border border-white/15 bg-black/40 px-4 font-sans text-xs font-semibold uppercase tracking-wider text-white transition-all hover:border-brass hover:text-brass"
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
               <span>Filters</span>
               {activeFilterCount > 0 && (
-                <span className="inline-flex h-5 min-w-[20px] items-center justify-center rounded-none bg-brass px-1.5 text-xs font-semibold text-white">
+                <span className="inline-flex h-5 min-w-[20px] items-center justify-center rounded-full bg-[var(--color-wild-orange)] px-1.5 text-[11px] font-bold text-[#0C1617]">
                   {activeFilterCount}
                 </span>
               )}
             </button>
+
+            {activeFilterCount > 0 && (
+              <button
+                type="button"
+                onClick={handleClearAll}
+                className="h-11 px-3.5 rounded-xl border border-white/15 bg-white/5 text-xs font-semibold text-white/70"
+              >
+                Reset
+              </button>
+            )}
           </div>
         </div>
 
-        {/* Category Chips - always visible */}
-        <div className="mt-6">
-          <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-            <FilterChip
-              label={`All Journeys (${packages.length})`}
-              isActive={state.category === ALL}
+        {/* Category Carousel Navigation */}
+        <div className="mt-4 pt-4 border-t border-white/10">
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-hide">
+            <button
+              type="button"
               onClick={() => setState({ ...state, category: ALL })}
-              isPrimary={state.category === ALL}
-            />
+              className={`flex-shrink-0 inline-flex items-center gap-2 rounded-full px-4 py-2 font-sans text-xs font-medium tracking-wide transition-all duration-300 cursor-pointer ${
+                state.category === ALL
+                  ? "bg-gradient-to-r from-[var(--color-wild-orange)] to-brass text-[#0C1617] font-bold shadow-[0_4px_16px_rgba(212,147,104,0.35)] scale-[1.02]"
+                  : "border border-white/10 bg-white/[0.04] text-white/75 hover:border-white/25 hover:text-white hover:bg-white/[0.08]"
+              }`}
+            >
+              <span>All Journeys</span>
+              <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${
+                state.category === ALL ? "bg-black/25 text-[#0C1617]" : "bg-white/10 text-white/60"
+              }`}>
+                {packages.length}
+              </span>
+            </button>
+
             {CATEGORIES.map((cat) => {
               const count = packages.filter((p) => p.category === cat).length;
               const isSelected = state.category === cat;
               return (
-                <FilterChip
+                <button
                   key={cat}
-                  label={`${cat} (${count})`}
-                  isActive={isSelected}
+                  type="button"
                   onClick={() => setState({ ...state, category: isSelected ? ALL : cat })}
-                />
+                  className={`flex-shrink-0 inline-flex items-center gap-2 rounded-full px-4 py-2 font-sans text-xs font-medium tracking-wide transition-all duration-300 cursor-pointer ${
+                    isSelected
+                      ? "bg-gradient-to-r from-[var(--color-wild-orange)] to-brass text-[#0C1617] font-bold shadow-[0_4px_16px_rgba(212,147,104,0.35)] scale-[1.02]"
+                      : "border border-white/10 bg-white/[0.04] text-white/75 hover:border-white/25 hover:text-white hover:bg-white/[0.08]"
+                  }`}
+                >
+                  <span>{cat}</span>
+                  <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${
+                    isSelected ? "bg-black/25 text-[#0C1617]" : "bg-white/10 text-white/60"
+                  }`}>
+                    {count}
+                  </span>
+                </button>
               );
             })}
           </div>
         </div>
 
-        {/* Active Filter Pills */}
+        {/* Active Filter Tags */}
         {activeFilterCount > 0 && (
-          <div className="mt-4 flex flex-wrap gap-2" role="group" aria-label="Active filters">
+          <div className="mt-3.5 flex flex-wrap items-center gap-2 pt-3 border-t border-white/5">
+            <span className="font-sans text-[11px] uppercase tracking-wider text-white/40">
+              Active filters:
+            </span>
             {state.q && (
-              <FilterPill label={`Search: "${state.q}"`} onRemove={() => setState({ ...state, q: "" })} />
+              <FilterPill label={`"${state.q}"`} onRemove={() => setState({ ...state, q: "" })} />
             )}
             {state.category !== ALL && (
               <FilterPill label={state.category} onRemove={() => setState({ ...state, category: ALL })} />
             )}
             {state.region !== ALL && (
-              <FilterPill label={state.region} onRemove={() => setState({ ...state, region: ALL })} />
+              <FilterPill label={`Region: ${state.region}`} onRemove={() => setState({ ...state, region: ALL })} />
             )}
             {state.duration !== ALL && (
-              <FilterPill label={state.duration} onRemove={() => setState({ ...state, duration: ALL })} />
+              <FilterPill
+                label={DURATION_BUCKETS.find((b) => b.value === state.duration)?.label ?? state.duration}
+                onRemove={() => setState({ ...state, duration: ALL })}
+              />
             )}
-            <button
-              type="button"
-              onClick={handleClearAll}
-              className="inline-flex items-center gap-1.5 rounded-none border border-white/10 bg-transparent px-3 py-1.5 text-xs font-display font-medium uppercase tracking-wider text-white/60 hover:border-brass hover:text-brass hover:bg-white/5 transition-all"
-            >
-              Clear all
-            </button>
           </div>
         )}
       </div>
 
-      {/* Mobile Filter Drawer */}
-      <div
-        ref={filtersPanelRef}
-        id="mobile-filters"
-        hidden={!mobileFiltersOpen}
-        className="fixed inset-0 z-50 flex flex-col bg-[#0C1617] animate-slide-in"
-        role="dialog"
-        aria-modal="true"
-        aria-label="Filters"
-      >
-        <div className="flex items-center justify-between px-6 py-5 border-b border-white/10">
-          <h2 className="text-lg font-serif font-bold text-white">
-            Filters{activeFilterCount > 0 ? ` <span className="font-display text-brass">(${activeFilterCount})</span>` : ""}
-          </h2>
-          <button
-            ref={closeFiltersRef}
-            onClick={() => setMobileFiltersOpen(false)}
-            className="p-2 text-white/70 hover:text-brass hover:bg-white/5 rounded-none transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-[#0C1617]"
-            aria-label="Close filters"
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-          </button>
-        </div>
-
-        <div className="flex-1 px-6 py-6 overflow-y-auto">
-          <div className="space-y-6">
-            <FilterSection
-              label="Category"
-              options={[{ value: ALL, label: "All categories", count: packages.length }, ...categories.map((c) => ({ value: c, label: c, count: packages.filter((p) => p.category === c).length }))]}
-              value={state.category}
-              onChange={(v) => setState({ ...state, category: v })}
-            />
-            <FilterSection
-              label="Region"
-              options={[{ value: ALL, label: "All regions", count: packages.length }, ...regions.map((r) => ({ value: r, label: r, count: packages.filter((p) => p.region.includes(r)).length }))]}
-              value={state.region}
-              onChange={(v) => setState({ ...state, region: v })}
-            />
-            <FilterSection
-              label="Duration"
-              options={[{ value: ALL, label: "All durations", count: packages.length }, ...durations.map((d) => ({ value: d, label: d, count: packages.filter((p) => p.duration === d).length }))]}
-              value={state.duration}
-              onChange={(v) => setState({ ...state, duration: v })}
-            />
-            <FilterSection
-              label="Sort by"
-              options={[
-                { value: "title", label: "Title (A–Z)" },
-                { value: "duration-short", label: "Shortest duration" },
-                { value: "duration-long", label: "Longest duration" },
-              ]}
-              value={state.sort}
-              onChange={(v) => setState({ ...state, sort: v })}
-            />
-          </div>
-        </div>
-
-        <div className="border-t border-white/10 px-6 py-4">
-          <button
-            onClick={handleClearAll}
-            className="flex w-full items-center justify-center gap-2 rounded-none border border-brass px-4 py-3 text-sm font-display font-medium text-brass bg-transparent hover:bg-brass hover:text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-            </svg>
-            Reset all filters
-          </button>
-        </div>
-      </div>
-
-      {/* Results Count & Desktop Filter Summary */}
-      <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-4 text-sm">
-        <span aria-live="polite" className="font-display text-white/70">
-          {sorted.length} trip{sorted.length === 1 ? "" : "s"} found
-        </span>
-        <div className="flex flex-wrap items-center gap-2 text-xs font-display font-medium">
-          {state.sort !== "title" && (
-            <span className="inline-flex items-center gap-1 rounded-button border border-white/10 bg-white/5 px-2.5 py-1 text-white/60">
-              Sorted by:{' '}
-              <span className="text-white">
-                {state.sort === "duration-short"
-                  ? "Shortest first"
-                  : state.sort === "duration-long"
-                  ? "Longest first"
-                  : "Title"}
-              </span>
+      {/* Control Bar: Result Count & Segmented View Switcher */}
+      <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        {/* Results indicator */}
+        <div className="flex items-center gap-2.5">
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+          </span>
+          <span className="font-sans text-sm font-medium text-white/80">
+            <strong className="text-white font-semibold">{sorted.length}</strong> {sorted.length === 1 ? "journey" : "journeys"} available
+          </span>
+          {sorted.length < packages.length && (
+            <span className="text-xs text-white/45">
+              (filtered from {packages.length})
             </span>
           )}
         </div>
+
+        {/* Segmented View Switcher */}
+        <div className="inline-flex items-center rounded-xl border border-white/10 bg-black/40 p-1 backdrop-blur-md shadow-inner">
+          <button
+            type="button"
+            onClick={() => setViewMode("coverflow")}
+            aria-pressed={viewMode === "coverflow"}
+            className={`flex items-center gap-2 rounded-lg px-4 py-2 font-sans text-xs font-semibold tracking-wide transition-all duration-200 cursor-pointer ${
+              viewMode === "coverflow"
+                ? "bg-gradient-to-r from-brass to-[var(--color-wild-orange)] text-[#0C1617] shadow-[0_4px_12px_rgba(212,147,104,0.3)]"
+                : "text-white/60 hover:text-white"
+            }`}
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+              <rect x="2" y="3" width="20" height="18" rx="2" />
+              <line x1="8" y1="3" x2="8" y2="21" />
+              <line x1="16" y1="3" x2="16" y2="21" />
+            </svg>
+            <span>3D Coverflow</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => setViewMode("grid")}
+            aria-pressed={viewMode === "grid"}
+            className={`flex items-center gap-2 rounded-lg px-4 py-2 font-sans text-xs font-semibold tracking-wide transition-all duration-200 cursor-pointer ${
+              viewMode === "grid"
+                ? "bg-gradient-to-r from-brass to-[var(--color-wild-orange)] text-[#0C1617] shadow-[0_4px_12px_rgba(212,147,104,0.3)]"
+                : "text-white/60 hover:text-white"
+            }`}
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+              <rect x="3" y="3" width="7" height="7" />
+              <rect x="14" y="3" width="7" height="7" />
+              <rect x="14" y="14" width="7" height="7" />
+              <rect x="3" y="14" width="7" height="7" />
+            </svg>
+            <span>Grid View</span>
+          </button>
+        </div>
       </div>
 
-      {/* Results Grid */}
-      <div className="mt-8">
+      {/* Main Content Area */}
+      <div className="relative min-h-[400px]">
         {sorted.length === 0 ? (
-          <div className="flex flex-col items-center gap-6 py-20 text-center">
-            <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-white/5">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-white/30">
+          <div className="flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-[#101b1d]/40 p-12 text-center backdrop-blur-md">
+            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-white/5 text-[var(--color-wild-orange)]">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="11" cy="11" r="8" />
                 <path d="M21 21l-4.35-4.35" />
-                <line x1="9" y1="15" x2="15" y2="9" strokeWidth="2" />
+                <line x1="9" y1="9" x2="15" y2="15" />
               </svg>
             </div>
-            <div>
-              <h3 className="font-serif text-xl font-light text-white">No journeys match</h3>
-              <p className="mt-2 font-display text-white/50">Try adjusting your filters or search terms</p>
-            </div>
+            <h3 className="font-serif text-2xl font-light text-white">No journeys found</h3>
+            <p className="mt-2 max-w-md font-sans text-sm text-white/60">
+              We couldn't find any itineraries matching your current filters. Try expanding your search terms or clearing filters.
+            </p>
             <button
+              type="button"
               onClick={handleClearAll}
-              className="btn-tertiary"
+              className="mt-6 inline-flex items-center gap-2 rounded-full bg-[var(--color-wild-orange)] px-6 py-2.5 font-sans text-xs font-semibold text-[#0C1617] transition-all hover:bg-[var(--color-wild-orange-hover)]"
             >
               Reset all filters
             </button>
           </div>
+        ) : viewMode === "coverflow" ? (
+          <CoverflowSwiper packages={sorted} />
         ) : (
           <PackageGrid packages={sorted} />
         )}
       </div>
+
+      {/* Mobile Slide-Over Filter Drawer */}
+      {mobileFiltersOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Filter Journeys"
+          className="fixed inset-0 z-50 flex flex-col justify-end bg-black/80 backdrop-blur-md sm:hidden"
+        >
+          <div className="max-h-[85vh] flex flex-col rounded-t-3xl border-t border-white/15 bg-[#0e181a] p-6 shadow-2xl overflow-hidden animate-slide-up">
+            <div className="flex items-center justify-between pb-4 border-b border-white/10">
+              <div className="flex items-center gap-2">
+                <h3 className="font-serif text-xl font-light text-white">Filter Itineraries</h3>
+                {activeFilterCount > 0 && (
+                  <span className="rounded-full bg-[var(--color-wild-orange)] px-2 py-0.5 text-xs font-bold text-[#0C1617]">
+                    {activeFilterCount}
+                  </span>
+                )}
+              </div>
+              <button
+                ref={closeFiltersRef}
+                onClick={() => setMobileFiltersOpen(false)}
+                className="p-2 text-white/60 hover:text-white rounded-full bg-white/5"
+                aria-label="Close filters"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            </div>
+
+            <div className="flex-1 overflow-y-auto py-5 space-y-6">
+              {/* Region */}
+              <div>
+                <label className="block mb-2 font-sans text-xs font-semibold uppercase tracking-wider text-white/60">
+                  Region
+                </label>
+                <select
+                  value={state.region}
+                  onChange={(e) => setState({ ...state, region: e.target.value })}
+                  className="w-full h-12 rounded-xl border border-white/15 bg-black/40 px-4 font-sans text-sm text-white focus:outline-none focus:border-brass"
+                >
+                  <option value={ALL} className="bg-[#121B20]">
+                    All Regions ({packages.length})
+                  </option>
+                  {regions.map((r) => (
+                    <option key={r} value={r} className="bg-[#121B20]">
+                      {r} ({packages.filter((p) => p.region.includes(r)).length})
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Duration */}
+              <div>
+                <label className="block mb-2 font-sans text-xs font-semibold uppercase tracking-wider text-white/60">
+                  Duration
+                </label>
+                <select
+                  value={state.duration}
+                  onChange={(e) => setState({ ...state, duration: e.target.value })}
+                  className="w-full h-12 rounded-xl border border-white/15 bg-black/40 px-4 font-sans text-sm text-white focus:outline-none focus:border-brass"
+                >
+                  {DURATION_BUCKETS.map((d) => (
+                    <option key={d.value} value={d.value} className="bg-[#121B20]">
+                      {d.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Sort */}
+              <div>
+                <label className="block mb-2 font-sans text-xs font-semibold uppercase tracking-wider text-white/60">
+                  Sort By
+                </label>
+                <select
+                  value={state.sort}
+                  onChange={(e) => setState({ ...state, sort: e.target.value })}
+                  className="w-full h-12 rounded-xl border border-white/15 bg-black/40 px-4 font-sans text-sm text-white focus:outline-none focus:border-brass"
+                >
+                  <option value="title" className="bg-[#121B20]">
+                    Title (A–Z)
+                  </option>
+                  <option value="duration-short" className="bg-[#121B20]">
+                    Shortest Duration First
+                  </option>
+                  <option value="duration-long" className="bg-[#121B20]">
+                    Longest Duration First
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-white/10 flex gap-3">
+              <button
+                type="button"
+                onClick={handleClearAll}
+                className="flex-1 h-12 rounded-xl border border-white/20 bg-white/5 font-sans text-xs font-semibold uppercase tracking-wider text-white/80"
+              >
+                Reset All
+              </button>
+              <button
+                type="button"
+                onClick={() => setMobileFiltersOpen(false)}
+                className="flex-[2] h-12 rounded-xl bg-[var(--color-wild-orange)] font-sans text-xs font-bold uppercase tracking-wider text-[#0C1617]"
+              >
+                Show {sorted.length} {sorted.length === 1 ? "Journey" : "Journeys"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
 
-function parseDurationNights(duration: string): number {
-  const match = duration.match(/(\d+)\s*nights?/);
-  return match ? parseInt(match[1], 10) : 0;
-}
-
-interface FilterChipProps {
-  label: string;
-  isActive: boolean;
-  onClick: () => void;
-  isPrimary?: boolean;
-}
-
-function FilterChip({ label, isActive, onClick, isPrimary = false }: FilterChipProps) {
+function FilterPill({ label, onRemove }: { label: string; onRemove: () => void }) {
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={`flex-shrink-0 rounded-none px-4 py-2.5 text-xs font-display font-semibold uppercase tracking-wider transition-all duration-300 cursor-pointer relative overflow-hidden ${
-        isActive
-          ? "bg-brass text-white shadow-[0_8px_25px_-5px_rgba(177,138,81,0.4)] scale-102"
-          : "border border-white/10 bg-[#132325] text-white/75 hover:border-brass hover:text-brass hover:bg-[#1a2a2c] hover:shadow-[0_4px_15px_-3px_rgba(177,138,81,0.2)]"
-      }`}
-    >
-      {label}
-      {isActive && !isPrimary && (
-        <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 w-3/4 bg-white" aria-hidden="true" />
-      )}
-    </button>
-  );
-}
-
-interface FilterPillProps {
-  label: string;
-  onRemove: () => void;
-}
-
-function FilterPill({ label, onRemove }: FilterPillProps) {
-  return (
-    <button
-      type="button"
-      onClick={onRemove}
-      className="inline-flex items-center gap-1.5 rounded-none border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-display font-medium uppercase tracking-wider text-white/70 hover:border-brass hover:text-brass hover:bg-white/10 transition-all"
-    >
-      {label}
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-        <line x1="18" y1="6" x2="6" y2="18" />
-        <line x1="6" y1="6" x2="18" y2="18" />
-      </svg>
-    </button>
-  );
-}
-
-interface FilterSectionProps {
-  label: string;
-  options: Array<{ value: string; label: string; count?: number }>;
-  value: string;
-  onChange: (value: string) => void;
-}
-
-function FilterSection({ label, options, value }: FilterSectionProps) {
-  return (
-    <fieldset className="min-w-[200px]">
-      <legend className="mb-3 text-xs font-display font-semibold uppercase tracking-wider text-white/70">
-        {label}
-      </legend>
-      <div className="space-y-2">
-        {options.map((opt) => {
-          const isSelected = value === opt.value;
-          return (
-            <label
-              key={opt.value}
-              className={`flex items-center justify-between rounded-none px-4 py-3 text-sm font-display transition-all duration-300 cursor-pointer ${
-                isSelected
-                  ? "bg-brass/10 border border-brass/30 text-white"
-                  : "border border-white/10 bg-[#132325] text-white/75 hover:border-brass/50 hover:text-white hover:bg-[#1a2a2c]"
-              }`}
-            >
-              <span>{opt.label}</span>
-              {opt.count !== undefined && (
-                <span
-                  className={`ml-3 inline-flex h-5 min-w-[20px] items-center justify-center rounded-full text-xs font-semibold ${
-                    isSelected
-                      ? "bg-brass text-white"
-                      : "bg-white/10 text-white/50"
-                  }`}
-                >
-                  {opt.count}
-                </span>
-              )}
-              {isSelected && (
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-brass ml-3 flex-shrink-0">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-              )}
-            </label>
-          );
-        })}
-      </div>
-    </fieldset>
+    <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 py-1 font-sans text-xs font-medium text-white/85">
+      <span>{label}</span>
+      <button
+        type="button"
+        onClick={onRemove}
+        className="p-0.5 text-white/40 hover:text-white transition-colors rounded-full"
+        aria-label={`Remove filter ${label}`}
+      >
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+    </span>
   );
 }

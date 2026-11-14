@@ -12,6 +12,7 @@ export interface Destination {
   image: string;
   blurb: string;
   href: string;
+  imagePosition?: string;
 }
 
 export interface Experience {
@@ -57,66 +58,74 @@ export const DESTINATIONS: Destination[] = [
   {
     name: "Ladakh",
     tagline: "Leh, Nubra Valley & Pangong",
-    image: "/images/destinations/ladakh-key-monastery.jpg",
+    image: "/images/destinations/ladakh.png",
+    imagePosition: "object-[center_bottom]",
     blurb:
       "High passes, Buddhist monasteries and the cold desert of the Nubra valley. A journey of wide skies and empty roads, from Leh to the shore of Pangong.",
-    href: "/explore?region=Ladakh",
+    href: "/journeys?region=Ladakh#catalogue",
   },
   {
     name: "Kashmir",
     tagline: "Srinagar, Gulmarg & Sonamarg",
-    image: "/images/destinations/kashmir-dal-lake-fruit-boat.jpg",
+    image: "/images/destinations/kashmir.png",
+    imagePosition: "object-[center_75%]",
     blurb:
       "Shikara on Dal Lake, meadow walks in Gulmarg and the meadows of Sonamarg, with houseboat nights on the water.",
-    href: "/explore?region=Kashmir",
+    href: "/journeys?region=Kashmir#catalogue",
   },
   {
     name: "Nepal",
     tagline: "Kathmandu, Pokhara & Chitwan",
     image: "/images/destinations/nepal-boudhanath-dusk.jpg",
+    imagePosition: "object-[center_35%]",
     blurb:
       "Stupas and temple squares in the Kathmandu valley, the peaks that ring Pokhara, and the rhino herds of Chitwan.",
-    href: "/explore?region=Nepal",
+    href: "/journeys?region=Nepal#catalogue",
   },
   {
     name: "Rajasthan",
     tagline: "Jaipur, Jodhpur, Udaipur & Jaisalmer",
-    image: "/images/destinations/rajasthan-desert-camels.jpg",
+    image: "/images/destinations/rajasthan.png",
+    imagePosition: "object-[center_bottom]",
     blurb:
       "Forts, stepwells and desert camps across the Thar. A heritage route built around the great Rajput strongholds.",
-    href: "/explore?q=heritage",
+    href: "/journeys?q=heritage#catalogue",
   },
   {
     name: "Goa",
     tagline: "Panjim & the Konkan coast",
-    image: "/images/destinations/goa-coast-rocks.jpg",
+    image: "/images/destinations/goa.png",
+    imagePosition: "object-[center_bottom]",
     blurb:
       "Portuguese-era Panjim, long beaches and the churches and villages of the Konkan interior.",
-    href: "/explore?region=Goa",
+    href: "/journeys?region=Goa#catalogue",
   },
   {
     name: "Kerala",
     tagline: "Backwaters, Thekkady & Munnar",
-    image: "/images/destinations/kerala-backwaters.jpg",
+    image: "/images/destinations/kerala.png",
+    imagePosition: "object-[center_70%]",
     blurb:
       "A houseboat on the backwaters, tea country in Munnar and elephant country in Thekkady.",
-    href: "/explore?region=Kerala",
+    href: "/journeys?region=Kerala#catalogue",
   },
   {
     name: "Agra & the Taj",
     tagline: "The Golden Triangle",
-    image: "/images/destinations/taj-mahal.jpg",
+    image: "/images/destinations/taj-mahal-reflection.png",
+    imagePosition: "object-[center_60%]",
     blurb:
       "The Taj Mahal at Agra, Fatehpur Sikri and the palaces of Jaipur, with Delhi at either end.",
-    href: "/explore?q=golden%20triangle",
+    href: "/journeys?q=golden%20triangle#catalogue",
   },
   {
     name: "Varanasi",
     tagline: "The Ganges ghats",
-    image: "/images/destinations/varanasi-ganges-boating.jpg",
+    image: "/images/destinations/varanasi.png",
+    imagePosition: "object-[center_70%]",
     blurb:
       "Dawn on the ghats, the cremation banks and the old lanes of Kashi, with Sarnath and Bodh Gaya nearby.",
-    href: "/explore?region=Varanasi",
+    href: "/journeys?region=Varanasi#catalogue",
   },
 ];
 
@@ -127,7 +136,7 @@ export const EXPERIENCES: Experience[] = [
     description:
       "Walk the Markha, Zanskar and Vale of Kashmir trails, camping by the glacier and crossing high passes.",
     locations: "Ladakh, Kashmir",
-    href: "/explore?activity=trekking",
+    href: "/journeys?activity=trekking#catalogue",
   },
   {
     title: "Kashmir houseboats",
@@ -143,7 +152,7 @@ export const EXPERIENCES: Experience[] = [
     description:
       "Whitewater rafting on the Trisuli with rafting equipment and an experienced English-speaking guide.",
     locations: "Nepal",
-    href: "/explore?activity=rafting",
+    href: "/journeys?activity=rafting#catalogue",
   },
   {
     title: "Wildlife & safaris",
@@ -151,7 +160,7 @@ export const EXPERIENCES: Experience[] = [
     description:
       "Jungle safaris in Chitwan on foot and by boat, tracking rhino through the sal forest and the Terai.",
     locations: "Nepal, Kerala",
-    href: "/explore?activity=wildlife",
+    href: "/journeys?activity=wildlife#catalogue",
   },
   {
     title: "Backwaters & houseboats",
@@ -159,15 +168,15 @@ export const EXPERIENCES: Experience[] = [
     description:
       "Kettuvallam houseboats through the Kerala backwaters, rice barges and the thatched villages of Alleppey.",
     locations: "Kerala",
-    href: "/explore?activity=houseboat%2Fbackwaters",
+    href: "/journeys?activity=houseboat%2Fbackwaters#catalogue",
   },
   {
     title: "Temples & monuments",
-    image: "/images/destinations/taj-mahal.jpg",
+    image: "/images/destinations/taj-mahal-reflection.png",
     description:
       "The Taj Mahal, Amber Fort, Swayambhunath and the ghats of Varanasi, as listed in the brochure itineraries.",
     locations: "Agra, Jaipur, Varanasi",
-    href: "/explore?q=heritage",
+    href: "/journeys?q=heritage#catalogue",
   },
   {
     title: "Village & culture",
@@ -175,7 +184,7 @@ export const EXPERIENCES: Experience[] = [
     description:
       "Special-interest programmes for clubs, schools and groups, arranged on request.",
     locations: "India, Nepal",
-    href: "/explore?activity=culture",
+    href: "/journeys?activity=culture#catalogue",
   },
 ];
 
@@ -191,7 +200,7 @@ export const PILLARS: Pillar[] = [
     regionTag: "India & Nepal",
     body:
       "A specialist operator for India and Nepal since 1927. Each destination opens a whole new world of landscapes, cultures, sights and sounds for you to discover, from the Himalaya to the backwaters.",
-    href: "/explore",
+    href: "/journeys",
     linkLabel: "Discover India & Nepal",
     highlights: [
       { title: "Specialist Route Design", detail: "Custom itineraries spanning high Himalayan passes down to tranquil backwaters." },
@@ -210,7 +219,7 @@ export const PILLARS: Pillar[] = [
     regionTag: "Chitwan, Periyar & Terai",
     body:
       "Wildlife journeys reach Chitwan, Periyar and the Terai, with resident naturalists, elephant and jeep safaris, nature walks and canoe trips among the programme options.",
-    href: "/explore?activity=wildlife",
+    href: "/journeys?activity=wildlife#catalogue",
     linkLabel: "Explore wildlife journeys",
     highlights: [
       { title: "Diverse Safari Formats", detail: "Jeep safaris, jungle nature walks, and tranquil river canoe expeditions across reserves." },
@@ -222,14 +231,14 @@ export const PILLARS: Pillar[] = [
     key: "guides",
     label: "Guides",
     title: "Guides & Dedicated Support",
-    image: "/images/destinations/vale-trek.jpg",
+    image: "/images/destinations/guide.png",
     tagline: "Experienced Field Crews & Dedicated Expedition Leaders",
     statBadge: "100% Escorted",
     statLabel: "Mountain Field Crews",
     regionTag: "Himalayas & High Passes",
     body:
       "Trekking itineraries in our catalogue are escorted by experienced English-speaking guides and support crews. Special-interest tours are led by a team leader from Australia who specialises in a particular area.",
-    href: "/explore",
+    href: "/journeys",
     linkLabel: "See trekking journeys",
     highlights: [
       { title: "English-Speaking Guides", detail: "Seasoned mountain leaders fluent in regional trails, local dialects, and high-altitude safety." },
@@ -241,14 +250,14 @@ export const PILLARS: Pillar[] = [
     key: "architecture",
     label: "Accommodation",
     title: "Character & Heritage Accommodation",
-    image: "/images/destinations/jodhpur-fort.jpg",
+    image: "/images/destinations/accommodation.png",
     tagline: "Handpicked Heritage Havelis, Palace Hotels & Boutique Stays",
     statBadge: "Handpicked",
     statLabel: "Historic Character",
     regionTag: "Centrally Located Stays",
     body:
       "All accommodation is carefully selected: well serviced and centrally located, chosen for ambience, comfort, architecture and history, from deluxe categories to family-run establishments.",
-    href: "/explore?category=India%20Tours",
+    href: "/journeys?category=India%20Tours#catalogue",
     linkLabel: "See India tours",
     highlights: [
       { title: "Historic Character & Ambience", detail: "Properties chosen for distinct architecture, history, and authentic sense of place." },
@@ -260,14 +269,14 @@ export const PILLARS: Pillar[] = [
     key: "culture",
     label: "Culture",
     title: "Living Cultural Exploration",
-    image: "/images/destinations/kashmir-shikara.jpg",
+    image: "/images/destinations/culture.png",
     tagline: "Living Sacred Ceremonies, Monasteries & Ancient Ways",
     statBadge: "Authentic Access",
     statLabel: "Living Traditions",
     regionTag: "Varanasi to Ladakh",
     body:
       "From dawn on the ghats of Varanasi to Buddhist monasteries in Ladakh, each place honours its own traditions. Special-interest programmes can be arranged for clubs, schools and groups on request.",
-    href: "/explore?activity=culture",
+    href: "/journeys?activity=culture#catalogue",
     linkLabel: "Explore cultural journeys",
     highlights: [
       { title: "Sacred Rituals & Monasteries", detail: "Dawn ceremonies on the Ganges ghats, serene Ladakh gompas, and floating Dal Lake markets." },
@@ -279,7 +288,7 @@ export const PILLARS: Pillar[] = [
     key: "travel",
     label: "Travel",
     title: "Seamless, Trusted Travel",
-    image: "/images/destinations/himalaya-horses.jpg",
+    image: "/images/destinations/travel.png",
     tagline: "Private Road Transfers & Complete Peace of Mind",
     statBadge: "Seamless",
     statLabel: "Private Road Transit",
@@ -298,7 +307,7 @@ export const PILLARS: Pillar[] = [
     key: "impact",
     label: "Impact",
     title: "Programmes & Heritage Stewardship",
-    image: "/images/destinations/nepal-trek.jpg",
+    image: "/images/destinations/impact.png",
     tagline: "Pioneering Educational Expeditions & Local Community Ties",
     statBadge: "Community First",
     statLabel: "Shared Stewardship",
@@ -349,13 +358,13 @@ export const NAV_CATEGORIES = [
   {
     label: "Journeys",
     items: [
-      { label: "All journeys", href: "/explore" },
-      { label: "Stopovers", href: "/explore?category=Stopovers" },
-      { label: "Images of India", href: "/explore?category=Images%20of%20India" },
-      { label: "India tours", href: "/explore?category=India%20Tours" },
-      { label: "Himalayan expeditions", href: "/explore?category=Himalayan%20Expeditions" },
-      { label: "Mini trek in Kashmir", href: "/explore?category=Mini%20Trek%20in%20Kashmir" },
-      { label: "Nepal adventure", href: "/explore?category=Nepal%20Adventure" },
+      { label: "All journeys", href: "/journeys" },
+      { label: "Stopovers", href: "/journeys?category=Stopovers#catalogue" },
+      { label: "Images of India", href: "/journeys?category=Images%20of%20India#catalogue" },
+      { label: "India tours", href: "/journeys?category=India%20Tours#catalogue" },
+      { label: "Himalayan expeditions", href: "/journeys?category=Himalayan%20Expeditions#catalogue" },
+      { label: "Mini trek in Kashmir", href: "/journeys?category=Mini%20Trek%20in%20Kashmir#catalogue" },
+      { label: "Nepal adventure", href: "/journeys?category=Nepal%20Adventure#catalogue" },
     ],
   },
   {
@@ -391,12 +400,12 @@ export const FOOTER_COLUMNS = [
   {
     title: "Journeys & experiences",
     links: [
-      { label: "All journeys", href: "/explore" },
-      { label: "Himalayan trekking", href: "/explore?activity=trekking" },
-      { label: "Wildlife safaris", href: "/explore?activity=wildlife" },
-      { label: "River rafting", href: "/explore?activity=rafting" },
+      { label: "All journeys", href: "/journeys" },
+      { label: "Himalayan trekking", href: "/journeys?activity=trekking#catalogue" },
+      { label: "Wildlife safaris", href: "/journeys?activity=wildlife#catalogue" },
+      { label: "River rafting", href: "/journeys?activity=rafting#catalogue" },
       { label: "Kashmir houseboats", href: "/houseboats" },
-      { label: "Cultural journeys", href: "/explore?activity=culture" },
+      { label: "Cultural journeys", href: "/journeys?activity=culture#catalogue" },
     ],
   },
   {

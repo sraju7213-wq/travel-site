@@ -158,8 +158,7 @@ Per `docs/current-state-checklist.md` (C-1…C-7) plus 7 additional flags from p
 The following obsolete `gggg.pdf` references were corrected to `Brochure.pdf` (the actual file at repo root, 33 MB, 8 pages):
 
 - `app/src/data/travel_packages_catalog.json` line 2: `source_document` → `Brochure.pdf`
-- `travel_packages_catalog.json` (root) line 2: `source_document` → `Brochure.pdf`
-- `india-nepal-travel-web-app-brief.md` line 200: build prompt → `Brochure.pdf`
+- `docs/briefs/india-nepal-travel-web-app-brief.md` line 200: build prompt → `Brochure.pdf`
 
 Stale "missing route / missing image" claims:
 - `docs/baseline-audit.md` is annotated as **partly stale** — it originally listed `/packages/[slug]`, `/enquiry`, `/about`, `/contact`, `/houseboats` as missing and all 27 package images as missing. All routes now exist and build; all 27 package images are present. The document header states it is superseded by `docs/current-state-checklist.md`.

@@ -211,7 +211,7 @@ export default function DestinationCarousel() {
               transition: cardTilt.rx === 0 ? "transform 0.6s ease-out" : "none",
             }}
             aria-label={`Explore ${current.name} destination`}
-            className="group block relative aspect-[16/10] sm:aspect-[16/9] md:aspect-[2.1/1] w-full overflow-hidden shadow-2xl transition-all duration-700 will-change-transform"
+            className="group block relative aspect-[16/10] sm:aspect-[16/9] md:aspect-[16/9] w-full overflow-hidden shadow-2xl transition-all duration-700 will-change-transform"
           >
             {/* Active Image with smooth crossfade & scale */}
             {DESTINATIONS.map((dest, i) => (
@@ -227,16 +227,18 @@ export default function DestinationCarousel() {
                   fill
                   priority={i === active}
                   sizes="(min-width: 1200px) 1020px, 95vw"
-                  className={`object-cover transition-transform duration-1000 ease-out ${
+                  className={`object-cover ${
+                    dest.imagePosition ?? "object-[center_bottom]"
+                  } transition-transform duration-1000 ease-out ${
                     active === i ? "scale-100 group-hover:scale-105" : "scale-105"
                   }`}
                 />
               </div>
             ))}
 
-            {/* Subtle cinematic vignette */}
+            {/* Subtle cinematic gradient vignette to enhance sky contrast & text readability */}
             <div
-              className="absolute inset-0 z-20 bg-black/25 transition-opacity duration-500 group-hover:bg-black/35"
+              className="absolute inset-0 z-20 bg-gradient-to-b from-black/45 via-black/10 to-black/35 transition-opacity duration-500 group-hover:from-black/55 group-hover:to-black/45"
               aria-hidden="true"
             />
 
@@ -246,9 +248,9 @@ export default function DestinationCarousel() {
               className="pointer-events-none absolute inset-0 z-20 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-[1100ms] ease-out group-hover:translate-x-full"
             />
 
-            {/* Giant Centered Serif Country Name */}
-            <div className="absolute inset-0 z-30 flex items-center justify-center p-6 text-center">
-              <h2 className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-light uppercase tracking-[0.28em] text-white drop-shadow-[0_8px_24px_rgba(0,0,0,0.6)] transition-all duration-700 transform group-hover:scale-[1.02]">
+            {/* Serif Country Name positioned in the sky */}
+            <div className="absolute inset-x-0 top-0 z-30 flex items-start justify-center pt-7 sm:pt-10 md:pt-12 lg:pt-14 p-6 text-center pointer-events-none">
+              <h2 className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-light uppercase tracking-[0.28em] text-white drop-shadow-[0_8px_24px_rgba(0,0,0,0.85)] transition-all duration-700 transform group-hover:scale-[1.02]">
                 {current.name}
               </h2>
             </div>

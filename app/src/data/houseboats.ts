@@ -228,7 +228,7 @@ export const HOUSEBOAT_PILLARS: Pillar[] = [
     regionTag: "Gulmarg & Pahalgam",
     body:
       "The same brochure that lists the houseboats also lists trips to the mountain resorts of Gulmarg and Pahalgam. They are arranged separately from the houseboat stay — the standard pairing is a few nights moored on the lake, then the road north into the meadows and the pine slopes beyond it.",
-    href: "/explore",
+    href: "/journeys?region=Kashmir#catalogue",
     linkLabel: "See Kashmir journeys",
     highlights: [
       { title: "Gulmarg", detail: "Meadows and pine slopes, as the brochure records them." },

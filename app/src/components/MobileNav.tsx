@@ -35,7 +35,7 @@ const MOBILE_NAV_CATEGORIES: NavGroup[] = [
       </svg>
     ),
     items: [
-      { label: "All destinations", href: "/explore", group: "Destinations" },
+      { label: "All destinations", href: "/journeys#catalogue", group: "Destinations" },
       ...DESTINATIONS.map((d) => ({ label: d.name, href: d.href, image: d.image, group: "Destinations" })),
     ],
   },
@@ -49,12 +49,12 @@ const MOBILE_NAV_CATEGORIES: NavGroup[] = [
     ),
     items: [
       { label: "All journeys", href: "/journeys", group: "Journeys" },
-      { label: "Stopovers", href: "/explore?category=Stopovers", group: "Journeys" },
-      { label: "Images of India", href: "/explore?category=Images%20of%20India", group: "Journeys" },
-      { label: "India tours", href: "/explore?category=India%20Tours", group: "Journeys" },
-      { label: "Himalayan expeditions", href: "/explore?category=Himalayan%20Expeditions", group: "Journeys" },
-      { label: "Mini trek in Kashmir", href: "/explore?category=Mini%20Trek%20in%20Kashmir", group: "Journeys" },
-      { label: "Nepal adventure", href: "/explore?category=Nepal%20Adventure", group: "Journeys" },
+      { label: "Stopovers", href: "/journeys?category=Stopovers#catalogue", group: "Journeys" },
+      { label: "Images of India", href: "/journeys?category=Images%20of%20India#catalogue", group: "Journeys" },
+      { label: "India tours", href: "/journeys?category=India%20Tours#catalogue", group: "Journeys" },
+      { label: "Himalayan expeditions", href: "/journeys?category=Himalayan%20Expeditions#catalogue", group: "Journeys" },
+      { label: "Mini trek in Kashmir", href: "/journeys?category=Mini%20Trek%20in%20Kashmir#catalogue", group: "Journeys" },
+      { label: "Nepal adventure", href: "/journeys?category=Nepal%20Adventure#catalogue", group: "Journeys" },
     ],
   },
   {

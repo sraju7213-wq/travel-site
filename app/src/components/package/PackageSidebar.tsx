@@ -88,7 +88,7 @@ export default function PackageSidebar({ pkg, related }: PackageSidebarProps) {
               Related Journeys
             </h2>
             <Link
-              href="/explore"
+              href="/journeys"
               className="font-display text-[11px] text-brass transition hover:text-brass-soft hover:underline"
             >
               View all
@@ -102,7 +102,7 @@ export default function PackageSidebar({ pkg, related }: PackageSidebarProps) {
                 <Link
                   key={item.id}
                   href={`/packages/${item.slug}`}
-                  className="group flex items-center gap-3 rounded-lg border border-white/10 bg-white/[0.02] p-2 transition hover:border-brass/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass"
+                  className="group flex items-center gap-3 rounded-lg border border-white/10 bg-white/[0.02] p-2 transition hover:border-brass/60 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass will-change-transform"
                 >
                   <span className="relative h-12 w-14 shrink-0 overflow-hidden rounded bg-[#0C1617]">
                     <Image

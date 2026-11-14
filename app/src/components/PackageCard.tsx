@@ -29,10 +29,10 @@ export default function PackageCard({ pkg, compact = false }: PackageCardProps) 
   const cleanDifficulty = pkg.difficulty ? pkg.difficulty.split("(")[0].trim() : null;
 
   return (
-    <article className="group h-full" data-package-card>
+    <article className="group h-full min-w-0" data-package-card>
       <Link
         href={`/packages/${pkg.slug}`}
-        className="flex h-full flex-col overflow-hidden border border-white/10 bg-[#0C1617] transition-all duration-300 hover:border-[var(--color-wild-orange)]/60 hover:bg-white/[0.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)]"
+        className="group/card flex h-full flex-col overflow-hidden min-w-0 border border-white/10 bg-[#0C1617] transition-all duration-300 hover:border-[var(--color-wild-orange)]/60 hover:bg-white/[0.02] hover:shadow-[0_12px_32px_-10px_rgba(212,147,104,0.22)] active:scale-[0.985] active:border-brass/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)] will-change-transform"
       >
         {/* Image Frame — Identical to Houseboat cards */}
         <div
@@ -44,8 +44,9 @@ export default function PackageCard({ pkg, compact = false }: PackageCardProps) 
               src={`/images/packages/${pkg.slug}.jpg`}
               alt={pkg.title}
               fill
-              sizes="(min-width: 1280px) 380px, (min-width: 640px) 50vw, 100vw"
-              className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]"
+              sizes="(min-width: 1280px) 500px, (min-width: 640px) 50vw, 100vw"
+              quality={90}
+              className="object-cover transition-transform duration-[900ms] ease-out group-hover/card:scale-[1.06]"
               onError={() => setImageError(true)}
               loading="lazy"
             />
@@ -61,7 +62,13 @@ export default function PackageCard({ pkg, compact = false }: PackageCardProps) 
 
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-black/20 transition-opacity duration-500 group-hover:opacity-0"
+            className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent transition-opacity duration-500 group-hover/card:opacity-0"
+          />
+
+          {/* Interactive Light sweep traveling across card frame */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/12 to-transparent transition-transform duration-[850ms] ease-out group-hover/card:translate-x-full"
           />
 
           {/* Minimalist Corner Tag — Modelled directly on HouseboatCollection card */}

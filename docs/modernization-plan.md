@@ -1,6 +1,6 @@
 # Modernization Plan — India Nepal Travel Website
 
-**Sources:** `docs/baseline-audit.md`, `docs/reference-site-analysis.md`, `travel_packages_catalog.json`, `india-nepal-travel-web-app-brief.md`
+**Sources:** `docs/baseline-audit.md`, `docs/reference-site-analysis.md`, `app/src/data/travel_packages_catalog.json`, `docs/briefs/india-nepal-travel-web-app-brief.md`
 **Stack (preserved):** Next.js 16 App Router, React 19, TypeScript strict, Tailwind v4, CSS variables
 **Status:** Phases 0–8 complete; Phase 9 sign-off pending.
 **Constraint:** Don't invent package details, prices, reviews, ratings, availability, awards, or booking functionality. Flag conflicting source details for review.

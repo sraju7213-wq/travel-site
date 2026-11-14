@@ -9,7 +9,7 @@ export default function HouseboatHero() {
   return (
     <PageHero
       align="left"
-      height="tall"
+      height="full"
       image="/images/services/houseboats.jpg"
       imageStyle={{ transform: "scale(1.1)" }}
       imageAlt="A shikara crossing Dal Lake in Srinagar towards the carved houseboats moored along the far shore in the morning mist"

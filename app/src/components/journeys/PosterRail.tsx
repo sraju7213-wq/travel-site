@@ -63,7 +63,8 @@ export default function PosterRail({
                     src={`/images/packages/${pkg.slug}.jpg`}
                     alt={pkg.title}
                     fill
-                    sizes="(min-width: 1024px) 240px, (min-width: 640px) 30vw, 45vw"
+                    sizes="(min-width: 1024px) 360px, (min-width: 640px) 45vw, 90vw"
+                    quality={90}
                     className="object-cover"
                   />
                   <span className="jy-rail-glare" aria-hidden="true" />

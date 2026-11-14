@@ -42,33 +42,71 @@ contact sheets are in `docs/evidence/`. Re-crop by hand against the rectangles b
 | `images/destinations/farook-baktoo.jpg` | p1 | `503,303 - 600,392` | 272x250 |
 | `images/hero/hero-pangong.jpg` | p6 | `0,1010 - 848,1175` | 2379x463 |
 | `images/hero/hero-amber-fort.jpg` | p3 | `8,1072 - 840,1198` | 2335x353 |
-| `images/packages/delhi-stopover.jpg` | p3 | `8,1072 - 176,1198` | 472x353 |
-| `images/packages/bombay-stopover.jpg` | p2 | `225,532 - 418,600` | 542x191 |
-| `images/packages/discover-leh.jpg` | p2 | `437,345 - 598,585` | 452x673 |
-| `images/packages/kathmandu-stopover.jpg` | p2 | `22,948 - 212,1120` | 533x483 |
-| `images/packages/kathmandu-pokhara.jpg` | p2 | `225,948 - 418,1120` | 542x483 |
-| `images/packages/discover-ladakh.jpg` | p6 | `573,96 - 836,198` | 737x286 |
-| `images/packages/golden-triangle.jpg` | p3 | `18,68 - 292,255` | 769x524 |
-| `images/packages/glorious-goa-stopover.jpg` | p3 | `296,68 - 555,255` | 727x524 |
-| `images/packages/glimpses-of-kerala.jpg` | p3 | `573,68 - 833,255` | 729x524 |
-| `images/packages/kashmir-package-7-day.jpg` | p2 | `618,78 - 812,268` | 544x533 |
-| `images/packages/kashmir-package-4-day.jpg` | p7 | `25,100 - 400,233` | 900x320 |
-| `images/packages/delhi-to-kathmandu.jpg` | p4 | `296,68 - 560,355` | 741x805 |
-| `images/packages/heritage-tour-india.jpg` | p5 | `295,68 - 556,215` | 732x412 |
-| `images/packages/north-india-highlights.jpg` | p5 | `27,68 - 288,215` | 732x412 |
-| `images/packages/india-nepal-combination.jpg` | p4 | `573,1005 - 836,1160` | 737x435 |
-| `images/packages/south-india-highlight.jpg` | p5 | `573,68 - 836,215` | 737x412 |
-| `images/packages/markha-valley.jpg` | p6 | `27,96 - 288,198` | 732x286 |
-| `images/packages/kashmir-zanskar-ladakh-trek.jpg` | p6 | `296,96 - 556,198` | 730x286 |
-| `images/packages/kashmir-combinations-little-tibet.jpg` | p6 | `573,780 - 836,980` | 737x561 |
-| `images/packages/kashmir-mini-adventure.jpg` | p7 | `25,100 - 400,233` | 900x320 |
-| `images/packages/vale-of-kashmir-trek.jpg` | p7 | `455,100 - 830,232` | 900x317 |
-| `images/packages/kashmir-ski.jpg` | p8 | `573,1052 - 838,1170` | 743x331 |
-| `images/packages/himalayan-combination-nepal.jpg` | p8 | `290,66 - 552,462` | 735x1111 |
-| `images/packages/trisuli-rafting.jpg` | p8 | `573,480 - 836,690` | 737x589 |
-| `images/packages/nepal-mini-trek-4-day.jpg` | p8 | `22,1085 - 285,1170` | 738x239 |
-| `images/packages/nepal-wildlife-safari.jpg` | p8 | `293,1000 - 552,1155` | 727x435 |
-| `images/packages/nepal-mini-trek-7-day.jpg` | p8 | `573,1052 - 838,1170` | 743x331 |
+## High-Resolution Unique Package Thumbnails (1200x800 @ 95% Quality)
+
+| File | Primary Destination & Scene | Master High-Res Source |
+|---|---|---|
+| `images/packages/delhi-stopover.jpg` | Delhi Historic Monument / Qutub Minar | `destinations/delhi-monument.jpg` |
+| `images/packages/bombay-stopover.jpg` | Gateway of India, Mumbai Harbour | `destinations/gateway-of-india.jpg` |
+| `images/packages/discover-leh.jpg` | Leh / Ladakh High-Altitude Monastery in Snow | `destinations/ladakh.png` |
+| `images/packages/kathmandu-stopover.jpg` | Sacred Boudhanath Stupa in Kathmandu | `destinations/kathmandu-stupa.jpg` |
+| `images/packages/kathmandu-pokhara.jpg` | Phewa Lake & Mountain Peaks in Pokhara | `destinations/pokhara-lake.jpg` |
+| `images/packages/discover-ladakh.jpg` | Pangong Tso Lake & High Himalayan Passes | `hero/hero-pangong.jpg` |
+| `images/packages/golden-triangle.jpg` | Taj Mahal Marble Dome with Water Reflection | `destinations/taj-mahal-reflection.png` |
+| `images/packages/glorious-goa-stopover.jpg` | Goa Palms & Golden Coastal Sunset | `destinations/goa.png` |
+| `images/packages/glimpses-of-kerala.jpg` | Kerala Backwaters Waterway & Coconut Palms | `destinations/kerala.png` |
+| `images/packages/kashmir-package-7-day.jpg` | Kashmir Dal Lake with Shikara and Snowy Peaks | `destinations/kashmir.png` |
+| `images/packages/kashmir-package-4-day.jpg` | Dal Lake Floating Markets & Morning Shikaras | `destinations/kashmir-dal-lake-fruit-boat.jpg` |
+| `images/packages/delhi-to-kathmandu.jpg` | Varanasi Ganges Riverfront & Sacred Ghats | `destinations/varanasi.png` |
+| `images/packages/heritage-tour-india.jpg` | Rajasthan Desert Fort & Thar Landscape | `destinations/rajasthan.png` |
+| `images/packages/north-india-highlights.jpg` | Jaipur Amber Fort & Aravalli Hills | `hero/hero-amber-fort.jpg` |
+| `images/packages/india-nepal-combination.jpg` | Rajput Palace Architectural Stonework | `destinations/amber-fort-detail.jpg` |
+| `images/packages/south-india-highlight.jpg` | South India Tropical Waterways & Palms | `destinations/south-india-backwaters.jpg` |
+| `images/packages/markha-valley.jpg` | High Pass Expedition Trekking in Nubra/Markha | `experiences/himalayan-trekking-nubra.jpg` |
+| `images/packages/kashmir-zanskar-ladakh-trek.jpg` | Zanskar River Gorge & Alpine Valley | `destinations/zanskar-river.jpg` |
+| `images/packages/kashmir-combinations-little-tibet.jpg` | Ancient Tibetan Buddhist Stone Carving | `destinations/buddhist-statue.jpg` |
+| `images/packages/kashmir-mini-adventure.jpg` | Lush Green Alpine Valley & Lakes of Kashmir | `destinations/green-valley.jpg` |
+| `images/packages/vale-of-kashmir-trek.jpg` | Lidderwat Valley & Mountain Meadows | `destinations/vale-trek.jpg` |
+| `images/packages/kashmir-ski.jpg` | High-Altitude Snowy Ski Trails & Winter Pines | `destinations/snow-trek.jpg` |
+| `images/packages/himalayan-combination-nepal.jpg` | Annapurna Mountain Range Sunrise Peaks | `destinations/contact.jpg` |
+| `images/packages/trisuli-rafting.jpg` | Whitewater Rafting on the Trisuli River Rapids | `destinations/rafting.jpg` |
+| `images/packages/nepal-mini-trek-4-day.jpg` | Kathmandu Valley & Nagarkot Trail Walk | `destinations/nepal-trek.jpg` |
+| `images/packages/nepal-wildlife-safari.jpg` | Greater One-Horned Rhinoceros in Chitwan | `destinations/indian-rhino-forest.jpg` |
+| `images/packages/nepal-mini-trek-7-day.jpg` | Misty Mountain Valleys & Shivapuri Ridges | `images/misty-mountain-valley.jpg` |
+
+## Curated Orbit Images (from user photography archive)
+
+| File | Description | Target Package |
+|---|---|---|
+| `images/orbit/kashmir-shikara-peaks.jpg` | Kashmir Lakeview with Shikara and Snowy Peaks | `kashmir-package-7-day` |
+| `images/orbit/taj-mahal-golden-hour.jpg` | Golden-Hour Taj Mahal Reflection | `golden-triangle` |
+| `images/orbit/kerala-backwaters-dawn.jpg` | Kerala Backwaters at Golden Dawn | `glimpses-of-kerala` |
+| `images/orbit/ladakh-monastery-skies.jpg` | Ladakh Monastery Beneath Himalayan Skies | `discover-ladakh` |
+| `images/orbit/monks-musical-ceremony.jpg` | Monks’ Musical Ceremony at a Himalayan Monastery | `himalayan-combination-nepal` |
+| `images/orbit/fort-sandstone-pavilion.jpg` | Golden Hour Fort and Sandstone Pavilion | `heritage-tour-india` |
+| `images/orbit/himalayan-guide-valley.jpg` | Himalayan Guide Overlooking the Valley | `markha-valley` |
+| `images/orbit/goa-sunset-palms.jpg` | Goa Sunset Beach Shack and Palms | `glorious-goa-stopover` |
+| `images/orbit/varanasi-ghats-sunrise.jpg` | Varanasi Ghats at Golden Sunrise | `north-india-highlights` |
+| `images/orbit/namaste-himalayan-valley.jpg` | Namaste in the Himalayan Valley | `vale-of-kashmir-trek` |
+| `images/orbit/students-mountain-elders.jpg` | Students Learning from Mountain Elders | `nepal-mini-trek-7-day` |
+| `images/orbit/sunset-heritage-palace.jpg` | Sunset Heritage Palace Terrace | `delhi-stopover` |
+
+## Landing Page & Pillar Updates (from user photography archive)
+
+| File | Description | Section |
+|---|---|---|
+| `images/destinations/goa.png` | Goa Coastal Beach Landscape | Landing Page — Destinations Carousel (`Goa`) |
+| `images/destinations/kashmir.png` | Kashmir Dal Lake with Shikara and Peaks | Landing Page — Destinations Carousel (`Kashmir`) |
+| `images/destinations/kerala.png` | Kerala Backwaters Waterway | Landing Page — Destinations Carousel (`Kerala`) |
+| `images/destinations/ladakh.png` | Ladakh Key Monastery in Winter Snow | Landing Page — Destinations Carousel (`Ladakh`) |
+| `images/destinations/rajasthan.png` | Rajasthan Desert Fort and Landscape | Landing Page — Destinations Carousel (`Rajasthan`) |
+| `images/destinations/taj-mahal-reflection.png` | Taj Mahal Marble Dome with Water Reflection | Landing Page — Destinations Carousel (`Agra & the Taj`) |
+| `images/destinations/varanasi.png` | Varanasi Sacred Ganges Riverfront and Ghats | Landing Page — Destinations Carousel (`Varanasi`) |
+| `images/destinations/accommodation.png` | Handpicked Heritage Hotel / Haveli Architecture | Landing Page — Why Travel With Us (`Accommodation`) |
+| `images/destinations/culture.png` | Living Cultural Traditions and Ceremonies | Landing Page — Why Travel With Us (`Culture`) |
+| `images/destinations/guide.png` | Dedicated Guides & Himalayan Support Crew | Landing Page — Why Travel With Us (`Guides`) |
+| `images/destinations/impact.png` | Educational Expeditions & Community Stewardship | Landing Page — Why Travel With Us (`Impact`) |
+| `images/destinations/travel.png` | Seamless Private Transit & Scenic Road Travel | Landing Page — Why Travel With Us (`Travel`) |
 
 ## Notes
 

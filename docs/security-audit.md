@@ -3,7 +3,7 @@
 **Date:** 2026-11-04
 **Target:** `D:\ks world Adventure site` (Next.js 16.4.3 app in `app/`)
 **Repository:** https://github.com/sraju7213-wq/travel-site — **public**
-**Method:** Source review (`app/src`, `next.config.ts`, env layout, git history), dependency audit (`npm audit`), and one read-only REST probe against the project's Supabase instance. No write operations or exploitation were performed. The deployed URL recorded in `PHASE9_SIGNOFF.md` (`india-nepal-travel.vercel.app`) returns 404, so no live HTTP testing was possible.
+**Method:** Source review (`app/src`, `next.config.ts`, env layout, git history), dependency audit (`npm audit`), and one read-only REST probe against the project's Supabase instance. No write operations or exploitation were performed. The deployed URL recorded in `docs/planning/phase9-signoff.md` (`india-nepal-travel.vercel.app`) returns 404, so no live HTTP testing was possible.
 
 **Overall risk: CRITICAL** — enquiry PII is readable without authentication, and the admin gate is publicly bypassable.
 
