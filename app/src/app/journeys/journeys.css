@@ -1,0 +1,777 @@
+/* ==========================================================================
+   Journeys hero — 3D orbit + coverflow listing
+   Adapted from the reelipse.com landing pattern: a draggable ring of journey
+   posters orbiting the headline. Every orbit card carries the package name on
+   the poster and links straight to that package's itinerary page.
+   ========================================================================== */
+
+.jy-orbit {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    url("/images/misty-mountain-valley.jpg") center/cover no-repeat,
+    radial-gradient(120% 80% at 50% 0%, rgba(212, 147, 104, 0.14), transparent 62%),
+    radial-gradient(90% 60% at 50% 110%, rgba(24, 36, 44, 0.9), transparent 70%),
+    #0c1617;
+}
+
+.jy-orbit-stage {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-top: 88px;
+  perspective: 1400px;
+}
+
+@media (max-width: 767px) {
+  .jy-orbit-stage {
+    padding-top: 76px;
+  }
+}
+
+.jy-orbit-ring {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.jy-orbit-card {
+  position: absolute;
+  width: 180px;
+  transform: translate(-50%, -50%);
+  transform-origin: center;
+  will-change: transform;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: pan-y;
+}
+
+.jy-orbit-card:focus {
+  outline: 2px solid var(--color-wild-orange);
+  outline-offset: 2px;
+}
+
+@media (min-width: 768px) {
+  .jy-orbit-card {
+    width: 220px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .jy-orbit-card {
+    width: 250px;
+  }
+}
+
+.jy-orbit-tilt {
+  position: relative;
+  display: block;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #151e24;
+  box-shadow:
+    0 30px 50px -22px rgba(0, 0, 0, 0.9),
+    0 0 0 1px rgba(255, 255, 255, 0.07);
+  transition: box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.jy-orbit-tilt img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+.jy-orbit-glare,
+.jy-orbit-foil,
+.jy-orbit-shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.4s ease,
+    visibility 0s 0.4s;
+}
+
+.jy-orbit-glare {
+  background: radial-gradient(
+    circle at var(--gx, 50%) var(--gy, 30%),
+    rgba(255, 255, 255, 0.55),
+    transparent 48%
+  );
+  mix-blend-mode: overlay;
+}
+
+.jy-orbit-foil {
+  background: conic-gradient(
+    from calc(var(--gx, 50%) * 3.6deg) at var(--gx, 50%) var(--gy, 50%),
+    #ff7ab6,
+    #ffcf7a,
+    #7affc4,
+    #7ab8ff,
+    #c77aff,
+    #ff7ab6
+  );
+  mix-blend-mode: color-dodge;
+}
+
+.jy-orbit-shade {
+  background: #0c1617;
+  opacity: 0.6;
+  transition: opacity 0.2s linear;
+}
+
+/* On-poster labelling — package name, duration and route are printed on the
+   card itself, so the journey is readable at rest and tappable on touch. */
+
+.jy-orbit-veil {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      to top,
+      rgba(11, 10, 9, 0.92) 0%,
+      rgba(11, 10, 9, 0.45) 32%,
+      transparent 55%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(11, 10, 9, 0.42) 0%,
+      transparent 26%
+    );
+}
+
+.jy-orbit-top {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 11px;
+  pointer-events: none;
+}
+
+.jy-orbit-rank {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(245, 242, 235, 0.8);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+}
+
+.jy-orbit-days {
+  max-width: 62%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(12, 22, 23, 0.72);
+  box-shadow: inset 0 0 0 1px rgba(245, 242, 235, 0.16);
+  backdrop-filter: blur(4px);
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #f5f2eb;
+}
+
+.jy-orbit-label {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  justify-items: start;
+  gap: 3px;
+  padding: 12px 12px 14px;
+  pointer-events: none;
+  text-align: left;
+}
+
+.jy-orbit-name {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  line-height: 1.08;
+  color: #f5f2eb;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
+}
+
+.jy-orbit-sub {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-sans);
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
+  color: rgba(245, 242, 235, 0.74);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.85);
+}
+
+.jy-orbit-cta {
+  margin-top: 7px;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: var(--color-wild-orange);
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #0c1617;
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.jy-orbit-card.is-hot .jy-orbit-cta {
+  opacity: 1;
+  transform: none;
+}
+
+/* On touch devices there is no hover, so keep the action visible. */
+@media (hover: none) {
+  .jy-orbit-cta {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.jy-orbit-card.is-hot .jy-orbit-tilt {
+  box-shadow:
+    0 40px 70px -20px rgba(0, 0, 0, 0.95),
+    0 0 0 1px rgba(212, 147, 104, 0.7),
+    0 0 60px -6px rgba(212, 147, 104, 0.45);
+}
+
+.jy-orbit-card.is-hot .jy-orbit-glare,
+.jy-orbit-card.is-hot .jy-orbit-foil {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.4s ease;
+}
+
+.jy-orbit-card.is-hot .jy-orbit-foil {
+  opacity: 0.16;
+}
+
+.jy-orbit-caption {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  width: max-content;
+  max-width: 17rem;
+  text-align: center;
+  opacity: 0;
+  transform: translate(-50%, 8px);
+  transition:
+    opacity 0.35s ease,
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.jy-orbit-card.is-hot .jy-orbit-caption {
+  opacity: 1;
+  transform: translate(-50%);
+}
+
+.jy-orbit-caption-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  line-height: 1;
+  color: #f5f2eb;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9);
+}
+
+.jy-orbit-caption-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8125rem;
+  color: rgba(245, 242, 235, 0.65);
+}
+
+.jy-orbit-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(12, 22, 23, 0.88);
+  color: rgba(245, 242, 235, 0.6);
+  font-size: 0.8125rem;
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.jy-orbit-hint.is-gone {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+}
+
+.jy-orbit-pause {
+  display: none;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(12, 22, 23, 0.88);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+  color: #f5f2eb;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: box-shadow 0.3s ease;
+}
+
+.jy-orbit-pause:hover {
+  box-shadow: inset 0 0 0 1px rgba(212, 147, 104, 0.7);
+}
+
+@media (hover: none) {
+  .jy-orbit-pause {
+    display: inline-flex;
+  }
+}
+
+.jy-orbit-core {
+  position: absolute;
+  z-index: 20;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(42rem, 84vw);
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+.jy-orbit-core::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -18% -26%;
+  pointer-events: none;
+  background: radial-gradient(
+    closest-side,
+    rgba(12, 22, 23, 0.94),
+    rgba(12, 22, 23, 0.72) 55%,
+    transparent 82%
+  );
+}
+
+/* Coverflow listing ------------------------------------------------------ */
+
+.jy-coverflow {
+  margin-inline: calc(50% - 50vw);
+  padding-inline: calc(50vw - 50%);
+  overflow-x: clip;
+}
+
+.jy-coverflow-track {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.jy-coverflow-track::-webkit-scrollbar {
+  display: none;
+}
+
+.jy-coverflow-slide {
+  flex: 0 0 min(64vw, 320px);
+  scroll-snap-align: center;
+  perspective: 1400px;
+}
+
+@media (min-width: 768px) {
+  .jy-coverflow-slide {
+    flex-basis: 320px;
+  }
+}
+
+.jy-coverflow-card {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #151e24;
+  isolation: isolate;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 1px 1px rgba(0, 0, 0, 0.45),
+    0 8px 16px -6px rgba(0, 0, 0, 0.55),
+    0 28px 48px -22px rgba(0, 0, 0, 0.85);
+  transition:
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.jy-coverflow-slide:hover .jy-coverflow-card,
+.jy-coverflow-slide:focus-within .jy-coverflow-card {
+  transform: translateY(-8px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 0 0 1px rgba(212, 147, 104, 0.45),
+    0 2px 2px rgba(0, 0, 0, 0.4),
+    0 18px 30px -10px rgba(0, 0, 0, 0.6),
+    0 48px 80px -28px rgba(0, 0, 0, 0.95),
+    0 40px 80px -30px rgba(212, 147, 104, 0.35);
+}
+
+.jy-coverflow-poster {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.jy-coverflow-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.jy-coverflow-slide:hover .jy-coverflow-poster img,
+.jy-coverflow-slide:focus-within .jy-coverflow-poster img {
+  transform: scale(1.09);
+}
+
+.jy-coverflow-veil {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      120% 70% at 50% 100%,
+      rgba(212, 147, 104, 0.14),
+      transparent 60%
+    ),
+    linear-gradient(
+      to top,
+      rgba(11, 10, 9, 0.97) 0%,
+      rgba(11, 10, 9, 0.88) 45%,
+      rgba(11, 10, 9, 0.35) 80%,
+      rgba(11, 10, 9, 0.15) 100%
+    );
+  transform: translateY(101%);
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.jy-coverflow-slide:hover .jy-coverflow-veil,
+.jy-coverflow-slide:focus-within .jy-coverflow-veil {
+  transform: none;
+}
+
+.jy-coverflow-sheen {
+  position: absolute;
+  inset: -20% -60%;
+  pointer-events: none;
+  background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.16) 50%, transparent 60%);
+  transform: translateX(-70%);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.jy-coverflow-slide:hover .jy-coverflow-sheen,
+.jy-coverflow-slide:focus-within .jy-coverflow-sheen {
+  transform: translateX(70%);
+}
+
+.jy-coverflow-info {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(1rem, 4.5%, 1.4rem);
+  pointer-events: none;
+}
+
+.jy-coverflow-rank {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--color-wild-orange);
+  font-family: var(--font-serif);
+  font-size: clamp(3.5rem, 7vw, 6rem);
+  line-height: 0.8;
+  opacity: 0;
+  transform: translateY(-24px);
+  transition:
+    opacity 0.4s ease,
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.jy-coverflow-slide:hover .jy-coverflow-rank,
+.jy-coverflow-slide:focus-within .jy-coverflow-rank {
+  opacity: 1;
+  transform: none;
+}
+
+.jy-coverflow-in {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.jy-coverflow-slide:hover .jy-coverflow-in,
+.jy-coverflow-slide:focus-within .jy-coverflow-in {
+  opacity: 1;
+  transform: none;
+}
+
+.jy-coverflow-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.35rem, 2.2vw, 1.9rem);
+  line-height: 1.02;
+  color: #f5f2eb;
+}
+
+.jy-coverflow-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  color: rgba(245, 242, 235, 0.7);
+}
+
+.jy-coverflow-summary {
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: rgba(245, 242, 235, 0.8);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.jy-coverflow-actions {
+  display: grid;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+/* Poster rails ------------------------------------------------------------ */
+
+.jy-rail {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem 1rem;
+}
+
+@media (min-width: 640px) {
+  .jy-rail {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .jy-rail {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+.jy-rail-card {
+  position: relative;
+  display: block;
+}
+
+.jy-rail-poster {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #151e24;
+  transform-style: preserve-3d;
+  box-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.45),
+    0 8px 16px -6px rgba(0, 0, 0, 0.55),
+    0 28px 48px -22px rgba(0, 0, 0, 0.85);
+  transition:
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.jy-rail-poster::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.12), transparent 35%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.09);
+}
+
+.jy-rail-poster.is-hot {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 0 0 1px rgba(212, 147, 104, 0.45),
+    0 2px 2px rgba(0, 0, 0, 0.4),
+    0 18px 30px -10px rgba(0, 0, 0, 0.6),
+    0 48px 80px -28px rgba(0, 0, 0, 0.95);
+}
+
+.jy-rail-glare {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    circle at var(--gx, 50%) var(--gy, 30%),
+    rgba(255, 255, 255, 0.5),
+    transparent 48%
+  );
+  mix-blend-mode: overlay;
+  transition: opacity 0.4s ease;
+}
+
+.jy-rail-poster.is-hot .jy-rail-glare {
+  opacity: 1;
+}
+
+.jy-rail-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.jy-rail-title {
+  margin-top: 0.75rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #f5f2eb;
+  transition: color 0.2s ease;
+}
+
+.jy-rail-card:hover .jy-rail-title,
+.jy-rail-card:focus-within .jy-rail-title {
+  color: var(--color-wild-orange);
+}
+
+.jy-rail-meta {
+  margin-top: 0.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.25rem 0.5rem;
+}
+
+.jy-pill {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  border-radius: 999px;
+  padding: 0.125rem 0.625rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.jy-pill--essential {
+  color: #f2c48c;
+  background: rgba(212, 147, 104, 0.18);
+}
+
+.jy-pill--go {
+  color: #9fd4a9;
+  background: rgba(127, 201, 143, 0.16);
+}
+
+.jy-pill--timepass {
+  color: #a7c4d6;
+  background: rgba(143, 179, 201, 0.16);
+}
+
+.jy-pill--skip {
+  color: #e49a92;
+  background: rgba(224, 100, 90, 0.16);
+}
+
+.jy-pill--muted {
+  color: rgba(245, 242, 235, 0.55);
+  background: #151e24;
+}
+
+.jy-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.875rem;
+  color: #f5f2eb;
+  background: rgba(255, 255, 255, 0.06);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.jy-chip:hover {
+  background: var(--color-wild-orange);
+  color: #0c1617;
+}
+
+.jy-section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #f5f2eb;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jy-orbit-card,
+  .jy-orbit-tilt,
+  .jy-orbit-cta,
+  .jy-coverflow-card,
+  .jy-coverflow-poster img,
+  .jy-coverflow-veil,
+  .jy-coverflow-sheen,
+  .jy-coverflow-rank,
+  .jy-coverflow-in,
+  .jy-rail-poster {
+    transition-duration: 10ms !important;
+    transition-delay: 0s !important;
+  }
+}

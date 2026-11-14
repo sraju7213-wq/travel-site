@@ -1,0 +1,40 @@
+# Node & Next.js build output — regenerable, never commit
+node_modules/
+.next/
+out/
+build/
+coverage/
+*.tsbuildinfo
+next-env.d.ts
+
+# Environment files with secrets
+.env
+.env.*
+!.env.example
+
+# Local-only source media (optimized, served copies live in app/public/images)
+assets/source-images/
+
+# Editor / OS / logs
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.vscode/
+.idea/
+
+# Deploy + tool caches
+.vercel/
+.turbo/
+.kilo/
+.commandcode/
+.muxel/
+.claude/
+.delta/
+
+# Large binary formats that must be optimised into app/public first
+*.pdf
+*.psd
