@@ -8,6 +8,7 @@
  */
 
 import type { Pillar } from "./siteContent";
+import { pexels } from "./catalogue";
 
 export interface HouseboatStat {
   value: string;
@@ -56,7 +57,7 @@ export const HOUSEBOAT_STATS: HouseboatStat[] = [
 export const HOUSEBOAT_CARDS: HouseboatCard[] = [
   {
     title: "Cedar houseboats",
-    image: "/images/services/kashmir-houseboat.jpg",
+    image: pexels("40348598"),
     alt: "Carved wooden houseboats moored along the shore of Dal Lake beneath snow-covered peaks",
     blurb:
       "Carved walnut furniture, Kashmir carpets, and a veranda that opens straight onto the lake.",
@@ -64,7 +65,7 @@ export const HOUSEBOAT_CARDS: HouseboatCard[] = [
   },
   {
     title: "Sunrise from the roof",
-    image: "/images/destinations/kashmir-dal-lake-fruit-boat.jpg",
+    image: pexels("34971547"),
     alt: "A shikara with a red canopy crossing Dal Lake with snow-covered mountains behind",
     blurb:
       "A sundeck above, a shikara below. The lake is at its quietest before the market boats push out.",
@@ -72,7 +73,7 @@ export const HOUSEBOAT_CARDS: HouseboatCard[] = [
   },
   {
     title: "The floating market",
-    image: "/images/experiences/kashmir-boat-shikara.jpg",
+    image: pexels("29251278"),
     alt: "A vendor selling vegetables from a shikara amid the floating market of Dal Lake",
     blurb:
       "Shikara crossings to the vegetable boats that still trade from the water, moored among the houseboats.",
@@ -80,7 +81,7 @@ export const HOUSEBOAT_CARDS: HouseboatCard[] = [
   },
   {
     title: "Crafts of the valley",
-    image: "/images/experiences/village-and-culture.jpg",
+    image: pexels("24428857"),
     alt: "A Kashmiri woman in mirror-work traditional dress, part of the valley's craft traditions",
     blurb:
       "Wood carving, carpet making and papier-mâché — the crafts that furnish the houseboat rooms, arranged as visits alongside the stay.",
@@ -88,7 +89,7 @@ export const HOUSEBOAT_CARDS: HouseboatCard[] = [
   },
   {
     title: "Gulmarg & Pahalgam",
-    image: "/images/destinations/snow-trek.jpg",
+    image: pexels("35672518"),
     alt: "Snow-dusted Himalayan peaks rising above a wide high valley of golden grass",
     blurb:
       "The mountain resorts are arranged alongside the houseboat stay — not instead of it.",
@@ -151,7 +152,7 @@ export const HOUSEBOAT_PILLARS: Pillar[] = [
     key: "houseboat",
     label: "The houseboat",
     title: "Cedar, carved and moored",
-    image: "/images/services/kashmir-houseboat.jpg",
+    image: pexels("40348598"),
     tagline: "A veranda on the water, a sundeck above it",
     regionTag: "Dal & Nagin Lake",
     body:
@@ -169,7 +170,7 @@ export const HOUSEBOAT_PILLARS: Pillar[] = [
     key: "lake",
     label: "On the lake",
     title: "Shikara crossings at first light",
-    image: "/images/destinations/kashmir-dal-lake-fruit-boat.jpg",
+    image: pexels("34971547"),
     tagline: "The market boats are already moving",
     regionTag: "Dal Lake",
     body:
@@ -187,7 +188,7 @@ export const HOUSEBOAT_PILLARS: Pillar[] = [
     key: "market",
     label: "The floating market",
     title: "Vegetables that arrive by boat",
-    image: "/images/experiences/kashmir-boat-shikara.jpg",
+    image: pexels("29251278"),
     tagline: "Traders who never leave the water",
     regionTag: "Dal Lake",
     body:
@@ -205,7 +206,7 @@ export const HOUSEBOAT_PILLARS: Pillar[] = [
     key: "crafts",
     label: "Crafts & culture",
     title: "Walnut, carpet and papier-mâché",
-    image: "/images/experiences/village-and-culture.jpg",
+    image: pexels("24428857"),
     tagline: "The crafts the houseboat rooms are furnished with",
     regionTag: "Kashmir Valley",
     body:
@@ -223,7 +224,7 @@ export const HOUSEBOAT_PILLARS: Pillar[] = [
     key: "resorts",
     label: "Beyond the lake",
     title: "Gulmarg and Pahalgam",
-    image: "/images/destinations/snow-trek.jpg",
+    image: pexels("35672518"),
     tagline: "Two mountain resorts, one route",
     regionTag: "Gulmarg & Pahalgam",
     body:

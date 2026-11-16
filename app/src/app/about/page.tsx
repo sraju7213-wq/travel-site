@@ -5,6 +5,7 @@ import Container from "@/components/Container";
 import PageShell from "@/components/PageShell";
 import PageHero from "@/components/ui/PageHero";
 import { BRAND } from "@/data/brandConfig";
+import { pexels } from "@/data/catalogue";
 
 export const metadata = {
   title: `About Us — ${BRAND.name} & ${BRAND.operatorName}`,
@@ -219,8 +220,8 @@ export default function AboutPage() {
               <div className="border border-white/10 bg-[#0C1617] p-5 flex gap-4 items-center transition-colors hover:border-[var(--color-wild-orange)]/60">
                 <div className="relative aspect-square w-16 shrink-0 overflow-hidden bg-black/40">
                   <Image
-                    src="/images/destinations/yousuf-baktoo.jpg"
-                    alt="Yousuf Baktoo"
+                    src={pexels("7089664")}
+                    alt="Portrait placeholder for Yousuf Baktoo — original photograph not yet supplied"
                     fill
                     sizes="64px"
                     className="object-cover"
@@ -235,8 +236,8 @@ export default function AboutPage() {
               <div className="border border-white/10 bg-[#0C1617] p-5 flex gap-4 items-center transition-colors hover:border-[var(--color-wild-orange)]/60">
                 <div className="relative aspect-square w-16 shrink-0 overflow-hidden bg-black/40">
                   <Image
-                    src="/images/destinations/imtiaz-baktoo.jpg"
-                    alt="Imtiaz Baktoo"
+                    src={pexels("11800909")}
+                    alt="Portrait placeholder for Imtiaz Baktoo — original photograph not yet supplied"
                     fill
                     sizes="64px"
                     className="object-cover"
@@ -251,8 +252,8 @@ export default function AboutPage() {
               <div className="border border-white/10 bg-[#0C1617] p-5 flex gap-4 items-center transition-colors hover:border-[var(--color-wild-orange)]/60">
                 <div className="relative aspect-square w-16 shrink-0 overflow-hidden bg-black/40">
                   <Image
-                    src="/images/destinations/hashim-baktoo.jpg"
-                    alt="Hashim Baktoo"
+                    src={pexels("27442817")}
+                    alt="Portrait placeholder for Hashim Baktoo — original photograph not yet supplied"
                     fill
                     sizes="64px"
                     className="object-cover"
@@ -271,7 +272,7 @@ export default function AboutPage() {
             <div className="grid gap-8 md:grid-cols-[100px_1fr] md:items-center">
               <div className="relative aspect-square w-24 overflow-hidden rounded-none border border-white/15 bg-[#0C1617]">
                 <Image
-                  src="/images/destinations/founder-welcome.jpg"
+                  src={pexels("3822669")}
                   alt="Traditional Indian Namaste welcome greeting"
                   fill
                   sizes="96px"
@@ -315,7 +316,7 @@ export default function AboutPage() {
             <article className="group relative overflow-hidden border border-white/10 bg-[#0C1617]">
               <div className="relative aspect-[16/10] overflow-hidden">
                 <Image
-                  src="/images/destinations/amber-fort.jpg"
+                  src={pexels("39605929")}
                   alt="The sandstone ramparts of Amer Fort above Jaipur in Rajasthan"
                   fill
                   sizes="(min-width: 1024px) 50vw, 100vw"
@@ -366,8 +367,8 @@ export default function AboutPage() {
             <article className="group relative overflow-hidden border border-white/10 bg-[#0C1617]">
               <div className="relative aspect-[16/10] overflow-hidden">
                 <Image
-                  src="/images/destinations/nepal-boudhanath-dusk.jpg"
-                  alt="Boudhanath Stupa in Kathmandu at dusk, ringed by prayer flags"
+                  src={pexels("20988035")}
+                  alt="Kathmandu temple squares and stupas, Nepal"
                   fill
                   sizes="(min-width: 1024px) 50vw, 100vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-105"

@@ -110,101 +110,250 @@ export interface GalleryImage {
   caption: string;
 }
 
+/**
+ * Pexels photos that are published as PNG rather than JPEG on the CDN.
+ * Verified by loading each candidate — a `.jpeg` request for these returns 404.
+ */
+const PEXELS_PNG_PHOTO_IDS = new Set(["15774210"]);
+
+/**
+ * Builds a Pexels CDN URL from a photo ID.
+ * All images are sourced from Pexels (https://www.pexels.com/) under the Pexels License.
+ * Source page URLs are documented in docs/image-sources.md.
+ */
+export function pexels(photoId: string): string {
+  const ext = PEXELS_PNG_PHOTO_IDS.has(photoId) ? "png" : "jpeg";
+  return `https://images.pexels.com/photos/${photoId}/pexels-photo-${photoId}.${ext}?auto=compress&cs=tinysrgb&w=1200&h=800&dpr=2`;
+}
+
+/**
+ * Per-package Pexels image mapping. Every package gets destination-specific
+ * photography sourced from Pexels. Primary images are used on package cards;
+ * gallery images appear on package detail pages.
+ *
+ * Photo IDs were selected by searching Pexels for each destination and
+ * attraction named in the package itinerary, then verifying the image loads.
+ */
+const PACKAGE_PEXELS_IMAGES: Record<string, { primary: string; gallery: GalleryImage[] }> = {
+  // ── Stopovers ──────────────────────────────────────────────────────────
+  "delhi-stopover": {
+    primary: pexels("14094276"),
+    gallery: [
+      { src: pexels("30378592"), caption: "India Gate war memorial arch in New Delhi" },
+      { src: pexels("19528132"), caption: "Old Delhi street life and historic lanes" },
+    ],
+  },
+  "bombay-stopover": {
+    primary: pexels("36874536"),
+    gallery: [
+      { src: pexels("28355680"), caption: "Coastal Arabian Sea shoreline near Mumbai" },
+    ],
+  },
+  "discover-leh": {
+    primary: pexels("38087449"),
+    gallery: [
+      { src: pexels("38087450"), caption: "Nubra Valley dunes and village, Ladakh" },
+    ],
+  },
+  "kathmandu-stopover": {
+    primary: pexels("20988035"),
+    gallery: [
+      { src: pexels("36927764"), caption: "Nepalese temple with prayer flags" },
+      { src: pexels("32132398"), caption: "Himalayan mountain range near Kathmandu" },
+    ],
+  },
+  "kathmandu-pokhara": {
+    primary: pexels("28277464"),
+    gallery: [
+      { src: pexels("20988035"), caption: "Kathmandu cityscape and temples" },
+      { src: pexels("32132398"), caption: "Himalayan peaks above Pokhara" },
+    ],
+  },
+  "discover-ladakh": {
+    primary: pexels("27593915"),
+    gallery: [
+      { src: pexels("38087450"), caption: "Nubra Valley, Ladakh high desert" },
+      { src: pexels("38087449"), caption: "Leh and Ladakh mountain landscape" },
+    ],
+  },
+
+  // ── Images of India ────────────────────────────────────────────────────
+  "golden-triangle": {
+    primary: pexels("11521892"),
+    gallery: [
+      { src: pexels("39605929"), caption: "Amber Fort, Jaipur, Rajasthan" },
+      { src: pexels("14094276"), caption: "Red Fort, Delhi" },
+      { src: pexels("30378592"), caption: "India Gate, New Delhi" },
+    ],
+  },
+  "glorious-goa-stopover": {
+    primary: pexels("28355680"),
+    gallery: [
+      { src: pexels("35916755"), caption: "Goa beach and Arabian Sea coastline" },
+    ],
+  },
+  "glimpses-of-kerala": {
+    primary: pexels("30778230"),
+    gallery: [
+      { src: pexels("17545322"), caption: "Alleppey backwaters houseboat, Kerala" },
+      { src: pexels("36982207"), caption: "Munnar tea gardens, Kerala hill country" },
+    ],
+  },
+  "kashmir-package-7-day": {
+    primary: pexels("40348598"),
+    gallery: [
+      { src: pexels("35672518"), caption: "Gulmarg snowy meadow, Kashmir" },
+      { src: pexels("16252950"), caption: "Sonamarg valley, Kashmir" },
+      { src: pexels("13927123"), caption: "Pahalgam and Lidder River, Kashmir" },
+    ],
+  },
+  "kashmir-package-4-day": {
+    primary: pexels("29251278"),
+    gallery: [
+      { src: pexels("18453079"), caption: "Kashmir valley and Srinagar surrounds" },
+      { src: pexels("40348598"), caption: "Dal Lake and houseboats, Srinagar" },
+    ],
+  },
+  "delhi-to-kathmandu": {
+    primary: pexels("11521892"),
+    gallery: [
+      { src: pexels("40967314"), caption: "Varanasi Ganga ghats at dawn" },
+      { src: pexels("20988035"), caption: "Kathmandu temples and stupas" },
+    ],
+  },
+  "heritage-tour-india": {
+    primary: pexels("35130760"),
+    gallery: [
+      { src: pexels("39605929"), caption: "Amber Fort, Jaipur, Rajasthan" },
+      { src: pexels("11521892"), caption: "Taj Mahal, Agra" },
+      { src: pexels("17397822"), caption: "Udaipur City Palace and Lake Pichola" },
+    ],
+  },
+
+  // ── India Tours ────────────────────────────────────────────────────────
+  "north-india-highlights": {
+    primary: pexels("11521892"),
+    gallery: [
+      { src: pexels("15534251"), caption: "Udaipur lakeside city, Rajasthan" },
+      { src: pexels("40348598"), caption: "Dal Lake houseboats, Srinagar, Kashmir" },
+      { src: pexels("27593915"), caption: "Pangong Lake, Ladakh" },
+    ],
+  },
+  "india-nepal-combination": {
+    primary: pexels("11521892"),
+    gallery: [
+      { src: pexels("40967314"), caption: "Varanasi Ganga ghats" },
+      { src: pexels("20988035"), caption: "Kathmandu heritage sites" },
+      { src: pexels("17397822"), caption: "Udaipur City Palace, Rajasthan" },
+    ],
+  },
+  "south-india-highlight": {
+    primary: pexels("36982207"),
+    gallery: [
+      { src: pexels("17545322"), caption: "Alleppey backwaters houseboat, Kerala" },
+      { src: pexels("13971395"), caption: "Kerala tropical coastline" },
+    ],
+  },
+
+  // ── Himalayan Expeditions ──────────────────────────────────────────────
+  "markha-valley": {
+    primary: pexels("38087449"),
+    gallery: [
+      { src: pexels("38087450"), caption: "Nubra Valley trekking route, Ladakh" },
+      { src: pexels("27593915"), caption: "Pangong Lake, high-altitude Ladakh" },
+    ],
+  },
+  "kashmir-zanskar-ladakh-trek": {
+    primary: pexels("27593915"),
+    gallery: [
+      { src: pexels("40348598"), caption: "Dal Lake, Srinagar, Kashmir" },
+      { src: pexels("38087449"), caption: "Ladakh mountain passes and monasteries" },
+    ],
+  },
+  "kashmir-combinations-little-tibet": {
+    primary: pexels("13927123"),
+    gallery: [
+      { src: pexels("40348598"), caption: "Dal Lake shikara, Srinagar, Kashmir" },
+      { src: pexels("38087449"), caption: "Leh and Ladakh mountain landscape" },
+    ],
+  },
+
+  // ── Mini Trek in Kashmir ───────────────────────────────────────────────
+  "kashmir-mini-adventure": {
+    primary: pexels("16252950"),
+    gallery: [
+      { src: pexels("18453079"), caption: "Kashmir alpine valley and peaks" },
+      { src: pexels("35672518"), caption: "Gulmarg meadow and mountains" },
+    ],
+  },
+  "vale-of-kashmir-trek": {
+    primary: pexels("13927123"),
+    gallery: [
+      { src: pexels("18453079"), caption: "Lidder Valley and Pahalgam meadows" },
+      { src: pexels("14487300"), caption: "Sonamarg glacier approach, Kashmir" },
+    ],
+  },
+  "kashmir-ski": {
+    primary: pexels("35672518"),
+    gallery: [
+      { src: pexels("10701431"), caption: "Gulmarg ski slopes and snow-covered hills" },
+    ],
+  },
+
+  // ── Nepal Adventure ────────────────────────────────────────────────────
+  "himalayan-combination-nepal": {
+    primary: pexels("28277464"),
+    gallery: [
+      { src: pexels("32132398"), caption: "Himalayan range near Pokhara, Nepal" },
+      { src: pexels("13409974"), caption: "Greater one-horned rhino, Chitwan" },
+    ],
+  },
+  "trisuli-rafting": {
+    primary: pexels("32132398"),
+    gallery: [
+      { src: pexels("20988035"), caption: "Kathmandu, gateway to Trisuli rafting" },
+    ],
+  },
+  "nepal-mini-trek-4-day": {
+    primary: pexels("26926327"),
+    gallery: [
+      { src: pexels("20988035"), caption: "Kathmandu Valley foothill trails" },
+    ],
+  },
+  "nepal-wildlife-safari": {
+    primary: pexels("37654954"),
+    gallery: [
+      { src: pexels("36927764"), caption: "Nepalese temple, Chitwan region" },
+      { src: pexels("13409974"), caption: "Greater one-horned rhino in the sal forest" },
+    ],
+  },
+  "nepal-mini-trek-7-day": {
+    primary: pexels("32132398"),
+    gallery: [
+      { src: pexels("20988035"), caption: "Kathmandu Valley trekking route" },
+      { src: pexels("28277464"), caption: "Pokhara lakeside and mountain views" },
+    ],
+  },
+};
+
+/**
+ * Returns the gallery images for a package. Uses per-package Pexels
+ * destination photography; falls back to the local brochure image only
+ * when no Pexels mapping exists for the package ID.
+ */
 export function getPackageGallery(pkg: TravelPackage): GalleryImage[] {
+  const mapping = PACKAGE_PEXELS_IMAGES[pkg.id];
+
+  const primarySrc = mapping?.primary ?? `/images/packages/${slugify(pkg.id)}.jpg`;
+  const galleryImages = mapping?.gallery ?? [];
+
   const images: GalleryImage[] = [
     {
-      src: `/images/packages/${slugify(pkg.id)}.jpg`,
+      src: primarySrc,
       caption: `${pkg.title} — Primary route view`,
     },
+    ...galleryImages,
   ];
-
-  const regionStr = (pkg.region ?? []).map((r: string) => r.toLowerCase()).join(" ");
-  const catStr = pkg.category.toLowerCase();
-
-  if (regionStr.includes("kashmir") || catStr.includes("kashmir")) {
-    images.push({
-      src: "/images/experiences/kashmir-boat-shikara.jpg",
-      caption: "Tranquil Dal Lake waters beneath snow-capped Himalayan peaks",
-    });
-    images.push({
-      src: "/images/destinations/kashmir-dal-lake-fruit-boat.jpg",
-      caption: "Floating vegetable markets and authentic shikara life in Srinagar",
-    });
-    images.push({
-      src: "/images/services/kashmir-houseboat.jpg",
-      caption: "Cedarwood carved houseboat stay on the waters of Dal Lake",
-    });
-  }
-
-  if (regionStr.includes("ladakh") || regionStr.includes("leh") || catStr.includes("himalayan")) {
-    images.push({
-      src: "/images/destinations/ladakh-key-monastery.jpg",
-      caption: "Ancient cliffside Tibetan Buddhist monastery in winter",
-    });
-    images.push({
-      src: "/images/hero/hero-pangong.jpg",
-      caption: "Pangong Tso high-altitude lake surrounded by mountains",
-    });
-    images.push({
-      src: "/images/experiences/himalayan-trekking-nubra.jpg",
-      caption: "High mountain pass trekking route across the Nubra Valley",
-    });
-  }
-
-  if (regionStr.includes("nepal") || catStr.includes("nepal")) {
-    images.push({
-      src: "/images/destinations/nepal-boudhanath-dusk.jpg",
-      caption: "Sacred Boudhanath Stupa adorned with prayer flags at dusk",
-    });
-    images.push({
-      src: "/images/destinations/indian-rhino-forest.jpg",
-      caption: "Greater one-horned rhino grazing in Chitwan subtropical forest",
-    });
-    images.push({
-      src: "/images/experiences/river-rafting-gulsitara.jpg",
-      caption: "Whitewater rafting crew cutting through Trisuli river rapids",
-    });
-  }
-
-  if (regionStr.includes("rajasthan") || pkg.title.toLowerCase().includes("golden triangle") || catStr.includes("images of india")) {
-    images.push({
-      src: "/images/destinations/taj-mahal.jpg",
-      caption: "The majestic white marble dome of the Taj Mahal in Agra",
-    });
-    images.push({
-      src: "/images/destinations/rajasthan-desert-camels.jpg",
-      caption: "Desert safari and sunset camel trail in royal Rajasthan",
-    });
-    images.push({
-      src: "/images/packages/delhi-stopover.jpg",
-      caption: "Grand perspective of Rajpath and India Gate in Delhi",
-    });
-  }
-
-  if (regionStr.includes("kerala") || regionStr.includes("south india")) {
-    images.push({
-      src: "/images/experiences/alleppey-backwaters-houseboat.jpg",
-      caption: "Traditional thatched kettuvallam cruising palm-fringed backwaters",
-    });
-    images.push({
-      src: "/images/destinations/kerala-backwaters.jpg",
-      caption: "Tropical waterways and village life of God's Own Country",
-    });
-  }
-
-  if (regionStr.includes("goa")) {
-    images.push({
-      src: "/images/destinations/goa-coast-rocks.jpg",
-      caption: "Golden sand beaches and coastal rocky coves of Goa",
-    });
-  }
-
-  if (regionStr.includes("varanasi")) {
-    images.push({
-      src: "/images/destinations/varanasi-ganges-boating.jpg",
-      caption: "Dawn rowboats passing sacred stone bathing ghats along the Ganges",
-    });
-  }
 
   // Filter unique sources
   const seen = new Set<string>();
@@ -213,4 +362,12 @@ export function getPackageGallery(pkg: TravelPackage): GalleryImage[] {
     seen.add(img.src);
     return true;
   });
+}
+
+/**
+ * Returns the primary Pexels image URL for a package card thumbnail.
+ * Falls back to the local brochure image when no mapping exists.
+ */
+export function getPackageCardImage(slug: string): string {
+  return PACKAGE_PEXELS_IMAGES[slug]?.primary ?? `/images/packages/${slug}.jpg`;
 }

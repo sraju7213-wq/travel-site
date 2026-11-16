@@ -9,7 +9,7 @@ import SearchAndFilters from "@/components/SearchAndFilters";
 import PlaceOrbitHero from "@/components/journeys/PlaceOrbitHero";
 import PosterRail from "@/components/journeys/PosterRail";
 import TiltPoster from "@/components/journeys/TiltPoster";
-import { getAllPackages } from "@/data/catalogue";
+import { getAllPackages, getPackageCardImage } from "@/data/catalogue";
 import { getHeroJourneys } from "@/data/heroJourneys";
 import { getPlaces } from "@/data/places";
 import { BRAND } from "@/data/brandConfig";
@@ -51,33 +51,8 @@ export default function JourneysPage() {
       <PlaceOrbitHero places={places} journeys={heroJourneys} />
 
       {/* Search & Filters Catalogue */}
-      <section id="catalogue" className="section-journeys scroll-mt-20 py-16 md:py-24">
+      <section id="catalogue" className="section-journeys scroll-mt-20 py-12 md:py-16">
         <Container wide>
-          <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8">
-            <div className="max-w-2xl">
-              <p className="mb-3 flex items-center gap-3 font-sans text-[10px] font-semibold uppercase tracking-[0.28em] text-[var(--color-wild-orange)]">
-                <span className="h-px w-8 bg-[var(--color-wild-orange)]" />
-                Complete Itinerary Catalogue
-              </p>
-              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light leading-tight text-white tracking-tight">
-                Journeys shaped around you
-                <span className="block text-white/50 text-2xl sm:text-3xl md:text-4xl mt-1 font-serif italic">
-                  from the Himalaya to the backwaters
-                </span>
-              </h2>
-            </div>
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 text-xs font-sans text-white/60">
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 backdrop-blur-sm">
-                <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-wild-orange)]" />
-                27 Verified Brochure Routes
-              </span>
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 backdrop-blur-sm">
-                <span className="h-1.5 w-1.5 rounded-full bg-brass" />
-                Custom Private Departures
-              </span>
-            </div>
-          </div>
-
           <Suspense fallback={<p className="py-20 font-display text-white/70">Loading journeys…</p>}>
             <SearchAndFilters packages={allPackages} />
           </Suspense>
@@ -111,7 +86,7 @@ export default function JourneysPage() {
                     aria-label={`${pkg.title} — in season now`}
                   >
                     <Image
-                      src={`/images/packages/${pkg.slug}.jpg`}
+                      src={getPackageCardImage(pkg.slug)}
                       alt={pkg.title}
                       fill
                       sizes="(min-width: 768px) 450px, 80vw"
@@ -153,7 +128,7 @@ export default function JourneysPage() {
                     aria-hidden="true"
                   >
                     <Image
-                      src={`/images/packages/${pkg.slug}.jpg`}
+                      src={getPackageCardImage(pkg.slug)}
                       alt=""
                       fill
                       sizes="(min-width: 768px) 450px, 80vw"
@@ -391,7 +366,7 @@ export default function JourneysPage() {
           <div className="mt-8 divide-y divide-white/10 border-y border-white/10">
             {[
               {
-                q: "What is KS World Adventure?",
+                q: "What is India Nepal Travel Center?",
                 a: "A specialist operator for India and Nepal since 1927, offering tailor-made journeys, small-group tours, Himalayan trekking, cultural itineraries and Kashmir houseboats.",
               },
               {

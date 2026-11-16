@@ -174,8 +174,8 @@ export default function SearchAndFilters({
   return (
     <>
       {/* Sleek Command & Filter Bar */}
-      <div className="relative mb-8 rounded-2xl border border-white/10 bg-[#101b1d]/85 p-3.5 sm:p-5 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] backdrop-blur-xl">
-        <div className="flex flex-col gap-3.5 lg:flex-row lg:items-center">
+      <div className="relative mb-6 rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-5 backdrop-blur-sm shadow-sm">
+        <div className="flex flex-col gap-2.5 lg:flex-row lg:items-center">
           {/* Main Search Input */}
           <div className="relative flex-1">
             <label htmlFor="package-search" className="sr-only">
@@ -189,7 +189,7 @@ export default function SearchAndFilters({
               }`}
             >
               <svg
-                className={`ml-4 h-5 w-5 transition-colors duration-200 ${
+                className={`ml-3.5 h-4 w-4 transition-colors duration-200 ${
                   isSearchFocused ? "text-[var(--color-wild-orange)]" : "text-white/40"
                 }`}
                 fill="none"
@@ -209,8 +209,8 @@ export default function SearchAndFilters({
                 onChange={(e) => setState({ ...state, q: e.target.value })}
                 onFocus={() => setIsSearchFocused(true)}
                 onBlur={() => setIsSearchFocused(false)}
-                placeholder="Search by destination, route, or brochure code (e.g. Kashmir, S01, II7)…"
-                className="w-full bg-transparent px-3.5 py-3 text-sm font-sans text-white placeholder:text-white/40 focus:outline-none"
+                placeholder="Search destination or code…"
+                className="w-full bg-transparent px-3 py-2.5 text-sm font-sans text-white placeholder:text-white/40 focus:outline-none"
                 autoComplete="off"
               />
               {state.q && (
@@ -237,7 +237,7 @@ export default function SearchAndFilters({
                 value={state.region}
                 onChange={(e) => setState({ ...state, region: e.target.value })}
                 aria-label="Filter by region"
-                className={`h-11 appearance-none rounded-xl border px-4 pr-9 font-sans text-xs font-medium uppercase tracking-wider transition-all duration-200 cursor-pointer focus:outline-none focus:ring-1 focus:ring-brass ${
+                className={`h-10 appearance-none rounded-xl border px-4 pr-9 font-sans text-xs font-medium uppercase tracking-wider transition-all duration-200 cursor-pointer focus:outline-none focus:ring-1 focus:ring-brass ${
                   state.region !== ALL
                     ? "border-[var(--color-wild-orange)]/60 bg-[var(--color-wild-orange)]/15 text-white shadow-[0_0_15px_rgba(212,147,104,0.2)]"
                     : "border-white/10 bg-black/30 text-white/75 hover:border-white/25 hover:text-white"
@@ -268,7 +268,7 @@ export default function SearchAndFilters({
                 value={state.duration}
                 onChange={(e) => setState({ ...state, duration: e.target.value })}
                 aria-label="Filter by duration"
-                className={`h-11 appearance-none rounded-xl border px-4 pr-9 font-sans text-xs font-medium uppercase tracking-wider transition-all duration-200 cursor-pointer focus:outline-none focus:ring-1 focus:ring-brass ${
+                className={`h-10 appearance-none rounded-xl border px-4 pr-9 font-sans text-xs font-medium uppercase tracking-wider transition-all duration-200 cursor-pointer focus:outline-none focus:ring-1 focus:ring-brass ${
                   state.duration !== ALL
                     ? "border-[var(--color-wild-orange)]/60 bg-[var(--color-wild-orange)]/15 text-white shadow-[0_0_15px_rgba(212,147,104,0.2)]"
                     : "border-white/10 bg-black/30 text-white/75 hover:border-white/25 hover:text-white"
@@ -293,7 +293,7 @@ export default function SearchAndFilters({
                 value={state.sort}
                 onChange={(e) => setState({ ...state, sort: e.target.value })}
                 aria-label="Sort journeys"
-                className="h-11 appearance-none rounded-xl border border-white/10 bg-black/30 px-4 pr-9 font-sans text-xs font-medium uppercase tracking-wider text-white/75 transition-all duration-200 cursor-pointer hover:border-white/25 hover:text-white focus:outline-none focus:ring-1 focus:ring-brass"
+                className="h-10 appearance-none rounded-xl border border-white/10 bg-black/30 px-4 pr-9 font-sans text-xs font-medium uppercase tracking-wider text-white/75 transition-all duration-200 cursor-pointer hover:border-white/25 hover:text-white focus:outline-none focus:ring-1 focus:ring-brass"
               >
                 <option value="title" className="bg-[#121B20] text-white">
                   Sort: Title (A–Z)
@@ -317,7 +317,7 @@ export default function SearchAndFilters({
               <button
                 type="button"
                 onClick={handleClearAll}
-                className="inline-flex h-11 items-center gap-1.5 rounded-xl border border-white/15 bg-white/5 px-3.5 font-sans text-xs font-semibold uppercase tracking-wider text-white/70 transition-all hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)] hover:bg-white/10"
+                className="inline-flex h-10 items-center gap-1.5 rounded-xl border border-white/15 bg-white/5 px-3.5 font-sans text-xs font-semibold uppercase tracking-wider text-white/70 transition-all hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)] hover:bg-white/10"
               >
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
@@ -358,12 +358,12 @@ export default function SearchAndFilters({
         </div>
 
         {/* Category Carousel Navigation */}
-        <div className="mt-4 pt-4 border-t border-white/10">
+        <div className="mt-3 pt-3 border-t border-white/10">
           <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-hide">
             <button
               type="button"
               onClick={() => setState({ ...state, category: ALL })}
-              className={`flex-shrink-0 inline-flex items-center gap-2 rounded-full px-4 py-2 font-sans text-xs font-medium tracking-wide transition-all duration-300 cursor-pointer ${
+              className={`flex-shrink-0 inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 font-sans text-xs font-medium tracking-wide transition-all duration-300 cursor-pointer ${
                 state.category === ALL
                   ? "bg-gradient-to-r from-[var(--color-wild-orange)] to-brass text-[#0C1617] font-bold shadow-[0_4px_16px_rgba(212,147,104,0.35)] scale-[1.02]"
                   : "border border-white/10 bg-white/[0.04] text-white/75 hover:border-white/25 hover:text-white hover:bg-white/[0.08]"
@@ -385,7 +385,7 @@ export default function SearchAndFilters({
                   key={cat}
                   type="button"
                   onClick={() => setState({ ...state, category: isSelected ? ALL : cat })}
-                  className={`flex-shrink-0 inline-flex items-center gap-2 rounded-full px-4 py-2 font-sans text-xs font-medium tracking-wide transition-all duration-300 cursor-pointer ${
+                  className={`flex-shrink-0 inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 font-sans text-xs font-medium tracking-wide transition-all duration-300 cursor-pointer ${
                     isSelected
                       ? "bg-gradient-to-r from-[var(--color-wild-orange)] to-brass text-[#0C1617] font-bold shadow-[0_4px_16px_rgba(212,147,104,0.35)] scale-[1.02]"
                       : "border border-white/10 bg-white/[0.04] text-white/75 hover:border-white/25 hover:text-white hover:bg-white/[0.08]"
@@ -405,7 +405,7 @@ export default function SearchAndFilters({
 
         {/* Active Filter Tags */}
         {activeFilterCount > 0 && (
-          <div className="mt-3.5 flex flex-wrap items-center gap-2 pt-3 border-t border-white/5">
+          <div className="mt-2.5 flex flex-wrap items-center gap-2 pt-2.5 border-t border-white/5">
             <span className="font-sans text-[11px] uppercase tracking-wider text-white/40">
               Active filters:
             </span>
@@ -429,7 +429,7 @@ export default function SearchAndFilters({
       </div>
 
       {/* Control Bar: Result Count & Segmented View Switcher */}
-      <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="mb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         {/* Results indicator */}
         <div className="flex items-center gap-2.5">
           <span className="relative flex h-2.5 w-2.5">
@@ -447,12 +447,12 @@ export default function SearchAndFilters({
         </div>
 
         {/* Segmented View Switcher */}
-        <div className="inline-flex items-center rounded-xl border border-white/10 bg-black/40 p-1 backdrop-blur-md shadow-inner">
+        <div className="inline-flex w-full items-center rounded-xl border border-white/10 bg-black/40 p-1 backdrop-blur-md shadow-inner sm:w-auto">
           <button
             type="button"
             onClick={() => setViewMode("coverflow")}
             aria-pressed={viewMode === "coverflow"}
-            className={`flex items-center gap-2 rounded-lg px-4 py-2 font-sans text-xs font-semibold tracking-wide transition-all duration-200 cursor-pointer ${
+            className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-3 py-1.5 font-sans text-xs font-semibold tracking-wide transition-all duration-200 cursor-pointer sm:flex-none ${
               viewMode === "coverflow"
                 ? "bg-gradient-to-r from-brass to-[var(--color-wild-orange)] text-[#0C1617] shadow-[0_4px_12px_rgba(212,147,104,0.3)]"
                 : "text-white/60 hover:text-white"
@@ -469,7 +469,7 @@ export default function SearchAndFilters({
             type="button"
             onClick={() => setViewMode("grid")}
             aria-pressed={viewMode === "grid"}
-            className={`flex items-center gap-2 rounded-lg px-4 py-2 font-sans text-xs font-semibold tracking-wide transition-all duration-200 cursor-pointer ${
+            className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-3 py-1.5 font-sans text-xs font-semibold tracking-wide transition-all duration-200 cursor-pointer sm:flex-none ${
               viewMode === "grid"
                 ? "bg-gradient-to-r from-brass to-[var(--color-wild-orange)] text-[#0C1617] shadow-[0_4px_12px_rgba(212,147,104,0.3)]"
                 : "text-white/60 hover:text-white"
@@ -499,7 +499,7 @@ export default function SearchAndFilters({
             </div>
             <h3 className="font-serif text-2xl font-light text-white">No journeys found</h3>
             <p className="mt-2 max-w-md font-sans text-sm text-white/60">
-              We couldn't find any itineraries matching your current filters. Try expanding your search terms or clearing filters.
+              We couldn&apos;t find any itineraries matching your current filters. Try expanding your search terms or clearing filters.
             </p>
             <button
               type="button"

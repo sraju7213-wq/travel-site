@@ -1,4 +1,4 @@
-import { getAllPackages } from "./catalogue";
+import { getAllPackages, pexels } from "./catalogue";
 
 /**
  * Places featured in the Journeys hero.
@@ -18,7 +18,7 @@ export interface PlaceFeature {
 export const PLACE_FEATURES: PlaceFeature[] = [
   {
     name: "Kashmir",
-    image: "/images/destinations/kashmir.png",
+    image: pexels("40348598"),
     alt: "Houseboats on Dal Lake, Srinagar",
     blurb: "Shikara mornings on Dal Lake, Mughal gardens and Himalayan passes.",
     match: [
@@ -34,7 +34,7 @@ export const PLACE_FEATURES: PlaceFeature[] = [
   },
   {
     name: "Ladakh",
-    image: "/images/destinations/ladakh.png",
+    image: pexels("38087449"),
     alt: "Monastery above the Indus in Ladakh",
     blurb: "Buddhist monasteries, the cold desert of Nubra and the shore of Pangong.",
     match: [
@@ -50,21 +50,21 @@ export const PLACE_FEATURES: PlaceFeature[] = [
   },
   {
     name: "Nepal",
-    image: "/images/destinations/nepal-trek.jpg",
+    image: pexels("20988035"),
     alt: "Trail through the Nepali Himalaya",
     blurb: "Kathmandu's temple squares, Annapurna trails and the jungle of Chitwan.",
     match: ["Nepal", "Kathmandu", "Pokhara", "Chitwan", "Nagarkot", "Trisuli", "Sundarijal"],
   },
   {
     name: "Rajasthan",
-    image: "/images/destinations/rajasthan.png",
+    image: pexels("39605929"),
     alt: "Camel caravan crossing the Thar desert",
     blurb: "Forts, palaces and desert camps from Jaipur to Jaisalmer and Udaipur.",
     match: ["Rajasthan", "Jaipur", "Jodhpur", "Jaisalmer", "Udaipur", "Bikaner", "Mandawa"],
   },
   {
     name: "Kerala",
-    image: "/images/destinations/kerala.png",
+    image: pexels("30778230"),
     alt: "Houseboat on the Kerala backwaters",
     blurb: "Kettuvallam houseboats, hill stations and the tea slopes of Munnar.",
     match: [
@@ -86,7 +86,7 @@ export const PLACE_FEATURES: PlaceFeature[] = [
   },
   {
     name: "Himalaya",
-    image: "/images/destinations/snow-trek.jpg",
+    image: pexels("35672518"),
     alt: "Snow trail across a high Himalayan pass",
     blurb: "Glacier camps and alpine meadows on the Markha, Zanskar and Nepal trails.",
     match: [
@@ -104,28 +104,28 @@ export const PLACE_FEATURES: PlaceFeature[] = [
   },
   {
     name: "Agra",
-    image: "/images/destinations/taj-mahal-reflection.png",
+    image: pexels("11521892"),
     alt: "The Taj Mahal in Agra",
     blurb: "Mughal landmarks on the classic Delhi–Agra–Jaipur circuit.",
     match: ["Agra"],
   },
   {
     name: "Goa",
-    image: "/images/destinations/goa.png",
+    image: pexels("28355680"),
     alt: "Goa coastline at golden hour",
     blurb: "A relaxed coast stay with Panjim's old town and the beaches beyond.",
     match: ["Goa", "Panjim"],
   },
   {
     name: "Varanasi",
-    image: "/images/destinations/varanasi.png",
+    image: pexels("40967314"),
     alt: "Ghat steps along the Ganges at Varanasi",
     blurb: "Boating on the Ganges and the ghats of the oldest living city.",
     match: ["Varanasi"],
   },
   {
     name: "Kathmandu",
-    image: "/images/destinations/kathmandu-stupa.jpg",
+    image: pexels("20988035"),
     alt: "Boudhanath stupa at dusk in Kathmandu",
     blurb: "Historic squares, stupas and Buddhist heritage in the Nepali capital.",
     match: ["Kathmandu"],

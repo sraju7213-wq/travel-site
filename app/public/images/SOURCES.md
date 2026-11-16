@@ -108,6 +108,55 @@ contact sheets are in `docs/evidence/`. Re-crop by hand against the rectangles b
 | `images/destinations/impact.png` | Educational Expeditions & Community Stewardship | Landing Page — Why Travel With Us (`Impact`) |
 | `images/destinations/travel.png` | Seamless Private Transit & Scenic Road Travel | Landing Page — Why Travel With Us (`Travel`) |
 
+## Pexels Package Photography (replaces brochure crops)
+
+Package thumbnails, package detail galleries, destination cards, experience cards,
+pillar panels and navigation imagery are now sourced from Pexels
+(https://www.pexels.com/) under the Pexels License and served from the Pexels
+CDN (`images.pexels.com`) with
+`auto=compress&cs=tinysrgb&w=1200&h=800&dpr=2`.
+
+**The canonical, complete source reference — every photo ID, its Pexels source
+page, its CDN URL and the component that renders it — lives in
+[`docs/image-sources.md`](../../../../docs/image-sources.md).** That file is the
+single place to check or update provenance.
+
+Page-level hero banners (About, Contact, Houseboats, Journeys and the category
+pages) were deliberately left on their original local brochure crops; they are
+listed in §9a of `docs/image-sources.md`.
+
+### Package-to-image mapping summary
+
+| Package | Primary image (card + hero) | Gallery images |
+|---------|----------------------------|----------------|
+| delhi-stopover | Red Fort | India Gate, Old Delhi |
+| bombay-stopover | Gateway of India | Coastal shoreline |
+| discover-leh | Leh / Ladakh mountains | Nubra Valley |
+| kathmandu-stopover | Kathmandu | Nepal temple, Himalayas |
+| kathmandu-pokhara | Pokhara | Kathmandu, Himalayas |
+| discover-ladakh | Pangong Lake | Nubra Valley, Leh / Ladakh |
+| golden-triangle | Taj Mahal | Amber Fort, Red Fort, India Gate |
+| glorious-goa-stopover | Goa beach | Goa beaches |
+| glimpses-of-kerala | Kerala backwaters | Alleppey, Munnar |
+| kashmir-package-7-day | Dal Lake | Gulmarg, Sonamarg, Pahalgam |
+| kashmir-package-4-day | Srinagar | Kashmir valley, Dal Lake |
+| delhi-to-kathmandu | Taj Mahal | Varanasi ghats, Kathmandu |
+| heritage-tour-india | Jaisalmer Fort | Amber Fort, Taj Mahal, Udaipur |
+| north-india-highlights | Taj Mahal | Udaipur, Dal Lake, Pangong Lake |
+| india-nepal-combination | Taj Mahal | Varanasi ghats, Kathmandu, Udaipur |
+| south-india-highlight | Munnar tea gardens | Alleppey, Kerala coast |
+| markha-valley | Leh / Ladakh mountains | Nubra Valley, Pangong Lake |
+| kashmir-zanskar-ladakh-trek | Pangong Lake | Dal Lake, Ladakh mountains |
+| kashmir-combinations-little-tibet | Pahalgam | Dal Lake, Ladakh mountains |
+| kashmir-mini-adventure | Sonamarg | Kashmir valley, Gulmarg |
+| vale-of-kashmir-trek | Pahalgam | Lidder Valley, Sonamarg |
+| kashmir-ski | Gulmarg snowy | Gulmarg ski slopes |
+| himalayan-combination-nepal | Pokhara | Himalayas, rhinoceros |
+| trisuli-rafting | Himalayas | Kathmandu |
+| nepal-mini-trek-4-day | Nepal mountain | Kathmandu Valley |
+| nepal-wildlife-safari | Rhinoceros | Nepal temple, rhino in the sal forest |
+| nepal-mini-trek-7-day | Himalayas | Kathmandu Valley, Pokhara |
+
 ## Notes
 
 - Crop rectangles are expressed in an 848x1200 review space and scaled to the

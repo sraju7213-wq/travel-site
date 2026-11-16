@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import BrandMark from "@/components/BrandMark";
 import { BRAND } from "@/data/brandConfig";
-import { getAllPackages } from "@/data/catalogue";
+import { getAllPackages, getPackageCardImage } from "@/data/catalogue";
 import { DESTINATIONS } from "@/data/siteContent";
 import { CATEGORIES } from "@/types/travel";
 import { supabase } from "@/lib/supabaseClient";
@@ -1492,7 +1492,7 @@ export default function AdminDashboardPage() {
                     >
                       <div className="relative aspect-[16/10] overflow-hidden bg-black">
                         <Image
-                          src={`/images/packages/${pkg.slug}.jpg`}
+                          src={getPackageCardImage(pkg.slug)}
                           alt={pkg.title}
                           fill
                           sizes="400px"
@@ -2025,7 +2025,7 @@ export default function AdminDashboardPage() {
             <div className="space-y-6 flex-1 text-xs">
               <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-black border border-white/15">
                 <Image
-                  src={`/images/packages/${selectedPackage.slug}.jpg`}
+                  src={getPackageCardImage(selectedPackage.slug)}
                   alt={selectedPackage.title}
                   fill
                   sizes="450px"

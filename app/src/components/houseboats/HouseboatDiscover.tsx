@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { HOUSEBOAT_STATS } from "@/data/houseboats";
+import { pexels } from "@/data/catalogue";
 
 /**
  * Reference-site "Discover" band: an editorial column paired with a tall
@@ -60,7 +61,7 @@ export default function HouseboatDiscover() {
           <figure className="relative">
             <div className="relative aspect-[4/5] overflow-hidden bg-[#0C1617] shadow-2xl">
               <Image
-                src="/images/destinations/boats-blue-water.jpg"
+                src={pexels("29251278")}
                 alt="Shikaras crossing the still blue water of Dal Lake below snow-dusted Himalayan ridges"
                 fill
                 sizes="(min-width: 1024px) 46vw, 100vw"

@@ -2,7 +2,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 /**
- * Shared motion primitives for the KS World Adventure site.
+ * Shared motion primitives for the India Nepal Travel Center site.
  *
  * Every animated surface in the product pulls its easing, duration and
  * reduced-motion behaviour from this module so the whole site moves with one

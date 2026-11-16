@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { pexels } from "@/data/catalogue";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -98,7 +99,7 @@ export default function ImpactSection() {
               className="group relative mt-10 aspect-[4/5] overflow-hidden bg-charcoal shadow-2xl sm:mt-16"
             >
               <Image
-                src="/images/destinations/jodhpur-fort.jpg"
+                src={pexels("15774210")}
                 alt="Jodhpur blue city and Mehrangarh Fort"
                 fill
                 sizes="(min-width: 1024px) 22vw, 45vw"
@@ -111,8 +112,8 @@ export default function ImpactSection() {
               className="group relative aspect-[4/5] overflow-hidden bg-charcoal shadow-2xl"
             >
               <Image
-                src="/images/destinations/nepal-collage.jpg"
-                alt="A montage of Nepalese temples, prayer flags and mountain landscapes"
+                src={pexels("32132398")}
+                alt="Himalayan mountain range and prayer flags in Nepal"
                 fill
                 sizes="(min-width: 1024px) 22vw, 45vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"

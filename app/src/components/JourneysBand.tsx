@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { pexels } from "@/data/catalogue";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -77,7 +78,7 @@ export default function JourneysBand() {
         className="absolute -top-[20%] left-0 h-[140%] w-full will-change-transform"
       >
         <Image
-          src="/images/destinations/indian-rhino-forest.jpg"
+          src={pexels("37654954")}
           alt="Indian rhinoceros grazing in a lush forest landscape"
           fill
           priority={false}

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { PackageViewModel } from "@/types/travel";
+import { getPackageCardImage } from "@/data/catalogue";
 
 interface PosterRailProps {
   packages: PackageViewModel[];
@@ -60,7 +61,7 @@ export default function PosterRail({
               <Link href={`/packages/${pkg.slug}`} aria-label={pkg.title}>
                 <div className="jy-rail-poster" data-tilt>
                   <Image
-                    src={`/images/packages/${pkg.slug}.jpg`}
+                    src={getPackageCardImage(pkg.slug)}
                     alt={pkg.title}
                     fill
                     sizes="(min-width: 1024px) 360px, (min-width: 640px) 45vw, 90vw"

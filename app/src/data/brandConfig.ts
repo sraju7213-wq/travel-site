@@ -2,7 +2,7 @@
  * Brand Configuration & Trust Claims Source of Truth
  *
  * Provides a single, maintainable reference for:
- * 1. Consumer display brand ("KS World Adventure" — from logo & repository identity)
+ * 1. Consumer display brand ("India Nepal Travel Center" — from logo & repository identity)
  * 2. Heritage expedition operator ("India Nepal Travel Organisation" — from brochure archives)
  * 3. Booking bureau identity ("India Nepal Travel Centre" — from historical brochure text)
  * 4. Factual, qualified definitions for "Since 1927", "Guaranteed Departures", and fleet/office claims.
@@ -15,7 +15,7 @@ export const BRAND = {
   /**
    * Primary public consumer brand as displayed on the logo mark.
    */
-  name: "KS World Adventure",
+  name: "India Nepal Travel Center",
 
   /**
    * Historical expedition operator name transcribed from the printed brochure.
@@ -30,7 +30,7 @@ export const BRAND = {
   /**
    * Composite site title used for HTML metadata and page titles.
    */
-  compositeTitle: "KS World Adventure — India Nepal Travel Organisation",
+  compositeTitle: "India Nepal Travel Center — India Nepal Travel Organisation",
 
   /**
    * Published Booking Bureau and corporate details from Preview Brouchure.pdf (page 10).
@@ -141,12 +141,12 @@ export const BRAND = {
     {
       topic: "Brand Hierarchy & Relationship",
       question:
-        "Is 'KS World Adventure' the primary trading brand, with 'India Nepal Travel Organisation' as the operating entity, or are they distinct joint-venture businesses?",
+        "Is 'India Nepal Travel Center' the primary trading brand, with 'India Nepal Travel Organisation' as the operating entity, or are they distinct joint-venture businesses?",
     },
     {
       topic: "Historical Booking Desk",
       question:
-        "Should 'India Nepal Travel Centre' be retained as an active booking desk reference, or should all inquiries reference 'KS World Adventure Concierge Desk'?",
+        "Should 'India Nepal Travel Centre' be retained as an active booking desk reference, or should all inquiries reference 'India Nepal Travel Center Concierge Desk'?",
     },
     {
       topic: "KHE Acronym Definition",

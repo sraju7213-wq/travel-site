@@ -9,6 +9,7 @@ import {
   type EnquiryPayload,
 } from "@/lib/enquiryValidation";
 import { BRAND } from "@/data/brandConfig";
+import { getPackageCardImage, pexels } from "@/data/catalogue";
 
 export interface PackageOption {
   slug: string;
@@ -232,7 +233,7 @@ export default function EnquiryForm({
             <div className="mt-8 rounded-[1rem] border border-white/10 bg-white/5 p-5 text-left flex items-center gap-4">
               <div className="relative h-16 w-16 rounded-image overflow-hidden flex-shrink-0 bg-charcoal">
                 <Image
-                  src={`/images/packages/${chosen.slug}.jpg`}
+                  src={getPackageCardImage(chosen.slug)}
                   alt={chosen.title}
                   fill
                   className="object-cover"
@@ -281,7 +282,7 @@ export default function EnquiryForm({
           <div className="overflow-hidden rounded-[1.25rem] border border-white/10 bg-[#132325] shadow-xl transition-all duration-300">
             <div className="relative aspect-[16/10] overflow-hidden bg-charcoal">
               <Image
-                src={chosen ? `/images/packages/${chosen.slug}.jpg` : "/images/hero/hero-pangong.jpg"}
+                src={chosen ? getPackageCardImage(chosen.slug) : pexels("27593915")}
                 alt={chosen ? chosen.title : "Himalayan landscape"}
                 fill
                 priority

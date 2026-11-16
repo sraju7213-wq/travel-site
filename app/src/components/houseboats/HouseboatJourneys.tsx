@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { PackageViewModel } from "@/types/travel";
+import { pexels } from "@/data/catalogue";
 
 interface HouseboatJourneysProps {
   packages: PackageViewModel[];
@@ -14,8 +15,8 @@ export default function HouseboatJourneys({ packages }: HouseboatJourneysProps) 
   return (
     <section className="relative isolate overflow-hidden border-b border-white/5">
       <Image
-        src="/images/experiences/kashmir-boat-shikara.jpg"
-        alt="Shikaras trading on Dal Lake beneath autumn trees, with the houseboats moored beyond"
+        src={pexels("40348598")}
+        alt="Houseboats moored on Dal Lake in Srinagar, Kashmir"
         fill
         sizes="100vw"
         className="object-cover object-center"

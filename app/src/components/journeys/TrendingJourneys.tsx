@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { cleanDuration, placeLine } from "@/lib/packageDisplay";
+import { getPackageCardImage } from "@/data/catalogue";
 import type { PackageViewModel } from "@/types/travel";
 
 interface CoverflowProps {
@@ -49,7 +50,7 @@ export default function TrendingJourneys({ packages }: CoverflowProps) {
                   aria-label={`${pkg.title} — ${placeLine(pkg)}`}
                 >
                   <Image
-                    src={`/images/packages/${pkg.slug}.jpg`}
+                    src={getPackageCardImage(pkg.slug)}
                     alt={pkg.title}
                     fill
                     sizes="(min-width: 768px) 450px, 80vw"
@@ -112,7 +113,7 @@ export default function TrendingJourneys({ packages }: CoverflowProps) {
                   aria-hidden="true"
                 >
                   <Image
-                    src={`/images/packages/${pkg.slug}.jpg`}
+                    src={getPackageCardImage(pkg.slug)}
                     alt=""
                     fill
                     sizes="(min-width: 768px) 450px, 80vw"

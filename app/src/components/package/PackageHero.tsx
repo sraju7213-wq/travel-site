@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Container from "@/components/Container";
 import EnquireCta from "@/components/package/EnquireCta";
+import { getPackageCardImage } from "@/data/catalogue";
 import type { PackageViewModel } from "@/types/travel";
 
 interface PackageHeroProps {
@@ -14,6 +15,9 @@ interface PackageHeroProps {
 export default function PackageHero({ pkg }: PackageHeroProps) {
   const [mounted, setMounted] = useState(false);
   const destinations = pkg.region.filter((r) => r !== "India" && r !== "Nepal");
+
+  // Use the shared per-package Pexels image mapping for destination-accurate hero photography.
+  const heroSrc = getPackageCardImage(pkg.slug);
 
   useEffect(() => {
     const timer = setTimeout(() => setMounted(true), 40);
@@ -29,7 +33,7 @@ export default function PackageHero({ pkg }: PackageHeroProps) {
         }`}
       >
         <Image
-          src={`/images/packages/${pkg.slug}.jpg`}
+          src={heroSrc}
           alt={pkg.title}
           fill
           priority

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { DESTINATIONS, EXPERIENCES } from "@/data/siteContent";
+import { pexels } from "@/data/catalogue";
 import { getRecentSlugs, pushRecent, getPins, togglePin, isPinned } from "@/lib/menuStorage";
 
 interface MegaMenuProps {
@@ -23,12 +24,12 @@ const MENU_TABS: { key: MenuTab; label: string; badge: string }[] = [
 ];
 
 const JOURNEY_CATEGORIES = [
-  { name: "Stopovers", count: "6 packages", blurb: "Delhi, Bombay, Leh, and Kathmandu cultural city stopovers.", image: "/images/destinations/delhi-monument.jpg", href: "/explore?category=Stopovers" },
-  { name: "Images of India", count: "7 packages", blurb: "Golden Triangle, Goa, Kerala backwaters, and Kashmir circuits.", image: "/images/destinations/jodhpur-fort.jpg", href: "/explore?category=Images%20of%20India" },
-  { name: "India Tours", count: "3 packages", blurb: "Comprehensive North and South India highlight circuits.", image: "/images/destinations/kerala-backwaters.jpg", href: "/explore?category=India%20Tours" },
-  { name: "Himalayan Expeditions", count: "3 packages", blurb: "High-altitude trekking in Markha Valley and Zanskar.", image: "/images/destinations/markha-valley.jpg", href: "/explore?category=Himalayan%20Expeditions" },
-  { name: "Mini Trek in Kashmir", count: "3 packages", blurb: "Alpine lake trails, pine meadows, and Gulmarg skiing.", image: "/images/destinations/kashmir-shikara.jpg", href: "/explore?category=Mini%20Trek%20in%20Kashmir" },
-  { name: "Nepal Adventure", count: "5 packages", blurb: "Himalayan combination treks, Trisuli rafting, and wildlife.", image: "/images/destinations/nepal-trek.jpg", href: "/explore?category=Nepal%20Adventure" },
+  { name: "Stopovers", count: "6 packages", blurb: "Delhi, Bombay, Leh, and Kathmandu cultural city stopovers.", image: pexels("14094276"), href: "/explore?category=Stopovers" },
+  { name: "Images of India", count: "7 packages", blurb: "Golden Triangle, Goa, Kerala backwaters, and Kashmir circuits.", image: pexels("11521892"), href: "/explore?category=Images%20of%20India" },
+  { name: "India Tours", count: "3 packages", blurb: "Comprehensive North and South India highlight circuits.", image: pexels("11521892"), href: "/explore?category=India%20Tours" },
+  { name: "Himalayan Expeditions", count: "3 packages", blurb: "High-altitude trekking in Markha Valley and Zanskar.", image: pexels("38087449"), href: "/explore?category=Himalayan%20Expeditions" },
+  { name: "Mini Trek in Kashmir", count: "3 packages", blurb: "Alpine lake trails, pine meadows, and Gulmarg skiing.", image: pexels("35672518"), href: "/explore?category=Mini%20Trek%20in%20Kashmir" },
+  { name: "Nepal Adventure", count: "5 packages", blurb: "Himalayan combination treks, Trisuli rafting, and wildlife.", image: pexels("28277464"), href: "/explore?category=Nepal%20Adventure" },
 ];
 
 interface SearchEntry {
@@ -153,7 +154,7 @@ export default function MegaMenu({ open, onClose }: MegaMenuProps) {
     DESTINATIONS.forEach((d) => entries.push({ label: d.name, href: d.href, image: d.image, blurb: d.blurb, group: "Destinations", tab: "destinations" }));
     JOURNEY_CATEGORIES.forEach((c) => entries.push({ label: c.name, href: c.href, image: c.image, blurb: c.blurb, group: "Journeys", tab: "journeys" }));
     EXPERIENCES.forEach((e) => entries.push({ label: e.title, href: e.href, image: e.image, blurb: e.description, group: "Experiences", tab: "experiences" }));
-    entries.push({ label: "Kashmir Houseboats", href: "/houseboats", image: "/images/destinations/kashmir-shikara.jpg", blurb: "Cedarwood carved interiors on Dal Lake.", group: "Houseboats", tab: "houseboats" });
+    entries.push({ label: "Kashmir Houseboats", href: "/houseboats", image: pexels("40348598"), blurb: "Cedarwood carved interiors on Dal Lake.", group: "Houseboats", tab: "houseboats" });
     entries.push({ label: "About our heritage", href: "/about", blurb: "The Baktoo family since 1927.", group: "Company", tab: "about" });
     entries.push({ label: "Plan your trip", href: "/enquiry", blurb: "Enquire with a travel designer.", group: "Company", tab: "contact" });
     entries.push({ label: "All journeys", href: "/journeys", blurb: "Browse the full catalogue.", group: "Journeys", tab: "journeys" });
@@ -311,7 +312,7 @@ export default function MegaMenu({ open, onClose }: MegaMenuProps) {
             onClick={onClose}
             className="card-elevated group relative aspect-[4/3] overflow-hidden"
           >
-            <Image src="/images/destinations/kashmir-shikara.jpg" alt="Dal Lake Houseboats" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover transition-transform duration-700 ease-out group-hover:scale-110" />
+            <Image src={pexels("40348598")} alt="Dal Lake Houseboats" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover transition-transform duration-700 ease-out group-hover:scale-110" />
             <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/30 via-50% to-transparent transition-colors group-hover:from-black/90" />
             <div className="absolute inset-0 p-5 flex flex-col justify-start">
               <span className="text-[0.65rem] font-display font-medium uppercase tracking-[0.25em] text-wild-orange mb-1 drop-shadow-md">Dal Lake, Srinagar</span>
@@ -324,7 +325,7 @@ export default function MegaMenu({ open, onClose }: MegaMenuProps) {
             onClick={onClose}
             className="card-elevated group relative aspect-[4/3] overflow-hidden"
           >
-            <Image src="/images/destinations/kashmir-houseboat-interior.jpg" alt="Premium Houseboat Interior" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover transition-transform duration-700 ease-out group-hover:scale-110" />
+            <Image src={pexels("40348598")} alt="Houseboats moored on Dal Lake, Srinagar" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover transition-transform duration-700 ease-out group-hover:scale-110" />
             <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/30 via-50% to-transparent transition-colors group-hover:from-black/90" />
             <div className="absolute inset-0 p-5 flex flex-col justify-start">
               <span className="text-[0.65rem] font-display font-medium uppercase tracking-[0.25em] text-wild-orange mb-1 drop-shadow-md">Nigeen Lake, Srinagar</span>
@@ -348,7 +349,7 @@ export default function MegaMenu({ open, onClose }: MegaMenuProps) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="space-y-6">
             <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
-              <Image src="/images/destinations/baktoo-heritage.jpg" alt="Baktoo family heritage" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+              <Image src={pexels("39605929")} alt="Rajput palace heritage architecture in Rajasthan" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             </div>
           </div>
@@ -434,7 +435,7 @@ export default function MegaMenu({ open, onClose }: MegaMenuProps) {
             </div>
           </div>
           <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
-            <Image src="/images/destinations/contact-office.jpg" alt="Our Srinagar office" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+            <Image src={pexels("29251278")} alt="Srinagar, Kashmir — home of our office" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
           </div>
         </div>
@@ -475,7 +476,7 @@ export default function MegaMenu({ open, onClose }: MegaMenuProps) {
 
           <div className="justify-self-center flex-shrink-0">
             <Link href="/" onClick={onClose} className="block" aria-label="Home">
-              <Image src="/logo.png" alt="KS World Adventure" width={120} height={48} className="h-10 md:h-12 w-auto" />
+              <Image src="/logo.png" alt="India Nepal Travel Center" width={120} height={48} className="h-10 md:h-12 w-auto" />
             </Link>
           </div>
 

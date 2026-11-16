@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { DESTINATIONS, EXPERIENCES } from "@/data/siteContent";
+import { pexels } from "@/data/catalogue";
 import { getRecentSlugs, pushRecent, getPins } from "@/lib/menuStorage";
 
 interface NavItem {
@@ -76,7 +77,7 @@ const MOBILE_NAV_CATEGORIES: NavGroup[] = [
     ),
     items: [
       { label: "About us", href: "/about", group: "Company" },
-      { label: "Kashmir houseboats", href: "/houseboats", image: "/images/destinations/kashmir-shikara.jpg", group: "Company" },
+      { label: "Kashmir houseboats", href: "/houseboats", image: pexels("40348598"), group: "Company" },
       { label: "Plan your trip", href: "/enquiry", group: "Company" },
       { label: "Contact", href: "/contact", group: "Company" },
     ],
@@ -230,7 +231,7 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
 
           <div className="justify-self-center flex-shrink-0">
             <Link href="/" onClick={close} className="block" aria-label="Home">
-              <Image src="/logo.png" alt="KS World Adventure" width={108} height={40} className="h-9 w-auto" />
+              <Image src="/logo.png" alt="India Nepal Travel Center" width={108} height={40} className="h-9 w-auto" />
             </Link>
           </div>
 

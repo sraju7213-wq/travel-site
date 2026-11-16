@@ -6,6 +6,8 @@
  * availability is stated, because none of that is verified.
  */
 
+import { pexels } from "./catalogue";
+
 export interface Destination {
   name: string;
   tagline: string;
@@ -58,7 +60,7 @@ export const DESTINATIONS: Destination[] = [
   {
     name: "Ladakh",
     tagline: "Leh, Nubra Valley & Pangong",
-    image: "/images/destinations/ladakh.png",
+    image: pexels("38087449"),
     imagePosition: "object-[center_bottom]",
     blurb:
       "High passes, Buddhist monasteries and the cold desert of the Nubra valley. A journey of wide skies and empty roads, from Leh to the shore of Pangong.",
@@ -67,7 +69,7 @@ export const DESTINATIONS: Destination[] = [
   {
     name: "Kashmir",
     tagline: "Srinagar, Gulmarg & Sonamarg",
-    image: "/images/destinations/kashmir.png",
+    image: pexels("40348598"),
     imagePosition: "object-[center_75%]",
     blurb:
       "Shikara on Dal Lake, meadow walks in Gulmarg and the meadows of Sonamarg, with houseboat nights on the water.",
@@ -76,7 +78,7 @@ export const DESTINATIONS: Destination[] = [
   {
     name: "Nepal",
     tagline: "Kathmandu, Pokhara & Chitwan",
-    image: "/images/destinations/nepal-boudhanath-dusk.jpg",
+    image: pexels("20988035"),
     imagePosition: "object-[center_35%]",
     blurb:
       "Stupas and temple squares in the Kathmandu valley, the peaks that ring Pokhara, and the rhino herds of Chitwan.",
@@ -85,7 +87,7 @@ export const DESTINATIONS: Destination[] = [
   {
     name: "Rajasthan",
     tagline: "Jaipur, Jodhpur, Udaipur & Jaisalmer",
-    image: "/images/destinations/rajasthan.png",
+    image: pexels("39605929"),
     imagePosition: "object-[center_bottom]",
     blurb:
       "Forts, stepwells and desert camps across the Thar. A heritage route built around the great Rajput strongholds.",
@@ -94,7 +96,7 @@ export const DESTINATIONS: Destination[] = [
   {
     name: "Goa",
     tagline: "Panjim & the Konkan coast",
-    image: "/images/destinations/goa.png",
+    image: pexels("28355680"),
     imagePosition: "object-[center_bottom]",
     blurb:
       "Portuguese-era Panjim, long beaches and the churches and villages of the Konkan interior.",
@@ -103,7 +105,7 @@ export const DESTINATIONS: Destination[] = [
   {
     name: "Kerala",
     tagline: "Backwaters, Thekkady & Munnar",
-    image: "/images/destinations/kerala.png",
+    image: pexels("30778230"),
     imagePosition: "object-[center_70%]",
     blurb:
       "A houseboat on the backwaters, tea country in Munnar and elephant country in Thekkady.",
@@ -112,7 +114,7 @@ export const DESTINATIONS: Destination[] = [
   {
     name: "Agra & the Taj",
     tagline: "The Golden Triangle",
-    image: "/images/destinations/taj-mahal-reflection.png",
+    image: pexels("11521892"),
     imagePosition: "object-[center_60%]",
     blurb:
       "The Taj Mahal at Agra, Fatehpur Sikri and the palaces of Jaipur, with Delhi at either end.",
@@ -121,7 +123,7 @@ export const DESTINATIONS: Destination[] = [
   {
     name: "Varanasi",
     tagline: "The Ganges ghats",
-    image: "/images/destinations/varanasi.png",
+    image: pexels("40967314"),
     imagePosition: "object-[center_70%]",
     blurb:
       "Dawn on the ghats, the cremation banks and the old lanes of Kashi, with Sarnath and Bodh Gaya nearby.",
@@ -132,7 +134,7 @@ export const DESTINATIONS: Destination[] = [
 export const EXPERIENCES: Experience[] = [
   {
     title: "Himalayan trekking",
-    image: "/images/experiences/himalayan-trekking-nubra.jpg",
+    image: pexels("32132398"),
     description:
       "Walk the Markha, Zanskar and Vale of Kashmir trails, camping by the glacier and crossing high passes.",
     locations: "Ladakh, Kashmir",
@@ -140,7 +142,7 @@ export const EXPERIENCES: Experience[] = [
   },
   {
     title: "Kashmir houseboats",
-    image: "/images/experiences/kashmir-boat-shikara.jpg",
+    image: pexels("40348598"),
     description:
       "A night aboard a houseboat on Dal Lake, with a shikara to the floating gardens and Srinagar's shrines.",
     locations: "Kashmir",
@@ -148,7 +150,7 @@ export const EXPERIENCES: Experience[] = [
   },
   {
     title: "River rafting",
-    image: "/images/experiences/river-rafting-gulsitara.jpg",
+    image: pexels("32651303"),
     description:
       "Whitewater rafting on the Trisuli with rafting equipment and an experienced English-speaking guide.",
     locations: "Nepal",
@@ -156,7 +158,7 @@ export const EXPERIENCES: Experience[] = [
   },
   {
     title: "Wildlife & safaris",
-    image: "/images/experiences/wildlife-safari-kanha.jpg",
+    image: pexels("37654954"),
     description:
       "Jungle safaris in Chitwan on foot and by boat, tracking rhino through the sal forest and the Terai.",
     locations: "Nepal, Kerala",
@@ -164,7 +166,7 @@ export const EXPERIENCES: Experience[] = [
   },
   {
     title: "Backwaters & houseboats",
-    image: "/images/experiences/alleppey-backwaters-houseboat.jpg",
+    image: pexels("17545322"),
     description:
       "Kettuvallam houseboats through the Kerala backwaters, rice barges and the thatched villages of Alleppey.",
     locations: "Kerala",
@@ -172,7 +174,7 @@ export const EXPERIENCES: Experience[] = [
   },
   {
     title: "Temples & monuments",
-    image: "/images/destinations/taj-mahal-reflection.png",
+    image: pexels("11521892"),
     description:
       "The Taj Mahal, Amber Fort, Swayambhunath and the ghats of Varanasi, as listed in the brochure itineraries.",
     locations: "Agra, Jaipur, Varanasi",
@@ -180,7 +182,7 @@ export const EXPERIENCES: Experience[] = [
   },
   {
     title: "Village & culture",
-    image: "/images/experiences/village-and-culture.jpg",
+    image: pexels("24428857"),
     description:
       "Special-interest programmes for clubs, schools and groups, arranged on request.",
     locations: "India, Nepal",
@@ -193,7 +195,7 @@ export const PILLARS: Pillar[] = [
     key: "destinations",
     label: "Destinations",
     title: "Iconic Destinations",
-    image: "/images/destinations/pokhara-lake.jpg",
+    image: pexels("28277464"),
     tagline: "Unrivalled Subcontinent Heritage Across Two Himalayan Nations",
     statBadge: "Since 1927",
     statLabel: "Pioneer Operator",
@@ -212,7 +214,7 @@ export const PILLARS: Pillar[] = [
     key: "wildlife",
     label: "Wildlife",
     title: "Best Wildlife Experiences",
-    image: "/images/destinations/rhino.jpg",
+    image: pexels("13409974"),
     tagline: "Rare Habitat Encounters Guided by Resident Naturalists",
     statBadge: "Protected Reserves",
     statLabel: "Resident Trackers",
@@ -231,7 +233,7 @@ export const PILLARS: Pillar[] = [
     key: "guides",
     label: "Guides",
     title: "Guides & Dedicated Support",
-    image: "/images/destinations/guide.png",
+    image: pexels("18563694"),
     tagline: "Experienced Field Crews & Dedicated Expedition Leaders",
     statBadge: "100% Escorted",
     statLabel: "Mountain Field Crews",
@@ -250,7 +252,7 @@ export const PILLARS: Pillar[] = [
     key: "architecture",
     label: "Accommodation",
     title: "Character & Heritage Accommodation",
-    image: "/images/destinations/accommodation.png",
+    image: pexels("17397822"),
     tagline: "Handpicked Heritage Havelis, Palace Hotels & Boutique Stays",
     statBadge: "Handpicked",
     statLabel: "Historic Character",
@@ -269,7 +271,7 @@ export const PILLARS: Pillar[] = [
     key: "culture",
     label: "Culture",
     title: "Living Cultural Exploration",
-    image: "/images/destinations/culture.png",
+    image: pexels("36754808"),
     tagline: "Living Sacred Ceremonies, Monasteries & Ancient Ways",
     statBadge: "Authentic Access",
     statLabel: "Living Traditions",
@@ -288,7 +290,7 @@ export const PILLARS: Pillar[] = [
     key: "travel",
     label: "Travel",
     title: "Seamless, Trusted Travel",
-    image: "/images/destinations/travel.png",
+    image: pexels("5774277"),
     tagline: "Private Road Transfers & Complete Peace of Mind",
     statBadge: "Seamless",
     statLabel: "Private Road Transit",
@@ -307,7 +309,7 @@ export const PILLARS: Pillar[] = [
     key: "impact",
     label: "Impact",
     title: "Programmes & Heritage Stewardship",
-    image: "/images/destinations/impact.png",
+    image: pexels("33885308"),
     tagline: "Pioneering Educational Expeditions & Local Community Ties",
     statBadge: "Community First",
     statLabel: "Shared Stewardship",

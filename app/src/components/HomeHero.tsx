@@ -106,7 +106,7 @@ export default function HomeHero() {
     <section
       ref={sectionRef}
       className="relative flex min-h-[100dvh] w-full flex-col items-center justify-center overflow-hidden section-hero"
-      aria-label="KS World Adventure — specialist travel since 1927"
+      aria-label="India Nepal Travel Center — specialist travel since 1927"
     >
       {/* 5-Second Seamless Non-Repeating Shuffled Video Experience */}
       <HeroVideoShuffler onVideoChange={handleVideoChange} />
@@ -127,8 +127,8 @@ export default function HomeHero() {
             ref={titleRef}
             className="hero-title text-white font-serif font-light drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]"
           >
-            <span className="block">KS World</span>
-            <span className="block">Adventure</span>
+            <span className="block">India Nepal</span>
+            <span className="block">Travel Center</span>
           </h1>
         </div>
 

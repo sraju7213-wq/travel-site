@@ -6,7 +6,7 @@ import Link from "next/link";
 import gsap from "gsap";
 import { prefersReducedMotion } from "@/lib/motion";
 import { cleanDuration, placeLine } from "@/lib/packageDisplay";
-import { getAllPackages } from "@/data/catalogue";
+import { getAllPackages, getPackageCardImage } from "@/data/catalogue";
 import type { ResolvedPlace } from "@/data/places";
 import type { PackageViewModel } from "@/types/travel";
 
@@ -420,7 +420,7 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
               >
               <span className="jy-orbit-tilt" data-orbit-tilt>
                 <Image
-                  src={`/images/packages/${pkg.slug}.jpg`}
+                  src={getPackageCardImage(pkg.slug)}
                   alt=""
                   fill
                   sizes="(min-width: 768px) 450px, 320px"

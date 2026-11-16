@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Journeys — KS World Adventure",
+  title: "Journeys — India Nepal Travel Center",
   description: "Browse all India and Nepal tour packages with our interactive 3D journey explorer.",
 };
 

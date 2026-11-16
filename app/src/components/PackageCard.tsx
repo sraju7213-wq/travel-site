@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import type { PackageViewModel } from "@/types/travel";
+import { getPackageCardImage } from "@/data/catalogue";
 
 interface PackageCardProps {
   pkg: PackageViewModel;
@@ -12,6 +13,9 @@ interface PackageCardProps {
 
 export default function PackageCard({ pkg, compact = false }: PackageCardProps) {
   const [imageError, setImageError] = useState(false);
+
+  // Use the per-package Pexels image mapping for destination-accurate cards.
+  const cardImage = getPackageCardImage(pkg.slug);
 
   // Show the places a journey actually goes, rather than the country heading.
   const stops = pkg.region.filter((r) => r !== "India" && r !== "Nepal");
@@ -41,7 +45,7 @@ export default function PackageCard({ pkg, compact = false }: PackageCardProps) 
         >
           {!imageError ? (
             <Image
-              src={`/images/packages/${pkg.slug}.jpg`}
+              src={cardImage}
               alt={pkg.title}
               fill
               sizes="(min-width: 1280px) 500px, (min-width: 640px) 50vw, 100vw"

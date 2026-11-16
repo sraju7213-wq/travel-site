@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { cleanDuration, placeLine } from "@/lib/packageDisplay";
+import { getPackageCardImage } from "@/data/catalogue";
 import type { PackageViewModel } from "@/types/travel";
 
 interface CoverflowSwiperProps {
@@ -210,7 +211,7 @@ export default function CoverflowSwiper({ packages }: CoverflowSwiperProps) {
                 {/* Poster Image */}
                 <div className="absolute inset-0">
                   <Image
-                    src={`/images/packages/${pkg.slug}.jpg`}
+                    src={getPackageCardImage(pkg.slug)}
                     alt={pkg.title}
                     fill
                     sizes="(min-width: 768px) 450px, 80vw"

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import EnquireCta from "@/components/package/EnquireCta";
 import type { PackageViewModel } from "@/types/travel";
+import { getPackageCardImage } from "@/data/catalogue";
 
 interface PackageSidebarProps {
   pkg: PackageViewModel;
@@ -106,7 +107,7 @@ export default function PackageSidebar({ pkg, related }: PackageSidebarProps) {
                 >
                   <span className="relative h-12 w-14 shrink-0 overflow-hidden rounded bg-[#0C1617]">
                     <Image
-                      src={`/images/packages/${item.slug}.jpg`}
+                      src={getPackageCardImage(item.slug)}
                       alt=""
                       fill
                       sizes="56px"
