@@ -72,7 +72,7 @@ export default function SiteHeader() {
       >
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <div className="flex h-16 md:h-20 items-center justify-between gap-4">
-            <BrandMark className="h-8 w-auto" aria-hidden="true" />
+            <BrandMark />
 
             <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
               <Link

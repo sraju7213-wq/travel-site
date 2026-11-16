@@ -476,7 +476,7 @@ export default function MegaMenu({ open, onClose }: MegaMenuProps) {
 
           <div className="justify-self-center flex-shrink-0">
             <Link href="/" onClick={onClose} className="block" aria-label="Home">
-              <Image src="/logo.png" alt="India Nepal Travel Center" width={120} height={48} className="h-10 md:h-12 w-auto" />
+              <Image src="/logo.png" alt="India Nepal Travel Center" width={120} height={40} className="h-10 md:h-12 w-auto" />
             </Link>
           </div>
 

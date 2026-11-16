@@ -231,7 +231,7 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
 
           <div className="justify-self-center flex-shrink-0">
             <Link href="/" onClick={close} className="block" aria-label="Home">
-              <Image src="/logo.png" alt="India Nepal Travel Center" width={108} height={40} className="h-9 w-auto" />
+              <Image src="/logo.png" alt="India Nepal Travel Center" width={108} height={36} className="h-9 w-auto" />
             </Link>
           </div>
 

@@ -157,6 +157,21 @@ listed in §9a of `docs/image-sources.md`.
 | nepal-wildlife-safari | Rhinoceros | Nepal temple, rhino in the sal forest |
 | nepal-mini-trek-7-day | Himalayas | Kathmandu Valley, Pokhara |
 
+## Brand logo (`app/public/logo.png`)
+
+The brand lockup is a supplied client asset — the Taj Mahal, a temple, the
+Himalayan ridge, a flight path and the "INDIA NEPAL / TRAVEL CENTER" wordmark,
+drawn in white on a transparent background for the site's dark theme.
+
+| File | Source | Notes |
+|---|---|---|
+| `app/public/logo.png` | Client-supplied artwork (`India Nepal Travel Center Logo.png`) | Re-encoded to 1200x400 (3:1) with an indexed alpha palette — 43 KB, down from 563 KB at 2172x724. Visually identical at 3x zoom. The wordmark is baked into the artwork, so it is not duplicated as HTML text in `components/BrandMark.tsx`. |
+
+Because the wordmark now lives in the image itself, the separate
+`India Nepal` / `Travel Center` text block that previously sat beside the logo
+was removed from `BrandMark`. The link keeps its `aria-label`, so the
+accessible name is unchanged.
+
 ## Notes
 
 - Crop rectangles are expressed in an 848x1200 review space and scaled to the
