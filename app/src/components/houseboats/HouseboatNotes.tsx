@@ -21,9 +21,9 @@ export default function HouseboatNotes() {
             </p>
             <h2 className="font-serif text-4xl font-light leading-[1.08] tracking-normal text-white md:text-5xl">
               The practical
-              <span className="block text-white/55">questions</span>
+              <span className="block text-white/75">questions</span>
             </h2>
-            <p className="mt-6 max-w-sm font-sans text-sm font-light leading-relaxed text-white/60">
+            <p className="mt-6 max-w-sm font-sans text-sm font-light leading-relaxed text-white/75">
               Answers taken from the houseboat brochure entry, with nothing added that the printed record
               does not support.
             </p>
@@ -67,7 +67,7 @@ export default function HouseboatNotes() {
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="2"
-                      className={`shrink-0 text-white/50 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+                      className={`shrink-0 text-white/70 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
                       aria-hidden="true"
                     >
                       <polyline points="6 9 12 15 18 9" strokeLinecap="round" strokeLinejoin="round" />
@@ -81,7 +81,7 @@ export default function HouseboatNotes() {
                     hidden={!isOpen}
                     className="border-t border-white/10 px-5 pb-5 pt-4 animate-fade-in"
                   >
-                    <p className="pl-9 font-sans text-sm font-light leading-relaxed text-white/70">
+                    <p className="pl-9 font-sans text-sm font-light leading-relaxed text-white/85">
                       {note.answer}
                     </p>
                   </div>

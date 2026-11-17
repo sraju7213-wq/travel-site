@@ -19,7 +19,7 @@ export default function BrandMark({ className = "", compact = false }: BrandMark
   return (
     <Link
       href="/"
-      className={`group inline-flex items-center transition-opacity hover:opacity-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-none ${className}`}
+      className={`group inline-flex min-h-[44px] items-center transition-opacity hover:opacity-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-none ${className}`}
       aria-label={`${BRAND.name} — Home`}
     >
       <span

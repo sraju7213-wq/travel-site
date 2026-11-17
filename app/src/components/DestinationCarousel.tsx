@@ -15,9 +15,8 @@ if (typeof window !== "undefined") {
 
 /**
  * Our Luxury Safari Destinations
- * Faithful recreation of the Wilderness Destinations (https://www.wildernessdestinations.com/)
- * safari country hero slider with warm safari sand palette, giant watermark typography,
- * cinematic full-bleed central destination card, 3D card tilt, and smooth scroll/slide transitions.
+ * Premium editorial destination carousel with immersive photography,
+ * layered text overlays for guaranteed readability, and refined interactions.
  */
 export default function DestinationCarousel() {
   const [active, setActive] = useState(0);
@@ -43,7 +42,7 @@ export default function DestinationCarousel() {
       setActive(index);
       setTimeout(() => setIsAnimating(false), 600);
     },
-    [active, isAnimating]
+    [active, isAnimating],
   );
 
   const prev = useCallback(() => {
@@ -54,7 +53,6 @@ export default function DestinationCarousel() {
     goTo(nextIndex);
   }, [goTo, nextIndex]);
 
-  // Subtle scroll parallax effect on the watermark typography
   useEffect(() => {
     const handleScroll = () => {
       if (!sectionRef.current) return;
@@ -69,7 +67,6 @@ export default function DestinationCarousel() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") prev();
@@ -79,7 +76,6 @@ export default function DestinationCarousel() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [prev, next]);
 
-  // Touch swipe support
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
   };
@@ -92,7 +88,6 @@ export default function DestinationCarousel() {
     touchStartX.current = null;
   };
 
-  // Subtle 3D tilt on card hover
   const handleCardMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (prefersReducedMotion()) return;
     const card = cardRef.current;
@@ -101,8 +96,8 @@ export default function DestinationCarousel() {
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
     setCardTilt({
-      rx: -(y / (rect.height / 2)) * 4,
-      ry: (x / (rect.width / 2)) * 4,
+      rx: -(y / (rect.height / 2)) * 2,
+      ry: (x / (rect.width / 2)) * 2,
     });
   };
 
@@ -110,7 +105,6 @@ export default function DestinationCarousel() {
     setCardTilt({ rx: 0, ry: 0 });
   };
 
-  // The standfirst re-enters behind a mask each time the destination changes.
   useEffect(() => {
     const el = blurbRef.current;
     if (!el) return;
@@ -125,6 +119,7 @@ export default function DestinationCarousel() {
           y: 0,
           duration: DURATION.base,
           ease: EASE.expo,
+          immediateRender: false,
         }
       );
     }, el);
@@ -139,40 +134,38 @@ export default function DestinationCarousel() {
       ref={sectionRef}
       id="destinations"
       aria-label="Our Luxury Safari Destinations"
-      className="relative overflow-hidden section-destinations py-16 md:py-24 select-none transition-colors duration-700"
+      className="section-destinations relative overflow-hidden py-16 md:py-24 select-none transition-colors duration-700"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      {/* 1. Ghosted Background Typography Parallax (Left & Right Watermarks) */}
+      {/* Ghosted Background Typography Parallax */}
       <div
-        className="pointer-events-none absolute inset-0 flex items-center justify-between px-2 sm:px-6 md:px-12 overflow-hidden z-0"
+        className="pointer-events-none absolute -inset-6 flex items-center justify-between px-2 sm:px-6 md:px-12 overflow-hidden z-0"
         aria-hidden="true"
       >
-        {/* Left Ghost Text (Previous destination) */}
         <button
           type="button"
           tabIndex={-1}
           onClick={prev}
           style={{ transform: `translateX(-${parallaxOffset}px)` }}
-          className="pointer-events-auto cursor-pointer font-serif text-[4.5rem] sm:text-[7rem] md:text-[9rem] lg:text-[12rem] xl:text-[14rem] font-light leading-none tracking-[0.2em] uppercase text-white/20 hover:text-white/35 transition-all duration-700 opacity-60 hover:opacity-100 max-w-[28vw] break-words text-left"
+          className="pointer-events-auto cursor-pointer font-serif text-[4.5rem] sm:text-[7rem] md:text-[9rem] lg:text-[12rem] xl:text-[14rem] font-light leading-none tracking-[0.2em] uppercase text-white/10 hover:text-white/20 transition-all duration-700 max-w-[28vw] break-words text-left"
         >
           {prevDest.name.slice(0, 5)}
         </button>
 
-        {/* Right Ghost Text (Next destination) */}
         <button
           type="button"
           tabIndex={-1}
           onClick={next}
           style={{ transform: `translateX(${parallaxOffset}px)` }}
-          className="pointer-events-auto cursor-pointer font-serif text-[4.5rem] sm:text-[7rem] md:text-[9rem] lg:text-[12rem] xl:text-[14rem] font-light leading-none tracking-[0.2em] uppercase text-white/20 hover:text-white/35 transition-all duration-700 opacity-60 hover:opacity-100 max-w-[28vw] break-words text-right"
+          className="pointer-events-auto cursor-pointer font-serif text-[4.5rem] sm:text-[7rem] md:text-[9rem] lg:text-[12rem] xl:text-[14rem] font-light leading-none tracking-[0.2em] uppercase text-white/10 hover:text-white/20 transition-all duration-700 max-w-[28vw] break-words text-right"
         >
           {nextDest.name.slice(0, 5)}
         </button>
       </div>
 
       <div className="relative z-10 mx-auto max-w-[1240px] px-4 sm:px-6 md:px-8">
-        {/* 2. Top Navigation Tabs Bar */}
+        {/* Top Navigation Tabs Bar */}
         <nav
           aria-label="Destination regions"
           className="scrollbar-hide mb-8 sm:mb-12 flex items-center justify-start sm:justify-center gap-x-5 sm:gap-x-8 md:gap-x-10 overflow-x-auto pb-3 border-b border-white/20"
@@ -184,22 +177,22 @@ export default function DestinationCarousel() {
                 key={d.name}
                 type="button"
                 onClick={() => goTo(i)}
-                className={`relative shrink-0 pb-3 text-[11px] sm:text-xs font-accent uppercase tracking-[0.22em] transition-all duration-300 cursor-pointer ${
+                className={`relative flex min-h-[44px] shrink-0 items-center pb-3 text-[11px] sm:text-xs font-accent uppercase tracking-[0.22em] transition-all duration-300 cursor-pointer ${
                   isActive
                     ? "font-bold text-white scale-105"
-                    : "font-normal text-white/60 hover:text-white"
+                    : "font-normal text-white/70 hover:text-white"
                 }`}
               >
                 {d.name}
                 {isActive && (
-                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-white transition-all duration-300" />
+                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[var(--color-wild-orange)] transition-all duration-300" />
                 )}
               </button>
             );
           })}
         </nav>
 
-        {/* 3. Center Hero Destination Card with 3D tilt */}
+        {/* Center Hero Destination Card with 3D tilt */}
         <div className="relative mx-auto w-full max-w-[1020px]">
           <Link
             ref={cardRef}
@@ -213,10 +206,10 @@ export default function DestinationCarousel() {
             aria-label={`Explore ${current.name} destination`}
             className="group block relative aspect-[16/10] sm:aspect-[16/9] md:aspect-[16/9] w-full overflow-hidden shadow-2xl transition-all duration-700 will-change-transform"
           >
-            {/* Active Image with smooth crossfade & scale */}
             {DESTINATIONS.map((dest, i) => (
               <div
                 key={dest.name}
+                aria-hidden={active !== i}
                 className={`absolute inset-0 transition-opacity duration-700 ease-out ${
                   active === i ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
                 }`}
@@ -233,51 +226,48 @@ export default function DestinationCarousel() {
                     active === i ? "scale-100 group-hover:scale-105" : "scale-105"
                   }`}
                 />
+
+                {/* Subtle cinematic gradient vignette to enhance sky contrast & text readability */}
+                <div
+                  className="absolute inset-0 z-20 bg-gradient-to-b from-black/45 via-black/10 to-black/35 transition-opacity duration-500 group-hover:from-black/55 group-hover:to-black/45"
+                  aria-hidden="true"
+                />
+
+                {/* A light sweep travels across the frame on hover. */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 z-20 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-[1100ms] ease-out group-hover:translate-x-full"
+                />
+
+                {/* Serif Country Name positioned in the sky */}
+                <div className="absolute inset-x-0 top-0 z-30 flex items-start justify-center pt-7 sm:pt-10 md:pt-12 lg:pt-14 p-6 text-center pointer-events-none">
+                  <h2 className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-light uppercase tracking-[0.28em] text-white drop-shadow-[0_8px_24px_rgba(0,0,0,0.85)] transition-all duration-700 transform group-hover:scale-[1.02]">
+                    {dest.name}
+                  </h2>
+                </div>
               </div>
             ))}
-
-            {/* Subtle cinematic gradient vignette to enhance sky contrast & text readability */}
-            <div
-              className="absolute inset-0 z-20 bg-gradient-to-b from-black/45 via-black/10 to-black/35 transition-opacity duration-500 group-hover:from-black/55 group-hover:to-black/45"
-              aria-hidden="true"
-            />
-
-            {/* A light sweep travels across the frame on hover. */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 z-20 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-[1100ms] ease-out group-hover:translate-x-full"
-            />
-
-            {/* Serif Country Name positioned in the sky */}
-            <div className="absolute inset-x-0 top-0 z-30 flex items-start justify-center pt-7 sm:pt-10 md:pt-12 lg:pt-14 p-6 text-center pointer-events-none">
-              <h2 className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-light uppercase tracking-[0.28em] text-white drop-shadow-[0_8px_24px_rgba(0,0,0,0.85)] transition-all duration-700 transform group-hover:scale-[1.02]">
-                {current.name}
-              </h2>
-            </div>
           </Link>
 
-          {/* 4. Bottom Info & Action Bar */}
-          <div className="mt-6 sm:mt-8 flex flex-col md:flex-row md:items-start justify-between gap-6">
-            {/* Left: Editorial blurb */}
+          {/* Bottom Info & Action Bar */}
+          <div className="mt-8 sm:mt-10 flex flex-col md:flex-row md:items-start justify-between gap-6">
             <div className="max-w-xl">
               <p
                 key={current.name}
                 ref={blurbRef}
-                className="font-sans font-light text-sm sm:text-base leading-relaxed text-white/95"
+                className="font-sans font-light text-sm sm:text-base leading-relaxed text-white/90"
               >
                 {current.blurb}
               </p>
             </div>
 
-            {/* Right: Thin arrow navigation & bold Wilderness Orange button */}
             <div className="flex flex-col items-start md:items-end gap-4 shrink-0">
-              {/* Thin arrow navigation */}
               <div className="flex items-center gap-6">
                 <button
                   type="button"
                   onClick={prev}
                   aria-label="Previous destination"
-                  className="group flex h-10 w-10 items-center justify-center rounded-none border border-white/20 bg-black/10 text-white hover:border-[var(--color-wild-orange,#ff6e00)] hover:text-[var(--color-wild-orange,#ff6e00)] hover:bg-black/30 transition-all duration-300 hover:scale-105 cursor-pointer"
+                  className="group flex h-11 w-11 items-center justify-center rounded-none border border-white/20 bg-black/10 text-white hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)] hover:bg-black/30 transition-all duration-300 hover:scale-105 cursor-pointer"
                 >
                   <svg
                     aria-hidden="true"
@@ -299,7 +289,7 @@ export default function DestinationCarousel() {
                   type="button"
                   onClick={next}
                   aria-label="Next destination"
-                  className="group flex h-10 w-10 items-center justify-center rounded-none border border-white/20 bg-black/10 text-white hover:border-[var(--color-wild-orange,#ff6e00)] hover:text-[var(--color-wild-orange,#ff6e00)] hover:bg-black/30 transition-all duration-300 hover:scale-105 cursor-pointer"
+                  className="group flex h-11 w-11 items-center justify-center rounded-none border border-white/20 bg-black/10 text-white hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)] hover:bg-black/30 transition-all duration-300 hover:scale-105 cursor-pointer"
                 >
                   <svg
                     aria-hidden="true"
@@ -319,12 +309,11 @@ export default function DestinationCarousel() {
                 </button>
               </div>
 
-              {/* Solid Wilderness Orange CTA Button */}
               <MagneticButton
                 as={Link}
                 href={current.href}
                 strength={0.22}
-                className="inline-flex items-center justify-center bg-[var(--color-wild-orange,#ff6e00)] hover:bg-[#e56300] text-white font-accent text-xs font-semibold uppercase tracking-[0.24em] px-8 py-3.5 shadow-md hover:shadow-[0_8px_24px_rgba(255,110,0,0.5)] transition-all duration-300 active:scale-95 cursor-pointer min-w-[140px] text-center"
+                className="inline-flex items-center justify-center bg-[var(--color-wild-orange,#ff6e00)] hover:bg-[#e56300] text-[#0C1617] font-accent text-xs font-semibold uppercase tracking-[0.24em] px-8 py-3.5 shadow-md hover:shadow-[0_8px_24px_rgba(255,110,0,0.5)] transition-all duration-300 active:scale-95 cursor-pointer min-w-[140px] text-center"
               >
                 {current.name}
               </MagneticButton>

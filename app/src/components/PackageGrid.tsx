@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import PackageCard from "./PackageCard";
 import CardGrid from "@/components/ui/CardGrid";
 import type { PackageViewModel } from "@/types/travel";
@@ -12,24 +11,12 @@ interface PackageGridProps {
   compact?: boolean;
 }
 
-const MOBILE_LIMIT = 2;
-const TABLET_LIMIT = 6;
-
 export default function PackageGrid({
   packages,
   heading,
   className,
   compact = false,
 }: PackageGridProps) {
-  const [width, setWidth] = useState<number | null>(null);
-
-  useEffect(() => {
-    const handleResize = () => setWidth(window.innerWidth);
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   if (!packages || packages.length === 0) {
     return (
       <section className={className ?? "my-12"}>
@@ -44,7 +31,7 @@ export default function PackageGrid({
           </div>
           <div>
             <h3 className="font-serif text-xl font-light text-white">No journeys match</h3>
-            <p className="mt-2 font-display text-white/50">Try adjusting your filters or search terms</p>
+            <p className="mt-2 font-display text-white/70">Try adjusting your filters or search terms</p>
           </div>
         </div>
       </section>

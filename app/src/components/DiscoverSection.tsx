@@ -98,6 +98,7 @@ export default function DiscoverSection() {
           duration: DURATION.base,
           ease: EASE.expo,
           stagger: 0.1,
+          immediateRender: false,
           scrollTrigger: {
             trigger: section,
             start: "top 85%",
@@ -124,6 +125,7 @@ export default function DiscoverSection() {
             duration: DURATION.base,
             ease: EASE.back,
             stagger: 0.1,
+            immediateRender: false,
             scrollTrigger: {
               trigger: section,
               start: "top 85%",

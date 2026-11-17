@@ -140,7 +140,7 @@ export default function InteractiveItinerary({
             type="button"
             onClick={expandAll}
             disabled={allExpanded}
-            className="cursor-pointer rounded-none border border-white/10 bg-white/5 px-3 py-1.5 font-display text-[11px] font-medium uppercase tracking-[0.12em] text-white/70 transition hover:border-brass/60 hover:text-brass disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass"
+            className="min-h-[40px] cursor-pointer rounded-none border border-white/10 bg-white/5 px-3 py-2 font-display text-[11px] font-medium uppercase tracking-[0.12em] text-white/70 transition hover:border-brass/60 hover:text-brass disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass"
           >
             Expand all
           </button>
@@ -148,7 +148,7 @@ export default function InteractiveItinerary({
             type="button"
             onClick={collapseAll}
             disabled={expandedDays.size === 0}
-            className="cursor-pointer rounded-none border border-white/10 bg-white/5 px-3 py-1.5 font-display text-[11px] font-medium uppercase tracking-[0.12em] text-white/70 transition hover:border-brass/60 hover:text-brass disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass"
+            className="min-h-[40px] cursor-pointer rounded-none border border-white/10 bg-white/5 px-3 py-2 font-display text-[11px] font-medium uppercase tracking-[0.12em] text-white/70 transition hover:border-brass/60 hover:text-brass disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass"
           >
             Collapse all
           </button>
@@ -235,7 +235,7 @@ export default function InteractiveItinerary({
                 )}
 
                 {entry.stops && entry.stops.length > 0 && (
-                  <p className="mt-3 flex items-start gap-1.5 font-display text-xs text-white/50">
+                  <p className="mt-3 flex items-start gap-1.5 font-display text-xs text-white/60">
                     <span aria-hidden="true" className="text-brass">
                       ◆
                     </span>
@@ -244,7 +244,7 @@ export default function InteractiveItinerary({
                 )}
 
                 {entry.transfers && (
-                  <p className="mt-1.5 flex items-start gap-1.5 font-display text-xs text-white/50">
+                  <p className="mt-1.5 flex items-start gap-1.5 font-display text-xs text-white/60">
                     <span aria-hidden="true" className="text-brass">
                       ◆
                     </span>

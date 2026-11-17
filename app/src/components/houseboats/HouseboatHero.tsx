@@ -10,9 +10,10 @@ export default function HouseboatHero() {
     <PageHero
       align="left"
       height="full"
-      image="/images/services/houseboats.jpg"
-      imageStyle={{ transform: "scale(1.1)" }}
-      imageAlt="A shikara crossing Dal Lake in Srinagar towards the carved houseboats moored along the far shore in the morning mist"
+      image="/images/services/houseboat-hero.jpg"
+      imageStyle={{ transform: "scale(1.02)" }}
+      imageAlt="A carved cedar houseboat moored on Dal Lake in Srinagar in the morning mist"
+      contentClassName="text-center md:ml-auto md:mr-8 md:w-[40%] md:text-left md:drop-shadow-[0_2px_6px_rgba(0,0,0,0.85)]"
       eyebrow="Srinagar · Kashmir"
       title={
         <>
@@ -20,7 +21,7 @@ export default function HouseboatHero() {
           <span className="block text-white/60">on Nigeen Lake</span>
         </>
       }
-      lead="Booking access to carved cedar houseboats on Dal and Nagin Lake — from a two-bedroom craft to a seven-bedroom houseboat hired in sole use, for solo travellers, small groups or a family party."
+      lead="Booking access to carved cedar houseboats on Dal and Nigeen Lake — from a two-bedroom craft to a seven-bedroom houseboat hired in sole use, for solo travellers, small groups or a family party."
       meta={[{ value: "34.0837° N, 74.7973° E", label: "Dal Lake, Srinagar" }]}
       primaryCta={{ label: "Enquire now", href: "/enquiry?service=houseboats" }}
       secondaryCta={{ label: "What a stay includes", href: "#houseboat-stay" }}

@@ -5,6 +5,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { getAllRegions } from "@/data/catalogue";
 import PackageGrid from "./PackageGrid";
 import CoverflowSwiper from "./journeys/CoverflowSwiper";
+import { ACTIVITY_TAGS, activityLabel, packageHasActivity } from "@/lib/activities";
+import { useBodyOverflowLock } from "@/hooks/useBodyOverflowLock";
 import { CATEGORIES, type PackageViewModel } from "@/types/travel";
 
 interface FilterState {
@@ -12,17 +14,18 @@ interface FilterState {
   category: string;
   region: string;
   duration: string;
+  activity: string;
   sort: string;
 }
 
 const ALL = "All";
 
 const DURATION_BUCKETS = [
-  { value: ALL, label: "All Durations" },
-  { value: "short", label: "Short Getaway (1–4 days)", min: 1, max: 4 },
-  { value: "classic", label: "Classic Journey (5–8 days)", min: 5, max: 8 },
-  { value: "extended", label: "Extended Route (9–14 days)", min: 9, max: 14 },
-  { value: "expedition", label: "Grand Expedition (15+ days)", min: 15, max: 99 },
+  { value: ALL, label: "All Durations", short: "Any length", min: 1, max: 4 },
+  { value: "short", label: "Short Getaway (1–4 days)", short: "1–4 days", min: 1, max: 4 },
+  { value: "classic", label: "Classic Journey (5–8 days)", short: "5–8 days", min: 5, max: 8 },
+  { value: "extended", label: "Extended Route (9–14 days)", short: "9–14 days", min: 9, max: 14 },
+  { value: "expedition", label: "Grand Expedition (15+ days)", short: "15+ days", min: 15, max: 99 },
 ];
 
 function parseDays(durationStr: string): number {
@@ -47,6 +50,7 @@ export default function SearchAndFilters({
     category: searchParams.get("category") ?? ALL,
     region: searchParams.get("region") ?? ALL,
     duration: searchParams.get("duration") ?? ALL,
+    activity: searchParams.get("activity") ?? ALL,
     sort: searchParams.get("sort") ?? "title",
   }));
 
@@ -55,6 +59,9 @@ export default function SearchAndFilters({
   const searchInputRef = useRef<HTMLInputElement>(null);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [viewMode, setViewMode] = useState<"coverflow" | "grid">("coverflow");
+
+  // The filter drawer is modal on phones, so the page behind must not scroll.
+  useBodyOverflowLock(mobileFiltersOpen);
 
   // Sync keyboard escape for mobile drawer
   useEffect(() => {
@@ -81,6 +88,7 @@ export default function SearchAndFilters({
     if (state.category !== ALL) params.set("category", state.category);
     if (state.region !== ALL) params.set("region", state.region);
     if (state.duration !== ALL) params.set("duration", state.duration);
+    if (state.activity !== ALL) params.set("activity", state.activity);
     if (state.sort !== "title") params.set("sort", state.sort);
     const newUrl = `/journeys${params.toString() ? `?${params.toString()}` : ""}#catalogue`;
     if (newUrl !== lastPushedRef.current) {
@@ -96,6 +104,7 @@ export default function SearchAndFilters({
       category: searchParams.get("category") ?? ALL,
       region: searchParams.get("region") ?? ALL,
       duration: searchParams.get("duration") ?? ALL,
+      activity: searchParams.get("activity") ?? ALL,
       sort: searchParams.get("sort") ?? "title",
     };
     setState(nextState);
@@ -105,7 +114,8 @@ export default function SearchAndFilters({
     (state.q ? 1 : 0) +
     (state.category !== ALL ? 1 : 0) +
     (state.region !== ALL ? 1 : 0) +
-    (state.duration !== ALL ? 1 : 0);
+    (state.duration !== ALL ? 1 : 0) +
+    (state.activity !== ALL ? 1 : 0);
 
   // Region options sorted by package presence
   const regions = useMemo(() => {
@@ -130,6 +140,8 @@ export default function SearchAndFilters({
 
       const matchesCategory = state.category === ALL || pkg.category === state.category;
       const matchesRegion = state.region === ALL || pkg.region.includes(state.region);
+      const matchesActivity =
+        state.activity === ALL || packageHasActivity(pkg, state.activity);
 
       let matchesDuration = true;
       if (state.duration !== ALL) {
@@ -142,7 +154,13 @@ export default function SearchAndFilters({
         }
       }
 
-      return matchesQuery && matchesCategory && matchesRegion && matchesDuration;
+      return (
+        matchesQuery &&
+        matchesCategory &&
+        matchesRegion &&
+        matchesActivity &&
+        matchesDuration
+      );
     });
   }, [packages, state]);
 
@@ -166,6 +184,7 @@ export default function SearchAndFilters({
       category: ALL,
       region: ALL,
       duration: ALL,
+      activity: ALL,
       sort: "title",
     });
     setMobileFiltersOpen(false);
@@ -190,7 +209,7 @@ export default function SearchAndFilters({
             >
               <svg
                 className={`ml-3.5 h-4 w-4 transition-colors duration-200 ${
-                  isSearchFocused ? "text-[var(--color-wild-orange)]" : "text-white/40"
+                  isSearchFocused ? "text-[var(--color-wild-orange)]" : "text-white/60"
                 }`}
                 fill="none"
                 stroke="currentColor"
@@ -210,14 +229,14 @@ export default function SearchAndFilters({
                 onFocus={() => setIsSearchFocused(true)}
                 onBlur={() => setIsSearchFocused(false)}
                 placeholder="Search destination or code…"
-                className="w-full bg-transparent px-3 py-2.5 text-sm font-sans text-white placeholder:text-white/40 focus:outline-none"
+                className="min-h-[44px] w-full bg-transparent px-3 py-2.5 text-sm font-sans text-white placeholder:text-white/60 focus:outline-none"
                 autoComplete="off"
               />
               {state.q && (
                 <button
                   type="button"
                   onClick={() => setState({ ...state, q: "" })}
-                  className="mr-3 p-1.5 text-white/40 hover:text-white transition-colors rounded-full hover:bg-white/10"
+                  className="mr-1 flex h-11 w-11 items-center justify-center text-white/60 hover:text-white transition-colors rounded-full hover:bg-white/10"
                   aria-label="Clear search"
                 >
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -230,7 +249,7 @@ export default function SearchAndFilters({
           </div>
 
           {/* Direct Desktop Dropdown Filters */}
-          <div className="hidden sm:flex items-center gap-2.5">
+          <div className="hidden flex-wrap items-center gap-2.5 sm:flex">
             {/* Region Dropdown */}
             <div className="relative">
               <select
@@ -244,7 +263,7 @@ export default function SearchAndFilters({
                 }`}
               >
                 <option value={ALL} className="bg-[#121B20] text-white">
-                  All Regions ({packages.length})
+                  All Regions
                 </option>
                 {regions.map((r) => {
                   const count = packages.filter((p) => p.region.includes(r)).length;
@@ -255,7 +274,35 @@ export default function SearchAndFilters({
                   );
                 })}
               </select>
-              <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white/40">
+              <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white/60">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </div>
+            </div>
+
+            {/* Activity Dropdown */}
+            <div className="relative">
+              <select
+                value={state.activity}
+                onChange={(e) => setState({ ...state, activity: e.target.value })}
+                aria-label="Filter by activity"
+                className={`h-10 appearance-none rounded-xl border px-4 pr-9 font-sans text-xs font-medium uppercase tracking-wider transition-all duration-200 cursor-pointer focus:outline-none focus:ring-1 focus:ring-brass ${
+                  state.activity !== ALL
+                    ? "border-[var(--color-wild-orange)]/60 bg-[var(--color-wild-orange)]/15 text-white shadow-[0_0_15px_rgba(212,147,104,0.2)]"
+                    : "border-white/10 bg-black/30 text-white/75 hover:border-white/25 hover:text-white"
+                }`}
+              >
+                <option value={ALL} className="bg-[#121B20] text-white">
+                  Any Activity
+                </option>
+                {ACTIVITY_TAGS.map((a) => (
+                  <option key={a.key} value={a.key} className="bg-[#121B20] text-white">
+                    {a.label}
+                  </option>
+                ))}
+              </select>
+              <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white/60">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <path d="M6 9l6 6 6-6" />
                 </svg>
@@ -276,11 +323,11 @@ export default function SearchAndFilters({
               >
                 {DURATION_BUCKETS.map((d) => (
                   <option key={d.value} value={d.value} className="bg-[#121B20] text-white">
-                    {d.label}
+                    {d.short}
                   </option>
                 ))}
               </select>
-              <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white/40">
+              <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white/60">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <path d="M6 9l6 6 6-6" />
                 </svg>
@@ -296,16 +343,16 @@ export default function SearchAndFilters({
                 className="h-10 appearance-none rounded-xl border border-white/10 bg-black/30 px-4 pr-9 font-sans text-xs font-medium uppercase tracking-wider text-white/75 transition-all duration-200 cursor-pointer hover:border-white/25 hover:text-white focus:outline-none focus:ring-1 focus:ring-brass"
               >
                 <option value="title" className="bg-[#121B20] text-white">
-                  Sort: Title (A–Z)
+                  A–Z
                 </option>
                 <option value="duration-short" className="bg-[#121B20] text-white">
-                  Sort: Shortest First
+                  Shortest
                 </option>
                 <option value="duration-long" className="bg-[#121B20] text-white">
-                  Sort: Longest First
+                  Longest
                 </option>
               </select>
-              <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white/40">
+              <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white/60">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <path d="M6 9l6 6 6-6" />
                 </svg>
@@ -332,7 +379,7 @@ export default function SearchAndFilters({
             <button
               type="button"
               onClick={() => setMobileFiltersOpen(true)}
-              className="flex-1 flex items-center justify-center gap-2 h-11 rounded-xl border border-white/15 bg-black/40 px-4 font-sans text-xs font-semibold uppercase tracking-wider text-white transition-all hover:border-brass hover:text-brass"
+              className="flex-1 flex min-h-[48px] items-center justify-center gap-2 rounded-xl border border-white/15 bg-black/40 px-4 font-sans text-xs font-semibold uppercase tracking-wider text-white transition-all hover:border-brass hover:text-brass"
             >
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6" strokeLinecap="round" strokeLinejoin="round" />
@@ -349,7 +396,7 @@ export default function SearchAndFilters({
               <button
                 type="button"
                 onClick={handleClearAll}
-                className="h-11 px-3.5 rounded-xl border border-white/15 bg-white/5 text-xs font-semibold text-white/70"
+                className="min-h-[48px] px-3.5 rounded-xl border border-white/15 bg-white/5 text-xs font-semibold text-white/70"
               >
                 Reset
               </button>
@@ -363,7 +410,7 @@ export default function SearchAndFilters({
             <button
               type="button"
               onClick={() => setState({ ...state, category: ALL })}
-              className={`flex-shrink-0 inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 font-sans text-xs font-medium tracking-wide transition-all duration-300 cursor-pointer ${
+              className={`flex-shrink-0 inline-flex min-h-[46px] items-center gap-2 rounded-full px-3.5 py-2 font-sans text-xs font-medium tracking-wide transition-all duration-300 cursor-pointer ${
                 state.category === ALL
                   ? "bg-gradient-to-r from-[var(--color-wild-orange)] to-brass text-[#0C1617] font-bold shadow-[0_4px_16px_rgba(212,147,104,0.35)] scale-[1.02]"
                   : "border border-white/10 bg-white/[0.04] text-white/75 hover:border-white/25 hover:text-white hover:bg-white/[0.08]"
@@ -371,7 +418,7 @@ export default function SearchAndFilters({
             >
               <span>All Journeys</span>
               <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${
-                state.category === ALL ? "bg-black/25 text-[#0C1617]" : "bg-white/10 text-white/60"
+                state.category === ALL ? "bg-black/25 text-[#0C1617]" : "bg-black/30 text-white/85"
               }`}>
                 {packages.length}
               </span>
@@ -385,7 +432,7 @@ export default function SearchAndFilters({
                   key={cat}
                   type="button"
                   onClick={() => setState({ ...state, category: isSelected ? ALL : cat })}
-                  className={`flex-shrink-0 inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 font-sans text-xs font-medium tracking-wide transition-all duration-300 cursor-pointer ${
+                  className={`flex-shrink-0 inline-flex min-h-[46px] items-center gap-2 rounded-full px-3.5 py-2 font-sans text-xs font-medium tracking-wide transition-all duration-300 cursor-pointer ${
                     isSelected
                       ? "bg-gradient-to-r from-[var(--color-wild-orange)] to-brass text-[#0C1617] font-bold shadow-[0_4px_16px_rgba(212,147,104,0.35)] scale-[1.02]"
                       : "border border-white/10 bg-white/[0.04] text-white/75 hover:border-white/25 hover:text-white hover:bg-white/[0.08]"
@@ -393,7 +440,7 @@ export default function SearchAndFilters({
                 >
                   <span>{cat}</span>
                   <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${
-                    isSelected ? "bg-black/25 text-[#0C1617]" : "bg-white/10 text-white/60"
+                    isSelected ? "bg-black/25 text-[#0C1617]" : "bg-black/30 text-white/85"
                   }`}>
                     {count}
                   </span>
@@ -405,8 +452,8 @@ export default function SearchAndFilters({
 
         {/* Active Filter Tags */}
         {activeFilterCount > 0 && (
-          <div className="mt-2.5 flex flex-wrap items-center gap-2 pt-2.5 border-t border-white/5">
-            <span className="font-sans text-[11px] uppercase tracking-wider text-white/40">
+          <div className="mt-2.5 flex flex-wrap items-center gap-2 border-t border-white/5 pt-2.5">
+            <span className="font-sans text-[11px] uppercase tracking-wider text-white/60">
               Active filters:
             </span>
             {state.q && (
@@ -422,6 +469,12 @@ export default function SearchAndFilters({
               <FilterPill
                 label={DURATION_BUCKETS.find((b) => b.value === state.duration)?.label ?? state.duration}
                 onRemove={() => setState({ ...state, duration: ALL })}
+              />
+            )}
+            {state.activity !== ALL && (
+              <FilterPill
+                label={`Activity: ${activityLabel(state.activity)}`}
+                onRemove={() => setState({ ...state, activity: ALL })}
               />
             )}
           </div>
@@ -440,7 +493,7 @@ export default function SearchAndFilters({
             <strong className="text-white font-semibold">{sorted.length}</strong> {sorted.length === 1 ? "journey" : "journeys"} available
           </span>
           {sorted.length < packages.length && (
-            <span className="text-xs text-white/45">
+            <span className="text-xs text-white/60">
               (filtered from {packages.length})
             </span>
           )}
@@ -452,7 +505,7 @@ export default function SearchAndFilters({
             type="button"
             onClick={() => setViewMode("coverflow")}
             aria-pressed={viewMode === "coverflow"}
-            className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-3 py-1.5 font-sans text-xs font-semibold tracking-wide transition-all duration-200 cursor-pointer sm:flex-none ${
+            className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-3 py-2 font-sans text-xs font-semibold tracking-wide transition-all duration-200 cursor-pointer sm:flex-none min-h-[46px] ${
               viewMode === "coverflow"
                 ? "bg-gradient-to-r from-brass to-[var(--color-wild-orange)] text-[#0C1617] shadow-[0_4px_12px_rgba(212,147,104,0.3)]"
                 : "text-white/60 hover:text-white"
@@ -469,7 +522,7 @@ export default function SearchAndFilters({
             type="button"
             onClick={() => setViewMode("grid")}
             aria-pressed={viewMode === "grid"}
-            className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-3 py-1.5 font-sans text-xs font-semibold tracking-wide transition-all duration-200 cursor-pointer sm:flex-none ${
+            className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-3 py-2 font-sans text-xs font-semibold tracking-wide transition-all duration-200 cursor-pointer sm:flex-none min-h-[46px] ${
               viewMode === "grid"
                 ? "bg-gradient-to-r from-brass to-[var(--color-wild-orange)] text-[#0C1617] shadow-[0_4px_12px_rgba(212,147,104,0.3)]"
                 : "text-white/60 hover:text-white"
@@ -522,9 +575,15 @@ export default function SearchAndFilters({
           role="dialog"
           aria-modal="true"
           aria-label="Filter Journeys"
-          className="fixed inset-0 z-50 flex flex-col justify-end bg-black/80 backdrop-blur-md sm:hidden"
+          className="fixed inset-0 z-50 flex flex-col justify-end sm:hidden"
         >
-          <div className="max-h-[85vh] flex flex-col rounded-t-3xl border-t border-white/15 bg-[#0e181a] p-6 shadow-2xl overflow-hidden animate-slide-up">
+          <button
+            type="button"
+            aria-label="Close filters"
+            onClick={() => setMobileFiltersOpen(false)}
+            className="absolute inset-0 h-full w-full cursor-default bg-black/80 backdrop-blur-md"
+          />
+          <div className="relative max-h-[85vh] flex flex-col rounded-t-3xl border-t border-white/15 bg-[#0e181a] p-6 shadow-2xl overflow-hidden animate-slide-up">
             <div className="flex items-center justify-between pb-4 border-b border-white/10">
               <div className="flex items-center gap-2">
                 <h3 className="font-serif text-xl font-light text-white">Filter Itineraries</h3>
@@ -537,7 +596,7 @@ export default function SearchAndFilters({
               <button
                 ref={closeFiltersRef}
                 onClick={() => setMobileFiltersOpen(false)}
-                className="p-2 text-white/60 hover:text-white rounded-full bg-white/5"
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-white/5 text-white/70 hover:text-white"
                 aria-label="Close filters"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -547,16 +606,17 @@ export default function SearchAndFilters({
               </button>
             </div>
 
-            <div className="flex-1 overflow-y-auto py-5 space-y-6">
+            <div className="flex-1 overflow-y-auto space-y-6 py-5">
               {/* Region */}
               <div>
-                <label className="block mb-2 font-sans text-xs font-semibold uppercase tracking-wider text-white/60">
+                <label htmlFor="filter-region" className="mb-2 block font-sans text-xs font-semibold uppercase tracking-wider text-white/70">
                   Region
                 </label>
                 <select
+                  id="filter-region"
                   value={state.region}
                   onChange={(e) => setState({ ...state, region: e.target.value })}
-                  className="w-full h-12 rounded-xl border border-white/15 bg-black/40 px-4 font-sans text-sm text-white focus:outline-none focus:border-brass"
+                  className="h-12 w-full rounded-xl border border-white/15 bg-black/40 px-4 font-sans text-sm text-white focus:outline-none focus:border-brass"
                 >
                   <option value={ALL} className="bg-[#121B20]">
                     All Regions ({packages.length})
@@ -569,15 +629,38 @@ export default function SearchAndFilters({
                 </select>
               </div>
 
+              {/* Activity */}
+              <div>
+                <label htmlFor="filter-activity" className="mb-2 block font-sans text-xs font-semibold uppercase tracking-wider text-white/70">
+                  Activity
+                </label>
+                <select
+                  id="filter-activity"
+                  value={state.activity}
+                  onChange={(e) => setState({ ...state, activity: e.target.value })}
+                  className="h-12 w-full rounded-xl border border-white/15 bg-black/40 px-4 font-sans text-sm text-white focus:outline-none focus:border-brass"
+                >
+                  <option value={ALL} className="bg-[#121B20]">
+                    Any Activity
+                  </option>
+                  {ACTIVITY_TAGS.map((a) => (
+                    <option key={a.key} value={a.key} className="bg-[#121B20]">
+                      {a.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
               {/* Duration */}
               <div>
-                <label className="block mb-2 font-sans text-xs font-semibold uppercase tracking-wider text-white/60">
+                <label htmlFor="filter-duration" className="mb-2 block font-sans text-xs font-semibold uppercase tracking-wider text-white/70">
                   Duration
                 </label>
                 <select
+                  id="filter-duration"
                   value={state.duration}
                   onChange={(e) => setState({ ...state, duration: e.target.value })}
-                  className="w-full h-12 rounded-xl border border-white/15 bg-black/40 px-4 font-sans text-sm text-white focus:outline-none focus:border-brass"
+                  className="h-12 w-full rounded-xl border border-white/15 bg-black/40 px-4 font-sans text-sm text-white focus:outline-none focus:border-brass"
                 >
                   {DURATION_BUCKETS.map((d) => (
                     <option key={d.value} value={d.value} className="bg-[#121B20]">
@@ -589,13 +672,14 @@ export default function SearchAndFilters({
 
               {/* Sort */}
               <div>
-                <label className="block mb-2 font-sans text-xs font-semibold uppercase tracking-wider text-white/60">
+                <label htmlFor="filter-sort" className="mb-2 block font-sans text-xs font-semibold uppercase tracking-wider text-white/70">
                   Sort By
                 </label>
                 <select
+                  id="filter-sort"
                   value={state.sort}
                   onChange={(e) => setState({ ...state, sort: e.target.value })}
-                  className="w-full h-12 rounded-xl border border-white/15 bg-black/40 px-4 font-sans text-sm text-white focus:outline-none focus:border-brass"
+                  className="h-12 w-full rounded-xl border border-white/15 bg-black/40 px-4 font-sans text-sm text-white focus:outline-none focus:border-brass"
                 >
                   <option value="title" className="bg-[#121B20]">
                     Title (A–Z)
@@ -640,7 +724,7 @@ function FilterPill({ label, onRemove }: { label: string; onRemove: () => void }
       <button
         type="button"
         onClick={onRemove}
-        className="p-0.5 text-white/40 hover:text-white transition-colors rounded-full"
+        className="-m-2 flex h-9 w-9 items-center justify-center text-white/70 hover:text-white transition-colors rounded-full"
         aria-label={`Remove filter ${label}`}
       >
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">

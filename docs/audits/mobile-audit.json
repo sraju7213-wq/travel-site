@@ -1,0 +1,411 @@
+{
+  "base": "http://localhost:3000",
+  "browser": "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe",
+  "widths": [
+    320,
+    390,
+    430
+  ],
+  "results": [
+    {
+      "route": "/",
+      "width": 320,
+      "vw": 320,
+      "scrollW": 320,
+      "overflow": [],
+      "small": [
+        {
+          "tag": "button",
+          "w": 40,
+          "h": 40,
+          "text": ""
+        },
+        {
+          "tag": "button",
+          "w": 40,
+          "h": 40,
+          "text": ""
+        }
+      ],
+      "invisible": [
+        "h2 \"Kashmir\"",
+        "h2 \"Nepal\"",
+        "h2 \"Rajasthan\"",
+        "h2 \"Kerala\"",
+        "h2 \"Agra &amp; the Taj\"",
+        "h2 \"Varanasi\""
+      ]
+    },
+    {
+      "route": "/",
+      "width": 390,
+      "vw": 390,
+      "scrollW": 390,
+      "overflow": [],
+      "small": [
+        {
+          "tag": "button",
+          "w": 40,
+          "h": 40,
+          "text": ""
+        },
+        {
+          "tag": "button",
+          "w": 40,
+          "h": 40,
+          "text": ""
+        }
+      ],
+      "invisible": [
+        "h2 \"Kashmir\"",
+        "h2 \"Nepal\"",
+        "h2 \"Rajasthan\"",
+        "h2 \"Kerala\"",
+        "h2 \"Agra &amp; the Taj\"",
+        "h2 \"Varanasi\""
+      ]
+    },
+    {
+      "route": "/",
+      "width": 430,
+      "vw": 430,
+      "scrollW": 430,
+      "overflow": [],
+      "small": [
+        {
+          "tag": "button",
+          "w": 40,
+          "h": 40,
+          "text": ""
+        },
+        {
+          "tag": "button",
+          "w": 40,
+          "h": 40,
+          "text": ""
+        }
+      ],
+      "invisible": [
+        "h2 \"Kashmir\"",
+        "h2 \"Nepal\"",
+        "h2 \"Rajasthan\"",
+        "h2 \"Kerala\"",
+        "h2 \"Agra &amp; the Taj\"",
+        "h2 \"Varanasi\""
+      ]
+    },
+    {
+      "route": "/journeys",
+      "width": 320,
+      "vw": 320,
+      "scrollW": 320,
+      "overflow": [],
+      "small": [],
+      "invisible": []
+    },
+    {
+      "route": "/journeys",
+      "width": 390,
+      "vw": 390,
+      "scrollW": 390,
+      "overflow": [],
+      "small": [],
+      "invisible": []
+    },
+    {
+      "route": "/journeys",
+      "width": 430,
+      "vw": 430,
+      "scrollW": 430,
+      "overflow": [],
+      "small": [],
+      "invisible": []
+    },
+    {
+      "route": "/journeys?category=Himalayan%20Expeditions",
+      "width": 320,
+      "vw": 320,
+      "scrollW": 320,
+      "overflow": [],
+      "small": [
+        {
+          "tag": "button",
+          "w": 32,
+          "h": 32,
+          "text": ""
+        }
+      ],
+      "invisible": []
+    },
+    {
+      "route": "/journeys?category=Himalayan%20Expeditions",
+      "width": 390,
+      "vw": 390,
+      "scrollW": 390,
+      "overflow": [],
+      "small": [
+        {
+          "tag": "button",
+          "w": 32,
+          "h": 32,
+          "text": ""
+        }
+      ],
+      "invisible": []
+    },
+    {
+      "route": "/journeys?category=Himalayan%20Expeditions",
+      "width": 430,
+      "vw": 430,
+      "scrollW": 430,
+      "overflow": [],
+      "small": [
+        {
+          "tag": "button",
+          "w": 32,
+          "h": 32,
+          "text": ""
+        }
+      ],
+      "invisible": []
+    },
+    {
+      "route": "/journeys?activity=trekking",
+      "width": 320,
+      "vw": 320,
+      "scrollW": 320,
+      "overflow": [],
+      "small": [
+        {
+          "tag": "button",
+          "w": 32,
+          "h": 32,
+          "text": ""
+        }
+      ],
+      "invisible": []
+    },
+    {
+      "route": "/journeys?activity=trekking",
+      "width": 390,
+      "vw": 390,
+      "scrollW": 390,
+      "overflow": [],
+      "small": [
+        {
+          "tag": "button",
+          "w": 32,
+          "h": 32,
+          "text": ""
+        }
+      ],
+      "invisible": []
+    },
+    {
+      "route": "/journeys?activity=trekking",
+      "width": 430,
+      "vw": 430,
+      "scrollW": 430,
+      "overflow": [],
+      "small": [
+        {
+          "tag": "button",
+          "w": 32,
+          "h": 32,
+          "text": ""
+        }
+      ],
+      "invisible": []
+    },
+    {
+      "route": "/packages/delhi-stopover",
+      "width": 320,
+      "vw": 320,
+      "scrollW": 320,
+      "overflow": [],
+      "small": [],
+      "invisible": []
+    },
+    {
+      "route": "/packages/delhi-stopover",
+      "width": 390,
+      "vw": 390,
+      "scrollW": 390,
+      "overflow": [],
+      "small": [],
+      "invisible": []
+    },
+    {
+      "route": "/packages/delhi-stopover",
+      "width": 430,
+      "vw": 430,
+      "scrollW": 430,
+      "overflow": [],
+      "small": [],
+      "invisible": []
+    },
+    {
+      "route": "/houseboats",
+      "width": 320,
+      "vw": 320,
+      "scrollW": 320,
+      "overflow": [],
+      "small": [],
+      "invisible": []
+    },
+    {
+      "route": "/houseboats",
+      "width": 390,
+      "vw": 390,
+      "scrollW": 390,
+      "overflow": [],
+      "small": [],
+      "invisible": []
+    },
+    {
+      "route": "/houseboats",
+      "width": 430,
+      "vw": 430,
+      "scrollW": 430,
+      "overflow": [],
+      "small": [],
+      "invisible": []
+    },
+    {
+      "route": "/enquiry",
+      "width": 320,
+      "vw": 320,
+      "scrollW": 320,
+      "overflow": [],
+      "small": [],
+      "invisible": []
+    },
+    {
+      "route": "/enquiry",
+      "width": 390,
+      "vw": 390,
+      "scrollW": 390,
+      "overflow": [],
+      "small": [],
+      "invisible": []
+    },
+    {
+      "route": "/enquiry",
+      "width": 430,
+      "vw": 430,
+      "scrollW": 430,
+      "overflow": [],
+      "small": [],
+      "invisible": []
+    },
+    {
+      "route": "/about",
+      "width": 320,
+      "vw": 320,
+      "scrollW": 320,
+      "overflow": [],
+      "small": [],
+      "invisible": []
+    },
+    {
+      "route": "/about",
+      "width": 390,
+      "vw": 390,
+      "scrollW": 390,
+      "overflow": [],
+      "small": [],
+      "invisible": []
+    },
+    {
+      "route": "/about",
+      "width": 430,
+      "vw": 430,
+      "scrollW": 430,
+      "overflow": [],
+      "small": [],
+      "invisible": []
+    },
+    {
+      "route": "/contact",
+      "width": 320,
+      "vw": 320,
+      "scrollW": 320,
+      "overflow": [],
+      "small": [],
+      "invisible": []
+    },
+    {
+      "route": "/contact",
+      "width": 390,
+      "vw": 390,
+      "scrollW": 390,
+      "overflow": [],
+      "small": [],
+      "invisible": []
+    },
+    {
+      "route": "/contact",
+      "width": 430,
+      "vw": 430,
+      "scrollW": 430,
+      "overflow": [],
+      "small": [],
+      "invisible": []
+    },
+    {
+      "route": "/privacy",
+      "width": 320,
+      "vw": 320,
+      "scrollW": 320,
+      "overflow": [],
+      "small": [],
+      "invisible": []
+    },
+    {
+      "route": "/privacy",
+      "width": 390,
+      "vw": 390,
+      "scrollW": 390,
+      "overflow": [],
+      "small": [],
+      "invisible": []
+    },
+    {
+      "route": "/privacy",
+      "width": 430,
+      "vw": 430,
+      "scrollW": 430,
+      "overflow": [],
+      "small": [],
+      "invisible": []
+    },
+    {
+      "route": "/no-such-page",
+      "width": 320,
+      "vw": 320,
+      "scrollW": 320,
+      "overflow": [],
+      "small": [],
+      "invisible": []
+    },
+    {
+      "route": "/no-such-page",
+      "width": 390,
+      "vw": 390,
+      "scrollW": 390,
+      "overflow": [],
+      "small": [],
+      "invisible": []
+    },
+    {
+      "route": "/no-such-page",
+      "width": 430,
+      "vw": 430,
+      "scrollW": 430,
+      "overflow": [],
+      "small": [],
+      "invisible": []
+    }
+  ],
+  "shots": []
+}

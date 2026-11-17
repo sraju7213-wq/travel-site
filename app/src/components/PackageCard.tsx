@@ -121,7 +121,7 @@ export default function PackageCard({ pkg, compact = false }: PackageCardProps) 
             </div>
 
             {cleanDifficulty && (
-              <span className="font-mono text-[10px] uppercase tracking-wider text-white/40">
+              <span className="font-mono text-[10px] uppercase tracking-wider text-white/60">
                 {cleanDifficulty}
               </span>
             )}

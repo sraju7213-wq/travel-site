@@ -108,6 +108,12 @@ contact sheets are in `docs/evidence/`. Re-crop by hand against the rectangles b
 | `images/destinations/impact.png` | Educational Expeditions & Community Stewardship | Landing Page — Why Travel With Us (`Impact`) |
 | `images/destinations/travel.png` | Seamless Private Transit & Scenic Road Travel | Landing Page — Why Travel With Us (`Travel`) |
 
+## Houseboats page hero (user photography archive)
+
+| File | Description | Section |
+|---|---|---|
+| `images/services/houseboat-hero.jpg` | User-supplied houseboat hero photo (Gemini-generated, 2752x1536, resized to 2400x1340) | Houseboats page — full-bleed hero banner (`components/houseboats/HouseboatHero.tsx`) |
+
 ## Pexels Package Photography (replaces brochure crops)
 
 Package thumbnails, package detail galleries, destination cards, experience cards,

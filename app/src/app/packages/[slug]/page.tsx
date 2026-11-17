@@ -59,7 +59,6 @@ export default async function PackagePage({ params }: PackagePageProps) {
     .map((entry) => entry.p);
 
   const gallery = getPackageGallery(pkg);
-  const destinations = pkg.region.filter((r) => r !== "India" && r !== "Nepal");
 
   return (
     <EnquiryModalProvider

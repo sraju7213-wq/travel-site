@@ -89,19 +89,24 @@ export default function PageHero({
           ease: EASE.expo,
         });
       }
-      gsap.from(items, {
-        y: 28,
-        opacity: 0,
-        duration: DURATION.slow,
-        ease: EASE.expo,
-        stagger: 0.1,
-        delay: 0.12,
-        clearProps: "all",
-      });
+      gsap.fromTo(
+        items,
+        { y: 28, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: DURATION.slow,
+          ease: EASE.expo,
+          stagger: 0.1,
+          delay: 0.12,
+          immediateRender: false,
+          clearProps: "all",
+        },
+      );
     }, section);
 
     return () => ctx.revert();
-  }, []);
+  }, [isNormal]);
 
   const content = (
     <>
@@ -132,7 +137,7 @@ export default function PageHero({
           {primaryCta && (
             <Link
               href={primaryCta.href}
-              className="group inline-flex w-full items-center justify-center gap-4 bg-[var(--color-wild-orange)] px-7 py-4 font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-white transition-colors hover:bg-[var(--color-wild-orange-hover)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black/40 sm:w-auto"
+              className="group inline-flex w-full items-center justify-center gap-4 bg-[var(--color-wild-orange)] px-7 py-4 font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-[#0C1617] transition-colors hover:bg-[var(--color-wild-orange-hover)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black/40 sm:w-auto"
             >
               <span>{primaryCta.label}</span>
               <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1.5">
@@ -143,7 +148,7 @@ export default function PageHero({
           {secondaryCta && (
             <Link
               href={secondaryCta.href}
-              className="inline-flex w-full items-center justify-center border-b border-white/40 pb-1 font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-white transition-colors hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:w-auto"
+              className="inline-flex min-h-[44px] w-full items-center justify-center border-b border-white/40 pb-1 font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-white transition-colors hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:w-auto"
             >
               {secondaryCta.label}
             </Link>
@@ -226,7 +231,7 @@ export default function PageHero({
               {meta.map((item) => (
                 <p key={item.label} className="font-mono text-[11px] tracking-[0.22em] text-white/60">
                   {item.value}
-                  <span className="mt-1 block font-sans text-[10px] uppercase tracking-[0.3em] text-white/40">
+                  <span className="mt-1 block font-sans text-[10px] uppercase tracking-[0.3em] text-white/70">
                     {item.label}
                   </span>
                 </p>
@@ -250,7 +255,7 @@ export default function PageHero({
           aria-hidden="true"
           className="absolute inset-x-0 bottom-7 z-10 mx-auto flex w-fit flex-col items-center gap-2"
         >
-          <span className="font-sans text-[9px] uppercase tracking-[0.34em] text-white/45">Scroll</span>
+          <span className="font-sans text-[9px] uppercase tracking-[0.34em] text-white/60">Scroll</span>
           <span className="relative block h-10 w-px overflow-hidden bg-white/20">
             <span className="animate-scroll-cue absolute inset-x-0 top-0 h-4 bg-[var(--color-wild-orange)]" />
           </span>

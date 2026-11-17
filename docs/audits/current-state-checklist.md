@@ -1,6 +1,6 @@
 # Current-State Checklist — India Nepal Travel Website
 
-**Reconciled:** 2026-10-28 (Phase 0). Source of truth for the current clone; supersedes stale "missing route/image" findings in `docs/audits/baseline-audit.md`.
+**Reconciled:** 2026-11-17 (mobile + navigation pass). Source of truth for the current clone; supersedes stale "missing route/image" findings in `docs/audits/baseline-audit.md`.
 
 ## Stack & tooling (actual)
 - Next.js 16.4.3, React 19.3.0, App Router, TypeScript 5 strict, Tailwind v4 (`@tailwindcss/turbopack`), CSS variables
@@ -12,15 +12,78 @@
 | Route | File | Status |
 |---|---|---|
 | `/` | `src/app/page.tsx` | 200 |
-| `/explore` | `src/app/explore/page.tsx` | 200 |
-| `/explore/[category]` | `src/app/explore/[category]/page.tsx` | 200 |
+| `/journeys` | `src/app/journeys/page.tsx` | 200 |
 | `/packages/[slug]` | `src/app/packages/[slug]/page.tsx` | 200 (real slugs), 404 (invalid) |
 | `/enquiry` | `src/app/enquiry/page.tsx` | 200 |
 | `/about` | `src/app/about/page.tsx` | 200 |
 | `/contact` | `src/app/contact/page.tsx` | 200 |
 | `/houseboats` | `src/app/houseboats/page.tsx` | 200 |
+| `/privacy` | `src/app/privacy/page.tsx` | 200 |
+| `/admin` | `src/app/admin/page.tsx` | 200 |
+| `/explore` | `src/app/explore/page.tsx` | 308 → `/journeys` |
+| `/explore/[category]` | `src/app/explore/[category]/page.tsx` | 308 → `/journeys?category=…#catalogue` |
 
-## Source-of-truth files
+`/explore` and `/explore/[category]` are now redirects to the single canonical
+catalogue at `/journeys`, so the same journeys are not published under two URLs.
+
+## Navigation (rebuilt 2026-11-17)
+
+`src/lib/navigation.ts` is now the single source of truth for every menu, so no
+menu can point at a route that does not exist. `src/components/MegaMenu.tsx`
+(dead code, with links to the removed `/experiences` route) was deleted.
+
+| Surface | File | Behaviour |
+|---|---|---|
+| Desktop header (≥ `lg`) | `src/components/SiteHeader.tsx` | Brand · Journeys ▾ · Destinations ▾ · Experiences ▾ · Houseboats · Heritage · Contact · Enquire CTA |
+| Desktop dropdown | `src/components/DesktopNavPanel.tsx` | Full-width panel, hover and click to open, Escape / outside click to close |
+| Mobile drawer (< `lg`) | `src/components/MobileNav.tsx` | Full-screen drawer: quick-jump search over destinations, journey categories, experiences and all 27 packages · collapsible groups · recently viewed / pinned · persistent "Plan your trip" CTA and the real booking-desk numbers |
+
+The drawer is mounted only while open, so no off-canvas markup is left in the
+accessibility tree. It is a modal dialog: Escape closes it, focus is trapped,
+focus returns to the menu button, and the page behind it cannot scroll.
+
+Contact details come from `BRAND.bookingOffice` (the brochure booking desk),
+never from a hard-coded number in a component.
+
+### Activity filters
+
+`src/lib/activities.ts` derives activity tags from brochure text (category,
+title, summary, highlights) — nothing is invented. `SearchAndFilters` now reads
+`?activity=`, so the navigation links for trekking, rafting, wildlife, culture,
+skiing, houseboats and city stopovers resolve to a real filtered result set
+instead of silently showing every package.
+
+## Mobile optimisation (2026-11-17)
+
+- **Entrance animations can no longer hide the page.** `PageTransition` and the
+  package hero used to set `opacity: 0` and rely on a GSAP timeline (or a React
+  timer) to reveal the content. If the rAF ticker was throttled — a background
+  tab, a slow phone, a dropped frame — the whole site rendered blank. The
+  curtain and the package hero are now CSS-driven (the browser's own animation
+  timeline) and the content is never hidden; the remaining GSAP entrances use
+  `fromTo` with `immediateRender: false` so they animate only if the ticker
+  runs.
+- **The home hero no longer downloads two videos on a phone.** `HeroVideoShuffler`
+  renders the poster photography instead below 768px, on data-saver
+  connections, and when reduced motion is requested; the poster still rotates.
+- Contrast: white-on-orange buttons now use ink text (7.3:1 instead of 2.6:1),
+  and low-opacity white text was raised across the site.
+- Touch targets: primary links, buttons, tabs, chips and carousel controls are
+  now at least 44px tall on phones.
+- `viewportFit: "cover"` and a `themeColor` were added to the root viewport.
+
+### Audits
+
+| Command | What it covers |
+|---|---|
+| `npm run audit:a11y` | axe-core + horizontal overflow at 320/375/390/768/1440 |
+| `npm run audit:mobile` | overflow, touch targets < 44px and invisible text at 320/390/430 |
+
+Latest run (2026-11-17): **0 axe violations and 0 horizontal overflow** across
+12 routes × 5 widths; mobile audit reports 0 overflow, 0 invisible text and 0
+small targets outside the WCAG inline/label exemptions.
+
+
 - `app/src/data/travel_packages_catalog.json` — 27 packages + 1 Kashmir houseboat service
 - `app/src/data/catalogue.ts` — typed accessors
 - `app/src/data/siteContent.ts` — editorial/homepage content

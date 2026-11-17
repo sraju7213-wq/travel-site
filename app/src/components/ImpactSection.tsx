@@ -75,6 +75,7 @@ export default function ImpactSection() {
             opacity: 1,
             duration: 1,
             ease: "power3.out",
+            immediateRender: false,
             scrollTrigger: {
               trigger,
               start: "top 75%",

@@ -75,7 +75,7 @@ export default function HouseboatCollection() {
           </div>
 
           <div className="flex items-center gap-3">
-            <span className="font-mono text-[11px] tracking-[0.18em] text-white/45">
+            <span className="font-mono text-[11px] tracking-[0.18em] text-white/60">
               {String(activeIndex + 1).padStart(2, "0")} / {String(HOUSEBOAT_CARDS.length).padStart(2, "0")}
             </span>
             <div className="flex items-center gap-2">
@@ -84,7 +84,7 @@ export default function HouseboatCollection() {
                 onClick={() => scrollByCards(-1)}
                 disabled={!canScrollLeft}
                 aria-label="Previous houseboat card"
-                className="flex h-10 w-10 items-center justify-center rounded-none border border-white/15 text-white/80 transition hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)] disabled:opacity-30 disabled:hover:border-white/15 disabled:hover:text-white/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)]"
+                className="flex h-11 w-11 items-center justify-center rounded-none border border-white/15 text-white/80 transition hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)] disabled:opacity-30 disabled:hover:border-white/15 disabled:hover:text-white/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)]"
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                   <path d="M15 18l-6-6 6-6" strokeLinecap="round" strokeLinejoin="round" />
@@ -95,7 +95,7 @@ export default function HouseboatCollection() {
                 onClick={() => scrollByCards(1)}
                 disabled={!canScrollRight}
                 aria-label="Next houseboat card"
-                className="flex h-10 w-10 items-center justify-center rounded-none border border-white/15 text-white/80 transition hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)] disabled:opacity-30 disabled:hover:border-white/15 disabled:hover:text-white/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)]"
+                className="flex h-11 w-11 items-center justify-center rounded-none border border-white/15 text-white/80 transition hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)] disabled:opacity-30 disabled:hover:border-white/15 disabled:hover:text-white/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)]"
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                   <path d="M9 18l6-6-6-6" strokeLinecap="round" strokeLinejoin="round" />
@@ -146,12 +146,12 @@ export default function HouseboatCollection() {
                   <h3 className="font-serif text-2xl font-light leading-snug text-white">
                     {card.title}
                   </h3>
-                  <p className="mt-3 flex-1 font-sans text-sm font-light leading-relaxed text-white/60">
+                  <p className="mt-3 flex-1 font-sans text-sm font-light leading-relaxed text-white/75">
                     {card.blurb}
                   </p>
                   <Link
                     href="/enquiry?service=houseboats"
-                    className="group/link mt-6 inline-flex items-center gap-3 font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-white transition-colors hover:text-[var(--color-wild-orange)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)]"
+                    className="group/link mt-6 inline-flex min-h-[44px] items-center gap-3 font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-white transition-colors hover:text-[var(--color-wild-orange)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)]"
                   >
                     <span className="flex h-8 w-8 items-center justify-center rounded-none border border-[var(--color-wild-orange)] text-[var(--color-wild-orange)] transition-colors duration-300 group-hover/link:bg-[var(--color-wild-orange)] group-hover/link:text-white">
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">

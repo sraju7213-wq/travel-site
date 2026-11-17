@@ -72,6 +72,7 @@ export default function CardGrid({
               ease: EASE.expo,
               stagger: stagger,
               overwrite: true,
+              immediateRender: false,
               onComplete: () => {
                 gsap.set(batch, { willChange: "auto" });
               },

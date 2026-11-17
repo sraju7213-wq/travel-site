@@ -498,7 +498,7 @@ export default function EnquiryModalProvider({
                   {status === "submitting" ? "Sending…" : "Submit Expedition Enquiry"}
                 </button>
 
-                <p className="text-center font-display text-[11px] text-white/40">
+                <p className="text-center font-display text-[11px] text-white/60">
                   Prefer email?{" "}
                   <Link href="/contact" className="text-brass hover:underline">
                     Contact the concierge desk

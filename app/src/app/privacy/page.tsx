@@ -155,10 +155,10 @@ export default function PrivacyPage() {
 
           {/* Return Links */}
           <div className="mt-12 pt-8 border-t border-white/10 flex flex-wrap gap-4 items-center justify-between">
-            <Link href="/enquiry" className="btn-ghost-dark text-xs py-3 px-6">
+            <Link href="/enquiry" className="btn-ghost-dark inline-flex min-h-[44px] items-center text-xs py-3 px-6">
               &larr; Back to Enquiry Page
             </Link>
-            <Link href="/contact" className="text-xs font-accent uppercase tracking-wider text-white/60 hover:text-brass transition-colors">
+            <Link href="/contact" className="inline-flex min-h-[44px] items-center text-xs font-accent uppercase tracking-wider text-white/70 hover:text-brass transition-colors">
               Contact Desk &rarr;
             </Link>
           </div>

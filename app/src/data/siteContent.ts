@@ -60,7 +60,7 @@ export const DESTINATIONS: Destination[] = [
   {
     name: "Ladakh",
     tagline: "Leh, Nubra Valley & Pangong",
-    image: pexels("38087449"),
+    image: "/images/destinations/ladakh-monastery.jpg",
     imagePosition: "object-[center_bottom]",
     blurb:
       "High passes, Buddhist monasteries and the cold desert of the Nubra valley. A journey of wide skies and empty roads, from Leh to the shore of Pangong.",
@@ -87,7 +87,7 @@ export const DESTINATIONS: Destination[] = [
   {
     name: "Rajasthan",
     tagline: "Jaipur, Jodhpur, Udaipur & Jaisalmer",
-    image: pexels("39605929"),
+    image: "/images/destinations/rajasthan.png",
     imagePosition: "object-[center_bottom]",
     blurb:
       "Forts, stepwells and desert camps across the Thar. A heritage route built around the great Rajput strongholds.",
@@ -105,7 +105,7 @@ export const DESTINATIONS: Destination[] = [
   {
     name: "Kerala",
     tagline: "Backwaters, Thekkady & Munnar",
-    image: pexels("30778230"),
+    image: "/images/destinations/kerala.png",
     imagePosition: "object-[center_70%]",
     blurb:
       "A houseboat on the backwaters, tea country in Munnar and elephant country in Thekkady.",
@@ -114,7 +114,7 @@ export const DESTINATIONS: Destination[] = [
   {
     name: "Agra & the Taj",
     tagline: "The Golden Triangle",
-    image: pexels("11521892"),
+    image: "/images/destinations/taj-mahal-reflection.png",
     imagePosition: "object-[center_60%]",
     blurb:
       "The Taj Mahal at Agra, Fatehpur Sikri and the palaces of Jaipur, with Delhi at either end.",
@@ -123,7 +123,7 @@ export const DESTINATIONS: Destination[] = [
   {
     name: "Varanasi",
     tagline: "The Ganges ghats",
-    image: pexels("40967314"),
+    image: "/images/destinations/varanasi.png",
     imagePosition: "object-[center_70%]",
     blurb:
       "Dawn on the ghats, the cremation banks and the old lanes of Kashi, with Sarnath and Bodh Gaya nearby.",
@@ -414,7 +414,7 @@ export const FOOTER_COLUMNS = [
     title: "Services",
     links: [
       { label: "Tailor-made itineraries", href: "/enquiry" },
-      { label: "Small-group journeys", href: "/explore?category=Stopovers" },
+      { label: "Small-group journeys", href: "/journeys?category=Stopovers#catalogue" },
       { label: "Special-interest groups", href: "/enquiry" },
       { label: "Houseboat booking service", href: "/houseboats" },
     ],

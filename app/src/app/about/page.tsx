@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import CtaZoom from "@/components/CtaZoom";
 import Container from "@/components/Container";
 import PageShell from "@/components/PageShell";
@@ -103,16 +102,12 @@ export default function AboutPage() {
         align="left"
         height="full"
         image="/images/destinations/about-hero.jpg"
+        imageStyle={{ transform: "scale(1.02)" }}
         imageAlt="Desert expedition caravan with camels and travelers crossing sand dunes at sunset"
         eyebrow="Est. 1927 · Specialist travel"
-        title={
-          <>
-            A century of travel
-            <span className="block text-white/60">across India &amp; Nepal</span>
-          </>
-        }
-        lead="Founded on the mountain waters of Kashmir and forged along the high trails of the Himalayas, our organisation has arranged specialist travel for nearly one hundred years — with offices in Delhi, Kashmir and Ladakh, and a fleet of cars in Delhi and luxurious houseboats in Kashmir."
-        meta={[{ value: "Since 1927", label: "Baktoo family heritage" }]}
+        contentClassName="text-center md:mr-auto md:ml-8 md:w-[40%] md:text-left md:drop-shadow-[0_2px_6px_rgba(0,0,0,0.85)]"
+        title="A century of travel"
+        lead="Baktoo family heritage since 1927 — specialist travel across India and Nepal, arranged from our offices in Delhi, Kashmir and Ladakh."
         primaryCta={{ label: "Plan your journey", href: "/enquiry" }}
         secondaryCta={{ label: "View all 27 journeys", href: "/journeys" }}
         scrollCue
@@ -216,52 +211,55 @@ export default function AboutPage() {
             <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-[var(--color-wild-orange)] mb-6">
               Operations &amp; Subcontinent Leadership
             </p>
-            <div className="grid gap-6 sm:grid-cols-3">
-              <div className="border border-white/10 bg-[#0C1617] p-5 flex gap-4 items-center transition-colors hover:border-[var(--color-wild-orange)]/60">
-                <div className="relative aspect-square w-16 shrink-0 overflow-hidden bg-black/40">
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="group border border-white/10 bg-[#0C1617] p-6 transition-colors hover:border-[var(--color-wild-orange)]/60">
+                <div className="relative aspect-[4/5] w-full overflow-hidden bg-black/40">
                   <Image
-                    src={pexels("7089664")}
-                    alt="Portrait placeholder for Yousuf Baktoo — original photograph not yet supplied"
+                    src="/images/destinations/yousuf-baktoo.jpg"
+                    alt="Yousuf Baktoo, senior executive"
                     fill
-                    sizes="64px"
-                    className="object-cover"
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
-                <div>
-                  <h4 className="font-serif text-lg font-light text-white">Yousuf Baktoo</h4>
-                  <p className="font-sans text-[10px] uppercase tracking-wider text-white/50">Senior Executive</p>
+                <div className="mt-5">
+                  <h4 className="font-serif text-2xl font-light text-white">Yousuf Baktoo</h4>
+                  <p className="mt-1 font-sans text-[11px] uppercase tracking-wider text-white/50">Senior Executive</p>
+                  <p className="mt-3 font-sans text-sm font-light leading-relaxed text-white/65">Personally supervises specialist tours and treks across the subcontinent.</p>
                 </div>
               </div>
 
-              <div className="border border-white/10 bg-[#0C1617] p-5 flex gap-4 items-center transition-colors hover:border-[var(--color-wild-orange)]/60">
-                <div className="relative aspect-square w-16 shrink-0 overflow-hidden bg-black/40">
+              <div className="group border border-white/10 bg-[#0C1617] p-6 transition-colors hover:border-[var(--color-wild-orange)]/60">
+                <div className="relative aspect-[4/5] w-full overflow-hidden bg-black/40">
                   <Image
-                    src={pexels("11800909")}
-                    alt="Portrait placeholder for Imtiaz Baktoo — original photograph not yet supplied"
+                    src="/images/destinations/imtiaz-baktoo.jpg"
+                    alt="Imtiaz Ahmad, operations and logistics"
                     fill
-                    sizes="64px"
-                    className="object-cover"
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
-                <div>
-                  <h4 className="font-serif text-lg font-light text-white">Imtiaz Baktoo</h4>
-                  <p className="font-sans text-[10px] uppercase tracking-wider text-white/50">Operations &amp; Logistics</p>
+                <div className="mt-5">
+                  <h4 className="font-serif text-2xl font-light text-white">Imtiaz Ahmad</h4>
+                  <p className="mt-1 font-sans text-[11px] uppercase tracking-wider text-white/50">Operations &amp; Logistics</p>
+                  <p className="mt-3 font-sans text-sm font-light leading-relaxed text-white/65">Manages inbound tourism, organising and coordinating group tours and FITs from around the world, with a strong understanding of international travel requirements and client expectations.</p>
                 </div>
               </div>
 
-              <div className="border border-white/10 bg-[#0C1617] p-5 flex gap-4 items-center transition-colors hover:border-[var(--color-wild-orange)]/60">
-                <div className="relative aspect-square w-16 shrink-0 overflow-hidden bg-black/40">
+              <div className="group border border-white/10 bg-[#0C1617] p-6 transition-colors hover:border-[var(--color-wild-orange)]/60">
+                <div className="relative aspect-[4/5] w-full overflow-hidden bg-black/40">
                   <Image
-                    src={pexels("27442817")}
-                    alt="Portrait placeholder for Hashim Baktoo — original photograph not yet supplied"
+                    src="/images/destinations/hashim-baktoo.jpg"
+                    alt="Hashim, expedition planning"
                     fill
-                    sizes="64px"
-                    className="object-cover"
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
-                <div>
-                  <h4 className="font-serif text-lg font-light text-white">Hashim Baktoo</h4>
-                  <p className="font-sans text-[10px] uppercase tracking-wider text-white/50">Expedition Planning</p>
+                <div className="mt-5">
+                  <h4 className="font-serif text-2xl font-light text-white">Hashim</h4>
+                  <p className="mt-1 font-sans text-[11px] uppercase tracking-wider text-white/50">Expedition Planning</p>
+                  <p className="mt-3 font-sans text-sm font-light leading-relaxed text-white/65">Twelve years leading business tours from Australia, with extensive travel throughout Australia and India and cross-cultural tour-management expertise.</p>
                 </div>
               </div>
             </div>
@@ -291,128 +289,6 @@ export default function AboutPage() {
               </div>
             </div>
           </figure>
-        </Container>
-      </section>
-
-      {/* Two realms */}
-      <section className="section-signature border-b border-white/5 py-16 md:py-24" aria-label="Our destinations: India and Nepal">
-        <Container wide>
-          <div className="max-w-3xl">
-            <p className="mb-5 flex items-center gap-4 font-sans text-[10px] font-medium uppercase tracking-[0.3em] text-[var(--color-wild-orange)]">
-              <span className="h-px w-10 bg-[var(--color-wild-orange)]" />
-              Two diverse lands
-            </p>
-            <h2 className="font-serif text-4xl font-light leading-[1.08] tracking-normal text-white md:text-5xl">
-              Two distinct civilisations,
-              <span className="block text-white/55">one seamless journey</span>
-            </h2>
-            <p className="mt-6 font-sans text-sm font-light leading-relaxed text-white/70 md:text-base">
-              We operate exclusively in India and Nepal, with offices in Delhi, Kashmir and Ladakh.
-            </p>
-          </div>
-
-          <div className="mt-12 grid gap-8 lg:grid-cols-2">
-            {/* India */}
-            <article className="group relative overflow-hidden border border-white/10 bg-[#0C1617]">
-              <div className="relative aspect-[16/10] overflow-hidden">
-                <Image
-                  src={pexels("39605929")}
-                  alt="The sandstone ramparts of Amer Fort above Jaipur in Rajasthan"
-                  fill
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-[#0C1617] via-[#0C1617]/20 to-transparent" />
-                <span className="absolute left-5 top-5 border border-white/25 bg-black/40 px-3.5 py-1 font-sans text-[10px] font-medium uppercase tracking-[0.24em] text-white/90 backdrop-blur-sm">
-                  India
-                </span>
-              </div>
-              <div className="p-7 md:p-9">
-                <h3 className="font-serif text-2xl font-light text-white md:text-3xl">
-                  From royal palaces to glaciated passes
-                </h3>
-                <p className="mt-4 font-sans text-sm font-light leading-relaxed text-white/70">
-                  Rajasthan&rsquo;s historic desert citadels, Varanasi&rsquo;s ancient dawn ghats along the
-                  Ganges, tranquil houseboat cruises through the Kerala backwaters, and high Buddhist
-                  monasteries in Ladakh.
-                </p>
-                <ul className="mt-6 grid gap-2.5 font-sans text-[11px] uppercase tracking-[0.16em] text-white/60 sm:grid-cols-2">
-                  {[
-                    "Golden Triangle & Rajasthan",
-                    "Kashmir Valley & Houseboats",
-                    "Ladakh & Zanskar Treks",
-                    "Kerala Backwaters & South India",
-                  ].map((item) => (
-                    <li key={item} className="flex items-center gap-2.5">
-                      <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[var(--color-wild-orange)]" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href="/explore?category=India%20Tours"
-                  className="group/link mt-8 inline-flex items-center gap-3 font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-white transition-colors hover:text-[var(--color-wild-orange)]"
-                >
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-wild-orange)] text-[var(--color-wild-orange)] transition-colors duration-300 group-hover/link:bg-[var(--color-wild-orange)] group-hover/link:text-white">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-                      <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </span>
-                  Explore India journeys
-                </Link>
-              </div>
-            </article>
-
-            {/* Nepal */}
-            <article className="group relative overflow-hidden border border-white/10 bg-[#0C1617]">
-              <div className="relative aspect-[16/10] overflow-hidden">
-                <Image
-                  src={pexels("20988035")}
-                  alt="Kathmandu temple squares and stupas, Nepal"
-                  fill
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-[#0C1617] via-[#0C1617]/20 to-transparent" />
-                <span className="absolute left-5 top-5 border border-white/25 bg-black/40 px-3.5 py-1 font-sans text-[10px] font-medium uppercase tracking-[0.24em] text-white/90 backdrop-blur-sm">
-                  Nepal
-                </span>
-              </div>
-              <div className="p-7 md:p-9">
-                <h3 className="font-serif text-2xl font-light text-white md:text-3xl">
-                  The sanctuary of the high peaks
-                </h3>
-                <p className="mt-4 font-sans text-sm font-light leading-relaxed text-white/70">
-                  Kathmandu&rsquo;s sacred Newari temples, peaceful lakeside reflections in Pokhara, white-water
-                  rafting along the roaring Trisuli River, and rhino safaris in Chitwan National Park.
-                </p>
-                <ul className="mt-6 grid gap-2.5 font-sans text-[11px] uppercase tracking-[0.16em] text-white/60 sm:grid-cols-2">
-                  {[
-                    "Kathmandu Valley World Heritage",
-                    "Himalayan Mini & Multi-Day Treks",
-                    "Chitwan Jungle Wildlife Safaris",
-                    "Trisuli River Rafting Expeditions",
-                  ].map((item) => (
-                    <li key={item} className="flex items-center gap-2.5">
-                      <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[var(--color-wild-orange)]" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href="/explore?category=Nepal%20Adventure"
-                  className="group/link mt-8 inline-flex items-center gap-3 font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-white transition-colors hover:text-[var(--color-wild-orange)]"
-                >
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-wild-orange)] text-[var(--color-wild-orange)] transition-colors duration-300 group-hover/link:bg-[var(--color-wild-orange)] group-hover/link:text-white">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-                      <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </span>
-                  Explore Nepal journeys
-                </Link>
-              </div>
-            </article>
-          </div>
         </Container>
       </section>
 

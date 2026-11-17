@@ -82,6 +82,7 @@ export default function CtaZoom({
             stagger: 0.12,
             duration: DURATION.slow,
             ease: EASE.expo,
+            immediateRender: false,
             scrollTrigger: {
               trigger,
               start: "top 70%",
@@ -134,7 +135,7 @@ export default function CtaZoom({
         <div>
           <Link
             href={ctaHref}
-            className="group inline-flex items-center gap-4 bg-[var(--color-wild-orange)] px-6 py-3.5 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-white transition-colors hover:bg-[var(--color-wild-orange-hover)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#123438]"
+            className="group inline-flex min-h-[44px] items-center gap-4 bg-[var(--color-wild-orange)] px-6 py-3.5 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-[#0C1617] transition-colors hover:bg-[var(--color-wild-orange-hover)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#123438]"
           >
             <span>{ctaLabel}</span>
             <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1.5">

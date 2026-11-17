@@ -47,7 +47,7 @@ export const HOUSEBOAT_STATS: HouseboatStat[] = [
     note: "Grades are assigned by the Kashmir Government, and are passed on as issued.",
   },
   {
-    value: "Dal & Nagin",
+    value: "Dal & Nigeen",
     label: "Lakes",
     note: "Booking access to houseboats on both of Srinagar's lakes.",
   },
@@ -61,7 +61,7 @@ export const HOUSEBOAT_CARDS: HouseboatCard[] = [
     alt: "Carved wooden houseboats moored along the shore of Dal Lake beneath snow-covered peaks",
     blurb:
       "Carved walnut furniture, Kashmir carpets, and a veranda that opens straight onto the lake.",
-    tag: "Dal & Nagin Lake",
+    tag: "Dal & Nigeen Lake",
   },
   {
     title: "Sunrise from the roof",
@@ -104,7 +104,7 @@ export const HOUSEBOAT_INCLUDED: string[] = [
   "A houseboat boy in attendance at all times.",
   "Living and dining rooms with intricately carved walnut furniture and Kashmir carpets.",
   "An extensive menu with a choice of Western, Indian or Kashmiri cuisine.",
-  "Houseboats from two to seven bedrooms, on Dal or Nagin Lake.",
+  "Houseboats from two to seven bedrooms, on Dal or Nigeen Lake.",
   "Deluxe and “A” class options, classified by the Kashmir Government.",
   "Bookings for groups and individuals, with sole use of a houseboat available.",
 ];
@@ -127,7 +127,7 @@ export const HOUSEBOAT_NOTES: HouseboatNote[] = [
   {
     question: "How are the houseboats classified?",
     answer:
-      "The brochure records Deluxe and “A” class houseboats on Nagin or Dal Lake, with the classification of houseboats the responsibility of the Kashmir Government. We pass the grade on as issued rather than rate a boat ourselves.",
+      "The brochure records Deluxe and “A” class houseboats on Nigeen or Dal Lake, with the classification of houseboats the responsibility of the Kashmir Government. We pass the grade on as issued rather than rate a boat ourselves.",
   },
   {
     question: "How many rooms can we take?",
@@ -154,7 +154,7 @@ export const HOUSEBOAT_PILLARS: Pillar[] = [
     title: "Cedar, carved and moored",
     image: pexels("40348598"),
     tagline: "A veranda on the water, a sundeck above it",
-    regionTag: "Dal & Nagin Lake",
+    regionTag: "Dal & Nigeen Lake",
     body:
       "A Kashmir houseboat is a carved wooden vessel built to be lived in. The brochure describes bedrooms with private ensuite facilities, living and dining rooms finished with intricately carved walnut furniture and Kashmir carpets, a front veranda facing the lake, a roof sundeck, and a houseboat boy in attendance at all times.",
     href: "/enquiry",
@@ -174,7 +174,7 @@ export const HOUSEBOAT_PILLARS: Pillar[] = [
     tagline: "The market boats are already moving",
     regionTag: "Dal Lake",
     body:
-      "Dal and Nagin are crossed in shikaras — narrow wooden boats with a canopy, worked by a single oarsman. The lake surface is the houseboat's forecourt: from a veranda you watch the vegetable boats and the visitors' shikaras thread between the moored houseboats, with the snow line of the surrounding ranges above the water.",
+      "Dal and Nigeen are crossed in shikaras — narrow wooden boats with a canopy, worked by a single oarsman. The lake surface is the houseboat's forecourt: from a veranda you watch the vegetable boats and the visitors' shikaras thread between the moored houseboats, with the snow line of the surrounding ranges above the water.",
     href: "/enquiry",
     linkLabel: "Plan a stay on the lake",
     highlights: [

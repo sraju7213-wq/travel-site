@@ -54,7 +54,7 @@ export default function SiteFooter() {
                       onClick={() => setOpenColumn(isOpen ? null : i)}
                       aria-expanded={isOpen}
                       aria-controls={panelId}
-                      className="flex w-full items-center justify-between border-b border-white/10 pb-3 text-left text-[11px] font-accent font-semibold uppercase tracking-[0.24em] text-white/90 lg:hidden"
+                      className="flex min-h-[44px] w-full items-center justify-between border-b border-white/10 py-3 text-left text-[11px] font-accent font-semibold uppercase tracking-[0.24em] text-white/90 lg:hidden"
                     >
                       {col.title}
                       <span
@@ -80,7 +80,7 @@ export default function SiteFooter() {
                       <li key={`${col.title}-${l.label}`}>
                         <Link
                           href={l.href}
-                          className="inline-flex min-h-[40px] items-center text-sm font-sans text-white/60 transition-colors hover:text-wild-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wild-orange lg:min-h-0"
+                          className="inline-flex min-h-[44px] items-center text-sm font-sans text-white/70 transition-colors hover:text-wild-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wild-orange lg:min-h-0"
                         >
                           {l.label}
                         </Link>

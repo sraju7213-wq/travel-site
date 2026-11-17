@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: HouseboatsPageProps) {
   return {
     title: `${svc.title} — ${BRAND.name}`,
     description:
-      "Booking access to carved cedar houseboats on Dal and Nagin Lake in Srinagar — two to seven bedrooms, private ensuite facilities, veranda and sundeck, deluxe and A-class options.",
+      "Booking access to carved cedar houseboats on Dal and Nigeen Lake in Srinagar — two to seven bedrooms, private ensuite facilities, veranda and sundeck, deluxe and A-class options.",
     openGraph: {
       title: "Houseboats on Dal Lake, Srinagar",
       description: svc.summary,

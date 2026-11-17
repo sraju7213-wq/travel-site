@@ -64,16 +64,26 @@ export default function HomeHero() {
     if (geoRef.current) targets.push(geoRef.current);
     if (placeRef.current) targets.push(placeRef.current);
     const ctx = gsap.context(() => {
-      targets.forEach((el) => {
-        gsap.set(el, { opacity: 0, y: 18, willChange: "transform, opacity" });
-      });
-
+      // NOTE: the entrance is a `fromTo` with `immediateRender: false` rather
+      // than a `gsap.set({opacity: 0})` pre-hide. A pre-hide leaves the hero
+      // headline invisible whenever the rAF ticker is throttled — a background
+      // tab, a slow phone, a dropped frame — and the copy never comes back.
+      // With `fromTo` the content is visible by default and only animates if
+      // the ticker actually runs.
       const tl = gsap.timeline({ delay: 0.15 });
       targets.forEach((el, i) => {
-        tl.to(
+        tl.fromTo(
           el,
-          { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" },
-          i * 0.12
+          { opacity: 0, y: 18 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+            ease: "power3.out",
+            immediateRender: false,
+            willChange: "transform, opacity",
+          },
+          i * 0.12,
         );
       });
 
@@ -85,6 +95,9 @@ export default function HomeHero() {
         scrub: 1,
         onUpdate: (self) => {
           const prog = Math.min(Math.max(self.progress, 0), 1);
+          // Only take over once the visitor has actually started scrolling, so
+          // the entrance animation is never interrupted at rest.
+          if (prog <= 0.001) return;
           targets.forEach((el) => {
             gsap.set(el, { opacity: 1 - prog * 1.1, y: prog * -30 });
           });

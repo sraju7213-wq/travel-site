@@ -34,15 +34,17 @@ const BROWSERS = [
 
 const ROUTES = [
   "/",
-  "/explore",
-  "/explore/Stopovers",
+  "/journeys",
+  "/journeys?category=Himalayan%20Expeditions",
+  "/journeys?activity=trekking",
   "/packages/delhi-stopover",
-  "/packages/north-india-highlights",
+  "/packages/kashmir-houseboat-booking",
   "/houseboats",
   "/enquiry",
   "/enquiry?package=delhi-stopover",
   "/about",
   "/contact",
+  "/privacy",
   "/no-such-page",
 ];
 

@@ -31,6 +31,39 @@ export default function HeroVideoShuffler({ onVideoChange }: HeroVideoShufflerPr
   // Track if current video is actively rendering frames
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
+  /**
+   * "Lite" mode.
+   *
+   * The hero plays two cross-faded videos at once. On a phone that is two full
+   * video downloads before the page is interactive, which is the single
+   * heaviest thing on the home page. On small screens, on data-saver
+   * connections, or when the visitor asked for reduced motion we render the
+   * poster photography instead and keep rotating it — the same experience,
+   * a fraction of the bytes.
+   */
+  const [lite, setLite] = useState(true);
+
+  useEffect(() => {
+    const narrow = window.matchMedia("(max-width: 767px)");
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const connection = (
+      navigator as Navigator & {
+        connection?: { saveData?: boolean; effectiveType?: string };
+      }
+    ).connection;
+    const cheap = !!connection?.saveData || /^(slow-)?2g/.test(connection?.effectiveType ?? "");
+
+    const decide = () => setLite(narrow.matches || cheap || reduced.matches);
+    decide();
+
+    narrow.addEventListener("change", decide);
+    reduced.addEventListener("change", decide);
+    return () => {
+      narrow.removeEventListener("change", decide);
+      reduced.removeEventListener("change", decide);
+    };
+  }, []);
+
   // Video element references
   const videoRefA = useRef<HTMLVideoElement | null>(null);
   const videoRefB = useRef<HTMLVideoElement | null>(null);
@@ -77,14 +110,17 @@ export default function HeroVideoShuffler({ onVideoChange }: HeroVideoShufflerPr
       setIsVideoPlaying(false);
 
       const nextVideoEl = nextLayer === "A" ? videoRefA.current : videoRefB.current;
+      if (!nextVideoEl) {
+        // Lite mode: no video element to wait for, so the poster simply swaps.
+        isTransitioningRef.current = false;
+        return;
+      }
       const onPlayingHandler = () => {
         setIsVideoPlaying(true);
         isTransitioningRef.current = false;
-        nextVideoEl?.removeEventListener("playing", onPlayingHandler);
+        nextVideoEl.removeEventListener("playing", onPlayingHandler);
       };
-      if (nextVideoEl) {
-        nextVideoEl.addEventListener("playing", onPlayingHandler);
-      }
+      nextVideoEl.addEventListener("playing", onPlayingHandler);
     },
     [playlist, currentIndex, activeLayer]
   );
@@ -108,6 +144,9 @@ export default function HeroVideoShuffler({ onVideoChange }: HeroVideoShufflerPr
     return () => clearInterval(timer);
   }, [isMounted, handleNext]);
 
+  // In lite mode the poster is the only thing on screen, so it never fades out.
+  const posterOnly = lite || !isVideoPlaying;
+
   return (
     <div className="absolute inset-0 overflow-hidden bg-black select-none">
       {/* Underlying Instant High-Res Poster Layer — never shows black void */}
@@ -118,49 +157,55 @@ export default function HeroVideoShuffler({ onVideoChange }: HeroVideoShufflerPr
         priority
         sizes="100vw"
         className={`object-cover filter brightness-[0.76] contrast-[1.08] transition-opacity duration-1000 ${
-          isVideoPlaying ? "opacity-0" : "opacity-100"
+          posterOnly ? "opacity-100" : "opacity-0"
         }`}
       />
 
       {/* Layer A Video */}
-      <video
-        ref={videoRefA}
-        src={videoSrcA}
-        autoPlay
-        playsInline
-        muted
-        loop
-        preload="auto"
-        onPlaying={() => {
-          if (activeLayer === "A") setIsVideoPlaying(true);
-        }}
-        className={`absolute inset-0 h-full w-full object-cover filter brightness-[0.76] contrast-[1.08] transition-opacity duration-1000 ease-in-out ${
-          activeLayer === "A" ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
-        }`}
-        onError={() => {
-          handleNext();
-        }}
-      />
+      {!lite && (
+        <video
+          ref={videoRefA}
+          src={videoSrcA}
+          autoPlay
+          playsInline
+          muted
+          loop
+          preload="metadata"
+          poster={currentVideo.posterUrl}
+          onPlaying={() => {
+            if (activeLayer === "A") setIsVideoPlaying(true);
+          }}
+          className={`absolute inset-0 h-full w-full object-cover filter brightness-[0.76] contrast-[1.08] transition-opacity duration-1000 ease-in-out ${
+            activeLayer === "A" ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
+          }`}
+          onError={() => {
+            handleNext();
+          }}
+        />
+      )}
 
       {/* Layer B Video */}
-      <video
-        ref={videoRefB}
-        src={videoSrcB}
-        autoPlay
-        playsInline
-        muted
-        loop
-        preload="auto"
-        onPlaying={() => {
-          if (activeLayer === "B") setIsVideoPlaying(true);
-        }}
-        className={`absolute inset-0 h-full w-full object-cover filter brightness-[0.76] contrast-[1.08] transition-opacity duration-1000 ease-in-out ${
-          activeLayer === "B" ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
-        }`}
-        onError={() => {
-          handleNext();
-        }}
-      />
+      {!lite && (
+        <video
+          ref={videoRefB}
+          src={videoSrcB}
+          autoPlay
+          playsInline
+          muted
+          loop
+          preload="metadata"
+          poster={currentVideo.posterUrl}
+          onPlaying={() => {
+            if (activeLayer === "B") setIsVideoPlaying(true);
+          }}
+          className={`absolute inset-0 h-full w-full object-cover filter brightness-[0.76] contrast-[1.08] transition-opacity duration-1000 ease-in-out ${
+            activeLayer === "B" ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
+          }`}
+          onError={() => {
+            handleNext();
+          }}
+        />
+      )}
 
       {/* Filmic Contrast Overlays ensuring content is 100% visible across bright scenes */}
       <div

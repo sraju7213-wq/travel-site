@@ -108,20 +108,31 @@ export default function Reveal({
           ? direct
           : [container];
 
-      gsap.from(targets, {
-        ...from,
-        duration,
-        delay,
-        ease,
-        stagger: targets.length > 1 ? stagger : 0,
-        clearProps: "filter",
-        scrollTrigger: {
-          trigger: container,
-          start,
-          once: shouldPlayOnce,
-          toggleActions: shouldPlayOnce ? "play none none none" : "play none none reverse",
-        },
-      });
+      // `fromTo` with `immediateRender: false` keeps the content visible until
+      // the reveal actually plays. `gsap.from()` hides it immediately, which
+      // leaves the section blank whenever the ticker is throttled.
+      const to: gsap.TweenVars = { opacity: 1, duration, delay, ease, immediateRender: false };
+      if (variant === "fade-up") to.y = 0;
+      if (variant === "blur") {
+        to.y = 0;
+        to.filter = "blur(0px)";
+      }
+      if (variant === "scale") to.scale = 1;
+      if (variant === "slide-x") to.x = 0;
+      if (variant === "mask") {
+        to.y = 0;
+        to.clipPath = "inset(0% 0% 0% 0%)";
+      }
+      if (targets.length > 1) to.stagger = stagger;
+      to.clearProps = "filter";
+      to.scrollTrigger = {
+        trigger: container,
+        start,
+        once: shouldPlayOnce,
+        toggleActions: shouldPlayOnce ? "play none none none" : "play none none reverse",
+      };
+
+      gsap.fromTo(targets, from, to);
     }, container);
 
     return () => ctx.revert();

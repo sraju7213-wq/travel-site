@@ -3,19 +3,31 @@
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import BrandMark from "./BrandMark";
-import MegaMenu from "./MegaMenu";
+import DesktopNavPanel from "./DesktopNavPanel";
 import MobileNav from "./MobileNav";
-import { useBodyOverflowLock } from "@/hooks/useBodyOverflowLock";
+import { HEADER_LINKS, NAV_GROUPS } from "@/lib/navigation";
 
+/**
+ * SiteHeader
+ * ----------
+ * One header for every breakpoint.
+ *
+ * Desktop (lg and up) gets the primary links plus a hover/click dropdown panel
+ * for the grouped sections. Below `lg` the header collapses to the brand mark
+ * and a single menu button that opens the full-screen drawer.
+ *
+ * The drawer is only mounted while it is open, so no off-canvas markup is left
+ * in the accessibility tree when the menu is closed.
+ */
 export default function SiteHeader() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [openGroup, setOpenGroup] = useState<string | null>(null);
 
-  // Single unified trigger ref for keyboard accessibility & focus return
-  const menuTriggerRef = useRef<HTMLButtonElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
-  useBodyOverflowLock(menuOpen || mobileOpen);
+  const solid = scrolled || mobileOpen || openGroup !== null;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -24,128 +36,160 @@ export default function SiteHeader() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Close the dropdown when the viewport drops to the mobile layout.
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setMenuOpen(false);
-        setMobileOpen(false);
+    if (!openGroup) return;
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const onChange = () => {
+      if (!mq.matches) setOpenGroup(null);
+    };
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, [openGroup]);
+
+  // Close the dropdown on an outside click or Escape.
+  useEffect(() => {
+    if (!openGroup) return;
+    const onPointerDown = (event: PointerEvent) => {
+      if (!headerRef.current?.contains(event.target as Node)) setOpenGroup(null);
+    };
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpenGroup(null);
+        headerRef.current?.querySelector<HTMLButtonElement>(`[data-nav-trigger="${openGroup}"]`)?.focus();
       }
     };
+    document.addEventListener("pointerdown", onPointerDown);
     document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [openGroup]);
+
+  const closeMobile = useCallback(() => {
+    setMobileOpen(false);
+    menuButtonRef.current?.focus();
   }, []);
-
-  // Return focus to menu trigger when either drawer or modal closes
-  const wasOpenRef = useRef(false);
-  useEffect(() => {
-    const isNowOpen = menuOpen || mobileOpen;
-    if (wasOpenRef.current && !isNowOpen) {
-      menuTriggerRef.current?.focus();
-    }
-    wasOpenRef.current = isNowOpen;
-  }, [menuOpen, mobileOpen]);
-
-  const closeMenu = useCallback(() => setMenuOpen(false), []);
-  const closeMobile = useCallback(() => setMobileOpen(false), []);
-
-  // Responsive toggle: mobile drawer on phone/tablet (<768px), mega menu on desktop (>=768px)
-  const handleToggleMenu = useCallback(() => {
-    if (typeof window === "undefined") return;
-    if (window.innerWidth < 768) {
-      setMobileOpen((v) => !v);
-      setMenuOpen(false);
-    } else {
-      setMenuOpen((v) => !v);
-      setMobileOpen(false);
-    }
-  }, []);
-
-  const solid = scrolled || menuOpen;
 
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          solid ? "bg-black/95 backdrop-blur-md border-b border-white/10" : "bg-transparent"
+        ref={headerRef}
+        className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+          solid
+            ? "border-b border-white/10 bg-[#0C1617]/95 backdrop-blur-md supports-[backdrop-filter]:bg-[#0C1617]/80"
+            : "bg-transparent"
         }`}
         role="banner"
       >
-        <div className="mx-auto max-w-7xl px-4 md:px-8">
-          <div className="flex h-16 md:h-20 items-center justify-between gap-4">
+        <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
+          <div className="flex h-16 items-center justify-between gap-3 lg:h-20">
             <BrandMark />
 
-            <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
+            {/* Desktop navigation */}
+            <nav className="hidden lg:flex lg:items-center lg:gap-0.5" aria-label="Main navigation">
+              {HEADER_LINKS.map((link) => {
+                const group = link.group
+                  ? NAV_GROUPS.find((g) => g.id === link.group)
+                  : undefined;
+
+                if (!group) {
+                  return (
+                    <Link
+                      key={link.href + link.label}
+                      href={link.href}
+                      className="rounded-lg px-3 py-2.5 font-accent text-[11px] font-medium uppercase tracking-[0.18em] text-white/75 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)]"
+                    >
+                      {link.label}
+                    </Link>
+                  );
+                }
+
+                const isOpen = openGroup === group.id;
+                return (
+                  <button
+                    key={group.id}
+                    type="button"
+                    data-nav-trigger={group.id}
+                    aria-expanded={isOpen}
+                    aria-controls={`nav-panel-${group.id}`}
+                    onClick={() => setOpenGroup(isOpen ? null : group.id)}
+                    onMouseEnter={() => setOpenGroup(group.id)}
+                    className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-2.5 font-accent text-[11px] font-medium uppercase tracking-[0.18em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)] ${
+                      isOpen ? "text-white" : "text-white/75 hover:text-white"
+                    }`}
+                  >
+                    {group.label}
+                    <svg
+                      width="10"
+                      height="10"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                      className={`transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </button>
+                );
+              })}
+
               <Link
-                href="/journeys"
-                className="text-sm font-accent uppercase tracking-[0.12em] text-white/70 hover:text-white transition-colors px-3 py-2 rounded-lg"
+                href="/enquiry"
+                className="ml-3 inline-flex items-center justify-center border border-[var(--color-wild-orange)] px-5 py-2.5 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--color-wild-orange)] transition-colors hover:bg-[var(--color-wild-orange)] hover:text-[#0C1617] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0C1617]"
               >
-                Journeys
-              </Link>
-              <Link
-                href="/houseboats"
-                className="text-sm font-accent uppercase tracking-[0.12em] text-white/70 hover:text-white transition-colors px-3 py-2 rounded-lg"
-              >
-                Houseboats
-              </Link>
-              <Link
-                href="/about"
-                className="text-sm font-accent uppercase tracking-[0.12em] text-white/70 hover:text-white transition-colors px-3 py-2 rounded-lg"
-              >
-                Heritage
-              </Link>
-              <Link
-                href="/contact"
-                className="text-sm font-accent uppercase tracking-[0.12em] text-white/70 hover:text-white transition-colors px-3 py-2 rounded-lg"
-              >
-                Contact
+                Enquire
               </Link>
             </nav>
 
-            <div className="hidden md:flex items-center gap-3">
-              <button
-                ref={menuTriggerRef}
-                type="button"
-                onClick={handleToggleMenu}
-                aria-expanded={menuOpen}
-                aria-controls="mega-menu"
-                aria-haspopup="dialog"
-                className="group flex items-center gap-2 rounded-none border border-white/15 bg-white/5 px-4 py-2 text-sm font-accent uppercase tracking-[0.12em] text-white/80 hover:bg-white/10 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass"
+            {/* Mobile actions */}
+            <div className="flex items-center gap-2 lg:hidden">
+              <Link
+                href="/enquiry"
+                className="inline-flex min-h-[48px] items-center justify-center border border-[var(--color-wild-orange)] px-3.5 py-2 font-sans text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--color-wild-orange)] transition-colors hover:bg-[var(--color-wild-orange)] hover:text-[#0C1617] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)] sm:px-4"
               >
-                <span>Plan Your Trip</span>
-                <svg
-                  className="h-4 w-4 transition-transform duration-300 group-aria-expanded:rotate-180"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  aria-hidden="true"
-                >
-                  <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
-            </div>
+                Enquire
+              </Link>
 
-            <div className="md:hidden flex items-center gap-2">
               <button
+                ref={menuButtonRef}
                 type="button"
-                onClick={() => setMobileOpen(true)}
+                aria-label={mobileOpen ? "Close menu" : "Open menu"}
                 aria-expanded={mobileOpen}
-                aria-controls="mobile-nav"
-                aria-haspopup="dialog"
-                className="p-2 rounded-none border border-white/15 text-white/80 hover:text-white hover:bg-white/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass"
-                aria-label="Open menu"
+                aria-controls="mobile-menu"
+                onClick={() => setMobileOpen((v) => !v)}
+                className="inline-flex h-12 w-12 items-center justify-center rounded-lg border border-white/20 text-white transition-colors hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)]"
               >
-                <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                  <path d="M3 12h18M3 6h18M3 18h18" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+                {mobileOpen ? (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                    <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
+                  </svg>
+                ) : (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                    <path d="M4 7h16M4 12h16M4 17h16" strokeLinecap="round" />
+                  </svg>
+                )}
               </button>
             </div>
           </div>
         </div>
+
+        {/* Desktop dropdown panel */}
+        {openGroup && (
+          <DesktopNavPanel
+            group={NAV_GROUPS.find((g) => g.id === openGroup)!}
+            onClose={() => setOpenGroup(null)}
+          />
+        )}
       </header>
 
-      <MegaMenu open={menuOpen} onClose={closeMenu} />
-      <MobileNav open={mobileOpen} onClose={closeMobile} />
+      {/* Mobile drawer — mounted only while open */}
+      {mobileOpen && <MobileNav open={mobileOpen} onClose={closeMobile} />}
     </>
   );
 }

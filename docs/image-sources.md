@@ -221,10 +221,12 @@ gallery and its lightbox.
 | Full-bleed journeys band | Dal Lake houseboats | 40348598 | [/40348598/](https://www.pexels.com/photo/40348598/) | `components/houseboats/HouseboatJourneys.tsx` |
 | Discover portrait plate | Srinagar | 29251278 | [/29251278/](https://www.pexels.com/photo/29251278/) | `components/houseboats/HouseboatDiscover.tsx` |
 | Closing CTA | Dal Lake houseboats | 40348598 | [/40348598/](https://www.pexels.com/photo/40348598/) | `app/houseboats/page.tsx` |
+| Full-bleed hero banner | H.B. Perfume Garden houseboat on Dal Lake (user-supplied) | local | pp/public/images/services/houseboat-hero.jpg | components/houseboats/HouseboatHero.tsx |
 
-> The Houseboats page hero (`components/houseboats/HouseboatHero.tsx`) and the
-> closing CTA banner are **page heroes** and were deliberately left on their
-> original local assets — see §9.
+> The Houseboats page hero (components/houseboats/HouseboatHero.tsx) is now sourced from
+> a user-supplied photo: images/services/houseboat-hero.jpg (H.B. Perfume Garden
+> houseboat on Dal Lake in the morning mist). The closing CTA banner remains on its
+> original local asset — see §9.
 
 ---
 

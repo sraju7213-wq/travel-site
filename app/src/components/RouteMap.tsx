@@ -239,7 +239,7 @@ export default function RouteMap({ pkg }: RouteMapProps) {
                 <div className="mt-0.5 truncate font-display text-xs font-medium text-white">
                   {truncate(leg.from, 18)} → {truncate(leg.to, 18)}
                 </div>
-                <div className="mt-1 truncate font-display text-[10px] text-white/45">
+                <div className="mt-1 truncate font-display text-[10px] text-white/60">
                   {leg.dayLabel} · {ACTIVITY_LABELS[leg.kind]}
                 </div>
               </div>

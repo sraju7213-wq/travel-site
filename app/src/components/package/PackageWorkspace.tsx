@@ -22,11 +22,15 @@ export default function PackageWorkspace({ pkg, gallery }: PackageWorkspaceProps
   const [galleryOpen, setGalleryOpen] = useState(false);
   const triggerRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
-  const tabs: Array<{ id: TabId; label: string }> = [
-    { id: "overview", label: "Overview & Highlights" },
-    { id: "itinerary", label: dayCount > 0 ? `Day-by-Day (${dayCount} Days)` : "Day-by-Day" },
-    { id: "map", label: "Interactive Map" },
-    { id: "inclusions", label: "Inclusions & Info" },
+  const tabs: Array<{ id: TabId; label: string; short: string }> = [
+    { id: "overview", label: "Overview & Highlights", short: "Overview" },
+    {
+      id: "itinerary",
+      label: dayCount > 0 ? `Day-by-Day (${dayCount} Days)` : "Day-by-Day",
+      short: "Itinerary",
+    },
+    { id: "map", label: "Interactive Map", short: "Map" },
+    { id: "inclusions", label: "Inclusions & Info", short: "Details" },
   ];
 
   const focusTab = (index: number) => {
@@ -83,13 +87,14 @@ export default function PackageWorkspace({ pkg, gallery }: PackageWorkspaceProps
                 tabIndex={isActive ? 0 : -1}
                 onClick={() => setActiveTab(tab.id)}
                 onKeyDown={(event) => handleTabKeyDown(event, index)}
-                className={`flex-1 whitespace-nowrap rounded-lg px-3 py-2.5 font-display text-xs font-semibold uppercase tracking-wider transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass ${
+                className={`flex-1 whitespace-nowrap rounded-lg min-h-[44px] px-2 py-3 font-display text-[11px] font-semibold uppercase tracking-wider transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass sm:px-3 sm:py-2.5 sm:text-xs ${
                   isActive
                     ? "bg-brass text-[#0C1617] shadow-sm"
-                    : "text-white/50 hover:bg-white/5 hover:text-white"
+                    : "text-white/60 hover:bg-white/5 hover:text-white"
                 }`}
               >
-                {tab.label}
+                <span className="sm:hidden">{tab.short}</span>
+                <span className="hidden sm:inline">{tab.label}</span>
               </button>
             );
           })}
@@ -119,7 +124,7 @@ export default function PackageWorkspace({ pkg, gallery }: PackageWorkspaceProps
               <button
                 type="button"
                 onClick={() => setGalleryOpen(true)}
-                className="inline-flex items-center gap-1.5 pt-2 font-display text-xs text-brass-soft transition hover:text-brass focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass"
+                className="inline-flex min-h-[44px] items-center gap-1.5 pt-2 font-display text-xs text-brass-soft transition hover:text-brass focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass"
               >
                 <span>View Full Gallery ({gallery.length} Photos)</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">

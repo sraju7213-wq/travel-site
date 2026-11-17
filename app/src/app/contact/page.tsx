@@ -25,7 +25,7 @@ const CHANNELS = [
     eyebrow: "Kashmir houseboats",
     title: "Reserve a houseboat",
     body:
-      "Houseboats on Dal and Nagin Lake, from a two-bedroom craft to a seven-bedroom boat in sole use. Quoted and confirmed separately from our tour packages.",
+      "Houseboats on Dal and Nigeen Lake, from a two-bedroom craft to a seven-bedroom boat in sole use. Quoted and confirmed separately from our tour packages.",
     href: "/houseboats",
     action: "See houseboat options",
   },
@@ -142,7 +142,7 @@ export default function ContactPage() {
             </div>
             <Link
               href="/enquiry"
-              className="shrink-0 border-b border-white/35 pb-1 font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-white transition-colors hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)]"
+              className="inline-flex min-h-[44px] shrink-0 items-center border-b border-white/35 pb-1 font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-white transition-colors hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)]"
             >
               Go to enquiry form →
             </Link>
@@ -176,7 +176,7 @@ export default function ContactPage() {
                 </p>
                 <Link
                   href={channel.href}
-                  className="group/link mt-7 inline-flex items-center gap-3 font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-white transition-colors hover:text-[var(--color-wild-orange)]"
+                  className="group/link mt-7 inline-flex min-h-[44px] items-center gap-3 font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-white transition-colors hover:text-[var(--color-wild-orange)]"
                 >
                   <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-wild-orange)] text-[var(--color-wild-orange)] transition-colors duration-300 group-hover/link:bg-[var(--color-wild-orange)] group-hover/link:text-white">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
@@ -217,7 +217,7 @@ export default function ContactPage() {
                         {desk.detail}
                       </p>
                     </div>
-                    <div className="font-mono text-[11px] tracking-[0.12em] text-white/40 sm:text-right">
+                    <div className="font-mono text-[11px] tracking-[0.12em] text-white/60 sm:text-right">
                       <p>{desk.coordinates}</p>
                       <p className="mt-1">{desk.timezone}</p>
                     </div>

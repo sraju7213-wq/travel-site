@@ -32,7 +32,7 @@ export default function EnquireCta({
     <button
       type="button"
       onClick={() => openEnquiry(message ? { message } : undefined)}
-      className={`inline-flex items-center justify-center gap-2 rounded-none px-5 py-3 font-display text-xs font-semibold uppercase tracking-[0.16em] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-[#0C1617] ${VARIANTS[variant]} ${className}`}
+      className={`inline-flex min-h-[44px] items-center justify-center gap-2 rounded-none px-5 py-3 font-display text-xs font-semibold uppercase tracking-[0.16em] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-[#0C1617] ${VARIANTS[variant]} ${className}`}
     >
       <span>{label}</span>
       {withArrow && (

@@ -84,6 +84,7 @@ export default function ExperienceCarousel() {
           y: 0,
           duration: DURATION.slow,
           ease: EASE.expo,
+          immediateRender: false,
           scrollTrigger: {
             trigger: track,
             start: "top 92%",
@@ -100,7 +101,12 @@ export default function ExperienceCarousel() {
     <section className="section-experiences py-12 md:py-16 overflow-hidden relative" id="experiences">
 
       {/* Parent container with scroll-container-fix to suppress scrollbars & isolate horizontal overflow */}
-      <div className="scroll-container-fix relative w-full overflow-hidden">
+      <div
+        role="region"
+        aria-label="Curated experiences — scroll to browse"
+        tabIndex={0}
+        className="scroll-container-fix relative w-full overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--color-wild-orange,#ff6e00)]"
+      >
         {/* Subtle left & right edge gradient vignettes for seamless entry & exit */}
         <div
           aria-hidden="true"
@@ -114,10 +120,7 @@ export default function ExperienceCarousel() {
         {/* Continuous Horizontal Auto-Scroll Track (GPU hardware-accelerated linear infinite) */}
         <ul
           ref={trackRef}
-          tabIndex={0}
-          role="region"
-          aria-label="Continuous experiences carousel — hover or focus to pause"
-          className="animate-slow-scroll flex gap-10 md:gap-16 py-8 will-change-transform select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange,#ff6e00)]"
+          className="animate-slow-scroll flex gap-10 py-8 will-change-transform select-none md:gap-16"
         >
           {duplicatedExperiences.map((exp, i) => {
             const ctaLabel = exp.title.toLowerCase().includes("experience")
@@ -158,7 +161,7 @@ export default function ExperienceCarousel() {
                       {/* CTA with orange circular arrow icon */}
                       <Link
                         href={exp.href}
-                        className="group/cta inline-flex items-center gap-3.5 text-xs md:text-sm font-semibold uppercase tracking-[0.16em] text-white transition-all duration-300"
+                        className="group/cta inline-flex min-h-[44px] items-center gap-3.5 text-xs md:text-sm font-semibold uppercase tracking-[0.16em] text-white transition-all duration-300"
                       >
                         <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-none border border-[var(--color-wild-orange,#ff6e00)] text-[var(--color-wild-orange,#ff6e00)] transition-all duration-300 group-hover/cta:bg-[var(--color-wild-orange,#ff6e00)] group-hover/cta:text-white group-hover/cta:shadow-[0_0_15px_rgba(255,110,0,0.5)]">
                           <svg
@@ -176,11 +179,11 @@ export default function ExperienceCarousel() {
                     </div>
 
                     {/* Location Pin Footer */}
-                    <div className="relative mt-8 pt-4 flex items-center gap-2 text-xs text-[#728d92]">
+                    <div className="relative mt-8 flex items-center gap-2 pt-4 text-xs text-[#8ca5a9]">
                       <svg
                         aria-hidden="true"
                         viewBox="0 0 24 24"
-                        className="h-4 w-4 fill-none stroke-current stroke-[1.8] text-[#728d92] shrink-0"
+                        className="h-4 w-4 fill-none stroke-current stroke-[1.8] text-[#8ca5a9] shrink-0"
                       >
                         <path d="M12 21s-6-5.33-6-10a6 6 0 0 1 12 0c0 4.67-6 10-6 10Z" />
                         <circle cx="12" cy="11" r="2" />

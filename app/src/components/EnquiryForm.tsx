@@ -266,10 +266,10 @@ export default function EnquiryForm({
       {/* 1. Header Banner */}
       <div className="mb-12">
         <p className="subtitle-large mb-3 text-brass">Tailor-Made Concierge</p>
-        <h1 className="text-h2 font-serif text-charcoal mb-4">
+        <h1 className="text-h2 font-serif text-white mb-4">
           {chosen ? "Enquire About This Journey" : "Plan Your Tailor-Made Trip"}
         </h1>
-        <p className="font-display text-base md:text-lg text-charcoal-soft leading-relaxed max-w-3xl">
+        <p className="font-display text-base md:text-lg text-white/70 leading-relaxed max-w-3xl">
           Tell us your preferred dates, party size and travel pace. Our subcontinent specialists will shape an itinerary around you, drawing on nearly a century of exploration across India and Nepal.
         </p>
       </div>
@@ -294,9 +294,9 @@ export default function EnquiryForm({
                 <span className="text-[0.65rem] font-display font-semibold uppercase tracking-[0.25em] text-brass block mb-1">
                   {chosen ? chosen.category : "Bespoke Expedition"}
                 </span>
-                <h3 className="font-serif text-xl font-bold leading-tight">
+                <h2 className="font-serif text-xl font-bold leading-tight">
                   {chosen ? chosen.title : "Tailor-Made India & Nepal"}
-                </h3>
+                </h2>
               </div>
             </div>
 
@@ -379,9 +379,9 @@ export default function EnquiryForm({
                 <div className="flex items-start gap-3">
                   <span className="text-amber-400 text-xl leading-none mt-0.5">ℹ️</span>
                   <div>
-                    <h3 className="font-accent text-xs font-semibold uppercase tracking-wider text-amber-300 mb-1">
+                    <h2 className="font-accent text-xs font-semibold uppercase tracking-wider text-amber-300 mb-1">
                       Online Intake System Pending Activation
-                    </h3>
+                    </h2>
                     <p className="font-sans text-xs leading-relaxed text-white/80">
                       Online enquiry submission is currently inactive while backend intake systems are being finalized. Form inputs are disabled so that no personal contact data is collected or stored prematurely. To discuss an itinerary, please contact your travel agent directly quoting the journey code.
                     </p>
@@ -394,7 +394,7 @@ export default function EnquiryForm({
                 <span className="font-accent text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-400">
                   Concierge Intake Active
                 </span>
-                <span className="text-white/40">&bull;</span>
+                <span className="text-white/60">&bull;</span>
                 <span className="font-sans text-xs text-white/70">
                   Encrypted transmission directly to reservations desk
                 </span>
@@ -445,7 +445,7 @@ export default function EnquiryForm({
                       </optgroup>
                     ))}
                   </select>
-                  <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-charcoal-soft">
+                  <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-white/60">
                     <svg width="12" height="8" viewBox="0 0 12 8" fill="none" className="stroke-current stroke-2">
                       <path d="M1 1.5l5 5 5-5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
@@ -456,7 +456,7 @@ export default function EnquiryForm({
               {/* Step 2: Traveller Details */}
               <fieldset disabled={!configured || status === "submitting"} className="border-b border-border/80 pb-8">
                 <legend className="mb-5 flex items-center gap-2.5 text-xs font-display font-semibold uppercase tracking-[0.2em] text-white">
-                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brass text-white text-[11px] font-bold shadow-sm">
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brass text-[#0C1617] text-[11px] font-bold shadow-sm">
                     1
                   </span>
                   Your Details
@@ -572,7 +572,7 @@ export default function EnquiryForm({
               {/* Step 3: Trip Timing & Party Size */}
               <fieldset disabled={!configured || status === "submitting"} className="border-b border-border/80 pb-8">
                 <legend className="mb-5 flex items-center gap-2.5 text-xs font-display font-semibold uppercase tracking-[0.2em] text-white">
-                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brass text-white text-[11px] font-bold shadow-sm">
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brass text-[#0C1617] text-[11px] font-bold shadow-sm">
                     2
                   </span>
                   Dates &amp; Party Size
@@ -612,7 +612,7 @@ export default function EnquiryForm({
                           setField("datesFlexible", e.target.checked);
                           if (e.target.checked) setField("travelDate", "");
                         }}
-                        className="h-4 w-4 rounded accent-brass text-brass"
+                        className="h-5 w-5 rounded accent-brass text-brass"
                       />
                       <span>My departure dates are flexible</span>
                     </label>
@@ -651,9 +651,9 @@ export default function EnquiryForm({
                           key={count}
                           type="button"
                           onClick={() => setField("travellers", count.replace("+", ""))}
-                          className={`flex-1 rounded-button border py-1 text-xs font-display font-semibold transition-colors ${
+                          className={`flex min-h-[44px] flex-1 items-center justify-center rounded-button border py-2 text-xs font-display font-semibold transition-colors ${
                             data.travellers === count.replace("+", "")
-                              ? "border-brass bg-brass text-white"
+                              ? "border-brass bg-brass text-[#0C1617]"
                               : "border-white/15 bg-white/5 text-white/75 hover:bg-white/10 hover:text-white"
                           }`}
                         >
@@ -668,7 +668,7 @@ export default function EnquiryForm({
               {/* Step 4: Special Wishes */}
               <fieldset disabled={!configured || status === "submitting"} className="border-b border-border/80 pb-8">
                 <legend className="mb-4 flex items-center gap-2.5 text-xs font-display font-semibold uppercase tracking-[0.2em] text-white">
-                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brass text-white text-[11px] font-bold shadow-sm">
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brass text-[#0C1617] text-[11px] font-bold shadow-sm">
                     3
                   </span>
                   Preferences &amp; Interests
@@ -716,7 +716,7 @@ export default function EnquiryForm({
                     onChange={(e) => setField("consent", e.target.checked)}
                     aria-invalid={!!fieldError("consent")}
                     aria-describedby={fieldError("consent") ? "consent-error" : undefined}
-                    className="mt-0.5 h-4 w-4 rounded accent-brass text-brass shrink-0 disabled:opacity-40"
+                    className="mt-0.5 h-5 w-5 shrink-0 rounded accent-brass text-brass disabled:opacity-40"
                   />
                   <span>
                     I agree that {BRAND.name} (in association with {BRAND.operatorName}) may contact me regarding this enquiry and provide tailored travel arrangements in accordance with the{" "}

@@ -20,17 +20,6 @@ const allPackages = getAllPackages();
 const places = getPlaces();
 const heroJourneys = getHeroJourneys();
 
-const MOODS = [
-  { label: "Trekking", href: "/journeys?category=Himalayan+Expeditions#catalogue" },
-  { label: "Houseboats", href: "/journeys?q=houseboat#catalogue" },
-  { label: "Heritage", href: "/journeys?category=Images+of+India#catalogue" },
-  { label: "Wildlife", href: "/journeys?q=wildlife#catalogue" },
-  { label: "Culture", href: "/journeys?q=culture#catalogue" },
-  { label: "Rafting", href: "/journeys?q=rafting#catalogue" },
-  { label: "Stopovers", href: "/journeys?category=Stopovers#catalogue" },
-  { label: "Nepal", href: "/journeys?category=Nepal+Adventure#catalogue" },
-];
-
 export const metadata: Metadata = {
   title: `Journeys — ${BRAND.name}`,
   description:
@@ -51,8 +40,11 @@ export default function JourneysPage() {
       <PlaceOrbitHero places={places} journeys={heroJourneys} />
 
       {/* Search & Filters Catalogue */}
-      <section id="catalogue" className="section-journeys scroll-mt-20 py-12 md:py-16">
+      <section id="catalogue" className="section-journeys scroll-mt-20 py-12 md:py-16" aria-labelledby="catalogue-h">
         <Container wide>
+          <h2 id="catalogue-h" className="sr-only">
+            Journey catalogue
+          </h2>
           <Suspense fallback={<p className="py-20 font-display text-white/70">Loading journeys…</p>}>
             <SearchAndFilters packages={allPackages} />
           </Suspense>
@@ -73,7 +65,7 @@ export default function JourneysPage() {
           <div
             className="jy-coverflow-track"
             role="region"
-            aria-label="Journeys in season now"
+            aria-label="Journeys in season now — scroll to browse"
             tabIndex={0}
           >
             {/* Primary slide set */}
@@ -172,7 +164,7 @@ export default function JourneysPage() {
           <div
             className="jy-coverflow-track jy-coverflow-track--reverse"
             role="region"
-            aria-label="Places we travel"
+            aria-label="Places we travel — scroll to browse"
             tabIndex={0}
           >
             {/* Primary slide set */}
@@ -213,7 +205,7 @@ export default function JourneysPage() {
                       <div className="jy-coverflow-actions mt-1">
                         <Link
                           href={place.href}
-                          className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--color-wild-orange)] px-4 py-2 font-sans text-xs sm:text-sm font-semibold text-[#0C1617] transition-all hover:bg-[var(--color-wild-orange-hover)]"
+                          className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full bg-[var(--color-wild-orange)] px-4 py-2 font-sans text-xs sm:text-sm font-semibold text-[#0C1617] transition-all hover:bg-[var(--color-wild-orange-hover)]"
                         >
                           View {place.name} journeys
                         </Link>
@@ -268,7 +260,7 @@ export default function JourneysPage() {
                         <Link
                           href={place.href}
                           tabIndex={-1}
-                          className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--color-wild-orange)] px-4 py-2 font-sans text-xs sm:text-sm font-semibold text-[#0C1617] transition-all hover:bg-[var(--color-wild-orange-hover)]"
+                          className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full bg-[var(--color-wild-orange)] px-4 py-2 font-sans text-xs sm:text-sm font-semibold text-[#0C1617] transition-all hover:bg-[var(--color-wild-orange-hover)]"
                         >
                           View {place.name} journeys
                         </Link>
@@ -304,59 +296,6 @@ export default function JourneysPage() {
         />
       </section>
 
-      {/* Mood */}
-      <section className="mt-32" aria-labelledby="mood-h">
-        <Container wide>
-          <h2 id="mood-h" className="jy-section-title">
-            What are you in the mood for?
-          </h2>
-          <div className="mt-8 flex flex-wrap gap-2">
-            {MOODS.map((mood) => (
-              <Link key={mood.label} href={mood.href} className="jy-chip">
-                {mood.label}
-              </Link>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* Absolute journeys */}
-      <section className="mt-32" aria-labelledby="absolute-h">
-        <Container wide>
-          <h2 id="absolute-h" className="jy-section-title">
-            Absolute journeys
-          </h2>
-          <p className="mb-10 mt-4 text-lg text-white/70">
-            The marquee routes, ranked by the travellers who have walked them.
-          </p>
-          <ol className="divide-y divide-white/10 border-y border-white/10">
-            {allPackages.slice(0, 10).map((pkg, index) => (
-              <li key={pkg.id}>
-                <Link
-                  href={`/packages/${pkg.slug}`}
-                  className="group flex items-center gap-4 py-4 transition-colors hover:bg-white/[0.02]"
-                >
-                  <span className="w-10 shrink-0 font-serif text-2xl text-white/35">
-                    {index + 1}
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <p className="truncate font-serif text-lg font-light text-white transition-colors group-hover:text-[var(--color-wild-orange)]">
-                      {pkg.title}
-                    </p>
-                    <p className="mt-0.5 truncate font-sans text-[11px] uppercase tracking-[0.16em] text-white/50">
-                      {placeLine(pkg)}
-                    </p>
-                  </div>
-                  <span className="hidden shrink-0 border border-white/15 px-2 py-1 font-mono text-[9px] uppercase tracking-wider text-white/60 sm:inline-block">
-                    {pkg.category}
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ol>
-        </Container>
-      </section>
-
       {/* FAQ */}
       <section className="mt-32 border-t border-white/10 py-20" aria-labelledby="faq-h">
         <Container className="max-w-3xl">
@@ -385,7 +324,7 @@ export default function JourneysPage() {
               <details key={item.q} className="group py-5">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-serif text-lg font-light text-white">
                   {item.q}
-                  <span className="text-white/40 transition-transform group-open:rotate-45">+</span>
+                  <span className="text-white/60 transition-transform group-open:rotate-45">+</span>
                 </summary>
                 <p className="mt-3 font-sans text-sm font-light leading-relaxed text-white/65">
                   {item.a}
@@ -397,8 +336,8 @@ export default function JourneysPage() {
       </section>
 
       <CtaZoom
-        image="/images/destinations/kashmir-shikara.jpg"
-        imageAlt="Houseboats moored on Dal Lake in Srinagar beneath snow-covered mountains"
+        image="/images/misty-mountain-valley.jpg"
+        imageAlt="Snow-capped Himalayan peaks above clouds with forested foothills"
         eyebrow="Plan your journey"
         title={
           <>

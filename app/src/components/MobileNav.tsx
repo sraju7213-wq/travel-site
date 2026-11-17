@@ -1,111 +1,81 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { DESTINATIONS, EXPERIENCES } from "@/data/siteContent";
-import { pexels } from "@/data/catalogue";
+import { useBodyOverflowLock } from "@/hooks/useBodyOverflowLock";
 import { getRecentSlugs, pushRecent, getPins } from "@/lib/menuStorage";
-
-interface NavItem {
-  label: string;
-  href: string;
-  image?: string;
-  group?: string;
-}
-
-interface NavGroup {
-  label: string;
-  items: NavItem[];
-  icon?: React.ReactNode;
-}
+import { CONTACT, NAV_GROUPS, type NavLink } from "@/lib/navigation";
+import { getAllPackages, getPackageCardImage } from "@/data/catalogue";
+import { cleanDuration } from "@/lib/packageDisplay";
 
 interface MobileNavProps {
   open: boolean;
   onClose: () => void;
 }
 
-// Extended nav categories with icons
-const MOBILE_NAV_CATEGORIES: NavGroup[] = [
-  {
-    label: "Destinations",
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-        <circle cx="12" cy="10" r="3" />
-      </svg>
-    ),
-    items: [
-      { label: "All destinations", href: "/journeys#catalogue", group: "Destinations" },
-      ...DESTINATIONS.map((d) => ({ label: d.name, href: d.href, image: d.image, group: "Destinations" })),
-    ],
-  },
-  {
-    label: "Journeys",
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-      </svg>
-    ),
-    items: [
-      { label: "All journeys", href: "/journeys", group: "Journeys" },
-      { label: "Stopovers", href: "/journeys?category=Stopovers#catalogue", group: "Journeys" },
-      { label: "Images of India", href: "/journeys?category=Images%20of%20India#catalogue", group: "Journeys" },
-      { label: "India tours", href: "/journeys?category=India%20Tours#catalogue", group: "Journeys" },
-      { label: "Himalayan expeditions", href: "/journeys?category=Himalayan%20Expeditions#catalogue", group: "Journeys" },
-      { label: "Mini trek in Kashmir", href: "/journeys?category=Mini%20Trek%20in%20Kashmir#catalogue", group: "Journeys" },
-      { label: "Nepal adventure", href: "/journeys?category=Nepal%20Adventure#catalogue", group: "Journeys" },
-    ],
-  },
-  {
-    label: "Experiences",
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10" />
-        <path d="M12 6v6l4 2" />
-      </svg>
-    ),
-    items: EXPERIENCES.map((e) => ({ label: e.title, href: e.href, image: e.image, group: "Experiences" })),
-  },
-  {
-    label: "Company",
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-      </svg>
-    ),
-    items: [
-      { label: "About us", href: "/about", group: "Company" },
-      { label: "Kashmir houseboats", href: "/houseboats", image: pexels("40348598"), group: "Company" },
-      { label: "Plan your trip", href: "/enquiry", group: "Company" },
-      { label: "Contact", href: "/contact", group: "Company" },
-    ],
-  },
-];
+/** Every journey, so the quick-jump box can find a package by name or code. */
+const PACKAGE_LINKS: NavLink[] = getAllPackages().map((pkg) => ({
+  label: pkg.title,
+  href: `/packages/${pkg.slug}`,
+  description: `${pkg.brochure_code} · ${cleanDuration(pkg.duration)}`,
+  image: getPackageCardImage(pkg.slug),
+}));
 
+type Entry = NavLink & { group: string };
+
+/**
+ * MobileNav
+ * ---------
+ * The full-screen navigation drawer used below the `lg` breakpoint.
+ *
+ * It replaces the old bare link list with:
+ *   - a quick-jump search that covers destinations, journey categories,
+ *     experiences and all 27 brochure packages,
+ *   - collapsible groups so the drawer stays scannable on a phone,
+ *   - recently viewed and pinned shortcuts,
+ *   - a persistent "Plan your trip" call to action with the real contact
+ *     details.
+ *
+ * The drawer is a modal dialog: Escape closes it, focus is trapped inside,
+ * focus returns to the menu button, and the page behind it cannot scroll.
+ */
 export default function MobileNav({ open, onClose }: MobileNavProps) {
-  const [expanded, setExpanded] = useState<Set<number>>(new Set());
+  const [expanded, setExpanded] = useState<Set<string>>(new Set(["journeys"]));
   const [query, setQuery] = useState("");
   const [mounted, setMounted] = useState(false);
   const [recentSlugs, setRecentSlugs] = useState<string[]>([]);
   const [pins, setPins] = useState<string[]>([]);
-  const [isOpen, setIsOpen] = useState(false);
+
   const panelRef = useRef<HTMLDivElement>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
+  const searchRef = useRef<HTMLInputElement>(null);
   const touchStartX = useRef<number | null>(null);
   const touchStartY = useRef<number | null>(null);
 
-  const close = useCallback(() => {
-    setIsOpen(false);
-    setTimeout(onClose, 200);
-  }, [onClose]);
+  useBodyOverflowLock(open);
 
-  useEffect(() => {
-    if (!open) return;
-    const t = setTimeout(() => closeBtnRef.current?.focus(), 50);
-    return () => clearTimeout(t);
-  }, [open]);
+  // Destinations and Experiences are desktop-only mega-menus; on mobile we
+  // surface direct page links instead, so they are excluded from the drawer.
+  const mobileGroups = useMemo(
+    () => NAV_GROUPS.filter((g) => g.id !== "destinations" && g.id !== "experiences"),
+    [],
+  );
+
+  const allEntries = useMemo<Entry[]>(
+    () => [
+      ...mobileGroups.flatMap((group) =>
+        group.links.map((link) => ({ ...link, group: group.label })),
+      ),
+      ...PACKAGE_LINKS.map((link) => ({ ...link, group: "Journeys" })),
+    ],
+    [mobileGroups],
+  );
+
+  const entriesByHref = useMemo(
+    () => new Map(allEntries.map((entry) => [entry.href, entry])),
+    [allEntries],
+  );
 
   useEffect(() => {
     const t = window.setTimeout(() => {
@@ -117,15 +87,6 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
   }, []);
 
   useEffect(() => {
-    if (open) {
-      const t = window.setTimeout(() => setIsOpen(true), 0);
-      return () => window.clearTimeout(t);
-    }
-    const t = setTimeout(() => setIsOpen(false), 200);
-    return () => clearTimeout(t);
-  }, [open]);
-
-  useEffect(() => {
     const onStorage = () => {
       setRecentSlugs(getRecentSlugs());
       setPins(getPins());
@@ -134,19 +95,54 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
     return () => window.removeEventListener("storage", onStorage);
   }, []);
 
+  // Focus management: move into the drawer, trap Tab, restore on close.
   useEffect(() => {
     if (!open) return;
-    const onTouchStart = (e: TouchEvent) => {
-      touchStartX.current = e.touches[0].clientX;
-      touchStartY.current = e.touches[0].clientY;
-    };
-    const onTouchMove = (e: TouchEvent) => {
-      if (touchStartX.current === null || touchStartY.current === null) return;
-      const deltaX = e.touches[0].clientX - touchStartX.current;
-      const deltaY = e.touches[0].clientY - touchStartY.current;
-      if (deltaX > 80 && Math.abs(deltaY) < 50) {
-        close();
+    const t = window.setTimeout(() => closeBtnRef.current?.focus(), 50);
+
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        onClose();
+        return;
       }
+      if (event.key !== "Tab") return;
+      const panel = panelRef.current;
+      if (!panel) return;
+      const focusable = panel.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", onKey);
+    return () => {
+      window.clearTimeout(t);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open, onClose]);
+
+  // Swipe right-to-left to dismiss.
+  useEffect(() => {
+    if (!open) return;
+    const onTouchStart = (event: TouchEvent) => {
+      touchStartX.current = event.touches[0].clientX;
+      touchStartY.current = event.touches[0].clientY;
+    };
+    const onTouchMove = (event: TouchEvent) => {
+      if (touchStartX.current === null || touchStartY.current === null) return;
+      const deltaX = event.touches[0].clientX - touchStartX.current;
+      const deltaY = event.touches[0].clientY - touchStartY.current;
+      if (deltaX > 80 && Math.abs(deltaY) < 50) onClose();
     };
     document.addEventListener("touchstart", onTouchStart, { passive: true });
     document.addEventListener("touchmove", onTouchMove, { passive: true });
@@ -154,123 +150,171 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
       document.removeEventListener("touchstart", onTouchStart);
       document.removeEventListener("touchmove", onTouchMove);
     };
-  }, [open, close]);
+  }, [open, onClose]);
 
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        e.preventDefault();
-        close();
-      }
-    };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [close]);
-
-  const toggle = (index: number) => {
+  const toggle = (id: string) => {
     setExpanded((prev) => {
       const next = new Set(prev);
-      if (next.has(index)) next.delete(index);
-      else next.add(index);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
       return next;
     });
   };
 
-  const handleLinkClick = (href: string) => {
-    pushRecent(href);
-    setRecentSlugs(getRecentSlugs());
-    close();
-  };
+  const handleLinkClick = useCallback(
+    (href: string) => {
+      pushRecent(href);
+      setRecentSlugs(getRecentSlugs());
+      onClose();
+    },
+    [onClose],
+  );
 
-  if (!isOpen) return null;
-
-  const allEntries = MOBILE_NAV_CATEGORIES.flatMap((g) => g.items);
   const q = query.trim().toLowerCase();
-  const filteredGroups = q
-    ? MOBILE_NAV_CATEGORIES.map((g) => ({
-        ...g,
-        items: g.items.filter((it) => it.label.toLowerCase().includes(q)),
-      })).filter((g) => g.items.length > 0)
-    : MOBILE_NAV_CATEGORIES;
+  const results = useMemo(() => {
+    if (!q) return [];
+    return allEntries.filter(
+      (entry) =>
+        entry.label.toLowerCase().includes(q) ||
+        (entry.description ?? "").toLowerCase().includes(q),
+    );
+  }, [allEntries, q]);
 
-  const filteredFlat = q ? allEntries.filter((it) => it.label.toLowerCase().includes(q)) : [];
+  const visibleGroups = useMemo(
+    () =>
+      q
+        ? mobileGroups.map((group) => ({
+            ...group,
+            links: group.links.filter(
+              (link) =>
+                link.label.toLowerCase().includes(q) ||
+                (link.description ?? "").toLowerCase().includes(q),
+            ),
+          })).filter((group) => group.links.length > 0)
+        : mobileGroups,
+    [q, mobileGroups],
+  );
 
-  const resolveItem = (slug: string) => allEntries.find((it) => it.href === slug);
-  const recentItems = mounted ? recentSlugs.map(resolveItem).filter((x): x is NavItem => Boolean(x)) : [];
-  const pinnedItems = mounted ? pins.map(resolveItem).filter((x): x is NavItem => Boolean(x)) : [];
+  const recentItems = useMemo(
+    () =>
+      mounted
+        ? recentSlugs
+            .map((slug) => entriesByHref.get(slug))
+            .filter((entry): entry is Entry => Boolean(entry))
+        : [],
+    [mounted, recentSlugs, entriesByHref],
+  );
+
+  const pinnedItems = useMemo(
+    () =>
+      mounted
+        ? pins.map((slug) => entriesByHref.get(slug)).filter((entry): entry is Entry => Boolean(entry))
+        : [],
+    [mounted, pins, entriesByHref],
+  );
 
   return (
     <div
       id="mobile-menu"
       ref={panelRef}
-      className="fixed inset-0 z-[60] flex flex-col bg-wild-black text-white"
       role="dialog"
       aria-modal="true"
       aria-label="Main navigation"
+      className="fixed inset-0 z-[60] flex flex-col bg-[#0C1617] text-white lg:hidden"
     >
-      <div
-        className="fixed inset-0 bg-black/70 backdrop-blur-sm transition-opacity duration-300"
-        style={{ opacity: isOpen ? 1 : 0 }}
-        onClick={close}
-        aria-hidden="true"
-      />
-
-      <div className="relative border-b border-white/10 bg-wild-black/95 px-5 py-4 sticky top-0 z-20 backdrop-blur-md">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3">
+      {/* Drawer header */}
+      <div className="sticky top-0 z-20 border-b border-white/10 bg-[#0C1617]/95 px-4 py-3 backdrop-blur-md">
+        <div className="flex items-center justify-between gap-3">
           <button
             ref={closeBtnRef}
             type="button"
-            onClick={close}
+            onClick={onClose}
             aria-label="Close menu"
-            className="group circular-btn flex-shrink-0"
+            className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-white/20 text-white transition-colors hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)]"
           >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-300 group-hover:rotate-90">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M18 6L6 18M6 6l12 12" />
             </svg>
           </button>
 
-          <div className="justify-self-center flex-shrink-0">
-            <Link href="/" onClick={close} className="block" aria-label="Home">
-              <Image src="/logo.png" alt="India Nepal Travel Center" width={108} height={36} className="h-9 w-auto" />
-            </Link>
-          </div>
+          <Link
+            href="/"
+            onClick={onClose}
+            className="shrink-0 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)]"
+            aria-label="India Nepal Travel Center — home"
+          >
+            <Image src="/logo.png" alt="India Nepal Travel Center" width={108} height={36} className="h-8 w-auto" priority />
+          </Link>
 
-          <div className="flex items-center gap-2 flex-shrink-0">
-            <Link href="/enquiry" onClick={close} className="btn-tertiary px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em]">
-              Enquire
-            </Link>
-          </div>
+          <Link
+            href="/enquiry"
+            onClick={onClose}
+            className="inline-flex min-h-[44px] shrink-0 items-center justify-center border border-[var(--color-wild-orange)] px-3.5 py-2 font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--color-wild-orange)] transition-colors hover:bg-[var(--color-wild-orange)] hover:text-[#0C1617] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)]"
+          >
+            Enquire
+          </Link>
         </div>
       </div>
 
-      <div className="px-5 pt-4 pb-2 relative">
+      {/* Quick jump */}
+      <div className="px-4 pt-4">
         <div className="relative">
+          <svg
+            className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-white/50"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            aria-hidden="true"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg>
           <input
+            ref={searchRef}
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Quick jump…"
-            aria-label="Search menu"
-            className="w-full rounded-none border border-white/20 bg-white/5 px-4 py-2.5 text-xs font-display text-white placeholder:text-white/40 focus:border-wild-orange focus:outline-none focus:ring-1 focus:ring-wild-orange transition-all duration-200 pr-12"
+            placeholder="Search journeys, places…"
+            aria-label="Search journeys, destinations and experiences"
+            className="w-full rounded-lg border border-white/20 bg-white/5 py-3 pl-10 pr-10 text-sm text-white placeholder:text-white/50 focus:border-[var(--color-wild-orange)] focus:outline-none focus:ring-1 focus:ring-[var(--color-wild-orange)]"
           />
           {query && (
-            <button type="button" onClick={() => setQuery("")} aria-label="Clear search" className="absolute right-3 top-1/2 -translate-y-1/2 text-white/50 hover:text-wild-orange transition-colors">
-              ×
+            <button
+              type="button"
+              onClick={() => {
+                setQuery("");
+                searchRef.current?.focus();
+              }}
+              aria-label="Clear search"
+              className="absolute right-2 top-1/2 inline-flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full text-white/60 transition-colors hover:bg-white/10 hover:text-white"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+                <path d="M18 6 6 18M6 6l12 12" strokeLinecap="round" />
+              </svg>
             </button>
           )}
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto px-5 pb-10">
-        {mounted && (recentItems.length > 0 || pinnedItems.length > 0) && (
-          <div className="mb-6 space-y-3 animate-fade-in">
+      {/* Scrollable body */}
+      <div className="flex-1 overflow-y-auto overscroll-contain px-4 pb-40 pt-4">
+        {mounted && !q && (recentItems.length > 0 || pinnedItems.length > 0) && (
+          <div className="mb-6 space-y-4">
             {pinnedItems.length > 0 && (
               <div>
-                <p className="text-[0.65rem] font-display uppercase tracking-[0.25em] text-wild-orange mb-2">Pinned</p>
+                <p className="mb-2 font-sans text-[10px] font-semibold uppercase tracking-[0.25em] text-[var(--color-wild-orange)]">
+                  Pinned
+                </p>
                 <div className="flex flex-wrap gap-2">
-                  {pinnedItems.map((it) => (
-                    <Link key={it.href} href={it.href} onClick={() => handleLinkClick(it.href)} className="rounded-none border border-wild-orange/40 bg-wild-orange/10 px-3 py-1.5 text-xs font-display text-white hover:bg-wild-orange/20 transition-all duration-200">
-                      {it.label}
+                  {pinnedItems.map((entry) => (
+                    <Link
+                      key={entry.href}
+                      href={entry.href}
+                      onClick={() => handleLinkClick(entry.href)}
+                      className="inline-flex min-h-[36px] items-center rounded-full border border-[var(--color-wild-orange)]/40 bg-[var(--color-wild-orange)]/10 px-3 py-1.5 text-xs text-white transition-colors hover:bg-[var(--color-wild-orange)]/20"
+                    >
+                      {entry.label}
                     </Link>
                   ))}
                 </div>
@@ -278,11 +322,18 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
             )}
             {recentItems.length > 0 && (
               <div>
-                <p className="text-[0.65rem] font-display uppercase tracking-[0.25em] text-white/40 mb-2">Recently viewed</p>
+                <p className="mb-2 font-sans text-[10px] font-semibold uppercase tracking-[0.25em] text-white/60">
+                  Recently viewed
+                </p>
                 <div className="flex flex-wrap gap-2">
-                  {recentItems.map((it) => (
-                    <Link key={it.href} href={it.href} onClick={() => handleLinkClick(it.href)} className="rounded-none border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-display text-white/80 hover:text-white hover:border-white/30 transition-all duration-200">
-                      {it.label}
+                  {recentItems.map((entry) => (
+                    <Link
+                      key={entry.href}
+                      href={entry.href}
+                      onClick={() => handleLinkClick(entry.href)}
+                      className="inline-flex min-h-[36px] items-center rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs text-white/85 transition-colors hover:border-white/30 hover:text-white"
+                    >
+                      {entry.label}
                     </Link>
                   ))}
                 </div>
@@ -292,132 +343,180 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
         )}
 
         {q ? (
-          <div className="space-y-4 animate-fade-in">
-            <p className="text-xs font-display uppercase tracking-widest text-white/50 px-1">
-              {filteredFlat.length} match{filteredFlat.length === 1 ? "" : "es"}
+          <div>
+            <p className="mb-3 px-1 font-sans text-[10px] font-semibold uppercase tracking-[0.25em] text-white/60">
+              {results.length} match{results.length === 1 ? "" : "es"}
             </p>
-            {filteredFlat.length === 0 ? (
-              <div className="py-8 text-center px-4">
-                <p className="text-white/60 font-display">No matches</p>
-                <button type="button" onClick={() => setQuery("")} className="mt-3 text-xs text-wild-orange hover:text-white transition-colors">
+            {results.length === 0 ? (
+              <div className="px-4 py-10 text-center">
+                <p className="font-serif text-lg text-white/80">No matches</p>
+                <button
+                  type="button"
+                  onClick={() => setQuery("")}
+                  className="mt-3 min-h-[44px] rounded-lg px-4 py-2 text-sm text-[var(--color-wild-orange)] transition-colors hover:text-white"
+                >
                   Reset search
                 </button>
               </div>
             ) : (
-              <div className="space-y-2 px-1">
-                {filteredFlat.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => handleLinkClick(item.href)}
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl border border-white/10 bg-wild-darker/50 hover:border-wild-orange/50 hover:bg-white/5 transition-all duration-200 group"
-                  >
-                    {item.image && (
-                      <Image
-                        src={item.image}
-                        alt={item.label}
-                        width={56}
-                        height={42}
-                        className="h-14 w-14 rounded-lg object-cover flex-shrink-0 transition-transform duration-300 group-hover:scale-105"
-                      />
-                    )}
-                    <div className="flex-1 min-w-0 text-left">
-                      <p className="font-display text-sm font-medium text-white truncate">{item.label}</p>
-                      {item.group && <p className="text-[0.65rem] font-display uppercase tracking-[0.2em] text-wild-orange/80">{item.group}</p>}
-                    </div>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0 text-white/40 group-hover:text-wild-orange transition-colors">
-                      <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                  </Link>
+              <ul className="space-y-2">
+                {results.map((entry) => (
+                  <li key={entry.href + entry.label}>
+                    <Link
+                      href={entry.href}
+                      onClick={() => handleLinkClick(entry.href)}
+                      className="flex min-h-[56px] items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2.5 transition-colors hover:border-[var(--color-wild-orange)]/50 hover:bg-white/[0.08]"
+                    >
+                      {entry.image ? (
+                        <Image
+                          src={entry.image}
+                          alt=""
+                          width={48}
+                          height={36}
+                          className="h-12 w-16 shrink-0 rounded-lg object-cover"
+                        />
+                      ) : null}
+                      <span className="min-w-0 flex-1">
+                        <span className="block truncate font-accent text-xs font-semibold uppercase tracking-[0.14em] text-white">
+                          {entry.label}
+                        </span>
+                        <span className="mt-0.5 block truncate font-sans text-[11px] text-white/65">
+                          {entry.description ?? entry.group}
+                        </span>
+                      </span>
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                        className="shrink-0 text-white/50"
+                      >
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                  </li>
                 ))}
-              </div>
+              </ul>
             )}
           </div>
         ) : (
-          <nav className="space-y-1 animate-fade-in" aria-label="Mobile navigation">
-            {filteredGroups.map((group, groupIdx) => (
-              <div key={group.label} className="border border-white/10 rounded-xl overflow-hidden bg-wild-darker/30">
-                <button
-                  type="button"
-                  onClick={() => toggle(groupIdx)}
-                  className="w-full flex items-center justify-between px-4 py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wild-orange focus-visible:ring-offset-2 focus-visible:ring-offset-wild-black"
-                  aria-expanded={expanded.has(groupIdx)}
-                >
-                  <span className="font-display text-sm font-medium uppercase tracking-[2px] text-white flex items-center gap-3">
-                    {group.icon && (
-                      <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/5 text-white/60 group-hover:text-white transition-colors">
-                        {group.icon}
-                      </span>
-                    )}
-                    {group.label}
-                  </span>
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className={`flex-shrink-0 text-white/40 transition-transform duration-200 ${expanded.has(groupIdx) ? "rotate-180" : ""}`}
-                  >
-                    <path d="M6 9l6 6 6-6" />
-                  </svg>
-                </button>
+          <nav aria-label="Mobile navigation">
+            <ul className="space-y-2">
+              {visibleGroups.map((group) => {
+                const isOpen = expanded.has(group.id);
+                return (
+                  <li key={group.id}>
+                    <div className="overflow-hidden rounded-xl border border-white/10 bg-white/[0.03]">
+                      <h2>
+                        <button
+                          type="button"
+                          onClick={() => toggle(group.id)}
+                          aria-expanded={isOpen}
+                          aria-controls={`mobile-group-${group.id}`}
+                          className="flex min-h-[56px] w-full items-center justify-between gap-3 px-4 py-3 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--color-wild-orange)]"
+                        >
+                          <span className="font-accent text-xs font-semibold uppercase tracking-[0.2em] text-white">
+                            {group.label}
+                          </span>
+                          <span className="flex items-center gap-3">
+                            <span className="hidden font-sans text-[10px] uppercase tracking-[0.18em] text-white/60 sm:inline">
+                              {group.note}
+                            </span>
+                            <svg
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              aria-hidden="true"
+                              className={`shrink-0 text-white/60 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+                            >
+                              <path d="m6 9 6 6 6-6" />
+                            </svg>
+                          </span>
+                        </button>
+                      </h2>
 
-                <div
-                  className={`menu-accordion overflow-hidden transition-all duration-300 ease-out ${expanded.has(groupIdx) ? "menu-accordion-expanded" : "menu-accordion-collapsed"}`}
-                  role="region"
-                  aria-label={`${group.label} submenu`}
-                >
-                  <div className="px-4 pb-4 pt-2 space-y-1 border-t border-white/5">
-                    {group.items.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        onClick={() => handleLinkClick(item.href)}
-                        className="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-display text-white/70 hover:text-white hover:bg-white/5 transition-all duration-150 group"
+                      <div
+                        id={`mobile-group-${group.id}`}
+                        role="region"
+                        aria-label={`${group.label} submenu`}
+                        className={`overflow-hidden transition-all duration-300 ease-out ${
+                          isOpen ? "max-h-[60rem] opacity-100" : "max-h-0 opacity-0"
+                        }`}
                       >
-                        <span>{item.label}</span>
-                        {item.image && (
-                          <Image
-                            src={item.image}
-                            alt={item.label}
-                            width={32}
-                            height={24}
-                            className="h-6 w-8 rounded object-cover flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 ml-2"
-                          />
-                        )}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
+                        <ul className="space-y-0.5 border-t border-white/10 px-2 pb-3 pt-2">
+                          {group.links.map((link) => (
+                            <li key={link.href + link.label}>
+                              <Link
+                                href={link.href}
+                                onClick={() => handleLinkClick(link.href)}
+                                className="flex min-h-[48px] items-center justify-between gap-3 rounded-lg px-3 py-2.5 font-sans text-sm text-white/85 transition-colors hover:bg-white/5 hover:text-white"
+                              >
+                                <span className="min-w-0">
+                                  <span className="block truncate">{link.label}</span>
+                                  {link.description ? (
+                                    <span className="mt-0.5 block truncate font-sans text-[11px] text-white/60">
+                                      {link.description}
+                                    </span>
+                                  ) : null}
+                                </span>
+                                {link.image ? (
+                                  <Image
+                                    src={link.image}
+                                    alt=""
+                                    width={40}
+                                    height={30}
+                                    className="h-8 w-10 shrink-0 rounded object-cover"
+                                  />
+                                ) : null}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
 
-            <div className="mt-6 pt-6 border-t border-white/10 space-y-3 animate-fade-in">
+            <div className="mt-6 space-y-3">
               <Link
                 href="/enquiry"
-                onClick={close}
-                className="btn-primary w-full justify-center py-4 text-sm"
+                onClick={onClose}
+                className="inline-flex min-h-[52px] w-full items-center justify-center rounded-lg bg-[var(--color-wild-orange)] px-6 font-accent text-xs font-semibold uppercase tracking-[0.2em] text-[#0C1617] transition-colors hover:bg-[var(--color-wild-orange-hover)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)]"
               >
-                Plan Your Trip
+                Plan your trip
               </Link>
-              <div className="flex items-center gap-4 p-4 rounded-xl border border-white/10 bg-wild-darker/50">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-wild-orange/20 text-wild-orange">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                    <circle cx="12" cy="10" r="3" />
-                  </svg>
+
+              <div className="rounded-xl border border-white/10 bg-white/[0.04] p-4">
+                <p className="font-serif text-base font-light text-white">Speak with a specialist</p>
+                <p className="mt-0.5 font-sans text-[10px] uppercase tracking-[0.2em] text-white/60">
+                  Booking desk · Asia / Australia
+                </p>
+                <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
+                  <a
+                    href={CONTACT.phoneMobileHref}
+                    className="font-sans text-sm text-[var(--color-wild-orange)] underline-offset-4 hover:text-white hover:underline"
+                  >
+                    {CONTACT.phoneMobile}
+                  </a>
+                  <a
+                    href={CONTACT.phoneLandlineHref}
+                    className="font-sans text-sm text-[var(--color-wild-orange)] underline-offset-4 hover:text-white hover:underline"
+                  >
+                    {CONTACT.phoneLandline}
+                  </a>
                 </div>
-                <div className="flex-1">
-                  <p className="font-serif text-base font-light text-white">Speak with a specialist</p>
-                  <p className="text-[0.7rem] font-display uppercase tracking-[0.2em] text-white/50">Mon–Sat, 9am–7pm IST</p>
-                </div>
-                <a href="tel:+911942456789" className="text-sm font-display text-wild-orange hover:text-white transition-colors">
-                  +91 194 245 6789
-                </a>
               </div>
             </div>
           </nav>

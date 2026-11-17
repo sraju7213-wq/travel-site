@@ -58,11 +58,11 @@ export default function PosterRail({
           const badge = verdict(pkg);
           return (
             <article key={pkg.id} className="jy-rail-card group">
-              <Link href={`/packages/${pkg.slug}`} aria-label={pkg.title}>
+              <Link href={`/packages/${pkg.slug}`}>
                 <div className="jy-rail-poster" data-tilt>
                   <Image
                     src={getPackageCardImage(pkg.slug)}
-                    alt={pkg.title}
+                    alt=""
                     fill
                     sizes="(min-width: 1024px) 360px, (min-width: 640px) 45vw, 90vw"
                     quality={90}
@@ -72,7 +72,7 @@ export default function PosterRail({
                 </div>
                 <h3 className="jy-rail-title">{pkg.title}</h3>
                 <div className="jy-rail-meta">
-                  <span className="font-mono text-xs text-white/55">
+                  <span className="font-mono text-xs text-white/70">
                     {placeLine(pkg)} · {cleanDuration(pkg.duration)}
                   </span>
                   {badge && (

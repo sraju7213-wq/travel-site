@@ -47,7 +47,7 @@ export default function HouseboatJourneys({ packages }: HouseboatJourneysProps) 
           </p>
           <Link
             href="/journeys?region=Kashmir#catalogue"
-            className="group mt-9 inline-flex items-center gap-4 border-b border-white/35 pb-2 font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-white transition-colors hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="group mt-9 inline-flex min-h-[44px] items-center gap-4 border-b border-white/35 pb-2 font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-white transition-colors hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
             Explore Kashmir journeys
             <span aria-hidden="true" className="text-base transition-transform duration-300 group-hover:translate-x-1.5">
@@ -70,7 +70,7 @@ export default function HouseboatJourneys({ packages }: HouseboatJourneysProps) 
                   <span className="mt-2 font-serif text-xl font-light leading-snug text-white transition-colors group-hover:text-[var(--color-wild-orange)]">
                     {pkg.title}
                   </span>
-                  <span className="mt-3 font-sans text-xs font-light text-white/55">
+                  <span className="mt-3 font-sans text-xs font-light text-white/70">
                     {pkg.region.filter((r) => r !== "India" && r !== "Nepal").join(" · ") || pkg.primaryRegion}
                   </span>
                   <span className="mt-4 flex items-center justify-between border-t border-white/10 pt-3 font-sans text-[10px] uppercase tracking-[0.18em] text-white/60">

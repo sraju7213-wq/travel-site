@@ -382,6 +382,7 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
           ease: "expo.out",
           delay: 0.2,
           stagger: { each: 0.05, from: "random" },
+          immediateRender: false,
         },
       );
     }
@@ -490,7 +491,7 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
               name="q"
               type="search"
               placeholder="Search any journey, place or interest"
-              className="min-w-0 flex-1 bg-transparent font-sans text-base text-[#0C1617] placeholder:text-[#0C1617]/70 focus:outline-none"
+              className="min-h-[44px] min-w-0 flex-1 bg-transparent py-2 font-sans text-base text-[#0C1617] placeholder:text-[#0C1617]/70 focus:outline-none"
             />
             <kbd className="hidden rounded bg-[#0C1617]/15 px-2 py-0.5 font-sans text-sm sm:inline">
               /

@@ -97,9 +97,9 @@
 }
 
 @layer components {
-  /* Primary button - Wilderness orange */
+  /* Primary button - Wilderness orange with ink text (7.3:1 on the accent) */
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-none border border-transparent px-6 py-3 font-accent text-xs font-semibold uppercase tracking-[0.24em] text-white bg-[var(--color-wild-orange)] hover:bg-[var(--color-wild-orange-hover)] transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)] focus-visible:ring-offset-2 active:scale-95 cursor-pointer;
+    @apply inline-flex items-center justify-center gap-2 rounded-none border border-transparent px-6 py-3 font-accent text-xs font-semibold uppercase tracking-[0.24em] text-[#0C1617] bg-[var(--color-wild-orange)] hover:bg-[var(--color-wild-orange-hover)] hover:text-[#0C1617] transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)] focus-visible:ring-offset-2 active:scale-95 cursor-pointer;
     box-shadow: 0 8px 20px -4px rgba(212, 147, 104, 0.2);
   }
   .btn-primary:hover {
@@ -306,8 +306,7 @@
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
-  }
-  .scrollbar-hide::-webkit-scrollbar {
+  }  .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
   .watermark-outline {
@@ -400,8 +399,10 @@
 }
 
 .animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out forwards;
-  opacity: 0;
+  /* `backwards` fill takes the hidden start state from the keyframes rather
+     than from a base `opacity: 0`, so the element is visible if the animation
+     never runs (throttled tab, disabled CSS animation). */
+  animation: fadeInUp 0.6s ease-out backwards;
 }
 
 /* Slide in from right for mobile filter drawer */
@@ -526,8 +527,7 @@
 
 /* Staggered entrance for grid items */
 .stagger-in > * {
-  opacity: 0;
-  animation: fade-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fade-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) backwards;
 }
 .stagger-in > *:nth-child(1) { animation-delay: 0ms; }
 .stagger-in > *:nth-child(2) { animation-delay: 60ms; }
@@ -587,6 +587,88 @@
 @keyframes page-curtain-open {
   from { transform: scaleY(1); transform-origin: bottom center; }
   to { transform: scaleY(0); transform-origin: bottom center; }
+}
+
+/* ---------------------------------------------------------------------------
+   Page transition (see components/ui/PageTransition.tsx)
+
+   The curtain sweep and the content settle are CSS animations on purpose:
+   they run on the browser's own animation timeline, so they complete even
+   when the JavaScript rAF ticker is throttled. The curtain's resting state
+   is `scaleY(0)` (invisible) and the content is never hidden, so a stalled
+   or disabled animation costs a flourish, never the page itself.
+   --------------------------------------------------------------------------- */
+@keyframes page-curtain-sweep {
+  0%   { transform: scaleY(0); transform-origin: 50% 0%; }
+  40%  { transform: scaleY(1); transform-origin: 50% 0%; }
+  41%  { transform: scaleY(1); transform-origin: 50% 100%; }
+  100% { transform: scaleY(0); transform-origin: 50% 100%; }
+}
+
+@keyframes page-content-settle {
+  from { transform: translateY(18px); }
+  to   { transform: translateY(0); }
+}
+
+.page-transition-curtain {
+  transform: scaleY(0);
+  animation: page-curtain-sweep 1.04s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.page-transition-content {
+  animation: page-content-settle 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+/* ---------------------------------------------------------------------------
+   Package hero entrance (components/package/PackageHero.tsx)
+
+   CSS-driven so the hero is never stuck at `opacity: 0` waiting for React
+   state or a JS timeline to run.
+   --------------------------------------------------------------------------- */
+@keyframes pkg-hero-photo-settle {
+  from { opacity: 0; transform: scale(1.05); }
+  to   { opacity: 0.35; transform: scale(1); }
+}
+
+@keyframes pkg-hero-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.pkg-hero-photo {
+  opacity: 0.35;
+  animation: pkg-hero-photo-settle 1.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.pkg-hero-rise {
+  animation: pkg-hero-rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.pkg-hero-d1 { animation-delay: 0.1s; }
+.pkg-hero-d2 { animation-delay: 0.2s; }
+.pkg-hero-d3 { animation-delay: 0.3s; }
+.pkg-hero-d4 { animation-delay: 0.4s; }
+.pkg-hero-d5 { animation-delay: 0.5s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition-curtain {
+    animation: none;
+    transform: scaleY(0);
+  }
+  .page-transition-content {
+    animation: none;
+    transform: none;
+  }
+  .pkg-hero-photo {
+    animation: none;
+    opacity: 0.35;
+    transform: none;
+  }
+  .pkg-hero-rise {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

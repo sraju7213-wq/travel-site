@@ -14,6 +14,8 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // One-off QA/tooling scripts, not shipped application source.
     "scripts/**",
+    // Temporary harness files written into public/ by the responsive audit.
+    "public/__*",
   ]),
 ]);
 

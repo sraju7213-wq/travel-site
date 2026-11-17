@@ -50,7 +50,7 @@ export default function PackageSidebar({ pkg, related }: PackageSidebarProps) {
               key={row.label}
               className="flex items-start justify-between gap-4 border-b border-white/5 pb-2.5 last:border-0 last:pb-0"
             >
-              <dt className="shrink-0 text-white/45">{row.label}</dt>
+              <dt className="shrink-0 text-white/60">{row.label}</dt>
               <dd className="text-right font-medium text-white/90">{row.value}</dd>
             </div>
           ))}
@@ -118,7 +118,7 @@ export default function PackageSidebar({ pkg, related }: PackageSidebarProps) {
                     <span className="block truncate font-display text-xs font-semibold text-white transition-colors group-hover:text-brass">
                       {item.title}
                     </span>
-                    <span className="mt-0.5 block truncate font-display text-[11px] text-white/45">
+                    <span className="mt-0.5 block truncate font-display text-[11px] text-white/60">
                       {stops.length > 0 ? stops.slice(0, 3).join(", ") : item.primaryRegion} •{" "}
                       {item.duration.split(" ")[0]} nights
                     </span>

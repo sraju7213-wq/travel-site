@@ -42,12 +42,15 @@ export default function PillarsTabs({
   const panelRef = useRef<HTMLDivElement>(null);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const tabListRef = useRef<HTMLDivElement>(null);
+  // 1 = moving forward (content enters from the right), -1 = moving back.
+  const directionRef = useRef(1);
   const total = pillars.length;
   const currentPillar: Pillar = pillars[active];
 
   const selectTab = useCallback(
-    (index: number, focus = false) => {
+    (index: number, focus = false, direction?: 1 | -1) => {
       if (index === active) return;
+      directionRef.current = direction ?? (index > active ? 1 : -1);
       setActive(index);
 
       if (focus) {
@@ -73,14 +76,24 @@ export default function PillarsTabs({
 
   const onKeyDown = (e: React.KeyboardEvent) => {
     let next: number | null = null;
-    if (e.key === "ArrowRight") next = active === total - 1 ? 0 : active + 1;
-    else if (e.key === "ArrowLeft") next = active === 0 ? total - 1 : active - 1;
-    else if (e.key === "Home") next = 0;
-    else if (e.key === "End") next = total - 1;
+    let direction: 1 | -1 = 1;
+    if (e.key === "ArrowRight") {
+      direction = 1;
+      next = active === total - 1 ? 0 : active + 1;
+    } else if (e.key === "ArrowLeft") {
+      direction = -1;
+      next = active === 0 ? total - 1 : active - 1;
+    } else if (e.key === "Home") {
+      direction = -1;
+      next = 0;
+    } else if (e.key === "End") {
+      direction = 1;
+      next = total - 1;
+    }
 
     if (next === null) return;
     e.preventDefault();
-    selectTab(next, true);
+    selectTab(next, true, direction);
   };
 
   // Scroll-triggered entrance animation via Intersection Observer
@@ -91,55 +104,56 @@ export default function PillarsTabs({
     const section = sectionRef.current;
     if (!section) return;
 
-    section.style.opacity = "0";
-    section.style.transform = "translateY(20px)";
-    section.style.willChange = "opacity, transform";
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            section.style.transition = "opacity 0.8s ease-out, transform 0.8s ease-out";
-            section.style.opacity = "1";
-            section.style.transform = "translateY(0)";
-            observer.unobserve(entry.target);
-          }
-        });
-      },
+    // `fromTo` with `immediateRender: false` means the section stays visible
+    // until the scroll trigger actually plays. A pre-hidden inline style would
+    // leave the whole block blank whenever the observer never fires.
+    gsap.fromTo(
+      section,
+      { opacity: 0, y: 20 },
       {
-        root: null,
-        threshold: 0.1,
-      }
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        immediateRender: false,
+        scrollTrigger: {
+          trigger: section,
+          start: "top 85%",
+          once: true,
+        },
+      },
     );
-
-    observer.observe(section);
-    return () => observer.disconnect();
   }, []);
 
-  // The panel content re-enters with a masked wipe on every tab change.
+  // The panel content slides in from the side the user is travelling towards.
   useEffect(() => {
     const panel = panelRef.current;
     if (!panel) return;
     if (prefersReducedMotion()) return;
 
+    const direction = directionRef.current;
     const ctx = gsap.context(() => {
       gsap.fromTo(
         panel,
-        { opacity: 0, y: 18 },
+        { opacity: 0, x: direction * 44, y: 12 },
         {
           opacity: 1,
+          x: 0,
           y: 0,
           duration: DURATION.base,
           ease: EASE.expo,
+          immediateRender: false,
         }
       );
 
       // The photograph lifts out from beneath a curtain as the panel settles.
       const frame = panel.querySelector<HTMLElement>("[data-pillar-image]");
       if (frame) {
+        // Curtain opens from the side the panel is arriving from.
+        const hiddenEdge = direction === 1 ? "0% 100% 0% 0%" : "0% 0% 0% 100%";
         gsap.fromTo(
           frame,
-          { clipPath: "inset(0% 0% 100% 0%)", scale: 1.08 },
+          { clipPath: `inset(${hiddenEdge})`, scale: 1.06 },
           {
             clipPath: "inset(0% 0% 0% 0%)",
             scale: 1,
@@ -199,10 +213,10 @@ export default function PillarsTabs({
                 tabIndex={isActive ? 0 : -1}
                 onClick={() => selectTab(i)}
                 className={`relative shrink-0 pb-4 pt-5 text-[10px] font-sans font-medium uppercase tracking-[0.2em] transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-[#221F20] ${
-                  isActive ? "text-white" : "text-white/45 hover:text-white/85"
+                  isActive ? "text-white" : "text-white/60 hover:text-white/85"
                 }`}
               >
-                <span className="mr-2 text-[9px] text-[var(--color-wild-orange)]/75">0{i + 1}</span>
+                <span className="mr-2 text-[9px] text-[var(--color-wild-orange)]">0{i + 1}</span>
                 {pillar.label}
                 {isActive && (
                   <span
@@ -263,20 +277,20 @@ export default function PillarsTabs({
                   >
                     <p className="text-[9px] font-sans uppercase tracking-[0.18em] text-[var(--color-wild-orange)]">0{i + 1}</p>
                     <p className="mt-2 text-xs font-medium text-white">{h.title}</p>
-                    <p className="mt-1 text-xs leading-relaxed text-white/50">{h.detail}</p>
+                    <p className="mt-1 text-xs leading-relaxed text-white/70">{h.detail}</p>
                   </li>
                 ))}
               </ul>
             )}
 
             <div className="mt-6 flex flex-wrap items-center gap-6">
-              <Link href={currentPillar.href} className="group inline-flex items-center gap-4 border-b border-white/35 pb-2 text-[10px] font-sans font-medium uppercase tracking-[0.18em] text-white transition-colors hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)]">
+              <Link href={currentPillar.href} className="group inline-flex min-h-[44px] items-center gap-4 border-b border-white/35 pb-2 text-[10px] font-sans font-medium uppercase tracking-[0.18em] text-white transition-colors hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)]">
                 {currentPillar.linkLabel}
                 <span aria-hidden="true" className="text-base transition-transform duration-300 group-hover:translate-x-1">→</span>
               </Link>
               <Link
                 href="/enquiry"
-                className="text-[10px] font-sans uppercase tracking-[0.18em] text-white/50 transition-colors hover:text-white"
+                className="inline-flex min-h-[44px] items-center text-[10px] font-sans uppercase tracking-[0.18em] text-white/70 transition-colors hover:text-white"
               >
                 Tailor an itinerary <span aria-hidden="true">&rarr;</span>
               </Link>
