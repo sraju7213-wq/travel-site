@@ -42,3 +42,6 @@ yarn-error.log*
 # Working upload directories
 to be updated images/
 
+
+# Temporary audit harness written into public/ by scripts/mobile_audit.mjs
+app/public/__mobile_audit.html

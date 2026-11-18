@@ -52,14 +52,16 @@ export default function JourneysPage() {
       </section>
 
       {/* In season now */}
-      <section className="mt-32" aria-labelledby="season-h">
+      <section className="mt-20 md:mt-28" aria-labelledby="season-h">
         <Container wide>
-          <h2 id="season-h" className="jy-section-title">
-            In season now
-          </h2>
-          <p className="mb-10 mt-4 text-lg text-white/70">
-            The journeys running across India and Nepal this season.
-          </p>
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between md:gap-10">
+            <h2 id="season-h" className="jy-section-title">
+              In season now
+            </h2>
+            <p className="max-w-md text-sm text-white/60 md:text-right">
+              The journeys running across India and Nepal this season.
+            </p>
+          </div>
         </Container>
         <div className="jy-coverflow">
           <div
@@ -151,14 +153,16 @@ export default function JourneysPage() {
       </section>
 
       {/* Places */}
-      <section className="mt-32" aria-labelledby="places-h">
+      <section className="mt-20 md:mt-28" aria-labelledby="places-h">
         <Container wide>
-          <h2 id="places-h" className="jy-section-title">
-            Places we travel
-          </h2>
-          <p className="mb-10 mt-4 text-lg text-white/70">
-            Every place, with the journeys that pass through it.
-          </p>
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between md:gap-10">
+            <h2 id="places-h" className="jy-section-title">
+              Places we travel
+            </h2>
+            <p className="max-w-md text-sm text-white/60 md:text-right">
+              Every place, with the journeys that pass through it.
+            </p>
+          </div>
         </Container>
         <div className="jy-coverflow">
           <div
@@ -275,7 +279,7 @@ export default function JourneysPage() {
       </section>
 
       {/* Rails by category */}
-      <section className="mt-32 grid gap-32">
+      <section className="mt-20 grid grid-cols-[minmax(0,1fr)] gap-14 md:mt-28 md:gap-20">
         <PosterRail
           eyebrow="Himalayan expeditions"
           heading="Himalayan expeditions"
@@ -297,7 +301,7 @@ export default function JourneysPage() {
       </section>
 
       {/* FAQ */}
-      <section className="mt-32 border-t border-white/10 py-20" aria-labelledby="faq-h">
+      <section className="mt-20 border-t border-white/10 py-12 md:mt-28 md:py-16" aria-labelledby="faq-h">
         <Container className="max-w-3xl">
           <h2 id="faq-h" className="jy-section-title">
             Frequently asked questions

@@ -214,14 +214,22 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
   );
 
   return (
-    <div
-      id="mobile-menu"
-      ref={panelRef}
-      role="dialog"
-      aria-modal="true"
-      aria-label="Main navigation"
-      className="fixed inset-0 z-[60] flex flex-col bg-[#0C1617] text-white lg:hidden"
-    >
+    <>
+      {/* Backdrop — tap to dismiss. Visible as a dimmed sheet on tablets; on
+          phones the full-screen panel covers it. */}
+      <div
+        className="fixed inset-0 z-[59] bg-black/50 backdrop-blur-sm"
+        onClick={onClose}
+        aria-hidden="true"
+      />
+      <div
+        id="mobile-menu"
+        ref={panelRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Main navigation"
+        className="fixed inset-0 z-[60] flex flex-col bg-[#0C1617] text-white lg:hidden md:left-auto md:w-[440px] md:max-w-[85vw] md:top-0 md:bottom-0 md:rounded-l-2xl md:shadow-2xl md:animate-slide-in-right"
+      >
       {/* Drawer header */}
       <div className="sticky top-0 z-20 border-b border-white/10 bg-[#0C1617]/95 px-4 py-3 backdrop-blur-md">
         <div className="flex items-center justify-between gap-3">
@@ -523,5 +531,6 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
         )}
       </div>
     </div>
+    </>
   );
 }

@@ -82,7 +82,11 @@ Type scale (clamp-based classes defined in `globals.css`):
 - Disabled: opacity 50%, no pointer events.
 
 ## Mobile navigation
-- Hamburger toggle opens a full-height drawer from the right.
+- Hamburger toggle opens a drawer from the right.
+- On phones (< 768px) the drawer is full-screen; on tablets (768–1023px) it is a
+  right-anchored side sheet (440px, max 85vw) over a dimmed, tap-to-dismiss
+  backdrop, so the page stays visible behind it.
+- The sheet slides in from the right (disabled under `prefers-reduced-motion`).
 - Links full-width, 48px touch targets.
 - Background ivory, forest text, brass active indicator.
 

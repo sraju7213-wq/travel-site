@@ -21,6 +21,7 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     optimizePackageImports: ["gsap"],
+    agentUpgrade: "security",
   },
   turbopack: {
     rules: {

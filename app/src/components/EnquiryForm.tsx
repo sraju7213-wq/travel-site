@@ -10,6 +10,7 @@ import {
 } from "@/lib/enquiryValidation";
 import { BRAND } from "@/data/brandConfig";
 import { getPackageCardImage, pexels } from "@/data/catalogue";
+import ListboxSelect, { type ListboxOption } from "@/components/ui/ListboxSelect";
 
 export interface PackageOption {
   slug: string;
@@ -50,6 +51,23 @@ export default function EnquiryForm({
     }
     return [...map.entries()];
   }, [packages]);
+
+  const journeyOptions = useMemo<ListboxOption[]>(() => {
+    const options: ListboxOption[] = [
+      { value: CUSTOM, label: "Tailor-made trip (no specific journey)" },
+    ];
+    for (const [category, items] of grouped) {
+      for (const pkg of items) {
+        options.push({
+          value: pkg.slug,
+          label: pkg.title,
+          meta: pkg.code,
+          group: category,
+        });
+      }
+    }
+    return options;
+  }, [grouped]);
 
   const initial = initialPackageSlug
     ? packages.find((p) => p.slug === initialPackageSlug) ?? null
@@ -277,7 +295,7 @@ export default function EnquiryForm({
       {/* 2. Modern 2-Column Luxury Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
         {/* Left Column — Summary & Specialist Trust Cards */}
-        <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-28">
+        <div className="hidden lg:block lg:col-span-5 space-y-6 lg:sticky lg:top-28">
           {/* Dynamic Journey Card */}
           <div className="overflow-hidden rounded-[1.25rem] border border-white/10 bg-[#132325] shadow-xl transition-all duration-300">
             <div className="relative aspect-[16/10] overflow-hidden bg-charcoal">
@@ -426,31 +444,14 @@ export default function EnquiryForm({
                 >
                   Selected Journey or Itinerary
                 </label>
-                <div className="relative">
-                  <select
-                    id="journey"
-                    disabled={!configured || status === "submitting"}
-                    value={selected}
-                    onChange={(e) => setSelected(e.target.value)}
-                    className="w-full appearance-none rounded-button border border-white/15 bg-black/40 px-4 py-3.5 text-sm font-display text-white font-medium transition-colors hover:border-brass/60 focus:bg-black/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass disabled:opacity-40"
-                  >
-                    <option value={CUSTOM}>Tailor-made trip (no specific journey)</option>
-                    {grouped.map(([category, items]) => (
-                      <optgroup key={category} label={category}>
-                        {items.map((pkg) => (
-                          <option key={pkg.slug} value={pkg.slug}>
-                            {pkg.title} ({pkg.code}) — {pkg.duration}
-                          </option>
-                        ))}
-                      </optgroup>
-                    ))}
-                  </select>
-                  <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-white/60">
-                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" className="stroke-current stroke-2">
-                      <path d="M1 1.5l5 5 5-5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </div>
-                </div>
+                <ListboxSelect
+                  id="journey"
+                  value={selected}
+                  options={journeyOptions}
+                  onChange={setSelected}
+                  disabled={!configured || status === "submitting"}
+                  listLabel="Journeys and itineraries"
+                />
               </div>
 
               {/* Step 2: Traveller Details */}

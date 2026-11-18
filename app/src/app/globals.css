@@ -607,7 +607,11 @@
 
 @keyframes page-content-settle {
   from { transform: translateY(18px); }
-  to   { transform: translateY(0); }
+  /* End on `none`, not `translateY(0)`: the animation fills forwards, and a
+     lingering transform would turn this wrapper into the containing block for
+     every `position: fixed` descendant (e.g. the mobile filter drawer and the
+     scroll-aware header), pinning them to the page instead of the viewport. */
+  to   { transform: none; }
 }
 
 .page-transition-curtain {

@@ -45,15 +45,17 @@ export default function PosterRail({
   intro,
 }: PosterRailProps) {
   return (
-    <section className="mx-auto max-w-7xl px-4 md:px-8 lg:px-12" aria-labelledby={`rail-${eyebrow.replace(/\s+/g, "-").toLowerCase()}`}>
-      <h2
-        id={`rail-${eyebrow.replace(/\s+/g, "-").toLowerCase()}`}
-        className="jy-section-title"
-      >
-        {heading}
-      </h2>
-      {intro && <p className="mt-4 max-w-2xl text-lg text-white/70">{intro}</p>}
-      <div className="jy-rail mt-10">
+    <section className="mx-auto w-full min-w-0 max-w-7xl px-4 md:px-8 lg:px-12" aria-labelledby={`rail-${eyebrow.replace(/\s+/g, "-").toLowerCase()}`}>
+      <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between md:gap-10">
+        <h2
+          id={`rail-${eyebrow.replace(/\s+/g, "-").toLowerCase()}`}
+          className="jy-section-title"
+        >
+          {heading}
+        </h2>
+        {intro && <p className="max-w-md text-sm text-white/60 md:text-right">{intro}</p>}
+      </div>
+      <div className="jy-rail mt-6">
         {packages.map((pkg) => {
           const badge = verdict(pkg);
           return (
@@ -72,11 +74,11 @@ export default function PosterRail({
                 </div>
                 <h3 className="jy-rail-title">{pkg.title}</h3>
                 <div className="jy-rail-meta">
-                  <span className="font-mono text-xs text-white/70">
+                  <span className="min-w-0 flex-1 truncate font-mono text-xs text-white/70">
                     {placeLine(pkg)} · {cleanDuration(pkg.duration)}
                   </span>
                   {badge && (
-                    <span className={`jy-pill jy-pill--${badge.tone}`}>{badge.label}</span>
+                    <span className={`jy-pill jy-pill--${badge.tone} shrink-0`}>{badge.label}</span>
                   )}
                 </div>
               </Link>

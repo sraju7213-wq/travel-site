@@ -156,13 +156,13 @@ export default function AboutPage() {
 
           <div className="mt-12 grid gap-10 lg:grid-cols-2 lg:gap-14">
             {/* Sultan Baktoo */}
-            <article className="group flex gap-6 border-t border-white/10 pt-6">
-              <div className="relative aspect-[4/5] w-28 shrink-0 overflow-hidden bg-[#0C1617] sm:w-36">
+            <article className="group flex flex-col gap-5 border-t border-white/10 pt-6 sm:flex-row sm:gap-6">
+              <div className="relative h-44 w-full shrink-0 overflow-hidden bg-[#0C1617] sm:aspect-[4/5] sm:h-auto sm:w-36">
                 <Image
                   src="/images/destinations/sultan-baktoo.jpg"
                   alt="Sultan Baktoo, pioneer of tourism and travel in Kashmir"
                   fill
-                  sizes="144px"
+                  sizes="(min-width: 640px) 144px, 100vw"
                   className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
@@ -181,13 +181,13 @@ export default function AboutPage() {
             </article>
 
             {/* Farook Baktoo */}
-            <article className="group flex gap-6 border-t border-white/10 pt-6">
-              <div className="relative aspect-[4/5] w-28 shrink-0 overflow-hidden bg-[#0C1617] sm:w-36">
+            <article className="group flex flex-col gap-5 border-t border-white/10 pt-6 sm:flex-row sm:gap-6">
+              <div className="relative h-44 w-full shrink-0 overflow-hidden bg-[#0C1617] sm:aspect-[4/5] sm:h-auto sm:w-36">
                 <Image
                   src="/images/destinations/farook-baktoo.jpg"
                   alt="Farook Baktoo, Himalayan expedition leader and director"
                   fill
-                  sizes="144px"
+                  sizes="(min-width: 640px) 144px, 100vw"
                   className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                 />
               </div>

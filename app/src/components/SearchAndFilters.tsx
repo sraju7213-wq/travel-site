@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState, useMemo } from "react";
+import { useCallback, useEffect, useRef, useState, useMemo } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { getAllRegions } from "@/data/catalogue";
 import PackageGrid from "./PackageGrid";
 import CoverflowSwiper from "./journeys/CoverflowSwiper";
+import ListboxSelect, { type ListboxOption } from "./ui/ListboxSelect";
 import { ACTIVITY_TAGS, activityLabel, packageHasActivity } from "@/lib/activities";
 import { useBodyOverflowLock } from "@/hooks/useBodyOverflowLock";
 import { CATEGORIES, type PackageViewModel } from "@/types/travel";
@@ -56,24 +57,32 @@ export default function SearchAndFilters({
 
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const closeFiltersRef = useRef<HTMLButtonElement>(null);
+  const filtersTriggerRef = useRef<HTMLButtonElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
-  const [viewMode, setViewMode] = useState<"coverflow" | "grid">("coverflow");
+  const [viewMode, setViewMode] = useState<"coverflow" | "grid">("grid");
 
   // The filter drawer is modal on phones, so the page behind must not scroll.
   useBodyOverflowLock(mobileFiltersOpen);
+
+  // Every control inside the drawer unmounts with it, so closing must hand
+  // focus back to the button that opened the drawer; otherwise the browser
+  // drops focus onto <body> and keyboard users lose their place.
+  const closeFilters = useCallback(() => {
+    setMobileFiltersOpen(false);
+    filtersTriggerRef.current?.focus();
+  }, []);
 
   // Sync keyboard escape for mobile drawer
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape" && mobileFiltersOpen) {
-        setMobileFiltersOpen(false);
-        closeFiltersRef.current?.focus();
+        closeFilters();
       }
     };
     document.addEventListener("keydown", handleEscape);
     return () => document.removeEventListener("keydown", handleEscape);
-  }, [mobileFiltersOpen]);
+  }, [mobileFiltersOpen, closeFilters]);
 
   // URL Query Sync
   const lastPushedRef = useRef<string>("");
@@ -126,6 +135,54 @@ export default function SearchAndFilters({
       return countB - countA || a.localeCompare(b);
     });
   }, [packages]);
+
+  // Listbox options: keep the trigger label clean and move counts into `meta`.
+  const regionOptions = useMemo<ListboxOption[]>(
+    () => [
+      { value: ALL, label: "All Regions", meta: `${packages.length} journeys` },
+      ...regions.map((r) => ({
+        value: r,
+        label: r,
+        meta: `${packages.filter((p) => p.region.includes(r)).length} journeys`,
+      })),
+    ],
+    [packages, regions]
+  );
+
+  const activityOptions = useMemo<ListboxOption[]>(
+    () => [
+      { value: ALL, label: "Any Activity" },
+      ...ACTIVITY_TAGS.map((a) => ({ value: a.key, label: a.label })),
+    ],
+    []
+  );
+
+  // Desktop chips use the compact label; the drawer has room for the full one.
+  const durationOptions = useMemo<ListboxOption[]>(
+    () => DURATION_BUCKETS.map((d) => ({ value: d.value, label: d.short })),
+    []
+  );
+  const durationDrawerOptions = useMemo<ListboxOption[]>(
+    () => DURATION_BUCKETS.map((d) => ({ value: d.value, label: d.label })),
+    []
+  );
+
+  const sortOptions = useMemo<ListboxOption[]>(
+    () => [
+      { value: "title", label: "A–Z" },
+      { value: "duration-short", label: "Shortest" },
+      { value: "duration-long", label: "Longest" },
+    ],
+    []
+  );
+  const sortDrawerOptions = useMemo<ListboxOption[]>(
+    () => [
+      { value: "title", label: "Title (A–Z)" },
+      { value: "duration-short", label: "Shortest Duration First" },
+      { value: "duration-long", label: "Longest Duration First" },
+    ],
+    []
+  );
 
   // Filter packages
   const filtered = useMemo(() => {
@@ -187,7 +244,7 @@ export default function SearchAndFilters({
       activity: ALL,
       sort: "title",
     });
-    setMobileFiltersOpen(false);
+    closeFilters();
   };
 
   return (
@@ -251,113 +308,47 @@ export default function SearchAndFilters({
           {/* Direct Desktop Dropdown Filters */}
           <div className="hidden flex-wrap items-center gap-2.5 sm:flex">
             {/* Region Dropdown */}
-            <div className="relative">
-              <select
-                value={state.region}
-                onChange={(e) => setState({ ...state, region: e.target.value })}
-                aria-label="Filter by region"
-                className={`h-10 appearance-none rounded-xl border px-4 pr-9 font-sans text-xs font-medium uppercase tracking-wider transition-all duration-200 cursor-pointer focus:outline-none focus:ring-1 focus:ring-brass ${
-                  state.region !== ALL
-                    ? "border-[var(--color-wild-orange)]/60 bg-[var(--color-wild-orange)]/15 text-white shadow-[0_0_15px_rgba(212,147,104,0.2)]"
-                    : "border-white/10 bg-black/30 text-white/75 hover:border-white/25 hover:text-white"
-                }`}
-              >
-                <option value={ALL} className="bg-[#121B20] text-white">
-                  All Regions
-                </option>
-                {regions.map((r) => {
-                  const count = packages.filter((p) => p.region.includes(r)).length;
-                  return (
-                    <option key={r} value={r} className="bg-[#121B20] text-white">
-                      {r} ({count})
-                    </option>
-                  );
-                })}
-              </select>
-              <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white/60">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M6 9l6 6 6-6" />
-                </svg>
-              </div>
-            </div>
+            <ListboxSelect
+              id="filter-region-desktop"
+              value={state.region}
+              options={regionOptions}
+              onChange={(region) => setState({ ...state, region })}
+              listLabel="Filter by region"
+              variant="pill"
+              active={state.region !== ALL}
+            />
 
             {/* Activity Dropdown */}
-            <div className="relative">
-              <select
-                value={state.activity}
-                onChange={(e) => setState({ ...state, activity: e.target.value })}
-                aria-label="Filter by activity"
-                className={`h-10 appearance-none rounded-xl border px-4 pr-9 font-sans text-xs font-medium uppercase tracking-wider transition-all duration-200 cursor-pointer focus:outline-none focus:ring-1 focus:ring-brass ${
-                  state.activity !== ALL
-                    ? "border-[var(--color-wild-orange)]/60 bg-[var(--color-wild-orange)]/15 text-white shadow-[0_0_15px_rgba(212,147,104,0.2)]"
-                    : "border-white/10 bg-black/30 text-white/75 hover:border-white/25 hover:text-white"
-                }`}
-              >
-                <option value={ALL} className="bg-[#121B20] text-white">
-                  Any Activity
-                </option>
-                {ACTIVITY_TAGS.map((a) => (
-                  <option key={a.key} value={a.key} className="bg-[#121B20] text-white">
-                    {a.label}
-                  </option>
-                ))}
-              </select>
-              <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white/60">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M6 9l6 6 6-6" />
-                </svg>
-              </div>
-            </div>
+            <ListboxSelect
+              id="filter-activity-desktop"
+              value={state.activity}
+              options={activityOptions}
+              onChange={(activity) => setState({ ...state, activity })}
+              listLabel="Filter by activity"
+              variant="pill"
+              active={state.activity !== ALL}
+            />
 
             {/* Duration Dropdown */}
-            <div className="relative">
-              <select
-                value={state.duration}
-                onChange={(e) => setState({ ...state, duration: e.target.value })}
-                aria-label="Filter by duration"
-                className={`h-10 appearance-none rounded-xl border px-4 pr-9 font-sans text-xs font-medium uppercase tracking-wider transition-all duration-200 cursor-pointer focus:outline-none focus:ring-1 focus:ring-brass ${
-                  state.duration !== ALL
-                    ? "border-[var(--color-wild-orange)]/60 bg-[var(--color-wild-orange)]/15 text-white shadow-[0_0_15px_rgba(212,147,104,0.2)]"
-                    : "border-white/10 bg-black/30 text-white/75 hover:border-white/25 hover:text-white"
-                }`}
-              >
-                {DURATION_BUCKETS.map((d) => (
-                  <option key={d.value} value={d.value} className="bg-[#121B20] text-white">
-                    {d.short}
-                  </option>
-                ))}
-              </select>
-              <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white/60">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M6 9l6 6 6-6" />
-                </svg>
-              </div>
-            </div>
+            <ListboxSelect
+              id="filter-duration-desktop"
+              value={state.duration}
+              options={durationOptions}
+              onChange={(duration) => setState({ ...state, duration })}
+              listLabel="Filter by duration"
+              variant="pill"
+              active={state.duration !== ALL}
+            />
 
             {/* Sort Dropdown */}
-            <div className="relative">
-              <select
-                value={state.sort}
-                onChange={(e) => setState({ ...state, sort: e.target.value })}
-                aria-label="Sort journeys"
-                className="h-10 appearance-none rounded-xl border border-white/10 bg-black/30 px-4 pr-9 font-sans text-xs font-medium uppercase tracking-wider text-white/75 transition-all duration-200 cursor-pointer hover:border-white/25 hover:text-white focus:outline-none focus:ring-1 focus:ring-brass"
-              >
-                <option value="title" className="bg-[#121B20] text-white">
-                  A–Z
-                </option>
-                <option value="duration-short" className="bg-[#121B20] text-white">
-                  Shortest
-                </option>
-                <option value="duration-long" className="bg-[#121B20] text-white">
-                  Longest
-                </option>
-              </select>
-              <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white/60">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M6 9l6 6 6-6" />
-                </svg>
-              </div>
-            </div>
+            <ListboxSelect
+              id="filter-sort-desktop"
+              value={state.sort}
+              options={sortOptions}
+              onChange={(sort) => setState({ ...state, sort })}
+              listLabel="Sort journeys"
+              variant="pill"
+            />
 
             {/* Clear All Reset Pill */}
             {activeFilterCount > 0 && (
@@ -378,6 +369,7 @@ export default function SearchAndFilters({
           <div className="flex sm:hidden items-center gap-2">
             <button
               type="button"
+              ref={filtersTriggerRef}
               onClick={() => setMobileFiltersOpen(true)}
               className="flex-1 flex min-h-[48px] items-center justify-center gap-2 rounded-xl border border-white/15 bg-black/40 px-4 font-sans text-xs font-semibold uppercase tracking-wider text-white transition-all hover:border-brass hover:text-brass"
             >
@@ -580,7 +572,7 @@ export default function SearchAndFilters({
           <button
             type="button"
             aria-label="Close filters"
-            onClick={() => setMobileFiltersOpen(false)}
+            onClick={closeFilters}
             className="absolute inset-0 h-full w-full cursor-default bg-black/80 backdrop-blur-md"
           />
           <div className="relative max-h-[85vh] flex flex-col rounded-t-3xl border-t border-white/15 bg-[#0e181a] p-6 shadow-2xl overflow-hidden animate-slide-up">
@@ -595,7 +587,7 @@ export default function SearchAndFilters({
               </div>
               <button
                 ref={closeFiltersRef}
-                onClick={() => setMobileFiltersOpen(false)}
+                onClick={closeFilters}
                 className="flex h-11 w-11 items-center justify-center rounded-full bg-white/5 text-white/70 hover:text-white"
                 aria-label="Close filters"
               >
@@ -612,21 +604,14 @@ export default function SearchAndFilters({
                 <label htmlFor="filter-region" className="mb-2 block font-sans text-xs font-semibold uppercase tracking-wider text-white/70">
                   Region
                 </label>
-                <select
+                <ListboxSelect
                   id="filter-region"
                   value={state.region}
-                  onChange={(e) => setState({ ...state, region: e.target.value })}
-                  className="h-12 w-full rounded-xl border border-white/15 bg-black/40 px-4 font-sans text-sm text-white focus:outline-none focus:border-brass"
-                >
-                  <option value={ALL} className="bg-[#121B20]">
-                    All Regions ({packages.length})
-                  </option>
-                  {regions.map((r) => (
-                    <option key={r} value={r} className="bg-[#121B20]">
-                      {r} ({packages.filter((p) => p.region.includes(r)).length})
-                    </option>
-                  ))}
-                </select>
+                  options={regionOptions}
+                  onChange={(region) => setState({ ...state, region })}
+                  listLabel="Region"
+                  variant="drawer"
+                />
               </div>
 
               {/* Activity */}
@@ -634,21 +619,14 @@ export default function SearchAndFilters({
                 <label htmlFor="filter-activity" className="mb-2 block font-sans text-xs font-semibold uppercase tracking-wider text-white/70">
                   Activity
                 </label>
-                <select
+                <ListboxSelect
                   id="filter-activity"
                   value={state.activity}
-                  onChange={(e) => setState({ ...state, activity: e.target.value })}
-                  className="h-12 w-full rounded-xl border border-white/15 bg-black/40 px-4 font-sans text-sm text-white focus:outline-none focus:border-brass"
-                >
-                  <option value={ALL} className="bg-[#121B20]">
-                    Any Activity
-                  </option>
-                  {ACTIVITY_TAGS.map((a) => (
-                    <option key={a.key} value={a.key} className="bg-[#121B20]">
-                      {a.label}
-                    </option>
-                  ))}
-                </select>
+                  options={activityOptions}
+                  onChange={(activity) => setState({ ...state, activity })}
+                  listLabel="Activity"
+                  variant="drawer"
+                />
               </div>
 
               {/* Duration */}
@@ -656,18 +634,14 @@ export default function SearchAndFilters({
                 <label htmlFor="filter-duration" className="mb-2 block font-sans text-xs font-semibold uppercase tracking-wider text-white/70">
                   Duration
                 </label>
-                <select
+                <ListboxSelect
                   id="filter-duration"
                   value={state.duration}
-                  onChange={(e) => setState({ ...state, duration: e.target.value })}
-                  className="h-12 w-full rounded-xl border border-white/15 bg-black/40 px-4 font-sans text-sm text-white focus:outline-none focus:border-brass"
-                >
-                  {DURATION_BUCKETS.map((d) => (
-                    <option key={d.value} value={d.value} className="bg-[#121B20]">
-                      {d.label}
-                    </option>
-                  ))}
-                </select>
+                  options={durationDrawerOptions}
+                  onChange={(duration) => setState({ ...state, duration })}
+                  listLabel="Duration"
+                  variant="drawer"
+                />
               </div>
 
               {/* Sort */}
@@ -675,22 +649,14 @@ export default function SearchAndFilters({
                 <label htmlFor="filter-sort" className="mb-2 block font-sans text-xs font-semibold uppercase tracking-wider text-white/70">
                   Sort By
                 </label>
-                <select
+                <ListboxSelect
                   id="filter-sort"
                   value={state.sort}
-                  onChange={(e) => setState({ ...state, sort: e.target.value })}
-                  className="h-12 w-full rounded-xl border border-white/15 bg-black/40 px-4 font-sans text-sm text-white focus:outline-none focus:border-brass"
-                >
-                  <option value="title" className="bg-[#121B20]">
-                    Title (A–Z)
-                  </option>
-                  <option value="duration-short" className="bg-[#121B20]">
-                    Shortest Duration First
-                  </option>
-                  <option value="duration-long" className="bg-[#121B20]">
-                    Longest Duration First
-                  </option>
-                </select>
+                  options={sortDrawerOptions}
+                  onChange={(sort) => setState({ ...state, sort })}
+                  listLabel="Sort By"
+                  variant="drawer"
+                />
               </div>
             </div>
 
@@ -704,7 +670,7 @@ export default function SearchAndFilters({
               </button>
               <button
                 type="button"
-                onClick={() => setMobileFiltersOpen(false)}
+                onClick={closeFilters}
                 className="flex-[2] h-12 rounded-xl bg-[var(--color-wild-orange)] font-sans text-xs font-bold uppercase tracking-wider text-[#0C1617]"
               >
                 Show {sorted.length} {sorted.length === 1 ? "Journey" : "Journeys"}

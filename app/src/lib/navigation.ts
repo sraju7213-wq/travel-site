@@ -8,7 +8,7 @@
  */
 
 import { BRAND } from "@/data/brandConfig";
-import { DESTINATIONS, EXPERIENCES } from "@/data/siteContent";
+import { DESTINATIONS } from "@/data/siteContent";
 
 export interface NavLink {
   label: string;
@@ -71,13 +71,6 @@ export const DESTINATION_LINKS: NavLink[] = DESTINATIONS.map((d) => ({
   image: d.image,
 }));
 
-export const EXPERIENCE_LINKS: NavLink[] = EXPERIENCES.map((e) => ({
-  label: e.title,
-  href: e.href,
-  description: e.locations,
-  image: e.image,
-}));
-
 /**
  * Groups rendered inside the mobile drawer and as desktop dropdown panels.
  * `id` is used for the panel/region ids, so it must stay stable.
@@ -94,12 +87,6 @@ export const NAV_GROUPS: NavGroup[] = [
     label: "Journeys",
     note: "27 brochure itineraries",
     links: JOURNEY_CATEGORIES,
-  },
-  {
-    id: "experiences",
-    label: "Experiences",
-    note: "Trekking, safaris, rafting and houseboats",
-    links: EXPERIENCE_LINKS,
   },
   {
     id: "company",
@@ -132,7 +119,6 @@ export interface HeaderLink extends NavLink {
 export const HEADER_LINKS: HeaderLink[] = [
   { label: "Journeys", href: "/journeys", group: "journeys" },
   { label: "Destinations", href: "/journeys#catalogue", group: "destinations" },
-  { label: "Experiences", href: "/journeys#catalogue", group: "experiences" },
   { label: "Houseboats", href: "/houseboats" },
   { label: "Heritage", href: "/about" },
   { label: "Contact", href: "/contact" },

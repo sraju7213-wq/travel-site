@@ -29,7 +29,12 @@ export default function Home() {
       <PillarsTabs />
 
       <ImpactSection />
-      <CtaZoom />
+      <CtaZoom
+        image="/images/orbit/kashmir-shikara-peaks.jpg"
+        imageAlt="A shikara on Dal Lake beneath the forested and snow-capped Kashmir mountains"
+        sectionClassName="min-h-[460px] md:min-h-[520px]"
+        contentClassName="py-16 md:py-20 -translate-y-10 md:-translate-y-12"
+      />
     </PageShell>
   );
 }

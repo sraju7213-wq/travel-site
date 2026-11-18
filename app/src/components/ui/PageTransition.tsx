@@ -31,7 +31,15 @@ export default function PageTransition({ children }: { children: ReactNode }) {
   useEffect(() => {
     // Refresh triggers once the curtain has cleared so scroll-linked
     // animations on the new page measure the settled layout.
-    const timer = window.setTimeout(() => ScrollTrigger.refresh(), 1100);
+    const timer = window.setTimeout(() => {
+      // Drop the settle animation once it has played out. A filled-forwards
+      // transform — even an identity one — makes this wrapper the containing
+      // block for every `position: fixed` descendant, so the mobile filter
+      // drawer and other overlays would anchor to the page instead of the
+      // viewport. Removing the animation leaves no transform behind.
+      if (contentRef.current) contentRef.current.style.animation = "none";
+      ScrollTrigger.refresh();
+    }, 1150);
     return () => window.clearTimeout(timer);
   }, []);
 

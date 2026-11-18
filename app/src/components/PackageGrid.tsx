@@ -43,7 +43,7 @@ export default function PackageGrid({
   return (
     <section className={className ?? "my-12"}>
       {heading && <h2 className="text-h3 font-serif font-bold text-white mb-8">{heading}</h2>}
-      <CardGrid className={`grid grid-cols-1 items-stretch gap-x-6 gap-y-10 ${compact ? "md:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-10" : "md:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-12"}`}>
+      <CardGrid className={`grid grid-cols-1 items-stretch gap-x-3 gap-y-5 sm:grid-cols-2 sm:gap-x-5 sm:gap-y-8 ${compact ? "md:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-10" : "md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 lg:gap-x-6 lg:gap-y-10"}`}>
         {displayPackages.map((pkg) => (
           <PackageCard key={pkg.id} pkg={pkg} compact={compact} />
         ))}

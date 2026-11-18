@@ -196,12 +196,12 @@ export const PILLARS: Pillar[] = [
     label: "Destinations",
     title: "Iconic Destinations",
     image: pexels("28277464"),
-    tagline: "Unrivalled Subcontinent Heritage Across Two Himalayan Nations",
+    tagline: "Heritage Across India & Nepal",
     statBadge: "Since 1927",
     statLabel: "Pioneer Operator",
     regionTag: "India & Nepal",
     body:
-      "A specialist operator for India and Nepal since 1927. Each destination opens a whole new world of landscapes, cultures, sights and sounds for you to discover, from the Himalaya to the backwaters.",
+      "Explore India and Nepal with a specialist since 1927—from Himalayan peaks to tranquil backwaters.",
     href: "/journeys",
     linkLabel: "Discover India & Nepal",
     highlights: [

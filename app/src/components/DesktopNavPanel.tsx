@@ -8,6 +8,8 @@ import type { NavGroup } from "@/lib/navigation";
 interface DesktopNavPanelProps {
   group: NavGroup;
   onClose: () => void;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
 }
 
 /**
@@ -20,7 +22,7 @@ interface DesktopNavPanelProps {
  * announced as a `region` rather than a dialog, and focus is not trapped. The
  * panel is rendered only while open, which keeps the accessibility tree clean.
  */
-export default function DesktopNavPanel({ group, onClose }: DesktopNavPanelProps) {
+export default function DesktopNavPanel({ group, onClose, onMouseEnter, onMouseLeave }: DesktopNavPanelProps) {
   const panelRef = useRef<HTMLDivElement>(null);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
 
@@ -42,6 +44,8 @@ export default function DesktopNavPanel({ group, onClose }: DesktopNavPanelProps
       id={`nav-panel-${group.id}`}
       role="group"
       aria-label={`${group.label} menu`}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       className="absolute inset-x-0 top-full hidden border-b border-white/10 bg-[#0C1617]/98 shadow-[0_28px_60px_-30px_rgba(0,0,0,0.9)] backdrop-blur-xl lg:block"
     >
       <div className="mx-auto max-w-7xl px-8 py-8">

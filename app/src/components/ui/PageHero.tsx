@@ -41,6 +41,8 @@ interface PageHeroProps {
   imageStyle?: React.CSSProperties;
   /** When "top", the eyebrow is rendered as a top label instead of inline above the title. */
   eyebrowPosition?: "inline" | "top";
+  /** Overrides the headline size/scale classes. Use when the title needs to fit a narrower content column. */
+  titleClassName?: string;
 }
 
 /**
@@ -66,6 +68,7 @@ export default function PageHero({
   imageClassName,
   imageStyle,
   eyebrowPosition = "inline",
+  titleClassName,
 }: PageHeroProps) {
   const isCentered = align === "center";
   const isNormal = size === "normal";
@@ -118,7 +121,9 @@ export default function PageHero({
 
       <h1
         data-hero-item
-        className={`mt-5 font-serif text-[2.5rem] font-light leading-[1.04] tracking-normal text-white sm:text-6xl md:text-7xl lg:text-[5rem] max-w-4xl`}
+        className={`mt-5 max-w-4xl font-serif font-light leading-[1.04] tracking-normal text-white ${
+          titleClassName ?? "text-[2.5rem] sm:text-6xl md:text-7xl lg:text-[5rem]"
+        }`}
       >
         {title}
       </h1>
@@ -180,7 +185,7 @@ export default function PageHero({
             src={image}
             alt={imageAlt}
             fill
-            priority={priority}
+            preload={priority}
             sizes="(max-width: 1280px) 100vw, 1180px"
             className={`object-cover object-center ${imageClassName ?? ""}`}
             style={imageStyle}
@@ -200,7 +205,7 @@ export default function PageHero({
               src={image}
               alt={imageAlt}
               fill
-              priority={priority}
+              preload={priority}
               sizes="100vw"
               className={`object-cover object-center ${imageClassName ?? ""}`}
             style={imageStyle}

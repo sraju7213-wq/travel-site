@@ -25,6 +25,8 @@ interface CtaZoomProps {
   body?: string;
   ctaLabel?: string;
   ctaHref?: string;
+  sectionClassName?: string;
+  contentClassName?: string;
 }
 
 export default function CtaZoom({
@@ -39,6 +41,8 @@ export default function CtaZoom({
   body = "Tell us what you want to discover. We’ll help shape the journey.",
   ctaLabel = "Enquire now",
   ctaHref = "/enquiry",
+  sectionClassName = "",
+  contentClassName = "",
 }: CtaZoomProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
@@ -99,7 +103,7 @@ export default function CtaZoom({
   return (
     <section
       ref={sectionRef}
-      className="relative isolate flex min-h-[380px] items-center justify-center overflow-hidden section-cta md:min-h-[440px]"
+      className={`relative isolate flex min-h-[380px] items-center justify-center overflow-hidden section-cta md:min-h-[440px] ${sectionClassName}`}
     >
       {/* Zooming background image wrapper */}
       <div
@@ -123,7 +127,7 @@ export default function CtaZoom({
       {/* Content */}
       <div
         ref={textRef}
-        className="relative z-10 mx-auto max-w-2xl px-5 py-14 text-center md:px-8 md:py-16"
+        className={`relative z-10 mx-auto max-w-2xl px-5 py-14 text-center md:px-8 md:py-16 ${contentClassName}`}
       >
         <p className="mb-4 font-sans text-[10px] font-medium uppercase tracking-[0.28em] text-[var(--color-wild-orange)]">{eyebrow}</p>
         <h2 className="mb-4 font-serif text-4xl font-light leading-[1.08] tracking-normal text-white sm:text-5xl">

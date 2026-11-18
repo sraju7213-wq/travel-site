@@ -401,7 +401,12 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
   }, [places, journeys]);
 
   return (
-    <section ref={sectionRef} className="jy-orbit" aria-labelledby="jy-hero-title">
+    <section
+      ref={sectionRef}
+      id="jy-hero"
+      className="jy-orbit scroll-mt-20"
+      aria-labelledby="jy-hero-title"
+    >
       <div className="jy-orbit-stage">
         <div ref={ringRef} className="jy-orbit-ring" aria-hidden="true">
           {journeys.map((pkg, index) => {

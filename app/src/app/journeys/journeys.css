@@ -453,9 +453,9 @@
 
 .jy-coverflow-track {
   display: flex;
-  gap: 16px;
+  gap: 14px;
   width: max-content;
-  padding: 1.25rem 0;
+  padding: 0.5rem 0;
   animation: scrollLeftToRight var(--jy-coverflow-duration, 35s) linear infinite;
   will-change: transform;
 }
@@ -478,16 +478,16 @@
 }
 
 .jy-coverflow-slide {
-  flex: 0 0 320px;
-  width: 320px;
+  flex: 0 0 268px;
+  width: 268px;
   white-space: normal;
   perspective: 1400px;
 }
 
 @media (max-width: 640px) {
   .jy-coverflow-slide {
-    flex: 0 0 280px;
-    width: 280px;
+    flex: 0 0 236px;
+    width: 236px;
   }
 }
 
@@ -615,7 +615,7 @@
   color: transparent;
   -webkit-text-stroke: 1.5px var(--color-wild-orange);
   font-family: var(--font-serif);
-  font-size: clamp(3.5rem, 7vw, 6rem);
+  font-size: clamp(2.5rem, 5vw, 4rem);
   line-height: 0.8;
   opacity: 0;
   transform: translateY(-24px);
@@ -646,8 +646,8 @@
 
 .jy-coverflow-title {
   font-family: var(--font-serif);
-  font-size: clamp(1.35rem, 2.2vw, 1.9rem);
-  line-height: 1.02;
+  font-size: clamp(1.1rem, 1.7vw, 1.45rem);
+  line-height: 1.06;
   color: #f5f2eb;
 }
 
@@ -681,7 +681,38 @@
 .jy-rail {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.5rem 1rem;
+  gap: 1.25rem 0.75rem;
+}
+
+/* On phones and tablets the rails become a snap-scrolling strip so the page
+   does not turn into a stack of tall poster grids. */
+@media (max-width: 1023px) {
+  .jy-rail {
+    display: flex;
+    gap: 0.875rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 0.25rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+  }
+
+  .jy-rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  .jy-rail > .jy-rail-card {
+    flex: 0 0 60%;
+    min-width: 0;
+    scroll-snap-align: start;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .jy-rail > .jy-rail-card {
+    flex: 0 0 31%;
+  }
 }
 
 @media (min-width: 640px) {
@@ -703,7 +734,7 @@
 
 .jy-rail-poster {
   position: relative;
-  aspect-ratio: 2 / 3;
+  aspect-ratio: 5 / 7;
   overflow: hidden;
   border-radius: 10px;
   background: #151e24;
@@ -771,7 +802,7 @@
 }
 
 .jy-rail-title {
-  margin-top: 0.75rem;
+  margin-top: 0.55rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -854,9 +885,9 @@
 
 .jy-section-title {
   font-family: var(--font-serif);
-  font-size: clamp(2.25rem, 5vw, 3.5rem);
-  line-height: 1;
-  letter-spacing: -0.02em;
+  font-size: clamp(1.75rem, 3.4vw, 2.5rem);
+  line-height: 1.06;
+  letter-spacing: -0.015em;
   color: #f5f2eb;
 }
 

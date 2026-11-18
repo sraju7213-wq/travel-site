@@ -5,6 +5,7 @@ import { createContext, useCallback, useContext, useEffect, useRef, useState } f
 import { BRAND } from "@/data/brandConfig";
 import { useBodyOverflowLock } from "@/hooks/useBodyOverflowLock";
 import { validateEnquiry, type EnquiryPayload } from "@/lib/enquiryValidation";
+import ListboxSelect, { type ListboxOption } from "@/components/ui/ListboxSelect";
 
 export interface EnquiryPackageInfo {
   slug: string;
@@ -28,7 +29,9 @@ export function useEnquiryModal(): EnquiryContextValue {
   return ctx;
 }
 
-const TRAVELLER_OPTIONS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "12", "15", "20"];
+const TRAVELLER_OPTIONS: ListboxOption[] = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "12", "15", "20"].map(
+  (n) => ({ value: n, label: `${n} traveller${n === "1" ? "" : "s"}` })
+);
 
 type FormState = {
   fullName: string;
@@ -114,6 +117,10 @@ export default function EnquiryModalProvider({
     if (!open) return;
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
+        // The listbox popup is portalled outside the dialog and swallows its
+        // own Escape, so never close the whole dialog from inside it.
+        const target = event.target as Element | null;
+        if (target?.closest?.('[role="listbox"]')) return;
         event.preventDefault();
         closeEnquiry();
         return;
@@ -429,18 +436,14 @@ export default function EnquiryModalProvider({
                     <label htmlFor="enq-travellers" className="mb-1.5 block font-display text-xs text-white/75">
                       Party Size
                     </label>
-                    <select
+                    <ListboxSelect
                       id="enq-travellers"
                       value={form.travellers}
-                      onChange={(e) => setField("travellers", e.target.value)}
-                      className={inputClass}
-                    >
-                      {TRAVELLER_OPTIONS.map((n) => (
-                        <option key={n} value={n}>
-                          {n} traveller{n === "1" ? "" : "s"}
-                        </option>
-                      ))}
-                    </select>
+                      options={TRAVELLER_OPTIONS}
+                      onChange={(next) => setField("travellers", next)}
+                      variant="compact"
+                      listLabel="Party size"
+                    />
                     {fieldError("travellers") && (
                       <p className="mt-1 font-display text-[11px] text-rose-300">{fieldError("travellers")}</p>
                     )}

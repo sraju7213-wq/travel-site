@@ -23,9 +23,32 @@ export default function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openGroup, setOpenGroup] = useState<string | null>(null);
+  const [pinnedGroup, setPinnedGroup] = useState(false);
 
   const headerRef = useRef<HTMLElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    };
+  }, []);
+
+  const clearCloseTimer = useCallback(() => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+  }, []);
+
+  const scheduleClose = useCallback(() => {
+    clearCloseTimer();
+    closeTimerRef.current = setTimeout(() => {
+      setOpenGroup(null);
+      setPinnedGroup(false);
+    }, 150);
+  }, [clearCloseTimer]);
 
   const solid = scrolled || mobileOpen || openGroup !== null;
 
@@ -41,21 +64,31 @@ export default function SiteHeader() {
     if (!openGroup) return;
     const mq = window.matchMedia("(min-width: 1024px)");
     const onChange = () => {
-      if (!mq.matches) setOpenGroup(null);
+      if (!mq.matches) {
+        clearCloseTimer();
+        setOpenGroup(null);
+        setPinnedGroup(false);
+      }
     };
     mq.addEventListener("change", onChange);
     return () => mq.removeEventListener("change", onChange);
-  }, [openGroup]);
+  }, [openGroup, clearCloseTimer]);
 
   // Close the dropdown on an outside click or Escape.
   useEffect(() => {
     if (!openGroup) return;
     const onPointerDown = (event: PointerEvent) => {
-      if (!headerRef.current?.contains(event.target as Node)) setOpenGroup(null);
+      if (!headerRef.current?.contains(event.target as Node)) {
+        clearCloseTimer();
+        setOpenGroup(null);
+        setPinnedGroup(false);
+      }
     };
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
+        clearCloseTimer();
         setOpenGroup(null);
+        setPinnedGroup(false);
         headerRef.current?.querySelector<HTMLButtonElement>(`[data-nav-trigger="${openGroup}"]`)?.focus();
       }
     };
@@ -65,7 +98,7 @@ export default function SiteHeader() {
       document.removeEventListener("pointerdown", onPointerDown);
       document.removeEventListener("keydown", onKey);
     };
-  }, [openGroup]);
+  }, [openGroup, clearCloseTimer]);
 
   const closeMobile = useCallback(() => {
     setMobileOpen(false);
@@ -114,8 +147,31 @@ export default function SiteHeader() {
                     data-nav-trigger={group.id}
                     aria-expanded={isOpen}
                     aria-controls={`nav-panel-${group.id}`}
-                    onClick={() => setOpenGroup(isOpen ? null : group.id)}
-                    onMouseEnter={() => setOpenGroup(group.id)}
+                    onClick={() => {
+                      clearCloseTimer();
+                      if (isOpen) {
+                        if (pinnedGroup) {
+                          setOpenGroup(null);
+                          setPinnedGroup(false);
+                        } else {
+                          setPinnedGroup(true);
+                        }
+                      } else {
+                        setOpenGroup(group.id);
+                        setPinnedGroup(true);
+                      }
+                    }}
+                    onMouseEnter={() => {
+                      clearCloseTimer();
+                      if (pinnedGroup && openGroup === group.id) {
+                        return;
+                      }
+                      setOpenGroup(group.id);
+                      setPinnedGroup(false);
+                    }}
+                    onMouseLeave={() => {
+                      if (!pinnedGroup) scheduleClose();
+                    }}
                     className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-2.5 font-accent text-[11px] font-medium uppercase tracking-[0.18em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)] ${
                       isOpen ? "text-white" : "text-white/75 hover:text-white"
                     }`}
@@ -183,7 +239,15 @@ export default function SiteHeader() {
         {openGroup && (
           <DesktopNavPanel
             group={NAV_GROUPS.find((g) => g.id === openGroup)!}
-            onClose={() => setOpenGroup(null)}
+            onClose={() => {
+              clearCloseTimer();
+              setOpenGroup(null);
+              setPinnedGroup(false);
+            }}
+            onMouseEnter={clearCloseTimer}
+            onMouseLeave={() => {
+              if (!pinnedGroup) scheduleClose();
+            }}
           />
         )}
       </header>

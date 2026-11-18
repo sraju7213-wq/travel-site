@@ -68,7 +68,6 @@ function StatIcon({ label }: { label: string }) {
 
 /**
  * Historical statistics and founding heritage band starting with "Since 1927".
- * Serves as the landing anchor for the hero "Discover" action.
  */
 export default function DiscoverSection() {
   const sectionRef = useRef<HTMLElement>(null);
