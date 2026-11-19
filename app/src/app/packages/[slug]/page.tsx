@@ -74,7 +74,7 @@ export default async function PackagePage({ params }: PackagePageProps) {
         <PackageHero pkg={pkg} />
 
         {/* Interactive workspace + sticky sidebar with smooth entrance */}
-        <Container wide className="py-8 animate-fade-in-up stagger-5">
+        <Container wide className="py-8 animate-rise-in stagger-5">
           <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12">
             <section className="lg:col-span-8">
               <PackageWorkspace pkg={pkg} gallery={gallery} />

@@ -37,12 +37,16 @@ interface PageHeroProps {
   contentClassName?: string;
   /** Extra classes applied to the hero image (e.g. to zoom in). */
   imageClassName?: string;
+  /** Optional video shown on mobile instead of the still image. */
+  mobileVideo?: string;
   /** Inline styles applied to the hero image (e.g. to zoom in). */
   imageStyle?: React.CSSProperties;
   /** When "top", the eyebrow is rendered as a top label instead of inline above the title. */
   eyebrowPosition?: "inline" | "top";
   /** Overrides the headline size/scale classes. Use when the title needs to fit a narrower content column. */
   titleClassName?: string;
+  /** When true, the eyebrow, title and lead are hidden on phones (shown from sm up). */
+  hideOnMobile?: boolean;
 }
 
 /**
@@ -67,14 +71,32 @@ export default function PageHero({
   contentClassName,
   imageClassName,
   imageStyle,
+  mobileVideo,
   eyebrowPosition = "inline",
   titleClassName,
+  hideOnMobile = false,
 }: PageHeroProps) {
   const isCentered = align === "center";
   const isNormal = size === "normal";
   const sectionRef = useRef<HTMLElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v || !mobileVideo) return;
+    const tryPlay = () => {
+      v.play().catch(() => {});
+    };
+    tryPlay();
+    v.addEventListener("loadeddata", tryPlay);
+    v.addEventListener("canplay", tryPlay);
+    return () => {
+      v.removeEventListener("loadeddata", tryPlay);
+      v.removeEventListener("canplay", tryPlay);
+    };
+  }, [mobileVideo]);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -114,14 +136,14 @@ export default function PageHero({
   const content = (
     <>
       {eyebrowPosition === "inline" && (
-        <p data-hero-item className="font-sans text-[10px] font-medium uppercase tracking-[0.34em] text-white/70 md:text-[11px]">
+        <p data-hero-item className={`font-sans text-[10px] font-medium uppercase tracking-[0.34em] text-white/70 md:text-[11px] ${hideOnMobile ? "hidden sm:block" : ""}`}>
           {eyebrow}
         </p>
       )}
 
       <h1
         data-hero-item
-        className={`mt-5 max-w-4xl font-serif font-light leading-[1.04] tracking-normal text-white ${
+        className={`mt-5 max-w-4xl font-serif font-light leading-[1.04] tracking-normal text-white ${hideOnMobile ? "hidden sm:block" : ""} ${
           titleClassName ?? "text-[2.5rem] sm:text-6xl md:text-7xl lg:text-[5rem]"
         }`}
       >
@@ -131,18 +153,18 @@ export default function PageHero({
       {lead && (
         <p
           data-hero-item
-          className={`mt-7 font-sans text-sm font-light leading-relaxed text-white/80 md:text-base max-w-2xl`}
+          className={`mt-7 font-sans text-sm font-light leading-relaxed text-white/80 md:text-base max-w-2xl ${hideOnMobile ? "hidden sm:block" : ""}`}
         >
           {lead}
         </p>
       )}
 
       {(primaryCta || secondaryCta) && (
-        <div data-hero-item className="mt-10 flex flex-col items-center gap-4 sm:flex-row justify-start">
+        <div data-hero-item className="mt-[55vh] flex flex-col items-center gap-4 sm:mt-10 sm:flex-row justify-start">
           {primaryCta && (
             <Link
               href={primaryCta.href}
-              className="group inline-flex w-full items-center justify-center gap-4 bg-[var(--color-wild-orange)] px-7 py-4 font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-[#0C1617] transition-colors hover:bg-[var(--color-wild-orange-hover)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black/40 sm:w-auto"
+              className="group inline-flex w-auto min-h-[30px] scale-[0.85] origin-center items-center justify-center gap-2 bg-[var(--color-wild-orange)] px-2.5 py-1 font-sans text-[9px] font-semibold uppercase tracking-[0.22em] text-[#0C1617] transition-colors hover:bg-[var(--color-wild-orange-hover)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black/40 sm:min-h-[44px] sm:scale-100 sm:w-auto sm:px-7 sm:py-4 sm:text-[11px]"
             >
               <span>{primaryCta.label}</span>
               <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1.5">
@@ -153,7 +175,7 @@ export default function PageHero({
           {secondaryCta && (
             <Link
               href={secondaryCta.href}
-              className="inline-flex min-h-[44px] w-full items-center justify-center border-b border-white/40 pb-1 font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-white transition-colors hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:w-auto"
+              className="inline-flex min-h-[30px] w-auto scale-[0.85] origin-center items-center justify-center border-b border-white/40 pb-1 font-sans text-[9px] font-medium uppercase tracking-[0.22em] text-white transition-colors hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:min-h-[44px] sm:scale-100 sm:w-auto sm:text-[11px]"
             >
               {secondaryCta.label}
             </Link>
@@ -200,7 +222,7 @@ export default function PageHero({
         </div>
       ) : (
         <>
-          <div ref={imageRef} className="absolute inset-0 will-change-transform">
+          <div ref={imageRef} className={`absolute inset-0 will-change-transform ${mobileVideo ? "hidden sm:block" : ""}`}>
             <Image
               src={image}
               alt={imageAlt}
@@ -211,6 +233,20 @@ export default function PageHero({
             style={imageStyle}
             />
           </div>
+
+          {mobileVideo && (
+            <video
+              ref={videoRef}
+              src={mobileVideo}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              className="absolute inset-0 h-full w-full object-cover sm:hidden"
+              aria-hidden="true"
+            />
+          )}
 
           <div
             aria-hidden="true"
@@ -223,7 +259,7 @@ export default function PageHero({
 
            {eyebrowPosition === "top" && (
              <div
-               className={`absolute top-6 z-10 ${isCentered ? "inset-x-0 text-center" : "left-5 md:left-10"}`}
+               className={`absolute top-6 z-10 ${isCentered ? "inset-x-0 text-center" : "left-5 md:left-10"} ${hideOnMobile ? "hidden sm:block" : ""}`}
              >
                <p className="font-sans text-[10px] font-medium uppercase tracking-[0.34em] text-white/70 md:text-[11px]">
                  {eyebrow}
@@ -246,7 +282,7 @@ export default function PageHero({
 
           <div
             ref={contentRef}
-            className={`relative z-10 mx-auto w-full max-w-[1240px] px-5 pb-20 pt-36 md:px-10 md:pb-24 md:pt-44 ${isCentered ? "text-center" : "text-left"} ${contentClassName ?? ""}`}
+            className={`relative z-10 mx-auto w-full max-w-[1240px] px-5 pb-20 pt-48 sm:pt-36 md:px-10 md:pb-24 md:pt-44 ${isCentered ? "text-center" : "text-left"} ${contentClassName ?? ""}`}
           >
             {content}
           </div>

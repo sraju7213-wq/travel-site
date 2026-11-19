@@ -90,7 +90,7 @@ export default function PackageWorkspace({ pkg, gallery }: PackageWorkspaceProps
                 className={`flex-1 whitespace-nowrap rounded-lg min-h-[44px] px-2 py-3 font-display text-[11px] font-semibold uppercase tracking-wider transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass sm:px-3 sm:py-2.5 sm:text-xs ${
                   isActive
                     ? "bg-brass text-[#0C1617] shadow-sm"
-                    : "text-white/60 hover:bg-white/5 hover:text-white"
+                    : "text-white/80 hover:bg-white/5 hover:text-white"
                 }`}
               >
                 <span className="sm:hidden">{tab.short}</span>
@@ -162,7 +162,7 @@ export default function PackageWorkspace({ pkg, gallery }: PackageWorkspaceProps
 
           {pkg.highlights.length > 0 && (
             <div className="mt-6">
-              <div className="mb-3 flex items-center gap-2 font-display text-[11px] font-semibold uppercase tracking-wider text-white/50">
+              <div className="mb-3 flex items-center gap-2 font-display text-[11px] font-semibold uppercase tracking-wider text-white/70">
                 <span className="h-2 w-2 rounded-full bg-brass" aria-hidden="true" />
                 Key Journey Highlights
               </div>

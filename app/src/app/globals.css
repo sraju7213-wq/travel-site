@@ -405,6 +405,23 @@
   animation: fadeInUp 0.6s ease-out backwards;
 }
 
+/* Rise entrance that never hides its content.
+   Only the transform moves, so text keeps its full contrast while the
+   animation runs — a fading container makes small type unreadable on a
+   phone for the length of the animation. */
+@keyframes riseIn {
+  from {
+    transform: translateY(18px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.animate-rise-in {
+  animation: riseIn 0.6s ease-out backwards;
+}
+
 /* Slide in from right for mobile filter drawer */
 @keyframes slideInRight {
   0% {
@@ -677,6 +694,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-in,
+  .animate-fade-in-up,
+  .animate-rise-in,
   .animate-slide-in-right,
   .animate-scale-in,
   .animate-photo-enter,

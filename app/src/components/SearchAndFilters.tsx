@@ -690,7 +690,7 @@ function FilterPill({ label, onRemove }: { label: string; onRemove: () => void }
       <button
         type="button"
         onClick={onRemove}
-        className="-m-2 flex h-9 w-9 items-center justify-center text-white/70 hover:text-white transition-colors rounded-full"
+        className="-m-3 flex h-11 w-11 items-center justify-center text-white/70 hover:text-white transition-colors rounded-full"
         aria-label={`Remove filter ${label}`}
       >
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">

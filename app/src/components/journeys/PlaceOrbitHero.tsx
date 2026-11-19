@@ -133,15 +133,22 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
       metrics.top = rect.top + window.scrollY;
       metrics.cx = stageRect.left - rect.left + stageRect.width / 2;
       metrics.baseCy = coreRect.top + coreRect.height / 2 - rect.top;
+      // Phone: lift the ring slightly so the lowest card never reaches the
+      // hint/pause row pinned to the bottom of the stage.
+      if (metrics.width < 768) {
+        metrics.baseCy -= metrics.height * 0.035;
+      }
       metrics.cy = metrics.baseCy;
 
       // Card density by device breakpoint:
-      // Phone (< 768px): lesser density (5 cards) — generous spacing, zero card overlap
+      // Phone (< 768px): 6 cards on a tighter ellipse — a denser ring that still
+      //   leaves every card clear of its neighbours (5 on very short viewports).
       // Tablet (768px - 1024px): medium density (8 cards) — balanced ring without crowding
       // Desktop (>= 1024px): full catalogue density
+      const phoneCount = metrics.height < 640 ? 8 : 9;
       const targetCount =
         metrics.width < 768
-          ? Math.min(5, allCards.length)
+          ? Math.min(phoneCount, allCards.length)
           : metrics.width < 1024
             ? Math.min(8, allCards.length)
             : allCards.length;
@@ -151,7 +158,10 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
       allCards.forEach((card, i) => {
         if (i < targetCount) {
           card.index = i;
-          card.el.style.display = "";
+          // Inline display wins over the per-index `hidden md:block` /
+          // `hidden lg:block` classes, so measure() is the single source of
+          // truth for how many cards the ring shows.
+          card.el.style.display = "block";
           card.el.style.pointerEvents = "";
         } else {
           card.el.style.display = "none";
@@ -161,9 +171,10 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
       });
 
       if (metrics.width < 768) {
-        // Phone: orbit radius fitted to smaller screen so 5 cards orbit with guaranteed clearance
-        metrics.rx = Math.max(140, Math.min(210, stageRect.width * 0.48));
-        metrics.ry = Math.max(130, Math.min(240, metrics.height * 0.32));
+        // Phone: large ellipse scaled to screen height so cards orbit well
+        // clear of the centred search box instead of sitting under it.
+        metrics.rx = Math.max(200, Math.min(290, metrics.height * 0.34));
+        metrics.ry = Math.max(220, Math.min(340, metrics.height * 0.42));
       } else if (metrics.width < 1024) {
         // Tablet: medium radius for 8 cards
         metrics.rx = Math.max(220, Math.min(360, stageRect.width * 0.5));
@@ -205,7 +216,7 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
 
         card.el.style.transform = `perspective(1400px) translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0) translate(-50%, -50%) scale(${scale.toFixed(3)}) rotateY(${yaw.toFixed(1)}deg) rotateZ(${(ringTilt * 20 * (1 - card.lift)).toFixed(2)}deg)`;
 
-        const zIndex = card.lift > 0.02 ? 500 : 10 + Math.round(depth * 60);
+        const zIndex = card.lift > 0.02 ? 900 : 10 + Math.round(depth * 60);
         if (zIndex.toString() !== card.z) {
           card.el.style.zIndex = String(zIndex);
           card.z = String(zIndex);
@@ -213,7 +224,10 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
 
         const opacity = Math.min(1, (0.35 + depth * 0.65) * (1 - card.lift * 0.15));
         if (opacity.toFixed(2) !== card.op) {
-          card.el.style.opacity = opacity.toFixed(2);
+          // Dim the poster (tilt) with depth, but keep the card container
+          // (and its caption/name) fully opaque so the name stays readable.
+          card.tilt.style.opacity = opacity.toFixed(2);
+          card.el.style.opacity = "1";
           card.op = opacity.toFixed(2);
         }
 
@@ -471,7 +485,7 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
 
           {/* Search field — the reelipse-style primary action */}
           <form
-            className="mt-7 flex w-full max-w-lg items-center gap-3 rounded-full bg-[var(--color-wild-orange)] px-6 py-4 text-left font-medium text-[#0C1617] shadow-[0_0_60px_-10px_var(--color-wild-orange)] transition-colors hover:bg-[var(--color-wild-orange-hover)]"
+            className="mt-5 flex w-full max-w-[17.5rem] items-center gap-2.5 rounded-full bg-[var(--color-wild-orange)] px-4 py-2 text-left font-medium text-[#0C1617] shadow-[0_0_40px_-14px_var(--color-wild-orange)] transition-colors hover:bg-[var(--color-wild-orange-hover)] sm:mt-7 sm:max-w-lg sm:gap-3 sm:px-6 sm:py-4 sm:text-base sm:shadow-[0_0_60px_-10px_var(--color-wild-orange)]"
             action="/journeys#catalogue"
             method="get"
             role="search"
@@ -484,6 +498,7 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
               stroke="currentColor"
               strokeWidth="2.2"
               aria-hidden="true"
+              className="h-4 w-4 shrink-0 sm:h-5 sm:w-5"
             >
               <circle cx="11" cy="11" r="7" />
               <path d="m20 20-3.5-3.5" />
@@ -496,14 +511,14 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
               name="q"
               type="search"
               placeholder="Search any journey, place or interest"
-              className="min-h-[44px] min-w-0 flex-1 bg-transparent py-2 font-sans text-base text-[#0C1617] placeholder:text-[#0C1617]/70 focus:outline-none"
+              className="min-h-[44px] min-w-0 flex-1 bg-transparent py-1 font-sans text-base text-[#0C1617] placeholder:text-[#0C1617]/70 focus:outline-none sm:py-2"
             />
             <kbd className="hidden rounded bg-[#0C1617]/15 px-2 py-0.5 font-sans text-sm sm:inline">
               /
             </kbd>
           </form>
 
-          <div className="mt-5 flex flex-wrap justify-center gap-2">
+          <div className="mt-5 hidden flex-wrap justify-center gap-2 md:flex">
             {places.slice(0, 4).map((place) => (
               <Link key={place.name} href={place.href} className="jy-chip">
                 {place.name}

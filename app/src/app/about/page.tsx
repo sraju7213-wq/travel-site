@@ -102,10 +102,12 @@ export default function AboutPage() {
         align="left"
         height="full"
         image="/images/destinations/about-hero.jpg"
+        mobileVideo="/videos/heritage-mobile.mp4"
         imageStyle={{ transform: "scale(1.02)" }}
         imageAlt="Desert expedition caravan with camels and travelers crossing sand dunes at sunset"
         eyebrow="Est. 1927 · Specialist travel"
         contentClassName="text-center md:mr-auto md:ml-8 md:w-[40%] md:text-left md:drop-shadow-[0_2px_6px_rgba(0,0,0,0.85)]"
+        hideOnMobile
         title="A century of travel"
         lead="Baktoo family heritage since 1927 — specialist travel across India and Nepal, arranged from our offices in Delhi, Kashmir and Ladakh."
         primaryCta={{ label: "Plan your journey", href: "/enquiry" }}

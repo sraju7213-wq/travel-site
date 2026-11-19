@@ -41,7 +41,7 @@ type Entry = NavLink & { group: string };
  * focus returns to the menu button, and the page behind it cannot scroll.
  */
 export default function MobileNav({ open, onClose }: MobileNavProps) {
-  const [expanded, setExpanded] = useState<Set<string>>(new Set(["journeys"]));
+  const [expanded, setExpanded] = useState<Set<string>>(new Set());
   const [query, setQuery] = useState("");
   const [mounted, setMounted] = useState(false);
   const [recentSlugs, setRecentSlugs] = useState<string[]>([]);
@@ -59,6 +59,13 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
   // surface direct page links instead, so they are excluded from the drawer.
   const mobileGroups = useMemo(
     () => NAV_GROUPS.filter((g) => g.id !== "destinations" && g.id !== "experiences"),
+    [],
+  );
+
+  /** Company links are surfaced as their own rows (not behind a collapsible)
+   *  so each option is directly reachable — see "separate its options". */
+  const companyGroup = useMemo(
+    () => NAV_GROUPS.find((g) => g.id === "company"),
     [],
   );
 
@@ -415,7 +422,9 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
         ) : (
           <nav aria-label="Mobile navigation">
             <ul className="space-y-2">
-              {visibleGroups.map((group) => {
+              {visibleGroups
+                .filter((group) => group.id !== "company")
+                .map((group) => {
                 const isOpen = expanded.has(group.id);
                 return (
                   <li key={group.id}>
@@ -496,6 +505,43 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
                 );
               })}
             </ul>
+
+            {companyGroup && companyGroup.links.length > 0 && (
+              <div className="mt-6">
+                <p className="mb-2 px-1 font-sans text-[10px] font-semibold uppercase tracking-[0.25em] text-white/60">
+                  Company
+                </p>
+                <ul className="space-y-0.5">
+                  {companyGroup.links.map((link) => (
+                    <li key={link.href + link.label}>
+                      <Link
+                        href={link.href}
+                        onClick={() => handleLinkClick(link.href)}
+                        className="flex min-h-[48px] items-center justify-between gap-3 rounded-lg px-3 py-2.5 font-sans text-sm text-white/85 transition-colors hover:bg-white/5 hover:text-white"
+                      >
+                        <span className="min-w-0">
+                          <span className="block truncate">{link.label}</span>
+                          {link.description ? (
+                            <span className="mt-0.5 block truncate font-sans text-[11px] text-white/60">
+                              {link.description}
+                            </span>
+                          ) : null}
+                        </span>
+                        {link.image ? (
+                          <Image
+                            src={link.image}
+                            alt=""
+                            width={40}
+                            height={30}
+                            className="h-8 w-10 shrink-0 rounded object-cover"
+                          />
+                        ) : null}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             <div className="mt-6 space-y-3">
               <Link

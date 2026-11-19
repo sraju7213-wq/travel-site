@@ -9,14 +9,14 @@ import type { PackageViewModel } from "@/types/travel";
  * each category so the ring mixes regions as it spins.
  */
 export const HERO_JOURNEY_IDS = [
-  // Phone marquee (first 5: Kashmir, Agra/Taj, Kerala, Ladakh, Nepal)
+  // Phone marquee (first 6: Kashmir, Agra/Taj, Kerala, Ladakh, Nepal, Rajasthan fort)
   "kashmir-package-7-day",
   "golden-triangle",
   "glimpses-of-kerala",
   "discover-ladakh",
   "himalayan-combination-nepal",
-  // Tablet additions (next 3: Rajasthan fort, Markha trek, Goa coast)
   "heritage-tour-india",
+  // Tablet additions (next 2: Markha trek, Goa coast)
   "markha-valley",
   "glorious-goa-stopover",
   // Desktop additions (next 4: Varanasi Ganges, Vale trek, Nepal mini-trek, Delhi heritage)
