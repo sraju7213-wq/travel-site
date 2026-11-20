@@ -167,13 +167,13 @@ export default function AboutPage() {
           <div className="mt-12 grid gap-10 lg:grid-cols-2 lg:gap-14">
             {/* Sultan Baktoo */}
             <article className="group flex flex-col gap-5 border-t border-white/10 pt-6 sm:flex-row sm:gap-6">
-              <div className="relative h-44 w-full shrink-0 overflow-hidden bg-[#0C1617] sm:aspect-[4/5] sm:h-auto sm:w-36">
+              <div className="relative aspect-[4/5] w-full shrink-0 overflow-hidden bg-[#0C1617] sm:w-36">
                 <Image
                   src="/images/destinations/sultan-baktoo.jpg"
                   alt="Sultan Baktoo, pioneer of tourism and travel in Kashmir"
                   fill
                   sizes="(min-width: 640px) 144px, 100vw"
-                  className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  className="object-cover object-[94%_center] transition-transform duration-500 group-hover:scale-105 sm:object-[85%_center]"
                 />
               </div>
               <div>
@@ -192,7 +192,7 @@ export default function AboutPage() {
 
             {/* Farook Baktoo */}
             <article className="group flex flex-col gap-5 border-t border-white/10 pt-6 sm:flex-row sm:gap-6">
-              <div className="relative h-44 w-full shrink-0 overflow-hidden bg-[#0C1617] sm:aspect-[4/5] sm:h-auto sm:w-36">
+              <div className="relative aspect-[4/5] w-full shrink-0 overflow-hidden bg-[#0C1617] sm:w-36">
                 <Image
                   src="/images/destinations/farook-baktoo.jpg"
                   alt="Farook Baktoo, Himalayan expedition leader and director"
@@ -229,7 +229,7 @@ export default function AboutPage() {
                     alt="Yousuf Baktoo, senior executive"
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover object-[70%_center] transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="mt-5">
@@ -246,7 +246,7 @@ export default function AboutPage() {
                     alt="Imtiaz Ahmad, operations and logistics"
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover object-left transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="mt-5">
@@ -263,7 +263,7 @@ export default function AboutPage() {
                     alt="Hashim, expedition planning"
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover object-[47%_bottom] transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="mt-5">
