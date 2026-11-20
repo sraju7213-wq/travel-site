@@ -4,7 +4,6 @@ import Container from "@/components/Container";
 import PageShell from "@/components/PageShell";
 import PageHero from "@/components/ui/PageHero";
 import { BRAND } from "@/data/brandConfig";
-import { pexels } from "@/data/catalogue";
 
 export const metadata = {
   title: `About Us — ${BRAND.name} & ${BRAND.operatorName}`,
@@ -114,11 +113,13 @@ export default function AboutPage() {
         secondaryCta={{ label: "View all 27 journeys", href: "/journeys" }}
         scrollCue
         footer={
-          <p className="animate-fade-in pointer-events-none absolute inset-x-0 top-[45%] z-10 mx-auto max-w-[92%] -translate-y-1/2 px-5 text-center font-serif text-[23px] font-medium italic leading-[1.4] tracking-[0.01em] text-[#FFF7EC] [text-shadow:0_1px_3px_rgba(0,0,0,0.85),0_2px_12px_rgba(0,0,0,0.55)] sm:max-w-2xl sm:text-3xl md:text-4xl">
-            By <span className="text-[#E9B873]">Allah’s Grace,</span>
-            <br className="sm:hidden" />{" "}
-            Built on My <span className="text-[#E9B873]">Parents’ Prayers.</span>
-          </p>
+          <figure className="pointer-events-none absolute inset-x-5 bottom-48 z-10 mx-auto max-w-[1240px] animate-fade-in sm:inset-x-10 md:bottom-28 md:px-10">
+            <div className="max-w-lg border-l-2 border-[#E9B873]/70 pl-5">
+              <blockquote className="font-serif text-lg font-light italic leading-[1.35] text-[#FFF7EC] [text-shadow:0_1px_3px_rgba(0,0,0,0.9)] sm:text-xl md:text-2xl">
+                &ldquo;By Allah&rsquo;s grace, built on my parents&rsquo; prayers.&rdquo;
+              </blockquote>
+            </div>
+          </figure>
         }
       />
 
@@ -157,9 +158,9 @@ export default function AboutPage() {
               The Baktoo family heritage
             </h2>
             <p className="mt-6 font-sans text-sm font-light leading-relaxed text-white/70 md:text-base">
-              The Baktoo family has been promoting and sharing experiences in tourism since 1927. Journeys
-              presented by {BRAND.name} are operated in historical association with {BRAND.operatorName}{" "}
-              based in India.
+              The Baktoo family has shared the landscapes and cultures of India and Nepal with travellers
+              since 1927. Journeys presented by {BRAND.name} are operated in historical association with{" "}
+              {BRAND.operatorName}, based in India.
             </p>
           </div>
 
@@ -274,29 +275,19 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* Archival quote */}
-          <figure className="mt-14 border-t border-white/10 pt-10">
-            <div className="grid gap-8 md:grid-cols-[100px_1fr] md:items-center">
-              <div className="relative aspect-square w-24 overflow-hidden rounded-none border border-white/15 bg-[#0C1617]">
-                <Image
-                  src={pexels("3822669")}
-                  alt="Traditional Indian Namaste welcome greeting"
-                  fill
-                  sizes="96px"
-                  className="object-cover"
-                />
-              </div>
-              <div>
-                <blockquote className="font-serif text-xl font-light italic leading-relaxed text-white/90 md:text-2xl">
-                  &ldquo;Our tours are planned without minimum group cancellations and can be enjoyed by a
-                  small group of up to 15 or as a solo traveller. Itineraries provided in this brochure are an
-                  outline of what you can expect. Detailed information is available on request.&rdquo;
-                </blockquote>
-                <figcaption className="mt-5 font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--color-wild-orange)]">
-                  The Baktoo family archives &mdash; {BRAND.operatorName} (presented by {BRAND.name})
-                </figcaption>
-              </div>
-            </div>
+          {/* Archival note */}
+          <figure className="mt-14 border-t border-white/10 pt-10 md:mt-16">
+            <span aria-hidden="true" className="block font-serif text-6xl leading-[0.8] text-[var(--color-wild-orange)]/60">
+              &ldquo;
+            </span>
+            <blockquote className="mt-4 max-w-3xl font-serif text-lg font-light italic leading-[1.55] text-white/85 md:text-xl">
+              Our tours are planned without minimum-group cancellations, and can be enjoyed by a small group
+              of up to 15 or as a solo traveller. The itineraries in this brochure outline what you can
+              expect; detailed information is available on request.
+            </blockquote>
+            <figcaption className="mt-6 font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--color-wild-orange)]">
+              &mdash; Baktoo family archives
+            </figcaption>
           </figure>
         </Container>
       </section>
@@ -353,9 +344,9 @@ export default function AboutPage() {
               <span className="block text-white/55">first morning on the trail</span>
             </h2>
             <p className="mt-6 font-sans text-sm font-light leading-relaxed text-white/70 md:text-base">
-              All tours are guaranteed to depart and can be enjoyed by a small group of up to 15, or as a solo
-              traveller. Itineraries in the brochure are an outline; detailed information is available on
-              request.
+              Every journey can be tailored to your dates, party size and interests. All tours are guaranteed
+              to depart with a small group of up to 15, or as a solo traveller; detailed itineraries are
+              prepared on request.
             </p>
           </div>
 
