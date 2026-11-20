@@ -23,6 +23,7 @@ Root scripts proxy into `app/` so you never have to `cd`:
 
 | Command | What it does |
 |---|---|
+| `npm install` | Install app dependencies (`app/node_modules`) |
 | `npm run dev` | Dev server with Turbopack |
 | `npm run build` | Install + production build |
 | `npm run start` | Serve the production build |

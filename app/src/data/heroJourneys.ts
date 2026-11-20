@@ -1,4 +1,4 @@
-import { getAllPackages } from "./catalogue";
+import { getAllPackages, getPackageCardImage, pexels } from "./catalogue";
 import type { PackageViewModel } from "@/types/travel";
 
 /**
@@ -25,6 +25,26 @@ export const HERO_JOURNEY_IDS = [
   "nepal-mini-trek-7-day",
   "delhi-stopover",
 ] as const;
+
+/**
+ * Per-journey poster overrides for the Orbit ring.
+ *
+ * The ring is a curated subset of the catalogue, so a journey can want a
+ * hero-specific photo even when its card image is set elsewhere. Keyed by
+ * package id; anything absent falls back to the package card image.
+ */
+export const HERO_JOURNEY_IMAGES: Record<string, string> = {
+  // Kashmir: Dal Lake houseboats read better on the ring than the generic card.
+  "kashmir-package-7-day": pexels("25786562"),
+};
+
+/**
+ * Poster for one ring card: the curated override when present, otherwise the
+ * same package card image the rest of the site uses.
+ */
+export function getHeroJourneyImage(pkg: PackageViewModel): string {
+  return HERO_JOURNEY_IMAGES[pkg.id] ?? getPackageCardImage(pkg.slug);
+}
 
 /**
  * Resolve the marquee ids against the live catalogue. Unknown ids are

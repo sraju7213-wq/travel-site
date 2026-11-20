@@ -6,12 +6,14 @@ import PageShell from "@/components/PageShell";
 import Container from "@/components/Container";
 import CtaZoom from "@/components/CtaZoom";
 import SearchAndFilters from "@/components/SearchAndFilters";
+import JourneyLandingPage from "@/components/journeys/JourneyLandingPage";
+import ModernExperience from "@/components/journeys/ModernExperience";
 import PlaceOrbitHero from "@/components/journeys/PlaceOrbitHero";
 import PosterRail from "@/components/journeys/PosterRail";
 import TiltPoster from "@/components/journeys/TiltPoster";
 import { getAllPackages, getPackageCardImage } from "@/data/catalogue";
 import { getHeroJourneys } from "@/data/heroJourneys";
-import { getPlaces } from "@/data/places";
+import { getJourneysByPlace, getPlaces } from "@/data/places";
 import { BRAND } from "@/data/brandConfig";
 import { placeLine } from "@/lib/packageDisplay";
 import "./journeys.css";
@@ -19,6 +21,7 @@ import "./journeys.css";
 const allPackages = getAllPackages();
 const places = getPlaces();
 const heroJourneys = getHeroJourneys();
+const journeysByPlace = getJourneysByPlace();
 
 export const metadata: Metadata = {
   title: `Journeys — ${BRAND.name}`,
@@ -33,6 +36,10 @@ export default function JourneysPage() {
 
   return (
     <PageShell mainClassName="">
+      <JourneyLandingPage
+        modern={<ModernExperience places={places} journeysByPlace={journeysByPlace} />}
+        orbit={
+          <>
       {/* Enables the reelipse-style poster tilt across every card on this page */}
       <TiltPoster className="contents" />
 
@@ -351,6 +358,9 @@ export default function JourneysPage() {
         body="Every journey can be tailored around your dates, party size and interests. Tell us what you want to discover."
         ctaLabel="Enquire now"
         ctaHref="/enquiry"
+      />
+          </>
+        }
       />
     </PageShell>
   );

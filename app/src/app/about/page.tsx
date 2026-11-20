@@ -102,7 +102,7 @@ export default function AboutPage() {
         align="left"
         height="full"
         image="/images/destinations/about-hero.jpg"
-        mobileVideo="/videos/heritage-mobile.mp4"
+        mobileImage="/images/destinations/about-hero-mobile.jpg"
         imageStyle={{ transform: "scale(1.02)" }}
         imageAlt="Desert expedition caravan with camels and travelers crossing sand dunes at sunset"
         eyebrow="Est. 1927 · Specialist travel"
@@ -113,6 +113,13 @@ export default function AboutPage() {
         primaryCta={{ label: "Plan your journey", href: "/enquiry" }}
         secondaryCta={{ label: "View all 27 journeys", href: "/journeys" }}
         scrollCue
+        footer={
+          <p className="animate-fade-in pointer-events-none absolute inset-x-0 top-[45%] z-10 mx-auto max-w-[92%] -translate-y-1/2 px-5 text-center font-serif text-[23px] font-medium italic leading-[1.4] tracking-[0.01em] text-[#FFF7EC] [text-shadow:0_1px_3px_rgba(0,0,0,0.85),0_2px_12px_rgba(0,0,0,0.55)] sm:max-w-2xl sm:text-3xl md:text-4xl">
+            By <span className="text-[#E9B873]">Allah’s Grace,</span>
+            <br className="sm:hidden" />{" "}
+            Built on My <span className="text-[#E9B873]">Parents’ Prayers.</span>
+          </p>
+        }
       />
 
       {/* Key numbers */}

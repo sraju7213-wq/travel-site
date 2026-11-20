@@ -4,6 +4,7 @@
   "private": true,
   "description": "KS World Adventure travel site (Next.js app lives in ./app)",
   "scripts": {
+    "install": "npm --prefix app install",
     "install:app": "npm --prefix app install",
     "dev": "npm --prefix app run dev",
     "build": "npm --prefix app install && npm --prefix app run build",

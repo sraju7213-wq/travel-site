@@ -39,6 +39,8 @@ interface PageHeroProps {
   imageClassName?: string;
   /** Optional video shown on mobile instead of the still image. */
   mobileVideo?: string;
+  /** Optional image shown on mobile instead of the still image (e.g. an animated GIF). */
+  mobileImage?: string;
   /** Inline styles applied to the hero image (e.g. to zoom in). */
   imageStyle?: React.CSSProperties;
   /** When "top", the eyebrow is rendered as a top label instead of inline above the title. */
@@ -72,6 +74,7 @@ export default function PageHero({
   imageClassName,
   imageStyle,
   mobileVideo,
+  mobileImage,
   eyebrowPosition = "inline",
   titleClassName,
   hideOnMobile = false,
@@ -222,7 +225,7 @@ export default function PageHero({
         </div>
       ) : (
         <>
-          <div ref={imageRef} className={`absolute inset-0 will-change-transform ${mobileVideo ? "hidden sm:block" : ""}`}>
+          <div ref={imageRef} className={`absolute inset-0 will-change-transform ${mobileVideo || mobileImage ? "hidden sm:block" : ""}`}>
             <Image
               src={image}
               alt={imageAlt}
@@ -233,6 +236,12 @@ export default function PageHero({
             style={imageStyle}
             />
           </div>
+
+          {mobileImage && (
+            <div className="absolute inset-0 sm:hidden">
+              <Image src={mobileImage} alt={imageAlt} fill preload={priority} sizes="100vw" className="object-cover object-center" />
+            </div>
+          )}
 
           {mobileVideo && (
             <video
@@ -289,7 +298,7 @@ export default function PageHero({
         </>
       )}
 
-      {footer && <div className="relative z-10">{footer}</div>}
+      {footer && <div className="contents">{footer}</div>}
 
       {scrollCue && !isNormal && (
         <div

@@ -6,7 +6,8 @@ import Link from "next/link";
 import gsap from "gsap";
 import { prefersReducedMotion } from "@/lib/motion";
 import { cleanDuration, placeLine } from "@/lib/packageDisplay";
-import { getAllPackages, getPackageCardImage } from "@/data/catalogue";
+import { getAllPackages } from "@/data/catalogue";
+import { getHeroJourneyImage } from "@/data/heroJourneys";
 import type { ResolvedPlace } from "@/data/places";
 import type { PackageViewModel } from "@/types/travel";
 
@@ -126,17 +127,22 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
 
     const measure = () => {
       const rect = section.getBoundingClientRect();
-      const coreRect = core.getBoundingClientRect();
       const stageRect = ring.parentElement?.getBoundingClientRect() ?? rect;
+      const stageTop = stageRect.top - rect.top;
+      const phone = rect.width < 768;
       metrics.width = rect.width;
       metrics.height = rect.height;
       metrics.top = rect.top + window.scrollY;
       metrics.cx = stageRect.left - rect.left + stageRect.width / 2;
-      metrics.baseCy = coreRect.top + coreRect.height / 2 - rect.top;
-      // Phone: lift the ring slightly so the lowest card never reaches the
-      // hint/pause row pinned to the bottom of the stage.
-      if (metrics.width < 768) {
-        metrics.baseCy -= metrics.height * 0.035;
+      if (phone) {
+        // Phone layout is unchanged: the ring sits just above the centred
+        // search box, lifted clear of the hint row at the bottom.
+        const coreRect = core.getBoundingClientRect();
+        metrics.baseCy = coreRect.top + coreRect.height / 2 - rect.top - rect.height * 0.035;
+      } else {
+        // Ring centre follows the stage, not the headline: lifting the search
+        // box must not drag the orbit into the header or off-screen.
+        metrics.baseCy = stageTop + stageRect.height / 2;
       }
       metrics.cy = metrics.baseCy;
 
@@ -170,19 +176,40 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
         }
       });
 
-      if (metrics.width < 768) {
-        // Phone: large ellipse scaled to screen height so cards orbit well
-        // clear of the centred search box instead of sitting under it.
+      if (phone) {
+        // Phone geometry intentionally preserved from the original design.
         metrics.rx = Math.max(200, Math.min(290, metrics.height * 0.34));
         metrics.ry = Math.max(220, Math.min(340, metrics.height * 0.42));
-      } else if (metrics.width < 1024) {
-        // Tablet: medium radius for 8 cards
-        metrics.rx = Math.max(220, Math.min(360, stageRect.width * 0.5));
-        metrics.ry = Math.max(160, Math.min(300, metrics.height * 0.36));
       } else {
-        // Desktop: wide cinematic spread
-        metrics.rx = Math.max(280, stageRect.width * 0.52);
-        metrics.ry = Math.max(180, metrics.height * 0.4);
+        const cardEl = ring.querySelector<HTMLElement>("[data-orbit-card]");
+        const cardW = cardEl?.offsetWidth ?? 165;
+        // Posters are 2:3.
+        const cardH = cardW * 1.5;
+        const minScale = 0.5;
+        const midScale = 0.81;
+        const maxScale = 1.12;
+        // Reserve room for the header/switcher above, the drag hint below and
+        // the ring's slight tilt so every full card stays inside the stage.
+        const tiltPad = 20;
+        const topEdge = stageTop + 136;
+        const bottomEdge = stageTop + stageRect.height - 48;
+        metrics.ry = Math.max(
+          80,
+          Math.min(
+            metrics.baseCy - topEdge - (cardH * minScale) / 2 - tiltPad,
+            bottomEdge - metrics.baseCy - (cardH * maxScale) / 2 - tiltPad,
+          ),
+        );
+        metrics.rx = Math.max(
+          80,
+          stageRect.width / 2 - 40 - (cardW * midScale) / 2 - tiltPad,
+        );
+        // Desktop-only 10% increment to the orbit's vertical spread. The
+        // horizontal radius stays at the fitted limit: a 10% increase there
+        // pushes edge cards past the viewport at 1440px.
+        if (metrics.width >= 1024) {
+          metrics.ry *= 1.1;
+        }
       }
     };
 
@@ -269,9 +296,10 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
         1,
         (window.scrollY - metrics.top) / Math.max(1, metrics.height),
       );
-      const scale = 1 + scrollProgress * 0.8;
+      const phone = metrics.width < 768;
+      const scale = 1 + scrollProgress * (phone ? 0.8 : 0.25);
       state.scrollScale = scale;
-      metrics.cy = metrics.baseCy - scrollProgress * metrics.height * 0.2 + state.pointerY * 10;
+      metrics.cy = metrics.baseCy - scrollProgress * metrics.height * (phone ? 0.2 : 0.08) + state.pointerY * 10;
 
       render();
 
@@ -440,7 +468,7 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
               >
               <span className="jy-orbit-tilt" data-orbit-tilt>
                 <Image
-                  src={getPackageCardImage(pkg.slug)}
+                  src={getHeroJourneyImage(pkg)}
                   alt=""
                   fill
                   sizes="(min-width: 768px) 450px, 320px"
@@ -476,16 +504,13 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
         </div>
 
         <div ref={coreRef} className="jy-orbit-core">
-          <h1
-            id="jy-hero-title"
-            className="mb-4 font-sans text-[10px] font-medium uppercase tracking-[0.34em] text-[var(--color-wild-orange)]"
-          >
+          <h1 id="jy-hero-title" className="jy-hero-title">
             Find your journey
           </h1>
 
           {/* Search field — the reelipse-style primary action */}
           <form
-            className="mt-5 flex w-full max-w-[17.5rem] items-center gap-2.5 rounded-full bg-[var(--color-wild-orange)] px-4 py-2 text-left font-medium text-[#0C1617] shadow-[0_0_40px_-14px_var(--color-wild-orange)] transition-colors hover:bg-[var(--color-wild-orange-hover)] sm:mt-7 sm:max-w-lg sm:gap-3 sm:px-6 sm:py-4 sm:text-base sm:shadow-[0_0_60px_-10px_var(--color-wild-orange)]"
+            className="jy-search-form mt-5 flex w-full max-w-[17.5rem] items-center gap-2.5 rounded-full px-4 py-2 text-left font-medium sm:mt-7 sm:max-w-lg sm:gap-3 sm:px-6 sm:py-4 sm:text-base"
             action="/journeys#catalogue"
             method="get"
             role="search"

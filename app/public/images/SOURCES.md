@@ -38,6 +38,7 @@ contact sheets are in `docs/evidence/`. Re-crop by hand against the rectangles b
 | `images/destinations/nepal-trek.jpg` | p8 | `22,1085 - 285,1170` | 738x239 |
 | `images/destinations/snow-trek.jpg` | p8 | `573,1052 - 838,1170` | 743x331 |
 | `images/destinations/founder-welcome.jpg` | p1 | `22,20 - 108,108` | 241x247 |
+| `images/destinations/about-hero-mobile.jpg` | — | supplied asset (About-Hero.jpg) | 1728x3072 |
 | `images/destinations/sultan-baktoo.jpg` | p1 | `503,166 - 600,250` | 272x235 |
 | `images/destinations/farook-baktoo.jpg` | p1 | `503,303 - 600,392` | 272x250 |
 | `images/hero/hero-pangong.jpg` | p6 | `0,1010 - 848,1175` | 2379x463 |
@@ -113,6 +114,12 @@ contact sheets are in `docs/evidence/`. Re-crop by hand against the rectangles b
 | File | Description | Section |
 |---|---|---|
 | `images/services/houseboat-hero.jpg` | User-supplied houseboat hero photo (Gemini-generated, 2752x1536, resized to 2400x1340) | Houseboats page — full-bleed hero banner (`components/houseboats/HouseboatHero.tsx`) |
+
+## Pexels hero photography
+
+| File | Description | Source |
+|---|---|---|
+| `images/hero/orbit-gulmarg-landscape.jpg` | Serene mountain landscape, Gulmarg | Pexels 29676602 |
 
 ## Pexels Package Photography (replaces brochure crops)
 

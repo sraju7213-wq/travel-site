@@ -58,12 +58,14 @@ use the same CDN with `w=2400` and no forced crop.
 | 19528132 | Old Delhi street life and historic lanes | https://www.pexels.com/photo/19528132/ |
 | 20988035 | Kathmandu cityscape and temples | https://www.pexels.com/photo/20988035/ |
 | 24428857 | Indian village life | https://www.pexels.com/photo/24428857/ |
+| 25786562 | Dal Lake, Srinagar | https://www.pexels.com/photo/dal-lake-in-india-25786562/ |
 | 26926327 | Nepal mountain and foothill trails | https://www.pexels.com/photo/26926327/ |
 | 27442817 | Portrait placeholder — Indian man | https://www.pexels.com/photo/27442817/ |
 | 27593915 | Pangong Lake, Ladakh | https://www.pexels.com/photo/27593915/ |
 | 28277464 | Pokhara lakeside | https://www.pexels.com/photo/28277464/ |
 | 28355680 | Goa beach and the Arabian Sea coastline | https://www.pexels.com/photo/28355680/ |
 | 29251278 | Srinagar, Kashmir | https://www.pexels.com/photo/29251278/ |
+| 29676602 | Gulmarg mountain landscape | https://www.pexels.com/photo/serene-mountain-landscape-in-gulmarg-29676602/ |
 | 30378592 | India Gate, New Delhi | https://www.pexels.com/photo/30378592/ |
 | 30778230 | Kerala backwaters | https://www.pexels.com/photo/30778230/ |
 | 32132398 | Himalayan mountain range | https://www.pexels.com/photo/32132398/ |
@@ -108,7 +110,7 @@ gallery and its lightbox.
 | golden-triangle | 11521892 Taj Mahal | 39605929 Amber Fort · 14094276 Red Fort · 30378592 India Gate | [/11521892/](https://www.pexels.com/photo/11521892/) · [/39605929/](https://www.pexels.com/photo/39605929/) · [/14094276/](https://www.pexels.com/photo/14094276/) · [/30378592/](https://www.pexels.com/photo/30378592/) |
 | glorious-goa-stopover | 28355680 Goa beach | 35916755 Goa beaches | [/28355680/](https://www.pexels.com/photo/28355680/) · [/35916755/](https://www.pexels.com/photo/35916755/) |
 | glimpses-of-kerala | 30778230 Kerala backwaters | 17545322 Alleppey houseboat · 36982207 Munnar tea gardens | [/30778230/](https://www.pexels.com/photo/30778230/) · [/17545322/](https://www.pexels.com/photo/17545322/) · [/36982207/](https://www.pexels.com/photo/36982207/) |
-| kashmir-package-7-day | 40348598 Dal Lake | 35672518 Gulmarg · 16252950 Sonamarg · 13927123 Pahalgam | [/40348598/](https://www.pexels.com/photo/40348598/) · [/35672518/](https://www.pexels.com/photo/35672518/) · [/16252950/](https://www.pexels.com/photo/16252950/) · [/13927123/](https://www.pexels.com/photo/13927123/) |
+| kashmir-package-7-day | 25786562 Dal Lake | 35672518 Gulmarg · 16252950 Sonamarg · 13927123 Pahalgam | [/25786562/](https://www.pexels.com/photo/dal-lake-in-india-25786562/) · [/35672518/](https://www.pexels.com/photo/35672518/) · [/16252950/](https://www.pexels.com/photo/16252950/) · [/13927123/](https://www.pexels.com/photo/13927123/) |
 | kashmir-package-4-day | 29251278 Srinagar | 18453079 Kashmir valley · 40348598 Dal Lake | [/29251278/](https://www.pexels.com/photo/29251278/) · [/18453079/](https://www.pexels.com/photo/18453079/) · [/40348598/](https://www.pexels.com/photo/40348598/) |
 | delhi-to-kathmandu | 11521892 Taj Mahal | 40967314 Varanasi ghats · 20988035 Kathmandu | [/11521892/](https://www.pexels.com/photo/11521892/) · [/40967314/](https://www.pexels.com/photo/40967314/) · [/20988035/](https://www.pexels.com/photo/20988035/) |
 | heritage-tour-india | 35130760 Jaisalmer Fort | 39605929 Amber Fort · 11521892 Taj Mahal · 17397822 Udaipur City Palace | [/35130760/](https://www.pexels.com/photo/35130760/) · [/39605929/](https://www.pexels.com/photo/39605929/) · [/11521892/](https://www.pexels.com/photo/11521892/) · [/17397822/](https://www.pexels.com/photo/17397822/) |
