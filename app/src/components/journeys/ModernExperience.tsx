@@ -2,12 +2,12 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import CtaZoom from "@/components/CtaZoom";
-import { getPackageCardImage } from "@/data/catalogue";
+import PackageGrid from "@/components/PackageGrid";
+import CardViewSwitcher, { type CardViewMode } from "@/components/ui/CardViewSwitcher";
 import type { ResolvedPlace } from "@/data/places";
-import { cleanDuration, placeLine } from "@/lib/packageDisplay";
 import type { PackageViewModel } from "@/types/travel";
+import CoverflowSwiper from "./CoverflowSwiper";
 import "./modern.css";
 
 interface ModernExperienceProps {
@@ -30,6 +30,7 @@ interface ModernExperienceProps {
  */
 export default function ModernExperience({ places, journeysByPlace }: ModernExperienceProps) {
   const [active, setActive] = useState(0);
+  const [viewMode, setViewMode] = useState<CardViewMode>("coverflow");
   const cardRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const railRef = useRef<HTMLDivElement>(null);
   const current = places[active];
@@ -69,20 +70,28 @@ export default function ModernExperience({ places, journeysByPlace }: ModernExpe
     <>
       <section className="md-hero" aria-labelledby="md-title">
         <div className="md-hero__bg" aria-hidden="true">
-          {places.map((place, index) => (
-            <Image
-              key={place.name}
-              src={place.image}
-              alt=""
-              fill
-              sizes="100vw"
-              quality={90}
-              className="md-hero__bg-img"
-              data-active={index === active}
-              priority={index === 0}
-              loading={index === 0 ? undefined : "lazy"}
-            />
-          ))}
+          {places.map((place, index) => {
+            // Only the active slide and its neighbours need a full-size image.
+            // Distant slides keep a 16px placeholder in the srcset; when they
+            // become active the browser upgrades from the same srcset, so the
+            // crossfade still works without downloading every backdrop up front.
+            const distance = Math.abs(index - active);
+            const near = distance <= 1 || distance >= places.length - 1;
+            return (
+              <Image
+                key={place.name}
+                src={place.image}
+                alt=""
+                fill
+                sizes={near ? "100vw" : "16px"}
+                quality={90}
+                className="md-hero__bg-img"
+                data-active={index === active}
+                priority={index === 0}
+                loading={index === 0 ? undefined : "lazy"}
+              />
+            );
+          })}
         </div>
         <div className="md-hero__veil" aria-hidden="true" />
 
@@ -285,36 +294,19 @@ export default function ModernExperience({ places, journeysByPlace }: ModernExpe
           </p>
         </div>
 
-        <div className="md-catalogue__grid">
-          {currentJourneys.map((pkg) => (
-            <article key={pkg.id} className="md-journey">
-              <Link
-                href={`/packages/${pkg.slug}`}
-                className="md-journey__media"
-                tabIndex={-1}
-                aria-hidden="true"
-              >
-                <Image
-                  src={getPackageCardImage(pkg.slug)}
-                  alt=""
-                  fill
-                  sizes="(min-width: 768px) 30vw, 80vw"
-                  quality={90}
-                  className="object-cover"
-                />
-              </Link>
-              <div className="md-journey__body">
-                <h3 className="md-journey__title">
-                  <Link href={`/packages/${pkg.slug}`}>{pkg.title}</Link>
-                </h3>
-                <p className="md-journey__meta">
-                  {cleanDuration(pkg.duration)} &middot; {placeLine(pkg)}
-                </p>
-                <p className="md-journey__summary">{pkg.summary}</p>
-              </div>
-            </article>
-          ))}
+        <div className="mx-auto mb-6 flex w-full max-w-[96rem] justify-end">
+          <CardViewSwitcher
+            mode={viewMode}
+            onChange={setViewMode}
+            label="Journey card view"
+          />
         </div>
+
+        {viewMode === "coverflow" ? (
+          <CoverflowSwiper packages={currentJourneys} />
+        ) : (
+          <PackageGrid packages={currentJourneys} />
+        )}
       </section>
 
       <CtaZoom

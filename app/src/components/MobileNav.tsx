@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useBodyOverflowLock } from "@/hooks/useBodyOverflowLock";
 import { getRecentSlugs, pushRecent, getPins } from "@/lib/menuStorage";
-import { CONTACT, NAV_GROUPS, type NavLink } from "@/lib/navigation";
+import { CONTACT, NAV_GROUPS, DESTINATION_LINKS, type NavLink } from "@/lib/navigation";
 import { getAllPackages, getPackageCardImage } from "@/data/catalogue";
 import { cleanDuration } from "@/lib/packageDisplay";
 
@@ -30,8 +30,8 @@ type Entry = NavLink & { group: string };
  * The full-screen navigation drawer used below the `lg` breakpoint.
  *
  * It replaces the old bare link list with:
- *   - a quick-jump search that covers destinations, journey categories,
- *     experiences and all 27 brochure packages,
+ *   - a quick-jump search that covers destinations, journey categories
+ *     and all 27 brochure packages,
  *   - collapsible groups so the drawer stays scannable on a phone,
  *   - recently viewed and pinned shortcuts,
  *   - a persistent "Plan your trip" call to action with the real contact
@@ -55,10 +55,10 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
 
   useBodyOverflowLock(open);
 
-  // Destinations and Experiences are desktop-only mega-menus; on mobile we
-  // surface direct page links instead, so they are excluded from the drawer.
+  // Destinations is a desktop-only mega-menu; on mobile its links are reached
+  // through quick-jump search instead, so the group is excluded from the drawer.
   const mobileGroups = useMemo(
-    () => NAV_GROUPS.filter((g) => g.id !== "destinations" && g.id !== "experiences"),
+    () => NAV_GROUPS.filter((g) => g.id !== "destinations"),
     [],
   );
 
@@ -68,9 +68,9 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
     () => NAV_GROUPS.find((g) => g.id === "company"),
     [],
   );
-
   const allEntries = useMemo<Entry[]>(
     () => [
+      ...DESTINATION_LINKS.map((link) => ({ ...link, group: "Destinations" })),
       ...mobileGroups.flatMap((group) =>
         group.links.map((link) => ({ ...link, group: group.label })),
       ),
@@ -138,9 +138,11 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
     };
   }, [open, onClose]);
 
-  // Swipe right-to-left to dismiss.
+  // Swipe right-to-left to dismiss. Listeners live on the drawer itself so the
+  // gesture cannot fire from the page behind it.
   useEffect(() => {
-    if (!open) return;
+    const panel = panelRef.current;
+    if (!open || !panel) return;
     const onTouchStart = (event: TouchEvent) => {
       touchStartX.current = event.touches[0].clientX;
       touchStartY.current = event.touches[0].clientY;
@@ -151,11 +153,11 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
       const deltaY = event.touches[0].clientY - touchStartY.current;
       if (deltaX > 80 && Math.abs(deltaY) < 50) onClose();
     };
-    document.addEventListener("touchstart", onTouchStart, { passive: true });
-    document.addEventListener("touchmove", onTouchMove, { passive: true });
+    panel.addEventListener("touchstart", onTouchStart, { passive: true });
+    panel.addEventListener("touchmove", onTouchMove, { passive: true });
     return () => {
-      document.removeEventListener("touchstart", onTouchStart);
-      document.removeEventListener("touchmove", onTouchMove);
+      panel.removeEventListener("touchstart", onTouchStart);
+      panel.removeEventListener("touchmove", onTouchMove);
     };
   }, [open, onClose]);
 
@@ -264,9 +266,9 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
           <Link
             href="/enquiry"
             onClick={onClose}
-            className="inline-flex min-h-[44px] shrink-0 items-center justify-center border border-[var(--color-wild-orange)] px-3.5 py-2 font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--color-wild-orange)] transition-colors hover:bg-[var(--color-wild-orange)] hover:text-[#0C1617] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)]"
+            className="enquire-fill inline-flex min-h-[44px] shrink-0 items-center justify-center px-3.5 py-2 font-sans text-[10px] font-semibold uppercase tracking-[0.16em] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brass)]"
           >
-            Enquire
+            <span>Enquire</span>
           </Link>
         </div>
       </div>
@@ -291,7 +293,10 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search journeys, places…"
-            aria-label="Search journeys, destinations and experiences"
+            aria-label="Search journeys and destinations"
+            autoComplete="off"
+            autoCorrect="off"
+            enterKeyHint="search"
             className="w-full rounded-lg border border-white/20 bg-white/5 py-3 pl-10 pr-10 text-sm text-white placeholder:text-white/50 focus:border-[var(--color-wild-orange)] focus:outline-none focus:ring-1 focus:ring-[var(--color-wild-orange)]"
           />
           {query && (
@@ -326,6 +331,7 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
                     <Link
                       key={entry.href}
                       href={entry.href}
+                      prefetch={false}
                       onClick={() => handleLinkClick(entry.href)}
                       className="inline-flex min-h-[36px] items-center rounded-full border border-[var(--color-wild-orange)]/40 bg-[var(--color-wild-orange)]/10 px-3 py-1.5 text-xs text-white transition-colors hover:bg-[var(--color-wild-orange)]/20"
                     >
@@ -345,6 +351,7 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
                     <Link
                       key={entry.href}
                       href={entry.href}
+                      prefetch={false}
                       onClick={() => handleLinkClick(entry.href)}
                       className="inline-flex min-h-[36px] items-center rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs text-white/85 transition-colors hover:border-white/30 hover:text-white"
                     >
@@ -379,6 +386,7 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
                   <li key={entry.href + entry.label}>
                     <Link
                       href={entry.href}
+                      prefetch={false}
                       onClick={() => handleLinkClick(entry.href)}
                       className="flex min-h-[56px] items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2.5 transition-colors hover:border-[var(--color-wild-orange)]/50 hover:bg-white/[0.08]"
                     >
@@ -475,6 +483,7 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
                             <li key={link.href + link.label}>
                               <Link
                                 href={link.href}
+                                prefetch={false}
                                 onClick={() => handleLinkClick(link.href)}
                                 className="flex min-h-[48px] items-center justify-between gap-3 rounded-lg px-3 py-2.5 font-sans text-sm text-white/85 transition-colors hover:bg-white/5 hover:text-white"
                               >
@@ -516,6 +525,7 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
                     <li key={link.href + link.label}>
                       <Link
                         href={link.href}
+                        prefetch={false}
                         onClick={() => handleLinkClick(link.href)}
                         className="flex min-h-[48px] items-center justify-between gap-3 rounded-lg px-3 py-2.5 font-sans text-sm text-white/85 transition-colors hover:bg-white/5 hover:text-white"
                       >
@@ -547,9 +557,9 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
               <Link
                 href="/enquiry"
                 onClick={onClose}
-                className="inline-flex min-h-[52px] w-full items-center justify-center rounded-lg bg-[var(--color-wild-orange)] px-6 font-accent text-xs font-semibold uppercase tracking-[0.2em] text-[#0C1617] transition-colors hover:bg-[var(--color-wild-orange-hover)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)]"
+                className="enquire-fill inline-flex min-h-[52px] w-full items-center justify-center px-6 font-accent text-xs font-semibold uppercase tracking-[0.2em] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brass)]"
               >
-                Plan your trip
+                <span>Plan your trip</span>
               </Link>
 
               <div className="rounded-xl border border-white/10 bg-white/[0.04] p-4">

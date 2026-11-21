@@ -3,8 +3,9 @@
 import { useCallback, useEffect, useRef, useState, useMemo } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { getAllRegions } from "@/data/catalogue";
-import PackageGrid from "./PackageGrid";
 import CoverflowSwiper from "./journeys/CoverflowSwiper";
+import PackageGrid from "./PackageGrid";
+import CardViewSwitcher, { type CardViewMode } from "./ui/CardViewSwitcher";
 import ListboxSelect, { type ListboxOption } from "./ui/ListboxSelect";
 import { ACTIVITY_TAGS, activityLabel, packageHasActivity } from "@/lib/activities";
 import { useBodyOverflowLock } from "@/hooks/useBodyOverflowLock";
@@ -60,7 +61,7 @@ export default function SearchAndFilters({
   const filtersTriggerRef = useRef<HTMLButtonElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
-  const [viewMode, setViewMode] = useState<"coverflow" | "grid">("grid");
+  const [viewMode, setViewMode] = useState<CardViewMode>("coverflow");
 
   // The filter drawer is modal on phones, so the page behind must not scroll.
   useBodyOverflowLock(mobileFiltersOpen);
@@ -473,7 +474,7 @@ export default function SearchAndFilters({
         )}
       </div>
 
-      {/* Control Bar: Result Count & Segmented View Switcher */}
+      {/* Control Bar: Result Count & Card View Switcher */}
       <div className="mb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         {/* Results indicator */}
         <div className="flex items-center gap-2.5">
@@ -491,44 +492,7 @@ export default function SearchAndFilters({
           )}
         </div>
 
-        {/* Segmented View Switcher */}
-        <div className="inline-flex w-full items-center rounded-xl border border-white/10 bg-black/40 p-1 backdrop-blur-md shadow-inner sm:w-auto">
-          <button
-            type="button"
-            onClick={() => setViewMode("coverflow")}
-            aria-pressed={viewMode === "coverflow"}
-            className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-3 py-2 font-sans text-xs font-semibold tracking-wide transition-all duration-200 cursor-pointer sm:flex-none min-h-[46px] ${
-              viewMode === "coverflow"
-                ? "bg-gradient-to-r from-brass to-[var(--color-wild-orange)] text-[#0C1617] shadow-[0_4px_12px_rgba(212,147,104,0.3)]"
-                : "text-white/60 hover:text-white"
-            }`}
-          >
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-              <rect x="2" y="3" width="20" height="18" rx="2" />
-              <line x1="8" y1="3" x2="8" y2="21" />
-              <line x1="16" y1="3" x2="16" y2="21" />
-            </svg>
-            <span>3D Coverflow</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => setViewMode("grid")}
-            aria-pressed={viewMode === "grid"}
-            className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-3 py-2 font-sans text-xs font-semibold tracking-wide transition-all duration-200 cursor-pointer sm:flex-none min-h-[46px] ${
-              viewMode === "grid"
-                ? "bg-gradient-to-r from-brass to-[var(--color-wild-orange)] text-[#0C1617] shadow-[0_4px_12px_rgba(212,147,104,0.3)]"
-                : "text-white/60 hover:text-white"
-            }`}
-          >
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-              <rect x="3" y="3" width="7" height="7" />
-              <rect x="14" y="3" width="7" height="7" />
-              <rect x="14" y="14" width="7" height="7" />
-              <rect x="3" y="14" width="7" height="7" />
-            </svg>
-            <span>Grid View</span>
-          </button>
-        </div>
+        <CardViewSwitcher mode={viewMode} onChange={setViewMode} />
       </div>
 
       {/* Main Content Area */}

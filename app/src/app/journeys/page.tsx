@@ -1,6 +1,4 @@
 import { Suspense } from "react";
-import Link from "next/link";
-import Image from "next/image";
 import type { Metadata } from "next";
 import PageShell from "@/components/PageShell";
 import Container from "@/components/Container";
@@ -10,12 +8,12 @@ import JourneyLandingPage from "@/components/journeys/JourneyLandingPage";
 import ModernExperience from "@/components/journeys/ModernExperience";
 import PlaceOrbitHero from "@/components/journeys/PlaceOrbitHero";
 import PosterRail from "@/components/journeys/PosterRail";
+import SeasonRail from "@/components/journeys/SeasonRail";
 import TiltPoster from "@/components/journeys/TiltPoster";
-import { getAllPackages, getPackageCardImage } from "@/data/catalogue";
+import { getAllPackages } from "@/data/catalogue";
 import { getHeroJourneys } from "@/data/heroJourneys";
 import { getJourneysByPlace, getPlaces } from "@/data/places";
 import { BRAND } from "@/data/brandConfig";
-import { placeLine } from "@/lib/packageDisplay";
 import "./journeys.css";
 
 const allPackages = getAllPackages();
@@ -36,7 +34,8 @@ export default function JourneysPage() {
 
   return (
     <PageShell mainClassName="">
-      <JourneyLandingPage
+      <Suspense fallback={<div className="min-h-screen" aria-hidden="true" />}>
+        <JourneyLandingPage
         modern={<ModernExperience places={places} journeysByPlace={journeysByPlace} />}
         orbit={
           <>
@@ -59,253 +58,27 @@ export default function JourneysPage() {
       </section>
 
       {/* In season now */}
-      <section className="mt-20 md:mt-28" aria-labelledby="season-h">
-        <Container wide>
-          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between md:gap-10">
-            <h2 id="season-h" className="jy-section-title">
-              In season now
-            </h2>
-            <p className="max-w-md text-sm text-white/60 md:text-right">
-              The journeys running across India and Nepal this season.
-            </p>
-          </div>
-        </Container>
-        <div className="jy-coverflow">
-          <div
-            className="jy-coverflow-track"
-            role="region"
-            aria-label="Journeys in season now — scroll to browse"
-            tabIndex={0}
-          >
-            {/* Primary slide set */}
-            {inSeason.map((pkg, index) => (
-              <div key={`${pkg.id}-primary`} className="jy-coverflow-slide">
-                <article className="jy-coverflow-card" data-tilt>
-                  <Link
-                    href={`/packages/${pkg.slug}`}
-                    className="jy-coverflow-poster"
-                    aria-label={`${pkg.title} — in season now`}
-                  >
-                    <Image
-                      src={getPackageCardImage(pkg.slug)}
-                      alt={pkg.title}
-                      fill
-                      sizes="(min-width: 768px) 450px, 80vw"
-                      quality={90}
-                      className="object-cover"
-                    />
-                  </Link>
-                  <span className="jy-coverflow-veil" aria-hidden="true" />
-                  <span className="jy-coverflow-sheen" aria-hidden="true" />
-                  <div className="jy-coverflow-info">
-                    <span className="jy-coverflow-rank" aria-hidden="true">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <div className="grid gap-2.5">
-                      <h3 className="jy-coverflow-title">{pkg.title}</h3>
-                      <div className="jy-coverflow-meta">
-                        <span className="font-mono text-[0.8125rem] text-white/70">
-                          {placeLine(pkg)}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              </div>
-            ))}
+      <SeasonRail packages={inSeason} />
 
-            {/* Duplicated slide set for seamless 50% infinite translation loop */}
-            {inSeason.map((pkg, index) => (
-              <div
-                key={`${pkg.id}-duplicate`}
-                className="jy-coverflow-slide"
-                aria-hidden="true"
-              >
-                <article className="jy-coverflow-card" data-tilt>
-                  <Link
-                    href={`/packages/${pkg.slug}`}
-                    className="jy-coverflow-poster"
-                    tabIndex={-1}
-                    aria-hidden="true"
-                  >
-                    <Image
-                      src={getPackageCardImage(pkg.slug)}
-                      alt=""
-                      fill
-                      sizes="(min-width: 768px) 450px, 80vw"
-                      quality={90}
-                      className="object-cover"
-                    />
-                  </Link>
-                  <span className="jy-coverflow-veil" aria-hidden="true" />
-                  <span className="jy-coverflow-sheen" aria-hidden="true" />
-                  <div className="jy-coverflow-info">
-                    <span className="jy-coverflow-rank" aria-hidden="true">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <div className="grid gap-2.5">
-                      <h3 className="jy-coverflow-title">{pkg.title}</h3>
-                      <div className="jy-coverflow-meta">
-                        <span className="font-mono text-[0.8125rem] text-white/70">
-                          {placeLine(pkg)}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Places */}
-      <section className="mt-20 md:mt-28" aria-labelledby="places-h">
-        <Container wide>
-          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between md:gap-10">
-            <h2 id="places-h" className="jy-section-title">
-              Places we travel
-            </h2>
-            <p className="max-w-md text-sm text-white/60 md:text-right">
-              Every place, with the journeys that pass through it.
-            </p>
-          </div>
-        </Container>
-        <div className="jy-coverflow">
-          <div
-            className="jy-coverflow-track jy-coverflow-track--reverse"
-            role="region"
-            aria-label="Places we travel — scroll to browse"
-            tabIndex={0}
-          >
-            {/* Primary slide set */}
-            {places.map((place, index) => (
-              <div key={`${place.name}-primary`} className="jy-coverflow-slide">
-                <article className="jy-coverflow-card" data-tilt>
-                  <Link
-                    href={place.href}
-                    className="jy-coverflow-poster"
-                    aria-label={`${place.name} — ${place.journeys} journeys`}
-                  >
-                    <Image
-                      src={place.image}
-                      alt={place.alt}
-                      fill
-                      sizes="(min-width: 768px) 450px, 80vw"
-                      quality={90}
-                      className="object-cover"
-                    />
-                  </Link>
-                  <span className="jy-coverflow-veil" aria-hidden="true" />
-                  <span className="jy-coverflow-sheen" aria-hidden="true" />
-                  <div className="jy-coverflow-info">
-                    <span className="jy-coverflow-rank" aria-hidden="true">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <div className="grid gap-2.5">
-                      <h3 className="jy-coverflow-title">{place.name}</h3>
-                      <div className="jy-coverflow-meta">
-                        <span className="font-mono text-[0.8125rem] text-white/70">
-                          {place.journeys} {place.journeys === 1 ? "journey" : "journeys"}
-                        </span>
-                        <span className="jy-pill jy-pill--essential">Explore</span>
-                      </div>
-                      <p className="jy-coverflow-summary text-xs sm:text-[0.875rem] text-white/80 line-clamp-2">
-                        {place.blurb}
-                      </p>
-                      <div className="jy-coverflow-actions mt-1">
-                        <Link
-                          href={place.href}
-                          className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full bg-[var(--color-wild-orange)] px-4 py-2 font-sans text-xs sm:text-sm font-semibold text-[#0C1617] transition-all hover:bg-[var(--color-wild-orange-hover)]"
-                        >
-                          View {place.name} journeys
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              </div>
-            ))}
-
-            {/* Duplicated slide set for seamless 50% infinite reverse translation loop */}
-            {places.map((place, index) => (
-              <div
-                key={`${place.name}-duplicate`}
-                className="jy-coverflow-slide"
-                aria-hidden="true"
-              >
-                <article className="jy-coverflow-card" data-tilt>
-                  <Link
-                    href={place.href}
-                    className="jy-coverflow-poster"
-                    tabIndex={-1}
-                    aria-hidden="true"
-                  >
-                    <Image
-                      src={place.image}
-                      alt=""
-                      fill
-                      sizes="(min-width: 768px) 450px, 80vw"
-                      quality={90}
-                      className="object-cover"
-                    />
-                  </Link>
-                  <span className="jy-coverflow-veil" aria-hidden="true" />
-                  <span className="jy-coverflow-sheen" aria-hidden="true" />
-                  <div className="jy-coverflow-info">
-                    <span className="jy-coverflow-rank" aria-hidden="true">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <div className="grid gap-2.5">
-                      <h3 className="jy-coverflow-title">{place.name}</h3>
-                      <div className="jy-coverflow-meta">
-                        <span className="font-mono text-[0.8125rem] text-white/70">
-                          {place.journeys} {place.journeys === 1 ? "journey" : "journeys"}
-                        </span>
-                        <span className="jy-pill jy-pill--essential">Explore</span>
-                      </div>
-                      <p className="jy-coverflow-summary text-xs sm:text-[0.875rem] text-white/80 line-clamp-2">
-                        {place.blurb}
-                      </p>
-                      <div className="jy-coverflow-actions mt-1">
-                        <Link
-                          href={place.href}
-                          tabIndex={-1}
-                          className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full bg-[var(--color-wild-orange)] px-4 py-2 font-sans text-xs sm:text-sm font-semibold text-[#0C1617] transition-all hover:bg-[var(--color-wild-orange-hover)]"
-                        >
-                          View {place.name} journeys
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Rails by category */}
-      <section className="mt-20 grid grid-cols-[minmax(0,1fr)] gap-14 md:mt-28 md:gap-20">
+      {/* Collections by category */}
+      <div className="jy-collections mt-20 grid grid-cols-[minmax(0,1fr)] gap-16 md:mt-24 md:gap-24">
         <PosterRail
-          eyebrow="Himalayan expeditions"
-          heading="Himalayan expeditions"
-          intro="High passes, glacier camps and remote Himalayan villages."
-          packages={byCategory("Himalayan Expeditions")}
-        />
-        <PosterRail
-          eyebrow="Nepal adventure"
+          id="rail-nepal-adventure"
+          kicker="Wild trails"
           heading="Nepal adventure"
           intro="Trekking, rafting and jungle safaris across Nepal."
+          actionHref="/journeys?category=Nepal%20Adventure#catalogue"
           packages={byCategory("Nepal Adventure")}
         />
         <PosterRail
-          eyebrow="Stopovers"
+          id="rail-stopovers"
+          kicker={"City & stay"}
           heading="Stopovers"
           intro="Short city breaks and houseboat stays on the way through."
+          actionHref="/journeys?category=Stopovers#catalogue"
           packages={byCategory("Stopovers")}
         />
-      </section>
+      </div>
 
       {/* FAQ */}
       <section className="mt-20 border-t border-white/10 py-12 md:mt-28 md:py-16" aria-labelledby="faq-h">
@@ -362,6 +135,7 @@ export default function JourneysPage() {
           </>
         }
       />
+      </Suspense>
     </PageShell>
   );
 }

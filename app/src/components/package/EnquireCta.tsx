@@ -13,7 +13,7 @@ interface EnquireCtaProps {
 
 const VARIANTS: Record<NonNullable<EnquireCtaProps["variant"]>, string> = {
   solid:
-    "bg-brass text-[#0C1617] hover:bg-brass-soft shadow-[0_10px_30px_-12px_rgba(212,147,104,0.55)]",
+    "enquire-fill",
   outline:
     "border border-white/15 bg-transparent text-white/80 hover:border-brass hover:text-brass",
   ghost: "bg-transparent text-brass hover:text-brass-soft",

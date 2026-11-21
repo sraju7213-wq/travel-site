@@ -64,6 +64,7 @@ export default function DesignSwitcher({ mode, onChange }: DesignSwitcherProps) 
             type="button"
             role="radio"
             aria-checked={active}
+            aria-label={option.label}
             tabIndex={active ? 0 : -1}
             className="jy-switch__opt"
             onClick={() => {
@@ -78,7 +79,7 @@ export default function DesignSwitcher({ mode, onChange }: DesignSwitcherProps) 
             }}
           >
             <span className="jy-switch__icon">{option.icon}</span>
-            {option.label}
+            <span className="jy-switch__label">{option.label}</span>
           </button>
         );
       })}

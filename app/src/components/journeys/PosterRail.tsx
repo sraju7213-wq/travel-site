@@ -2,23 +2,15 @@ import Link from "next/link";
 import Image from "next/image";
 import type { PackageViewModel } from "@/types/travel";
 import { getPackageCardImage } from "@/data/catalogue";
+import { cleanDuration, placeLine } from "@/lib/packageDisplay";
 
 interface PosterRailProps {
   packages: PackageViewModel[];
-  eyebrow: string;
   heading: string;
+  kicker?: string;
   intro?: string;
-}
-
-function cleanDuration(duration: string): string {
-  return duration.split(";")[0].replace(/\(as printed\)/i, "").trim();
-}
-
-function placeLine(pkg: PackageViewModel): string {
-  const stops = pkg.region.filter((r) => r !== "India" && r !== "Nepal");
-  return stops.length > 0
-    ? `${stops.slice(0, 2).join(", ")}${stops.length > 2 ? ` +${stops.length - 2}` : ""}`
-    : pkg.primaryRegion;
+  actionHref?: string;
+  id: string;
 }
 
 function verdict(pkg: PackageViewModel): { label: string; tone: string } | null {
@@ -35,51 +27,81 @@ function verdict(pkg: PackageViewModel): { label: string; tone: string } | null 
 /**
  * PosterRail
  * ----------
- * A grid of tall poster cards, matching the reelipse.com rail: image on top,
- * title and a meta row (places · duration · verdict pill) underneath.
+ * A curated collection of tall poster cards. Each card keeps its details on
+ * the poster and reveals a call to action on hover, with the collection
+ * header shared with the season showcase above it.
  */
 export default function PosterRail({
   packages,
-  eyebrow,
   heading,
+  kicker,
   intro,
+  actionHref,
+  id,
 }: PosterRailProps) {
   return (
-    <section className="mx-auto w-full min-w-0 max-w-7xl px-4 md:px-8 lg:px-12" aria-labelledby={`rail-${eyebrow.replace(/\s+/g, "-").toLowerCase()}`}>
-      <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between md:gap-10">
-        <h2
-          id={`rail-${eyebrow.replace(/\s+/g, "-").toLowerCase()}`}
-          className="jy-section-title"
-        >
-          {heading}
-        </h2>
-        {intro && <p className="max-w-md text-sm text-white/60 md:text-right">{intro}</p>}
+    <section className="jy-showcase" aria-labelledby={id}>
+      <div className="jy-head">
+        <div className="jy-head-main">
+          {kicker && (
+            <span className="jy-kicker">
+              <span className="jy-kicker-line" aria-hidden="true" />
+              {kicker}
+            </span>
+          )}
+          <h2 id={id} className="jy-head-title">
+            {heading}
+          </h2>
+        </div>
+        {(intro || actionHref) && (
+          <div className="jy-head-side">
+            {intro && <p className="jy-head-intro">{intro}</p>}
+            {actionHref && (
+              <Link href={actionHref} className="jy-head-link">
+                Explore collection <span aria-hidden="true">↗</span>
+              </Link>
+            )}
+          </div>
+        )}
       </div>
-      <div className="jy-rail mt-6">
-        {packages.map((pkg) => {
+
+      <div className="jy-rail">
+        {packages.map((pkg, index) => {
           const badge = verdict(pkg);
           return (
-            <article key={pkg.id} className="jy-rail-card group">
-              <Link href={`/packages/${pkg.slug}`}>
+            <article className="jy-rail-card group" key={pkg.id}>
+              <Link href={`/packages/${pkg.slug}`} aria-label={`${pkg.title} — view journey`}>
                 <div className="jy-rail-poster" data-tilt>
                   <Image
                     src={getPackageCardImage(pkg.slug)}
-                    alt=""
+                    alt={pkg.title}
                     fill
-                    sizes="(min-width: 1024px) 360px, (min-width: 640px) 45vw, 90vw"
-                    quality={90}
-                    className="object-cover"
+                    sizes="(min-width: 1024px) 300px, (min-width: 640px) 45vw, 80vw"
+                    quality={75}
+                    className="jy-rail-img"
                   />
+                  <span className="jy-rail-shade" aria-hidden="true" />
                   <span className="jy-rail-glare" aria-hidden="true" />
-                </div>
-                <h3 className="jy-rail-title">{pkg.title}</h3>
-                <div className="jy-rail-meta">
-                  <span className="min-w-0 flex-1 truncate font-mono text-xs text-white/70">
-                    {placeLine(pkg)} · {cleanDuration(pkg.duration)}
+                  <span className="jy-rail-number" aria-hidden="true">
+                    {String(index + 1).padStart(2, "0")}
                   </span>
-                  {badge && (
-                    <span className={`jy-pill jy-pill--${badge.tone} shrink-0`}>{badge.label}</span>
-                  )}
+                  <span className="jy-rail-chip">{cleanDuration(pkg.duration)}</span>
+                  <span className="jy-rail-go" aria-hidden="true">
+                    ↗
+                  </span>
+                </div>
+                <div className="jy-rail-body">
+                  <h3 className="jy-rail-title">{pkg.title}</h3>
+                  <div className="jy-rail-meta">
+                    <span className="min-w-0 flex-1 truncate font-mono text-xs text-white/65">
+                      {placeLine(pkg)}
+                    </span>
+                    {badge && (
+                      <span className={`jy-pill jy-pill--${badge.tone} shrink-0`}>
+                        {badge.label}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </Link>
             </article>

@@ -1,11 +1,16 @@
 "use client";
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { useCallback, useEffect, useRef, useState } from "react";
 import BrandMark from "./BrandMark";
 import DesktopNavPanel from "./DesktopNavPanel";
-import MobileNav from "./MobileNav";
 import { HEADER_LINKS, NAV_GROUPS } from "@/lib/navigation";
+
+// The drawer is a large client component (quick-jump index of every journey,
+// shortcuts, gestures). Loading it on first open keeps it out of the initial
+// bundle — the single biggest mobile navigation win on a site with 27 packages.
+const MobileNav = dynamic(() => import("./MobileNav"), { ssr: false });
 
 /**
  * SiteHeader
@@ -53,10 +58,22 @@ export default function SiteHeader() {
   const solid = scrolled || mobileOpen || openGroup !== null;
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      setScrolled(window.scrollY > 24);
+    };
+    // Coalesce scroll events to one state check per frame so mobile scrolling
+    // never queues a render for every native scroll tick.
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
   }, []);
 
   // Close the dropdown when the viewport drops to the mobile layout.
@@ -197,9 +214,9 @@ export default function SiteHeader() {
 
               <Link
                 href="/enquiry"
-                className="ml-3 inline-flex items-center justify-center border border-[var(--color-wild-orange)] px-5 py-2.5 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--color-wild-orange)] transition-colors hover:bg-[var(--color-wild-orange)] hover:text-[#0C1617] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0C1617]"
+                className="enquire-fill ml-3 inline-flex min-h-[44px] items-center justify-center px-5 py-2.5 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brass)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0C1617]"
               >
-                Enquire
+                <span>Enquire</span>
               </Link>
             </nav>
 
@@ -207,9 +224,9 @@ export default function SiteHeader() {
             <div className="flex items-center gap-2 lg:hidden">
               <Link
                 href="/enquiry"
-                className="inline-flex min-h-[48px] items-center justify-center border border-[var(--color-wild-orange)] px-3.5 py-2 font-sans text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--color-wild-orange)] transition-colors hover:bg-[var(--color-wild-orange)] hover:text-[#0C1617] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)] sm:px-4"
+                className="enquire-fill inline-flex min-h-[48px] items-center justify-center px-3.5 py-2 font-sans text-[10px] font-semibold uppercase tracking-[0.18em] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brass)] sm:px-4"
               >
-                Enquire
+                <span>Enquire</span>
               </Link>
 
               <button

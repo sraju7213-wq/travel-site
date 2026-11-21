@@ -370,10 +370,6 @@ export const NAV_CATEGORIES = [
     ],
   },
   {
-    label: "Experiences",
-    items: EXPERIENCES.map((e) => ({ label: e.title, href: e.href })),
-  },
-  {
     label: "Company",
     items: [
       { label: "About us", href: "/about" },
@@ -400,7 +396,7 @@ export const FOOTER_COLUMNS = [
     links: DESTINATIONS.map((d) => ({ label: d.name, href: d.href })),
   },
   {
-    title: "Journeys & experiences",
+    title: "Journeys",
     links: [
       { label: "All journeys", href: "/journeys" },
       { label: "Himalayan trekking", href: "/journeys?activity=trekking#catalogue" },

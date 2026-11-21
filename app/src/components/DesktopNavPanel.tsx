@@ -15,8 +15,8 @@ interface DesktopNavPanelProps {
 /**
  * DesktopNavPanel
  * ---------------
- * The dropdown that opens beneath the header when a grouped item (Journeys,
- * Destinations, Experiences) is activated.
+ * The dropdown that opens beneath the header when a grouped item (Journeys or
+ * Destinations) is activated.
  *
  * It is a plain, non-modal panel: the page behind it stays reachable, so it is
  * announced as a `region` rather than a dialog, and focus is not trapped. The
