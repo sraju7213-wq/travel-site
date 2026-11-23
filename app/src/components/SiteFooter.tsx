@@ -93,6 +93,20 @@ export default function SiteFooter() {
           </div>
         </div>
 
+        {/* Credits bar */}
+        <div className="mt-12 border-t border-white/10 pt-6">
+          <p className="text-center font-sans text-[11px] text-white/45">
+            Designed and developed by{" "}
+            <a
+              href="https://rsporfolio.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-white/70 underline-offset-4 transition-colors hover:text-wild-orange hover:underline"
+            >
+              Raju Sheikh
+            </a>
+          </p>
+        </div>
 
       </div>
     </footer>

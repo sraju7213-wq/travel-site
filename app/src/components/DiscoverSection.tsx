@@ -142,32 +142,35 @@ export default function DiscoverSection() {
     <section
       ref={sectionRef}
       id="discover"
-      className="section-discover relative overflow-hidden py-10 md:py-14 border-b border-white/5"
+      className="section-discover relative overflow-hidden py-5 sm:py-8 md:py-10 border-b border-white/5"
     >
-<div className="relative mx-auto max-w-[1100px] px-4 md:px-8">
-        <dl className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+      <div className="relative mx-auto max-w-[1100px] px-4 sm:px-6 md:px-8">
+        {/* Mobile: compact 2×2 grid — Desktop: 4-column editorial row */}
+        <dl className="grid grid-cols-2 gap-2.5 sm:gap-6 lg:grid-cols-4">
           {STATS.map((stat, i) => (
             <div
               key={stat.label}
               ref={(el) => {
                 cardsRef.current[i] = el;
               }}
-              className="stat-card flex flex-col items-start gap-2.5 will-change-transform"
+              className="stat-card group flex min-w-0 flex-col gap-2 rounded-xl border border-white/10 bg-white/[0.03] p-3.5 will-change-transform transition-all duration-300 hover:border-brass/40 hover:bg-white/[0.06] sm:gap-2.5 sm:rounded-none sm:border-0 sm:bg-transparent sm:p-0 sm:hover:border-transparent sm:hover:bg-transparent"
             >
               <span
                 aria-hidden="true"
-                className="stat-icon flex h-[46px] w-[46px] items-center justify-center rounded-full border border-white/15 text-brass bg-white/5 transition-all duration-300 hover:border-brass hover:bg-brass hover:text-white hover:scale-105"
+                className="stat-icon flex h-8 w-8 items-center justify-center rounded-full border border-white/15 text-brass bg-white/5 transition-all duration-300 group-hover:border-brass group-hover:bg-brass group-hover:text-white group-hover:scale-105 sm:h-[46px] sm:w-[46px]"
               >
-                <StatIcon label={stat.label} />
+                <span className="[&>svg]:h-4 [&>svg]:w-4 sm:[&>svg]:h-6 sm:[&>svg]:w-6">
+                  <StatIcon label={stat.label} />
+                </span>
               </span>
-              <dt className="font-serif text-2xl md:text-3xl font-light text-white tracking-tight">
+              <dt className="font-serif text-lg font-light leading-tight text-white tracking-tight sm:text-2xl md:text-3xl">
                 <StatValue value={stat.value} />
               </dt>
-              <dd className="font-sans text-xs text-white/75">
-                <span className="block font-accent text-[11px] font-semibold uppercase tracking-[0.22em] text-brass mb-1">
+              <dd className="font-sans">
+                <span className="block font-accent text-[9px] font-semibold uppercase leading-snug tracking-[0.14em] text-brass sm:mb-1 sm:text-[11px] sm:tracking-[0.22em]">
                   {stat.label}
                 </span>
-                <span className="font-sans text-xs font-light text-white/60 leading-relaxed block">
+                <span className="mt-1 hidden font-sans text-xs font-light text-white/60 leading-relaxed sm:block">
                   {stat.note}
                 </span>
               </dd>

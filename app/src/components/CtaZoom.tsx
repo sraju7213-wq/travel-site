@@ -27,6 +27,8 @@ interface CtaZoomProps {
   ctaHref?: string;
   sectionClassName?: string;
   contentClassName?: string;
+  /** Hide the whole section on small screens (e.g. heavy parallax CTA bands). */
+  hideOnMobile?: boolean;
 }
 
 export default function CtaZoom({
@@ -43,6 +45,7 @@ export default function CtaZoom({
   ctaHref = "/enquiry",
   sectionClassName = "",
   contentClassName = "",
+  hideOnMobile = false,
 }: CtaZoomProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
@@ -103,7 +106,9 @@ export default function CtaZoom({
   return (
     <section
       ref={sectionRef}
-      className={`relative isolate flex min-h-[380px] items-center justify-center overflow-hidden section-cta md:min-h-[440px] ${sectionClassName}`}
+      className={`relative isolate min-h-[380px] items-center justify-center overflow-hidden section-cta md:min-h-[440px] ${
+        hideOnMobile ? "hidden md:flex" : "flex"
+      } ${sectionClassName}`}
     >
       {/* Zooming background image wrapper */}
       <div

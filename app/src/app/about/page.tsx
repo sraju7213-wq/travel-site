@@ -18,14 +18,9 @@ const STATS = [
     detail: "Operating tours and treks to Northern India since 1927.",
   },
   {
-    value: "27",
-    label: "Curated journeys",
-    detail: "Himalayan expeditions, cultural circuits, wildlife safaris and city stopovers.",
-  },
-  {
-    value: "2",
-    label: "Dedicated realms",
-    detail: "Specialist travel across India and Nepal, the subcontinent and the Himalaya.",
+    value: "India & Nepal",
+    label: "Destinations",
+    detail: "Specialist travel across two countries, the subcontinent and the Himalaya.",
   },
   {
     value: "Up to 15",
@@ -71,7 +66,7 @@ const PROCESS_STEPS = [
     step: "01",
     title: "Explore the catalogue",
     description:
-      "Browse 27 hand-crafted itineraries across Himalayan treks, Kashmir houseboats, Rajasthan forts, and Nepal's sacred valleys.",
+      "Browse our itineraries across Himalayan treks, Kashmir houseboats, Rajasthan forts, and Nepal's sacred valleys.",
   },
   {
     step: "02",
@@ -108,9 +103,9 @@ export default function AboutPage() {
         contentClassName="text-center md:mr-auto md:ml-8 md:w-[40%] md:text-left md:drop-shadow-[0_2px_6px_rgba(0,0,0,0.85)]"
         hideOnMobile
         title="A century of travel"
-        lead="Baktoo family heritage since 1927 — specialist travel across India and Nepal, arranged from our offices in Delhi, Kashmir and Ladakh."
+        lead="Baktoo family heritage since 1927 — specialist travel across India and Nepal, with historical operating links in Delhi, Kashmir and Ladakh."
         primaryCta={{ label: "Plan your journey", href: "/enquiry" }}
-        secondaryCta={{ label: "View all 27 journeys", href: "/journeys" }}
+        secondaryCta={{ label: "View all journeys", href: "/journeys" }}
         scrollCue
         footer={
           <figure className="pointer-events-none absolute inset-x-5 bottom-48 z-10 mx-auto max-w-[1240px] animate-fade-in sm:inset-x-10 md:bottom-28 md:px-10">
@@ -184,8 +179,8 @@ export default function AboutPage() {
                 <p className="mt-3 font-sans text-sm font-light leading-relaxed text-white/70">
                   Haji Mohammed Sultan Baktoo pioneered tourism and trekking in Northern India beginning in
                   1927. Historically recorded as the chief operator with hotel partnerships, a transport fleet
-                  in Delhi, and the M.S. Baktoo luxury houseboat group in Kashmir, KHE (Kashmir Himalayan
-                  Expeditions / Baktoo family operations) established operational links across India and Nepal.
+                  in Delhi, and the M.S. Baktoo luxury houseboat group in Kashmir. KHE established operational
+                  links across India and Nepal.
                 </p>
               </div>
             </article>
@@ -203,7 +198,7 @@ export default function AboutPage() {
               </div>
               <div>
                 <span className="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--color-wild-orange)]">
-                  Director &amp; expedition leader
+                  Tourism &amp; trekking
                 </span>
                 <h3 className="mt-2 font-serif text-2xl font-light text-white">Farook Baktoo</h3>
                 <p className="mt-3 font-sans text-sm font-light leading-relaxed text-white/70">
@@ -226,7 +221,7 @@ export default function AboutPage() {
                 <div className="relative aspect-[4/5] w-full overflow-hidden bg-black/40">
                   <Image
                     src="/images/destinations/yousuf-baktoo.jpg"
-                    alt="Yousuf Baktoo, senior executive"
+                    alt="Yousuf Baktoo"
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                     className="object-cover object-[70%_center] transition-transform duration-500 group-hover:scale-105"
@@ -234,8 +229,7 @@ export default function AboutPage() {
                 </div>
                 <div className="mt-5">
                   <h4 className="font-serif text-2xl font-light text-white">Yousuf Baktoo</h4>
-                  <p className="mt-1 font-sans text-[11px] uppercase tracking-wider text-white/50">Senior Executive</p>
-                  <p className="mt-3 font-sans text-sm font-light leading-relaxed text-white/65">Personally supervises specialist tours and treks across the subcontinent.</p>
+                  <p className="mt-3 font-sans text-sm font-light leading-relaxed text-white/65">Mentioned in the brochure&apos;s founders passage as supervising specialist tours.</p>
                 </div>
               </div>
 
@@ -243,7 +237,7 @@ export default function AboutPage() {
                 <div className="relative aspect-[4/5] w-full overflow-hidden bg-black/40">
                   <Image
                     src="/images/destinations/imtiaz-baktoo.jpg"
-                    alt="Imtiaz Ahmad, operations and logistics"
+                    alt="Imtiaz Ahmad"
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                     className="object-cover object-left transition-transform duration-500 group-hover:scale-105"
@@ -251,8 +245,7 @@ export default function AboutPage() {
                 </div>
                 <div className="mt-5">
                   <h4 className="font-serif text-2xl font-light text-white">Imtiaz Ahmad</h4>
-                  <p className="mt-1 font-sans text-[11px] uppercase tracking-wider text-white/50">Operations &amp; Logistics</p>
-                  <p className="mt-3 font-sans text-sm font-light leading-relaxed text-white/65">Manages inbound tourism, organising and coordinating group tours and FITs from around the world, with a strong understanding of international travel requirements and client expectations.</p>
+                  <p className="mt-3 font-sans text-sm font-light leading-relaxed text-white/65">Listed in the brochure&apos;s team profiles.</p>
                 </div>
               </div>
 
@@ -260,7 +253,7 @@ export default function AboutPage() {
                 <div className="relative aspect-[4/5] w-full overflow-hidden bg-black/40">
                   <Image
                     src="/images/destinations/hashim-baktoo.jpg"
-                    alt="Hashim, expedition planning"
+                    alt="Hashim"
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                     className="object-cover object-[47%_bottom] transition-transform duration-500 group-hover:scale-105"
@@ -268,8 +261,7 @@ export default function AboutPage() {
                 </div>
                 <div className="mt-5">
                   <h4 className="font-serif text-2xl font-light text-white">Hashim</h4>
-                  <p className="mt-1 font-sans text-[11px] uppercase tracking-wider text-white/50">Expedition Planning</p>
-                  <p className="mt-3 font-sans text-sm font-light leading-relaxed text-white/65">Twelve years leading business tours from Australia, with extensive travel throughout Australia and India and cross-cultural tour-management expertise.</p>
+                  <p className="mt-3 font-sans text-sm font-light leading-relaxed text-white/65">Listed in the brochure&apos;s team profiles.</p>
                 </div>
               </div>
             </div>

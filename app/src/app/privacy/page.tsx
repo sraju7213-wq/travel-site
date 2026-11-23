@@ -125,16 +125,16 @@ export default function PrivacyPage() {
               </p>
               <div className="rounded-xl border border-white/10 bg-[#132325] p-5 space-y-2 text-xs sm:text-sm">
                 <p>
-                  <strong className="text-white">Direct Privacy Contact:</strong>{" "}
-                  <span className="font-mono text-brass-soft">[Owner to provide: Official privacy email, e.g. privacy@ks-world-adventure.com]</span>
+                  <strong className="text-white">Privacy Enquiries:</strong>{" "}
+                  <span className="text-white/70">Please submit your request through our enquiry form and specify &quot;Privacy&quot; in the subject.</span>
                 </p>
                 <p>
                   <strong className="text-white">Registered Entity:</strong>{" "}
-                  <span className="text-white/70">[Owner to provide: Full legal company name &amp; registered corporate address]</span>
+                  <span className="text-white/70">Information available upon request.</span>
                 </p>
                 <p>
-                  <strong className="text-white">Emergency Concierge:</strong>{" "}
-                  <span className="text-white/70">[Owner to provide: Duty helpline for active travellers]</span>
+                  <strong className="text-white">Traveller Support:</strong>{" "}
+                  <span className="text-white/70">For active traveller assistance, please use the contact details provided in your travel documents.</span>
                 </p>
               </div>
             </section>

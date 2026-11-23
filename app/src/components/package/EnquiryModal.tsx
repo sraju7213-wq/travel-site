@@ -313,7 +313,7 @@ export default function EnquiryModalProvider({
                   Thank you — enquiry received
                 </h3>
                 <p className="mt-2 font-display text-sm leading-relaxed text-white/70">
-                  A {BRAND.name} travel designer will contact you within 24 hours to confirm dates,
+                  A {BRAND.name} travel designer will contact you to confirm dates,
                   availability and tailor-made details.
                 </p>
                 {reference && (

@@ -30,7 +30,7 @@ export const JOURNEY_CATEGORIES: NavLink[] = [
   {
     label: "All journeys",
     href: "/journeys",
-    description: "The full 27-package catalogue, filterable by region, duration and activity.",
+    description: "The full brochure package catalogue, filterable by region, duration and activity.",
   },
   {
     label: "Stopovers",
@@ -85,7 +85,7 @@ export const NAV_GROUPS: NavGroup[] = [
   {
     id: "journeys",
     label: "Journeys",
-    note: "27 brochure itineraries",
+    note: "Brochure itineraries",
     links: JOURNEY_CATEGORIES,
   },
   {
@@ -98,7 +98,6 @@ export const NAV_GROUPS: NavGroup[] = [
         label: "Kashmir houseboats",
         href: "/houseboats",
         description: "Shikara nights on Dal Lake",
-        image: "/images/destinations/kashmir-shikara.jpg",
       },
       { label: "Contact", href: "/contact", description: "Reach the booking desk" },
       { label: "Plan your trip", href: "/enquiry", description: "Tell us your dates and interests" },

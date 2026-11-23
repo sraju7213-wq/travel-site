@@ -26,7 +26,10 @@ export default function DestinationCarousel() {
   const sectionRef = useRef<HTMLElement>(null);
   const cardRef = useRef<HTMLAnchorElement>(null);
   const blurbRef = useRef<HTMLParagraphElement>(null);
+  const navRef = useRef<HTMLElement>(null);
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
 
   const total = DESTINATIONS.length;
   const current = DESTINATIONS[active];
@@ -78,14 +81,20 @@ export default function DestinationCarousel() {
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartX.current === null) return;
-    const diff = touchStartX.current - e.changedTouches[0].clientX;
-    if (diff > 50) next();
-    if (diff < -50) prev();
+    if (touchStartX.current === null || touchStartY.current === null) return;
+    const diffX = touchStartX.current - e.changedTouches[0].clientX;
+    const diffY = touchStartY.current - e.changedTouches[0].clientY;
     touchStartX.current = null;
+    touchStartY.current = null;
+    // Only swipe when horizontal movement dominates so vertical page scroll
+    // is never hijacked on mobile.
+    if (Math.abs(diffX) < 40 || Math.abs(diffX) <= Math.abs(diffY)) return;
+    if (diffX > 0) next();
+    else prev();
   };
 
   const handleCardMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -104,6 +113,21 @@ export default function DestinationCarousel() {
   const handleCardMouseLeave = () => {
     setCardTilt({ rx: 0, ry: 0 });
   };
+
+  // Keep the active tab visible inside the horizontally-scrolling tab bar.
+  useEffect(() => {
+    const nav = navRef.current;
+    const tab = tabRefs.current[active];
+    if (!nav || !tab) return;
+    const navRect = nav.getBoundingClientRect();
+    const tabRect = tab.getBoundingClientRect();
+    if (tabRect.left < navRect.left + 8 || tabRect.right > navRect.right - 8) {
+      nav.scrollTo({
+        left: tab.offsetLeft - nav.offsetWidth / 2 + tab.offsetWidth / 2,
+        behavior: "smooth",
+      });
+    }
+  }, [active]);
 
   useEffect(() => {
     const el = blurbRef.current;
@@ -135,8 +159,6 @@ export default function DestinationCarousel() {
       id="destinations"
       aria-label="Our Luxury Safari Destinations"
       className="section-destinations relative overflow-hidden py-16 md:py-24 select-none transition-colors duration-700"
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
     >
       {/* Ghosted Background Typography Parallax */}
       <div
@@ -167,17 +189,21 @@ export default function DestinationCarousel() {
       <div className="relative z-10 mx-auto max-w-[1240px] px-4 sm:px-6 md:px-8">
         {/* Top Navigation Tabs Bar */}
         <nav
+          ref={navRef}
           aria-label="Destination regions"
-          className="scrollbar-hide mb-8 sm:mb-12 flex items-center justify-start sm:justify-center gap-x-5 sm:gap-x-8 md:gap-x-10 overflow-x-auto pb-3 border-b border-white/20"
+          className="scrollbar-hide mb-8 sm:mb-12 flex items-center justify-start sm:justify-center gap-x-5 sm:gap-x-8 md:gap-x-10 overflow-x-auto overscroll-x-contain scroll-snap-x-mandatory pb-3 border-b border-white/20"
         >
           {DESTINATIONS.map((d, i) => {
             const isActive = active === i;
             return (
               <button
                 key={d.name}
+                ref={(el) => {
+                  tabRefs.current[i] = el;
+                }}
                 type="button"
                 onClick={() => goTo(i)}
-                className={`relative flex min-h-[44px] shrink-0 items-center pb-3 text-[11px] sm:text-xs font-accent uppercase tracking-[0.22em] transition-all duration-300 cursor-pointer ${
+                className={`relative flex min-h-[44px] shrink-0 scroll-snap-align-center items-center pb-3 text-[11px] sm:text-xs font-accent uppercase tracking-[0.22em] transition-all duration-300 cursor-pointer ${
                   isActive
                     ? "font-bold text-white scale-105"
                     : "font-normal text-white/70 hover:text-white"
@@ -193,7 +219,12 @@ export default function DestinationCarousel() {
         </nav>
 
         {/* Center Hero Destination Card with 3D tilt */}
-        <div className="relative mx-auto w-full max-w-[1020px]">
+        <div
+          className="relative mx-auto w-full max-w-[1020px]"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          style={{ touchAction: "pan-y" }}
+        >
           <Link
             ref={cardRef}
             href={current.href}
@@ -261,13 +292,35 @@ export default function DestinationCarousel() {
               </p>
             </div>
 
+            {/* Dot pagination — mobile only, easy tap targets */}
+            <div className="mt-5 flex items-center justify-center gap-2 md:hidden" role="group" aria-label="Choose destination">
+              {DESTINATIONS.map((d, i) => (
+                <button
+                  key={d.name}
+                  type="button"
+                  onClick={() => goTo(i)}
+                  aria-label={`Go to ${d.name}`}
+                  aria-current={active === i ? "true" : undefined}
+                  className={`h-2.5 rounded-full transition-all duration-300 ${
+                    active === i
+                      ? "w-7 bg-[var(--color-wild-orange)]"
+                      : "w-2.5 bg-white/30 hover:bg-white/60"
+                  }`}
+                />
+              ))}
+            </div>
+
+            <p className="mt-3 text-center font-sans text-[10px] uppercase tracking-[0.18em] text-white/40 md:hidden">
+              Swipe image or tap arrows
+            </p>
+
             <div className="flex flex-col items-start md:items-end gap-4 shrink-0">
-              <div className="flex items-center gap-6">
+              <div className="flex items-center gap-3 sm:gap-6">
                 <button
                   type="button"
                   onClick={prev}
                   aria-label="Previous destination"
-                  className="group flex h-11 w-11 items-center justify-center rounded-none border border-white/20 bg-black/10 text-white hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)] hover:bg-black/30 transition-all duration-300 hover:scale-105 cursor-pointer"
+                  className="group flex h-12 w-12 sm:h-11 sm:w-11 items-center justify-center rounded-none border border-white/20 bg-black/10 text-white hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)] hover:bg-black/30 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
                 >
                   <svg
                     aria-hidden="true"
@@ -289,7 +342,7 @@ export default function DestinationCarousel() {
                   type="button"
                   onClick={next}
                   aria-label="Next destination"
-                  className="group flex h-11 w-11 items-center justify-center rounded-none border border-white/20 bg-black/10 text-white hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)] hover:bg-black/30 transition-all duration-300 hover:scale-105 cursor-pointer"
+                  className="group flex h-12 w-12 sm:h-11 sm:w-11 items-center justify-center rounded-none border border-white/20 bg-black/10 text-white hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)] hover:bg-black/30 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
                 >
                   <svg
                     aria-hidden="true"

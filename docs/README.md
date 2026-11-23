@@ -47,10 +47,20 @@ Requirements and prompts the build was produced from.
 
 | File | What it is |
 |---|---|
+| [`CONTENT_ACCURACY_RULES.md`](planning/CONTENT_ACCURACY_RULES.md) | **Mandatory** content governance rulebook — brochure as source of truth, no invention/inference/guessing |
+| [`CONTENT_CORRECTION_AGENT_PROMPT.md`](planning/CONTENT_CORRECTION_AGENT_PROMPT.md) | 7-phase agent workflow for auditing and correcting website facts against the brochure |
 | [`modernization-plan.md`](planning/modernization-plan.md) | Product/content modernization phases and status |
 | [`modernization.md`](planning/modernization.md) | Anti-slop review of content and interaction decisions |
 | [`clean-code.md`](planning/clean-code.md) | Code-quality plan: file sizes, lint debt, refactor order |
 | [`phase9-signoff.md`](planning/phase9-signoff.md) | Phase 9 visual/a11y refresh sign-off record |
+
+## content-audit/
+
+| File | What it is |
+|---|---|
+| [`CONTENT_AUDIT.md`](content-audit/CONTENT_AUDIT.md) | Full content audit — every factual claim, its source, status and action taken |
+| [`FACTS_TO_CONFIRM.md`](content-audit/FACTS_TO_CONFIRM.md) | 17 client questions requiring written confirmation before publishing |
+| [`PACKAGE_SOURCE_REGISTER.md`](content-audit/PACKAGE_SOURCE_REGISTER.md) | Package-by-package source traceability register |
 
 ## evidence/
 

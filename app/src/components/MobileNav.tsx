@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useBodyOverflowLock } from "@/hooks/useBodyOverflowLock";
 import { getRecentSlugs, pushRecent, getPins } from "@/lib/menuStorage";
-import { CONTACT, NAV_GROUPS, DESTINATION_LINKS, type NavLink } from "@/lib/navigation";
+import { NAV_GROUPS, DESTINATION_LINKS, type NavLink } from "@/lib/navigation";
 import { getAllPackages, getPackageCardImage } from "@/data/catalogue";
 import { cleanDuration } from "@/lib/packageDisplay";
 
@@ -266,9 +266,12 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
           <Link
             href="/enquiry"
             onClick={onClose}
-            className="enquire-fill inline-flex min-h-[44px] shrink-0 items-center justify-center px-3.5 py-2 font-sans text-[10px] font-semibold uppercase tracking-[0.16em] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brass)]"
+            className="group inline-flex min-h-[44px] shrink-0 items-center justify-center px-3.5 py-2 font-sans text-[10px] font-semibold uppercase tracking-[0.16em] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brass)] transition-all duration-200 hover:shadow-[0_0_16px_rgba(190,138,81,0.3)] active:scale-95"
           >
-            <span>Enquire</span>
+            <span className="transition-transform duration-200 group-hover:translate-x-0.5">Enquire</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="ml-1 shrink-0 opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100">
+              <path d="m9 18 6-6-6-6" />
+            </svg>
           </Link>
         </div>
       </div>
@@ -297,7 +300,7 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
             autoComplete="off"
             autoCorrect="off"
             enterKeyHint="search"
-            className="w-full rounded-lg border border-white/20 bg-white/5 py-3 pl-10 pr-10 text-sm text-white placeholder:text-white/50 focus:border-[var(--color-wild-orange)] focus:outline-none focus:ring-1 focus:ring-[var(--color-wild-orange)]"
+            className="w-full rounded-lg border border-white/20 bg-white/5 py-3 pl-10 pr-10 text-sm text-white placeholder:text-white/50 transition-all duration-200 focus:border-[var(--color-wild-orange)] focus:bg-white/[0.08] focus:outline-none focus:ring-2 focus:ring-[var(--color-wild-orange)]/30"
           />
           {query && (
             <button
@@ -333,8 +336,9 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
                       href={entry.href}
                       prefetch={false}
                       onClick={() => handleLinkClick(entry.href)}
-                      className="inline-flex min-h-[36px] items-center rounded-full border border-[var(--color-wild-orange)]/40 bg-[var(--color-wild-orange)]/10 px-3 py-1.5 text-xs text-white transition-colors hover:bg-[var(--color-wild-orange)]/20"
+                      className="group inline-flex min-h-[36px] items-center rounded-full border border-[var(--color-wild-orange)]/40 bg-[var(--color-wild-orange)]/10 px-3 py-1.5 text-xs text-white transition-all duration-200 hover:border-[var(--color-wild-orange)] hover:bg-[var(--color-wild-orange)]/20 hover:shadow-[0_0_12px_rgba(190,138,81,0.25)] active:scale-95"
                     >
+                      <span className="mr-1.5 text-[var(--color-wild-orange)] transition-transform duration-200 group-hover:scale-110">★</span>
                       {entry.label}
                     </Link>
                   ))}
@@ -353,8 +357,9 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
                       href={entry.href}
                       prefetch={false}
                       onClick={() => handleLinkClick(entry.href)}
-                      className="inline-flex min-h-[36px] items-center rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs text-white/85 transition-colors hover:border-white/30 hover:text-white"
+                      className="group inline-flex min-h-[36px] items-center rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs text-white/85 transition-all duration-200 hover:border-[var(--color-wild-orange)]/50 hover:bg-white/10 hover:text-white active:scale-95"
                     >
+                      <span className="mr-1.5 text-white/40 transition-colors group-hover:text-[var(--color-wild-orange)]">↗</span>
                       {entry.label}
                     </Link>
                   ))}
@@ -375,7 +380,7 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
                 <button
                   type="button"
                   onClick={() => setQuery("")}
-                  className="mt-3 min-h-[44px] rounded-lg px-4 py-2 text-sm text-[var(--color-wild-orange)] transition-colors hover:text-white"
+                  className="mt-3 min-h-[44px] rounded-lg px-4 py-2 text-sm text-[var(--color-wild-orange)] transition-all duration-200 hover:bg-[var(--color-wild-orange)]/10 active:scale-95"
                 >
                   Reset search
                 </button>
@@ -388,7 +393,7 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
                       href={entry.href}
                       prefetch={false}
                       onClick={() => handleLinkClick(entry.href)}
-                      className="flex min-h-[56px] items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2.5 transition-colors hover:border-[var(--color-wild-orange)]/50 hover:bg-white/[0.08]"
+                      className="group flex min-h-[56px] items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2.5 transition-all duration-200 hover:border-[var(--color-wild-orange)]/50 hover:bg-white/[0.08] hover:shadow-[0_4px_16px_rgba(0,0,0,0.3)] active:scale-[0.98]"
                     >
                       {entry.image ? (
                         <Image
@@ -396,11 +401,11 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
                           alt=""
                           width={48}
                           height={36}
-                          className="h-12 w-16 shrink-0 rounded-lg object-cover"
+                          className="h-12 w-16 shrink-0 rounded-lg object-cover transition-transform duration-300 group-hover:scale-105"
                         />
                       ) : null}
                       <span className="min-w-0 flex-1">
-                        <span className="block truncate font-accent text-xs font-semibold uppercase tracking-[0.14em] text-white">
+                        <span className="block truncate font-accent text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors group-hover:text-[var(--color-wild-orange)]">
                           {entry.label}
                         </span>
                         <span className="mt-0.5 block truncate font-sans text-[11px] text-white/65">
@@ -417,7 +422,7 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         aria-hidden="true"
-                        className="shrink-0 text-white/50"
+                        className="shrink-0 text-white/50 transition-all duration-200 group-hover:translate-x-1 group-hover:text-[var(--color-wild-orange)]"
                       >
                         <path d="M5 12h14M12 5l7 7-7 7" />
                       </svg>
@@ -436,20 +441,20 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
                 const isOpen = expanded.has(group.id);
                 return (
                   <li key={group.id}>
-                    <div className="overflow-hidden rounded-xl border border-white/10 bg-white/[0.03]">
+                    <div className={`overflow-hidden rounded-xl border transition-all duration-300 ${isOpen ? "border-[var(--color-wild-orange)]/40 bg-white/[0.06]" : "border-white/10 bg-white/[0.03] hover:border-white/20 hover:bg-white/[0.05]"}`}>
                       <h2>
                         <button
                           type="button"
                           onClick={() => toggle(group.id)}
                           aria-expanded={isOpen}
                           aria-controls={`mobile-group-${group.id}`}
-                          className="flex min-h-[56px] w-full items-center justify-between gap-3 px-4 py-3 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--color-wild-orange)]"
+                          className="group flex min-h-[56px] w-full items-center justify-between gap-3 px-4 py-3 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--color-wild-orange)]"
                         >
-                          <span className="font-accent text-xs font-semibold uppercase tracking-[0.2em] text-white">
+                          <span className={`font-accent text-xs font-semibold uppercase tracking-[0.2em] transition-colors duration-200 ${isOpen ? "text-[var(--color-wild-orange)]" : "text-white group-hover:text-[var(--color-wild-orange)]"}`}>
                             {group.label}
                           </span>
                           <span className="flex items-center gap-3">
-                            <span className="hidden font-sans text-[10px] uppercase tracking-[0.18em] text-white/60 sm:inline">
+                            <span className={`hidden font-sans text-[10px] uppercase tracking-[0.18em] transition-colors sm:inline ${isOpen ? "text-white/80" : "text-white/60 group-hover:text-white/75"}`}>
                               {group.note}
                             </span>
                             <svg
@@ -462,7 +467,7 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
                               strokeLinecap="round"
                               strokeLinejoin="round"
                               aria-hidden="true"
-                              className={`shrink-0 text-white/60 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+                              className={`shrink-0 transition-all duration-300 ${isOpen ? "rotate-180 text-[var(--color-wild-orange)]" : "text-white/60 group-hover:text-white"}`}
                             >
                               <path d="m6 9 6 6 6-6" />
                             </svg>
@@ -485,12 +490,12 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
                                 href={link.href}
                                 prefetch={false}
                                 onClick={() => handleLinkClick(link.href)}
-                                className="flex min-h-[48px] items-center justify-between gap-3 rounded-lg px-3 py-2.5 font-sans text-sm text-white/85 transition-colors hover:bg-white/5 hover:text-white"
+                                className="group flex min-h-[48px] items-center justify-between gap-3 rounded-lg border-l-2 border-transparent px-3 py-2.5 font-sans text-sm text-white/85 transition-all duration-200 hover:border-[var(--color-wild-orange)] hover:bg-white/[0.06] hover:text-white active:scale-[0.98]"
                               >
                                 <span className="min-w-0">
-                                  <span className="block truncate">{link.label}</span>
+                                  <span className="block truncate transition-transform duration-200 group-hover:translate-x-0.5">{link.label}</span>
                                   {link.description ? (
-                                    <span className="mt-0.5 block truncate font-sans text-[11px] text-white/60">
+                                    <span className="mt-0.5 block truncate font-sans text-[11px] text-white/60 transition-colors group-hover:text-white/70">
                                       {link.description}
                                     </span>
                                   ) : null}
@@ -501,9 +506,24 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
                                     alt=""
                                     width={40}
                                     height={30}
-                                    className="h-8 w-10 shrink-0 rounded object-cover"
+                                    className="h-8 w-10 shrink-0 rounded object-cover transition-transform duration-200 group-hover:scale-105"
                                   />
-                                ) : null}
+                                ) : (
+                                  <svg
+                                    width="14"
+                                    height="14"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    aria-hidden="true"
+                                    className="shrink-0 text-white/30 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-[var(--color-wild-orange)]"
+                                  >
+                                    <path d="m9 18 6-6-6-6" />
+                                  </svg>
+                                )}
                               </Link>
                             </li>
                           ))}
@@ -517,9 +537,6 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
 
             {companyGroup && companyGroup.links.length > 0 && (
               <div className="mt-6">
-                <p className="mb-2 px-1 font-sans text-[10px] font-semibold uppercase tracking-[0.25em] text-white/60">
-                  Company
-                </p>
                 <ul className="space-y-0.5">
                   {companyGroup.links.map((link) => (
                     <li key={link.href + link.label}>
@@ -527,12 +544,12 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
                         href={link.href}
                         prefetch={false}
                         onClick={() => handleLinkClick(link.href)}
-                        className="flex min-h-[48px] items-center justify-between gap-3 rounded-lg px-3 py-2.5 font-sans text-sm text-white/85 transition-colors hover:bg-white/5 hover:text-white"
+                        className="group flex min-h-[48px] items-center justify-between gap-3 rounded-lg border-l-2 border-transparent px-3 py-2.5 font-sans text-sm text-white/85 transition-all duration-200 hover:border-[var(--color-wild-orange)] hover:bg-white/[0.06] hover:text-white active:scale-[0.98]"
                       >
                         <span className="min-w-0">
-                          <span className="block truncate">{link.label}</span>
+                          <span className="block truncate transition-transform duration-200 group-hover:translate-x-0.5">{link.label}</span>
                           {link.description ? (
-                            <span className="mt-0.5 block truncate font-sans text-[11px] text-white/60">
+                            <span className="mt-0.5 block truncate font-sans text-[11px] text-white/60 transition-colors group-hover:text-white/70">
                               {link.description}
                             </span>
                           ) : null}
@@ -543,9 +560,24 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
                             alt=""
                             width={40}
                             height={30}
-                            className="h-8 w-10 shrink-0 rounded object-cover"
+                            className="h-8 w-10 shrink-0 rounded object-cover transition-transform duration-200 group-hover:scale-105"
                           />
-                        ) : null}
+                        ) : (
+                          <svg
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            aria-hidden="true"
+                            className="shrink-0 text-white/30 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-[var(--color-wild-orange)]"
+                          >
+                            <path d="m9 18 6-6-6-6" />
+                          </svg>
+                        )}
                       </Link>
                     </li>
                   ))}
@@ -557,30 +589,22 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
               <Link
                 href="/enquiry"
                 onClick={onClose}
-                className="enquire-fill inline-flex min-h-[52px] w-full items-center justify-center px-6 font-accent text-xs font-semibold uppercase tracking-[0.2em] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brass)]"
+                className="group inline-flex min-h-[52px] w-full items-center justify-center px-6 font-accent text-xs font-semibold uppercase tracking-[0.2em] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brass)] transition-all duration-200 hover:shadow-[0_0_20px_rgba(190,138,81,0.3)] active:scale-[0.98]"
               >
-                <span>Plan your trip</span>
+                <span className="transition-transform duration-200 group-hover:translate-x-0.5">Plan your trip</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="ml-1.5 shrink-0 opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100">
+                  <path d="m9 18 6-6-6-6" />
+                </svg>
               </Link>
 
               <div className="rounded-xl border border-white/10 bg-white/[0.04] p-4">
                 <p className="font-serif text-base font-light text-white">Speak with a specialist</p>
                 <p className="mt-0.5 font-sans text-[10px] uppercase tracking-[0.2em] text-white/60">
-                  Booking desk · Asia / Australia
+                  Booking desk · India / Australia
                 </p>
-                <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
-                  <a
-                    href={CONTACT.phoneMobileHref}
-                    className="font-sans text-sm text-[var(--color-wild-orange)] underline-offset-4 hover:text-white hover:underline"
-                  >
-                    {CONTACT.phoneMobile}
-                  </a>
-                  <a
-                    href={CONTACT.phoneLandlineHref}
-                    className="font-sans text-sm text-[var(--color-wild-orange)] underline-offset-4 hover:text-white hover:underline"
-                  >
-                    {CONTACT.phoneLandline}
-                  </a>
-                </div>
+                <p className="mt-3 font-sans text-xs text-white/55">
+                  Contact us through the enquiry form for current phone and email details.
+                </p>
               </div>
             </div>
           </nav>

@@ -33,6 +33,11 @@ export default function ModernExperience({ places, journeysByPlace }: ModernExpe
   const [viewMode, setViewMode] = useState<CardViewMode>("coverflow");
   const cardRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const railRef = useRef<HTMLDivElement>(null);
+  const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
+  const touchCurrentX = useRef<number | null>(null);
+  const isDragging = useRef(false);
+  const [dragOffset, setDragOffset] = useState(0);
   const current = places[active];
   const currentJourneys = journeysByPlace[current?.name] ?? [];
 
@@ -62,6 +67,51 @@ export default function ModernExperience({ places, journeysByPlace }: ModernExpe
       setActive((index) => (index + delta + places.length) % places.length);
     },
     [places.length],
+  );
+
+  const onRailTouchStart = useCallback((event: React.TouchEvent) => {
+    touchStartX.current = event.touches[0].clientX;
+    touchStartY.current = event.touches[0].clientY;
+    touchCurrentX.current = event.touches[0].clientX;
+    isDragging.current = false;
+  }, []);
+
+  const onRailTouchMove = useCallback((event: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    touchCurrentX.current = event.touches[0].clientX;
+    const deltaX = touchCurrentX.current - touchStartX.current;
+    const deltaY = (event.touches[0].clientY - (touchStartY.current ?? 0));
+    // Only engage drag if horizontal dominates and exceeds threshold
+    if (!isDragging.current && Math.abs(deltaX) > 10 && Math.abs(deltaX) > Math.abs(deltaY)) {
+      isDragging.current = true;
+    }
+    if (isDragging.current) {
+      // Dampen the offset so it feels resistance
+      setDragOffset(deltaX * 0.35);
+    }
+  }, []);
+
+  const onRailTouchEnd = useCallback(
+    (event: React.TouchEvent) => {
+      if (touchStartX.current === null || touchStartY.current === null) {
+        setDragOffset(0);
+        isDragging.current = false;
+        return;
+      }
+      const deltaX = event.changedTouches[0].clientX - touchStartX.current;
+      const deltaY = event.changedTouches[0].clientY - touchStartY.current;
+      touchStartX.current = null;
+      touchStartY.current = null;
+      touchCurrentX.current = null;
+      isDragging.current = false;
+      setDragOffset(0);
+      // Only treat it as a horizontal swipe when horizontal travel dominates,
+      // so vertical page scrolling is never hijacked.
+      if (Math.abs(deltaX) < 40 || Math.abs(deltaX) <= Math.abs(deltaY)) return;
+      // Swipe left advances, swipe right goes back.
+      move(deltaX < 0 ? 1 : -1);
+    },
+    [move],
   );
 
   if (!current) return null;
@@ -137,6 +187,9 @@ export default function ModernExperience({ places, journeysByPlace }: ModernExpe
               className="md-cards"
               role="group"
               aria-label="Featured destinations"
+              onTouchStart={onRailTouchStart}
+              onTouchMove={onRailTouchMove}
+              onTouchEnd={onRailTouchEnd}
               onKeyDown={(event) => {
                 // Only handles arrows when the rail itself holds focus — a card
                 // button handles its own arrows and stops propagation.
@@ -149,6 +202,10 @@ export default function ModernExperience({ places, journeysByPlace }: ModernExpe
                   event.preventDefault();
                   move(-1);
                 }
+              }}
+              style={{
+                transform: dragOffset !== 0 ? `translateX(${dragOffset}px)` : undefined,
+                transition: dragOffset !== 0 ? "none" : "transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
               }}
             >
               {places.map((place, index) => {
@@ -227,6 +284,16 @@ export default function ModernExperience({ places, journeysByPlace }: ModernExpe
                 );
               })}
             </div>
+
+            <p className="md-swipe-hint" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M15 6l-6 6 6 6" />
+              </svg>
+              Swipe to explore
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 6l6 6-6 6" />
+              </svg>
+            </p>
 
             <div className="md-controls">
               <button
@@ -324,6 +391,7 @@ export default function ModernExperience({ places, journeysByPlace }: ModernExpe
         body={current.blurb}
         ctaLabel="Enquire now"
         ctaHref="/enquiry"
+        hideOnMobile
       />
     </>
   );

@@ -1,5 +1,45 @@
 # KS World Adventure — AI Assistant Context
 
+## ⛔ CONTENT ACCURACY RULES — READ BEFORE ANY EDIT
+
+**The brochure is the sole source of truth for factual content. A missing fact is safer than a fabricated fact. Ask for approval; never guess.**
+
+Full rulebook: [`docs/planning/CONTENT_ACCURACY_RULES.md`](docs/planning/CONTENT_ACCURACY_RULES.md)
+
+### Non-negotiable rules (violating any of these is a critical error)
+
+1. **DO NOT invent, infer or fabricate** — package durations, routes, nights, grades, prices, contact details, testimonials, hotel names, meal plans, transport modes, altitude, distances, difficulty grades or any other factual claim.
+2. **DO NOT silently correct the brochure** — preserve names, package codes, day labels, numbers, route names and factual meaning exactly. If a spelling looks wrong, flag it; do not fix it.
+3. **DO NOT publish unresolved or disputed facts** — if the brochure is unclear, contradictory or incomplete, suppress the claim and add it to the confirmation register. Never guess.
+4. **DO NOT convert currency** — `$` stays `$` until the client confirms the currency.
+5. **DO NOT present legacy booking terms as current** — brochure page 10 terms (deposit, cancellation, insurance, liability) are unconfirmed until the client reconfirms.
+6. **DO NOT invent contact details** — the brochure has multiple conflicting contact blocks (India Nepal Travel Centre vs Asian Bazaar). Do not pick one or invent an Indian office address.
+7. **DO NOT standardise the company name** — "India Nepal Travel Organisation" vs "India Nepal Travel Centre" needs client confirmation.
+8. **DO NOT map letter grades (C/D) to word grades** (Easy/Moderate/Demanding/Strenuous) without client confirmation.
+9. **DO NOT display internal notes** like "OCR unclear", "placeholder", "to confirm" on the public website.
+10. **DO NOT claim the 27-package count** as final — the Enfield Motorbike Tour discrepancy is unresolved.
+
+### Status tracking
+
+Every factual claim must be classified as:
+- `source-supported` — faithfully from the brochure
+- `client-confirmed` — explicitly reconfirmed in writing by the client
+- `needs-confirmation` — unclear, contradictory or potentially outdated
+- `withheld` — suppressed until the client confirms
+
+### Before making any content change
+
+1. Check the claim against the brochure (see page map in the full rules).
+2. If the brochure doesn't support it, **do not add it**.
+3. If the brochure is unclear, **do not guess** — suppress and flag.
+4. If editing existing copy, **preserve factual meaning** — grammar/readability fixes only.
+
+### Full audit & correction workflow
+
+When asked to audit or correct website content against the brochure, follow the structured 7-phase workflow in [`docs/planning/CONTENT_CORRECTION_AGENT_PROMPT.md`](docs/planning/CONTENT_CORRECTION_AGENT_PROMPT.md): inventory → compare → resolve known conflicts → correct safely → produce audit files → search for leftovers → test.
+
+---
+
 ## Project
 
 India/Nepal travel organisation site ("KS World Adventure"). Built from the organisation's own brochure (27 tour packages + 1 Kashmir houseboat service), not placeholder copy.
@@ -52,7 +92,7 @@ travel-site-main/
 ## Conventions
 
 - **Routes** only in `app/src/app`. Reusable UI in `app/src/components` and `app/src/components/ui`. No business logic in page files — put it in `app/src/lib`.
-- **Content** → `app/src/data`. Package facts come from `travel_packages_catalog.json` via `data/catalogue.ts` accessors. Never retype package details into JSX.
+- **Content** → `app/src/data`. Package facts come from `travel_packages_catalog.json` via `data/catalogue.ts` accessors. Never retype package details into JSX. **Every factual claim must trace back to the brochure or written client approval — see [`docs/planning/CONTENT_ACCURACY_RULES.md`](docs/planning/CONTENT_ACCURACY_RULES.md).**
 - **Served images** → `app/public/images/<category>/`, lowercase-hyphenated names. Every file must be listed in `app/public/images/SOURCES.md`.
 - **Raw/original media** → `assets/source-images/`, kebab-case. Local-only (gitignored). Don't reference from code.
 - **Documents** → `docs/<briefs|design|audits|planning|evidence>/`. Nothing markdown at repo root except README.md.
@@ -90,4 +130,5 @@ With enquiry/newsletter vars unset, those routes answer `503 not_configured`.
 - `app/AGENTS.md` contains Next.js 16 agent rules (re-added by `next dev`). Read `node_modules/next/dist/docs/` before writing code — Next 16 has breaking changes.
 - `docs/audits/current-state-checklist.md` is the authoritative status document.
 - No test suite exists yet. Do not invent contact details or pricing.
+- **Content accuracy rules** in [`docs/planning/CONTENT_ACCURACY_RULES.md`](docs/planning/CONTENT_ACCURACY_RULES.md) are mandatory for all factual content — the brochure is the sole source of truth; never invent, infer or guess.
 - `.gitignore` ignores `assets/source-images/`, `*.pdf`, `*.psd` — large binaries must be optimised into `app/public/images` first.

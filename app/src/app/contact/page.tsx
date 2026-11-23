@@ -45,7 +45,7 @@ const DESKS = [
     role: "International Booking Bureau",
     coordinates: "33.9167° S, 151.0667° E",
     timezone: "Australia/Sydney",
-    detail: "68 Beauchamp St., Wiley Park, NSW 2195 (M: 0409 155 229 · T: 02 9579 0044).",
+    detail: "International reservations and booking coordination. Contact us for current office details.",
   },
   {
     city: "Delhi",
@@ -79,9 +79,9 @@ const STEPS = [
   },
   {
     step: "02",
-    title: "$200 Deposit Confirmation",
+    title: "Deposit Confirmation",
     body:
-      "Secure your departures with the standard $200 per person brochure deposit. Balance is payable 8 weeks before departure.",
+      "Contact us for current deposit requirements and payment terms. Balance payment timing will be confirmed with your booking.",
   },
   {
     step: "03",
@@ -226,59 +226,44 @@ export default function ContactPage() {
               </ul>
             </div>
 
-            {/* Published Booking Bureau from Brochure Page 10 */}
+            {/* Published Booking Bureau from Brochure Page 10 — withheld pending client confirmation */}
             <div className="border border-white/10 bg-[#132325] p-7 md:p-9 rounded-none">
               <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-[var(--color-wild-orange)]">
-                Brochure Published Bureau
+                Reservations
               </p>
               <h3 className="mt-3 font-serif text-2xl font-light text-white md:text-3xl">
                 Booking Desk &amp; Reservations Office
               </h3>
               <p className="mt-4 font-sans text-sm font-light leading-relaxed text-white/65">
-                Official contact channels and Australian reservations bureau as published on the {BRAND.operatorName} and {BRAND.bookingDeskName} brochure registry:
+                Our reservations team can provide current contact details, booking conditions and deposit information. Please submit an enquiry and we will respond with the information you need.
               </p>
 
               <div className="mt-7 space-y-5 border-t border-white/10 pt-6">
                 <div>
                   <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-white">
-                    Primary Office Address
+                    Booking Conditions
                   </p>
                   <p className="mt-1 font-sans text-xs font-light leading-relaxed text-white/75">
-                    {BRAND.bookingOffice.address}
+                    Please contact us for current booking conditions, deposit requirements and payment terms.
                   </p>
                 </div>
                 <div>
                   <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-white">
-                    Direct Telephones &amp; Mobile
-                  </p>
-                  <p className="mt-1 font-mono text-xs text-[var(--color-wild-orange)]">
-                    M: {BRAND.bookingOffice.phoneMobile} &bull; T: {BRAND.bookingOffice.phoneLandline}
-                  </p>
-                </div>
-                <div>
-                  <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-white">
-                    Monitored Concierge Emails
-                  </p>
-                  <p className="mt-1 font-mono text-xs text-white/80">
-                    {BRAND.bookingOffice.email} &bull; {BRAND.bookingOffice.altEmail}
-                  </p>
-                </div>
-                <div>
-                  <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-white">
-                    Booking Deposit &amp; Terms
+                    Regional Enquiries
                   </p>
                   <p className="mt-1 font-sans text-xs font-light leading-relaxed text-white/75">
-                    {BRAND.bookingOffice.deposit}. Balance due 8 weeks prior to departure. {BRAND.bookingOffice.amendmentFee}.
+                    For tailor-made itineraries, small-group departures, Himalayan trekking and Kashmir houseboat reservations, please use the enquiry form.
                   </p>
                 </div>
               </div>
 
-              <div className="mt-7 border-t border-white/10 pt-5 flex flex-wrap gap-2 text-[10px] font-mono text-white/50">
-                {BRAND.bookingOffice.websites.map((url) => (
-                  <span key={url} className="border border-white/10 bg-white/[0.03] px-2 py-0.5">
-                    {url}
-                  </span>
-                ))}
+              <div className="mt-7">
+                <Link
+                  href="/enquiry"
+                  className="inline-flex min-h-[44px] items-center gap-3 border border-[var(--color-wild-orange)] px-6 py-3 font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-[var(--color-wild-orange)] transition-colors hover:bg-[var(--color-wild-orange)] hover:text-white"
+                >
+                  Submit an enquiry →
+                </Link>
               </div>
             </div>
           </div>

@@ -10,17 +10,11 @@ interface InclusionsExclusionsProps {
 }
 
 const DEFAULT_INCLUSIONS = [
-  "Accommodation as specified in the brochure itinerary, on a twin-share basis unless confirmed otherwise.",
-  "All scheduled private transfers, inter-city transport and airport pickups.",
-  "English-speaking local guides for the sightseeing listed in the itinerary.",
-  "Monument and museum entries named in the brochure programme.",
+  "Please contact us for the specific inclusions for this package.",
 ];
 
 const DEFAULT_EXCLUSIONS = [
-  "International long-haul airfares to the start and from the end point.",
-  "Personal travel, medical and evacuation insurance.",
-  "Visa and entry fees, unless the brochure programme states these are included.",
-  "Gratuities and items of a personal nature.",
+  "Please contact us for the specific exclusions for this package.",
 ];
 
 export default function InclusionsExclusions({

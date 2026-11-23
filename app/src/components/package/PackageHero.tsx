@@ -30,7 +30,7 @@ export default function PackageHero({ pkg }: PackageHeroProps) {
   const heroSrc = getPackageCardImage(pkg.slug);
 
   return (
-    <section className="relative overflow-hidden border-b border-white/10 bg-[#0C1617] pt-8 pb-12 sm:pt-12 sm:pb-16 lg:pt-16 lg:pb-20">
+    <section className="relative overflow-hidden border-b border-white/10 bg-[#0C1617] pt-5 pb-8 sm:pt-8 sm:pb-12 lg:pt-12 lg:pb-16">
       {/* Background Photography with cinematic Ken Burns settle */}
       <div className="pkg-hero-photo absolute inset-0 pointer-events-none will-change-transform">
         <Image
@@ -43,8 +43,8 @@ export default function PackageHero({ pkg }: PackageHeroProps) {
           className="object-cover object-center"
         />
         {/* Layered cinematic atmospheric gradients */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0C1617] via-[#0C1617]/75 to-[#0C1617]/40" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0C1617]/85 via-transparent to-[#0C1617]/85" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0C1617] via-[#0C1617]/80 to-[#0C1617]/50" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0C1617]/90 via-[#0C1617]/30 to-[#0C1617]/90" />
         <div
           className="absolute inset-0 opacity-40 mix-blend-screen"
           style={{
@@ -55,88 +55,78 @@ export default function PackageHero({ pkg }: PackageHeroProps) {
       </div>
 
       <Container wide className="relative z-10">
-        {/* Top Breadcrumb & Metadata row */}
-        <div className="pkg-hero-rise pkg-hero-d1 mb-6 flex flex-wrap items-center justify-between gap-4 text-xs text-white/60">
-          <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-x-2 gap-y-1">
-            <Link href="/" className="inline-flex min-h-[44px] items-center transition-colors hover:text-brass">
+        {/* Top row: Breadcrumb + Code badge */}
+        <div className="pkg-hero-rise pkg-hero-d1 mb-5 flex flex-wrap items-center justify-between gap-3 sm:mb-6">
+          <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[11px] text-white/60 sm:text-xs">
+            <Link href="/" className="inline-flex min-h-[36px] items-center transition-colors hover:text-brass">
               Home
             </Link>
-            <span aria-hidden="true" className="text-white/30">
-              /
-            </span>
+            <span aria-hidden="true" className="text-white/25">/</span>
             <Link
               href="/journeys#catalogue"
-              className="inline-flex min-h-[44px] items-center text-brass-soft transition-colors hover:text-brass"
+              className="inline-flex min-h-[36px] items-center text-brass-soft transition-colors hover:text-brass"
             >
               Journeys
             </Link>
-            <span aria-hidden="true" className="text-white/30">
-              /
-            </span>
+            <span aria-hidden="true" className="text-white/25">/</span>
             <Link
               href={`/journeys?category=${encodeURIComponent(pkg.category)}#catalogue`}
-              className="inline-flex min-h-[44px] items-center text-brass-soft transition-colors hover:text-brass"
+              className="hidden min-h-[36px] items-center text-brass-soft transition-colors hover:text-brass sm:inline-flex"
             >
               {pkg.category}
             </Link>
-            <span aria-hidden="true" className="text-white/30">
-              /
-            </span>
-            <span className="inline-flex min-h-[44px] items-center font-medium text-white/90">
-              <span className="truncate max-w-[160px] sm:max-w-none">{pkg.title}</span>
+            <span aria-hidden="true" className="hidden text-white/25 sm:inline">/</span>
+            <span className="inline-flex min-h-[36px] max-w-[140px] items-center truncate font-medium text-white/90 sm:max-w-none">
+              {pkg.title}
             </span>
           </nav>
 
-          <div className="flex flex-wrap items-center gap-2.5">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-brass/40 bg-brass/10 px-3 py-1 font-mono text-[11px] font-medium tracking-wide text-brass shadow-[0_0_12px_rgba(177,138,81,0.2)]">
-              <span className="h-1.5 w-1.5 rounded-full bg-brass animate-pulse" />
-              Brochure Code: {pkg.brochure_code}
-            </span>
-            <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[11px] text-white/70 backdrop-blur-sm">
-              Small Group (Max 15) or Solo
-            </span>
-          </div>
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-brass/40 bg-brass/10 px-2.5 py-1 font-mono text-[10px] font-medium tracking-wide text-brass shadow-[0_0_12px_rgba(177,138,81,0.2)] sm:px-3 sm:text-[11px]">
+            <span className="h-1 w-1 rounded-full bg-brass animate-pulse" />
+            {pkg.brochure_code}
+          </span>
         </div>
 
-        {/* Hero Title & Information Grid */}
-        <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-3xl">
-            <p className="pkg-hero-rise pkg-hero-d2 mb-2 font-display text-xs font-semibold uppercase tracking-[0.25em] text-brass">
+        {/* Hero Title & Information */}
+        <div className="flex flex-col gap-5 sm:gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <div className="min-w-0 max-w-3xl">
+            <p className="pkg-hero-rise pkg-hero-d2 mb-1.5 font-display text-[10px] font-semibold uppercase tracking-[0.2em] text-brass sm:text-xs sm:tracking-[0.25em]">
               {pkg.category} · {pkg.difficulty ?? "Curated Expedition"}
             </p>
 
-            <h1 className="pkg-hero-rise pkg-hero-d3 font-serif text-3xl font-light tracking-tight text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.8)] sm:text-5xl lg:text-6xl">
+            <h1 className="pkg-hero-rise pkg-hero-d3 font-serif text-2xl font-light leading-tight tracking-tight text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.8)] sm:text-4xl lg:text-5xl">
               {pkg.title}
             </h1>
 
-            <p className="pkg-hero-rise pkg-hero-d4 mt-4 font-display text-sm leading-relaxed text-white/80 sm:text-base">
+            <p className="pkg-hero-rise pkg-hero-d4 mt-2.5 font-display text-[13px] leading-relaxed text-white/80 sm:mt-3 sm:text-sm lg:text-base">
               {pkg.summary}
             </p>
           </div>
 
-          {/* Quick Metrics Badges & CTA */}
-          <div className="pkg-hero-rise pkg-hero-d5 flex shrink-0 flex-wrap items-center gap-3">
-            <div className="rounded-xl border border-white/15 bg-black/40 px-5 py-3 text-center backdrop-blur-md shadow-lg">
-              <div className="font-display text-[10px] font-medium uppercase tracking-wider text-white/60">
-                Duration
+          {/* Bottom row: Metrics + CTA — full-width on mobile, inline on desktop */}
+          <div className="pkg-hero-rise pkg-hero-d5 flex shrink-0 flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3">
+            {/* Duration + Route as compact pills on mobile, boxed on desktop */}
+            <div className="flex gap-2.5 sm:contents">
+              <div className="flex flex-1 items-center gap-2 rounded-lg border border-white/15 bg-black/40 px-3 py-2 backdrop-blur-md sm:flex-none sm:flex-col sm:gap-0 sm:rounded-xl sm:px-5 sm:py-3 sm:text-center">
+                <span className="font-display text-[9px] font-medium uppercase tracking-wider text-white/50 sm:text-[10px]">
+                  Duration
+                </span>
+                <span className="font-display text-xs font-semibold text-white sm:mt-0.5 sm:text-sm">
+                  {pkg.duration}
+                </span>
               </div>
-              <div className="mt-0.5 font-display text-sm font-semibold text-white">
-                {pkg.duration}
+
+              <div className="flex flex-1 items-center gap-2 rounded-lg border border-white/15 bg-black/40 px-3 py-2 backdrop-blur-md sm:flex-none sm:flex-col sm:gap-0 sm:rounded-xl sm:px-5 sm:py-3 sm:text-center">
+                <span className="font-display text-[9px] font-medium uppercase tracking-wider text-white/50 sm:text-[10px]">
+                  Route
+                </span>
+                <span className="font-display text-xs font-semibold text-white sm:mt-0.5 sm:text-sm">
+                  {destinations.length} Destination{destinations.length === 1 ? "" : "s"}
+                </span>
               </div>
             </div>
 
-            <div className="rounded-xl border border-white/15 bg-black/40 px-5 py-3 text-center backdrop-blur-md shadow-lg">
-              <div className="font-display text-[10px] font-medium uppercase tracking-wider text-white/60">
-                Route
-              </div>
-              <div className="mt-0.5 font-display text-sm font-semibold text-white">
-                {destinations.length} Destination{destinations.length === 1 ? "" : "s"}
-              </div>
-            </div>
-
-            <div className="scale-100 hover:scale-[1.02] active:scale-[0.98] transition-transform duration-200">
-              <EnquireCta label="Enquire Now" withArrow />
-            </div>
+            <EnquireCta label="Enquire Now" withArrow className="w-full sm:w-auto" />
           </div>
         </div>
       </Container>

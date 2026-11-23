@@ -48,11 +48,11 @@ export default function PackageCard({ pkg, compact = false }: PackageCardProps) 
         <div className="pkg-flip__face pkg-flip__face--front">
           <Link
             href={`/packages/${pkg.slug}`}
-            className="group/card flex h-full flex-row overflow-hidden min-w-0 border border-white/10 bg-[#0C1617] transition-all duration-300 hover:border-[var(--color-wild-orange)]/60 hover:bg-white/[0.02] hover:shadow-[0_12px_32px_-10px_rgba(212,147,104,0.22)] active:scale-[0.985] active:border-brass/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)] will-change-transform sm:flex-col"
+            className="group/card relative flex h-full min-w-0 flex-row overflow-hidden rounded-xl border border-white/10 bg-[#0C1617] shadow-[0_8px_30px_-14px_rgba(0,0,0,0.7)] transition-all duration-500 hover:-translate-y-1 hover:border-brass/50 hover:shadow-[0_18px_45px_-14px_rgba(212,147,104,0.28)] active:scale-[0.985] active:border-brass/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass min-w-0 will-change-transform sm:flex-col"
           >
-            {/* Image Frame — poster on ≥sm, compact thumbnail rail on mobile */}
+            {/* Image Frame — poster on ≥sm, compact thumbnail on mobile */}
             <div
-              className="relative aspect-square w-32 shrink-0 self-center overflow-hidden bg-black/40 sm:aspect-[5/4] sm:h-auto sm:w-full sm:self-stretch"
+              className="relative aspect-square w-28 shrink-0 overflow-hidden bg-black/40 sm:aspect-[16/11] sm:w-full"
               suppressHydrationWarning
             >
               {!imageError ? (
@@ -62,7 +62,7 @@ export default function PackageCard({ pkg, compact = false }: PackageCardProps) 
                   fill
                   sizes="(min-width: 1280px) 320px, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                   quality={90}
-                  className="object-cover transition-transform duration-[900ms] ease-out group-hover/card:scale-[1.06]"
+                  className="object-cover transition-transform duration-700 ease-out group-hover/card:scale-[1.06]"
                   onError={() => setImageError(true)}
                   loading="lazy"
                 />
@@ -76,67 +76,74 @@ export default function PackageCard({ pkg, compact = false }: PackageCardProps) 
                 </div>
               )}
 
+              {/* Soft gradient so overlaid badges stay legible */}
               <div
                 aria-hidden="true"
-                className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent transition-opacity duration-500 group-hover/card:opacity-0"
+                className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-black/25 transition-opacity duration-500"
               />
 
-              {/* Interactive Light sweep traveling across card frame */}
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/12 to-transparent transition-transform duration-[850ms] ease-out group-hover/card:translate-x-full"
-              />
-
-              {/* Minimalist Corner Tag — Modelled directly on HouseboatCollection card */}
-              <span className="absolute left-4 top-4 hidden border border-white/25 bg-black/60 px-3 py-1 font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-white/90 backdrop-blur-sm sm:block">
+              {/* Category badge — top left */}
+              <span className="absolute left-2.5 top-2.5 rounded-full border border-white/20 bg-black/55 px-2.5 py-1 font-sans text-[8px] font-semibold uppercase tracking-[0.16em] text-white/90 backdrop-blur-md sm:left-3 sm:top-3 sm:text-[9px] sm:tracking-[0.2em]">
                 {pkg.category}
               </span>
 
-              {/* Brochure Code (Bottom Right) */}
+              {/* Duration pill — bottom left */}
+              <span className="absolute bottom-2.5 left-2.5 rounded-full bg-brass px-2.5 py-1 font-mono text-[9px] font-semibold uppercase tracking-wide text-[#0C1617] shadow-lg sm:bottom-3 sm:left-3">
+                {cleanDuration}
+              </span>
+
+              {/* Brochure code — bottom right */}
               {pkg.brochure_code && (
-                <span className="pkg-flip__front-extra absolute right-4 bottom-3 hidden border border-white/15 bg-black/60 px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider text-white/60 backdrop-blur-sm sm:block">
-                  Code {pkg.brochure_code}
+                <span className="pkg-flip__front-extra absolute bottom-3 right-3 hidden font-mono text-[9px] uppercase tracking-wider text-white/70 sm:block">
+                  {pkg.brochure_code}
                 </span>
               )}
+
+              {/* Light sweep on hover */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-[850ms] ease-out group-hover/card:translate-x-full"
+              />
             </div>
 
             {/* Content Body */}
-            <div className={`flex min-w-0 flex-1 flex-col ${compact ? "p-4 sm:p-5" : "p-4 sm:p-6"}`}>
-              {/* Subtitle / Operating Region & Clean Duration */}
-              <div className="pkg-flip__front-extra flex items-center justify-between gap-2">
-                <p className="font-sans text-[10px] font-medium uppercase tracking-[0.22em] text-[var(--color-wild-orange)] truncate">
+            <div className={`pkg-flip__front-extra flex min-w-0 flex-1 flex-col p-3.5 sm:p-5 ${compact ? "" : ""}`}>
+              {/* Region line */}
+              <div className="flex items-center gap-2">
+                <span className="h-1 w-1 shrink-0 rounded-full bg-brass" />
+                <p className="truncate font-sans text-[9px] font-semibold uppercase tracking-[0.18em] text-brass-soft sm:text-[10px] sm:tracking-[0.22em]">
                   {placeLine}
                 </p>
-                <span className="shrink-0 font-mono text-[10px] uppercase tracking-wider text-white/50">
-                  {cleanDuration}
-                </span>
               </div>
 
               {/* Title */}
-              <h3 className={`mt-1.5 font-serif font-light leading-snug text-white transition-colors duration-300 group-hover:text-[var(--color-wild-orange)] ${compact ? "text-lg line-clamp-1 sm:text-xl" : "text-base line-clamp-2 sm:text-base lg:text-lg xl:text-xl 2xl:text-2xl"}`}>
+              <h3 className="mt-1.5 font-serif text-base font-light leading-snug text-white line-clamp-2 transition-colors duration-300 group-hover/card:text-brass sm:text-lg">
                 {pkg.title}
               </h3>
+
               {/* Summary */}
-              <p className={`pkg-flip__front-extra mt-1.5 flex-1 font-sans font-light leading-relaxed text-white/60 line-clamp-2 ${compact ? "text-sm sm:line-clamp-2" : "text-xs sm:text-xs lg:text-sm"}`}>
+              <p className="mt-1.5 font-sans text-[11px] font-light leading-relaxed text-white/55 line-clamp-2 sm:text-xs">
                 {pkg.summary}
               </p>
 
-              {/* Footer Action matching Houseboat cards with Circular Arrow button */}
-              <div className="pkg-flip__front-extra mt-3 flex items-center justify-between border-t border-white/10 pt-2.5 sm:mt-4 sm:pt-3">
-                <div className="group/link inline-flex items-center gap-2 font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-white transition-colors group-hover:text-[var(--color-wild-orange)] sm:gap-3">
-                  <span className="flex h-7 w-7 items-center justify-center rounded-none border border-[var(--color-wild-orange)] text-[var(--color-wild-orange)] transition-colors duration-300 group-hover:bg-[var(--color-wild-orange)] group-hover:text-white sm:h-8 sm:w-8">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-                      <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </span>
-                  <span className="hidden lg:inline">View itinerary</span>
-                </div>
-
-                {cleanDifficulty && (
-                  <span className="font-mono text-[10px] uppercase tracking-wider text-white/60">
+              {/* Footer — difficulty tag + pill CTA */}
+              <div className="mt-auto flex items-center justify-between gap-2 pt-3 sm:pt-4">
+                {cleanDifficulty ? (
+                  <span className="rounded-full border border-white/15 bg-white/5 px-2.5 py-1 font-mono text-[9px] uppercase tracking-wider text-white/60">
                     {cleanDifficulty}
                   </span>
+                ) : (
+                  <span className="font-mono text-[9px] uppercase tracking-wider text-white/40">
+                    {pkg.category}
+                  </span>
                 )}
+
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-brass/50 px-3 py-1.5 font-sans text-[9px] font-semibold uppercase tracking-[0.16em] text-brass transition-all duration-300 group-hover/card:border-brass group-hover/card:bg-brass group-hover/card:text-[#0C1617]">
+                  View
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+                    <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
               </div>
             </div>
           </Link>

@@ -131,6 +131,7 @@ export default function JourneysPage() {
         body="Every journey can be tailored around your dates, party size and interests. Tell us what you want to discover."
         ctaLabel="Enquire now"
         ctaHref="/enquiry"
+        hideOnMobile
       />
           </>
         }

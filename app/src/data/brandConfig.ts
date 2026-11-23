@@ -39,8 +39,9 @@ export const BRAND = {
     name: "Asian Bazaar / India Nepal Travel Centre",
     legalName: "Asian Bazaar",
     address: "68 Beauchamp St., Wiley Park, NSW 2195, Australia",
-    phoneMobile: "0409 155 229",
+    phoneMobile: "0409 555 129",
     phoneLandline: "02 9579 0044",
+    _verificationStatus: "needs-confirmation" as const,
     email: "indianepaltravel@yahoo.com.au",
     altEmail: "asianbazaar@live.com.au",
     websites: [
@@ -75,8 +76,8 @@ export const BRAND = {
     },
     {
       grade: "Strenuous",
-      description: "For very fit, experienced trekkers. Difficult terrain, high passes and possible rope use, 10–15 km per day, up to 5,500 m altitude.",
-      altitude: "Up to 5,500m",
+      description: "For very fit, experienced trekkers. Difficult terrain, high passes and possible rope use, 10–15 km per day, up to 5,000 m altitude.",
+      altitude: "Up to 5,000m",
       dailyDistance: "10–15 km/day",
     },
   ],

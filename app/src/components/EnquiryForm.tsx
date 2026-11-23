@@ -288,7 +288,7 @@ export default function EnquiryForm({
           {chosen ? "Enquire About This Journey" : "Plan Your Tailor-Made Trip"}
         </h1>
         <p className="font-display text-base md:text-lg text-white/70 leading-relaxed max-w-3xl">
-          Tell us your preferred dates, party size and travel pace. Our subcontinent specialists will shape an itinerary around you, drawing on nearly a century of exploration across India and Nepal.
+          Tell us your preferred dates, party size and travel pace. Our subcontinent specialists will shape an itinerary around you, drawing on our brochure heritage across India and Nepal.
         </p>
       </div>
 

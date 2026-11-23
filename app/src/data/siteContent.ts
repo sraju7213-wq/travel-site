@@ -213,7 +213,7 @@ export const PILLARS: Pillar[] = [
   {
     key: "wildlife",
     label: "Wildlife",
-    title: "Best Wildlife Experiences",
+    title: "Wildlife Experiences",
     image: pexels("13409974"),
     tagline: "Rare Habitat Encounters Guided by Resident Naturalists",
     statBadge: "Protected Reserves",
@@ -235,7 +235,7 @@ export const PILLARS: Pillar[] = [
     title: "Guides & Dedicated Support",
     image: pexels("18563694"),
     tagline: "Experienced Field Crews & Dedicated Expedition Leaders",
-    statBadge: "100% Escorted",
+    statBadge: "Escorted",
     statLabel: "Mountain Field Crews",
     regionTag: "Himalayas & High Passes",
     body:
@@ -328,8 +328,7 @@ export const PILLARS: Pillar[] = [
 
 export const STATS: Stat[] = [
   { value: "Since 1927", label: "Founding heritage", note: "Baktoo family regional tourism pioneer" },
-  { value: "27", label: "Journeys", note: "In the brochure catalogue" },
-  { value: "Two", label: "Countries", note: "India and the Nepali Himalaya" },
+  { value: "India & Nepal", label: "Destinations", note: "Two countries, one specialist operator" },
   { value: "Up to 15", label: "Travellers", note: "Per group, or a solo itinerary" },
   { value: "Flexible", label: "Every itinerary", note: "Planned around your dates" },
 ];

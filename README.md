@@ -4,6 +4,13 @@ Production Next.js 16 site for **India Nepal Travel Organisation**, trading as
 **KS World Adventure**. Built from the organisation's own brochure (27 tour
 packages + one Kashmir houseboat service), not from placeholder copy.
 
+> **Content accuracy:** All factual content (package details, prices, contact info,
+> company history, booking terms) must come from the client brochure or written
+> client approval. Never invent, infer or guess. See
+> [`docs/planning/CONTENT_ACCURACY_RULES.md`](docs/planning/CONTENT_ACCURACY_RULES.md)
+> for the full content governance rulebook and
+> [`AGENTS.md`](AGENTS.md) for the AI assistant content rules.
+
 - **Framework:** Next.js 16 (App Router, Turbopack) · React 19 · TypeScript strict
 - **Styling:** Tailwind v4 + CSS custom properties (brand tokens in `globals.css`)
 - **Motion:** GSAP

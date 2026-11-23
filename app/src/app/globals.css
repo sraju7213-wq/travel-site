@@ -197,6 +197,7 @@
     overflow: hidden;
     transform: rotateY(180deg);
     border: 1px solid var(--color-brass);
+    border-radius: 0.75rem;
     background: var(--color-wild-dark);
   }
   .pkg-flip__face--back::before {
@@ -204,6 +205,7 @@
     position: absolute;
     width: 85%;
     height: 160%;
+    opacity: 0.55;
     background: linear-gradient(
       90deg,
       transparent,
@@ -244,6 +246,7 @@
     flex-direction: column;
     width: calc(100% - 12px);
     height: calc(100% - 12px);
+    border-radius: 0.5rem;
     background: rgba(12, 22, 23, 0.96);
     backdrop-filter: blur(6px);
     color: #fff;
