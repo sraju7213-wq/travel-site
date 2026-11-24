@@ -192,8 +192,8 @@ export default function CoverflowSwiper({ packages }: CoverflowSwiperProps) {
                     alt={pkg.title}
                     fill
                     sizes="(min-width: 768px) 450px, 80vw"
-                    quality={90}
-                    priority={isActive}
+                    quality={75}
+                    priority={i === 0}
                     className="h-full w-full object-cover transition-transform duration-700"
                   />
                 </div>
@@ -347,6 +347,7 @@ export default function CoverflowSwiper({ packages }: CoverflowSwiperProps) {
             onClick={prev}
             disabled={safeIndex === 0}
             aria-label="Previous journey"
+            data-theme-control="light"
             className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-[#101b1d]/90 text-white transition-all hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)] hover:bg-white/10 disabled:opacity-25 disabled:pointer-events-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)] shadow-lg backdrop-blur-md"
           >
             <svg
@@ -385,6 +386,7 @@ export default function CoverflowSwiper({ packages }: CoverflowSwiperProps) {
             onClick={next}
             disabled={safeIndex === packages.length - 1}
             aria-label="Next journey"
+            data-theme-control="light"
             className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-[#101b1d]/90 text-white transition-all hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)] hover:bg-white/10 disabled:opacity-25 disabled:pointer-events-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)] shadow-lg backdrop-blur-md"
           >
             <svg
@@ -435,7 +437,7 @@ export default function CoverflowSwiper({ packages }: CoverflowSwiperProps) {
           </div>
         )}
 
-        <p className="flex items-center gap-2 font-sans text-[11px] tracking-wider text-white/60">
+        <p data-theme-surface="light" className="flex items-center gap-2 font-sans text-[11px] tracking-wider text-white/60">
           <span>Swipe, drag or use</span>
           <kbd className="px-1.5 py-0.5 rounded border border-white/20 bg-white/5 text-[10px] font-mono text-white/70">
             ←

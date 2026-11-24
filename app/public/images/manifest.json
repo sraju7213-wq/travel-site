@@ -481,38 +481,6 @@
   },
   {
     "group": "package",
-    "file": "images/packages/delhi-stopover.jpg",
-    "brochure_page": 3,
-    "source_asset": "amber-fort-detail",
-    "crop_review_box": [
-      8,
-      1072,
-      176,
-      1198
-    ],
-    "output_size": [
-      472,
-      353
-    ]
-  },
-  {
-    "group": "package",
-    "file": "images/packages/bombay-stopover.jpg",
-    "brochure_page": 2,
-    "source_asset": "gateway-of-india",
-    "crop_review_box": [
-      225,
-      532,
-      418,
-      600
-    ],
-    "output_size": [
-      542,
-      191
-    ]
-  },
-  {
-    "group": "package",
     "file": "images/packages/discover-leh.jpg",
     "brochure_page": 2,
     "source_asset": "ladakh-monastery",
@@ -604,22 +572,6 @@
     ],
     "output_size": [
       727,
-      524
-    ]
-  },
-  {
-    "group": "package",
-    "file": "images/packages/glimpses-of-kerala.jpg",
-    "brochure_page": 3,
-    "source_asset": "kerala-backwaters",
-    "crop_review_box": [
-      573,
-      68,
-      833,
-      255
-    ],
-    "output_size": [
-      729,
       524
     ]
   },
@@ -721,22 +673,6 @@
   },
   {
     "group": "package",
-    "file": "images/packages/south-india-highlight.jpg",
-    "brochure_page": 5,
-    "source_asset": "south-india-backwaters",
-    "crop_review_box": [
-      573,
-      68,
-      836,
-      215
-    ],
-    "output_size": [
-      737,
-      412
-    ]
-  },
-  {
-    "group": "package",
     "file": "images/packages/markha-valley.jpg",
     "brochure_page": 6,
     "source_asset": "markha-valley",
@@ -769,22 +705,6 @@
   },
   {
     "group": "package",
-    "file": "images/packages/kashmir-combinations-little-tibet.jpg",
-    "brochure_page": 6,
-    "source_asset": "green-valley",
-    "crop_review_box": [
-      573,
-      780,
-      836,
-      980
-    ],
-    "output_size": [
-      737,
-      561
-    ]
-  },
-  {
-    "group": "package",
     "file": "images/packages/kashmir-mini-adventure.jpg",
     "brochure_page": 7,
     "source_asset": "dal-lake",
@@ -797,38 +717,6 @@
     "output_size": [
       900,
       320
-    ]
-  },
-  {
-    "group": "package",
-    "file": "images/packages/vale-of-kashmir-trek.jpg",
-    "brochure_page": 7,
-    "source_asset": "vale-trek",
-    "crop_review_box": [
-      455,
-      100,
-      830,
-      232
-    ],
-    "output_size": [
-      900,
-      317
-    ]
-  },
-  {
-    "group": "package",
-    "file": "images/packages/kashmir-ski.jpg",
-    "brochure_page": 8,
-    "source_asset": "snow-trek",
-    "crop_review_box": [
-      573,
-      1052,
-      838,
-      1170
-    ],
-    "output_size": [
-      743,
-      331
     ]
   },
   {

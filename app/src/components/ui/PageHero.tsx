@@ -191,6 +191,7 @@ export default function PageHero({
   return (
     <section
       ref={sectionRef}
+      data-theme-surface="dark"
       className={`relative isolate overflow-hidden ${
         isNormal
           ? "min-h-[560px] md:min-h-[740px] flex flex-col justify-center items-center"

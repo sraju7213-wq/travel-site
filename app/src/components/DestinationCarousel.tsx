@@ -249,7 +249,7 @@ export default function DestinationCarousel() {
                   src={dest.image}
                   alt={`${dest.name} — ${dest.tagline}`}
                   fill
-                  priority={i === active}
+                  priority={i === 0}
                   sizes="(min-width: 1200px) 1020px, 95vw"
                   className={`object-cover ${
                     dest.imagePosition ?? "object-[center_bottom]"

@@ -54,7 +54,6 @@ export default function PackageGallery({ images, title, open, onOpenChange }: Pa
           src={current.src}
           alt={current.caption || title}
           fill
-          priority
           sizes="(min-width: 1024px) 66vw, 100vw"
           className="object-cover transition-[transform,opacity] duration-700 ease-out animate-photo-enter"
         />

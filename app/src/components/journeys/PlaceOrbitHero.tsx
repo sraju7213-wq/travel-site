@@ -445,6 +445,7 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
   return (
     <section
       ref={sectionRef}
+      data-theme-surface="dark"
       id="jy-hero"
       className="jy-orbit scroll-mt-20"
       aria-labelledby="jy-hero-title"
@@ -472,7 +473,7 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
                   alt=""
                   fill
                   sizes="(min-width: 768px) 450px, 320px"
-                  quality={90}
+                  quality={75}
                   className="object-cover"
                 />
                 <span className="jy-orbit-veil" aria-hidden="true" />

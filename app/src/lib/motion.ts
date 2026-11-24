@@ -12,6 +12,14 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
   gsap.config({ nullTargetWarn: false });
+  ScrollTrigger.config({
+    // Only fire onEnter/onLeave etc. when the trigger state actually changes,
+    // rather than on every scroll tick — less main-thread work on every device.
+    limitCallbacks: true,
+    // Mobile browsers fire resize when the URL bar collapses; refreshing every
+    // trigger on that event causes visible jank and wasted layout work.
+    ignoreMobileResize: true,
+  });
 }
 
 /** Named eases. `expo` is the house curve for entrances, `power2` for micro-interactions. */

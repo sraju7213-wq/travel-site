@@ -54,7 +54,7 @@ export default function TrendingJourneys({ packages }: CoverflowProps) {
                     alt={pkg.title}
                     fill
                     sizes="(min-width: 768px) 450px, 80vw"
-                    quality={90}
+                    quality={75}
                     className="object-cover"
                   />
                 </Link>
@@ -117,7 +117,7 @@ export default function TrendingJourneys({ packages }: CoverflowProps) {
                     alt=""
                     fill
                     sizes="(min-width: 768px) 450px, 80vw"
-                    quality={90}
+                    quality={75}
                     className="object-cover"
                   />
                 </Link>

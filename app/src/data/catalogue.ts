@@ -127,27 +127,74 @@ export function pexels(photoId: string): string {
 }
 
 /**
- * Per-package Pexels image mapping. Every package gets destination-specific
- * photography sourced from Pexels. Primary images are used on package cards;
- * gallery images appear on package detail pages.
- *
- * Photo IDs were selected by searching Pexels for each destination and
- * attraction named in the package itinerary, then verifying the image loads.
+ * Per-package image mapping. Most packages use destination-specific Pexels
+ * photography; client-supplied local galleries replace the primary image and
+ * the complete detail-page gallery where noted. Primary images are used on
+ * package cards and heroes, while gallery images appear on package detail pages.
  */
-const PACKAGE_PEXELS_IMAGES: Record<string, { primary: string; gallery: GalleryImage[] }> = {
+/**
+ * Client-supplied photography for the Discover Ladakh detail-page gallery.
+ * `galleryOverride` replaces the whole gallery so none of the older Pexels
+ * photos remain; the package card and hero keep using `primary` as before.
+ */
+const DISCOVER_LADAKH_GALLERY: GalleryImage[] = [
+  { src: "/images/packages/discover-ladakh/discover-ladakh-01.jpg", caption: "High mountain valley and sandy riverbed" },
+  { src: "/images/packages/discover-ladakh/discover-ladakh-02.jpg", caption: "Mountain road through the high-altitude landscape" },
+  { src: "/images/packages/discover-ladakh/discover-ladakh-03.jpg", caption: "Rider on a rocky hillside trail" },
+  { src: "/images/packages/discover-ladakh/discover-ladakh-04.jpg", caption: "White stupas beside the mountain road" },
+  { src: "/images/packages/discover-ladakh/discover-ladakh-05.jpg", caption: "White building complex on a rocky ridge" },
+];
+
+/** Client-supplied photography for the Nepal Wildlife Safari image and gallery. */
+const NEPAL_WILDLIFE_SAFARI_GALLERY: GalleryImage[] = [
+  { src: "/images/packages/nepal-wildlife-safari/nepal-wildlife-safari-01.jpg", caption: "Trekkers passing prayer flags on a stone trail" },
+  { src: "/images/packages/nepal-wildlife-safari/nepal-wildlife-safari-02.jpg", caption: "Town and mountain ridges seen through prayer flags" },
+  { src: "/images/packages/nepal-wildlife-safari/nepal-wildlife-safari-03.jpg", caption: "Golden shrine below snow-covered mountains" },
+  { src: "/images/packages/nepal-wildlife-safari/nepal-wildlife-safari-04.jpg", caption: "Mountain peak above a hillside settlement" },
+  { src: "/images/packages/nepal-wildlife-safari/nepal-wildlife-safari-05.jpg", caption: "Nepal flag against snowy mountain slopes" },
+];
+
+/** Client-supplied photography for the 7 Day Nepal Mini Trek detail-page gallery. */
+const NEPAL_MINI_TREK_7_DAY_GALLERY: GalleryImage[] = [
+  { src: "/images/packages/nepal-mini-trek-7-day/nepal-mini-trek-7-day-01.jpg", caption: "Mountain peak above a hillside settlement" },
+  { src: "/images/packages/nepal-mini-trek-7-day/nepal-mini-trek-7-day-02.jpg", caption: "Trekker with poles facing snowy peaks" },
+  { src: "/images/packages/nepal-mini-trek-7-day/nepal-mini-trek-7-day-03.jpg", caption: "Hikers raising trekking poles above the ridgeline" },
+  { src: "/images/packages/nepal-mini-trek-7-day/nepal-mini-trek-7-day-04.jpg", caption: "Prayer flags and a monastery below snowy peaks" },
+  { src: "/images/packages/nepal-mini-trek-7-day/nepal-mini-trek-7-day-05.jpg", caption: "Sunlit summit above a sea of clouds" },
+];
+
+/** Builds an ordered gallery from a client-supplied package image folder. */
+function localPackageGallery(slug: string, title: string, count: number): GalleryImage[] {
+  return Array.from({ length: count }, (_, index) => ({
+    src: `/images/packages/${slug}/${slug}-${String(index + 1).padStart(2, "0")}.jpg`,
+    caption: `${title} — Photo ${index + 1}`,
+  }));
+}
+
+const BOMBAY_STOPOVER_GALLERY = localPackageGallery("bombay-stopover", "Bombay", 12);
+const DELHI_STOPOVER_GALLERY = localPackageGallery("delhi-stopover", "Delhi", 12);
+const GLIMPSES_OF_KERALA_GALLERY = localPackageGallery("glimpses-of-kerala", "Glimpses of Kerala", 7);
+const KASHMIR_COMBINATIONS_LITTLE_TIBET_GALLERY = localPackageGallery(
+  "kashmir-combinations-little-tibet",
+  "Kashmir Combinations: Little Tibet",
+  14,
+);
+const KASHMIR_SKI_GALLERY = localPackageGallery("kashmir-ski", "Kashmir Ski", 8);
+const SOUTH_INDIA_HIGHLIGHT_GALLERY = localPackageGallery("south-india-highlight", "South India Highlight", 28);
+const VALE_OF_KASHMIR_TREK_GALLERY = localPackageGallery("vale-of-kashmir-trek", "Vale of Kashmir Trek", 11);
+
+const PACKAGE_IMAGES: Record<
+  string,
+  { primary: string; gallery?: GalleryImage[]; galleryOverride?: GalleryImage[] }
+> = {
   // ── Stopovers ──────────────────────────────────────────────────────────
   "delhi-stopover": {
-    primary: pexels("14094276"),
-    gallery: [
-      { src: pexels("30378592"), caption: "India Gate war memorial arch in New Delhi" },
-      { src: pexels("19528132"), caption: "Old Delhi street life and historic lanes" },
-    ],
+    primary: DELHI_STOPOVER_GALLERY[0].src,
+    galleryOverride: DELHI_STOPOVER_GALLERY,
   },
   "bombay-stopover": {
-    primary: pexels("36874536"),
-    gallery: [
-      { src: pexels("28355680"), caption: "Coastal Arabian Sea shoreline near Mumbai" },
-    ],
+    primary: BOMBAY_STOPOVER_GALLERY[0].src,
+    galleryOverride: BOMBAY_STOPOVER_GALLERY,
   },
   "discover-leh": {
     primary: pexels("38087449"),
@@ -171,10 +218,7 @@ const PACKAGE_PEXELS_IMAGES: Record<string, { primary: string; gallery: GalleryI
   },
   "discover-ladakh": {
     primary: pexels("27593915"),
-    gallery: [
-      { src: pexels("38087450"), caption: "Nubra Valley, Ladakh high desert" },
-      { src: pexels("38087449"), caption: "Leh and Ladakh mountain landscape" },
-    ],
+    galleryOverride: DISCOVER_LADAKH_GALLERY,
   },
 
   // ── Images of India ────────────────────────────────────────────────────
@@ -193,11 +237,8 @@ const PACKAGE_PEXELS_IMAGES: Record<string, { primary: string; gallery: GalleryI
     ],
   },
   "glimpses-of-kerala": {
-    primary: pexels("30778230"),
-    gallery: [
-      { src: pexels("17545322"), caption: "Alleppey backwaters houseboat, Kerala" },
-      { src: pexels("36982207"), caption: "Munnar tea gardens, Kerala hill country" },
-    ],
+    primary: GLIMPSES_OF_KERALA_GALLERY[0].src,
+    galleryOverride: GLIMPSES_OF_KERALA_GALLERY,
   },
   "kashmir-package-7-day": {
     primary: pexels("40348598"),
@@ -248,11 +289,8 @@ const PACKAGE_PEXELS_IMAGES: Record<string, { primary: string; gallery: GalleryI
     ],
   },
   "south-india-highlight": {
-    primary: pexels("36982207"),
-    gallery: [
-      { src: pexels("17545322"), caption: "Alleppey backwaters houseboat, Kerala" },
-      { src: pexels("13971395"), caption: "Kerala tropical coastline" },
-    ],
+    primary: SOUTH_INDIA_HIGHLIGHT_GALLERY[0].src,
+    galleryOverride: SOUTH_INDIA_HIGHLIGHT_GALLERY,
   },
 
   // ── Himalayan Expeditions ──────────────────────────────────────────────
@@ -271,11 +309,8 @@ const PACKAGE_PEXELS_IMAGES: Record<string, { primary: string; gallery: GalleryI
     ],
   },
   "kashmir-combinations-little-tibet": {
-    primary: pexels("13927123"),
-    gallery: [
-      { src: pexels("40348598"), caption: "Dal Lake shikara, Srinagar, Kashmir" },
-      { src: pexels("38087449"), caption: "Leh and Ladakh mountain landscape" },
-    ],
+    primary: KASHMIR_COMBINATIONS_LITTLE_TIBET_GALLERY[0].src,
+    galleryOverride: KASHMIR_COMBINATIONS_LITTLE_TIBET_GALLERY,
   },
 
   // ── Mini Trek in Kashmir ───────────────────────────────────────────────
@@ -287,17 +322,12 @@ const PACKAGE_PEXELS_IMAGES: Record<string, { primary: string; gallery: GalleryI
     ],
   },
   "vale-of-kashmir-trek": {
-    primary: pexels("13927123"),
-    gallery: [
-      { src: pexels("18453079"), caption: "Lidder Valley and Pahalgam meadows" },
-      { src: pexels("14487300"), caption: "Sonamarg glacier approach, Kashmir" },
-    ],
+    primary: VALE_OF_KASHMIR_TREK_GALLERY[0].src,
+    galleryOverride: VALE_OF_KASHMIR_TREK_GALLERY,
   },
   "kashmir-ski": {
-    primary: pexels("35672518"),
-    gallery: [
-      { src: pexels("10701431"), caption: "Gulmarg ski slopes and snow-covered hills" },
-    ],
+    primary: KASHMIR_SKI_GALLERY[0].src,
+    galleryOverride: KASHMIR_SKI_GALLERY,
   },
 
   // ── Nepal Adventure ────────────────────────────────────────────────────
@@ -321,39 +351,34 @@ const PACKAGE_PEXELS_IMAGES: Record<string, { primary: string; gallery: GalleryI
     ],
   },
   "nepal-wildlife-safari": {
-    primary: pexels("37654954"),
-    gallery: [
-      { src: pexels("36927764"), caption: "Nepalese temple, Chitwan region" },
-      { src: pexels("13409974"), caption: "Greater one-horned rhino in the sal forest" },
-    ],
+    primary: "/images/packages/nepal-wildlife-safari/nepal-wildlife-safari-01.jpg",
+    galleryOverride: NEPAL_WILDLIFE_SAFARI_GALLERY,
   },
   "nepal-mini-trek-7-day": {
     primary: pexels("32132398"),
-    gallery: [
-      { src: pexels("20988035"), caption: "Kathmandu Valley trekking route" },
-      { src: pexels("28277464"), caption: "Pokhara lakeside and mountain views" },
-    ],
+    galleryOverride: NEPAL_MINI_TREK_7_DAY_GALLERY,
   },
 };
 
 /**
- * Returns the gallery images for a package. Uses per-package Pexels
- * destination photography; falls back to the local brochure image only
- * when no Pexels mapping exists for the package ID.
+ * Returns the gallery images for a package. A `galleryOverride` supplies the
+ * complete gallery (used for user-supplied photography); otherwise the mapped
+ * primary photo is prepended to the per-package gallery. Falls back to the
+ * local package image only when no mapping exists for the package ID.
  */
 export function getPackageGallery(pkg: TravelPackage): GalleryImage[] {
-  const mapping = PACKAGE_PEXELS_IMAGES[pkg.id];
+  const mapping = PACKAGE_IMAGES[pkg.id];
 
   const primarySrc = mapping?.primary ?? `/images/packages/${slugify(pkg.id)}.jpg`;
-  const galleryImages = mapping?.gallery ?? [];
-
-  const images: GalleryImage[] = [
-    {
-      src: primarySrc,
-      caption: `${pkg.title} — Primary route view`,
-    },
-    ...galleryImages,
-  ];
+  const images: GalleryImage[] =
+    mapping?.galleryOverride ??
+    [
+      {
+        src: primarySrc,
+        caption: `${pkg.title} — Primary route view`,
+      },
+      ...(mapping?.gallery ?? []),
+    ];
 
   // Filter unique sources
   const seen = new Set<string>();
@@ -365,9 +390,9 @@ export function getPackageGallery(pkg: TravelPackage): GalleryImage[] {
 }
 
 /**
- * Returns the primary Pexels image URL for a package card thumbnail.
- * Falls back to the local brochure image when no mapping exists.
+ * Returns the primary image URL for a package card thumbnail.
+ * Falls back to the local package image when no mapping exists.
  */
 export function getPackageCardImage(slug: string): string {
-  return PACKAGE_PEXELS_IMAGES[slug]?.primary ?? `/images/packages/${slug}.jpg`;
+  return PACKAGE_IMAGES[slug]?.primary ?? `/images/packages/${slug}.jpg`;
 }

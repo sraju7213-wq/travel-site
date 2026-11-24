@@ -959,3 +959,259 @@
     transform: none;
   }
 }
+
+/* ==========================================================================
+   LIGHT THEME
+   Dark remains the shipped default and is untouched. Tailwind v4 emits its
+   utilities in @layer rules with literal values, so these unlayered overrides
+   win over every utility without having to rewrite the component markup.
+   ========================================================================== */
+[data-theme="light"] {
+  color-scheme: light;
+
+  --background: #f6f2e9;
+  --foreground: #252824;
+
+  /* Brand accents warm up for ivory paper. */
+  --color-wild-orange: #b18a51;
+  --color-wild-orange-hover: #9a7342;
+  --color-wild-orange-dark: #7d5c34;
+  --color-wild-dark: #f6f2e9;
+  --color-wild-darker: #f1ece1;
+  --color-wild-cream: #faf7ef;
+  --color-wild-sand: #6b6558;
+  --color-brass: #b18a51;
+  --color-brass-soft: #d9c7a8;
+  --color-brass-ink: #252824;
+  --color-brass-hover: #9a7342;
+  --color-border: rgba(37, 40, 36, 0.14);
+  --color-focus: #9a7342;
+
+  /* Section rhythm: layered paper tones. */
+  --color-section-hero: #f6f2e9;
+  --color-section-discover: #f1ece1;
+  --color-section-destinations: #f6f2e9;
+  --color-section-journeys: #faf7ef;
+  --color-section-experiences: #f1ece1;
+  --color-section-pillars: #f6f2e9;
+  --color-section-signature: #faf7ef;
+  --color-section-impact: #f1ece1;
+  --color-section-cta: #f6f2e9;
+}
+
+[data-theme="light"] .section-hero {
+  --color-wild-orange: #9a7342;
+  --color-brass: #9a7342;
+  --color-brass-soft: #b18a51;
+}
+
+/* The wordmark is white artwork on transparency — ink it for light paper.
+   next/image rewrites src, so match on the alt text instead. */
+[data-theme="light"] img[alt="India Nepal Travel Center"] {
+  filter: brightness(0) saturate(100%);
+}
+
+/* Keep the header legible when it floats over a dark photographic hero. */
+[data-theme="light"] header {
+  background-color: rgba(246, 242, 233, 0.96);
+  backdrop-filter: blur(10px);
+}
+
+/* The Enquire button keeps a dark label once its surface turns to ivory. */
+[data-theme="light"] .enquire-fill {
+  color: #252824;
+}
+
+/* These component classes bake white text/borders into @apply, so the
+   utility-level rules above cannot reach them. */
+[data-theme="light"] .btn-ghost-dark,
+[data-theme="light"] .btn-tertiary {
+  color: #252824;
+  border-color: rgba(37, 40, 36, 0.3);
+}
+
+[data-theme="light"] .btn-ghost-dark:hover,
+[data-theme="light"] .btn-tertiary:hover {
+  color: #9a7342;
+  border-color: #9a7342;
+}
+
+/* Shell and section-level text (the @apply'd `text-white` inside these classes). */
+[data-theme="light"] body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+[data-theme="light"] :is(
+  .section-dark, .section-darker, .section-hero, .section-discover,
+  .section-destinations, .section-journeys, .section-experiences,
+  .section-pillars, .section-signature, .section-impact, .section-cta
+) {
+  color: var(--foreground);
+}
+
+/* Text utilities. Base first, then the opacity tiers refine it. */
+[data-theme="light"] [class*="text-white"] { color: #252824; }
+[data-theme="light"] [class*="text-white/90"] { color: rgba(37, 40, 36, 0.9); }
+[data-theme="light"] [class*="text-white/85"] { color: rgba(37, 40, 36, 0.85); }
+[data-theme="light"] [class*="text-white/80"] { color: rgba(37, 40, 36, 0.8); }
+[data-theme="light"] [class*="text-white/75"] { color: rgba(37, 40, 36, 0.75); }
+[data-theme="light"] [class*="text-white/70"] { color: rgba(37, 40, 36, 0.72); }
+[data-theme="light"] [class*="text-white/65"] { color: rgba(37, 40, 36, 0.66); }
+[data-theme="light"] [class*="text-white/60"] { color: rgba(37, 40, 36, 0.62); }
+[data-theme="light"] [class*="text-white/55"] { color: rgba(37, 40, 36, 0.58); }
+[data-theme="light"] [class*="text-white/50"] { color: rgba(37, 40, 36, 0.54); }
+[data-theme="light"] [class*="text-white/45"] { color: rgba(37, 40, 36, 0.5); }
+[data-theme="light"] [class*="text-white/40"] { color: rgba(37, 40, 36, 0.46); }
+
+[data-theme="light"] [class*="text-brass-soft"] { color: #8a6b3e; }
+[data-theme="light"] [class*="text-brass"] { color: #9a7342; }
+[data-theme="light"] [class*="text-wild-orange"] { color: #985c3d; }
+[data-theme="light"] [class*="text-wild-sand"] { color: #6b6558; }
+[data-theme="light"] :is(
+  [class*="text-[#0C1617]"], [class*="text-[#F5F2EB]"], [class*="text-[#0c1617]"]
+) { color: var(--foreground); }
+
+/* Borders and translucent surfaces become ink-on-paper equivalents. */
+[data-theme="light"] [class*="border-white"] { border-color: rgba(37, 40, 36, 0.16); }
+[data-theme="light"] [class*="border-white/10"] { border-color: rgba(37, 40, 36, 0.12); }
+[data-theme="light"] [class*="border-white/15"] { border-color: rgba(37, 40, 36, 0.16); }
+[data-theme="light"] [class*="border-white/20"] { border-color: rgba(37, 40, 36, 0.2); }
+[data-theme="light"] [class*="border-white/25"] { border-color: rgba(37, 40, 36, 0.26); }
+[data-theme="light"] [class*="border-white/30"] { border-color: rgba(37, 40, 36, 0.3); }
+[data-theme="light"] [class*="border-brass"] { border-color: #b18a51; }
+
+[data-theme="light"] [class*="bg-white"] { background-color: #ffffff; }
+[data-theme="light"] [class*="bg-white/5"] { background-color: rgba(37, 40, 36, 0.035); }
+[data-theme="light"] [class*="bg-white/10"] { background-color: rgba(37, 40, 36, 0.05); }
+[data-theme="light"] [class*="bg-white/20"] { background-color: rgba(37, 40, 36, 0.08); }
+/* Arbitrary bracket opacities (bg-white/[0.03]) must not fall through to the
+   solid-white rule above — they are meant to be barely-there surfaces. */
+[data-theme="light"] [class*="bg-white/["] { background-color: rgba(37, 40, 36, 0.035); }
+[data-theme="light"] [class*="bg-black/25"] { background-color: rgba(37, 40, 36, 0.06); }
+[data-theme="light"] [class*="bg-black/30"] { background-color: rgba(255, 255, 255, 0.7); }
+[data-theme="light"] [class*="placeholder:text-white"]::placeholder { color: rgba(37, 40, 36, 0.5); }
+
+[data-theme="light"] :is(
+  [class*="bg-[#0C1617]"], [class*="bg-[#0c1617]"], [class*="bg-[#0E1819]"],
+  [class*="bg-[#0e181a]"], [class*="bg-[#101b1d]"], [class*="bg-[#132325]"],
+  [class*="bg-[#121B20]"], [class*="bg-[#0A1213]"], [class*="bg-[#101F21]"]
+) { background-color: #faf7ef; }
+
+[data-theme="light"] [class*="scrollbar-color"] {
+  scrollbar-color: rgba(37, 40, 36, 0.25) transparent;
+}
+
+/* Photography surfaces stay dark: white captions over image gradients remain
+   readable, so they are exempt from the global text remap above. */
+[data-theme="light"] :is(
+  [data-theme-surface="dark"], [class*="group/photo"], [class*="jy-orbit"],
+  [class*="jy-orbit-card"], [class*="swiper"], [class*="bg-[#121B20]"],
+  [class*="pkg-flip"], [class*="md-card"], [class*="section-hero"],
+  [class*="section-cta"], [class*="card-elevated"], [class*="bg-black"],
+  [class*="from-[#071213]"], [class*="from-[#090E10]"]
+) [class*="text-white"] { color: #fff; }
+
+/* Brass labels on those same dark photography surfaces stay light. */
+[data-theme="light"] [data-theme-surface="dark"] [class*="text-brass"] {
+  color: #d9c7a8;
+}
+
+/* A warm, lighter scrim on journey posters in light mode; captions stay white. */
+[data-theme="light"] [class*="from-[#090E10]"] {
+  background-image: linear-gradient(
+    to top,
+    rgba(18, 27, 32, 0.82) 0%,
+    rgba(18, 27, 32, 0.42) 50%,
+    transparent 100%
+  );
+}
+
+/* The swipe hint sits on the ivory catalogue, not on a photo — keep it dark. */
+[data-theme="light"] [data-theme-surface="light"],
+[data-theme="light"] [data-theme-surface="light"] [class*="text-white"] {
+  color: rgba(37, 40, 36, 0.62) !important;
+}
+
+[data-theme="light"] [data-theme-surface="light"] kbd {
+  color: rgba(37, 40, 36, 0.75);
+  border-color: rgba(37, 40, 36, 0.22);
+  background-color: rgba(37, 40, 36, 0.05);
+}
+
+/* Journey rail headings are hard-coded pale in journeys.css — remap for paper. */
+[data-theme="light"] :is(.jy-section-title, .jy-head-title, .jy-head-link) {
+  color: #252824;
+}
+
+[data-theme="light"] .jy-head-intro {
+  color: rgba(37, 40, 36, 0.7);
+}
+
+[data-theme="light"] .jy-head-link {
+  border-bottom-color: rgba(154, 115, 66, 0.5);
+}
+
+/* Carousel arrows sit on ivory paper in light mode, so they need ink icons. */
+[data-theme="light"] button[data-theme-control="light"],
+[data-theme="light"] .jy-spot-arrow {
+  /* !important beats the photo-surface rule that keeps card captions white. */
+  color: var(--foreground) !important;
+  background-color: #ffffff !important;
+  border-color: rgba(37, 40, 36, 0.2) !important;
+  box-shadow: 0 2px 12px rgba(37, 40, 36, 0.12);
+}
+
+[data-theme="light"] button[data-theme-control="light"]:hover,
+[data-theme="light"] .jy-spot-arrow:hover {
+  color: #9a7342 !important;
+  border-color: #9a7342 !important;
+  background-color: #faf7ef !important;
+}
+
+/* Enquiry form fields use bg-black/40 scrims that would read as grey on paper. */
+[data-theme="light"] input[class*="bg-black/"],
+[data-theme="light"] textarea[class*="bg-black/"],
+[data-theme="light"] button[class*="bg-black/"][aria-haspopup] {
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+[data-theme="light"] input[class*="bg-black/"]:focus,
+[data-theme="light"] textarea[class*="bg-black/"]:focus {
+  background-color: #ffffff;
+}
+
+/* A select trigger's bg-black class trips the photo-caption exemption above. */
+[data-theme="light"] [aria-haspopup="listbox"] [class*="text-white"] {
+  color: var(--foreground) !important;
+}
+
+/* Status labels need paper-safe contrast. */
+[data-theme="light"] [class*="text-emerald-400"] { color: #1f6b4f; }
+[data-theme="light"] [class*="text-amber-300"] { color: #8a5a00; }
+
+/* Controls that sit on dark photography keep their light treatment. */
+[data-theme="light"] [data-theme-control="dark"] {
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.45);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Modern journeys catalogue — modern.css hardcodes a dark surface. Only the
+   catalogue area is remapped; the photo hero above keeps its white copy. */
+[data-theme="light"] #modern-catalogue.md-catalogue {
+  background: var(--background);
+  border-top-color: rgba(37, 40, 36, 0.12);
+}
+
+[data-theme="light"] #modern-catalogue .md-eyebrow {
+  color: rgba(37, 40, 36, 0.7);
+}
+
+[data-theme="light"] #modern-catalogue .md-catalogue__title {
+  color: var(--foreground);
+}
+
+[data-theme="light"] #modern-catalogue .md-catalogue__count {
+  color: rgba(37, 40, 36, 0.62);
+}

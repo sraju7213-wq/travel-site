@@ -1,7 +1,8 @@
 # Image sources
 
-Every raster in this directory was cropped from `Brochure.pdf` — the organisation's
-own published brochure. No third-party or reference-site imagery is used.
+Brochure-derived rasters in this directory were cropped from `Brochure.pdf` — the
+organisation's own published brochure. Client-supplied photography and licensed
+Pexels images are documented in their respective sections below.
 
 The one-off extraction script is **not vendored** in this checkout, so the table below
 is the record of provenance. The brochure text extracted for transcription lives at
@@ -47,28 +48,21 @@ contact sheets are in `docs/evidence/`. Re-crop by hand against the rectangles b
 
 | File | Primary Destination & Scene | Master High-Res Source |
 |---|---|---|
-| `images/packages/delhi-stopover.jpg` | Delhi Historic Monument / Qutub Minar | `destinations/delhi-monument.jpg` |
-| `images/packages/bombay-stopover.jpg` | Gateway of India, Mumbai Harbour | `destinations/gateway-of-india.jpg` |
 | `images/packages/discover-leh.jpg` | Leh / Ladakh High-Altitude Monastery in Snow | `destinations/ladakh.png` |
 | `images/packages/kathmandu-stopover.jpg` | Sacred Boudhanath Stupa in Kathmandu | `destinations/kathmandu-stupa.jpg` |
 | `images/packages/kathmandu-pokhara.jpg` | Phewa Lake & Mountain Peaks in Pokhara | `destinations/pokhara-lake.jpg` |
 | `images/packages/discover-ladakh.jpg` | Pangong Tso Lake & High Himalayan Passes | `hero/hero-pangong.jpg` |
 | `images/packages/golden-triangle.jpg` | Taj Mahal Marble Dome with Water Reflection | `destinations/taj-mahal-reflection.png` |
 | `images/packages/glorious-goa-stopover.jpg` | Goa Palms & Golden Coastal Sunset | `destinations/goa.png` |
-| `images/packages/glimpses-of-kerala.jpg` | Kerala Backwaters Waterway & Coconut Palms | `destinations/kerala.png` |
 | `images/packages/kashmir-package-7-day.jpg` | Kashmir Dal Lake with Shikara and Snowy Peaks | `destinations/kashmir.png` |
 | `images/packages/kashmir-package-4-day.jpg` | Dal Lake Floating Markets & Morning Shikaras | `destinations/kashmir-dal-lake-fruit-boat.jpg` |
 | `images/packages/delhi-to-kathmandu.jpg` | Varanasi Ganges Riverfront & Sacred Ghats | `destinations/varanasi.png` |
 | `images/packages/heritage-tour-india.jpg` | Rajasthan Desert Fort & Thar Landscape | `destinations/rajasthan.png` |
 | `images/packages/north-india-highlights.jpg` | Jaipur Amber Fort & Aravalli Hills | `hero/hero-amber-fort.jpg` |
 | `images/packages/india-nepal-combination.jpg` | Rajput Palace Architectural Stonework | `destinations/amber-fort-detail.jpg` |
-| `images/packages/south-india-highlight.jpg` | South India Tropical Waterways & Palms | `destinations/south-india-backwaters.jpg` |
 | `images/packages/markha-valley.jpg` | High Pass Expedition Trekking in Nubra/Markha | `experiences/himalayan-trekking-nubra.jpg` |
 | `images/packages/kashmir-zanskar-ladakh-trek.jpg` | Zanskar River Gorge & Alpine Valley | `destinations/zanskar-river.jpg` |
-| `images/packages/kashmir-combinations-little-tibet.jpg` | Ancient Tibetan Buddhist Stone Carving | `destinations/buddhist-statue.jpg` |
 | `images/packages/kashmir-mini-adventure.jpg` | Lush Green Alpine Valley & Lakes of Kashmir | `destinations/green-valley.jpg` |
-| `images/packages/vale-of-kashmir-trek.jpg` | Lidderwat Valley & Mountain Meadows | `destinations/vale-trek.jpg` |
-| `images/packages/kashmir-ski.jpg` | High-Altitude Snowy Ski Trails & Winter Pines | `destinations/snow-trek.jpg` |
 | `images/packages/himalayan-combination-nepal.jpg` | Annapurna Mountain Range Sunrise Peaks | `destinations/contact.jpg` |
 | `images/packages/trisuli-rafting.jpg` | Whitewater Rafting on the Trisuli River Rapids | `destinations/rafting.jpg` |
 | `images/packages/nepal-mini-trek-4-day.jpg` | Kathmandu Valley & Nagarkot Trail Walk | `destinations/nepal-trek.jpg` |
@@ -121,6 +115,200 @@ contact sheets are in `docs/evidence/`. Re-crop by hand against the rectangles b
 |---|---|---|
 | `images/hero/orbit-gulmarg-landscape.jpg` | Serene mountain landscape, Gulmarg | Pexels 29676602 |
 
+## Discover Ladakh gallery (client-supplied photography)
+
+These five photos replace the previous Pexels gallery on the Discover Ladakh
+detail page. They were supplied by the client in the folder
+`C:\Users\pc\Downloads\gg\Discover ladakh` and copied verbatim (no crops or
+colour edits). File numbers below are the original names. The package card and
+hero still use its existing Pexels primary image.
+
+| File | Original file | Description |
+|---|---|---|
+| `images/packages/discover-ladakh/discover-ladakh-01.jpg` | `26002.jpg` | High mountain valley and sandy riverbed |
+| `images/packages/discover-ladakh/discover-ladakh-02.jpg` | `26003.jpg` | Mountain road through the high-altitude landscape |
+| `images/packages/discover-ladakh/discover-ladakh-03.jpg` | `26004.jpg` | Rider on a rocky hillside trail |
+| `images/packages/discover-ladakh/discover-ladakh-04.jpg` | `26005.jpg` | White stupas beside the mountain road |
+| `images/packages/discover-ladakh/discover-ladakh-05.jpg` | `26006.jpg` | White building complex on a rocky ridge |
+
+## 7 Day Nepal Mini Trek gallery (client-supplied photography)
+
+These five photos replace the previous Pexels gallery on the 7 Day Nepal Mini
+Trek detail page. They were supplied by the client in the folder
+`C:\Users\pc\Downloads\gg\Nepal 7 days trek` and copied verbatim (no crops or
+colour edits). File numbers below are the original names. The package card and
+hero still use its existing Pexels primary image.
+
+| File | Original file | Description |
+|---|---|---|
+| `images/packages/nepal-mini-trek-7-day/nepal-mini-trek-7-day-01.jpg` | `25995.jpg` | Mountain peak above a hillside settlement |
+| `images/packages/nepal-mini-trek-7-day/nepal-mini-trek-7-day-02.jpg` | `25996.jpg` | Trekker with poles facing snowy peaks |
+| `images/packages/nepal-mini-trek-7-day/nepal-mini-trek-7-day-03.jpg` | `25997.jpg` | Hikers raising trekking poles above the ridgeline |
+| `images/packages/nepal-mini-trek-7-day/nepal-mini-trek-7-day-04.jpg` | `25998.jpg` | Prayer flags and a monastery below snowy peaks |
+| `images/packages/nepal-mini-trek-7-day/nepal-mini-trek-7-day-05.jpg` | `25999.jpg` | Sunlit summit above a sea of clouds |
+
+## Nepal Wildlife Safari images (client-supplied photography)
+
+These five photos replace the previous Pexels primary image and gallery on the
+Nepal Wildlife Safari page. They were supplied by the client in the folder
+`C:\Users\pc\Downloads\gg\wild life nepal` and copied verbatim (no crops or
+colour edits). File numbers below are the original names. The first photo is
+also the card, hero, carousel and enquiry-card image for the package.
+
+| File | Original file | Description |
+|---|---|---|
+| `images/packages/nepal-wildlife-safari/nepal-wildlife-safari-01.jpg` | `25987.jpg` | Trekkers passing prayer flags on a stone trail |
+| `images/packages/nepal-wildlife-safari/nepal-wildlife-safari-02.jpg` | `25988.jpg` | Town and mountain ridges seen through prayer flags |
+| `images/packages/nepal-wildlife-safari/nepal-wildlife-safari-03.jpg` | `25989.jpg` | Golden shrine below snow-covered mountains |
+| `images/packages/nepal-wildlife-safari/nepal-wildlife-safari-04.jpg` | `25990.jpg` | Mountain peak above a hillside settlement |
+| `images/packages/nepal-wildlife-safari/nepal-wildlife-safari-05.jpg` | `25991.jpg` | Nepal flag against snowy mountain slopes |
+
+## Client-supplied package image batches
+
+These 92 photos were supplied in package-named folders under
+`C:\Users\pc\Downloads\india nepal travel..1\Download` and copied unchanged
+into the matching package folders. Numbering follows the original filename
+order. Photo 01 in each folder is the package card, hero, carousel and
+enquiry-card image; every photo also appears in the detail-page gallery.
+Gallery captions are neutral sequence labels and make no itinerary claims.
+
+| Package | Source folder | Photos | Primary |
+|---|---|---:|---|
+| `bombay-stopover` | `Bombay` | 12 | `images/packages/bombay-stopover/bombay-stopover-01.jpg` |
+| `delhi-stopover` | `Delhi` | 12 | `images/packages/delhi-stopover/delhi-stopover-01.jpg` |
+| `glimpses-of-kerala` | `Glimpses of Kerala` | 7 | `images/packages/glimpses-of-kerala/glimpses-of-kerala-01.jpg` |
+| `kashmir-combinations-little-tibet` | `Kashmir combination little tibet` | 14 | `images/packages/kashmir-combinations-little-tibet/kashmir-combinations-little-tibet-01.jpg` |
+| `kashmir-ski` | `Kashmir ski` | 8 | `images/packages/kashmir-ski/kashmir-ski-01.jpg` |
+| `south-india-highlight` | `South Indian highlights` | 28 | `images/packages/south-india-highlight/south-india-highlight-01.jpg` |
+| `vale-of-kashmir-trek` | `Valley of kashmir trek` | 11 | `images/packages/vale-of-kashmir-trek/vale-of-kashmir-trek-01.jpg` |
+
+### Bombay → `bombay-stopover`
+
+| File | Original file | Dimensions |
+|---|---|---|
+| `images/packages/bombay-stopover/bombay-stopover-01.jpg` | `26335.jpg` | 2048x1365 |
+| `images/packages/bombay-stopover/bombay-stopover-02.jpg` | `26336.jpg` | 2048x1564 |
+| `images/packages/bombay-stopover/bombay-stopover-03.jpg` | `26337.jpg` | 2048x985 |
+| `images/packages/bombay-stopover/bombay-stopover-04.jpg` | `26338.jpg` | 2048x1365 |
+| `images/packages/bombay-stopover/bombay-stopover-05.jpg` | `26339.jpg` | 2048x1365 |
+| `images/packages/bombay-stopover/bombay-stopover-06.jpg` | `26340.jpg` | 2048x1361 |
+| `images/packages/bombay-stopover/bombay-stopover-07.jpg` | `26341.jpg` | 2048x1365 |
+| `images/packages/bombay-stopover/bombay-stopover-08.jpg` | `26342.jpg` | 2048x1536 |
+| `images/packages/bombay-stopover/bombay-stopover-09.jpg` | `26343.jpg` | 2048x1536 |
+| `images/packages/bombay-stopover/bombay-stopover-10.jpg` | `26344.jpg` | 2048x1535 |
+| `images/packages/bombay-stopover/bombay-stopover-11.jpg` | `26345.jpg` | 2048x1365 |
+| `images/packages/bombay-stopover/bombay-stopover-12.jpg` | `26346.jpg` | 2048x1366 |
+
+### Delhi → `delhi-stopover`
+
+| File | Original file | Dimensions |
+|---|---|---|
+| `images/packages/delhi-stopover/delhi-stopover-01.jpg` | `26368.jpg` | 2048x1365 |
+| `images/packages/delhi-stopover/delhi-stopover-02.jpg` | `26369.jpg` | 2048x1280 |
+| `images/packages/delhi-stopover/delhi-stopover-03.jpg` | `26370.jpg` | 2048x1461 |
+| `images/packages/delhi-stopover/delhi-stopover-04.jpg` | `26371.jpg` | 2048x1356 |
+| `images/packages/delhi-stopover/delhi-stopover-05.jpg` | `26372.jpg` | 2048x1152 |
+| `images/packages/delhi-stopover/delhi-stopover-06.jpg` | `26373.jpg` | 2048x1365 |
+| `images/packages/delhi-stopover/delhi-stopover-07.jpg` | `26374.jpg` | 2048x1365 |
+| `images/packages/delhi-stopover/delhi-stopover-08.jpg` | `26375.jpg` | 2048x1363 |
+| `images/packages/delhi-stopover/delhi-stopover-09.jpg` | `26376.jpg` | 1638x2048 |
+| `images/packages/delhi-stopover/delhi-stopover-10.jpg` | `26377.jpg` | 2048x1365 |
+| `images/packages/delhi-stopover/delhi-stopover-11.jpg` | `26378.jpg` | 2048x1152 |
+| `images/packages/delhi-stopover/delhi-stopover-12.jpg` | `26379.jpg` | 2048x1365 |
+
+### Glimpses of Kerala → `glimpses-of-kerala`
+
+| File | Original file | Dimensions |
+|---|---|---|
+| `images/packages/glimpses-of-kerala/glimpses-of-kerala-01.jpg` | `26388.jpg` | 2048x1536 |
+| `images/packages/glimpses-of-kerala/glimpses-of-kerala-02.jpg` | `26389.jpg` | 2048x1365 |
+| `images/packages/glimpses-of-kerala/glimpses-of-kerala-03.jpg` | `26390.jpg` | 2048x1365 |
+| `images/packages/glimpses-of-kerala/glimpses-of-kerala-04.jpg` | `26391.jpg` | 1536x2048 |
+| `images/packages/glimpses-of-kerala/glimpses-of-kerala-05.jpg` | `26392.jpg` | 2048x1536 |
+| `images/packages/glimpses-of-kerala/glimpses-of-kerala-06.jpg` | `26393.jpg` | 2048x1367 |
+| `images/packages/glimpses-of-kerala/glimpses-of-kerala-07.jpg` | `26395.jpg` | 2048x1361 |
+
+### Kashmir combination little tibet → `kashmir-combinations-little-tibet`
+
+| File | Original file | Dimensions |
+|---|---|---|
+| `images/packages/kashmir-combinations-little-tibet/kashmir-combinations-little-tibet-01.jpg` | `26398.jpg` | 2048x1365 |
+| `images/packages/kashmir-combinations-little-tibet/kashmir-combinations-little-tibet-02.jpg` | `26399.jpg` | 2048x1367 |
+| `images/packages/kashmir-combinations-little-tibet/kashmir-combinations-little-tibet-03.jpg` | `26400.jpg` | 2048x1365 |
+| `images/packages/kashmir-combinations-little-tibet/kashmir-combinations-little-tibet-04.jpg` | `26401.jpg` | 2048x1536 |
+| `images/packages/kashmir-combinations-little-tibet/kashmir-combinations-little-tibet-05.jpg` | `26402.jpg` | 2048x1347 |
+| `images/packages/kashmir-combinations-little-tibet/kashmir-combinations-little-tibet-06.jpg` | `26403.jpg` | 2048x1365 |
+| `images/packages/kashmir-combinations-little-tibet/kashmir-combinations-little-tibet-07.jpg` | `26404.jpg` | 2048x1536 |
+| `images/packages/kashmir-combinations-little-tibet/kashmir-combinations-little-tibet-08.jpg` | `26405.jpg` | 1638x2048 |
+| `images/packages/kashmir-combinations-little-tibet/kashmir-combinations-little-tibet-09.jpg` | `26406.jpg` | 1536x2048 |
+| `images/packages/kashmir-combinations-little-tibet/kashmir-combinations-little-tibet-10.jpg` | `26407.jpg` | 2048x1365 |
+| `images/packages/kashmir-combinations-little-tibet/kashmir-combinations-little-tibet-11.jpg` | `26408.jpg` | 2048x1370 |
+| `images/packages/kashmir-combinations-little-tibet/kashmir-combinations-little-tibet-12.jpg` | `26409.jpg` | 2048x1536 |
+| `images/packages/kashmir-combinations-little-tibet/kashmir-combinations-little-tibet-13.jpg` | `26410.jpg` | 2048x1368 |
+| `images/packages/kashmir-combinations-little-tibet/kashmir-combinations-little-tibet-14.jpg` | `26411.jpg` | 2048x1364 |
+
+### Kashmir ski → `kashmir-ski`
+
+| File | Original file | Dimensions |
+|---|---|---|
+| `images/packages/kashmir-ski/kashmir-ski-01.jpg` | `26291.jpg` | 2048x1365 |
+| `images/packages/kashmir-ski/kashmir-ski-02.jpg` | `26294.jpg` | 2048x1365 |
+| `images/packages/kashmir-ski/kashmir-ski-03.jpg` | `26295.jpg` | 2048x1365 |
+| `images/packages/kashmir-ski/kashmir-ski-04.jpg` | `26297.jpg` | 2048x1613 |
+| `images/packages/kashmir-ski/kashmir-ski-05.jpg` | `26298.jpg` | 2048x1131 |
+| `images/packages/kashmir-ski/kashmir-ski-06.jpg` | `26299.jpg` | 2048x1365 |
+| `images/packages/kashmir-ski/kashmir-ski-07.jpg` | `26300.jpg` | 2048x1367 |
+| `images/packages/kashmir-ski/kashmir-ski-08.jpg` | `26301.jpg` | 2048x1365 |
+
+### South Indian highlights → `south-india-highlight`
+
+| File | Original file | Dimensions |
+|---|---|---|
+| `images/packages/south-india-highlight/south-india-highlight-01.jpg` | `26244.jpg` | 2048x1150 |
+| `images/packages/south-india-highlight/south-india-highlight-02.jpg` | `26245.jpg` | 2048x1365 |
+| `images/packages/south-india-highlight/south-india-highlight-03.jpg` | `26246.jpg` | 2048x1364 |
+| `images/packages/south-india-highlight/south-india-highlight-04.jpg` | `26247.jpg` | 2048x1152 |
+| `images/packages/south-india-highlight/south-india-highlight-05.jpg` | `26248.jpg` | 2048x1365 |
+| `images/packages/south-india-highlight/south-india-highlight-06.jpg` | `26249.jpg` | 2048x1365 |
+| `images/packages/south-india-highlight/south-india-highlight-07.jpg` | `26250.jpg` | 2048x1362 |
+| `images/packages/south-india-highlight/south-india-highlight-08.jpg` | `26251.jpg` | 2048x1367 |
+| `images/packages/south-india-highlight/south-india-highlight-09.jpg` | `26252.jpg` | 2048x1365 |
+| `images/packages/south-india-highlight/south-india-highlight-10.jpg` | `26253.jpg` | 2048x1365 |
+| `images/packages/south-india-highlight/south-india-highlight-11.jpg` | `26254.jpg` | 2048x1480 |
+| `images/packages/south-india-highlight/south-india-highlight-12.jpg` | `26256.jpg` | 2048x1536 |
+| `images/packages/south-india-highlight/south-india-highlight-13.jpg` | `26257.jpg` | 2048x1071 |
+| `images/packages/south-india-highlight/south-india-highlight-14.jpg` | `26258.jpg` | 2048x1366 |
+| `images/packages/south-india-highlight/south-india-highlight-15.jpg` | `26259.jpg` | 2048x1536 |
+| `images/packages/south-india-highlight/south-india-highlight-16.jpg` | `26260.jpg` | 2048x1536 |
+| `images/packages/south-india-highlight/south-india-highlight-17.jpg` | `26261.jpg` | 2048x1536 |
+| `images/packages/south-india-highlight/south-india-highlight-18.jpg` | `26262.jpg` | 2048x1365 |
+| `images/packages/south-india-highlight/south-india-highlight-19.jpg` | `26264.jpg` | 2048x1150 |
+| `images/packages/south-india-highlight/south-india-highlight-20.jpg` | `26265.jpg` | 2048x1365 |
+| `images/packages/south-india-highlight/south-india-highlight-21.jpg` | `26267.jpg` | 2048x1536 |
+| `images/packages/south-india-highlight/south-india-highlight-22.jpg` | `26269.jpg` | 2048x1910 |
+| `images/packages/south-india-highlight/south-india-highlight-23.jpg` | `26272.jpg` | 1638x2048 |
+| `images/packages/south-india-highlight/south-india-highlight-24.jpg` | `26273.jpg` | 2048x1365 |
+| `images/packages/south-india-highlight/south-india-highlight-25.jpg` | `26274.jpg` | 2048x1365 |
+| `images/packages/south-india-highlight/south-india-highlight-26.jpg` | `26275.jpg` | 2048x1365 |
+| `images/packages/south-india-highlight/south-india-highlight-27.jpg` | `26276.jpg` | 2048x1431 |
+| `images/packages/south-india-highlight/south-india-highlight-28.jpg` | `26277.jpg` | 2048x1536 |
+
+### Valley of kashmir trek → `vale-of-kashmir-trek`
+
+| File | Original file | Dimensions |
+|---|---|---|
+| `images/packages/vale-of-kashmir-trek/vale-of-kashmir-trek-01.jpg` | `26280.jpg` | 2048x1365 |
+| `images/packages/vale-of-kashmir-trek/vale-of-kashmir-trek-02.jpg` | `26281.jpg` | 2048x1365 |
+| `images/packages/vale-of-kashmir-trek/vale-of-kashmir-trek-03.jpg` | `26282.jpg` | 2048x1072 |
+| `images/packages/vale-of-kashmir-trek/vale-of-kashmir-trek-04.jpg` | `26283.jpg` | 2048x1152 |
+| `images/packages/vale-of-kashmir-trek/vale-of-kashmir-trek-05.jpg` | `26284.jpg` | 2048x1536 |
+| `images/packages/vale-of-kashmir-trek/vale-of-kashmir-trek-06.jpg` | `26285.jpg` | 2048x1365 |
+| `images/packages/vale-of-kashmir-trek/vale-of-kashmir-trek-07.jpg` | `26286.jpg` | 2048x1536 |
+| `images/packages/vale-of-kashmir-trek/vale-of-kashmir-trek-08.jpg` | `26287.jpg` | 2048x1536 |
+| `images/packages/vale-of-kashmir-trek/vale-of-kashmir-trek-09.jpg` | `26288.jpg` | 2048x1365 |
+| `images/packages/vale-of-kashmir-trek/vale-of-kashmir-trek-10.jpg` | `26289.jpg` | 2048x1365 |
+| `images/packages/vale-of-kashmir-trek/vale-of-kashmir-trek-11.jpg` | `26290.jpg` | 2048x1152 |
+
 ## Pexels Package Photography (replaces brochure crops)
 
 Package thumbnails, package detail galleries, destination cards, experience cards,
@@ -142,33 +330,33 @@ listed in §9a of `docs/image-sources.md`.
 
 | Package | Primary image (card + hero) | Gallery images |
 |---------|----------------------------|----------------|
-| delhi-stopover | Red Fort | India Gate, Old Delhi |
-| bombay-stopover | Gateway of India | Coastal shoreline |
+| delhi-stopover | Client-supplied local photo (see "Client-supplied package image batches") | 12 client-supplied photos |
+| bombay-stopover | Client-supplied local photo (see "Client-supplied package image batches") | 12 client-supplied photos |
 | discover-leh | Leh / Ladakh mountains | Nubra Valley |
 | kathmandu-stopover | Kathmandu | Nepal temple, Himalayas |
 | kathmandu-pokhara | Pokhara | Kathmandu, Himalayas |
-| discover-ladakh | Pangong Lake | Nubra Valley, Leh / Ladakh |
+| discover-ladakh | Pangong Lake | 5 user-supplied photos (see "Discover Ladakh gallery" above) |
 | golden-triangle | Taj Mahal | Amber Fort, Red Fort, India Gate |
 | glorious-goa-stopover | Goa beach | Goa beaches |
-| glimpses-of-kerala | Kerala backwaters | Alleppey, Munnar |
+| glimpses-of-kerala | Client-supplied local photo (see "Client-supplied package image batches") | 7 client-supplied photos |
 | kashmir-package-7-day | Dal Lake | Gulmarg, Sonamarg, Pahalgam |
 | kashmir-package-4-day | Srinagar | Kashmir valley, Dal Lake |
 | delhi-to-kathmandu | Taj Mahal | Varanasi ghats, Kathmandu |
 | heritage-tour-india | Jaisalmer Fort | Amber Fort, Taj Mahal, Udaipur |
 | north-india-highlights | Taj Mahal | Udaipur, Dal Lake, Pangong Lake |
 | india-nepal-combination | Taj Mahal | Varanasi ghats, Kathmandu, Udaipur |
-| south-india-highlight | Munnar tea gardens | Alleppey, Kerala coast |
+| south-india-highlight | Client-supplied local photo (see "Client-supplied package image batches") | 28 client-supplied photos |
 | markha-valley | Leh / Ladakh mountains | Nubra Valley, Pangong Lake |
 | kashmir-zanskar-ladakh-trek | Pangong Lake | Dal Lake, Ladakh mountains |
-| kashmir-combinations-little-tibet | Pahalgam | Dal Lake, Ladakh mountains |
+| kashmir-combinations-little-tibet | Client-supplied local photo (see "Client-supplied package image batches") | 14 client-supplied photos |
 | kashmir-mini-adventure | Sonamarg | Kashmir valley, Gulmarg |
-| vale-of-kashmir-trek | Pahalgam | Lidder Valley, Sonamarg |
-| kashmir-ski | Gulmarg snowy | Gulmarg ski slopes |
+| vale-of-kashmir-trek | Client-supplied local photo (see "Client-supplied package image batches") | 11 client-supplied photos |
+| kashmir-ski | Client-supplied local photo (see "Client-supplied package image batches") | 8 client-supplied photos |
 | himalayan-combination-nepal | Pokhara | Himalayas, rhinoceros |
 | trisuli-rafting | Himalayas | Kathmandu |
 | nepal-mini-trek-4-day | Nepal mountain | Kathmandu Valley |
-| nepal-wildlife-safari | Rhinoceros | Nepal temple, rhino in the sal forest |
-| nepal-mini-trek-7-day | Himalayas | Kathmandu Valley, Pokhara |
+| nepal-wildlife-safari | Client-supplied local photo (see "Nepal Wildlife Safari images" above) | 5 client-supplied photos (same section) |
+| nepal-mini-trek-7-day | Himalayas | 5 user-supplied photos (see "7 Day Nepal Mini Trek gallery" above) |
 
 ## Brand logo (`app/public/logo.png`)
 

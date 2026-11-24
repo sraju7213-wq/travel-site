@@ -14,7 +14,7 @@ interface PackageCardProps {
 export default function PackageCard({ pkg, compact = false }: PackageCardProps) {
   const [imageError, setImageError] = useState(false);
 
-  // Use the per-package Pexels image mapping for destination-accurate cards.
+  // Use the shared per-package image mapping for cards and related thumbnails.
   const cardImage = getPackageCardImage(pkg.slug);
 
   // Show the places a journey actually goes, rather than the country heading.
@@ -61,7 +61,7 @@ export default function PackageCard({ pkg, compact = false }: PackageCardProps) 
                   alt={pkg.title}
                   fill
                   sizes="(min-width: 1280px) 320px, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  quality={90}
+                  quality={75}
                   className="object-cover transition-transform duration-700 ease-out group-hover/card:scale-[1.06]"
                   onError={() => setImageError(true)}
                   loading="lazy"

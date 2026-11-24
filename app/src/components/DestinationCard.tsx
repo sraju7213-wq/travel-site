@@ -48,7 +48,7 @@ export default function DestinationCard({
             alt={pkg.title}
             fill
             sizes="(min-width: 1024px) 400px, 100vw"
-            quality={90}
+            quality={75}
             className="object-cover object-[center_center] transition-transform duration-700 ease-out group-hover:scale-[1.04]"
             priority={compact === false}
           />

@@ -26,11 +26,14 @@ interface PackageHeroProps {
 export default function PackageHero({ pkg }: PackageHeroProps) {
   const destinations = pkg.region.filter((r) => r !== "India" && r !== "Nepal");
 
-  // Use the shared per-package Pexels image mapping for destination-accurate hero photography.
+  // Use the shared per-package image mapping for the hero photograph.
   const heroSrc = getPackageCardImage(pkg.slug);
 
   return (
-    <section className="relative overflow-hidden border-b border-white/10 bg-[#0C1617] pt-5 pb-8 sm:pt-8 sm:pb-12 lg:pt-12 lg:pb-16">
+    <section
+      data-theme-surface="dark"
+      className="relative overflow-hidden border-b border-white/10 bg-forest pt-5 pb-8 sm:pt-8 sm:pb-12 lg:pt-12 lg:pb-16"
+    >
       {/* Background Photography with cinematic Ken Burns settle */}
       <div className="pkg-hero-photo absolute inset-0 pointer-events-none will-change-transform">
         <Image

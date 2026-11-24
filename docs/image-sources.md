@@ -93,7 +93,7 @@ use the same CDN with `w=2400` and no forced crop.
 
 ## 2. Travel package thumbnails and galleries
 
-Source of truth: `app/src/data/catalogue.ts` → `PACKAGE_PEXELS_IMAGES`.
+Source of truth: `app/src/data/catalogue.ts` → `PACKAGE_IMAGES`.
 The primary image drives package cards, the in-season carousel, the poster rail,
 the orbit hero, the coverflow swiper, the enquiry form card, the related-package
 sidebar and the admin package picker. Gallery images drive the detail-page
@@ -101,33 +101,102 @@ gallery and its lightbox.
 
 | Package | Primary image | Gallery images | Pexels source pages |
 |---|---|---|---|
-| delhi-stopover | 14094276 Red Fort | 30378592 India Gate · 19528132 Old Delhi | [/14094276/](https://www.pexels.com/photo/14094276/) · [/30378592/](https://www.pexels.com/photo/30378592/) · [/19528132/](https://www.pexels.com/photo/19528132/) |
-| bombay-stopover | 36874536 Gateway of India | 28355680 Arabian Sea coast | [/36874536/](https://www.pexels.com/photo/36874536/) · [/28355680/](https://www.pexels.com/photo/28355680/) |
+| delhi-stopover | Client-supplied local photo (see §2d) | 12 client-supplied local photos (see §2d) | — |
+| bombay-stopover | Client-supplied local photo (see §2d) | 12 client-supplied local photos (see §2d) | — |
 | discover-leh | 38087449 Leh / Ladakh | 38087450 Nubra Valley | [/38087449/](https://www.pexels.com/photo/38087449/) · [/38087450/](https://www.pexels.com/photo/38087450/) |
 | kathmandu-stopover | 20988035 Kathmandu | 36927764 Nepal temple · 32132398 Himalayas | [/20988035/](https://www.pexels.com/photo/20988035/) · [/36927764/](https://www.pexels.com/photo/36927764/) · [/32132398/](https://www.pexels.com/photo/32132398/) |
 | kathmandu-pokhara | 28277464 Pokhara | 20988035 Kathmandu · 32132398 Himalayas | [/28277464/](https://www.pexels.com/photo/28277464/) · [/20988035/](https://www.pexels.com/photo/20988035/) · [/32132398/](https://www.pexels.com/photo/32132398/) |
-| discover-ladakh | 27593915 Pangong Lake | 38087450 Nubra Valley · 38087449 Leh / Ladakh | [/27593915/](https://www.pexels.com/photo/27593915/) · [/38087450/](https://www.pexels.com/photo/38087450/) · [/38087449/](https://www.pexels.com/photo/38087449/) |
+| discover-ladakh | 27593915 Pangong Lake | 5 client-supplied local photos in `images/packages/discover-ladakh/` (see §2a) | [/27593915/](https://www.pexels.com/photo/27593915/) |
 | golden-triangle | 11521892 Taj Mahal | 39605929 Amber Fort · 14094276 Red Fort · 30378592 India Gate | [/11521892/](https://www.pexels.com/photo/11521892/) · [/39605929/](https://www.pexels.com/photo/39605929/) · [/14094276/](https://www.pexels.com/photo/14094276/) · [/30378592/](https://www.pexels.com/photo/30378592/) |
 | glorious-goa-stopover | 28355680 Goa beach | 35916755 Goa beaches | [/28355680/](https://www.pexels.com/photo/28355680/) · [/35916755/](https://www.pexels.com/photo/35916755/) |
-| glimpses-of-kerala | 30778230 Kerala backwaters | 17545322 Alleppey houseboat · 36982207 Munnar tea gardens | [/30778230/](https://www.pexels.com/photo/30778230/) · [/17545322/](https://www.pexels.com/photo/17545322/) · [/36982207/](https://www.pexels.com/photo/36982207/) |
+| glimpses-of-kerala | Client-supplied local photo (see §2d) | 7 client-supplied local photos (see §2d) | — |
 | kashmir-package-7-day | 25786562 Dal Lake | 35672518 Gulmarg · 16252950 Sonamarg · 13927123 Pahalgam | [/25786562/](https://www.pexels.com/photo/dal-lake-in-india-25786562/) · [/35672518/](https://www.pexels.com/photo/35672518/) · [/16252950/](https://www.pexels.com/photo/16252950/) · [/13927123/](https://www.pexels.com/photo/13927123/) |
 | kashmir-package-4-day | 29251278 Srinagar | 18453079 Kashmir valley · 40348598 Dal Lake | [/29251278/](https://www.pexels.com/photo/29251278/) · [/18453079/](https://www.pexels.com/photo/18453079/) · [/40348598/](https://www.pexels.com/photo/40348598/) |
 | delhi-to-kathmandu | 11521892 Taj Mahal | 40967314 Varanasi ghats · 20988035 Kathmandu | [/11521892/](https://www.pexels.com/photo/11521892/) · [/40967314/](https://www.pexels.com/photo/40967314/) · [/20988035/](https://www.pexels.com/photo/20988035/) |
 | heritage-tour-india | 35130760 Jaisalmer Fort | 39605929 Amber Fort · 11521892 Taj Mahal · 17397822 Udaipur City Palace | [/35130760/](https://www.pexels.com/photo/35130760/) · [/39605929/](https://www.pexels.com/photo/39605929/) · [/11521892/](https://www.pexels.com/photo/11521892/) · [/17397822/](https://www.pexels.com/photo/17397822/) |
 | north-india-highlights | 11521892 Taj Mahal | 15534251 Udaipur · 40348598 Dal Lake · 27593915 Pangong Lake | [/11521892/](https://www.pexels.com/photo/11521892/) · [/15534251/](https://www.pexels.com/photo/15534251/) · [/40348598/](https://www.pexels.com/photo/40348598/) · [/27593915/](https://www.pexels.com/photo/27593915/) |
 | india-nepal-combination | 11521892 Taj Mahal | 40967314 Varanasi ghats · 20988035 Kathmandu · 17397822 Udaipur City Palace | [/11521892/](https://www.pexels.com/photo/11521892/) · [/40967314/](https://www.pexels.com/photo/40967314/) · [/20988035/](https://www.pexels.com/photo/20988035/) · [/17397822/](https://www.pexels.com/photo/17397822/) |
-| south-india-highlight | 36982207 Munnar tea gardens | 17545322 Alleppey houseboat · 13971395 Kerala coast | [/36982207/](https://www.pexels.com/photo/36982207/) · [/17545322/](https://www.pexels.com/photo/17545322/) · [/13971395/](https://www.pexels.com/photo/13971395/) |
+| south-india-highlight | Client-supplied local photo (see §2d) | 28 client-supplied local photos (see §2d) | — |
 | markha-valley | 38087449 Leh / Ladakh | 38087450 Nubra Valley · 27593915 Pangong Lake | [/38087449/](https://www.pexels.com/photo/38087449/) · [/38087450/](https://www.pexels.com/photo/38087450/) · [/27593915/](https://www.pexels.com/photo/27593915/) |
 | kashmir-zanskar-ladakh-trek | 27593915 Pangong Lake | 40348598 Dal Lake · 38087449 Ladakh mountains | [/27593915/](https://www.pexels.com/photo/27593915/) · [/40348598/](https://www.pexels.com/photo/40348598/) · [/38087449/](https://www.pexels.com/photo/38087449/) |
-| kashmir-combinations-little-tibet | 13927123 Pahalgam | 40348598 Dal Lake · 38087449 Ladakh mountains | [/13927123/](https://www.pexels.com/photo/13927123/) · [/40348598/](https://www.pexels.com/photo/40348598/) · [/38087449/](https://www.pexels.com/photo/38087449/) |
+| kashmir-combinations-little-tibet | Client-supplied local photo (see §2d) | 14 client-supplied local photos (see §2d) | — |
 | kashmir-mini-adventure | 16252950 Sonamarg | 18453079 Kashmir valley · 35672518 Gulmarg | [/16252950/](https://www.pexels.com/photo/16252950/) · [/18453079/](https://www.pexels.com/photo/18453079/) · [/35672518/](https://www.pexels.com/photo/35672518/) |
-| vale-of-kashmir-trek | 13927123 Pahalgam | 18453079 Lidder Valley · 14487300 Sonamarg | [/13927123/](https://www.pexels.com/photo/13927123/) · [/18453079/](https://www.pexels.com/photo/18453079/) · [/14487300/](https://www.pexels.com/photo/14487300/) |
-| kashmir-ski | 35672518 Gulmarg snowy | 10701431 Gulmarg ski slopes | [/35672518/](https://www.pexels.com/photo/35672518/) · [/10701431/](https://www.pexels.com/photo/10701431/) |
+| vale-of-kashmir-trek | Client-supplied local photo (see §2d) | 11 client-supplied local photos (see §2d) | — |
+| kashmir-ski | Client-supplied local photo (see §2d) | 8 client-supplied local photos (see §2d) | — |
 | himalayan-combination-nepal | 28277464 Pokhara | 32132398 Himalayas · 13409974 Rhinoceros | [/28277464/](https://www.pexels.com/photo/28277464/) · [/32132398/](https://www.pexels.com/photo/32132398/) · [/13409974/](https://www.pexels.com/photo/13409974/) |
 | trisuli-rafting | 32132398 Himalayas | 20988035 Kathmandu | [/32132398/](https://www.pexels.com/photo/32132398/) · [/20988035/](https://www.pexels.com/photo/20988035/) |
 | nepal-mini-trek-4-day | 26926327 Nepal mountain | 20988035 Kathmandu Valley | [/26926327/](https://www.pexels.com/photo/26926327/) · [/20988035/](https://www.pexels.com/photo/20988035/) |
-| nepal-wildlife-safari | 37654954 Rhinoceros | 36927764 Nepal temple · 13409974 Rhino in the sal forest | [/37654954/](https://www.pexels.com/photo/37654954/) · [/36927764/](https://www.pexels.com/photo/36927764/) · [/13409974/](https://www.pexels.com/photo/13409974/) |
-| nepal-mini-trek-7-day | 32132398 Himalayas | 20988035 Kathmandu Valley · 28277464 Pokhara | [/32132398/](https://www.pexels.com/photo/32132398/) · [/20988035/](https://www.pexels.com/photo/20988035/) · [/28277464/](https://www.pexels.com/photo/28277464/) |
+| nepal-wildlife-safari | Client-supplied local photo (`images/packages/nepal-wildlife-safari/nepal-wildlife-safari-01.jpg`, see §2c) | 5 client-supplied local photos (see §2c) | — |
+| nepal-mini-trek-7-day | 32132398 Himalayas | 5 client-supplied local photos in `images/packages/nepal-mini-trek-7-day/` (see §2b) | [/32132398/](https://www.pexels.com/photo/32132398/) |
+
+`discover-ladakh`, `nepal-mini-trek-7-day`, `nepal-wildlife-safari` and the seven
+packages in §2d use `galleryOverride` in `data/catalogue.ts` to replace the full
+detail-page gallery with client-supplied local photography. Discover Ladakh and
+the 7 Day Nepal Mini Trek keep their Pexels primary images on cards and heroes;
+Nepal Wildlife Safari and the §2d packages use the first local photo as their
+primary image.
+
+### 2a. Discover Ladakh client-supplied gallery
+
+Source folder supplied by the client: `C:\Users\pc\Downloads\gg\Discover ladakh`.
+Files were copied unchanged; the descriptive captions below are visual
+descriptions only, not brochure or itinerary claims.
+
+| File | Original | Caption |
+|---|---|---|
+| `images/packages/discover-ladakh/discover-ladakh-01.jpg` | `26002.jpg` | High mountain valley and sandy riverbed |
+| `images/packages/discover-ladakh/discover-ladakh-02.jpg` | `26003.jpg` | Mountain road through the high-altitude landscape |
+| `images/packages/discover-ladakh/discover-ladakh-03.jpg` | `26004.jpg` | Rider on a rocky hillside trail |
+| `images/packages/discover-ladakh/discover-ladakh-04.jpg` | `26005.jpg` | White stupas beside the mountain road |
+| `images/packages/discover-ladakh/discover-ladakh-05.jpg` | `26006.jpg` | White building complex on a rocky ridge |
+
+### 2b. 7 Day Nepal Mini Trek client-supplied gallery
+
+Source folder supplied by the client: `C:\Users\pc\Downloads\gg\Nepal 7 days trek`.
+Files were copied unchanged; captions are visual descriptions only.
+
+| File | Original | Caption |
+|---|---|---|
+| `images/packages/nepal-mini-trek-7-day/nepal-mini-trek-7-day-01.jpg` | `25995.jpg` | Mountain peak above a hillside settlement |
+| `images/packages/nepal-mini-trek-7-day/nepal-mini-trek-7-day-02.jpg` | `25996.jpg` | Trekker with poles facing snowy peaks |
+| `images/packages/nepal-mini-trek-7-day/nepal-mini-trek-7-day-03.jpg` | `25997.jpg` | Hikers raising trekking poles above the ridgeline |
+| `images/packages/nepal-mini-trek-7-day/nepal-mini-trek-7-day-04.jpg` | `25998.jpg` | Prayer flags and a monastery below snowy peaks |
+| `images/packages/nepal-mini-trek-7-day/nepal-mini-trek-7-day-05.jpg` | `25999.jpg` | Sunlit summit above a sea of clouds |
+
+### 2c. Nepal Wildlife Safari client-supplied images
+
+Source folder supplied by the client: `C:\Users\pc\Downloads\gg\wild life nepal`.
+Files were copied unchanged; captions are visual descriptions only. File 01 is
+also the package's primary image (cards, hero, carousel and enquiry card).
+
+| File | Original | Caption |
+|---|---|---|
+| `images/packages/nepal-wildlife-safari/nepal-wildlife-safari-01.jpg` | `25987.jpg` | Trekkers passing prayer flags on a stone trail |
+| `images/packages/nepal-wildlife-safari/nepal-wildlife-safari-02.jpg` | `25988.jpg` | Town and mountain ridges seen through prayer flags |
+| `images/packages/nepal-wildlife-safari/nepal-wildlife-safari-03.jpg` | `25989.jpg` | Golden shrine below snow-covered mountains |
+| `images/packages/nepal-wildlife-safari/nepal-wildlife-safari-04.jpg` | `25990.jpg` | Mountain peak above a hillside settlement |
+| `images/packages/nepal-wildlife-safari/nepal-wildlife-safari-05.jpg` | `25991.jpg` | Nepal flag against snowy mountain slopes |
+
+### 2d. Additional client-supplied package image batches
+
+Source folder supplied by the client: `C:\Users\pc\Downloads\india nepal travel..1\Download`.
+Files were copied unchanged into package-named folders and numbered in original
+filename order. Photo 01 is also the package's primary image on cards, heroes,
+carousels and enquiry cards. Gallery captions are neutral sequence labels, not
+brochure or itinerary claims.
+
+| Package | Source folder | Photos | Local folder |
+|---|---|---:|---|
+| `bombay-stopover` | `Bombay` | 12 | `images/packages/bombay-stopover/` |
+| `delhi-stopover` | `Delhi` | 12 | `images/packages/delhi-stopover/` |
+| `glimpses-of-kerala` | `Glimpses of Kerala` | 7 | `images/packages/glimpses-of-kerala/` |
+| `kashmir-combinations-little-tibet` | `Kashmir combination little tibet` | 14 | `images/packages/kashmir-combinations-little-tibet/` |
+| `kashmir-ski` | `Kashmir ski` | 8 | `images/packages/kashmir-ski/` |
+| `south-india-highlight` | `South Indian highlights` | 28 | `images/packages/south-india-highlight/` |
+| `vale-of-kashmir-trek` | `Valley of kashmir trek` | 11 | `images/packages/vale-of-kashmir-trek/` |
+
+The complete original-to-output filename and dimension mapping is recorded in
+[`app/public/images/SOURCES.md`](../app/public/images/SOURCES.md).
 
 ---
 

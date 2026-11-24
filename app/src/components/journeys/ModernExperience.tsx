@@ -134,7 +134,7 @@ export default function ModernExperience({ places, journeysByPlace }: ModernExpe
                 alt=""
                 fill
                 sizes={near ? "100vw" : "16px"}
-                quality={90}
+                quality={75}
                 className="md-hero__bg-img"
                 data-active={index === active}
                 priority={index === 0}
@@ -221,7 +221,7 @@ export default function ModernExperience({ places, journeysByPlace }: ModernExpe
                       alt={place.alt}
                       fill
                       sizes="(min-width: 768px) 22vw, 46vw"
-                      quality={90}
+                      quality={75}
                       className="md-card__img"
                       loading={index < 4 ? "eager" : "lazy"}
                     />

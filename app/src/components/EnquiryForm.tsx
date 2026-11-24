@@ -303,7 +303,6 @@ export default function EnquiryForm({
                 src={chosen ? getPackageCardImage(chosen.slug) : pexels("27593915")}
                 alt={chosen ? chosen.title : "Himalayan landscape"}
                 fill
-                priority
                 sizes="(min-width: 1024px) 40vw, 100vw"
                 className="object-cover transition-transform duration-700 hover:scale-105"
               />
@@ -344,7 +343,7 @@ export default function EnquiryForm({
           </div>
 
           {/* Specialist Trust Card */}
-          <div className="rounded-[1.25rem] border border-white/10 bg-forest p-7 text-white shadow-xl">
+          <div data-theme-surface="dark" className="rounded-[1.25rem] border border-white/10 bg-forest p-7 text-white shadow-xl">
             <p className="text-xs font-display uppercase tracking-[0.25em] text-brass font-semibold mb-3">
               Why Travel With {BRAND.name}
             </p>
