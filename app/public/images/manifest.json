@@ -561,22 +561,6 @@
   },
   {
     "group": "package",
-    "file": "images/packages/glorious-goa-stopover.jpg",
-    "brochure_page": 3,
-    "source_asset": "goa-beach",
-    "crop_review_box": [
-      296,
-      68,
-      555,
-      255
-    ],
-    "output_size": [
-      727,
-      524
-    ]
-  },
-  {
-    "group": "package",
     "file": "images/packages/kashmir-package-7-day.jpg",
     "brochure_page": 2,
     "source_asset": "kashmir-shikara",

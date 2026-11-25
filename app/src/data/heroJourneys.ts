@@ -1,4 +1,4 @@
-import { getAllPackages, getPackageCardImage, pexels } from "./catalogue";
+import { getAllPackages, getPackageCardImage } from "./catalogue";
 import type { PackageViewModel } from "@/types/travel";
 
 /**
@@ -34,8 +34,8 @@ export const HERO_JOURNEY_IDS = [
  * package id; anything absent falls back to the package card image.
  */
 export const HERO_JOURNEY_IMAGES: Record<string, string> = {
-  // Kashmir: Dal Lake houseboats read better on the ring than the generic card.
-  "kashmir-package-7-day": pexels("25786562"),
+  // No overrides: every ring card uses its own package image, so no photo is
+  // shared between packages. Kashmir's card image already shows Dal Lake.
 };
 
 /**

@@ -53,7 +53,6 @@ contact sheets are in `docs/evidence/`. Re-crop by hand against the rectangles b
 | `images/packages/kathmandu-pokhara.jpg` | Phewa Lake & Mountain Peaks in Pokhara | `destinations/pokhara-lake.jpg` |
 | `images/packages/discover-ladakh.jpg` | Pangong Tso Lake & High Himalayan Passes | `hero/hero-pangong.jpg` |
 | `images/packages/golden-triangle.jpg` | Taj Mahal Marble Dome with Water Reflection | `destinations/taj-mahal-reflection.png` |
-| `images/packages/glorious-goa-stopover.jpg` | Goa Palms & Golden Coastal Sunset | `destinations/goa.png` |
 | `images/packages/kashmir-package-7-day.jpg` | Kashmir Dal Lake with Shikara and Snowy Peaks | `destinations/kashmir.png` |
 | `images/packages/kashmir-package-4-day.jpg` | Dal Lake Floating Markets & Morning Shikaras | `destinations/kashmir-dal-lake-fruit-boat.jpg` |
 | `images/packages/delhi-to-kathmandu.jpg` | Varanasi Ganges Riverfront & Sacred Ghats | `destinations/varanasi.png` |
@@ -165,8 +164,13 @@ also the card, hero, carousel and enquiry-card image for the package.
 
 ## Client-supplied package image batches
 
-These 92 photos were supplied in package-named folders under
-`C:\Users\pc\Downloads\india nepal travel..1\Download` and copied unchanged
+Seven client-supplied files arrived portrait or square. To satisfy the
+landscape-only package image rule they were centre-cropped to 3:2 with the
+subject kept in frame; originals remain recoverable from git history.
+
+These 102 photos were supplied in package-named folders under
+`C:\Users\pc\Downloads\india nepal travel..1\Download` and
+`C:\Users\pc\Downloads\indian nepal travel 2\Download`, then copied unchanged
 into the matching package folders. Numbering follows the original filename
 order. Photo 01 in each folder is the package card, hero, carousel and
 enquiry-card image; every photo also appears in the detail-page gallery.
@@ -177,6 +181,7 @@ Gallery captions are neutral sequence labels and make no itinerary claims.
 | `bombay-stopover` | `Bombay` | 12 | `images/packages/bombay-stopover/bombay-stopover-01.jpg` |
 | `delhi-stopover` | `Delhi` | 12 | `images/packages/delhi-stopover/delhi-stopover-01.jpg` |
 | `glimpses-of-kerala` | `Glimpses of Kerala` | 7 | `images/packages/glimpses-of-kerala/glimpses-of-kerala-01.jpg` |
+| `glorious-goa-stopover` | `Glorious goa stopover` | 10 | `images/packages/glorious-goa-stopover/glorious-goa-stopover-01.jpg` |
 | `kashmir-combinations-little-tibet` | `Kashmir combination little tibet` | 14 | `images/packages/kashmir-combinations-little-tibet/kashmir-combinations-little-tibet-01.jpg` |
 | `kashmir-ski` | `Kashmir ski` | 8 | `images/packages/kashmir-ski/kashmir-ski-01.jpg` |
 | `south-india-highlight` | `South Indian highlights` | 28 | `images/packages/south-india-highlight/south-india-highlight-01.jpg` |
@@ -211,7 +216,7 @@ Gallery captions are neutral sequence labels and make no itinerary claims.
 | `images/packages/delhi-stopover/delhi-stopover-06.jpg` | `26373.jpg` | 2048x1365 |
 | `images/packages/delhi-stopover/delhi-stopover-07.jpg` | `26374.jpg` | 2048x1365 |
 | `images/packages/delhi-stopover/delhi-stopover-08.jpg` | `26375.jpg` | 2048x1363 |
-| `images/packages/delhi-stopover/delhi-stopover-09.jpg` | `26376.jpg` | 1638x2048 |
+| `images/packages/delhi-stopover/delhi-stopover-09.jpg` | `26376.jpg` | 1638x1092 (landscape crop) |
 | `images/packages/delhi-stopover/delhi-stopover-10.jpg` | `26377.jpg` | 2048x1365 |
 | `images/packages/delhi-stopover/delhi-stopover-11.jpg` | `26378.jpg` | 2048x1152 |
 | `images/packages/delhi-stopover/delhi-stopover-12.jpg` | `26379.jpg` | 2048x1365 |
@@ -223,10 +228,28 @@ Gallery captions are neutral sequence labels and make no itinerary claims.
 | `images/packages/glimpses-of-kerala/glimpses-of-kerala-01.jpg` | `26388.jpg` | 2048x1536 |
 | `images/packages/glimpses-of-kerala/glimpses-of-kerala-02.jpg` | `26389.jpg` | 2048x1365 |
 | `images/packages/glimpses-of-kerala/glimpses-of-kerala-03.jpg` | `26390.jpg` | 2048x1365 |
-| `images/packages/glimpses-of-kerala/glimpses-of-kerala-04.jpg` | `26391.jpg` | 1536x2048 |
+| `images/packages/glimpses-of-kerala/glimpses-of-kerala-04.jpg` | `26391.jpg` | 1536x1024 (landscape crop) |
 | `images/packages/glimpses-of-kerala/glimpses-of-kerala-05.jpg` | `26392.jpg` | 2048x1536 |
 | `images/packages/glimpses-of-kerala/glimpses-of-kerala-06.jpg` | `26393.jpg` | 2048x1367 |
 | `images/packages/glimpses-of-kerala/glimpses-of-kerala-07.jpg` | `26395.jpg` | 2048x1361 |
+
+### Glorious goa stopover → `glorious-goa-stopover`
+
+Supplied in `C:\Users\pc\Downloads\indian nepal travel 2\Download\Glorious goa stopover`.
+These photos replace the previous Pexels package imagery and brochure thumbnail.
+
+| File | Original file | Dimensions |
+|---|---|---|
+| `images/packages/glorious-goa-stopover/glorious-goa-stopover-01.jpg` | `26031.jpg` | 2048x1536 |
+| `images/packages/glorious-goa-stopover/glorious-goa-stopover-02.jpg` | `26032.jpg` | 2048x1294 |
+| `images/packages/glorious-goa-stopover/glorious-goa-stopover-03.jpg` | `26033.jpg` | 2048x1330 |
+| `images/packages/glorious-goa-stopover/glorious-goa-stopover-04.jpg` | `26034.jpg` | 2048x1536 |
+| `images/packages/glorious-goa-stopover/glorious-goa-stopover-05.jpg` | `26035.jpg` | 2048x1365 |
+| `images/packages/glorious-goa-stopover/glorious-goa-stopover-06.jpg` | `26036.jpg` | 2048x1365 |
+| `images/packages/glorious-goa-stopover/glorious-goa-stopover-07.jpg` | `26037.jpg` | 2048x1365 (landscape crop) |
+| `images/packages/glorious-goa-stopover/glorious-goa-stopover-08.jpg` | `26038.jpg` | 2047x1536 |
+| `images/packages/glorious-goa-stopover/glorious-goa-stopover-09.jpg` | `26039.jpg` | 2048x1542 |
+| `images/packages/glorious-goa-stopover/glorious-goa-stopover-10.jpg` | `26040.jpg` | 2048x1321 |
 
 ### Kashmir combination little tibet → `kashmir-combinations-little-tibet`
 
@@ -239,8 +262,8 @@ Gallery captions are neutral sequence labels and make no itinerary claims.
 | `images/packages/kashmir-combinations-little-tibet/kashmir-combinations-little-tibet-05.jpg` | `26402.jpg` | 2048x1347 |
 | `images/packages/kashmir-combinations-little-tibet/kashmir-combinations-little-tibet-06.jpg` | `26403.jpg` | 2048x1365 |
 | `images/packages/kashmir-combinations-little-tibet/kashmir-combinations-little-tibet-07.jpg` | `26404.jpg` | 2048x1536 |
-| `images/packages/kashmir-combinations-little-tibet/kashmir-combinations-little-tibet-08.jpg` | `26405.jpg` | 1638x2048 |
-| `images/packages/kashmir-combinations-little-tibet/kashmir-combinations-little-tibet-09.jpg` | `26406.jpg` | 1536x2048 |
+| `images/packages/kashmir-combinations-little-tibet/kashmir-combinations-little-tibet-08.jpg` | `26405.jpg` | 1638x1092 (landscape crop) |
+| `images/packages/kashmir-combinations-little-tibet/kashmir-combinations-little-tibet-09.jpg` | `26406.jpg` | 1536x1024 (landscape crop) |
 | `images/packages/kashmir-combinations-little-tibet/kashmir-combinations-little-tibet-10.jpg` | `26407.jpg` | 2048x1365 |
 | `images/packages/kashmir-combinations-little-tibet/kashmir-combinations-little-tibet-11.jpg` | `26408.jpg` | 2048x1370 |
 | `images/packages/kashmir-combinations-little-tibet/kashmir-combinations-little-tibet-12.jpg` | `26409.jpg` | 2048x1536 |
@@ -286,7 +309,7 @@ Gallery captions are neutral sequence labels and make no itinerary claims.
 | `images/packages/south-india-highlight/south-india-highlight-20.jpg` | `26265.jpg` | 2048x1365 |
 | `images/packages/south-india-highlight/south-india-highlight-21.jpg` | `26267.jpg` | 2048x1536 |
 | `images/packages/south-india-highlight/south-india-highlight-22.jpg` | `26269.jpg` | 2048x1910 |
-| `images/packages/south-india-highlight/south-india-highlight-23.jpg` | `26272.jpg` | 1638x2048 |
+| `images/packages/south-india-highlight/south-india-highlight-23.jpg` | `26272.jpg` | 1638x1092 (landscape crop) |
 | `images/packages/south-india-highlight/south-india-highlight-24.jpg` | `26273.jpg` | 2048x1365 |
 | `images/packages/south-india-highlight/south-india-highlight-25.jpg` | `26274.jpg` | 2048x1365 |
 | `images/packages/south-india-highlight/south-india-highlight-26.jpg` | `26275.jpg` | 2048x1365 |
@@ -337,7 +360,7 @@ listed in §9a of `docs/image-sources.md`.
 | kathmandu-pokhara | Pokhara | Kathmandu, Himalayas |
 | discover-ladakh | Pangong Lake | 5 user-supplied photos (see "Discover Ladakh gallery" above) |
 | golden-triangle | Taj Mahal | Amber Fort, Red Fort, India Gate |
-| glorious-goa-stopover | Goa beach | Goa beaches |
+| glorious-goa-stopover | Client-supplied local photo (see "Client-supplied package image batches") | 10 client-supplied photos |
 | glimpses-of-kerala | Client-supplied local photo (see "Client-supplied package image batches") | 7 client-supplied photos |
 | kashmir-package-7-day | Dal Lake | Gulmarg, Sonamarg, Pahalgam |
 | kashmir-package-4-day | Srinagar | Kashmir valley, Dal Lake |
@@ -379,4 +402,6 @@ accessible name is unchanged.
   2379x3366 source raster at build time.
 - `gateway-of-india` is published in the brochure as a low-opacity card background;
   it receives a contrast/saturation correction so the monument stays legible.
-- `manifest.json` holds the same table in machine-readable form.
+- `manifest.json` records the brochure-derived assets in machine-readable form;
+  client-supplied and Pexels provenance is documented in the sections above and
+  in `docs/image-sources.md`.

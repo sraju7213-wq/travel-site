@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "check:images": "node scripts/check-package-images.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.118.0",
