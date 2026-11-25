@@ -1215,3 +1215,95 @@
 [data-theme="light"] #modern-catalogue .md-catalogue__count {
   color: rgba(37, 40, 36, 0.62);
 }
+
+
+/* ---------------------------------------------------------------------------
+   Package photo viewer — touch, pointer and keyboard unified.
+   Both surfaces are dark photography, so light-theme text remaps skip them.
+   --------------------------------------------------------------------------- */
+.viewer-preview { position: relative; overflow: hidden; }
+
+.viewer-filmstrip {
+  scroll-padding-inline: 0.75rem;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.viewer-stage { touch-action: none; }
+
+.viewer-spinner {
+  display: block;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-top-color: var(--brass, #b18a51);
+  animation: viewer-spin 0.8s linear infinite;
+}
+
+
+@keyframes viewer-enter {
+  from { opacity: 0; transform: scale(0.985); }
+  to { opacity: 1; transform: none; }
+}
+
+.animate-viewer-enter {
+  animation: viewer-enter 260ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes viewer-spin {
+  to { transform: rotate(360deg); }
+}
+
+.viewer-tool,
+.viewer-stage-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(10px);
+  transition: border-color 180ms ease, color 180ms ease, background-color 180ms ease;
+}
+
+.viewer-tool:hover:not(:disabled),
+.viewer-stage-nav:hover {
+  border-color: #b18a51;
+  color: #b18a51;
+  background: rgba(177, 138, 81, 0.12);
+}
+
+.viewer-tool:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.viewer-stage-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 20;
+  transform: translateY(-50%);
+  min-width: 48px;
+  min-height: 48px;
+}
+
+@media (max-width: 640px) {
+  .viewer-stage-nav {
+    top: auto;
+    bottom: 0.75rem;
+    transform: none;
+    min-width: 48px;
+    min-height: 48px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .viewer-spinner { animation-duration: 1.6s; }
+  .viewer-dialog,
+  .animate-photo-enter,
+  .animate-viewer-enter { animation: none !important; }
+}
