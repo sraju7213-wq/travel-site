@@ -171,18 +171,34 @@ function localPackageGallery(slug: string, title: string, count: number): Galler
   }));
 }
 
-const BOMBAY_STOPOVER_GALLERY = localPackageGallery("bombay-stopover", "Bombay", 12);
-const DELHI_STOPOVER_GALLERY = localPackageGallery("delhi-stopover", "Delhi", 12);
-const GLIMPSES_OF_KERALA_GALLERY = localPackageGallery("glimpses-of-kerala", "Glimpses of Kerala", 7);
+const BOMBAY_STOPOVER_GALLERY = [
+  ...localPackageGallery("bombay-stopover", "Bombay", 12).slice(8, 9),
+  ...localPackageGallery("bombay-stopover", "Bombay", 12).slice(0, 8),
+  ...localPackageGallery("bombay-stopover", "Bombay", 12).slice(9),
+];
+const DELHI_STOPOVER_GALLERY = [
+  ...localPackageGallery("delhi-stopover", "Delhi", 12).slice(1, 2),
+  ...localPackageGallery("delhi-stopover", "Delhi", 12).slice(0, 1),
+  ...localPackageGallery("delhi-stopover", "Delhi", 12).slice(2),
+];
+const GLIMPSES_OF_KERALA_GALLERY = [
+  ...localPackageGallery("glimpses-of-kerala", "Glimpses of Kerala", 7).slice(1, 2),
+  ...localPackageGallery("glimpses-of-kerala", "Glimpses of Kerala", 7).slice(0, 1),
+  ...localPackageGallery("glimpses-of-kerala", "Glimpses of Kerala", 7).slice(2),
+];
 const GLORIOUS_GOA_STOPOVER_GALLERY = localPackageGallery("glorious-goa-stopover", "Glorious Goa Stopover", 10);
-const KASHMIR_COMBINATIONS_LITTLE_TIBET_GALLERY = localPackageGallery(
-  "kashmir-combinations-little-tibet",
-  "Kashmir Combinations: Little Tibet",
-  14,
-);
+const KASHMIR_COMBINATIONS_LITTLE_TIBET_GALLERY = [
+  ...localPackageGallery("kashmir-combinations-little-tibet", "Kashmir Combinations: Little Tibet", 14).slice(5, 6),
+  ...localPackageGallery("kashmir-combinations-little-tibet", "Kashmir Combinations: Little Tibet", 14).slice(0, 5),
+  ...localPackageGallery("kashmir-combinations-little-tibet", "Kashmir Combinations: Little Tibet", 14).slice(6),
+];
 const KASHMIR_SKI_GALLERY = localPackageGallery("kashmir-ski", "Kashmir Ski", 8);
 const SOUTH_INDIA_HIGHLIGHT_GALLERY = localPackageGallery("south-india-highlight", "South India Highlight", 28);
-const VALE_OF_KASHMIR_TREK_GALLERY = localPackageGallery("vale-of-kashmir-trek", "Vale of Kashmir Trek", 11);
+const VALE_OF_KASHMIR_TREK_GALLERY = [
+  ...localPackageGallery("vale-of-kashmir-trek", "Vale of Kashmir Trek", 11).slice(3, 4),
+  ...localPackageGallery("vale-of-kashmir-trek", "Vale of Kashmir Trek", 11).slice(0, 3),
+  ...localPackageGallery("vale-of-kashmir-trek", "Vale of Kashmir Trek", 11).slice(4),
+];
 
 const PACKAGE_IMAGES: Record<
   string,
@@ -280,20 +296,19 @@ const PACKAGE_IMAGES: Record<
     ],
   },
   "delhi-to-kathmandu": {
-    primary: pexels("15832951"),
+    primary: pexels("34741303"),
     gallery: [
-      { src: pexels("34741303"), caption: "Varanasi ghats at golden hour" },
+      { src: pexels("789750"), caption: "India Gate, New Delhi" },
       { src: pexels("38532251"), caption: "Boudhanath Stupa, Kathmandu" },
       { src: pexels("38263405"), caption: "Agra Fort sandstone architecture" },
       { src: pexels("38857186"), caption: "Boat ride on the Ganges at Varanasi" },
       { src: pexels("34741292"), caption: "Boats along the Varanasi ghats" },
-      { src: pexels("789750"), caption: "India Gate, New Delhi" },
     ],
   },
   "heritage-tour-india": {
-    primary: pexels("35130760"),
+    primary: pexels("15774210"),
     gallery: [
-      { src: pexels("15774210"), caption: "Mehrangarh Fort, Jodhpur, Rajasthan" },
+      { src: pexels("35130760"), caption: "Mehrangarh Fort, Jodhpur, Rajasthan" },
       { src: pexels("28749617"), caption: "Taj Mahal, Agra" },
       { src: pexels("21382502"), caption: "City Palace and Lake Pichola, Udaipur" },
       { src: pexels("797824"), caption: "Jaisalmer fort rising above the desert" },
@@ -304,24 +319,24 @@ const PACKAGE_IMAGES: Record<
 
   // ── India Tours ────────────────────────────────────────────────────────
   "north-india-highlights": {
-    primary: pexels("12446195"),
+    primary: pexels("11024977"),
     gallery: [
+      { src: pexels("12446195"), caption: "North India highlights view" },
       { src: pexels("15534251"), caption: "Udaipur lakeside city, Rajasthan" },
       { src: pexels("34971547"), caption: "Dal Lake shores, Srinagar, Kashmir" },
       { src: pexels("29232390"), caption: "Lamayuru Monastery near Leh, Ladakh" },
       { src: pexels("19149591"), caption: "Hawa Mahal, Jaipur" },
-      { src: pexels("11024977"), caption: "Snow-covered slopes at Gulmarg" },
       { src: pexels("12141330"), caption: "Turquoise mountain river in Pahalgam" },
     ],
   },
   "india-nepal-combination": {
-    primary: pexels("16753416"),
+    primary: pexels("25109764"),
     gallery: [
+      { src: pexels("16753416"), caption: "India and Nepal journey view" },
       { src: pexels("36754808"), caption: "Ganga Aarti ceremony on the Varanasi ghats" },
       { src: pexels("37786606"), caption: "Boudhanath Stupa, Kathmandu" },
       { src: pexels("39567970"), caption: "City Palace overlooking Lake Pichola, Udaipur" },
       { src: pexels("19867576"), caption: "Red Fort, Delhi" },
-      { src: pexels("25109764"), caption: "Hawa Mahal in Jaipur" },
       { src: pexels("36526508"), caption: "Temple courtyard in Kathmandu" },
     ],
   },

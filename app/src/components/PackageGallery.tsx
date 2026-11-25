@@ -430,6 +430,7 @@ export default function PackageGallery({ images, title, open, onOpenChange }: Pa
             <p className="mt-1 font-display text-[10px] uppercase tracking-[0.16em] text-white/35">
               Pinch or double-tap to zoom · swipe to browse · Esc to close
             </p>
+            {/* Explicit thumbnail dimensions prevent fill-image layers escaping the scroll clip in Chromium. */}
             <div className="mx-auto mt-3 flex max-w-2xl snap-x snap-mandatory gap-2 overflow-x-auto pb-1">
               {images.map((image, index) => (
                 <button
@@ -442,7 +443,7 @@ export default function PackageGallery({ images, title, open, onOpenChange }: Pa
                     index === activeIndex ? "border-brass" : "border-white/15 opacity-60 hover:opacity-100"
                   }`}
                 >
-                  <Image src={image.src} alt="" fill sizes="64px" loading="lazy" className="object-cover" />
+                  <Image src={image.src} alt="" width={64} height={44} sizes="64px" loading="lazy" className="block h-full w-full object-cover" />
                 </button>
               ))}
             </div>
@@ -499,7 +500,8 @@ export default function PackageGallery({ images, title, open, onOpenChange }: Pa
         )}
       </div>
 
-      {/* Thumbnail filmstrip — scroll-snap, swipeable, with 48px+ targets */}
+      {/* Thumbnail filmstrip — scroll-snap, swipeable, with 48px+ targets.
+          Explicit image dimensions keep thumbnail layers inside the scroll clip. */}
       <div
         ref={thumbRailRef}
         className="viewer-filmstrip flex snap-x snap-mandatory gap-2 overflow-x-auto border-t border-white/10 bg-[#0C1617] p-3"
@@ -520,7 +522,7 @@ export default function PackageGallery({ images, title, open, onOpenChange }: Pa
                 selected ? "border-brass" : "border-white/10 opacity-70 hover:border-brass/70 hover:opacity-100"
               }`}
             >
-              <Image src={image.src} alt="" fill sizes="96px" loading="lazy" className="object-cover" />
+              <Image src={image.src} alt="" width={96} height={64} sizes="96px" loading="lazy" className="block h-full w-full object-cover" />
               <span className="absolute bottom-0.5 right-1 rounded bg-black/70 px-1 font-mono text-[9px] tabular-nums text-white/80">
                 {index + 1}
               </span>

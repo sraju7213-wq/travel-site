@@ -52,12 +52,12 @@ interface JourneyLandingPageProps {
  * are honoured by switching to Orbit, whichever design was saved locally.
  */
 export default function JourneyLandingPage({ orbit, modern }: JourneyLandingPageProps) {
-  const [mode, setMode] = useState<DesignMode>("modern");
+  const [mode, setMode] = useState<DesignMode>("orbit");
   const [outgoing, setOutgoing] = useState<DesignMode | null>(null);
   const timer = useRef<number | null>(null);
   const searchParams = useSearchParams();
   // Mirrors `mode` so the change handler stays side-effect free.
-  const modeRef = useRef<DesignMode>("modern");
+  const modeRef = useRef<DesignMode>("orbit");
 
   const showCatalogue = useCallback(() => {
     if (modeRef.current !== "orbit") {
@@ -98,7 +98,7 @@ export default function JourneyLandingPage({ orbit, modern }: JourneyLandingPage
           setMode(saved);
         }
       } catch {
-        /* storage blocked — stay on Modern */
+        /* storage blocked — stay on Orbit */
       }
     });
     return () => {

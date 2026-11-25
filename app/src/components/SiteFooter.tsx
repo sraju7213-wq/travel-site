@@ -17,17 +17,17 @@ export default function SiteFooter() {
         className="h-px w-full bg-gradient-to-r from-transparent via-wild-orange/60 to-transparent"
       />
 
-      <div className="mx-auto max-w-7xl px-4 py-14 md:px-8 md:py-16">
-        <div className="grid gap-10 lg:grid-cols-[1.1fr_2.4fr] lg:gap-14">
+      <div className="mx-auto max-w-7xl px-4 py-8 md:px-8 md:py-10">
+        <div className="grid gap-8 lg:grid-cols-[1.1fr_2.4fr] lg:gap-10">
           {/* Brand column */}
           <div className="max-w-sm">
-            <BrandMark className="mb-6" />
+            <BrandMark className="mb-4" />
             <p className="text-xs md:text-sm font-sans font-light leading-relaxed text-white/70">
               {BRAND.name} presents bespoke expeditions across India and Nepal, operated in association with{" "}
               {BRAND.operatorName} (Baktoo family heritage since 1927).
             </p>
 
-            <div className="mt-6 flex items-center gap-3">
+            <div className="mt-4 flex items-center gap-3">
               <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white/70 transition-colors hover:border-wild-orange hover:text-wild-orange">
                 <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current" aria-hidden="true">
                   <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
@@ -42,7 +42,7 @@ export default function SiteFooter() {
           </div>
 
           {/* Link columns */}
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
             {FOOTER_COLUMNS.map((col, i) => {
               const isOpen = openColumn === i;
               const panelId = `footer-${i}`;
@@ -94,7 +94,7 @@ export default function SiteFooter() {
         </div>
 
         {/* Credits bar */}
-        <div className="mt-12 border-t border-white/10 pt-6">
+        <div className="mt-8 border-t border-white/10 pt-4">
           <p className="text-center font-sans text-[11px] text-white/45">
             Designed and developed by{" "}
             <a

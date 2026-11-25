@@ -30,7 +30,7 @@ interface ModernExperienceProps {
  */
 export default function ModernExperience({ places, journeysByPlace }: ModernExperienceProps) {
   const [active, setActive] = useState(0);
-  const [viewMode, setViewMode] = useState<CardViewMode>("coverflow");
+  const [viewMode, setViewMode] = useState<CardViewMode>("grid");
   const cardRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const railRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef<number | null>(null);
