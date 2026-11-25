@@ -1,11 +1,24 @@
 "use client";
 
-import { useRef, useState, useCallback } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { placeLine } from "@/lib/packageDisplay";
 import { getPackageCardImage } from "@/data/catalogue";
 import type { PackageViewModel } from "@/types/travel";
+import "./coverflow.css";
+
+const SWIPE_THRESHOLD = 40;
+const DRAG_SLOP = 8;
+
+interface DragState {
+  active: boolean;
+  pointerId: number;
+  startX: number;
+  currentX: number;
+  pendingX: number;
+  frame: number;
+}
 
 interface CoverflowSwiperProps {
   packages: PackageViewModel[];
@@ -13,11 +26,39 @@ interface CoverflowSwiperProps {
 
 export default function CoverflowSwiper({ packages }: CoverflowSwiperProps) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [dragOffset, setDragOffset] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
-  const startXRef = useRef<number | null>(null);
+  const [compact, setCompact] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
+  const dragRef = useRef<DragState>({
+    active: false,
+    pointerId: -1,
+    startX: 0,
+    currentX: 0,
+    pendingX: 0,
+    frame: 0,
+  });
+  const suppressClickRef = useRef(false);
   const wheelTimeoutRef = useRef<number | null>(null);
+
+  // Phones show a shallower stack: fewer 3D layers and fewer images in flight.
+  useEffect(() => {
+    const query = window.matchMedia("(max-width: 767px)");
+    const update = () => setCompact(query.matches);
+    update();
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
+
+  useEffect(
+    () => () => {
+      const drag = dragRef.current;
+      if (drag.frame) cancelAnimationFrame(drag.frame);
+      if (wheelTimeoutRef.current !== null) {
+        window.clearTimeout(wheelTimeoutRef.current);
+      }
+    },
+    [],
+  );
 
   // Derive safe index — clamps if the packages list shrinks
   const safeIndex = Math.min(activeIndex, Math.max(0, packages.length - 1));
@@ -33,6 +74,87 @@ export default function CoverflowSwiper({ packages }: CoverflowSwiperProps) {
 
   const prev = useCallback(() => goTo(safeIndex - 1), [safeIndex, goTo]);
   const next = useCallback(() => goTo(safeIndex + 1), [safeIndex, goTo]);
+
+  // Pointer movement writes ONE transform on the stage inside a rAF. Mutating
+  // an inherited custom property instead invalidates style on every card (and
+  // all of its text) each frame; a single compositor transform does not.
+  const queueDrag = useCallback((delta: number) => {
+    const drag = dragRef.current;
+    drag.pendingX = delta;
+    if (drag.frame) return;
+    drag.frame = requestAnimationFrame(() => {
+      drag.frame = 0;
+      if (stageRef.current) {
+        stageRef.current.style.transform = `translate3d(${drag.pendingX * 0.5}px, 0, 0)`;
+      }
+    });
+  }, []);
+
+  const endDrag = useCallback(
+    (commit: boolean) => {
+      const drag = dragRef.current;
+      if (!drag.active) return;
+      drag.active = false;
+      if (drag.frame) {
+        cancelAnimationFrame(drag.frame);
+        drag.frame = 0;
+      }
+      containerRef.current?.classList.remove("cf-dragging");
+      stageRef.current?.style.removeProperty("transform");
+
+      const delta = drag.currentX - drag.startX;
+      if (Math.abs(delta) > DRAG_SLOP) {
+        // A drag must never fire a link that happened to sit under the pointer.
+        suppressClickRef.current = true;
+        window.setTimeout(() => {
+          suppressClickRef.current = false;
+        }, 0);
+      }
+      if (!commit || Math.abs(delta) < SWIPE_THRESHOLD) return;
+      if (delta < 0) next();
+      else prev();
+    },
+    [next, prev],
+  );
+
+  const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === "mouse" && event.button !== 0) return;
+    if ((event.target as HTMLElement).closest("a, button")) return;
+    const drag = dragRef.current;
+    drag.active = true;
+    drag.pointerId = event.pointerId;
+    drag.startX = event.clientX;
+    drag.currentX = event.clientX;
+    drag.pendingX = 0;
+    containerRef.current?.classList.add("cf-dragging");
+    // Pointer capture keeps a drag alive outside the viewport; touch-action:
+    // pan-y still lets the browser own vertical page scrolling.
+    event.currentTarget.setPointerCapture(event.pointerId);
+  };
+
+  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    const drag = dragRef.current;
+    if (!drag.active || event.pointerId !== drag.pointerId) return;
+    drag.currentX = event.clientX;
+    queueDrag(event.clientX - drag.startX);
+  };
+
+  const handlePointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (dragRef.current.pointerId !== event.pointerId) return;
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+    endDrag(true);
+  };
+
+  const handlePointerCancel = () => endDrag(false);
+
+  const handleClickCapture = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (!suppressClickRef.current) return;
+    event.preventDefault();
+    event.stopPropagation();
+    suppressClickRef.current = false;
+  };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "ArrowLeft") {
@@ -60,56 +182,13 @@ export default function CoverflowSwiper({ packages }: CoverflowSwiperProps) {
     }, 280);
   };
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    startXRef.current = e.touches[0].clientX;
-    setIsDragging(true);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (startXRef.current === null) return;
-    const diff = e.touches[0].clientX - startXRef.current;
-    setDragOffset(diff);
-  };
-
-  const handleTouchEnd = () => {
-    if (startXRef.current !== null) {
-      if (dragOffset < -40) next();
-      else if (dragOffset > 40) prev();
-    }
-    startXRef.current = null;
-    setDragOffset(0);
-    setIsDragging(false);
-  };
-
-  const handleMouseDown = (e: React.MouseEvent) => {
-    if (e.button !== 0) return;
-    const target = e.target as HTMLElement;
-    if (target.closest("a, button")) return;
-    startXRef.current = e.clientX;
-    setIsDragging(true);
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (startXRef.current === null || !isDragging) return;
-    const diff = e.clientX - startXRef.current;
-    setDragOffset(diff);
-  };
-
-  const handleMouseUp = () => {
-    if (startXRef.current !== null && isDragging) {
-      if (dragOffset < -40) next();
-      else if (dragOffset > 40) prev();
-    }
-    startXRef.current = null;
-    setDragOffset(0);
-    setIsDragging(false);
-  };
-
   if (!packages || packages.length === 0) {
     return null;
   }
 
-  const VISIBLE_RANGE = 4;
+  // Only cards in this window are mounted. Keeping the window tight is the
+  // cheapest way to cut both 3D layers and image work on phones.
+  const visibleRange = compact ? 1 : 3;
 
   return (
     <div
@@ -120,23 +199,20 @@ export default function CoverflowSwiper({ packages }: CoverflowSwiperProps) {
       tabIndex={0}
       onKeyDown={handleKeyDown}
       onWheel={handleWheel}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
-      className="group/swiper relative w-full select-none py-6 outline-none cursor-grab active:cursor-grabbing overflow-hidden"
-      style={{ perspective: "1400px" }}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+      onPointerCancel={handlePointerCancel}
+      onClickCapture={handleClickCapture}
+      className="group/swiper cf-viewport relative w-full select-none py-6 outline-none cursor-grab active:cursor-grabbing overflow-hidden"
     >
       <div
-        className="relative mx-auto flex items-center justify-center min-h-[580px] sm:min-h-[640px] md:min-h-[680px] w-full"
-        style={{ transformStyle: "preserve-3d" }}
+        ref={stageRef}
+        className="cf-stage relative mx-auto flex items-center justify-center min-h-[580px] sm:min-h-[640px] md:min-h-[680px] w-full"
       >
         {packages.map((pkg, i) => {
           const offset = i - safeIndex;
-          if (Math.abs(offset) > VISIBLE_RANGE) {
+          if (Math.abs(offset) > visibleRange) {
             return null;
           }
 
@@ -154,7 +230,6 @@ export default function CoverflowSwiper({ packages }: CoverflowSwiperProps) {
           const opacity = Math.max(0.12, 1 - Math.abs(offset) * 0.22);
 
           const stepPercent = offset * 45;
-          const dragX = isDragging ? dragOffset * 0.5 : 0;
 
           return (
             <div
@@ -163,15 +238,13 @@ export default function CoverflowSwiper({ packages }: CoverflowSwiperProps) {
                 if (!isActive) goTo(i);
               }}
               aria-hidden={!isActive}
+              data-near={Math.abs(offset) <= 1}
               style={{
-                transform: `translate3d(calc(${stepPercent}% + ${dragX}px), 0px, ${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
+                transform: `translate3d(${stepPercent}%, 0px, ${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
                 zIndex,
                 opacity,
-                transition: isDragging
-                  ? "none"
-                  : "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease",
               }}
-              className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] sm:w-[330px] md:w-[370px] will-change-transform ${
+              className={`cf-card absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] sm:w-[330px] md:w-[370px] ${
                 isActive
                   ? "pointer-events-auto cursor-default"
                   : "pointer-events-auto cursor-pointer hover:opacity-90"
@@ -179,9 +252,9 @@ export default function CoverflowSwiper({ packages }: CoverflowSwiperProps) {
             >
               {/* Card Container */}
               <article
-                className={`relative aspect-[2/3] overflow-hidden rounded-[18px] bg-[#121B20] shadow-[0_28px_60px_-20px_rgba(0,0,0,0.95)] border transition-all duration-500 ${
+                className={`relative aspect-[2/3] overflow-hidden rounded-[18px] bg-[#121B20] shadow-[0_28px_60px_-20px_rgba(0,0,0,0.95)] border transition-colors duration-300 ${
                   isActive
-                    ? "border-[var(--color-wild-orange)]/60 shadow-[0_32px_70px_-15px_rgba(212,147,104,0.35)] ring-1 ring-white/20"
+                    ? "border-[var(--color-wild-orange)]/60 ring-1 ring-white/20"
                     : "border-white/10 hover:border-white/20"
                 }`}
               >
@@ -191,10 +264,10 @@ export default function CoverflowSwiper({ packages }: CoverflowSwiperProps) {
                     src={getPackageCardImage(pkg.slug)}
                     alt={pkg.title}
                     fill
-                    sizes="(min-width: 768px) 450px, 80vw"
-                    quality={75}
-                    priority={i === 0}
-                    className="h-full w-full object-cover transition-transform duration-700"
+                    sizes={compact ? "280px" : "(min-width: 768px) 370px, 280px"}
+                    quality={compact ? 60 : 75}
+                    loading={isActive ? "eager" : "lazy"}
+                    className="h-full w-full object-cover"
                   />
                 </div>
 
@@ -206,19 +279,14 @@ export default function CoverflowSwiper({ packages }: CoverflowSwiperProps) {
                   aria-hidden="true"
                 />
 
-                {/* Ambient Warmth Glow */}
+                {/* Ambient warmth + sheen share one layer. Their effective
+                    alphas are baked into the stops so the look is unchanged. */}
                 <div
-                  className="absolute inset-0 pointer-events-none opacity-40 mix-blend-screen"
+                  className="cf-card-glow absolute inset-0 pointer-events-none"
                   style={{
-                    background:
-                      "radial-gradient(120% 70% at 50% 100%, rgba(212, 147, 104, 0.35), transparent 60%)",
+                    backgroundImage:
+                      "linear-gradient(to top right, transparent, rgba(255, 255, 255, 0.03), transparent), radial-gradient(120% 70% at 50% 100%, rgba(212, 147, 104, 0.0875), transparent 60%)",
                   }}
-                  aria-hidden="true"
-                />
-
-                {/* Subtle Light Sheen */}
-                <div
-                  className="absolute inset-0 pointer-events-none opacity-20 bg-gradient-to-tr from-transparent via-white/15 to-transparent"
                   aria-hidden="true"
                 />
 
@@ -237,7 +305,7 @@ export default function CoverflowSwiper({ packages }: CoverflowSwiperProps) {
                       {String(i + 1).padStart(2, "0")}
                     </span>
 
-                    <span className="rounded-full border border-white/20 bg-black/60 px-3 py-1 font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-white/90 backdrop-blur-md shadow-sm">
+                    <span className="rounded-full border border-white/20 bg-black/60 px-3 py-1 font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-white/90 shadow-sm">
                       {pkg.category}
                     </span>
                   </div>
@@ -327,7 +395,7 @@ export default function CoverflowSwiper({ packages }: CoverflowSwiperProps) {
                       <Link
                         href={`/enquiry?package=${pkg.slug}`}
                         tabIndex={isActive ? 0 : -1}
-                        className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-md px-4 py-2 font-sans text-xs sm:text-sm font-medium text-white transition-all hover:border-white/50 hover:bg-white/10 active:scale-[0.98]"
+                        className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full border border-white/20 bg-[#0C1617]/70 px-4 py-2 font-sans text-xs sm:text-sm font-medium text-white transition-all hover:border-white/50 hover:bg-white/10 active:scale-[0.98]"
                       >
                         Enquire About This
                       </Link>

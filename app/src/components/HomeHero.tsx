@@ -5,11 +5,7 @@ import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { HERO_VIDEOS, HeroVideo } from "@/data/heroVideos";
-import dynamic from "next/dynamic";
-const HeroVideoShuffler = dynamic(() => import("@/components/HeroVideoShuffler"), {
-  ssr: false,
-  loading: () => null,
-});
+import HeroVideoShuffler from "@/components/HeroVideoShuffler";
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }

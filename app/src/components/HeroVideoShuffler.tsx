@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback, useSyncExternalStore } from "react";
-import Image from "next/image";
 import { HERO_VIDEOS, HeroVideo, generateShuffledPlaylist } from "@/data/heroVideos";
 
 // Declare optional mobileVideoUrl property on HeroVideo in case it has not yet landed in heroVideos.ts
@@ -105,6 +104,22 @@ export default function HeroVideoShuffler({ onVideoChange }: HeroVideoShufflerPr
   // Track if current video is actively rendering frames
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [autoplayRefused, setAutoplayRefused] = useState(false);
+
+  // Keep first paint poster-only: the priority JPEG becomes LCP instead of a
+  // multi-megabyte remote video frame. Video elements mount one frame later.
+  const [videosReady, setVideosReady] = useState(false);
+  useEffect(() => {
+    let timer = 0;
+    const start = () => {
+      timer = window.setTimeout(() => setVideosReady(true), 300);
+    };
+    if (document.readyState === "complete") start();
+    else window.addEventListener("load", start, { once: true });
+    return () => {
+      window.removeEventListener("load", start);
+      window.clearTimeout(timer);
+    };
+  }, []);
 
   // Video element references
   const phoneVideoRef = useRef<HTMLVideoElement | null>(null);
@@ -245,7 +260,11 @@ export default function HeroVideoShuffler({ onVideoChange }: HeroVideoShufflerPr
   // Initialize diverse non-repeating shuffled playlist on client mount
   useEffect(() => {
     const timer = window.setTimeout(() => {
-      const shuffled = generateShuffledPlaylist();
+      // Keep the first clip (and its server-rendered poster) stable so the
+      // initial LCP image is never replaced by a late client-side candidate.
+      // Everything after it is still shuffled, so rotations stay non-repeating.
+      const rest = generateShuffledPlaylist().filter((video) => video !== HERO_VIDEOS[0]);
+      const shuffled = HERO_VIDEOS[0] ? [HERO_VIDEOS[0], ...rest] : rest;
       setPlaylist(shuffled);
       playlistRef.current = shuffled;
       setCurrentIndex(0);
@@ -325,6 +344,8 @@ export default function HeroVideoShuffler({ onVideoChange }: HeroVideoShufflerPr
   useEffect(() => {
     if (isPhone || blockVideo) return;
     const activeEl = activeLayer === "A" ? videoRefA.current : videoRefB.current;
+    const idleEl = activeLayer === "A" ? videoRefB.current : videoRefA.current;
+    if (idleEl && !idleEl.paused) idleEl.pause();
     if (!activeEl) return;
 
     activeEl.muted = true;
@@ -542,19 +563,27 @@ export default function HeroVideoShuffler({ onVideoChange }: HeroVideoShufflerPr
   return (
     <div ref={containerRef} className="absolute inset-0 overflow-hidden bg-black select-none">
       {/* Underlying Instant High-Res Poster Layer — never shows black void */}
-      <Image
-        src={currentVideo.posterUrl}
-        alt={currentVideo.title}
-        fill
-        priority
-        sizes="100vw"
-        className={`object-cover filter brightness-[0.76] contrast-[1.08] transition-opacity duration-1000 ${
+      {/* Direct local WebP: already optimised, so skip the /_next/image hop. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={HERO_VIDEOS[0].posterUrl}
+        alt={HERO_VIDEOS[0].title}
+        fetchPriority="high"
+        decoding="async"
+        style={{
+          position: "absolute",
+          width: "calc(100% + 2px)",
+          height: "calc(100% + 2px)",
+          top: "-1px",
+          left: "-1px",
+        }}
+        className={`object-cover transition-opacity duration-1000 ${
           posterOnly ? "opacity-100" : "opacity-0"
         }`}
       />
 
       {/* Phone path: exactly ONE video element, phone-sized src, no dual-buffer preload */}
-      {isPhone && !blockVideo && (
+      {isPhone && !blockVideo && videosReady && (
         <video
           ref={phoneVideoRef}
           key="hero-mobile-video"
@@ -564,7 +593,6 @@ export default function HeroVideoShuffler({ onVideoChange }: HeroVideoShufflerPr
           loop
           playsInline
           preload="metadata"
-          poster={currentVideo.posterUrl}
           disableRemotePlayback
           onPlaying={() => {
             setIsVideoPlaying(true);
@@ -586,16 +614,15 @@ export default function HeroVideoShuffler({ onVideoChange }: HeroVideoShufflerPr
       )}
 
       {/* Desktop path: Layer A Video (dual buffer) */}
-      {!isPhone && !blockVideo && (
+      {!isPhone && !blockVideo && videosReady && (
         <video
           ref={videoRefA}
           src={videoSrcA}
-          autoPlay
+          autoPlay={activeLayer === "A"}
           playsInline
           muted
           loop
-          preload="metadata"
-          poster={currentVideo.posterUrl}
+          preload={activeLayer === "A" ? "metadata" : "none"}
           disableRemotePlayback
           onPlaying={() => {
             if (activeLayer === "A") {
@@ -619,16 +646,15 @@ export default function HeroVideoShuffler({ onVideoChange }: HeroVideoShufflerPr
       )}
 
       {/* Desktop path: Layer B Video (dual buffer) */}
-      {!isPhone && !blockVideo && (
+      {!isPhone && !blockVideo && videosReady && (
         <video
           ref={videoRefB}
           src={videoSrcB}
-          autoPlay
+          autoPlay={activeLayer === "B"}
           playsInline
           muted
           loop
-          preload="metadata"
-          poster={currentVideo.posterUrl}
+          preload={activeLayer === "B" ? "metadata" : "none"}
           disableRemotePlayback
           onPlaying={() => {
             if (activeLayer === "B") {

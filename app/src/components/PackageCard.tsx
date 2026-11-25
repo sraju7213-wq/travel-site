@@ -52,7 +52,7 @@ export default function PackageCard({ pkg, compact = false }: PackageCardProps) 
           >
             {/* Image Frame — poster on ≥sm, compact thumbnail on mobile */}
             <div
-              className="relative aspect-square w-28 shrink-0 overflow-hidden bg-black/40 sm:aspect-[16/11] sm:w-full"
+              className="relative aspect-square w-28 shrink-0 overflow-hidden bg-black/40 sm:aspect-[16/13] sm:w-full"
               suppressHydrationWarning
             >
               {!imageError ? (

@@ -405,3 +405,4 @@ accessible name is unchanged.
 - `manifest.json` records the brochure-derived assets in machine-readable form;
   client-supplied and Pexels provenance is documented in the sections above and
   in `docs/image-sources.md`.
+| images/hero/orbit-gulmarg-landscape.webp | WebP conversion of orbit-gulmarg-landscape.jpg (74 KB vs 158 KB), used as the preloaded orbit backdrop |

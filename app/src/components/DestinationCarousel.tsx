@@ -301,16 +301,21 @@ export default function DestinationCarousel() {
                   onClick={() => goTo(i)}
                   aria-label={`Go to ${d.name}`}
                   aria-current={active === i ? "true" : undefined}
-                  className={`h-2.5 rounded-full transition-all duration-300 ${
-                    active === i
-                      ? "w-7 bg-[var(--color-wild-orange)]"
-                      : "w-2.5 bg-white/30 hover:bg-white/60"
-                  }`}
-                />
+                  className="group flex h-6 w-6 items-center justify-center rounded-full"
+                >
+                  <span
+                    aria-hidden="true"
+                    className={`block rounded-full transition-all duration-300 ${
+                      active === i
+                        ? "h-2.5 w-6 bg-[var(--color-wild-orange)]"
+                        : "h-2.5 w-2.5 bg-white/30 group-hover:bg-white/60"
+                    }`}
+                  />
+                </button>
               ))}
             </div>
 
-            <p className="mt-3 text-center font-sans text-[10px] uppercase tracking-[0.18em] text-white/40 md:hidden">
+            <p className="mt-3 text-center font-sans text-[10px] uppercase tracking-[0.18em] text-white/60 md:hidden">
               Swipe image or tap arrows
             </p>
 

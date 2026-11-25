@@ -451,6 +451,16 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
       aria-labelledby="jy-hero-title"
     >
       <div className="jy-orbit-stage">
+        {/* Full-screen backdrop as a real high-priority image: it is painted
+            early and stays the LCP candidate instead of small orbit cards. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/hero/orbit-gulmarg-landscape.webp"
+          alt=""
+          aria-hidden="true"
+          fetchPriority="high"
+          className="jy-orbit-backdrop pointer-events-none absolute inset-0 h-full w-full object-cover"
+        />
         <div ref={ringRef} className="jy-orbit-ring" aria-hidden="true">
           {journeys.map((pkg, index) => {
             const densityClass =
@@ -472,8 +482,9 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
                   src={getHeroJourneyImage(pkg)}
                   alt=""
                   fill
-                  sizes="(min-width: 768px) 450px, 320px"
+                  sizes="(min-width: 1280px) 188px, (min-width: 1024px) 165px, (min-width: 768px) 131px, 108px"
                   quality={75}
+                  loading={index < 5 ? "eager" : "lazy"}
                   className="object-cover"
                 />
                 <span className="jy-orbit-veil" aria-hidden="true" />

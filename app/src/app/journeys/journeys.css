@@ -12,14 +12,8 @@
   background: #0c1617;
 }
 
-.jy-orbit::before {
-  position: absolute;
-  inset: 0;
+.jy-orbit-backdrop {
   z-index: 0;
-  background: url("/images/hero/orbit-gulmarg-landscape.jpg") center/cover no-repeat;
-  opacity: 0.5;
-  content: "";
-  pointer-events: none;
 }
 
 .jy-orbit-stage {
