@@ -33,11 +33,11 @@ export const EASE = {
 
 /** Duration ladder in seconds — keeps timing legible across the product. */
 export const DURATION = {
-  micro: 0.28,
-  quick: 0.5,
-  base: 0.85,
-  slow: 1.15,
-  cinematic: 1.6,
+  micro: 0.2,
+  quick: 0.32,
+  base: 0.5,
+  slow: 0.7,
+  cinematic: 1,
 } as const;
 
 export const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";

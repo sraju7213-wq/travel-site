@@ -644,7 +644,7 @@
   /* `backwards` fill takes the hidden start state from the keyframes rather
      than from a base `opacity: 0`, so the element is visible if the animation
      never runs (throttled tab, disabled CSS animation). */
-  animation: fadeInUp 0.6s ease-out backwards;
+  animation: fadeInUp 0.28s ease-out backwards;
 }
 
 /* Rise entrance that never hides its content.
@@ -661,7 +661,7 @@
 }
 
 .animate-rise-in {
-  animation: riseIn 0.6s ease-out backwards;
+  animation: riseIn 0.26s ease-out backwards;
 }
 
 /* Slide in from right for mobile filter drawer */
@@ -677,18 +677,18 @@
 }
 
 .animate-slide-in {
-  animation: slideInRight 0.4s ease-out forwards;
+  animation: slideInRight 0.24s ease-out forwards;
 }
 
 /* Staggered animation delays */
-.stagger-1 { animation-delay: 0.05s; }
-.stagger-2 { animation-delay: 0.1s; }
-.stagger-3 { animation-delay: 0.15s; }
-.stagger-4 { animation-delay: 0.2s; }
-.stagger-5 { animation-delay: 0.25s; }
-.stagger-6 { animation-delay: 0.3s; }
-.stagger-7 { animation-delay: 0.35s; }
-.stagger-8 { animation-delay: 0.4s; }
+.stagger-1 { animation-delay: 0.02s; }
+.stagger-2 { animation-delay: 0.04s; }
+.stagger-3 { animation-delay: 0.06s; }
+.stagger-4 { animation-delay: 0.08s; }
+.stagger-5 { animation-delay: 0.1s; }
+.stagger-6 { animation-delay: 0.12s; }
+.stagger-7 { animation-delay: 0.14s; }
+.stagger-8 { animation-delay: 0.16s; }
 .menu-crossfade-enter-active {
   opacity: 1;
   transform: translateY(0);
@@ -751,7 +751,7 @@
 }
 
 .animate-fade-in {
-  animation: fade-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fade-in 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes slide-in-right {
@@ -766,7 +766,7 @@
 }
 
 .animate-slide-in-right {
-  animation: slide-in-right 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: slide-in-right 0.24s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes scale-in {
@@ -781,25 +781,25 @@
 }
 
 .animate-scale-in {
-  animation: scale-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: scale-in 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Staggered entrance for grid items */
 .stagger-in > * {
-  animation: fade-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation: fade-in 0.22s cubic-bezier(0.16, 1, 0.3, 1) backwards;
 }
 .stagger-in > *:nth-child(1) { animation-delay: 0ms; }
-.stagger-in > *:nth-child(2) { animation-delay: 60ms; }
-.stagger-in > *:nth-child(3) { animation-delay: 120ms; }
-.stagger-in > *:nth-child(4) { animation-delay: 180ms; }
-.stagger-in > *:nth-child(5) { animation-delay: 240ms; }
-.stagger-in > *:nth-child(6) { animation-delay: 300ms; }
-.stagger-in > *:nth-child(7) { animation-delay: 360ms; }
-.stagger-in > *:nth-child(8) { animation-delay: 420ms; }
-.stagger-in > *:nth-child(9) { animation-delay: 480ms; }
-.stagger-in > *:nth-child(10) { animation-delay: 540ms; }
-.stagger-in > *:nth-child(11) { animation-delay: 600ms; }
-.stagger-in > *:nth-child(12) { animation-delay: 660ms; }
+.stagger-in > *:nth-child(2) { animation-delay: 30ms; }
+.stagger-in > *:nth-child(3) { animation-delay: 60ms; }
+.stagger-in > *:nth-child(4) { animation-delay: 90ms; }
+.stagger-in > *:nth-child(5) { animation-delay: 120ms; }
+.stagger-in > *:nth-child(6) { animation-delay: 150ms; }
+.stagger-in > *:nth-child(7) { animation-delay: 180ms; }
+.stagger-in > *:nth-child(8) { animation-delay: 210ms; }
+.stagger-in > *:nth-child(9) { animation-delay: 240ms; }
+.stagger-in > *:nth-child(10) { animation-delay: 270ms; }
+.stagger-in > *:nth-child(11) { animation-delay: 300ms; }
+.stagger-in > *:nth-child(12) { animation-delay: 330ms; }
 
 /* Focus visible ring using wild orange */
 .focus-ring-wild {
@@ -843,43 +843,19 @@
   animation: lightbox-enter 360ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-@keyframes page-curtain-open {
-  from { transform: scaleY(1); transform-origin: bottom center; }
-  to { transform: scaleY(0); transform-origin: bottom center; }
-}
-
 /* ---------------------------------------------------------------------------
-   Page transition (see components/ui/PageTransition.tsx)
-
-   The curtain sweep and the content settle are CSS animations on purpose:
-   they run on the browser's own animation timeline, so they complete even
-   when the JavaScript rAF ticker is throttled. The curtain's resting state
-   is `scaleY(0)` (invisible) and the content is never hidden, so a stalled
-   or disabled animation costs a flourish, never the page itself.
+   Page transition (components/ui/PageTransition.tsx)
+   A 220ms lift only — no masking curtain. Content is visible immediately.
    --------------------------------------------------------------------------- */
-@keyframes page-curtain-sweep {
-  0%   { transform: scaleY(0); transform-origin: 50% 0%; }
-  40%  { transform: scaleY(1); transform-origin: 50% 0%; }
-  41%  { transform: scaleY(1); transform-origin: 50% 100%; }
-  100% { transform: scaleY(0); transform-origin: 50% 100%; }
-}
-
 @keyframes page-content-settle {
-  from { transform: translateY(18px); }
-  /* End on `none`, not `translateY(0)`: the animation fills forwards, and a
-     lingering transform would turn this wrapper into the containing block for
-     every `position: fixed` descendant (e.g. the mobile filter drawer and the
-     scroll-aware header), pinning them to the page instead of the viewport. */
+  from { transform: translateY(6px); }
+  /* End on `none`: a lingering transform would make this wrapper the
+     containing block for fixed overlays like the mobile filter drawer. */
   to   { transform: none; }
 }
 
-.page-transition-curtain {
-  transform: scaleY(0);
-  animation: page-curtain-sweep 1.04s cubic-bezier(0.4, 0, 0.2, 1) both;
-}
-
 .page-transition-content {
-  animation: page-content-settle 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+  animation: page-content-settle 0.22s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* ---------------------------------------------------------------------------
@@ -900,24 +876,20 @@
 
 .pkg-hero-photo {
   opacity: 0.35;
-  animation: pkg-hero-photo-settle 1.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: pkg-hero-photo-settle 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .pkg-hero-rise {
-  animation: pkg-hero-rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: pkg-hero-rise 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-.pkg-hero-d1 { animation-delay: 0.1s; }
-.pkg-hero-d2 { animation-delay: 0.2s; }
-.pkg-hero-d3 { animation-delay: 0.3s; }
-.pkg-hero-d4 { animation-delay: 0.4s; }
-.pkg-hero-d5 { animation-delay: 0.5s; }
+.pkg-hero-d1 { animation-delay: 0.02s; }
+.pkg-hero-d2 { animation-delay: 0.04s; }
+.pkg-hero-d3 { animation-delay: 0.06s; }
+.pkg-hero-d4 { animation-delay: 0.08s; }
+.pkg-hero-d5 { animation-delay: 0.1s; }
 
 @media (prefers-reduced-motion: reduce) {
-  .page-transition-curtain {
-    animation: none;
-    transform: scaleY(0);
-  }
   .page-transition-content {
     animation: none;
     transform: none;
@@ -959,263 +931,6 @@
     transform: none;
   }
 }
-
-/* ==========================================================================
-   LIGHT THEME
-   Dark remains the shipped default and is untouched. Tailwind v4 emits its
-   utilities in @layer rules with literal values, so these unlayered overrides
-   win over every utility without having to rewrite the component markup.
-   ========================================================================== */
-[data-theme="light"] {
-  color-scheme: light;
-
-  --background: #f6f2e9;
-  --foreground: #252824;
-
-  /* Brand accents warm up for ivory paper. */
-  --color-wild-orange: #b18a51;
-  --color-wild-orange-hover: #9a7342;
-  --color-wild-orange-dark: #7d5c34;
-  --color-wild-dark: #f6f2e9;
-  --color-wild-darker: #f1ece1;
-  --color-wild-cream: #faf7ef;
-  --color-wild-sand: #6b6558;
-  --color-brass: #b18a51;
-  --color-brass-soft: #d9c7a8;
-  --color-brass-ink: #252824;
-  --color-brass-hover: #9a7342;
-  --color-border: rgba(37, 40, 36, 0.14);
-  --color-focus: #9a7342;
-
-  /* Section rhythm: layered paper tones. */
-  --color-section-hero: #f6f2e9;
-  --color-section-discover: #f1ece1;
-  --color-section-destinations: #f6f2e9;
-  --color-section-journeys: #faf7ef;
-  --color-section-experiences: #f1ece1;
-  --color-section-pillars: #f6f2e9;
-  --color-section-signature: #faf7ef;
-  --color-section-impact: #f1ece1;
-  --color-section-cta: #f6f2e9;
-}
-
-[data-theme="light"] .section-hero {
-  --color-wild-orange: #9a7342;
-  --color-brass: #9a7342;
-  --color-brass-soft: #b18a51;
-}
-
-/* The wordmark is white artwork on transparency — ink it for light paper.
-   next/image rewrites src, so match on the alt text instead. */
-[data-theme="light"] img[alt="India Nepal Travel Center"] {
-  filter: brightness(0) saturate(100%);
-}
-
-/* Keep the header legible when it floats over a dark photographic hero. */
-[data-theme="light"] header {
-  background-color: rgba(246, 242, 233, 0.96);
-  backdrop-filter: blur(10px);
-}
-
-/* The Enquire button keeps a dark label once its surface turns to ivory. */
-[data-theme="light"] .enquire-fill {
-  color: #252824;
-}
-
-/* These component classes bake white text/borders into @apply, so the
-   utility-level rules above cannot reach them. */
-[data-theme="light"] .btn-ghost-dark,
-[data-theme="light"] .btn-tertiary {
-  color: #252824;
-  border-color: rgba(37, 40, 36, 0.3);
-}
-
-[data-theme="light"] .btn-ghost-dark:hover,
-[data-theme="light"] .btn-tertiary:hover {
-  color: #9a7342;
-  border-color: #9a7342;
-}
-
-/* Shell and section-level text (the @apply'd `text-white` inside these classes). */
-[data-theme="light"] body {
-  background-color: var(--background);
-  color: var(--foreground);
-}
-
-[data-theme="light"] :is(
-  .section-dark, .section-darker, .section-hero, .section-discover,
-  .section-destinations, .section-journeys, .section-experiences,
-  .section-pillars, .section-signature, .section-impact, .section-cta
-) {
-  color: var(--foreground);
-}
-
-/* Text utilities. Base first, then the opacity tiers refine it. */
-[data-theme="light"] [class*="text-white"] { color: #252824; }
-[data-theme="light"] [class*="text-white/90"] { color: rgba(37, 40, 36, 0.9); }
-[data-theme="light"] [class*="text-white/85"] { color: rgba(37, 40, 36, 0.85); }
-[data-theme="light"] [class*="text-white/80"] { color: rgba(37, 40, 36, 0.8); }
-[data-theme="light"] [class*="text-white/75"] { color: rgba(37, 40, 36, 0.75); }
-[data-theme="light"] [class*="text-white/70"] { color: rgba(37, 40, 36, 0.72); }
-[data-theme="light"] [class*="text-white/65"] { color: rgba(37, 40, 36, 0.66); }
-[data-theme="light"] [class*="text-white/60"] { color: rgba(37, 40, 36, 0.62); }
-[data-theme="light"] [class*="text-white/55"] { color: rgba(37, 40, 36, 0.58); }
-[data-theme="light"] [class*="text-white/50"] { color: rgba(37, 40, 36, 0.54); }
-[data-theme="light"] [class*="text-white/45"] { color: rgba(37, 40, 36, 0.5); }
-[data-theme="light"] [class*="text-white/40"] { color: rgba(37, 40, 36, 0.46); }
-
-[data-theme="light"] [class*="text-brass-soft"] { color: #8a6b3e; }
-[data-theme="light"] [class*="text-brass"] { color: #9a7342; }
-[data-theme="light"] [class*="text-wild-orange"] { color: #985c3d; }
-[data-theme="light"] [class*="text-wild-sand"] { color: #6b6558; }
-[data-theme="light"] :is(
-  [class*="text-[#0C1617]"], [class*="text-[#F5F2EB]"], [class*="text-[#0c1617]"]
-) { color: var(--foreground); }
-
-/* Borders and translucent surfaces become ink-on-paper equivalents. */
-[data-theme="light"] [class*="border-white"] { border-color: rgba(37, 40, 36, 0.16); }
-[data-theme="light"] [class*="border-white/10"] { border-color: rgba(37, 40, 36, 0.12); }
-[data-theme="light"] [class*="border-white/15"] { border-color: rgba(37, 40, 36, 0.16); }
-[data-theme="light"] [class*="border-white/20"] { border-color: rgba(37, 40, 36, 0.2); }
-[data-theme="light"] [class*="border-white/25"] { border-color: rgba(37, 40, 36, 0.26); }
-[data-theme="light"] [class*="border-white/30"] { border-color: rgba(37, 40, 36, 0.3); }
-[data-theme="light"] [class*="border-brass"] { border-color: #b18a51; }
-
-[data-theme="light"] [class*="bg-white"] { background-color: #ffffff; }
-[data-theme="light"] [class*="bg-white/5"] { background-color: rgba(37, 40, 36, 0.035); }
-[data-theme="light"] [class*="bg-white/10"] { background-color: rgba(37, 40, 36, 0.05); }
-[data-theme="light"] [class*="bg-white/20"] { background-color: rgba(37, 40, 36, 0.08); }
-/* Arbitrary bracket opacities (bg-white/[0.03]) must not fall through to the
-   solid-white rule above — they are meant to be barely-there surfaces. */
-[data-theme="light"] [class*="bg-white/["] { background-color: rgba(37, 40, 36, 0.035); }
-[data-theme="light"] [class*="bg-black/25"] { background-color: rgba(37, 40, 36, 0.06); }
-[data-theme="light"] [class*="bg-black/30"] { background-color: rgba(255, 255, 255, 0.7); }
-[data-theme="light"] [class*="placeholder:text-white"]::placeholder { color: rgba(37, 40, 36, 0.5); }
-
-[data-theme="light"] :is(
-  [class*="bg-[#0C1617]"], [class*="bg-[#0c1617]"], [class*="bg-[#0E1819]"],
-  [class*="bg-[#0e181a]"], [class*="bg-[#101b1d]"], [class*="bg-[#132325]"],
-  [class*="bg-[#121B20]"], [class*="bg-[#0A1213]"], [class*="bg-[#101F21]"]
-) { background-color: #faf7ef; }
-
-[data-theme="light"] [class*="scrollbar-color"] {
-  scrollbar-color: rgba(37, 40, 36, 0.25) transparent;
-}
-
-/* Photography surfaces stay dark: white captions over image gradients remain
-   readable, so they are exempt from the global text remap above. */
-[data-theme="light"] :is(
-  [data-theme-surface="dark"], [class*="group/photo"], [class*="jy-orbit"],
-  [class*="jy-orbit-card"], [class*="swiper"], [class*="bg-[#121B20]"],
-  [class*="pkg-flip"], [class*="md-card"], [class*="section-hero"],
-  [class*="section-cta"], [class*="card-elevated"], [class*="bg-black"],
-  [class*="from-[#071213]"], [class*="from-[#090E10]"]
-) [class*="text-white"] { color: #fff; }
-
-/* Brass labels on those same dark photography surfaces stay light. */
-[data-theme="light"] [data-theme-surface="dark"] [class*="text-brass"] {
-  color: #d9c7a8;
-}
-
-/* A warm, lighter scrim on journey posters in light mode; captions stay white. */
-[data-theme="light"] [class*="from-[#090E10]"] {
-  background-image: linear-gradient(
-    to top,
-    rgba(18, 27, 32, 0.82) 0%,
-    rgba(18, 27, 32, 0.42) 50%,
-    transparent 100%
-  );
-}
-
-/* The swipe hint sits on the ivory catalogue, not on a photo — keep it dark. */
-[data-theme="light"] [data-theme-surface="light"],
-[data-theme="light"] [data-theme-surface="light"] [class*="text-white"] {
-  color: rgba(37, 40, 36, 0.62) !important;
-}
-
-[data-theme="light"] [data-theme-surface="light"] kbd {
-  color: rgba(37, 40, 36, 0.75);
-  border-color: rgba(37, 40, 36, 0.22);
-  background-color: rgba(37, 40, 36, 0.05);
-}
-
-/* Journey rail headings are hard-coded pale in journeys.css — remap for paper. */
-[data-theme="light"] :is(.jy-section-title, .jy-head-title, .jy-head-link) {
-  color: #252824;
-}
-
-[data-theme="light"] .jy-head-intro {
-  color: rgba(37, 40, 36, 0.7);
-}
-
-[data-theme="light"] .jy-head-link {
-  border-bottom-color: rgba(154, 115, 66, 0.5);
-}
-
-/* Carousel arrows sit on ivory paper in light mode, so they need ink icons. */
-[data-theme="light"] button[data-theme-control="light"],
-[data-theme="light"] .jy-spot-arrow {
-  /* !important beats the photo-surface rule that keeps card captions white. */
-  color: var(--foreground) !important;
-  background-color: #ffffff !important;
-  border-color: rgba(37, 40, 36, 0.2) !important;
-  box-shadow: 0 2px 12px rgba(37, 40, 36, 0.12);
-}
-
-[data-theme="light"] button[data-theme-control="light"]:hover,
-[data-theme="light"] .jy-spot-arrow:hover {
-  color: #9a7342 !important;
-  border-color: #9a7342 !important;
-  background-color: #faf7ef !important;
-}
-
-/* Enquiry form fields use bg-black/40 scrims that would read as grey on paper. */
-[data-theme="light"] input[class*="bg-black/"],
-[data-theme="light"] textarea[class*="bg-black/"],
-[data-theme="light"] button[class*="bg-black/"][aria-haspopup] {
-  background-color: rgba(255, 255, 255, 0.85);
-}
-
-[data-theme="light"] input[class*="bg-black/"]:focus,
-[data-theme="light"] textarea[class*="bg-black/"]:focus {
-  background-color: #ffffff;
-}
-
-/* A select trigger's bg-black class trips the photo-caption exemption above. */
-[data-theme="light"] [aria-haspopup="listbox"] [class*="text-white"] {
-  color: var(--foreground) !important;
-}
-
-/* Status labels need paper-safe contrast. */
-[data-theme="light"] [class*="text-emerald-400"] { color: #1f6b4f; }
-[data-theme="light"] [class*="text-amber-300"] { color: #8a5a00; }
-
-/* Controls that sit on dark photography keep their light treatment. */
-[data-theme="light"] [data-theme-control="dark"] {
-  color: #ffffff;
-  background-color: rgba(0, 0, 0, 0.45);
-  border-color: rgba(255, 255, 255, 0.5);
-}
-
-/* Modern journeys catalogue — modern.css hardcodes a dark surface. Only the
-   catalogue area is remapped; the photo hero above keeps its white copy. */
-[data-theme="light"] #modern-catalogue.md-catalogue {
-  background: var(--background);
-  border-top-color: rgba(37, 40, 36, 0.12);
-}
-
-[data-theme="light"] #modern-catalogue .md-eyebrow {
-  color: rgba(37, 40, 36, 0.7);
-}
-
-[data-theme="light"] #modern-catalogue .md-catalogue__title {
-  color: var(--foreground);
-}
-
-[data-theme="light"] #modern-catalogue .md-catalogue__count {
-  color: rgba(37, 40, 36, 0.62);
-}
-
 
 /* ---------------------------------------------------------------------------
    Package photo viewer — touch, pointer and keyboard unified.

@@ -31,7 +31,6 @@ export default function PackageHero({ pkg }: PackageHeroProps) {
 
   return (
     <section
-      data-theme-surface="dark"
       className="relative overflow-hidden border-b border-white/10 bg-forest pt-5 pb-8 sm:pt-8 sm:pb-12 lg:pt-12 lg:pb-16"
     >
       {/* Background Photography with cinematic Ken Burns settle */}

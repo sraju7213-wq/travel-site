@@ -357,7 +357,6 @@ export default function PackageGallery({ images, title, open, onOpenChange }: Pa
         const dialog = lightboxOpen && current ? (
         <div
           ref={dialogRef}
-          data-theme-surface="dark"
           role="dialog"
           aria-modal="true"
           aria-label={`${title} — full-screen photography`}
@@ -456,7 +455,7 @@ export default function PackageGallery({ images, title, open, onOpenChange }: Pa
       ) : null;
 
   return (
-    <div data-theme-surface="dark" className="overflow-hidden rounded-xl border border-white/10 bg-[#0C1617]">
+    <div className="overflow-hidden rounded-xl border border-white/10 bg-[#0C1617]">
       {/* Preview — tap anywhere to open the full viewer */}
       <div className="group relative h-64 w-full overflow-hidden sm:h-80 lg:h-[26rem]">
         <button

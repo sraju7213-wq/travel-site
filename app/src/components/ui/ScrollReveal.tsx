@@ -56,8 +56,8 @@ const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 export default function ScrollReveal({
   children,
   className,
-  duration = 0.8,
-  stagger = 0.15,
+  duration = 0.5,
+  stagger = 0.08,
   start = "top 85%",
   end = "bottom 10%",
   ease = "power2.out",

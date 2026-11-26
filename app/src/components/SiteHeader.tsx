@@ -5,7 +5,6 @@ import dynamic from "next/dynamic";
 import { useCallback, useEffect, useRef, useState } from "react";
 import BrandMark from "./BrandMark";
 import DesktopNavPanel from "./DesktopNavPanel";
-import ThemeToggle from "./ThemeToggle";
 import { HEADER_LINKS, NAV_GROUPS } from "@/lib/navigation";
 
 // The drawer is a large client component (quick-jump index of every journey,
@@ -213,8 +212,6 @@ export default function SiteHeader() {
                 );
               })}
 
-              <ThemeToggle className="ml-2" />
-
               <Link
                 href="/enquiry"
                 className="enquire-fill ml-3 inline-flex min-h-[44px] items-center justify-center px-5 py-2.5 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brass)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0C1617]"
@@ -225,8 +222,6 @@ export default function SiteHeader() {
 
             {/* Mobile actions */}
             <div className="flex items-center gap-2 lg:hidden">
-              <ThemeToggle className="h-12 w-12" />
-
               <Link
                 href="/enquiry"
                 className="enquire-fill inline-flex min-h-[48px] items-center justify-center px-3.5 py-2 font-sans text-[10px] font-semibold uppercase tracking-[0.18em] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brass)] sm:px-4"

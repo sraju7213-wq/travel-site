@@ -16,8 +16,7 @@
 
 .cf-card {
   transition:
-    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 0.5s ease;
+    transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
   /* No paint containment: it would clip the poster's drop shadow. */
   backface-visibility: hidden;
 }
@@ -38,6 +37,45 @@
 @media (max-width: 767px) {
   .cf-viewport {
     perspective: 1000px;
+  }
+}
+
+/* Promote the stage only while a finger is dragging, never at rest. */
+.cf-viewport.cf-dragging .cf-stage {
+  will-change: transform;
+}
+
+@media (max-width: 767px) {
+  /* Flat cards: no perspective calculation, no 3D layer shuffling. */
+  .cf-viewport.cf-compact {
+    perspective: none;
+  }
+
+  .cf-stage--flat {
+    transform-style: flat;
+  }
+
+  .cf-compact .cf-card {
+    backface-visibility: visible;
+    transition-duration: 320ms;
+  }
+
+  /* Cheaper shadows and no glow/text filters: all paint, no motion benefit. */
+  .cf-compact .cf-card article {
+    box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.85);
+  }
+
+  .cf-compact .cf-card-glow {
+    display: none;
+  }
+
+  .cf-compact .cf-rank {
+    color: var(--color-wild-orange) !important;
+    -webkit-text-stroke: 0 !important;
+  }
+
+  .cf-compact .cf-title {
+    filter: none !important;
   }
 }
 

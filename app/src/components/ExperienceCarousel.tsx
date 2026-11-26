@@ -137,7 +137,7 @@ export default function ExperienceCarousel() {
                   <ExperienceCircleImage src={exp.image} alt={exp.title} />
 
                   {/* 2. Deep Forest Teal Content Box */}
-                  <div data-theme-surface="dark" className="relative z-10 flex-1 w-full bg-[#0d2a2d] text-white pt-20 pb-8 px-6 sm:py-10 sm:pr-8 sm:pl-28 md:py-12 md:pr-12 md:pl-36 lg:py-14 lg:pr-14 lg:pl-44 min-h-[360px] sm:min-h-[380px] md:min-h-[420px] flex flex-col justify-between rounded-sm shadow-xl border border-white/5 transition-colors duration-300 group-hover:border-white/15">
+                  <div className="relative z-10 flex-1 w-full bg-[#0d2a2d] text-white pt-20 pb-8 px-6 sm:py-10 sm:pr-8 sm:pl-28 md:py-12 md:pr-12 md:pl-36 lg:py-14 lg:pr-14 lg:pl-44 min-h-[360px] sm:min-h-[380px] md:min-h-[420px] flex flex-col justify-between rounded-sm shadow-xl border border-white/5 transition-colors duration-300 group-hover:border-white/15">
                     {/* A warm edge glow traces the card as the pointer passes. */}
                     <span
                       aria-hidden="true"

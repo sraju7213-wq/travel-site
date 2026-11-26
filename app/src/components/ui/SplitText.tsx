@@ -49,7 +49,7 @@ export default function SplitText({
   children,
   as: Tag = "span",
   className,
-  stagger = 0.055,
+  stagger = 0.03,
   duration = DURATION.slow,
   delay = 0,
   start = "top 88%",

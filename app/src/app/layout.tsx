@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Plus_Jakarta_Sans, Cinzel, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { BRAND } from "@/data/brandConfig";
-import { THEME_SCRIPT } from "@/lib/theme";
 
 // Variable faces cover every weight the design uses in a single file each.
 // Static weights previously generated ~21 WOFF2 files (all preloaded) on every
@@ -65,15 +64,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       className={`${cormorant.variable} ${plusJakarta.variable} ${cinzel.variable} ${geistMono.variable} h-full antialiased`}
-      suppressHydrationWarning
     >
-      <head>
-        {/* Runs before first paint so the saved/system theme is applied without a flash. */}
-        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
-      </head>
       <body
         className="min-h-full flex flex-col bg-[#0C1617] text-[#F5F2EB] selection:bg-brass selection:text-white"
-        suppressHydrationWarning
       >
         {children}
       </body>

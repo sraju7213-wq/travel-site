@@ -179,7 +179,6 @@ export default function HomeHero() {
                 transition: magneticOffset.x === 0 ? "transform 0.5s cubic-bezier(0.2, 0.9, 0.3, 1)" : "none",
               }}
               aria-label="Discover more — open the journeys page"
-              data-theme-control="dark"
               className="group flex h-[90px] w-[90px] shrink-0 flex-col items-center justify-center rounded-full border-2 border-white/50 bg-black/45 backdrop-blur-md text-white transition-colors duration-500 ease-out hover:scale-105 hover:border-blue-500 hover:bg-blue-500 hover:shadow-[0_0_35px_rgba(59,130,246,0.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent cursor-pointer shadow-[0_8px_24px_rgba(0,0,0,0.6)]"
             >
               <span className="font-accent text-[0.45rem] sm:text-[0.52rem] md:text-[0.58rem] font-semibold uppercase leading-none tracking-[0.16em] sm:tracking-[0.22em] text-white/90 transition-colors group-hover:text-white">

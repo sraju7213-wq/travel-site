@@ -343,7 +343,7 @@ export default function EnquiryForm({
           </div>
 
           {/* Specialist Trust Card */}
-          <div data-theme-surface="dark" className="rounded-[1.25rem] border border-white/10 bg-forest p-7 text-white shadow-xl">
+          <div className="rounded-[1.25rem] border border-white/10 bg-forest p-7 text-white shadow-xl">
             <p className="text-xs font-display uppercase tracking-[0.25em] text-brass font-semibold mb-3">
               Why Travel With {BRAND.name}
             </p>

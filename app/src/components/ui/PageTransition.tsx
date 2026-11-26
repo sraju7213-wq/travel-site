@@ -6,52 +6,30 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 /**
  * PageTransition
  * --------------
- * The "page open" animation.
+ * Mounted from `app/template.tsx`, which Next.js remounts on every navigation.
  *
- * Mounted from `app/template.tsx`, which Next.js remounts on every navigation,
- * so this component is the natural place to stage a fresh page entrance:
- *
- *  1. A brand-coloured curtain sweeps down over the viewport and lifts away,
- *     masking the swap between the outgoing and incoming route.
- *  2. The incoming content settles into place beneath it.
- *  3. ScrollTrigger is refreshed once the curtain has cleared, so any
- *     scroll-linked animation on the new page measures the correct geometry
- *     rather than the pre-transition layout.
- *
- * IMPORTANT — the animation is CSS-driven, not GSAP-driven, and the content is
- * never hidden. A JS timeline that has to run before the page becomes visible
- * is a single point of failure: if the requestAnimationFrame ticker is
- * throttled (a background tab, a slow phone, a dropped frame) the page stays
- * blank. The curtain is decorative and starts hidden, so the worst case is a
- * missing flourish, not a missing page.
+ * The old full-screen curtain swept for over a second and made every route
+ * change feel heavy. The modern treatment is a short, subtle lift of the
+ * incoming content — no hiding layer, no staged reveal. Content is visible
+ * immediately and the animation is CSS-driven, so a throttled rAF ticker can
+ * only cost the flourish, never the page.
  */
 export default function PageTransition({ children }: { children: ReactNode }) {
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Refresh triggers once the curtain has cleared so scroll-linked
-    // animations on the new page measure the settled layout.
+    // Refresh scroll-linked triggers after the settle so they measure the
+    // final layout. 240ms matches the CSS animation below.
     const timer = window.setTimeout(() => {
       // Drop the settle animation once it has played out. A filled-forwards
       // transform — even an identity one — makes this wrapper the containing
-      // block for every `position: fixed` descendant, so the mobile filter
-      // drawer and other overlays would anchor to the page instead of the
-      // viewport. Removing the animation leaves no transform behind.
+      // block for every `position: fixed` descendant (e.g. the mobile filter
+      // drawer), pinning them to the page instead of the viewport.
       if (contentRef.current) contentRef.current.style.animation = "none";
       ScrollTrigger.refresh();
-    }, 1150);
+    }, 240);
     return () => window.clearTimeout(timer);
   }, []);
 
-  return (
-    <>
-      <div
-        aria-hidden="true"
-        className="page-transition-curtain pointer-events-none fixed inset-0 z-[90] bg-[#0C1617]"
-      />
-      <div ref={contentRef} className="page-transition-content">
-        {children}
-      </div>
-    </>
-  );
+  return <div ref={contentRef} className="page-transition-content">{children}</div>;
 }

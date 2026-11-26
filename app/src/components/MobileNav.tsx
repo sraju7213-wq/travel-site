@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import ThemeToggle from "./ThemeToggle";
 import { useBodyOverflowLock } from "@/hooks/useBodyOverflowLock";
 import { getRecentSlugs, pushRecent, getPins } from "@/lib/menuStorage";
 import { NAV_GROUPS, DESTINATION_LINKS, type NavLink } from "@/lib/navigation";
@@ -265,7 +264,6 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
           </Link>
 
           <div className="flex shrink-0 items-center gap-1.5">
-            <ThemeToggle className="h-11 w-11" />
             <Link
               href="/enquiry"
               onClick={onClose}

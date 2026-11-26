@@ -204,11 +204,11 @@ export default function CoverflowSwiper({ packages }: CoverflowSwiperProps) {
       onPointerUp={handlePointerUp}
       onPointerCancel={handlePointerCancel}
       onClickCapture={handleClickCapture}
-      className="group/swiper cf-viewport relative w-full select-none py-6 outline-none cursor-grab active:cursor-grabbing overflow-hidden"
+      className={`group/swiper cf-viewport relative w-full select-none py-6 outline-none cursor-grab active:cursor-grabbing overflow-hidden ${compact ? "cf-compact" : ""}`}
     >
       <div
         ref={stageRef}
-        className="cf-stage relative mx-auto flex items-center justify-center min-h-[580px] sm:min-h-[640px] md:min-h-[680px] w-full"
+        className={`cf-stage relative mx-auto flex items-center justify-center min-h-[470px] w-full sm:min-h-[640px] md:min-h-[680px] ${compact ? "cf-stage--flat" : ""}`}
       >
         {packages.map((pkg, i) => {
           const offset = i - safeIndex;
@@ -227,9 +227,13 @@ export default function CoverflowSwiper({ packages }: CoverflowSwiperProps) {
           const translateZ = -Math.abs(offset) * 220;
           const scale = isActive ? 1 : Math.max(0.72, 1 - Math.abs(offset) * 0.08);
           const zIndex = 20 - Math.abs(offset);
-          const opacity = Math.max(0.12, 1 - Math.abs(offset) * 0.22);
 
-          const stepPercent = offset * 45;
+          // Phones get a flat 2D slide: no perspective, rotateY or translateZ,
+          // so the GPU composites three simple layers instead of a 3D scene.
+          const stepPercent = offset * (compact ? 62 : 45);
+          const transform = compact
+            ? `translate3d(${stepPercent}%, 0, 0) scale(${isActive ? 1 : Math.max(0.82, 1 - Math.abs(offset) * 0.08)})`
+            : `translate3d(${stepPercent}%, 0px, ${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`;
 
           return (
             <div
@@ -240,14 +244,11 @@ export default function CoverflowSwiper({ packages }: CoverflowSwiperProps) {
               aria-hidden={!isActive}
               data-near={Math.abs(offset) <= 1}
               style={{
-                transform: `translate3d(${stepPercent}%, 0px, ${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
+                transform,
                 zIndex,
-                opacity,
               }}
-              className={`cf-card absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] sm:w-[330px] md:w-[370px] ${
-                isActive
-                  ? "pointer-events-auto cursor-default"
-                  : "pointer-events-auto cursor-pointer hover:opacity-90"
+              className={`cf-card absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] sm:w-[330px] md:w-[370px] pointer-events-auto ${
+                isActive ? "cursor-default" : "cursor-pointer"
               }`}
             >
               {/* Card Container */}
@@ -264,8 +265,8 @@ export default function CoverflowSwiper({ packages }: CoverflowSwiperProps) {
                     src={getPackageCardImage(pkg.slug)}
                     alt={pkg.title}
                     fill
-                    sizes={compact ? "280px" : "(min-width: 768px) 370px, 280px"}
-                    quality={compact ? 60 : 75}
+                    sizes={compact ? "240px" : "(min-width: 768px) 370px, 280px"}
+                    quality={60}
                     loading={isActive ? "eager" : "lazy"}
                     className="h-full w-full object-cover"
                   />
@@ -273,9 +274,7 @@ export default function CoverflowSwiper({ packages }: CoverflowSwiperProps) {
 
                 {/* Dark Cinematic Gradient Overlay */}
                 <div
-                  className={`absolute inset-0 bg-gradient-to-t from-[#090E10] via-[#090E10]/80 via-50% to-transparent transition-opacity duration-500 ${
-                    isActive ? "opacity-100" : "opacity-85"
-                  }`}
+                  className="absolute inset-0 bg-gradient-to-t from-[#090E10] via-[#090E10]/80 via-50% to-transparent"
                   aria-hidden="true"
                 />
 
@@ -295,7 +294,7 @@ export default function CoverflowSwiper({ packages }: CoverflowSwiperProps) {
                   {/* Top Rank Badge & Category Tag */}
                   <div className="flex items-start justify-between">
                     <span
-                      className="font-serif text-4xl sm:text-5xl font-bold tracking-tighter"
+                      className="cf-rank font-serif text-4xl sm:text-5xl font-bold tracking-tighter"
                       style={{
                         color: "transparent",
                         WebkitTextStroke: "1.5px var(--color-wild-orange)",
@@ -313,7 +312,7 @@ export default function CoverflowSwiper({ packages }: CoverflowSwiperProps) {
                   {/* Bottom Itinerary Information */}
                   <div className="grid gap-2.5">
                     {/* Title */}
-                    <h3 className="font-serif text-2xl sm:text-3xl font-light leading-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)] line-clamp-2">
+                      <h3 className="cf-title font-serif text-2xl sm:text-3xl font-light leading-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)] line-clamp-2">
                       {pkg.title}
                     </h3>
 
@@ -415,7 +414,6 @@ export default function CoverflowSwiper({ packages }: CoverflowSwiperProps) {
             onClick={prev}
             disabled={safeIndex === 0}
             aria-label="Previous journey"
-            data-theme-control="light"
             className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-[#101b1d]/90 text-white transition-all hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)] hover:bg-white/10 disabled:opacity-25 disabled:pointer-events-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)] shadow-lg backdrop-blur-md"
           >
             <svg
@@ -454,7 +452,6 @@ export default function CoverflowSwiper({ packages }: CoverflowSwiperProps) {
             onClick={next}
             disabled={safeIndex === packages.length - 1}
             aria-label="Next journey"
-            data-theme-control="light"
             className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-[#101b1d]/90 text-white transition-all hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)] hover:bg-white/10 disabled:opacity-25 disabled:pointer-events-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)] shadow-lg backdrop-blur-md"
           >
             <svg
@@ -505,7 +502,7 @@ export default function CoverflowSwiper({ packages }: CoverflowSwiperProps) {
           </div>
         )}
 
-        <p data-theme-surface="light" className="flex items-center gap-2 font-sans text-[11px] tracking-wider text-white/60">
+        <p className="flex items-center gap-2 font-sans text-[11px] tracking-wider text-white/60">
           <span>Swipe, drag or use</span>
           <kbd className="px-1.5 py-0.5 rounded border border-white/20 bg-white/5 text-[10px] font-mono text-white/70">
             ←

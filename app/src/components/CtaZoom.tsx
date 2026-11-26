@@ -124,11 +124,6 @@ export default function CtaZoom({
         />
       </div>
 
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,18,19,0.56)_0%,rgba(7,18,19,0.16)_50%,rgba(7,18,19,0.46)_100%),linear-gradient(0deg,rgba(0,0,0,0.66)_0%,rgba(0,0,0,0.12)_62%,rgba(7,18,19,0.18)_100%)]"
-      />
-
       {/* Content */}
       <div
         ref={textRef}
