@@ -45,7 +45,7 @@ export default function PillarsTabs({
   // 1 = moving forward (content enters from the right), -1 = moving back.
   const directionRef = useRef(1);
   const total = pillars.length;
-  const currentPillar: Pillar = pillars[active];
+  const currentPillar: Pillar | undefined = pillars[active];
 
   const selectTab = useCallback(
     (index: number, focus = false, direction?: 1 | -1) => {
@@ -166,6 +166,8 @@ export default function PillarsTabs({
 
     return () => ctx.revert();
   }, [active]);
+
+  if (!currentPillar) return null;
 
   return (
     <section

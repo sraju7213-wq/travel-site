@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { STATS } from "@/data/siteContent";
+import { STATS, type Stat } from "@/data/siteContent";
 import StatValue from "@/components/ui/StatValue";
 import { DURATION, EASE, prefersReducedMotion } from "@/lib/motion";
 
@@ -69,7 +69,7 @@ function StatIcon({ label }: { label: string }) {
 /**
  * Historical statistics and founding heritage band starting with "Since 1927".
  */
-export default function DiscoverSection() {
+export default function DiscoverSection({ stats = STATS }: { stats?: Stat[] }) {
   const sectionRef = useRef<HTMLElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -147,7 +147,7 @@ export default function DiscoverSection() {
       <div className="relative mx-auto max-w-[1100px] px-4 sm:px-6 md:px-8">
         {/* Mobile: compact 2×2 grid — Desktop: 4-column editorial row */}
         <dl className="grid grid-cols-2 gap-2.5 sm:gap-6 lg:grid-cols-4">
-          {STATS.map((stat, i) => (
+          {stats.map((stat, i) => (
             <div
               key={stat.label}
               ref={(el) => {

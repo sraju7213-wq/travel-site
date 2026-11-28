@@ -22,7 +22,7 @@ export default function VideoTheaterModal({
   videoUrl,
   posterUrl,
   title = "India & Nepal — The Expedition Experience",
-  subtitle = "27.7172° N, 85.3240° E • High Himalaya, Pangong Tso & Royal Valleys",
+  subtitle = "High Himalaya, Pangong Tso & Royal Valleys",
 }: VideoTheaterModalProps) {
   useEffect(() => {
     if (!isOpen) return;

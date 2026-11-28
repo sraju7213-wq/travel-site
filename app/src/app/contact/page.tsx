@@ -5,7 +5,9 @@ import Container from "@/components/Container";
 import PageShell from "@/components/PageShell";
 import PageHero from "@/components/ui/PageHero";
 import { BRAND } from "@/data/brandConfig";
-import { isEnquiryBackendConfigured } from "@/lib/enquiryConfig";
+import { draftMode } from "next/headers";
+import { hasCmsSections, renderCmsBuiltIn, getCmsBuiltIn } from "@/components/cms/CmsBuiltInPage";
+import CmsContactDetails from "@/components/cms/CmsContactDetails";
 
 export const metadata: Metadata = {
   title: `Contact Desk — ${BRAND.name}`,
@@ -39,36 +41,6 @@ const CHANNELS = [
   },
 ];
 
-const DESKS = [
-  {
-    city: "Sydney",
-    role: "International Booking Bureau",
-    coordinates: "33.9167° S, 151.0667° E",
-    timezone: "Australia/Sydney",
-    detail: "International reservations and booking coordination. Contact us for current office details.",
-  },
-  {
-    city: "Delhi",
-    role: "Subcontinent Headquarters",
-    coordinates: "28.6139° N, 77.2090° E",
-    timezone: "Asia/Kolkata",
-    detail: "Central transit hub, hotel affiliations and private transport fleet dispatch.",
-  },
-  {
-    city: "Srinagar",
-    role: "Kashmir Houseboat Moorings",
-    coordinates: "34.0837° N, 74.7973° E",
-    timezone: "Asia/Kolkata",
-    detail: "Dal & Nigeen Lake moorings office and M.S. Baktoo luxury houseboat base.",
-  },
-  {
-    city: "Leh",
-    role: "Ladakh & Zanskar Operations",
-    coordinates: "34.1526° N, 77.5771° E",
-    timezone: "Asia/Kolkata",
-    detail: "High-altitude expedition liaison desk, mountaineering guides and pack crews.",
-  },
-];
 
 const STEPS = [
   {
@@ -91,9 +63,9 @@ const STEPS = [
   },
 ];
 
-export default function ContactPage() {
-  const isConfigured = isEnquiryBackendConfigured();
-
+export default async function ContactPage() {
+  const { isEnabled: preview } = await draftMode(); const cmsPage = await getCmsBuiltIn("contact", preview);
+  if (cmsPage && hasCmsSections(cmsPage, preview)) return <PageShell mainClassName="">{await renderCmsBuiltIn(cmsPage, preview)}</PageShell>;
   return (
     <PageShell mainClassName="">
       <PageHero
@@ -110,45 +82,12 @@ export default function ContactPage() {
           </>
         }
         lead={`Connect with our subcontinent specialists for tailor-made itineraries, small-group expeditions, Himalayan trekking and Kashmir houseboat reservations, operated in association with ${BRAND.operatorName}.`}
-        meta={[
-          { value: "28.6139° N, 77.2090° E", label: "Delhi · Srinagar · Leh Desks" },
-        ]}
         primaryCta={{ label: "Open the enquiry form", href: "/enquiry" }}
         secondaryCta={{ label: "Browse all journeys", href: "/journeys" }}
         scrollCue
       />
 
-      {/* System status */}
-      <section className="border-b border-white/5 bg-[#101F21] py-6">
-        <Container wide>
-          <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-            <div className="flex items-start gap-3">
-              <span
-                aria-hidden="true"
-                className={`mt-1.5 h-2 w-2 shrink-0 rounded-full ${
-                  isConfigured ? "bg-emerald-400" : "bg-amber-400"
-                }`}
-              />
-              <div>
-                <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-white">
-                  {isConfigured ? "Online enquiry system: active" : "Online enquiry system: configuration pending"}
-                </p>
-                <p className="mt-1 font-sans text-xs font-light leading-relaxed text-white/55">
-                  {isConfigured
-                    ? "Enquiries submitted through this site are transmitted to our reservations desk for review by a travel designer."
-                    : "The submission backend is being finalised. Until it is connected, please use the enquiry form and we will reply by email."}
-                </p>
-              </div>
-            </div>
-            <Link
-              href="/enquiry"
-              className="inline-flex min-h-[44px] shrink-0 items-center border-b border-white/35 pb-1 font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-white transition-colors hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)]"
-            >
-              Go to enquiry form →
-            </Link>
-          </div>
-        </Container>
-      </section>
+      <CmsContactDetails />
 
       {/* Ways to reach us */}
       <section className="section-discover border-b border-white/5 py-16 md:py-24">
@@ -195,37 +134,6 @@ export default function ContactPage() {
       <section className="section-journeys border-b border-white/5 py-16 md:py-24">
         <Container wide>
           <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
-            {/* Desks */}
-            <div>
-              <p className="mb-5 flex items-center gap-4 font-sans text-[10px] font-medium uppercase tracking-[0.3em] text-[var(--color-wild-orange)]">
-                <span className="h-px w-10 bg-[var(--color-wild-orange)]" />
-                Operational bases
-              </p>
-              <h2 className="font-serif text-4xl font-light leading-[1.08] tracking-normal text-white md:text-5xl">
-                Where we work
-              </h2>
-
-              <ul className="mt-10 divide-y divide-white/10 border-y border-white/10">
-                {DESKS.map((desk) => (
-                  <li key={desk.city} className="grid gap-3 py-6 sm:grid-cols-[1fr_auto] sm:items-baseline">
-                    <div>
-                      <p className="font-serif text-2xl font-light text-white">{desk.city}</p>
-                      <p className="mt-1 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--color-wild-orange)]">
-                        {desk.role}
-                      </p>
-                      <p className="mt-3 font-sans text-xs font-light leading-relaxed text-white/55">
-                        {desk.detail}
-                      </p>
-                    </div>
-                    <div className="font-mono text-[11px] tracking-[0.12em] text-white/60 sm:text-right">
-                      <p>{desk.coordinates}</p>
-                      <p className="mt-1">{desk.timezone}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
             {/* Published Booking Bureau from Brochure Page 10 — withheld pending client confirmation */}
             <div className="border border-white/10 bg-[#132325] p-7 md:p-9 rounded-none">
               <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-[var(--color-wild-orange)]">

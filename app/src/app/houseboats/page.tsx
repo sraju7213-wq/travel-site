@@ -74,7 +74,7 @@ export default async function HouseboatsPage({ params }: HouseboatsPageProps) {
         tabListLabel="Houseboat stay details"
       />
 
-      <HouseboatStay flags={svc.content_flags} />
+      <HouseboatStay />
 
       <HouseboatNotes />
 

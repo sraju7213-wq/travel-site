@@ -1,0 +1,3120 @@
+{
+  "audit_scope": "Public marketing copy, metadata, forms, admin surface and generated package pages checked against Preview Brouchure.pdf",
+  "source_document": "C:/Users/pc/Desktop/Preview Brouchure.pdf (10 scanned pages, no text layer)",
+  "source_rendering": "C:/Users/pc/AppData/Local/hermes/cache/scratch/brochure-pages/page-01.png .. page-10.png",
+  "page_number_note": "PDF image N corresponds to printed folio N-1 for images 02-09; references in this register use PDF image numbers.",
+  "rules": "docs/planning/CONTENT_ACCURACY_RULES.md and docs/planning/CONTENT_CORRECTION_AGENT_PROMPT.md",
+  "brochure_pages_1_5": {
+    "pages": [
+      {
+        "page": 1,
+        "claims": [
+          {
+            "topic": "cover brand name",
+            "exact_source_text": "INDIA NEPAL TRAVEL CENTRE",
+            "website_relevance": "Brand/company name used in header, footer, SEO and contact pages",
+            "status": "conflict",
+            "note": "Cover uses 'CENTRE'; printed page 2 opening line uses 'India Nepal Travel Organisation'. Do not standardise without client confirmation."
+          },
+          {
+            "topic": "cover tagline",
+            "exact_source_text": "Culture • Heritage • Adventure • Nature • Luxury",
+            "website_relevance": "Homepage hero / positioning words",
+            "status": "source-supported",
+            "note": "Exact separator is a diamond bullet; preserve casing."
+          },
+          {
+            "topic": "cover imagery",
+            "exact_source_text": "Four small images: Taj Mahal; snowy mountain trek; Tibetan prayer flags; Kashmir houseboat",
+            "website_relevance": "Hero thumbnail strip / image selection",
+            "status": "source-supported",
+            "note": "Images are illustrative; no factual caption or location claim printed beyond the subjects shown."
+          }
+        ]
+      },
+      {
+        "page": 2,
+        "claims": [
+          {
+            "topic": "page attribution / folio",
+            "exact_source_text": "1",
+            "website_relevance": "Page reference for all claims below",
+            "status": "needs-confirmation",
+            "note": "Literal folio printed at bottom right of this image is '1'; project rulebook calls this page 2 (image page-02.png). Confirm which numbering to use in audit records."
+          },
+          {
+            "topic": "founding year",
+            "exact_source_text": "Established in 1927",
+            "website_relevance": "About / heritage page founding year",
+            "status": "source-supported",
+            "note": "Year is printed; the accompanying organisation name is disputed (see brand-name conflict)."
+          },
+          {
+            "topic": "company name in opening line",
+            "exact_source_text": "Established in 1927, India Nepal Travel Organisation is a specialist tour operator for individuals and groups travelling to India and the subcontinent.",
+            "website_relevance": "About / heritage page company description",
+            "status": "conflict",
+            "note": "'Organisation' spelling conflicts with 'INDIA NEPAL TRAVEL CENTRE' on cover and with 'India Nepal Travel Centre Now offers...' later on the same page."
+          },
+          {
+            "topic": "service-quality claims",
+            "exact_source_text": "Our organisation offers the highest level of tourism experience, an endorsed and approved operational structure, and the most comprehensive quality services in this region of the world.",
+            "website_relevance": "About page superlatives / credentials",
+            "status": "needs-confirmation",
+            "note": "Superlative and 'endorsed and approved' claims are printed but unverifiable and potentially outdated; do not publish without client approval."
+          },
+          {
+            "topic": "rural-tour paragraph",
+            "exact_source_text": "India Nepal Travel Centre Now offers a you unparalleled opportunity to explore and discover a part of India that other tourists rarely see! a tour completely different from other tours! This tour has been designed espe [text obscured] Once off the beaten track, we will explore rural India, Stopping regularly along the way in order to experience village life at first hand and watch the skilful production of the distinctive handicrafts of the region. I, Yousuf Baktoo, will personally be supervising this tour. For nearly four decades I have been taking tours throughout India.",
+            "website_relevance": "About page / tour narrative",
+            "status": "needs-confirmation",
+            "note": "The literal bracketed phrase '[text obscured]' is printed in the brochure. Grammar is faulty ('offers a you', capital 'Now', 'Stopping'). Do not reconstruct the obscured wording; do not publish the bracketed note."
+          },
+          {
+            "topic": "portrait caption",
+            "exact_source_text": "MOHAMMAD YUSUF BAKTOO",
+            "website_relevance": "Team / founder profile naming",
+            "status": "conflict",
+            "note": "Visionaries paragraph calls him 'Yousuf Baktoo'; no matching profile appears in the FOUNDERS AND VISIONARIES section."
+          },
+          {
+            "topic": "family company claim",
+            "exact_source_text": "The Baktoo family has been promoting and sharing our experiences in tourism since 1927, and all tours are organized in association with our family company based in India.",
+            "website_relevance": "Heritage / operating model",
+            "status": "needs-confirmation",
+            "note": "'Since 1927' and the unnamed 'family company based in India' need current confirmation."
+          },
+          {
+            "topic": "group size and departure guarantee",
+            "exact_source_text": "Our tours are guaranteed to depart and can be enjoyed by a small group of up to 15 or as a solo traveller.",
+            "website_relevance": "Group-size badge, tour cards, FAQ, booking copy",
+            "status": "needs-confirmation",
+            "note": "'guaranteed to depart' is a guarantee claim; 'up to 15' and solo-traveller availability may be historic. Confirm before publishing as current."
+          },
+          {
+            "topic": "itinerary disclaimer",
+            "exact_source_text": "Itineraries provided in this brochure are an outline of what you can expect. Detailed information is available on request. All of our tours aim at providing you with real experiences and an opportunity to take in selected areas of India, Nepal and Sri Lanka. Much research and planning goes into all of our tours to ensure that they are up to date and excellent value for money.",
+            "website_relevance": "Terms / itinerary disclaimer",
+            "status": "source-supported",
+            "note": "Preserve the 'outline' qualifier; do not present itineraries as fixed guarantees."
+          },
+          {
+            "topic": "stopovers description",
+            "exact_source_text": "These short packages are ideal for those with limited time. They are ideal to combine with business trips and short stays. You may of course string a few together and create your own tour. Once again these have been planned with you the traveller in mind. Enjoy!",
+            "website_relevance": "Stopover landing-page copy",
+            "status": "source-supported",
+            "note": "Faithful to source."
+          },
+          {
+            "topic": "hotel accommodation",
+            "exact_source_text": "All our accommodation has been carefully selected. We use hotels that are well serviced and centrally located. Some properties have been selected for their ambience and creature comforts, architecture and history, others for their environmental considerations and special inclusions. All of our accommodation has been chosen to provide you with the best and to ensure that you have a great night's sleep and a warm welcome to each new day. We use a variety of hotels ranging from deluxe 5 star categories to family run establishments. If you have a particular requirement, please let us know.",
+            "website_relevance": "Accommodation section / package inclusions",
+            "status": "source-supported",
+            "note": "'deluxe 5 star categories' is the exact printed wording; do not convert to a specific star rating per hotel."
+          },
+          {
+            "topic": "special interest programs",
+            "exact_source_text": "We are able to put together a special interest tour for your club, school, social or special interest group. We currently have programs for Ayurveda, gardening, golf, business, textiles, fashion and yoga. We run escorted student tours for schools in both India and Nepal. All of our special interest tours are escorted by a team leader from Australia who specialises in a particular area. Contact India Nepal Travel Centre or your travel agent.",
+            "website_relevance": "Special-interest services page",
+            "status": "needs-confirmation",
+            "note": "List of programs and 'team leader from Australia' are current-service claims; reconfirm before publishing. Page heading spells 'PROGRAMS'."
+          },
+          {
+            "topic": "contents - stop overs",
+            "exact_source_text": "STOP OVERS / Delhi .... 2 / Bombay .... 2 / Discover Leh .... 2 / Kathmandu .... 2 / Kathmandu-Pokhara .... 2 / Discover Ladakh .... 2",
+            "website_relevance": "Internal page-number references and package names",
+            "status": "source-supported",
+            "note": "Contents page numbers refer to literal folio 2 (image page-03.png), not rulebook page 3."
+          },
+          {
+            "topic": "contents - images of india",
+            "exact_source_text": "IMAGES OF INDIA / Golden Triangle .... 3 / Glorious Goa Stopover .... 3 / Glimpses of Kerala .... 3 / Kashmir Package .... 4 / Kashmir Package .... 4 / Delhi to Kathmandu .... 4",
+            "website_relevance": "Package index / navigation",
+            "status": "source-supported",
+            "note": "'Kashmir Package' appears twice with no distinguishing code; Heritage Tour of India HTi13 is not listed in contents."
+          },
+          {
+            "topic": "contents - mini trek mismatch",
+            "exact_source_text": "Himalaya Enfield Motorbike Tour ........................ 7",
+            "website_relevance": "Mini-trek package index",
+            "status": "conflict",
+            "note": "Contents advertises an Enfield motorbike tour; printed page 8 (outside this audit) shows Kashmir Ski KS22. Do not invent or merge the two."
+          },
+          {
+            "topic": "grade EASY",
+            "exact_source_text": "EASY / Suitable for beginners. Relaxed walks on good paths. 6–12 km per day, up to 2,500 m altitude",
+            "website_relevance": "Grade explanation on trek pages",
+            "status": "source-supported",
+            "note": "Exact word grade and metric wording; preserve en-dash ranges."
+          },
+          {
+            "topic": "grade MODERATE",
+            "exact_source_text": "MODERATE / Requires reasonable fitness. Some steep ascents and descents. 6–12 km per day, up to 4,200 m altitude",
+            "website_relevance": "Grade explanation on trek pages",
+            "status": "source-supported",
+            "note": "Exact word grade and metric wording."
+          },
+          {
+            "topic": "grade DEMANDING",
+            "exact_source_text": "DEMANDING / For experienced hill-walkers. Challenging terrain and altitudes. 10–15 km per day, up to 4,500 m altitude",
+            "website_relevance": "Grade explanation on trek pages",
+            "status": "needs-confirmation",
+            "note": "Word-grade definition printed; package badges use letter grade 'Grade D'. Do not map C/D to word grades without client confirmation."
+          },
+          {
+            "topic": "grade STRENUOUS",
+            "exact_source_text": "STRENUOUS / For very fit, experienced trekkers. Difficult terrain, high passes and possible rope use. 10–15 km per day, up to 5,600 m altitude",
+            "website_relevance": "Grade explanation on trek pages",
+            "status": "source-supported",
+            "note": "Exact word grade and metric wording."
+          },
+          {
+            "topic": "founders intro",
+            "exact_source_text": "FOUNDERS AND VISIONARIES / Sultan Baktoo, the visionary who pioneered the tour and travel industry in Kashmir, is the architect whose hard work has laid the foundation upon which Farook Baktoo and Yousuf Baktoo have built our tour models. This family business is our pride and glory. We take the utmost pride in the tours and experiences we provide for our customers. Our customers experience the best services that are available.",
+            "website_relevance": "About / founders page",
+            "status": "needs-confirmation",
+            "note": "References Yousuf Baktoo although no Yousuf profile is printed in this section; 'best services' is a superlative."
+          },
+          {
+            "topic": "Sultan Baktoo bio",
+            "exact_source_text": "SULTAN BAKTOO / Haji Mohammed Sultan Baktoo has operated tours and treks to Northern India since 1927. Mr. Baktoo is the chief operator, with hotels, a fleet of cars in Delhi and luxurious houseboats in Kashmir. KHE, which operates offices in Delhi, Kashmir and Ladakh and agents/sub-agents in all parts of India and Nepal.",
+            "website_relevance": "Founder profile / operating claims",
+            "status": "needs-confirmation",
+            "note": "'KHE,' is an unexplained printed abbreviation. Offices, fleet, hotels, houseboats and agent network are historic operating claims; do not present as current. Current association also needs confirmation."
+          },
+          {
+            "topic": "Farook Baktoo bio",
+            "exact_source_text": "FAROOK BAKTOO / Farook has been planning and promoting tourism to the sub-continent for the past 20 years. Having grown up in the lush Kashmir Valley and born into one of the pioneering families of Himalayan trekking, Farook has led many tours and treks in the Himalayan, Karakoram, Zanskar and Ladakh ranges. A visionary with a passion for people and places.",
+            "website_relevance": "Team profile",
+            "status": "needs-confirmation",
+            "note": "'past 20 years' has no anchor date; confirm current association and role."
+          },
+          {
+            "topic": "Imtiaz Ahmad bio",
+            "exact_source_text": "Imtiaz Ahmad / Imtiaz Ahmad manages inbound tourism, bringing extensive experience in organising and coordinating group tours and FITs from across the world. With years of involvement in the tourism industry, he has developed a strong understanding of international travel requirements, client expectations and tour coordination. His experience working with travellers from diverse backgrounds ensures every journey is well organised. Through his dedication and commitment to quality service, Imtiaz strives to create smooth and memorable travel experiences for visitors.",
+            "website_relevance": "Team profile",
+            "status": "needs-confirmation",
+            "note": "Role and current association not verifiable from brochure alone."
+          },
+          {
+            "topic": "Hashim bio",
+            "exact_source_text": "Hashim / Hashim has spent the past 12 years leading business tours from Australia, developing extensive experience in tour management and group coordination. Having travelled widely throughout Australia and India, he possesses unique travel experiences. With his expertise and passion for tourism, Hashim continues to lead successful tours, creating enriching and memorable experiences for travellers.",
+            "website_relevance": "Team profile",
+            "status": "needs-confirmation",
+            "note": "No surname, no role title beyond 'Hashim'; 'past 12 years' has no anchor date; current association unconfirmed."
+          }
+        ]
+      },
+      {
+        "page": 3,
+        "claims": [
+          {
+            "topic": "page attribution / folio",
+            "exact_source_text": "2",
+            "website_relevance": "Page reference for all claims below",
+            "status": "needs-confirmation",
+            "note": "Literal folio printed at bottom right is '2'; rulebook calls this page 3."
+          },
+          {
+            "topic": "S01 Delhi",
+            "exact_source_text": "DELHI / S01 / 2 NIGHTS/3 DAYS",
+            "website_relevance": "Stopover package card",
+            "status": "source-supported",
+            "note": "Code and badge confirmed visually; itinerary Day 1–Day 3."
+          },
+          {
+            "topic": "S02 Bombay",
+            "exact_source_text": "BOMBAY / S02 / 3 NIGHTS/4 DAYS",
+            "website_relevance": "Stopover package card",
+            "status": "conflict",
+            "note": "Card code is S02 but the itinerary subheading reads 'MAGIC MUMBAI S2' — two different codes on one card."
+          },
+          {
+            "topic": "S02 highlights",
+            "exact_source_text": "Victoria Terminus, Mani Bhawan, Hanging Gardens, Crawford Market and Museum in Bombay. Beau_ful, palm-fringed beaches of Goa, which was an ancient Portuguese colony. Panjim City, the capital of Goa.",
+            "website_relevance": "Package highlights",
+            "status": "needs-confirmation",
+            "note": "Printed 'Beau_ful' with an underscore-like artefact; Goa/Panjim highlights sit inside the Bombay card. Preserve or withhold pending confirmation."
+          },
+          {
+            "topic": "S03 Discover Leh",
+            "exact_source_text": "DISCOVER LEH. / S03 / 3 NIGHTS/4 DAYS",
+            "website_relevance": "Stopover package card",
+            "status": "source-supported",
+            "note": "Note trailing full stop after LEH in the printed heading; itinerary DAY 1–DAY 4."
+          },
+          {
+            "topic": "S04 Kathmandu",
+            "exact_source_text": "KATHMANDU / S04 / 3 NIGHTS/ 4 DAYS",
+            "website_relevance": "Stopover package card",
+            "status": "source-supported",
+            "note": "Itinerary DAY 1–DAY 4; 'optional flight to Everest base camp' on Day 3."
+          },
+          {
+            "topic": "S05 Kathmandu Pokhara",
+            "exact_source_text": "KATHMANDU PORHARA / S05 / 3 NIGHTS/ 4 DAYS",
+            "website_relevance": "Stopover package card",
+            "status": "conflict",
+            "note": "Heading prints 'PORHARA' while body prints 'Pokhara'; badge says 3 NIGHTS/4 DAYS but the itinerary heading says '4 DAYS / 3 NIGHTS'. Do not silently correct either."
+          },
+          {
+            "topic": "S05 inclusions",
+            "exact_source_text": "TOUR INCLUSIONS Economy class flight Pokhara / Kathmandu Transfers and sightseeing as specified by car Accommodation. / DAY 04: KATHMANDU Departure T.F., Hotel check out time is 12",
+            "website_relevance": "Package inclusions / checkout time",
+            "status": "source-supported",
+            "note": "'T.F.' is printed as-is; do not expand."
+          },
+          {
+            "topic": "S06 Discover Ladakh",
+            "exact_source_text": "DISCOVER LADAKH / S06 / 4 NIGHTS/ 5 DAYS",
+            "website_relevance": "Stopover package card",
+            "status": "source-supported",
+            "note": "Five-day expedition wording; itinerary DAY 1–DAY 5; no nights count should be inferred beyond the printed badge."
+          },
+          {
+            "topic": "houseboat booking service",
+            "exact_source_text": "HOUSEBOAT BOOKING SERVICE FOR KASHMIR / We have direct booking access to a fleet of houseboats on Nagin and Dal Lake in Srinagar, Kashmir. Immediate confirmation can be given from our all-season allocations, and we offer the most competitive and complete houseboat booking service.",
+            "website_relevance": "Houseboat landing page",
+            "status": "needs-confirmation",
+            "note": "Direct access, immediate confirmation, all-season allocations and 'most competitive' are current-service/superlative claims requiring reconfirmation."
+          },
+          {
+            "topic": "houseboat features",
+            "exact_source_text": "The houseboats have pleasant dining and living rooms, with intricately carved walnut furniture and Kashmir carpets.The houseboats vary in size from two to seven bedrooms, each with private ensuite facilities. At the front is a veranda, with lake view, and on the roof a sundeck. A houseboat boy is in attendance at all times,and an extensive menu provides a choice of Western, Indian, or Kashmiri cuisine. A stay on a Kashmir houseboat amid the peace and charm of the lake is an experience that will stay with you for a lifetime. Living on a Kashmiri houseboat is a unique experience.",
+            "website_relevance": "Houseboat features / amenities",
+            "status": "source-supported",
+            "note": "Preserve exact wording including missing spaces after full stops; do not add amenities."
+          },
+          {
+            "topic": "houseboat activities and class",
+            "exact_source_text": "Wood carving,carpet making,papier-maché making; take a trip to the mountain resorts of Gulmarg and Pahalgam; trek in some of the world’s most stunning mountains. If time permits, you can journey across the Himalayas to Ladakh, “Little Tibet”, a Buddhist realm, high on the Tibetan plateau. We can make bookings for groups and individuals. If you would like sole use of a houseboat, they can be hired at reasonable rates / We can book both Deluxe and “A” Class Houseboats on Nagin or Dal Lake. (The Kashmir Government is responsible for classification of houseboats.) Rates are very reasonable.",
+            "website_relevance": "Houseboat booking options / classification",
+            "status": "needs-confirmation",
+            "note": "'Rates are very reasonable' is not a price; do not turn it into a rate. Government classification and current availability need confirmation."
+          },
+          {
+            "topic": "package inclusions",
+            "exact_source_text": "Accommodation in 3 to 4 star hotels on a twin sharing basis. / Daily breakfast. / All hotel and houseboat taxes. / Arrival and departure transfers. / Sightseeing as per package by car/coach.",
+            "website_relevance": "Package inclusion lists",
+            "status": "source-supported",
+            "note": "Repeated across packages; preserve exactly."
+          },
+          {
+            "topic": "package exclusions",
+            "exact_source_text": "International and domestic flights. / Meals outside the package. / Monument entrance tickets. / Guides and optional activities. / Horse rides and gondola tickets. / Travel insurance. / Personal expenses and tips. / Gulf fishing, etc.",
+            "website_relevance": "Package exclusion lists",
+            "status": "needs-confirmation",
+            "note": "Final line 'Gulf fishing, etc.' is unclear in this context; do not reinterpret or omit silently."
+          }
+        ]
+      },
+      {
+        "page": 4,
+        "claims": [
+          {
+            "topic": "page attribution / folio",
+            "exact_source_text": "3",
+            "website_relevance": "Page reference for all claims below",
+            "status": "needs-confirmation",
+            "note": "Literal folio printed at bottom centre is '3'; rulebook calls this page 4."
+          },
+          {
+            "topic": "ii7 Golden Triangle",
+            "exact_source_text": "GOLDEN TRIANGLE / ii7 / DELHI, AGRA & JAIPUR / 4 DAYS / 3 NIGHTS",
+            "website_relevance": "Image-of-India package card",
+            "status": "source-supported",
+            "note": "Code confirmed as two i's followed by 7. Itinerary has combined 'DAY 03-04: JAIPUR-DELMHI' wording — preserve the typo and combined day until confirmed."
+          },
+          {
+            "topic": "ii8 Glorious Goa Stopover",
+            "exact_source_text": "GLORIOUS GOA STOPOVER / ii8 / 5 DAYS / 4 NIGHTS",
+            "website_relevance": "Image-of-India package card",
+            "status": "needs-confirmation",
+            "note": "Itinerary shows DAY 01 and 'DAY 02-04: GOA' only; no separate DAY 05 entry is printed despite 'five-day journey'."
+          },
+          {
+            "topic": "ii9 Glimpses of Kerala",
+            "exact_source_text": "GLIMPSES OF KERALA / ii9 / 6 DAYS / 5 NIGHTS",
+            "website_relevance": "Image-of-India package card",
+            "status": "source-supported",
+            "note": "Itinerary uses combined DAY 03-04 and DAY 05-06 headings; preserve source structure."
+          },
+          {
+            "topic": "ii9 highlights",
+            "exact_source_text": "» Palm-fringed beach at Kovalam / Museum, art gallery, Sree Padmanabhan Swami Temple and Chala bazaar at Trivandrum / Periyar Sanctuary with the chance to see elephant, bison, spotted deer, sambar, wild boar and birds of myriad varieties / Breathtaking beauty of the backwater canals between Kottayam and Alleppey / Chinese fishing nets, Jewish synagogue, Dutch Palace, Portuguese and Britrph architecture at Cochin / The ancient and traditional dance of Kerala » Kathakali",
+            "website_relevance": "Package highlights",
+            "status": "needs-confirmation",
+            "note": "'Britrph' appears to be a scan/OCR artefact for 'British'; preserve or flag, do not silently correct."
+          },
+          {
+            "topic": "repeated inclusions/exclusions",
+            "exact_source_text": "Package Inclusions / Accommodation in 3 to 4 star hotels on a twin sharing basis. Daily breakfast. All hotel and houseboat taxes. Arrival and departure transfers. Sightseeing as per package by car/coach. / Package Exclusions / International and domestic flights. Meals outside the package. Monument entrance tickets. Guides and optional activities. Horse rides and gondola tickets. Travel insurance. Personal expenses and tips. Gulf fishing, etc.",
+            "website_relevance": "Package inclusion/exclusion lists",
+            "status": "source-supported",
+            "note": "Same block as page 3; 'Gulf fishing, etc.' remains unclear."
+          }
+        ]
+      },
+      {
+        "page": 5,
+        "claims": [
+          {
+            "topic": "page attribution / folio",
+            "exact_source_text": "4",
+            "website_relevance": "Page reference for all claims below",
+            "status": "needs-confirmation",
+            "note": "Literal folio printed at bottom centre is '4'; rulebook calls this page 5."
+          },
+          {
+            "topic": "ii10 Kashmir Package duration",
+            "exact_source_text": "KASHMIR PACKAGE / ii10 / 7 DAYS / 6 NIGHTS",
+            "website_relevance": "Kashmir package card duration field",
+            "status": "conflict",
+            "note": "Printed itinerary runs DAY 01 through DAY 06 only. Do not invent a Day 07."
+          },
+          {
+            "topic": "ii10 itinerary last day",
+            "exact_source_text": "DAY 06: SRINAGAR: After breakfast, drive to Gulmarg. The Meadow of flowers. Upon reaching this Beautiful Hill Top. One has the option of taking horse riding / golf/ trekking. All activities are optional. overnight at the house boat in Srinagar.",
+            "website_relevance": "Kashmir package itinerary",
+            "status": "source-supported",
+            "note": "Confirms no Day 07 is printed."
+          },
+          {
+            "topic": "ii11 Kashmir Package",
+            "exact_source_text": "KASHMIR PACKAGE / ii11 / 4 DAYS/3 NIGHTS",
+            "website_relevance": "Kashmir package card",
+            "status": "source-supported",
+            "note": "Itinerary DAY 1–DAY 4; names 'M.S. Baktoo group of houseboats' — preserve exactly, do not rename."
+          },
+          {
+            "topic": "ii12 Delhi to Kathmandu",
+            "exact_source_text": "DELHI TO KATHMANDU / ii12 / 7 NIGHTS/ 8 DAYS",
+            "website_relevance": "Delhi–Kathmandu package card",
+            "status": "conflict",
+            "note": "A duration badge IS printed on the brochure (contradicting the standing rulebook note that no badge is visible). Itinerary is DAY 1–DAY 8."
+          },
+          {
+            "topic": "ii12 itinerary end",
+            "exact_source_text": "DAY 8: KATHMANDU Hotel check out time is 12 Noon. Departure / transfer",
+            "website_relevance": "Itinerary last day",
+            "status": "source-supported",
+            "note": "Matches the printed 8-day itinerary."
+          },
+          {
+            "topic": "HTi13 Heritage Tour of India",
+            "exact_source_text": "HERITAGE TOUR OF INDIA / HTi13",
+            "website_relevance": "Heritage package card / code",
+            "status": "source-supported",
+            "note": "No duration badge printed. Code casing confirmed as 'HTi13' (capital HT, lowercase i). Not listed in the contents index."
+          },
+          {
+            "topic": "HTi13 itinerary end",
+            "exact_source_text": "DAY 14: AGRA–DELHI Enjoy a morning sightseeing tour of Agra before returning to Delhi. / DAY 15: DELHI Transfer for your onward or homeward journey.",
+            "website_relevance": "Heritage package itinerary",
+            "status": "conflict",
+            "note": "Itinerary visibly ends at DAY 15 although no duration badge exists; confirm before publishing a '15 days' duration field."
+          },
+          {
+            "topic": "page 5 inclusions",
+            "exact_source_text": "Accommodation in 3 to 4 star hotels on a twin sharing basis. / All hotel and houseboat taxes. / Arrival and departure transfers. / Sightseeing as per package by car/coach. / Shikara boat riding on Dal lake including gardens and floating markets. / Houseboat accommodation on a M.A.P basis in Srinagar.",
+            "website_relevance": "Package inclusion lists",
+            "status": "source-supported",
+            "note": "Additional houseboat and shikara inclusions printed here; do not generalise to other packages."
+          },
+          {
+            "topic": "page 5 exclusions",
+            "exact_source_text": "International and domestic flights. / Meals outside the package. / Monument entrance tickets. / Guides and optional activities. / Horse rides and gondola tickets. / Travel insurance. / Personal expenses and tips. / Gulf fishing, etc.",
+            "website_relevance": "Package exclusion lists",
+            "status": "needs-confirmation",
+            "note": "'Gulf fishing, etc.' remains unclear."
+          }
+        ]
+      }
+    ],
+    "key_conflicts": [
+      {
+        "topic": "Company/brand name",
+        "values": [
+          "INDIA NEPAL TRAVEL CENTRE",
+          "India Nepal Travel Organisation",
+          "India Nepal Travel Centre"
+        ],
+        "pages": [
+          1,
+          2
+        ],
+        "note": "Cover and most body copy use CENTRE; the opening WELCOME sentence uses Organisation. Legal vs trading name needs written client confirmation."
+      },
+      {
+        "topic": "Founding year and associated claim",
+        "values": [
+          "Established in 1927",
+          "since 1927",
+          "has operated tours and treks to Northern India since 1927"
+        ],
+        "pages": [
+          2
+        ],
+        "note": "Year is consistent but may be historic; confirm whether current marketing may state it."
+      },
+      {
+        "topic": "Yousuf name / missing founder profile",
+        "values": [
+          "MOHAMMAD YUSUF BAKTOO",
+          "Yousuf Baktoo",
+          "FOUNDERS AND VISIONARIES lists Sultan Baktoo, Farook Baktoo, Imtiaz Ahmad, Hashim only"
+        ],
+        "pages": [
+          2
+        ],
+        "note": "No profile for Yousuf in the founders section; do not invent one or drop the reference without approval."
+      },
+      {
+        "topic": "S02 code mismatch",
+        "values": [
+          "S02",
+          "MAGIC MUMBAI S2"
+        ],
+        "pages": [
+          3
+        ],
+        "note": "Card code and itinerary subheading disagree on the same card."
+      },
+      {
+        "topic": "S05 name and duration",
+        "values": [
+          "KATHMANDU PORHARA / S05 / 3 NIGHTS/ 4 DAYS",
+          "Pokhara",
+          "4 DAYS / 3 NIGHTS"
+        ],
+        "pages": [
+          3
+        ],
+        "note": "Misspelled heading plus reversed duration wording; preserve and flag."
+      },
+      {
+        "topic": "ii10 duration vs itinerary",
+        "values": [
+          "7 DAYS / 6 NIGHTS",
+          "DAY 01–DAY 06 only"
+        ],
+        "pages": [
+          5
+        ],
+        "note": "Do not add Day 07."
+      },
+      {
+        "topic": "ii12 duration badge",
+        "values": [
+          "7 NIGHTS/ 8 DAYS (printed on card)",
+          "rulebook states no separate duration badge is visible"
+        ],
+        "pages": [
+          5
+        ],
+        "note": "Visual inspection of the page image settles it: a badge is printed. Update the standing conflict note only with client approval."
+      },
+      {
+        "topic": "HTi13 duration",
+        "values": [
+          "no duration badge",
+          "itinerary ends DAY 15"
+        ],
+        "pages": [
+          5
+        ],
+        "note": "Do not add a formal duration field without confirmation."
+      },
+      {
+        "topic": "Mini-trek contents mismatch",
+        "values": [
+          "Himalaya Enfield Motorbike Tour",
+          "Kashmir Ski KS22 (page 8, outside this audit)"
+        ],
+        "pages": [
+          2
+        ],
+        "note": "Flag the missing/mismatched package; do not invent the motorbike tour."
+      },
+      {
+        "topic": "Page-numbering offset",
+        "values": [
+          "literal folios 1, 2, 3, 4 on images page-02..page-05",
+          "project rulebook / audit page numbers 2, 3, 4, 5"
+        ],
+        "pages": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "note": "Cover (image page-01) is unnumbered. Keep both references in audit records; do not expose to visitors."
+      },
+      {
+        "topic": "Grade letter vs word grades",
+        "values": [
+          "EASY / MODERATE / DEMANDING / STRENUOUS with km and altitude definitions",
+          "letter grades such as Grade C / Grade D on later package pages"
+        ],
+        "pages": [
+          2
+        ],
+        "note": "No printed mapping exists; do not map letter grades to word grades."
+      },
+      {
+        "topic": "Unclear exclusion wording",
+        "values": [
+          "Gulf fishing, etc."
+        ],
+        "pages": [
+          3,
+          4,
+          5
+        ],
+        "note": "Repeated verbatim in package exclusions; meaning is unclear and must not be reinterpreted."
+      }
+    ]
+  },
+  "brochure_pages_6_10": {
+    "pages": [
+      {
+        "page": 6,
+        "claims": [
+          {
+            "topic": "Page identification / section",
+            "exact_source_text": "INDIA TOURS",
+            "website_relevance": "Section heading for package cards and navigation",
+            "status": "source-supported",
+            "note": "Task labels this page 6 and the rulebook page map agrees; literal printed footer digit on brochure-pages/page-06.png reads 5. Do not silently reconcile."
+          },
+          {
+            "topic": "IT14 name and code",
+            "exact_source_text": "NORTH INDIA HIGHLIGHTS\nIT14",
+            "website_relevance": "Package title/code on card, detail page, enquiry preselect and metadata",
+            "status": "source-supported",
+            "note": "Preserve uppercase and code exactly."
+          },
+          {
+            "topic": "IT14 duration badge",
+            "exact_source_text": "18 NIGHTS/19 DAYS",
+            "website_relevance": "Duration label on card and detail page",
+            "status": "source-supported",
+            "note": "Exact badge casing. Do not derive nights from day count."
+          },
+          {
+            "topic": "IT14 tour highlights",
+            "exact_source_text": "Discover the beauty and diversity of India on this 19-day journey through Delhi, Agra, Jaipur, Udaipur, Srinagar, and Leh. Explore historic monuments, royal palaces, beautiful lakes, scenic mountain landscapes, and ancient monasteries for an unforgettable cultural and Himalayan experience.",
+            "website_relevance": "Hero/intro copy for IT14",
+            "status": "source-supported",
+            "note": "Verbatim from image; route order must be preserved."
+          },
+          {
+            "topic": "IT14 day-by-day itinerary",
+            "exact_source_text": "DAY 1: Arrival transfer in Delhi.\nDAY 2: Delhi Morning city sightseeing tour.\nDAY 3: Delhi/ Agra Transfer for train to Agra on arrival. Afternoon city sightseeing tour.\nDAY 4: Agra/ Jaipur Transfer for train to Jaipur. Arrival transfer to hotel.\nDAY 5: Jaipur Morning sightseeing tour.\nDAY 6: Jaipur/ Udaipur Transfer for flight to Udaipur. Arrival Transfer to hotel.\nDAY 7: Udaipur Morning city sightseeing tour.\nDAY 8: Udaipur/ Delhi Transfer for flight to Delhi. Arrival transfer to hotel.\nDAY 9: Delhi/Srinagar Transfer for flight to Srinagar. Arrival transfer to houseboat.\nDAY 10: Srinagar shikara cruise on the lake.\nDAY 11: Srinagar Morning city sightseeing tour.\nDAY 12: Srinagar Day trip to mountain resort of Gulmarg or Pahalgam/ Sonmarg only one mountain outing.\nDAY 13: At leisure.\nDAY 14: Srinagar/Leh Transfer for flight to Leh. Arrival transfer to hotel. Remaining day free, Climatisation.\nDAY 15: Leh Full day trip of the monasteries.\nDAY 16: Leh Morning city tour.\nDAY 17: Leh/Delhi Transfer for flight to Delhi. Arrival transfer to hotel.\nDAY 18: Delhi at leisure.\nDAY 19: Fly to destination.",
+            "website_relevance": "Itinerary timeline for IT14",
+            "status": "source-supported",
+            "note": "Preserve Climatisation, slash spacing and only one mountain outing. Do not tidy transport modes."
+          },
+          {
+            "topic": "IT14 accommodation note",
+            "exact_source_text": "Hotel accommodation on C.P. basis. Transfers and sightseeing as per itinerary. Full board in Srinagar.",
+            "website_relevance": "IT14 inclusion copy",
+            "status": "source-supported",
+            "note": "Keep C.P. abbreviation and full-board scope exactly."
+          },
+          {
+            "topic": "IT14 inclusions",
+            "exact_source_text": "Accommodation in 3- to 4-star hotels on twin sharing basis (CP basis).\nAll sightseeing by car and first-class trains.\nHotel taxes.\nArrival and departure transfers as per the package.\nShikara boat ride to floating gardens of Dal Lake in Kashmir.\nHotel accommodation on CP basis.",
+            "website_relevance": "IT14 inclusions list",
+            "status": "needs-confirmation",
+            "note": "Small print; several lines partially legible and one line appears duplicated. Transcribe only after higher-resolution confirmation; do not infer missing bullets."
+          },
+          {
+            "topic": "IT14 exclusions",
+            "exact_source_text": "International and domestic flights Airport taxes not included in the package.\nMeals outside the package.\nMonument entrance tickets.\nGuides and optional activities.\nHorse rides and gondola tickets.\nTravel insurance.\nPersonal expenses and tips.",
+            "website_relevance": "IT14 exclusions list",
+            "status": "needs-confirmation",
+            "note": "OCR reads Gulf fishing while the image appears to read Golf fishing for the final bullet; flag rather than choose."
+          },
+          {
+            "topic": "IT15 name and code",
+            "exact_source_text": "INDIA NEPAL COMBINATION TOUR\nIT15",
+            "website_relevance": "Package card/detail title and enquiry identity",
+            "status": "source-supported",
+            "note": "Code IT15 must be preserved."
+          },
+          {
+            "topic": "IT15 duration badge",
+            "exact_source_text": "15 NIGHTS/16 DAYS",
+            "website_relevance": "Duration label",
+            "status": "source-supported",
+            "note": ""
+          },
+          {
+            "topic": "IT15 highlights",
+            "exact_source_text": "Lavishly carved ancient and exotic temples of Khajuraho.\nBoat cruise on the sacred river Ganges with Cremation and bathing Ghats in Varanasi.",
+            "website_relevance": "IT15 intro copy",
+            "status": "source-supported",
+            "note": "Verbatim subset; preserve Cremation capitalisation."
+          },
+          {
+            "topic": "IT15 day-by-day itinerary",
+            "exact_source_text": "DAY 1: Meet upon arrival and transferred to hotel in Delhi.\nDAY 2: Delhi Full day sightseeing tour of Old and New Delhi.\nDAY 3: Delhi/Udaipur Transfer for flight to the romantic city of Udaipur in Rajasthan. Transfer to hotel.\nDAY 4: Udaipur Morning sightseeing tour visiting the temples and palaces of this cultural centre. Afternoon free to relax or take a boat ride to Pichola Lake.\nDAY 5: Udaipur/Jodhpur Transfer for flight to Jodhpur and met upon arrival and transferred to hotel.\nDAY 6: Jodhpur Morning sightseeing tour visiting the imposing, battle scarred Fort and is fascinating museum.\nDAY 7: Jodhpur/Jaipur transfer for flight to Jaipur. Met and transferred to hotel.\nDAY 8: Jaipur Morning city sightseeing tour visiting the elaborate City Palace and the Royal Observatory, Amber Fort.\nDAY 9: Jaipur/Agra by road to Agra via Fatehpur Sikri.\nDAY 10: Agra Morning city sightseeing tour of the Taj Mahal and Agra's Red Fort.\nDAY 11: AGRA / VARANASI\nDAY 12: LOCAL SIGHTSEEING\nDAY 13: Varanasi Morning tour to Sarnath. Afternoon city sightseeing tour.\nDAY 14: Varanasi/Kathmandu Early morning boat cruise. Transfer for flight to Kathmandu. Arrival transfer to hotel.\nDay 15: Kathmandu Morning tour to Patan.\nDay 16: Fly to destination.",
+            "website_relevance": "IT15 itinerary timeline",
+            "status": "source-supported",
+            "note": "Keep mixed DAY/Day labels and grammar verbatim. Do not add transport modes."
+          },
+          {
+            "topic": "IT15 accommodation note",
+            "exact_source_text": "Hotel accommodation on twin sharing basis in 3 star hotels.",
+            "website_relevance": "IT15 inclusion copy",
+            "status": "source-supported",
+            "note": ""
+          },
+          {
+            "topic": "IT16 name and code",
+            "exact_source_text": "SOUTH INDIA HIGHLIGHT\nIT16",
+            "website_relevance": "Package card/detail title and enquiry identity",
+            "status": "source-supported",
+            "note": "Singular HIGHLIGHT is printed; do not correct to plural without approval."
+          },
+          {
+            "topic": "IT16 duration badge",
+            "exact_source_text": "13 NIGHTS/14 DAYS",
+            "website_relevance": "Duration label",
+            "status": "source-supported",
+            "note": ""
+          },
+          {
+            "topic": "IT16 itinerary days 01-05",
+            "exact_source_text": "DAY 01 : KOCHI ARRIVAL & SIGHTSEEING\nArrival at Cochin airport. Meet the representative and proceed for local sightseeing covering Mattancherry Palace, Fort Kochi & Chinese Fishing Nets. Overnight stay in Kochi.\nDAY 02 : KOCHI – MUNNAR VIA WATERFALLS\nVithirualpara Waterfalls, Caramom Plantation, Spice Garden & Flower Garden.\nDAY 03 : MUNNAR LOCAL SIGHTSEEING\nMattupetty Dam • Kundala Lake • Echo Point • Photo point\nDAY 04 : MUNNAR – THEKKADY\nPeriyar Wildlife Sanctuary, Elephant Junction & Kalaripayattu Show.\nDAY 05 : THEKKADY – ALLEPPEY HOUSEBOAT\nAlleppey and board the houseboat, proceeded by 12:00 noon. Enjoy cruising through the backwaters for 22 kms, checking into the houseboat at 14:30 hrs, with tea & snacks onboard. Houseboat reaches the halt by 18:00 hrs. Overnight stay on the houseboat.",
+            "website_relevance": "IT16 itinerary",
+            "status": "source-supported",
+            "note": "Preserve Vithirualpara, Caramom, times and 22 kms and bullet separators."
+          },
+          {
+            "topic": "IT16 itinerary days 06-14",
+            "exact_source_text": "DAY 06 : ALLEPPEY SIGHTSEEING Alleppey • Marine Beach • Alleppey Lighthouse • Alleppey Market\nDAY 07 : ALLEPPEY – VEKALA VIA JATAYU\nVisit Jatayu Earth Centre & Munroe Island.\nDAY 08 : VEKALA LOCAL SIGHTSEEING\nVarkala Beach • Kappil Beach • Varkala Cliff • Sree Janardhana Swamy Temple\nDAY 09 : VARKALA – KOVALAM Visit Hawa beach, Samudra Beach • Kovalam Beach • Vizhinjam Lighthouse\nDAY 10 : TRIVANDRUM LOCAL SIGHTSEEING\nVisit Sree Padmanabha Swamy Temple • Puthen Malika Palace Museum • Sri Chithra Art Gallery • Trivandrum Zoo\nDAY 11 : KOVAlKAM – KANYAKUMARI VIA POOVAR\nVisit Poovar Island • Kumar Amman Memorial • Thiruvalluvar Statue • Triveni Sangam (Sunset view).\nDAY 12 : KANYAKUMARI – RAMESHWARAM\nVisit Annai Indira Gandhi Pamban Bridge & Pamban Rail Scissors Bridge.\nDAY 13 : RAMESHWARAM SIGHTSEEING\nSri Dhanushkodai Ramanathaswamy Temple • Dhanushkodi Beach & Dhanushkodi • Dr. APJ Abdul Kalam Memorial • Sri Kodandarama Temple • Rama Teertham\nDAY 14 : RAMESHWARAM – MADURAI DEPARTURE\nProceed to Madurai after breakfast and checkout. Visit Meenakshi Amman Temple, Arulmigu Koodal Azhagar Temple, Gandhi Memorial Museum & Thirumalai Nayakar Palace. Proceed to Madurai Airport for onward travel.",
+            "website_relevance": "IT16 itinerary",
+            "status": "needs-confirmation",
+            "note": "Some proper nouns are hard to read at scan resolution (KOVAlKAM casing, Kumar Amman Memorial vs Kumari Amman Temple in OCR). Flag; do not silently correct route names."
+          }
+        ]
+      },
+      {
+        "page": 7,
+        "claims": [
+          {
+            "topic": "Page identification / section",
+            "exact_source_text": "HIMALAYAN EXPEDITIONS",
+            "website_relevance": "Section heading",
+            "status": "source-supported",
+            "note": "Task labels this page 7; literal printed footer on page-07.png reads 6."
+          },
+          {
+            "topic": "HE17 badge and name",
+            "exact_source_text": "DEMANDING\nGOOD FITNESS NEEDED\nMARKHA VALLEY\nHE17\n9 Nights/10 Days",
+            "website_relevance": "Grade badge, title, code and duration",
+            "status": "source-supported",
+            "note": "Preserve both badge grade and exact duration casing."
+          },
+          {
+            "topic": "HE17 description and pass altitude",
+            "exact_source_text": "Welcome to the breathtaking Markha Valley Trek in Ladakh, often referred to as \"Little Tibet.\" ... Crossing Ganda La (Kanda La) pass 4900m/ 16076ft.",
+            "website_relevance": "HE17 intro and altitude claim",
+            "status": "needs-confirmation",
+            "note": "DEMANDING badge implies up to 4,500 m under the page 2 grade table, but this text states 4900m; do not map or resolve."
+          },
+          {
+            "topic": "HE17 itinerary",
+            "exact_source_text": "DAY 1: Arrive Leh\nDAY 2: Leh\nDAY 3: Leh, Spituk and trek to Zingchen\nDAY 4: Zinchen - Yurutse\nDAY 5: Yurutse - Gondola- skiu\nDAY 6: Skiu - Markha\nDAY 7: Markha - Tchatchungtse\nDAY 8: Tchatchungtse- Nimaling\nDAY 9: Nimaling-Knogmarula-Shang Sumdo\nDAY 10: Shang Sumdo - Hemis- Leh",
+            "website_relevance": "HE17 itinerary timeline",
+            "status": "source-supported",
+            "note": "Preserve Zinchen vs Zingchen and place spellings; do not normalise."
+          },
+          {
+            "topic": "HE17 inclusions and exclusions",
+            "exact_source_text": "All camping equipment, sleeping bags, two-man tents and insulated ground mats.\nPack ponies or porters.\nExperienced English-speaking guides.\nSupport crews.\nSightseeing tours as specified.\nAll transfers and transportation as specified in the itinerary.\nThree meals daily during the trek.\nHotel accommodation on a twin-sharing basis.\nFull board in Leh and on houseboats if trekking in Kashmir.\nInternational and domestic flights.\nMeals outside the package.\nMonument entrance tickets.\nGuides and optional activities not mentioned in the itinerary.\nHorse rides and gondola tickets.\nTravel insurance.\nPersonal expenses such as laundry, phone calls, beverages, etc.\nTips for guides, drivers and support staff.\nGulf fishing and other non-itinerary activities.",
+            "website_relevance": "HE17 inclusions/exclusions blocks",
+            "status": "source-supported",
+            "note": "Gulf fishing is the visible wording; do not silently change to Golf."
+          },
+          {
+            "topic": "HE18 badge and name",
+            "exact_source_text": "STRENUOUS\nEXPERIENCED TREKKERS\nKASHMIR, ZANSKAR AND\nLADAKH TREK\nHE18\n24 DAY ROUND TRIP 15 DAY TREK",
+            "website_relevance": "Grade, title, code and duration badge",
+            "status": "conflict",
+            "note": "Badge says 15 DAY TREK while the itinerary says trekking continues until Day 18. Do not resolve."
+          },
+          {
+            "topic": "HE18 description and passes",
+            "exact_source_text": "Crossing the first pass (Pir Panjal, 3982m), we enter the beautiful Wadvan Valley. ... We ascend to Bokhtar glacier pass, entering Suru valley. ... the famous Gompa monastery at Rangdum. Our final pass is over the Zanskar Range (Kanji La, 5162m). ... back to Heniskot ... drive us to Leh.",
+            "website_relevance": "HE18 intro and route facts",
+            "status": "source-supported",
+            "note": "Keep pass names and altitudes 3982m/5162m verbatim; Bokhtar and Heniskot as printed."
+          },
+          {
+            "topic": "HE18 day-by-day itinerary",
+            "exact_source_text": "DAY 1: Arrival in Delhi\nDAY 2: Fly to Srinagar\nDAY 3: Srinagar\nDAY 4: Trekking commences until Day 18\nDAY 19/20: Leh sightseeing\nDAY 21: Fly to Delhi\nDAY 22: Delhi\nDAY 23: Optional trip to Agra\nDAY 24: Further travels",
+            "website_relevance": "HE18 itinerary timeline",
+            "status": "conflict",
+            "note": "DAY 4 until Day 18 conflicts with 15 DAY TREK badge; DAY 19/20 combined label and DAY 24: Further travels need confirmation; do not invent Day 25."
+          },
+          {
+            "topic": "HE19 badge and name",
+            "exact_source_text": "MODERATE\nSOME FITNESS REQUIRED\nKASHMIR COMBINATIONS\n\"LITTLE TIBET\"\nHE19\n19 DAY ROUND TRIP. 7 DAY TREK.",
+            "website_relevance": "Grade, title, code and duration",
+            "status": "source-supported",
+            "note": "Preserve quote marks, capitalisation and the period after ROUND TRIP."
+          },
+          {
+            "topic": "HE19 description and route",
+            "exact_source_text": "Starting from Pahalgam, we follow the Lidder River to Aru and, then trek to Lidderwat, walking through pine-clad forests. We visit the famous glacier at Kolohoi and then onto Tarsar Lake. We cross the Sinmus Pass and descend into the Sindh Valley to Sumbal. We head to Ladakh ... visiting the ancient Buddhist monasteries of Hemis, Thiksey, Shey, and Stok Palace.",
+            "website_relevance": "HE19 route copy",
+            "status": "source-supported",
+            "note": "Preserve Kolohoi, Sinmus Pass, Sumbal and monastery order."
+          },
+          {
+            "topic": "HE19 day-by-day itinerary",
+            "exact_source_text": "Day 1: Arrival in Delhi\nDay 2: Fly to Srinagar\nDay 3: Srinagar sightseeing\nDay 4: Srinagar sightseeing\nDay 5: Trekking commences until day 11\nDay 12: Drive to Kargil\nDay 13: Drive to Leh\nDay 14: Leh sightseeing\nDay 15: Leh\nDay 16: Leh to Delhi\nDay 17: Delhi\nDay 18: Delhi Agra\nDay 19: Departure",
+            "website_relevance": "HE19 itinerary timeline",
+            "status": "needs-confirmation",
+            "note": "Day 18: Delhi Agra has no separator; Day 5 until day 11 must not be recalculated. Mixed Day casing preserved."
+          }
+        ]
+      },
+      {
+        "page": 8,
+        "claims": [
+          {
+            "topic": "Page identification / section",
+            "exact_source_text": "MINI TREK IN KASHMIR",
+            "website_relevance": "Section heading",
+            "status": "source-supported",
+            "note": "Task labels this page 8; literal printed footer on page-08.png reads 7."
+          },
+          {
+            "topic": "MTK20 badge and name",
+            "exact_source_text": "DEMANDING\nGOOD FITNESS NEEDED\nKASHMIR MINI\nADVENTURE\nMTK20\n6 NIGHTS/7 DAYS",
+            "website_relevance": "Grade, title, code and duration",
+            "status": "source-supported",
+            "note": "Preserve exact badge wording and 6 nights/7 days order."
+          },
+          {
+            "topic": "MTK20 description",
+            "exact_source_text": "If there is a paradise on earth, it is here, it is here, it is here.\" So wrote the sixteenth-century Mughal Emperor Shah Jahan after visiting Kashmir. Kashmir presents the world's finest alpine scenery. ... Spring, summer, and autumn are all perfect seasons to do this walk.",
+            "website_relevance": "MTK20 intro copy",
+            "status": "source-supported",
+            "note": "Quote and superlative are printed; do not restate as verified fact in new copy without approval."
+          },
+          {
+            "topic": "MTK20 itinerary",
+            "exact_source_text": "DAY 01: Drive to Sonamarg (80 kms), enroute visiting Ganderbal and Kangan.\nDAY 02: Trek from Thajiwas to Nichanai (13 kms). The walk involves a steady ascent of 5250 ft. Overnight camp at Nichnai.\nDAY 03: Nichnai Vishansar Lake (13 kms). A climb of 2000 ft. over the pass 13400 ft overnight camping besides the lake\nDAY 04: Vishansar to Gadsar (10 kms).\nDAY 05: Gadsar to Gangabal Lake. Trek climbing passes to 10,000 ft. overnight camping besides the lake.\nDAY 06: Rest day optional fishing in Gangabal Lake.\nDAY 07: Descent trek to Naranag Ruin temple. Drive to Srinagar.",
+            "website_relevance": "MTK20 itinerary timeline",
+            "status": "source-supported",
+            "note": "Preserve enroute, besides, Nichanai/Nichnai and all distances and altitudes."
+          },
+          {
+            "topic": "MTK21 badges and name",
+            "exact_source_text": "MODERATE\nSOME FITNESS REQUIRED\nVALE OF\nKASHMIR TREK\nMTK21\n6 NIGHTS/ 7 NIGHTS",
+            "website_relevance": "Grade, title, code and small badge",
+            "status": "conflict",
+            "note": "Small badge reads 6 NIGHTS/ 7 NIGHTS while body reads 7 DAYS / 6 NIGHTS GRADE C. Do not choose one."
+          },
+          {
+            "topic": "MTK21 description and printed grade",
+            "exact_source_text": "Embark on an unforgettable 7-day adventure in the breathtaking Vale of Kashmir! Starting from the charming town of Pahalgam, known as the Valley of Shepherds, your journey ascends through the stunning landscapes of Aru and Lidderwat. ... the awe-inspiring Kolohoi Glacier, perched at 12,000 feet.\n7 DAYS / 6 NIGHTS GRADE C",
+            "website_relevance": "MTK21 intro and grade label",
+            "status": "conflict",
+            "note": "Letter grade C must not be mapped to Moderate or another word grade without client confirmation. Preserve 12,000 feet wording."
+          },
+          {
+            "topic": "MTK21 itinerary",
+            "exact_source_text": "DAY 01: Drive from Srinagar to Aru via Pahalgam. Overnight at Aru.\nDAY 02: Aru to Lidderwat.\nDAY 03: Full day trek to Kolohoi Glacier with overnight at Lidderwat.\nDAY 04: Lidderwat to Sekiwas.\nDAY 05: Sekiwas.\nDAY 06: Sekiwas to Sanmous.\nDAY 07: Sanmous to Sindh Valley Road. Drive to Srinagar.",
+            "website_relevance": "MTK21 itinerary timeline",
+            "status": "source-supported",
+            "note": "Preserve route order and Sanmous spelling."
+          },
+          {
+            "topic": "KS22 name and identity",
+            "exact_source_text": "KASHMIR\nSKI\nKS22",
+            "website_relevance": "Package title/code for mini-trek section",
+            "status": "conflict",
+            "note": "Contents listing on the earlier contents page says Himalaya Enfield Motorbike Tour instead. Do not invent an Enfield package or assume KS22 replaces it."
+          },
+          {
+            "topic": "KS22 description",
+            "exact_source_text": "We offer ski tours to India's premier ski resort, Gulmarg, nestled in the Kashmir Himalayan ranges. Enjoy skiing just minutes from your hotel, with ski runs extending up to 10 km in length. Optional Treps to the Khilanmarg Plateau, high above Gulmarg, can be followed by an exhilarating ski descent through virgin snow on a variety of trails.",
+            "website_relevance": "KS22 intro copy",
+            "status": "needs-confirmation",
+            "note": "Superlative India's premier ski resort and Optional Treps typo are printed; preserve or withhold, do not correct silently."
+          },
+          {
+            "topic": "KS22 highlights and inclusions",
+            "exact_source_text": "TOUR HIGHLIGHTS\n- Gulmarg, with its magnificent alpine scenery, is India's winter sports capital.\nTOUR INCLUSIONS\n- Return car transfers from Srinagar\n- Ski equipment (excluding ski clothing)\n- Ski lift pass\n- Standard accommaodation with private facilities\n- All meals in Gulmarg",
+            "website_relevance": "KS22 highlights and inclusions",
+            "status": "needs-confirmation",
+            "note": "Superlative claim and accommaodation misspelling are printed; preserve or withhold until approved."
+          },
+          {
+            "topic": "KS22 duration, itinerary and departures",
+            "exact_source_text": "7 DAYS / 6 NIGHTS\nITINERARY\nDAY 1: SRINAGAR – GULMARG: Transfer by car to Gulmarg.\nDAYS 2-6: GULMARG: Enjoy skiing at your leisure.\nDAY 7: GULMARG – SRINAGAR: Return to Srinagar by car.\nDepartures daily from January to March.",
+            "website_relevance": "KS22 duration and itinerary",
+            "status": "source-supported",
+            "note": "Keep DAYS 2-6 combined label and departure window exactly."
+          }
+        ]
+      },
+      {
+        "page": 9,
+        "claims": [
+          {
+            "topic": "Page identification / section",
+            "exact_source_text": "NEPAL ADVENTURE",
+            "website_relevance": "Section heading",
+            "status": "source-supported",
+            "note": "Task labels this page 9; literal printed footer on page-09.png reads 8."
+          },
+          {
+            "topic": "NA23 badge and name",
+            "exact_source_text": "MODERATE\nSOME FITNESS REQUIRED\nHIMALAYAN COMBINATION HC\nNA23\n20 Day round trip-including 8-day trek; 3-day rafting; 4-day jungle safari. GRADE D.",
+            "website_relevance": "Title, code, badge and combined duration",
+            "status": "conflict",
+            "note": "Badge says Moderate and the copy later says This grade B trek, but the line above says GRADE D. Do not resolve; preserve all three."
+          },
+          {
+            "topic": "NA23 description and facts",
+            "exact_source_text": "Join Kathmandu Put your best foot forward on this great adventure combines the very best of Nepal mountain trekking; river rafting and wildlife safari. ... Machapuchare (6997) And Lamjung (6986) ... The park covers app 932 sq kms and has more than 43 species of mammals and more than 450 species of birds.",
+            "website_relevance": "NA23 intro and numerical facts",
+            "status": "needs-confirmation",
+            "note": "Stray Join Kathmandu wording, capital And, missing units on peaks and app 932 sq kms are as printed; flag rather than repair."
+          },
+          {
+            "topic": "NA23 itinerary",
+            "exact_source_text": "DAY 01: Arrival in Kathmandu.\nDAY 02: Sightseeing in Kathmandu.\nDAY 03: Drive to Pokhara, where the trek commences and continues until day 11.\nDAY 11: Drive to Trisuli River Camp. Rafting until day 14.\nDAY 14: Drive to Royal Chitwan National Park on safari until day 17.\nDAY 17: Drive to Kathmandu where you are at leisure until day 20.\nDAY 20: Fly to destination.",
+            "website_relevance": "NA23 itinerary timeline",
+            "status": "conflict",
+            "note": "Day labels overlap. Preserve; do not reorder or invent intermediate days."
+          },
+          {
+            "topic": "NA24 name, code and badge",
+            "exact_source_text": "TRISULI\nRAFTING\nRAFTING TOUR\nNA24\nEASY\nSOME FITNESS REQUIRED",
+            "website_relevance": "Title, code and grade badge",
+            "status": "source-supported",
+            "note": "Preserve RAFTING TOUR subtitle and EASY badge."
+          },
+          {
+            "topic": "NA24 highlights and inclusions",
+            "exact_source_text": "TOUR HIGHLIGHTS\nFour major rapids and several small rapids on the Trisuli River.\nTOUR INCLUSIONS\nReturn transport to Trisuli River Rafting equipment and xperienced English-speaking guide Packed lunch",
+            "website_relevance": "NA24 highlights/inclusions",
+            "status": "needs-confirmation",
+            "note": "xperienced misspelling and run-together Rafting equipment are printed; preserve or withhold, do not silently fix."
+          },
+          {
+            "topic": "NA24 day trip and departures",
+            "exact_source_text": "DAY TRIP Depart Kathmandu to Phishling After a brief safety talk and basic demonstration, we set off for an exciting day of whitewater rafting. During the day there will be four major rapids and several smaller ones. We stop for lunch on a sunny beach then continue on to Simaltar after rafting for 24 kms. Return to Kathmandu.\nADDITIONAL WHITE WATER RAFTING TRIPS OF 2 & 3 DAYS ARE AVAILABLE. PLEASE CONTACT US FOR DETAILS.\nDepartures Daily from October to March.\nMinimum 2 persons.",
+            "website_relevance": "NA24 trip details, extra trips, departures and minimum group",
+            "status": "source-supported",
+            "note": "No base duration badge; do not derive one. Keep 24 kms and departure window."
+          },
+          {
+            "topic": "HE25 name, code and badge",
+            "exact_source_text": "4 DAY NEPAL\nMINI TREK NM1\nHE25\nEASY\nSOME FITNESS REQUIRED",
+            "website_relevance": "Title, code and badge",
+            "status": "conflict",
+            "note": "Badge EASY conflicts with printed GRADE D below. Do not map or resolve."
+          },
+          {
+            "topic": "HE25 highlights and grade",
+            "exact_source_text": "TOUR HIGHLIGHTS\nDepart Kathmandu from September to March\nMinimum 2 Persons\n4 DAYS / 3 NIGHTS GRADE D",
+            "website_relevance": "HE25 highlights, duration and grade",
+            "status": "conflict",
+            "note": "Letter grade D must not be mapped to a word grade; departures and minimum persons as printed."
+          },
+          {
+            "topic": "HE25 itinerary",
+            "exact_source_text": "DAY 1: Drive from Kathmandu to haktapur,commence trek. Overnight Nagarkot\nDAY 2: Nagarkot to Chowki Bhanjyang\nDAY 3: Nagarkot to Chowki Bhanjyang\nDAY 4:Trek from Chisapani to Sundarijal. Return to kathmandu. Detailed itineraries available on request. Night stops may vary due to local weather conditions.",
+            "website_relevance": "HE25 itinerary timeline",
+            "status": "conflict",
+            "note": "DAY 2 and DAY 3 are identical; DAY 1 place is printed haktapur,commence trek; do not repair route order or spelling."
+          },
+          {
+            "topic": "NA26 name, code and badge",
+            "exact_source_text": "NEPAL WILDLIFE\nSAFARI\nNA26\nEASY\nSOME FITNESS REQUIRED\n3 NIGHTS/4 DAYS",
+            "website_relevance": "Title, code, badge and badge duration",
+            "status": "conflict",
+            "note": "Badge reads 3 NIGHTS/4 DAYS; the body reads 4 DAYS/ 3 NIGHTS. Preserve both and flag."
+          },
+          {
+            "topic": "NA26 itinerary",
+            "exact_source_text": "4 DAYS/ 3 NIGHTS\nITINERARY\nDAY 1: KATHMANDU/CHITWAN NATIONAL PARK\nTravel to Chitwan by road. Afternoon safari.\nDAY 2: CHITWAN NATIONAL PARK Safaris at the\nPark.\nDAY 3: CHITWAN NATIONAL PARK Safaris at the\nPark.\nDAY 4: CHITWAN NATIONAL PARK / KATHMANDU\nMorning safari. Return to Kathmandu by\nroad.(Departures September to April).",
+            "website_relevance": "NA26 itinerary",
+            "status": "source-supported",
+            "note": "Preserve road.(Departures lack of space and departure window."
+          },
+          {
+            "topic": "HE27 name, code and badge",
+            "exact_source_text": "7 DAY NEPAL\nMINI TREK NM2\nHE27\nEASY\nSOME FITNESS REQUIRED",
+            "website_relevance": "Title, code and badge",
+            "status": "conflict",
+            "note": "Badge EASY conflicts with printed GRADE D below."
+          },
+          {
+            "topic": "HE27 highlights and grade",
+            "exact_source_text": "TOUR HIGHLIGHTS\nDepart Kathmandu Monday from September to March Minimum 2 Persons\n7 DAYS / 6 NIGHTS GRADE D",
+            "website_relevance": "HE27 highlights, duration and grade",
+            "status": "conflict",
+            "note": "Preserve Monday departure wording and letter grade D without mapping."
+          },
+          {
+            "topic": "HE27 itinerary",
+            "exact_source_text": "DAY 1: Drive from Kathmandu to Bhaktapur. Commence trek. Overnight at Nagarkot.\nDAY 2: Nagarkot to Sinjaruwa\nDAY 3: Sinjaruwa to Chisapani.\nDAY 4: Chisapani to Borlang Bhanjyang.\nDAY 5: Borlang Bhanjyang.\nDAY 6: Borlang Bhanjyang to Sivapuri.\nDAY 7: Trek from Sivapure to Budhanikantha. Return to Kathmandu.",
+            "website_relevance": "HE27 itinerary timeline",
+            "status": "conflict",
+            "note": "Sivapuri (DAY 6) vs Sivapure (DAY 7) spelling conflict; preserve both and flag."
+          },
+          {
+            "topic": "NA26 highlights and inclusions",
+            "exact_source_text": "TOUR HIGHLIGHTS\nRoyal Chitwan National Park has a wide variety of wildlife including elephants, tigers, leopards, rhinos sloth bears, chital, monkeys, crocodiles and wild boar 350 species of birds Resident naturalists Explore Chitwa National Park by elephant and jeep safaris, nature walks and canoe trips\nEvening campfire with tribal dancing performed by local villagers TOUR INCLUSIONS All meals included at Chitwan Jungle Lodge Round trip transportation to Kathmandu All safaris in the park with guides",
+            "website_relevance": "NA26 highlights and inclusions",
+            "status": "needs-confirmation",
+            "note": "Chitwa and run-together inclusion text are as printed; 350 species of birds here vs other figures elsewhere; do not conflate."
+          }
+        ]
+      },
+      {
+        "page": 10,
+        "claims": [
+          {
+            "topic": "Page title",
+            "exact_source_text": "Booking conditions and information",
+            "website_relevance": "Terms page heading",
+            "status": "source-supported",
+            "note": "No visible revision date on this page; treat all terms as legacy/unconfirmed."
+          },
+          {
+            "topic": "1 How to Book",
+            "exact_source_text": "Booking as early as possible by sending a completed booking form and a deposit of $200 (non refundable for tours) India Nepal Travel Centre or your Travel Agent. The booking becomes a contract between us and you the passenger. All booking are taken on the basis that you accept the following conditions.",
+            "website_relevance": "Booking/deposit section",
+            "status": "needs-confirmation",
+            "note": "Dollar amount is unqualified as to currency here; non refundable for tours and All booking grammar as printed. Do not publish as current terms."
+          },
+          {
+            "topic": "2 Amendments",
+            "exact_source_text": "If after a booking has been made, you wish to make any changes to your itinerary all assistance will be made to satisfy your requirements. Due to the extra costs involved there will be an administration charge of $25 per amendment.",
+            "website_relevance": "Amendment fee",
+            "status": "needs-confirmation",
+            "note": "Dollar amount currency and current applicability unconfirmed; preserve per amendment."
+          },
+          {
+            "topic": "3 Payment",
+            "exact_source_text": "Full payments less the prepaid deposit must be paid by you as to reach us no later than 8 weeks prior to departure. Failure to make payment when due will result in cancellation. Prices are based on exchange rates current as at 1st September, 2014. We reserve the right to vary these prices should any significant variation of costs occur prior to the departure of the tour. In the event that a further payment is required by us we will request this from you in writing. Failure to pay this sum within seven days of it being requested, may be treated as a cancellation, fees will become due. However, if prices have to increase by more than 5% after the booking has been made, you may cancel free of charge within seven days of the date shown on the final invoice. In this case all monies will be refunded.",
+            "website_relevance": "Payment timing, price variation and historical exchange-rate reference",
+            "status": "needs-confirmation",
+            "note": "8 weeks, 1st September 2014, 5% and seven days must be preserved; do not update or legal-interpret."
+          },
+          {
+            "topic": "4 Cancellation and Refunds",
+            "exact_source_text": "All cancellations must be made in writing and India Nepal Travel Centre must be notified immediately. Cancellation charges will be made on the following scale:\nMore than 8 weeks before departure 30% of holiday price deposit.\nLess than 8 weeks before departure 45% of holiday price deposit.\nLess than 4 weeks before departure 60% of holiday price deposit.\nLess than 7 days before departure No refund",
+            "website_relevance": "Cancellation policy",
+            "status": "needs-confirmation",
+            "note": "Four bands verbatim; do not reorder, recalculate or simplify."
+          },
+          {
+            "topic": "5 Documentation",
+            "exact_source_text": "All clients are themselves responsible for ensuring that passports, visas, vaccination certificates and other necessary documents are in order. Visas are required for both India and Nepal. Foreign nationals of Australia require a re-entry visa for Australia, which should be obtained prior to departure. Full information may be obtained from India Nepal Travel Centre or your travel agent.",
+            "website_relevance": "Travel document requirements",
+            "status": "needs-confirmation",
+            "note": "Do not convert into current immigration or medical advice."
+          },
+          {
+            "topic": "6 Possible Changes and Delays",
+            "exact_source_text": "It is our policy that every reasonable effort is made to ensure that the itineraries and services offered in this brochure are operated as a specified. However, since we have no direct control over them, we reserve the right to vary the itinerary and services. In the unlikely event of a change in our programme and/or conditions that make it necessary to do so. Should any additional costs arise as a result of such variation. We reserve the right to pass these on to you.",
+            "website_relevance": "Itinerary change/disclaimer clause",
+            "status": "needs-confirmation",
+            "note": "Grammar and unfinished sentences are as printed; do not rewrite legal effect."
+          },
+          {
+            "topic": "7 Not included in Tour Cost",
+            "exact_source_text": "Visas, travel insurance, meals not specified, personal additional extras such as laundry, tips, porterage, drivers, souvenirs, all items of a personal nature, international and domestic airport taxes.",
+            "website_relevance": "Exclusions clause",
+            "status": "needs-confirmation",
+            "note": "Package-specific inclusion boxes may differ; do not apply identically to every package."
+          },
+          {
+            "topic": "8 Tour Costs",
+            "exact_source_text": "These are based on the most economical land and air prices available at the exchange rates (international) current at India Nepal Travel Centre reserves the right to vary the prices should any significant variation of costs occur prior to the departure of the tour. All prices are subject to confirmation at time of booking.",
+            "website_relevance": "Pricing clause",
+            "status": "needs-confirmation",
+            "note": "Sentence appears incomplete in source; do not complete or infer."
+          },
+          {
+            "topic": "9 Luggage",
+            "exact_source_text": "All luggage and personal effects which you may have shall be at all times and in all circumstances at your risk. You are advised to take out insurance against loss or damage for the full value of your belongings. We cannot accept liability for the quality, value, reliability or authenticity of any goods purchased while on tour nor are we liable in any way whatsoever for any arrangements you may make to post, ship or freight such purchases.",
+            "website_relevance": "Luggage risk clause",
+            "status": "needs-confirmation",
+            "note": "Do not rewrite liability language."
+          },
+          {
+            "topic": "10 Insurance",
+            "exact_source_text": "It is a condition of booking one of our tours that travellers are adequately insured for the full duration of their tour in respect of illness, injury, death, loss of baggage and personal items, cancellation and curtailment. India Nepal Travel Centre or your travel agent will be able to offer you a comprehensive holiday insurance policy.",
+            "website_relevance": "Insurance condition",
+            "status": "needs-confirmation",
+            "note": "This is a client requirement and an offer to help obtain insurance; do not claim the company provides, includes or underwrites insurance."
+          },
+          {
+            "topic": "11 Health",
+            "exact_source_text": "We recommend that before departure participants should partake in regular strenuous exercise including walking, cycling, swimming and running. Anyone suffering from severe muscular chest, heart or bronchial disorders, asthma or high blood pressure are strongly advised against booking. We advise you to ensure sufficient travel insurance is available and to take precautions against malaria. Full information is available from India Nepal Travel Centre or your travel agent.",
+            "website_relevance": "Health/training advice",
+            "status": "needs-confirmation",
+            "note": "Do not turn into medical advice or a fitness guarantee; language may be outdated and must be confirmed."
+          },
+          {
+            "topic": "12 Surcharges",
+            "exact_source_text": "It is the policy of India Nepal Travel Centre to keep all surcharges to a minimum. Approximately 8 weeks prior to departure we shall send you the final invoice, including all, if any, surcharges (increases in air fares and land arrangements, currency, fuel, government taxes etc). Any increases after receipt of the final invoice will be absorbed by India Nepal Travel Centre provided your account has been paid in full as per the booking conditions. In return for this guarantee, no refund will be given if the Australian dollar improves in value against foreign currencies prior to your departure. If the additional surcharges are more than 10% of the total amount shown on your holiday confirmation, you may cancel your holiday free of charges within 7 days of the date shown on the final invoice. In this case all monies will be refunded.",
+            "website_relevance": "Surcharge policy and currency wording",
+            "status": "needs-confirmation",
+            "note": "Explicit Australian dollar reference appears here but the dollar amounts in sections 1/2 and the booking form are unqualified; do not resolve currency. Preserve 8 weeks, 10% and 7 days."
+          },
+          {
+            "topic": "13 Dissatisfaction",
+            "exact_source_text": "please submit details in writing to India Nepal Travel Centre not later than 21 days after the last date of services listed on your voucher",
+            "website_relevance": "Complaints window",
+            "status": "needs-confirmation",
+            "note": "21 days as printed; do not shorten or extend."
+          },
+          {
+            "topic": "14 Advice to Travellers",
+            "exact_source_text": "It is still developing and you need to be prepared to accept standards of accommodation, transport and efficiency of services that may not be quite the same standard as in western countries. We strongly recommend travel insurance for your holiday. ... if you know more about the region, you will be likely to enjoy your holiday more.",
+            "website_relevance": "Traveller advice",
+            "status": "needs-confirmation",
+            "note": "Text is partly garbled in print; preserve or withhold, do not complete the sentence."
+          },
+          {
+            "topic": "15 Liability",
+            "exact_source_text": "India Nepal Travel Centre operator of the tours outlined in this brochure. All arrangements for the provision of transport, accommodation and any other travel related services are made by the operator with various third parties ... It shall be liable for death, personal injury, sickness, accidents, loss or damage to baggage or personal effects due to delay, strikes, weather, threat of war, civil strife, strikes, terrorist activities, technical problems with transport, closure of airports, acts of God or other events outside the control of the company. The company reserves the right to cancel the holiday.",
+            "website_relevance": "Liability clause",
+            "status": "needs-confirmation",
+            "note": "Printed wording is internally inconsistent/unfinished; do not rewrite legal effect or publish as current."
+          },
+          {
+            "topic": "Booking Form identity",
+            "exact_source_text": "Booking Form\nINDIA NEPAL TRAVEL CENTRE\nEmail: indianepaltravel@yahoo.com.au | Web: www.indianepaltravel.com",
+            "website_relevance": "Form heading and branded contact details",
+            "status": "conflict",
+            "note": "Conflicts with the ASIAN BAZAAR contact block on the same page; do not copy into site until client confirms which details are current."
+          },
+          {
+            "topic": "Booking form field labels",
+            "exact_source_text": "Name:\nAddress:\nDate:\nTelephone/Mobile:\nLandline:\nEmail:\nSurname (Mr, Mrs, Miss, Ms.)\nBirth Date\nHol. Ref.\nDepart Date\nAccommodation (Give Requirements Single/Twin/DBL)\nNationality (as per passport)\nPassport Number\nExpiry Date of Passport",
+            "website_relevance": "Enquiry/booking form fields",
+            "status": "source-supported",
+            "note": "Labels only; do not invent required-field behaviour or new fields."
+          },
+          {
+            "topic": "Deposit block",
+            "exact_source_text": "DEPOSIT\nDEPOSIT $200 PER PERSON\nDEPOSIT ENCLOSED $",
+            "website_relevance": "Deposit amount and blank field",
+            "status": "needs-confirmation",
+            "note": "Currency not specified; do not label AUD/USD/INR. Form repeats the dollar amount from section 1."
+          },
+          {
+            "topic": "SPECIAL REQUESTS declaration",
+            "exact_source_text": "The conditions have been read and accepted by me on behalf of all members of my party, by whom I am duly authorised to make this agreement. I have also read, understood and accepted the conditions and booking information. I am over 18 years of age. I enclose deposit as detailed opposite.\nSIGNATURE:",
+            "website_relevance": "Booking declaration",
+            "status": "needs-confirmation",
+            "note": "Legacy declaration; do not present as current booking flow without approval."
+          },
+          {
+            "topic": "CONTACT block",
+            "exact_source_text": "CONTACT\nASIAN BAZAAR\n68 Beauchamp St, Wiley Park, NSW 2195\nM 0409 155 229 | 02 9579 0044\nEmail: asianbazaar@live.com.au\nweb: www.asianbazaar.org\nwww.exportofindia.com",
+            "website_relevance": "Contact details/footer",
+            "status": "conflict",
+            "note": "Unrelated/legacy brand on the same form as India Nepal Travel Centre; do not publish or invent an Indian office to replace it."
+          },
+          {
+            "topic": "Absence of revision date",
+            "exact_source_text": "No revision date is visible on the booking conditions and information page.",
+            "website_relevance": "Terms currency/status",
+            "status": "needs-confirmation",
+            "note": "Treat all page 10 booking terms as legacy until client reconfirms; do not present as current."
+          }
+        ]
+      }
+    ],
+    "key_conflicts": [
+      {
+        "topic": "Mini-trek package identity: Enfield vs Kashmir Ski",
+        "values": [
+          "Himalaya Enfield Motorbike Tour (contents listing on earlier contents page)",
+          "KASHMIR SKI KS22 (this page)"
+        ],
+        "pages": [
+          8
+        ],
+        "note": "Contents listing names the motorbike tour; the actual mini-trek page shows KS22 Kashmir Ski. Do not invent the Enfield package or assume KS22 replaces it. The 27-package count remains unconfirmed."
+      },
+      {
+        "topic": "Brochure page numbering offset",
+        "values": [
+          "Task/rulebook page 6 = India Tours IT14-IT16; image page-06.png footer reads 5",
+          "Task/rulebook page 7 = HE17-HE19; image page-07.png footer reads 6",
+          "Task/rulebook page 8 = MTK20/21/KS22; image page-08.png footer reads 7",
+          "Task/rulebook page 9 = Nepal NA23-HE27; image page-09.png footer reads 8"
+        ],
+        "pages": [
+          6,
+          7,
+          8,
+          9
+        ],
+        "note": "Image filenames and the project page map are one higher than the literal printed footer digits. JSON page labels follow the task numbering; the offset is recorded and must not be silently resolved. Page-10.png has no visible printed page number."
+      },
+      {
+        "topic": "HE18 trek duration",
+        "values": [
+          "24 DAY ROUND TRIP 15 DAY TREK",
+          "DAY 4: Trekking commences until Day 18",
+          "24 day trek wording appears in OCR"
+        ],
+        "pages": [
+          7
+        ],
+        "note": "Badge, itinerary and OCR disagree; preserve and flag."
+      },
+      {
+        "topic": "NA23 grade",
+        "values": [
+          "MODERATE badge",
+          "GRADE D in the duration line",
+          "This grade B trek in the description"
+        ],
+        "pages": [
+          9
+        ],
+        "note": "Three conflicting grade statements on one package; do not map letter grades to word grades."
+      },
+      {
+        "topic": "MTK21 duration and grade",
+        "values": [
+          "6 NIGHTS/ 7 NIGHTS badge",
+          "7 DAYS / 6 NIGHTS GRADE C body",
+          "MODERATE badge"
+        ],
+        "pages": [
+          8
+        ],
+        "note": "Badge and body disagree; do not choose."
+      },
+      {
+        "topic": "HE25 grade and route",
+        "values": [
+          "EASY SOME FITNESS REQUIRED badge",
+          "4 DAYS / 3 NIGHTS GRADE D",
+          "DAY 2 and DAY 3 both Nagarkot to Chowki Bhanjyang",
+          "haktapur,commence trek"
+        ],
+        "pages": [
+          9
+        ],
+        "note": "Grade conflict, duplicated day and unclear place spelling; preserve all."
+      },
+      {
+        "topic": "HE27 place spelling",
+        "values": [
+          "Sivapuri (DAY 6)",
+          "Sivapure (DAY 7)"
+        ],
+        "pages": [
+          9
+        ],
+        "note": "Same place spelled differently; flag, do not normalise."
+      },
+      {
+        "topic": "NA26 duration order",
+        "values": [
+          "3 NIGHTS/4 DAYS badge",
+          "4 DAYS/ 3 NIGHTS body"
+        ],
+        "pages": [
+          9
+        ],
+        "note": "Same numbers, reversed order; preserve both."
+      },
+      {
+        "topic": "NA23 itinerary day overlap",
+        "values": [
+          "DAY 03 continues until day 11",
+          "DAY 11 Drive to Trisuli River Camp",
+          "DAY 14 safari until day 17",
+          "DAY 17 leisure until day 20",
+          "DAY 20 Fly to destination"
+        ],
+        "pages": [
+          9
+        ],
+        "note": "Overlapping day labels; do not repair sequence."
+      },
+      {
+        "topic": "Letter grade vs word badge mapping",
+        "values": [
+          "GRADE C (MTK21)",
+          "GRADE D (HE25, HE27, NA23)",
+          "EASY/MODERATE/DEMANDING/STRENUOUS word badges"
+        ],
+        "pages": [
+          8,
+          9
+        ],
+        "note": "Rulebook forbids mapping letter grades to word grades without client confirmation."
+      },
+      {
+        "topic": "HE17 altitude vs grade description",
+        "values": [
+          "DEMANDING GOOD FITNESS NEEDED",
+          "Ganda La (Kanda La) pass 4900m/ 16076ft."
+        ],
+        "pages": [
+          7
+        ],
+        "note": "Page 2 grade table for Demanding states up to 4,500 m; do not reconcile or infer a different grade."
+      },
+      {
+        "topic": "Currency of booking amounts",
+        "values": [
+          "a deposit of $200",
+          "an administration charge of $25 per amendment",
+          "DEPOSIT $200 PER PERSON",
+          "if the Australian dollar improves in value against foreign currencies"
+        ],
+        "pages": [
+          10
+        ],
+        "note": "Dollar amounts are unqualified but section 12 mentions Australian dollar; do not assign AUD/USD/INR or convert."
+      },
+      {
+        "topic": "Booking terms currency and date",
+        "values": [
+          "8 weeks prior to departure",
+          "1st September, 2014 exchange-rate reference",
+          "No visible revision date"
+        ],
+        "pages": [
+          10
+        ],
+        "note": "Treat as legacy; do not publish as current without written client approval."
+      },
+      {
+        "topic": "IT14 exclusion wording",
+        "values": [
+          "Gulf fishing and other non-itinerary activities OCR",
+          "Golf fishing and other non-itinerary activities image reading"
+        ],
+        "pages": [
+          6
+        ],
+        "note": "Flagged ambiguity; do not silently choose a spelling in public copy."
+      },
+      {
+        "topic": "Company name",
+        "values": [
+          "India Nepal Travel Organisation earlier brochure page",
+          "INDIA NEPAL TRAVEL CENTRE booking form"
+        ],
+        "pages": [
+          10
+        ],
+        "note": "Legal/trading name needs confirmation; do not standardise."
+      },
+      {
+        "topic": "Contact identity blocks",
+        "values": [
+          "INDIA NEPAL TRAVEL CENTRE | indianepaltravel@yahoo.com.au | www.indianepaltravel.com",
+          "ASIAN BAZAAR | 68 Beauchamp St, Wiley Park, NSW 2195 | asianbazaar@live.com.au | www.asianbazaar.org | www.exportofindia.com"
+        ],
+        "pages": [
+          10
+        ],
+        "note": "Two conflicting contact identities on the same booking form; ask client which are current and public. Do not invent an Indian office."
+      }
+    ]
+  },
+  "site_findings": [
+    {
+      "route": "/",
+      "file": "app/src/data/siteContent.ts",
+      "line": 197,
+      "current_text": "Iconic Destinations",
+      "risk": "Unverified superlative; the brochure does not establish that destinations are 'iconic'.",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§1.1"
+    },
+    {
+      "route": "/",
+      "file": "app/src/data/siteContent.ts",
+      "line": 200,
+      "current_text": "Since 1927",
+      "risk": "Present-tense founding/continuity claim; legal entity and continuity unconfirmed.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.1"
+    },
+    {
+      "route": "/",
+      "file": "app/src/data/siteContent.ts",
+      "line": 201,
+      "current_text": "Pioneer Operator",
+      "risk": "Unverified superlative ('pioneer') not established by a confirmed client claim.",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§1.1"
+    },
+    {
+      "route": "/",
+      "file": "app/src/data/siteContent.ts",
+      "line": 204,
+      "current_text": "Explore India and Nepal with a specialist since 1927—from Himalayan peaks to tranquil backwaters.",
+      "risk": "Presents an unconfirmed present-day operating continuity claim.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.1"
+    },
+    {
+      "route": "/",
+      "file": "app/src/data/siteContent.ts",
+      "line": 210,
+      "current_text": "Every route is rooted in verified itineraries refined across four generations.",
+      "risk": "Asserts verification and a four-generation continuity not confirmed by the client.",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.1"
+    },
+    {
+      "route": "/",
+      "file": "app/src/data/siteContent.ts",
+      "line": 218,
+      "current_text": "Rare Habitat Encounters Guided by Resident Naturalists",
+      "risk": "Unverified guiding/resident-naturalist capability claim.",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§1.1"
+    },
+    {
+      "route": "/",
+      "file": "app/src/data/siteContent.ts",
+      "line": 228,
+      "current_text": "Accredited wildlife trackers and regional specialists interpret native flora and fauna.",
+      "risk": "Invents an accreditation/certification claim (§1.1 certifications).",
+      "action": "REMOVE",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§1.1"
+    },
+    {
+      "route": "/",
+      "file": "app/src/data/siteContent.ts",
+      "line": 229,
+      "current_text": "Respectful, ethical observation in premier national parks and protected habitats.",
+      "risk": "'Premier' is an unverifiable superlative.",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§1.1"
+    },
+    {
+      "route": "/",
+      "file": "app/src/data/siteContent.ts",
+      "line": 242,
+      "current_text": "Special-interest tours are led by a team leader from Australia who specialises in a particular area.",
+      "risk": "Explicitly listed in brandConfig.ownerConfirmationsRequired as needing confirmation; presented as current.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.3"
+    },
+    {
+      "route": "/",
+      "file": "app/src/data/siteContent.ts",
+      "line": 246,
+      "current_text": "Seasoned mountain leaders fluent in regional trails, local dialects, and high-altitude safety.",
+      "risk": "Implies a safety qualification/guarantee not supported by the brochure.",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§1.1"
+    },
+    {
+      "route": "/",
+      "file": "app/src/data/siteContent.ts",
+      "line": 247,
+      "current_text": "Full camp staff, porter crews, and kitchen teams accompanying every trekking stage.",
+      "risk": "Universal service assertion not supported package-by-package.",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§1.1"
+    },
+    {
+      "route": "/",
+      "file": "app/src/data/siteContent.ts",
+      "line": 256,
+      "current_text": "Handpicked Heritage Havelis, Palace Hotels & Boutique Stays",
+      "risk": "Invents hotel categories/names and a 'handpicked' claim (§7.2).",
+      "action": "REMOVE",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§1.1"
+    },
+    {
+      "route": "/",
+      "file": "app/src/data/siteContent.ts",
+      "line": 261,
+      "current_text": "All accommodation is carefully selected: well serviced and centrally located, chosen for ambience, comfort, architecture and history, from deluxe categories to family-run establishments.",
+      "risk": "Present-tense universal accommodation claim, including categories not confirmed as current.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §7.2"
+    },
+    {
+      "route": "/",
+      "file": "app/src/data/siteContent.ts",
+      "line": 267,
+      "current_text": "Warmth, character, and attentive service across vetted boutique and deluxe categories.",
+      "risk": "'Vetted' asserts a verification process not evidenced in the brochure.",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§1.1"
+    },
+    {
+      "route": "/",
+      "file": "app/src/data/siteContent.ts",
+      "line": 292,
+      "current_text": "Seamless, Trusted Travel",
+      "risk": "Unverified superlative/trust claim.",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§1.1"
+    },
+    {
+      "route": "/",
+      "file": "app/src/data/siteContent.ts",
+      "line": 294,
+      "current_text": "Private Road Transfers & Complete Peace of Mind",
+      "risk": "Promises a guarantee ('complete peace of mind') not in the brochure.",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§1.1"
+    },
+    {
+      "route": "/",
+      "file": "app/src/data/siteContent.ts",
+      "line": 303,
+      "current_text": "Comfortable air-conditioned vehicles and vetted professional drivers for all road routes.",
+      "risk": "Invents transport mode, vehicle amenity and driver vetting (§2.1/§6.3).",
+      "action": "REMOVE",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§1.1"
+    },
+    {
+      "route": "/",
+      "file": "app/src/data/siteContent.ts",
+      "line": 304,
+      "current_text": "Seamless airport greetings and station transfer logistics handled without stress.",
+      "risk": "Invents inclusions/transfers not evidenced for every package.",
+      "action": "REMOVE",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§1.1"
+    },
+    {
+      "route": "/",
+      "file": "app/src/data/siteContent.ts",
+      "line": 324,
+      "current_text": "Rooted in four generations of family hospitality and regional stewardship since 1927.",
+      "risk": "Unconfirmed generation count and present-tense continuity.",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.1"
+    },
+    {
+      "route": "/",
+      "file": "app/src/data/siteContent.ts",
+      "line": 330,
+      "current_text": "{ value: \"Since 1927\", label: \"Founding heritage\", note: \"Baktoo family regional tourism pioneer\" }",
+      "risk": "Counter presents 'Since 1927' and 'pioneer' as current confirmed facts.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.1"
+    },
+    {
+      "route": "/",
+      "file": "app/src/data/siteContent.ts",
+      "line": 340,
+      "current_text": "Our tours run without minimum group quotas, accommodating small private parties of up to 15 travellers or bespoke solo departures, subject to seasonal weather safety and high-pass access.",
+      "risk": "Source statement that §6.4 says must be confirmed before being used as a booking promise.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.4"
+    },
+    {
+      "route": "/",
+      "file": "app/src/data/brandConfig.ts",
+      "line": 103,
+      "current_text": "tagline: \"Specialist Travel Across India & Nepal Since 1927\"",
+      "risk": "Used in HTML titles site-wide; present-tense continuity claim awaiting confirmation.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.1"
+    },
+    {
+      "route": "/",
+      "file": "app/src/app/layout.tsx",
+      "line": 44,
+      "current_text": "default: `${BRAND.name} — ${BRAND.tagline}`",
+      "risk": "Publishes the unconfirmed 'Since 1927' tagline in default metadata.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.1"
+    },
+    {
+      "route": "/",
+      "file": "app/src/app/page.tsx",
+      "line": 12,
+      "current_text": "title: `${BRAND.name} — ${BRAND.tagline}`",
+      "risk": "Publishes the unconfirmed tagline as homepage title.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.1"
+    },
+    {
+      "route": "/",
+      "file": "app/src/components/HomeHero.tsx",
+      "line": 110,
+      "current_text": "aria-label=\"India Nepal Travel Center — specialist travel since 1927\"",
+      "risk": "Present-tense heritage claim in an accessibility label.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.1"
+    },
+    {
+      "route": "/",
+      "file": "app/src/components/HomeHero.tsx",
+      "line": 152,
+      "current_text": "{currentVideo.coordinates}",
+      "risk": "Exact GPS coordinates are not in the brochure; externally researched factual claim rendered on the hero.",
+      "action": "REMOVE",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§1.1"
+    },
+    {
+      "route": "/",
+      "file": "app/src/components/HomeHero.tsx",
+      "line": 155,
+      "current_text": "{currentVideo.location} &bull; {currentVideo.altitude.split(\"/\")[0].trim()}",
+      "risk": "Exact altitudes are not in the brochure; externally researched factual claims rendered publicly.",
+      "action": "REMOVE",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§1.1"
+    },
+    {
+      "route": "/",
+      "file": "app/src/components/ImpactSection.tsx",
+      "line": 136,
+      "current_text": "All special-interest programmes are escorted by qualified team leaders. Every itinerary is drawn directly from our brochure archives and shaped with meticulous care around your travel season, party size and regional interests.",
+      "risk": "'Qualified' is an unconfirmed credential claim; 'every itinerary' asserts verification despite known conflicts.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.3"
+    },
+    {
+      "route": "/",
+      "file": "app/src/components/SiteFooter.tsx",
+      "line": 27,
+      "current_text": "{BRAND.operatorName} (Baktoo family heritage since 1927).",
+      "risk": "Unconfirmed association between two differently named entities plus present-tense heritage claim.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.1"
+    },
+    {
+      "route": "/about",
+      "file": "app/src/app/about/page.tsx",
+      "line": 12,
+      "current_text": "Specialist tour operator heritage for India and Nepal descending from the Baktoo family operations founded in 1927.",
+      "risk": "Present-tense operator/continuity claim in metadata; legal entity unconfirmed (§6.1).",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.1"
+    },
+    {
+      "route": "/about",
+      "file": "app/src/app/about/page.tsx",
+      "line": 19,
+      "current_text": "Operating tours and treks to Northern India since 1927.",
+      "risk": "Asserts current operations since 1927; continuity unconfirmed.",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.1"
+    },
+    {
+      "route": "/about",
+      "file": "app/src/app/about/page.tsx",
+      "line": 86,
+      "current_text": "Guaranteed departures*",
+      "risk": "Guaranteed-departure claim placed in prominent sales copy; §6.4 says confirm current applicability first.",
+      "action": "REMOVE",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.4"
+    },
+    {
+      "route": "/about",
+      "file": "app/src/app/about/page.tsx",
+      "line": 88,
+      "current_text": "Departures operate without minimum group quotas for solo travellers or small private groups up to 15, subject to mountain weather safety and pass access.",
+      "risk": "Unconfirmed booking promise derived from brochure page 2.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.4"
+    },
+    {
+      "route": "/about",
+      "file": "app/src/app/about/page.tsx",
+      "line": 103,
+      "current_text": "Est. 1927 · Specialist travel",
+      "risk": "Present-tense establishment claim in hero eyebrow.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.1"
+    },
+    {
+      "route": "/about",
+      "file": "app/src/app/about/page.tsx",
+      "line": 107,
+      "current_text": "Baktoo family heritage since 1927 — specialist travel across India and Nepal, with historical operating links in Delhi, Kashmir and Ladakh.",
+      "risk": "Operating links are brochure-era facts presented in a present-tense hero lead (§6.3).",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.3"
+    },
+    {
+      "route": "/about",
+      "file": "app/src/app/about/page.tsx",
+      "line": 165,
+      "current_text": "The Baktoo family has shared the landscapes and cultures of India and Nepal with travellers since 1927. Journeys presented by {BRAND.name} are operated in historical association with {BRAND.operatorName}, based in India.",
+      "risk": "Asserts a current operating association and an India base; both unconfirmed (§6.1/§6.3).",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.1"
+    },
+    {
+      "route": "/about",
+      "file": "app/src/app/about/page.tsx",
+      "line": 194,
+      "current_text": "Haji Mohammed Sultan Baktoo pioneered tourism and trekking in Northern India beginning in 1927. Historically recorded as the chief operator with hotel partnerships, a transport fleet in Delhi, and the M.S. Baktoo luxury houseboat group in Kashmir. KHE established operational links across India and Nepal.",
+      "risk": "Presents fleet/hotel/houseboat assets as fact; 'KHE' is explicitly unresolved in brandConfig.ownerConfirmationsRequired.",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.3"
+    },
+    {
+      "route": "/about",
+      "file": "app/src/app/about/page.tsx",
+      "line": 225,
+      "current_text": "Farook has been planning and promoting tourism to the sub-continent for the past 20 years.",
+      "risk": "Undated 'past 20 years' from the brochure becomes a stale/current biography claim (§6.2).",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.2"
+    },
+    {
+      "route": "/about",
+      "file": "app/src/app/about/page.tsx",
+      "line": 254,
+      "current_text": "Mentioned in the brochure&apos;s founders passage as supervising specialist tours.",
+      "risk": "Internal editorial/source note visible to visitors; must not be displayed publicly.",
+      "action": "REMOVE",
+      "rule_ref": "AGENTS.md rule 9; CONTENT_ACCURACY_RULES.md §2.4"
+    },
+    {
+      "route": "/about",
+      "file": "app/src/app/about/page.tsx",
+      "line": 269,
+      "current_text": "Listed in the brochure&apos;s team profiles.",
+      "risk": "Internal editorial/source note visible to visitors.",
+      "action": "REMOVE",
+      "rule_ref": "AGENTS.md rule 9; CONTENT_ACCURACY_RULES.md §2.4"
+    },
+    {
+      "route": "/about",
+      "file": "app/src/app/about/page.tsx",
+      "line": 284,
+      "current_text": "Listed in the brochure&apos;s team profiles.",
+      "risk": "Internal editorial/source note visible to visitors.",
+      "action": "REMOVE",
+      "rule_ref": "AGENTS.md rule 9; CONTENT_ACCURACY_RULES.md §2.4"
+    },
+    {
+      "route": "/about",
+      "file": "app/src/app/about/page.tsx",
+      "line": 297,
+      "current_text": "Our tours are planned without minimum-group cancellations, and can be enjoyed by a small group of up to 15 or as a solo traveller. The itineraries in this brochure outline what you can expect; detailed information is available on request.",
+      "risk": "Brochure-era group-size/no-cancellation statement presented as a current promise (§6.4).",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.4"
+    },
+    {
+      "route": "/about",
+      "file": "app/src/app/about/page.tsx",
+      "line": 303,
+      "current_text": "&mdash; Baktoo family archives",
+      "risk": "Fabricated attribution for the quotation; no source record establishes this attribution as public copy.",
+      "action": "REMOVE",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§1.1"
+    },
+    {
+      "route": "/about",
+      "file": "app/src/app/about/page.tsx",
+      "line": 325,
+      "current_text": "Four principles we have worked to since 1927.",
+      "risk": "Present-tense continuity claim.",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.1"
+    },
+    {
+      "route": "/about",
+      "file": "app/src/app/about/page.tsx",
+      "line": 372,
+      "current_text": "Every journey can be tailored to your dates, party size and interests. All tours are guaranteed to depart with a small group of up to 15, or as a solo traveller; detailed itineraries are prepared on request.",
+      "risk": "Explicit 'guaranteed to depart' booking promise rendered as prominent copy (§6.4).",
+      "action": "REMOVE",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.4"
+    },
+    {
+      "route": "/about",
+      "file": "app/src/app/about/page.tsx",
+      "line": 428,
+      "current_text": "We intentionally refrain from publishing artificial discount countdowns, fabricated star ratings, or speculative pricing tables.",
+      "risk": "Describes internal editorial decisions on the public site; references content that does not exist.",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "AGENTS.md rule 9; CONTENT_ACCURACY_RULES.md §2.4"
+    },
+    {
+      "route": "/journeys",
+      "file": "app/src/app/journeys/page.tsx",
+      "line": 93,
+      "current_text": "A specialist operator for India and Nepal since 1927, offering tailor-made journeys, small-group tours, Himalayan trekking, cultural itineraries and Kashmir houseboats.",
+      "risk": "Present-tense operator identity and continuity claim in FAQ (§6.1/§6.3).",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.1"
+    },
+    {
+      "route": "/journeys",
+      "file": "app/src/app/journeys/page.tsx",
+      "line": 97,
+      "current_text": "Every itinerary comes from the printed brochure catalogue, so the duration, route, grade and inclusions are the operator's own.",
+      "risk": "Asserts all grades/inclusions are settled despite documented conflicts in the catalogue.",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.4/§7.1"
+    },
+    {
+      "route": "/journeys",
+      "file": "app/src/components/journeys/PosterRail.tsx",
+      "line": 21,
+      "current_text": "if (raw.includes(\"demanding\") || raw.includes(\"strenuous\")) {\n    return { label: \"Demanding\", tone: \"skip\" };",
+      "risk": "Collapses 'Strenuous' into 'Demanding' and maps conflicting grades to new word labels without client approval (§7.1).",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §7.1"
+    },
+    {
+      "route": "/journeys",
+      "file": "app/src/components/journeys/CoverflowSwiper.tsx",
+      "line": 363,
+      "current_text": "{pkg.difficulty}",
+      "risk": "Renders raw difficulty strings such as 'Moderate badge; body text also says Grade D', exposing internal conflict notes to visitors.",
+      "action": "REMOVE",
+      "rule_ref": "AGENTS.md rule 9; CONTENT_ACCURACY_RULES.md §2.4"
+    },
+    {
+      "route": "/journeys",
+      "file": "app/src/components/PackageCard.tsx",
+      "line": 133,
+      "current_text": "{cleanDifficulty}",
+      "risk": "cleanDifficulty only strips '(' text, so conflicted labels like 'Easy badge; Grade D also printed' remain visible publicly.",
+      "action": "REMOVE",
+      "rule_ref": "AGENTS.md rule 9; CONTENT_ACCURACY_RULES.md §2.4"
+    },
+    {
+      "route": "/explore",
+      "file": "app/src/app/explore/page.tsx",
+      "line": 6,
+      "current_text": "Browse all India and Nepal tour packages with our interactive 3D journey explorer.",
+      "risk": "Describes a '3D journey explorer' that no longer exists at this URL (it redirects to /journeys).",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §13"
+    },
+    {
+      "route": "/packages/[slug]",
+      "file": "app/src/components/package/PackageWorkspace.tsx",
+      "line": 142,
+      "current_text": "Brochure transcription note",
+      "risk": "Heading labels internal editorial caveats as public content.",
+      "action": "REMOVE",
+      "rule_ref": "AGENTS.md rule 9; CONTENT_ACCURACY_RULES.md §2.4"
+    },
+    {
+      "route": "/packages/[slug]",
+      "file": "app/src/components/package/PackageWorkspace.tsx",
+      "line": 147,
+      "current_text": "• {flag}",
+      "risk": "Renders each internal content_flags string to visitors (see travel_packages_catalog.json).",
+      "action": "REMOVE",
+      "rule_ref": "AGENTS.md rule 9; CONTENT_ACCURACY_RULES.md §2.4"
+    },
+    {
+      "route": "/packages/[slug]",
+      "file": "app/src/data/travel_packages_catalog.json",
+      "line": 291,
+      "current_text": "The printed package code casing/lettering is visually ambiguous; confirm official code before publishing.",
+      "risk": "Internal 'confirm before publishing' note rendered on the public package page.",
+      "action": "REMOVE",
+      "rule_ref": "AGENTS.md rule 9; CONTENT_ACCURACY_RULES.md §2.4"
+    },
+    {
+      "route": "/packages/[slug]",
+      "file": "app/src/data/travel_packages_catalog.json",
+      "line": 532,
+      "current_text": "The brochure scan for this package is only partly legible: Day 3 shows 'Afternoon Activity' with no further detail, and Day 6 is reconstructed from a fragment. Confirm the full programme with the operator.",
+      "risk": "Explicit OCR/reconstruction/internal note displayed publicly.",
+      "action": "REMOVE",
+      "rule_ref": "AGENTS.md rule 9; CONTENT_ACCURACY_RULES.md §2.4"
+    },
+    {
+      "route": "/packages/[slug]",
+      "file": "app/src/data/travel_packages_catalog.json",
+      "line": 960,
+      "current_text": "Package-specific accommodation, meals and exclusions are not fully clear in the brochure. Do not assume the generic panel applies without confirmation.",
+      "risk": "Internal editorial directive visible to visitors.",
+      "action": "REMOVE",
+      "rule_ref": "AGENTS.md rule 9; CONTENT_ACCURACY_RULES.md §2.4"
+    },
+    {
+      "route": "/packages/[slug]",
+      "file": "app/src/data/travel_packages_catalog.json",
+      "line": 1486,
+      "current_text": "Moderate badge; body text also says Grade D",
+      "risk": "Unresolved grade conflict exposed as a public difficulty label.",
+      "action": "REMOVE",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §7.1"
+    },
+    {
+      "route": "/packages/[slug]",
+      "file": "app/src/data/travel_packages_catalog.json",
+      "line": 1590,
+      "current_text": "Easy badge; Grade D also printed",
+      "risk": "Unresolved grade conflict exposed as a public difficulty label.",
+      "action": "REMOVE",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §7.1"
+    },
+    {
+      "route": "/packages/[slug]",
+      "file": "app/src/components/package/PackageHero.tsx",
+      "line": 96,
+      "current_text": "{pkg.category} · {pkg.difficulty ?? \"Curated Expedition\"}",
+      "risk": "Fallback label 'Curated Expedition' is invented, and raw conflicted difficulty strings are displayed.",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "AGENTS.md rule 9; CONTENT_ACCURACY_RULES.md §2.4"
+    },
+    {
+      "route": "/contact",
+      "file": "app/src/app/contact/page.tsx",
+      "line": 12,
+      "current_text": "Direct contact details, regional operating desks, and online enquiry information for ${BRAND.name} (in association with ${BRAND.operatorName}).",
+      "risk": "Metadata advertises unconfirmed regional operating desks and an association.",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.3"
+    },
+    {
+      "route": "/contact",
+      "file": "app/src/app/contact/page.tsx",
+      "line": 20,
+      "current_text": "Tell us your dates, party size and the places you want to see. A travel designer replies with a proposal drawn from the brochure catalogue.",
+      "risk": "Promise that a travel designer will reply.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§11"
+    },
+    {
+      "route": "/contact",
+      "file": "app/src/app/contact/page.tsx",
+      "line": 28,
+      "current_text": "Houseboats on Dal and Nigeen Lake, from a two-bedroom craft to a seven-bedroom boat in sole use. Quoted and confirmed separately from our tour packages.",
+      "risk": "Current inventory and sole-use capability claim without confirmation.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.3"
+    },
+    {
+      "route": "/contact",
+      "file": "app/src/app/contact/page.tsx",
+      "line": 45,
+      "current_text": "International Booking Bureau",
+      "risk": "Unconfirmed present-tense operating desk in Sydney.",
+      "action": "REMOVE",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.3"
+    },
+    {
+      "route": "/contact",
+      "file": "app/src/app/contact/page.tsx",
+      "line": 55,
+      "current_text": "Central transit hub, hotel affiliations and private transport fleet dispatch.",
+      "risk": "Unconfirmed current fleet/hotel affiliations presented as an operating fact.",
+      "action": "REMOVE",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.3"
+    },
+    {
+      "route": "/contact",
+      "file": "app/src/app/contact/page.tsx",
+      "line": 62,
+      "current_text": "Dal & Nigeen Lake moorings office and M.S. Baktoo luxury houseboat base.",
+      "risk": "Unconfirmed current office/houseboat fleet claim.",
+      "action": "REMOVE",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.3"
+    },
+    {
+      "route": "/contact",
+      "file": "app/src/app/contact/page.tsx",
+      "line": 69,
+      "current_text": "High-altitude expedition liaison desk, mountaineering guides and pack crews.",
+      "risk": "Unconfirmed current operating desk and staffing claim.",
+      "action": "REMOVE",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.3"
+    },
+    {
+      "route": "/contact",
+      "file": "app/src/app/contact/page.tsx",
+      "line": 114,
+      "current_text": "{ value: \"28.6139° N, 77.2090° E\", label: \"Delhi · Srinagar · Leh Desks\" }",
+      "risk": "Externally sourced coordinates paired with unconfirmed operating desks.",
+      "action": "REMOVE",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.3"
+    },
+    {
+      "route": "/contact",
+      "file": "app/src/app/contact/page.tsx",
+      "line": 134,
+      "current_text": "Online enquiry system: configuration pending",
+      "risk": "Development/internal system-status note visible to visitors.",
+      "action": "REMOVE",
+      "rule_ref": "AGENTS.md rule 9; CONTENT_ACCURACY_RULES.md §2.4"
+    },
+    {
+      "route": "/contact",
+      "file": "app/src/app/contact/page.tsx",
+      "line": 139,
+      "current_text": "The submission backend is being finalised. Until it is connected, please use the enquiry form and we will reply by email.",
+      "risk": "Internal build-status note plus a reply-by-email promise.",
+      "action": "REMOVE",
+      "rule_ref": "AGENTS.md rule 9; CONTENT_ACCURACY_RULES.md §2.4"
+    },
+    {
+      "route": "/contact",
+      "file": "app/src/app/contact/page.tsx",
+      "line": 238,
+      "current_text": "Our reservations team can provide current contact details, booking conditions and deposit information. Please submit an enquiry and we will respond with the information you need.",
+      "risk": "Response promise and assertion of a reservations team; not confirmed.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.3"
+    },
+    {
+      "route": "/contact",
+      "file": "app/src/app/contact/page.tsx",
+      "line": 90,
+      "current_text": "Your final itinerary, accommodation vouchers, houseboat moorings, vehicle dispatch, and permits are confirmed directly to you.",
+      "risk": "Promises specific deliverables (vouchers, vehicle dispatch) not confirmed.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.3"
+    },
+    {
+      "route": "/enquiry",
+      "file": "app/src/components/EnquiryForm.tsx",
+      "line": 244,
+      "current_text": "Your enquiry has been received and recorded. Our travel designers will review your dates ... and contact you via ...",
+      "risk": "Confirmation and contact promise on the success screen without a confirmed response process.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§11"
+    },
+    {
+      "route": "/enquiry",
+      "file": "app/src/components/EnquiryForm.tsx",
+      "line": 355,
+      "current_text": "<strong>No Minimum Quotas:</strong> Itineraries operate for solo travellers or small private groups up to 15 (subject to seasonal pass &amp; weather safety).",
+      "risk": "Unconfirmed group-size/departure promise (§6.4).",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.4"
+    },
+    {
+      "route": "/enquiry",
+      "file": "app/src/components/EnquiryForm.tsx",
+      "line": 361,
+      "current_text": "<strong>Specialist Guidance:</strong> Experienced English-speaking guides, support crews, and local trackers.",
+      "risk": "Unverified guiding/staffing capability claim.",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§1.1"
+    },
+    {
+      "route": "/enquiry",
+      "file": "app/src/components/EnquiryForm.tsx",
+      "line": 367,
+      "current_text": "<strong>Direct Concierge:</strong> All quotes, bookings, and dates confirmed directly by our travel planners.",
+      "risk": "Absolute confirmation promise.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§1.1"
+    },
+    {
+      "route": "/enquiry",
+      "file": "app/src/components/EnquiryForm.tsx",
+      "line": 400,
+      "current_text": "Online Intake System Pending Activation",
+      "risk": "Internal development-status notice rendered publicly.",
+      "action": "REMOVE",
+      "rule_ref": "AGENTS.md rule 9; CONTENT_ACCURACY_RULES.md §2.4"
+    },
+    {
+      "route": "/enquiry",
+      "file": "app/src/components/EnquiryForm.tsx",
+      "line": 403,
+      "current_text": "Online enquiry submission is currently inactive while backend intake systems are being finalized. Form inputs are disabled so that no personal contact data is collected or stored prematurely. To discuss an itinerary, please contact your travel agent directly quoting the journey code.",
+      "risk": "Internal implementation note visible to visitors.",
+      "action": "REMOVE",
+      "rule_ref": "AGENTS.md rule 9; CONTENT_ACCURACY_RULES.md §2.4"
+    },
+    {
+      "route": "/enquiry",
+      "file": "app/src/components/EnquiryForm.tsx",
+      "line": 416,
+      "current_text": "Encrypted transmission directly to reservations desk",
+      "risk": "Unverified security and 'reservations desk' claim.",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§1.1"
+    },
+    {
+      "route": "/enquiry",
+      "file": "app/src/components/EnquiryForm.tsx",
+      "line": 474,
+      "current_text": "placeholder=\"e.g. Eleanor Vance\"",
+      "risk": "Example person name (matching admin test data) used as a public form placeholder.",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§1.1"
+    },
+    {
+      "route": "/enquiry",
+      "file": "app/src/components/EnquiryForm.tsx",
+      "line": 526,
+      "current_text": "placeholder=\"+1 (555) 000-0000\"",
+      "risk": "Dummy/test phone-number format in a public form.",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§1.1"
+    },
+    {
+      "route": "/enquiry",
+      "file": "app/src/components/package/EnquiryModal.tsx",
+      "line": 316,
+      "current_text": "A {BRAND.name} travel designer will contact you to confirm dates,\n                  availability and tailor-made details.",
+      "risk": "Future-contact promise without a confirmed response process.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§11"
+    },
+    {
+      "route": "/enquiry",
+      "file": "app/src/components/package/EnquiryModal.tsx",
+      "line": 360,
+      "current_text": "placeholder=\"e.g. Alexander Wright\"",
+      "risk": "Example person name used as a public form placeholder.",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§1.1"
+    },
+    {
+      "route": "/enquiry",
+      "file": "app/src/components/package/EnquiryModal.tsx",
+      "line": 404,
+      "current_text": "placeholder=\"+44 20 7000 0000\"",
+      "risk": "Test/dummy phone-number format in a public form.",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§1.1"
+    },
+    {
+      "route": "/api/enquiry",
+      "file": "app/src/app/api/enquiry/route.ts",
+      "line": 146,
+      "current_text": "Your enquiry has been received and recorded.",
+      "risk": "Automated response asserts a record was created; truthful only when storage succeeded (it is returned only on success).",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §11"
+    },
+    {
+      "route": "/api/enquiry",
+      "file": "app/src/app/api/enquiry/route.ts",
+      "line": 198,
+      "current_text": "Your enquiry has been dispatched to our booking desk.",
+      "risk": "Automated response asserts a booking desk operation not confirmed.",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.3"
+    },
+    {
+      "route": "/houseboats",
+      "file": "app/src/app/houseboats/page.tsx",
+      "line": 28,
+      "current_text": "Booking access to carved cedar houseboats on Dal and Nigeen Lake in Srinagar — two to seven bedrooms, private ensuite facilities, veranda and sundeck, deluxe and A-class options.",
+      "risk": "Metadata presents current booking access/inventory as fact.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.3"
+    },
+    {
+      "route": "/houseboats",
+      "file": "app/src/components/houseboats/HouseboatHero.tsx",
+      "line": 25,
+      "current_text": "Booking access to carved cedar houseboats on Dal and Nigeen Lake — from a two-bedroom craft to a seven-bedroom houseboat hired in sole use, for solo travellers, small groups or a family party.",
+      "risk": "Current booking access and sole-use inventory claim.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.3"
+    },
+    {
+      "route": "/houseboats",
+      "file": "app/src/components/houseboats/HouseboatHero.tsx",
+      "line": 26,
+      "current_text": "meta={[{ value: \"34.0837° N, 74.7973° E\", label: \"Dal & Nigeen Lakes, Srinagar\" }]}",
+      "risk": "Exact coordinates are externally sourced, not brochure-derived.",
+      "action": "REMOVE",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§1.1"
+    },
+    {
+      "route": "/houseboats",
+      "file": "app/src/data/houseboats.ts",
+      "line": 52,
+      "current_text": "Booking access to houseboats on both of Srinagar's lakes.",
+      "risk": "Current booking-access claim; confirmation pending.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.3"
+    },
+    {
+      "route": "/houseboats",
+      "file": "app/src/data/houseboats.ts",
+      "line": 145,
+      "current_text": "The brochure records that immediate confirmation can be given from all-season allocations; current options are confirmed on enquiry.",
+      "risk": "Legacy 'immediate confirmation' claim from the brochure presented with a current qualifier.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §8/§2.4"
+    },
+    {
+      "route": "/houseboats",
+      "file": "app/src/components/houseboats/HouseboatStay.tsx",
+      "line": 79,
+      "current_text": "Nothing on this page is a live availability check. The grade assigned to a houseboat is the responsibility of the Kashmir Government, and every booking is confirmed with the operator before it is made.",
+      "risk": "'Every booking is confirmed' is a present-tense process guarantee.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.3"
+    },
+    {
+      "route": "/houseboats",
+      "file": "app/src/components/houseboats/HouseboatStay.tsx",
+      "line": 87,
+      "current_text": "{flag}",
+      "risk": "Renders the houseboat service's internal 'Confirm ... before publishing' note as public copy.",
+      "action": "REMOVE",
+      "rule_ref": "AGENTS.md rule 9; CONTENT_ACCURACY_RULES.md §2.4"
+    },
+    {
+      "route": "/houseboats",
+      "file": "app/src/data/travel_packages_catalog.json",
+      "line": 1774,
+      "current_text": "Confirm houseboat inventory, classification, prices, terms, cancellation policy, contact details and current availability before publishing.",
+      "risk": "Internal pre-publication instruction exposed to visitors via HouseboatStay.",
+      "action": "REMOVE",
+      "rule_ref": "AGENTS.md rule 9; CONTENT_ACCURACY_RULES.md §2.4"
+    },
+    {
+      "route": "/houseboats",
+      "file": "app/src/app/houseboats/page.tsx",
+      "line": 91,
+      "current_text": "Tell us your dates, your party and how you would like to spend the nights on the lake. We’ll confirm what is actually available.",
+      "risk": "Availability-confirmation promise without a confirmed process.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.3"
+    },
+    {
+      "route": "/privacy",
+      "file": "app/src/app/privacy/page.tsx",
+      "line": 67,
+      "current_text": "Submissions are transmitted securely over TLS 1.3 / HTTPS to our Next.js API handler (/api/enquiry). When the backend database is configured, records are stored directly into our secure PostgreSQL database (enquiries table) hosted on Supabase cloud infrastructure. Records are accessed solely by authenticated operators via a password-protected administrative console.",
+      "risk": "Unverified technical/security and access-control claims about infrastructure.",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§1.1"
+    },
+    {
+      "route": "/privacy",
+      "file": "app/src/app/privacy/page.tsx",
+      "line": 77,
+      "current_text": "If the backend database or submission webhook is temporarily unconfigured or undergoing maintenance, the enquiry form is automatically disabled.",
+      "risk": "Internal system-state description presented as policy.",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "AGENTS.md rule 9; CONTENT_ACCURACY_RULES.md §2.4"
+    },
+    {
+      "route": "/privacy",
+      "file": "app/src/app/privacy/page.tsx",
+      "line": 94,
+      "current_text": "Contacting you with a personalized, non-binding itinerary proposal and price quotation.",
+      "risk": "Promise to contact with a quotation.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§11"
+    },
+    {
+      "route": "/privacy",
+      "file": "app/src/app/privacy/page.tsx",
+      "line": 98,
+      "current_text": "We never sell, rent, monetize, or disclose your contact information to third-party marketing brokers or advertising networks.",
+      "risk": "Absolute privacy promise; should be confirmed by the operator/legal review.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §8/§11"
+    },
+    {
+      "route": "/privacy",
+      "file": "app/src/app/privacy/page.tsx",
+      "line": 111,
+      "current_text": "No personal user data is ever written to public server logs or debugging outputs.",
+      "risk": "Absolute technical claim that cannot be verified from the brochure or content rules.",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§1.1"
+    },
+    {
+      "route": "/privacy",
+      "file": "app/src/app/privacy/page.tsx",
+      "line": 121,
+      "current_text": "You have the right to request a copy of any personal data you have submitted, request correction of inaccurate details, or request that your enquiry record be permanently erased from our intake database.",
+      "risk": "Legal rights claim not derived from the brochure and not client-confirmed.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §8"
+    },
+    {
+      "route": "/privacy",
+      "file": "app/src/app/privacy/page.tsx",
+      "line": 133,
+      "current_text": "Registered Entity: Information available upon request.",
+      "risk": "Placeholder text in a legal notice (no entity named).",
+      "action": "REMOVE",
+      "rule_ref": "AGENTS.md rule 9; CONTENT_ACCURACY_RULES.md §2.4"
+    },
+    {
+      "route": "/admin",
+      "file": "app/src/app/admin/page.tsx",
+      "line": 53,
+      "current_text": "name: \"Eleanor Vance\", email: \"eleanor.vance@gmail.com\", phone: \"+44 7700 900123\"",
+      "risk": "Fabricated sample enquiry (test name/email/phone) presented as real CRM data.",
+      "action": "REMOVE",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§1.1"
+    },
+    {
+      "route": "/admin",
+      "file": "app/src/app/admin/page.tsx",
+      "line": 69,
+      "current_text": "name: \"Marcus Aurelius Thorne\", email: \"m.thorne@oxford.ac.uk\", phone: \"+44 7911 123456\"",
+      "risk": "Fabricated sample enquiry (test name/email/phone) presented as real CRM data.",
+      "action": "REMOVE",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§1.1"
+    },
+    {
+      "route": "/admin",
+      "file": "app/src/app/admin/page.tsx",
+      "line": 85,
+      "current_text": "name: \"Dr. Alistair Sterling\", email: \"sterling.a@sydneyhealth.com.au\", phone: \"+61 412 345 678\"",
+      "risk": "Fabricated sample enquiry (test name/email/phone) presented as real CRM data.",
+      "action": "REMOVE",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§1.1"
+    },
+    {
+      "route": "/admin",
+      "file": "app/src/app/admin/page.tsx",
+      "line": 47,
+      "current_text": "Sample Initial Data (Brochure-grounded)",
+      "risk": "Declares the entire enquiry list to be sample/test data.",
+      "action": "REMOVE",
+      "rule_ref": "AGENTS.md rule 9; CONTENT_ACCURACY_RULES.md §2.4"
+    },
+    {
+      "route": "/admin",
+      "file": "app/src/app/admin/page.tsx",
+      "line": 182,
+      "current_text": "Brochure scan had repeated day label; day-by-day programme outline is presented with transparent verified route stops.",
+      "risk": "Internal OCR/verification note displayed in the admin QA surface.",
+      "action": "REMOVE",
+      "rule_ref": "AGENTS.md rule 9; CONTENT_ACCURACY_RULES.md §2.4"
+    },
+    {
+      "route": "/admin",
+      "file": "app/src/app/admin/page.tsx",
+      "line": 969,
+      "current_text": "27 verified packages & 1 houseboat service synchronized directly from brochure catalogue archives.",
+      "risk": "Advertises the unresolved 27-package count as verified (§13/AGENTS rule 10).",
+      "action": "REMOVE",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §13"
+    },
+    {
+      "route": "/admin",
+      "file": "app/src/app/admin/page.tsx",
+      "line": 1034,
+      "current_text": "100% Brochure Verified",
+      "risk": "Unverifiable superlative/verification claim.",
+      "action": "REMOVE",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §2.1/§1.1"
+    },
+    {
+      "route": "/admin",
+      "file": "app/src/app/admin/page.tsx",
+      "line": 1419,
+      "current_text": "All 27 verified brochure itineraries synchronized with public exploration routes",
+      "risk": "Unresolved 27-count advertised as verified.",
+      "action": "REMOVE",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §13"
+    },
+    {
+      "route": "/admin",
+      "file": "app/src/app/admin/page.tsx",
+      "line": 1599,
+      "current_text": "Review the 8 operational regions and high-resolution photography catalogue",
+      "risk": "Calls unconfirmed destinations 'operational regions'.",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.3"
+    },
+    {
+      "route": "/admin",
+      "file": "app/src/app/admin/page.tsx",
+      "line": 1677,
+      "current_text": "27 / 27 Verified",
+      "risk": "Unresolved 27-count advertised as fully verified.",
+      "action": "REMOVE",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §13"
+    },
+    {
+      "route": "/admin",
+      "file": "app/src/app/admin/page.tsx",
+      "line": 1683,
+      "current_text": "Kashmir Houseboat fleet specifications",
+      "risk": "Asserts a houseboat fleet, which §6.3 requires confirmation before publishing.",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.3"
+    },
+    {
+      "route": "/",
+      "file": "app/src/data/brandConfig.ts",
+      "line": 39,
+      "current_text": "name: \"Asian Bazaar / India Nepal Travel Centre\"",
+      "risk": "Conflicting multiple identities in one contact record (§9). Currently unused by components, but a launch risk if imported.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §9"
+    },
+    {
+      "route": "/",
+      "file": "app/src/data/brandConfig.ts",
+      "line": 41,
+      "current_text": "address: \"68 Beauchamp St., Wiley Park, NSW 2195, Australia\"",
+      "risk": "Legacy brochure address tied to the Asian Bazaar block; not confirmed for public display (§9). Currently unused.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §9"
+    },
+    {
+      "route": "/",
+      "file": "app/src/data/brandConfig.ts",
+      "line": 42,
+      "current_text": "phoneMobile: \"0409 555 129\"",
+      "risk": "Hardcoded legacy phone number from a conflicting contact block (§9). Currently unused.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §9"
+    },
+    {
+      "route": "/",
+      "file": "app/src/data/brandConfig.ts",
+      "line": 52,
+      "current_text": "deposit: \"$200 per person (non-refundable deposit)\"",
+      "risk": "Unconfirmed legacy booking term with unresolved currency (§8). Currently unused.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §8"
+    },
+    {
+      "route": "/",
+      "file": "app/src/data/brandConfig.ts",
+      "line": 88,
+      "current_text": "deposit: \"$200 non-refundable deposit upon booking\"",
+      "risk": "Legacy booking term that must not be presented as current (§8). Currently unused.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §8"
+    },
+    {
+      "route": "/",
+      "file": "app/src/data/brandConfig.ts",
+      "line": 96,
+      "current_text": "amendments: \"$25 administration charge per amendment\"",
+      "risk": "Unconfirmed legacy fee and currency (§8). Currently unused.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §8"
+    },
+    {
+      "route": "/",
+      "file": "app/src/lib/navigation.ts",
+      "line": 82,
+      "current_text": "note: \"Eight regions we operate in\"",
+      "risk": "Presents the eight destinations as regions the business currently operates in (§6.3), rendered as a nav note.",
+      "action": "REPLACE-WITH-NEUTRAL",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §6.3"
+    },
+    {
+      "route": "/",
+      "file": "app/src/lib/navigation.ts",
+      "line": 139,
+      "current_text": "export const CONTACT = {",
+      "risk": "Exports legacy phone/email/address from the unconfirmed bookingOffice block; currently not imported by any component.",
+      "action": "KEEP-WITH-CONFIRMATION",
+      "rule_ref": "CONTENT_ACCURACY_RULES.md §9"
+    }
+  ],
+  "catalog_findings": [
+    {
+      "record_id": "S05",
+      "title": "Kathmandu–Pokhara",
+      "field": "content_flags",
+      "current_value": "The card's duration label appears to conflict with the contents page and four-day itinerary. Confirm the intended number of nights and days before publishing.",
+      "where_rendered": "PackageWorkspace.tsx:139-152 (public 'Brochure transcription note' panel via PackageWorkspace tab 'Overview'); content_flags from travel_packages_catalog.json",
+      "issue": "Internal confirmation/transcription notes (e.g. 'Confirm...', 'reconstructed from a fragment', 'do not assume', 'verify') are printed verbatim to visitors; rule 2.4 forbids internal notes on public website.",
+      "action": "REMOVE_FIELD",
+      "source_page": 2
+    },
+    {
+      "record_id": "II7",
+      "title": "Golden Triangle",
+      "field": "content_flags",
+      "current_value": "The printed package code casing/lettering is visually ambiguous; confirm official code before publishing.",
+      "where_rendered": "PackageWorkspace.tsx:139-152 (public 'Brochure transcription note' panel via PackageWorkspace tab 'Overview'); content_flags from travel_packages_catalog.json",
+      "issue": "Internal confirmation/transcription notes (e.g. 'Confirm...', 'reconstructed from a fragment', 'do not assume', 'verify') are printed verbatim to visitors; rule 2.4 forbids internal notes on public website.",
+      "action": "REMOVE_FIELD",
+      "source_page": 3
+    },
+    {
+      "record_id": "II9",
+      "title": "Glimpses of Kerala",
+      "field": "content_flags",
+      "current_value": "The package-specific accommodation wording is cut off/unclear in the brochure; confirm before publishing.",
+      "where_rendered": "PackageWorkspace.tsx:139-152 (public 'Brochure transcription note' panel via PackageWorkspace tab 'Overview'); content_flags from travel_packages_catalog.json",
+      "issue": "Internal confirmation/transcription notes (e.g. 'Confirm...', 'reconstructed from a fragment', 'do not assume', 'verify') are printed verbatim to visitors; rule 2.4 forbids internal notes on public website.",
+      "action": "REMOVE_FIELD",
+      "source_page": 3
+    },
+    {
+      "record_id": "II10",
+      "title": "Kashmir Package",
+      "field": "content_flags",
+      "current_value": "The brochure prints six days for this package while the card states 7 days / 6 nights. Confirm the missing day.",
+      "where_rendered": "PackageWorkspace.tsx:139-152 (public 'Brochure transcription note' panel via PackageWorkspace tab 'Overview'); content_flags from travel_packages_catalog.json",
+      "issue": "Internal confirmation/transcription notes (e.g. 'Confirm...', 'reconstructed from a fragment', 'do not assume', 'verify') are printed verbatim to visitors; rule 2.4 forbids internal notes on public website.",
+      "action": "REMOVE_FIELD",
+      "source_page": 4
+    },
+    {
+      "record_id": "II11",
+      "title": "Kashmir Package",
+      "field": "content_flags",
+      "current_value": "The brochure lists several optional alternatives for Day 3 rather than a single fixed route. Present those as options, not guaranteed inclusions.",
+      "where_rendered": "PackageWorkspace.tsx:139-152 (public 'Brochure transcription note' panel via PackageWorkspace tab 'Overview'); content_flags from travel_packages_catalog.json",
+      "issue": "Internal confirmation/transcription notes (e.g. 'Confirm...', 'reconstructed from a fragment', 'do not assume', 'verify') are printed verbatim to visitors; rule 2.4 forbids internal notes on public website.",
+      "action": "REMOVE_FIELD",
+      "source_page": 4
+    },
+    {
+      "record_id": "II12",
+      "title": "Delhi to Kathmandu",
+      "field": "content_flags",
+      "current_value": "Confirm the exact inclusions and any flight/rail arrangements for this multi-country route. | The brochure scan for this package is only partly legible: Day 3 shows 'Afternoon Activity' with no further detail, and Day 6 is reconstructed from a fragment. Confir",
+      "where_rendered": "PackageWorkspace.tsx:139-152 (public 'Brochure transcription note' panel via PackageWorkspace tab 'Overview'); content_flags from travel_packages_catalog.json",
+      "issue": "Internal confirmation/transcription notes (e.g. 'Confirm...', 'reconstructed from a fragment', 'do not assume', 'verify') are printed verbatim to visitors; rule 2.4 forbids internal notes on public website.",
+      "action": "REMOVE_FIELD",
+      "source_page": 4
+    },
+    {
+      "record_id": "IT14",
+      "title": "North India Highlights",
+      "field": "content_flags",
+      "current_value": "This package has its own inclusion text and flight exclusions; do not replace it with the brochure's generic inclusions/exclusions panel.",
+      "where_rendered": "PackageWorkspace.tsx:139-152 (public 'Brochure transcription note' panel via PackageWorkspace tab 'Overview'); content_flags from travel_packages_catalog.json",
+      "issue": "Internal confirmation/transcription notes (e.g. 'Confirm...', 'reconstructed from a fragment', 'do not assume', 'verify') are printed verbatim to visitors; rule 2.4 forbids internal notes on public website.",
+      "action": "REMOVE_FIELD",
+      "source_page": 5
+    },
+    {
+      "record_id": "IT15",
+      "title": "India Nepal Combination Tour",
+      "field": "content_flags",
+      "current_value": "Confirm the details of flight and transfer arrangements between cities before publishing. | The brochure scan for Day 11 (Agra / Varanasi) shows only the route, with no description. Confirm the Day 11 transfer and evening programme.",
+      "where_rendered": "PackageWorkspace.tsx:139-152 (public 'Brochure transcription note' panel via PackageWorkspace tab 'Overview'); content_flags from travel_packages_catalog.json",
+      "issue": "Internal confirmation/transcription notes (e.g. 'Confirm...', 'reconstructed from a fragment', 'do not assume', 'verify') are printed verbatim to visitors; rule 2.4 forbids internal notes on public website.",
+      "action": "REMOVE_FIELD",
+      "source_page": 5
+    },
+    {
+      "record_id": "IT16",
+      "title": "South India Highlight",
+      "field": "content_flags",
+      "current_value": "Package-specific accommodation, meals and exclusions are not fully clear in the brochure. Do not assume the generic panel applies without confirmation.",
+      "where_rendered": "PackageWorkspace.tsx:139-152 (public 'Brochure transcription note' panel via PackageWorkspace tab 'Overview'); content_flags from travel_packages_catalog.json",
+      "issue": "Internal confirmation/transcription notes (e.g. 'Confirm...', 'reconstructed from a fragment', 'do not assume', 'verify') are printed verbatim to visitors; rule 2.4 forbids internal notes on public website.",
+      "action": "REMOVE_FIELD",
+      "source_page": 5
+    },
+    {
+      "record_id": "HE17",
+      "title": "Markha Valley",
+      "field": "content_flags",
+      "current_value": "Keep the original difficulty label visible until the operator confirms current grading, route conditions and suitability guidance.",
+      "where_rendered": "PackageWorkspace.tsx:139-152 (public 'Brochure transcription note' panel via PackageWorkspace tab 'Overview'); content_flags from travel_packages_catalog.json",
+      "issue": "Internal confirmation/transcription notes (e.g. 'Confirm...', 'reconstructed from a fragment', 'do not assume', 'verify') are printed verbatim to visitors; rule 2.4 forbids internal notes on public website.",
+      "action": "REMOVE_FIELD",
+      "source_page": 6
+    },
+    {
+      "record_id": "HE18",
+      "title": "Kashmir, Zanskar and Ladakh Trek",
+      "field": "content_flags",
+      "current_value": "Confirm the full day-by-day sequence: the brochure compresses some dates into ranges and should be checked against the operator's master itinerary. | The brochure describes this as a 24-day round trip with a 15-day trek, while the day list shows trekking from ",
+      "where_rendered": "PackageWorkspace.tsx:139-152 (public 'Brochure transcription note' panel via PackageWorkspace tab 'Overview'); content_flags from travel_packages_catalog.json",
+      "issue": "Internal confirmation/transcription notes (e.g. 'Confirm...', 'reconstructed from a fragment', 'do not assume', 'verify') are printed verbatim to visitors; rule 2.4 forbids internal notes on public website.",
+      "action": "REMOVE_FIELD",
+      "source_page": 6
+    },
+    {
+      "record_id": "HE19",
+      "title": "Kashmir Combinations: Little Tibet",
+      "field": "content_flags",
+      "current_value": "Confirm current route, trek grading, and the itinerary's day numbering before publishing. | The brochure describes this as a 19-day round trip but lists 18 stages. Confirm the missing day.",
+      "where_rendered": "PackageWorkspace.tsx:139-152 (public 'Brochure transcription note' panel via PackageWorkspace tab 'Overview'); content_flags from travel_packages_catalog.json",
+      "issue": "Internal confirmation/transcription notes (e.g. 'Confirm...', 'reconstructed from a fragment', 'do not assume', 'verify') are printed verbatim to visitors; rule 2.4 forbids internal notes on public website.",
+      "action": "REMOVE_FIELD",
+      "source_page": 6
+    },
+    {
+      "record_id": "MTK20",
+      "title": "Kashmir Mini Adventure",
+      "field": "content_flags",
+      "current_value": "Publish clear fitness, altitude, equipment and safety information only after the operator confirms current requirements.",
+      "where_rendered": "PackageWorkspace.tsx:139-152 (public 'Brochure transcription note' panel via PackageWorkspace tab 'Overview'); content_flags from travel_packages_catalog.json",
+      "issue": "Internal confirmation/transcription notes (e.g. 'Confirm...', 'reconstructed from a fragment', 'do not assume', 'verify') are printed verbatim to visitors; rule 2.4 forbids internal notes on public website.",
+      "action": "REMOVE_FIELD",
+      "source_page": 7
+    },
+    {
+      "record_id": "MTK21",
+      "title": "Vale of Kashmir Trek",
+      "field": "content_flags",
+      "current_value": "Correct the duration label before launch; the card text appears to say 6 nights / 7 nights while the itinerary states 7 days / 6 nights.",
+      "where_rendered": "PackageWorkspace.tsx:139-152 (public 'Brochure transcription note' panel via PackageWorkspace tab 'Overview'); content_flags from travel_packages_catalog.json",
+      "issue": "Internal confirmation/transcription notes (e.g. 'Confirm...', 'reconstructed from a fragment', 'do not assume', 'verify') are printed verbatim to visitors; rule 2.4 forbids internal notes on public website.",
+      "action": "REMOVE_FIELD",
+      "source_page": 7
+    },
+    {
+      "record_id": "KS22",
+      "title": "Kashmir Ski",
+      "field": "content_flags",
+      "current_value": "The contents page lists a Himalaya Enfield Motorbike Tour in this position, but the actual card is Kashmir Ski. Confirm whether a motorbike tour was omitted or the contents page is outdated.",
+      "where_rendered": "PackageWorkspace.tsx:139-152 (public 'Brochure transcription note' panel via PackageWorkspace tab 'Overview'); content_flags from travel_packages_catalog.json",
+      "issue": "Internal confirmation/transcription notes (e.g. 'Confirm...', 'reconstructed from a fragment', 'do not assume', 'verify') are printed verbatim to visitors; rule 2.4 forbids internal notes on public website.",
+      "action": "REMOVE_FIELD",
+      "source_page": 7
+    },
+    {
+      "record_id": "NA23",
+      "title": "Himalayan Combination HC",
+      "field": "content_flags",
+      "current_value": "Difficulty is inconsistent: the badge says Moderate while the description references Grade D. Confirm the operator's intended grading and define the grading scale. | The brochure lists only the anchor days (1, 2, 3, 11, 14, 17 and 20) for this 20-day programme",
+      "where_rendered": "PackageWorkspace.tsx:139-152 (public 'Brochure transcription note' panel via PackageWorkspace tab 'Overview'); content_flags from travel_packages_catalog.json",
+      "issue": "Internal confirmation/transcription notes (e.g. 'Confirm...', 'reconstructed from a fragment', 'do not assume', 'verify') are printed verbatim to visitors; rule 2.4 forbids internal notes on public website.",
+      "action": "REMOVE_FIELD",
+      "source_page": 8
+    },
+    {
+      "record_id": "NA24",
+      "title": "Trisuli Rafting",
+      "field": "content_flags",
+      "current_value": "Confirm current operating season, departure days and minimum group size before publishing; offer 2- and 3-day trips only if still available.",
+      "where_rendered": "PackageWorkspace.tsx:139-152 (public 'Brochure transcription note' panel via PackageWorkspace tab 'Overview'); content_flags from travel_packages_catalog.json",
+      "issue": "Internal confirmation/transcription notes (e.g. 'Confirm...', 'reconstructed from a fragment', 'do not assume', 'verify') are printed verbatim to visitors; rule 2.4 forbids internal notes on public website.",
+      "action": "REMOVE_FIELD",
+      "source_page": 8
+    },
+    {
+      "record_id": "HE25",
+      "title": "4 Day Nepal Mini Trek",
+      "field": "content_flags",
+      "current_value": "The card's Easy badge conflicts with the itinerary's Grade D wording. The Day 2/Day 3 route sequence also appears duplicated; verify the intended itinerary. | The brochure scan repeats the same 'Nagarkot to Chowki Bhanjyang' line for Day 2 and Day 3. One of th",
+      "where_rendered": "PackageWorkspace.tsx:139-152 (public 'Brochure transcription note' panel via PackageWorkspace tab 'Overview'); content_flags from travel_packages_catalog.json",
+      "issue": "Internal confirmation/transcription notes (e.g. 'Confirm...', 'reconstructed from a fragment', 'do not assume', 'verify') are printed verbatim to visitors; rule 2.4 forbids internal notes on public website.",
+      "action": "REMOVE_FIELD",
+      "source_page": 8
+    },
+    {
+      "record_id": "NA26",
+      "title": "Nepal Wildlife Safari",
+      "field": "content_flags",
+      "current_value": "Confirm current lodge, meal plan, transport arrangements, safari types and seasonal availability before publishing.",
+      "where_rendered": "PackageWorkspace.tsx:139-152 (public 'Brochure transcription note' panel via PackageWorkspace tab 'Overview'); content_flags from travel_packages_catalog.json",
+      "issue": "Internal confirmation/transcription notes (e.g. 'Confirm...', 'reconstructed from a fragment', 'do not assume', 'verify') are printed verbatim to visitors; rule 2.4 forbids internal notes on public website.",
+      "action": "REMOVE_FIELD",
+      "source_page": 8
+    },
+    {
+      "record_id": "HE27",
+      "title": "7 Day Nepal Mini Trek",
+      "field": "content_flags",
+      "current_value": "The Easy badge conflicts with the itinerary's Grade D wording. Confirm trek grade, route names/spelling and current departure schedule before publishing.",
+      "where_rendered": "PackageWorkspace.tsx:139-152 (public 'Brochure transcription note' panel via PackageWorkspace tab 'Overview'); content_flags from travel_packages_catalog.json",
+      "issue": "Internal confirmation/transcription notes (e.g. 'Confirm...', 'reconstructed from a fragment', 'do not assume', 'verify') are printed verbatim to visitors; rule 2.4 forbids internal notes on public website.",
+      "action": "REMOVE_FIELD",
+      "source_page": 8
+    },
+    {
+      "record_id": "kashmir-houseboat-booking",
+      "title": "Houseboat Booking Service for Kashmir",
+      "field": "content_flags",
+      "current_value": "Confirm houseboat inventory, classification, prices, terms, cancellation policy, contact details and current availability before publishing.",
+      "where_rendered": "HouseboatStay.tsx:82-91 (public 'Confirm before you book' list), passed from houseboats/page.tsx:77",
+      "issue": "Internal 'Confirm ... before publishing' note rendered verbatim on the public houseboats page.",
+      "action": "REMOVE_FIELD",
+      "source_page": 2
+    },
+    {
+      "record_id": "S05",
+      "title": "Kathmandu–Pokhara",
+      "field": "duration",
+      "current_value": "3 nights / 4 days per contents and itinerary",
+      "where_rendered": "PackageCard.tsx:28-30,92,166; PackageHero.tsx:117; PackageSidebar.tsx:17; EnquiryForm.tsx:265,325 + enquiry/page.tsx:33; EnquiryModal.tsx:303; SearchAndFilters.tsx:33-39; PlaceOrbitHero.tsx:478,493,510; CoverflowSwiper.tsx:358",
+      "issue": "Flag says duration label conflicts with contents and 4-day itinerary; cleanDuration() strips the caveat and publishes '3 nights / 4 days' as settled.",
+      "action": "REMOVE_FIELD",
+      "source_page": 2
+    },
+    {
+      "record_id": "S06",
+      "title": "Discover Ladakh",
+      "field": "duration",
+      "current_value": "4 nights / 5 days",
+      "where_rendered": "PackageCard.tsx:28-30,92,166; PackageHero.tsx:117; PackageSidebar.tsx:17; EnquiryForm.tsx:265,325 + enquiry/page.tsx:33; EnquiryModal.tsx:303; SearchAndFilters.tsx:33-39; PlaceOrbitHero.tsx:478,493,510; CoverflowSwiper.tsx:358",
+      "issue": "Brochure states only a '5-day expedition'; the '4 nights' value is inferred, which rule 2.1 forbids.",
+      "action": "REMOVE_FIELD",
+      "source_page": 2
+    },
+    {
+      "record_id": "II10",
+      "title": "Kashmir Package",
+      "field": "duration",
+      "current_value": "6 nights / 7 days",
+      "where_rendered": "PackageCard.tsx:28-30,92,166; PackageHero.tsx:117; PackageSidebar.tsx:17; EnquiryForm.tsx:265,325 + enquiry/page.tsx:33; EnquiryModal.tsx:303; SearchAndFilters.tsx:33-39; PlaceOrbitHero.tsx:478,493,510; CoverflowSwiper.tsx:358",
+      "issue": "Brochure itinerary is numbered Day 1-6 only; the 7th day is missing. Displayed as a confirmed duration in hero, cards, sidebar, enquiry and houseboats page.",
+      "action": "REMOVE_FIELD",
+      "source_page": 4
+    },
+    {
+      "record_id": "II12",
+      "title": "Delhi to Kathmandu",
+      "field": "duration",
+      "current_value": "7 nights / 8 days",
+      "where_rendered": "PackageCard.tsx:28-30,92,166; PackageHero.tsx:117; PackageSidebar.tsx:17; EnquiryForm.tsx:265,325 + enquiry/page.tsx:33; EnquiryModal.tsx:303; SearchAndFilters.tsx:33-39; PlaceOrbitHero.tsx:478,493,510; CoverflowSwiper.tsx:358",
+      "issue": "Brochure shows no separate duration badge; nights were inferred from the 8-day itinerary without client confirmation.",
+      "action": "REMOVE_FIELD",
+      "source_page": 4
+    },
+    {
+      "record_id": "HTI13",
+      "title": "Heritage Tour of India",
+      "field": "duration",
+      "current_value": "14 nights / 15 days",
+      "where_rendered": "PackageCard.tsx:28-30,92,166; PackageHero.tsx:117; PackageSidebar.tsx:17; EnquiryForm.tsx:265,325 + enquiry/page.tsx:33; EnquiryModal.tsx:303; SearchAndFilters.tsx:33-39; PlaceOrbitHero.tsx:478,493,510; CoverflowSwiper.tsx:358",
+      "issue": "Brochure shows no duration badge (Day 01-15 itinerary only); the '14 nights' field was invented rather than printed.",
+      "action": "REMOVE_FIELD",
+      "source_page": 4
+    },
+    {
+      "record_id": "MTK21",
+      "title": "Vale of Kashmir Trek",
+      "field": "duration",
+      "current_value": "7 days / 6 nights",
+      "where_rendered": "PackageCard.tsx:28-30,92,166; PackageHero.tsx:117; PackageSidebar.tsx:17; EnquiryForm.tsx:265,325 + enquiry/page.tsx:33; EnquiryModal.tsx:303; SearchAndFilters.tsx:33-39; PlaceOrbitHero.tsx:478,493,510; CoverflowSwiper.tsx:358",
+      "issue": "Flag says card text conflicts with itinerary; duration must be confirmed before publication.",
+      "action": "REMOVE_FIELD",
+      "source_page": 7
+    },
+    {
+      "record_id": "HE18",
+      "title": "Kashmir, Zanskar and Ladakh Trek",
+      "field": "duration",
+      "current_value": "24-day round trip; 15-day trek (as printed)",
+      "where_rendered": "PackageCard.tsx:28-30,92,166; PackageHero.tsx:117; PackageSidebar.tsx:17; EnquiryForm.tsx:265,325 + enquiry/page.tsx:33; EnquiryModal.tsx:303; SearchAndFilters.tsx:33-39; PlaceOrbitHero.tsx:478,493,510; CoverflowSwiper.tsx:358",
+      "issue": "Trek length conflicts with Day 4-18 sequence; internal '(as printed)' qualifier and disputed second value leak into public hero/sidebar/enquiry (cleanDuration drops the qualifier but keeps the disputed figure on cards).",
+      "action": "REMOVE_FIELD",
+      "source_page": 6
+    },
+    {
+      "record_id": "HE19",
+      "title": "Kashmir Combinations: Little Tibet",
+      "field": "duration",
+      "current_value": "19-day round trip; 7-day trek (as printed)",
+      "where_rendered": "PackageCard.tsx:28-30,92,166; PackageHero.tsx:117; PackageSidebar.tsx:17; EnquiryForm.tsx:265,325 + enquiry/page.tsx:33; EnquiryModal.tsx:303; SearchAndFilters.tsx:33-39; PlaceOrbitHero.tsx:478,493,510; CoverflowSwiper.tsx:358",
+      "issue": "Itinerary lists 18 stages for a 19-day trip; disputed trek duration rendered with internal qualifier.",
+      "action": "REMOVE_FIELD",
+      "source_page": 6
+    },
+    {
+      "record_id": "NA24",
+      "title": "Trisuli Rafting",
+      "field": "duration",
+      "current_value": "Day trip; no fixed duration printed",
+      "where_rendered": "PackageCard.tsx:28-30,92,166; PackageHero.tsx:117; PackageSidebar.tsx:17; EnquiryForm.tsx:265,325 + enquiry/page.tsx:33; EnquiryModal.tsx:303; SearchAndFilters.tsx:33-39; PlaceOrbitHero.tsx:478,493,510; CoverflowSwiper.tsx:358",
+      "issue": "Brochure states no base trip duration; 'Day trip' is an inference, and cleanDuration() strips the caveat so only 'Day trip' is shown.",
+      "action": "REMOVE_FIELD",
+      "source_page": 8
+    },
+    {
+      "record_id": "II7",
+      "title": "Golden Triangle",
+      "field": "brochure_code",
+      "current_value": "II7",
+      "where_rendered": "PackageCard.tsx:96-99,168; PackageHero.tsx:86-89; PackageSidebar.tsx:24,42; EnquiryModal.tsx:303; InclusionsExclusions.tsx:84-88",
+      "issue": "Printed code casing is ambiguous (admin QA register records lowercase 'ii7'); the catalogue silently normalises it to uppercase II7, which rule 2.2 forbids until confirmed.",
+      "action": "REMOVE_FIELD",
+      "source_page": 3
+    },
+    {
+      "record_id": "HE17",
+      "title": "Markha Valley",
+      "field": "difficulty",
+      "current_value": "Demanding (as printed)",
+      "where_rendered": "PackageCard.tsx:32-33,131-134,170-172; PackageHero.tsx:96; CoverflowSwiper.tsx:361-364; InclusionsExclusions.tsx:84-88",
+      "issue": "difficultyVerified=false (internal '(as printed)' check) but the grade badge is rendered anyway on cards, hero, coverflow and enquiry; raw qualifier also leaks into the hero label.",
+      "action": "REMOVE_FIELD",
+      "source_page": 6
+    },
+    {
+      "record_id": "HE18",
+      "title": "Kashmir, Zanskar and Ladakh Trek",
+      "field": "difficulty",
+      "current_value": "Strenuous (as printed)",
+      "where_rendered": "PackageCard.tsx:32-33,131-134,170-172; PackageHero.tsx:96; CoverflowSwiper.tsx:361-364; InclusionsExclusions.tsx:84-88",
+      "issue": "difficultyVerified=false but grade badge exposed; internal qualifier shown verbatim in hero/coverflow.",
+      "action": "REMOVE_FIELD",
+      "source_page": 6
+    },
+    {
+      "record_id": "HE19",
+      "title": "Kashmir Combinations: Little Tibet",
+      "field": "difficulty",
+      "current_value": "Moderate (as printed)",
+      "where_rendered": "PackageCard.tsx:32-33,131-134,170-172; PackageHero.tsx:96; CoverflowSwiper.tsx:361-364; InclusionsExclusions.tsx:84-88",
+      "issue": "difficultyVerified=false but grade badge exposed; route/grade flag unconfirmed.",
+      "action": "REMOVE_FIELD",
+      "source_page": 6
+    },
+    {
+      "record_id": "MTK20",
+      "title": "Kashmir Mini Adventure",
+      "field": "difficulty",
+      "current_value": "Demanding (as printed)",
+      "where_rendered": "PackageCard.tsx:32-33,131-134,170-172; PackageHero.tsx:96; CoverflowSwiper.tsx:361-364; InclusionsExclusions.tsx:84-88",
+      "issue": "difficultyVerified=false but grade badge exposed on cards and hero.",
+      "action": "REMOVE_FIELD",
+      "source_page": 7
+    },
+    {
+      "record_id": "MTK21",
+      "title": "Vale of Kashmir Trek",
+      "field": "difficulty",
+      "current_value": "Moderate / Grade C (as printed in body text)",
+      "where_rendered": "PackageCard.tsx:32-33,131-134,170-172; PackageHero.tsx:96; CoverflowSwiper.tsx:361-364; InclusionsExclusions.tsx:84-88",
+      "issue": "Letter grade C is displayed alongside a word grade; rule 7.1 forbids treating them as equivalent without client confirmation. difficultyVerified=false yet badge rendered.",
+      "action": "REMOVE_FIELD",
+      "source_page": 7
+    },
+    {
+      "record_id": "NA24",
+      "title": "Trisuli Rafting",
+      "field": "difficulty",
+      "current_value": "Easy (as printed)",
+      "where_rendered": "PackageCard.tsx:32-33,131-134,170-172; PackageHero.tsx:96; CoverflowSwiper.tsx:361-364; InclusionsExclusions.tsx:84-88",
+      "issue": "difficultyVerified=false but grade badge rendered; season/group size still unconfirmed.",
+      "action": "REMOVE_FIELD",
+      "source_page": 8
+    },
+    {
+      "record_id": "NA26",
+      "title": "Nepal Wildlife Safari",
+      "field": "difficulty",
+      "current_value": "Easy (as printed)",
+      "where_rendered": "PackageCard.tsx:32-33,131-134,170-172; PackageHero.tsx:96; CoverflowSwiper.tsx:361-364; InclusionsExclusions.tsx:84-88",
+      "issue": "difficultyVerified=false but grade badge rendered.",
+      "action": "REMOVE_FIELD",
+      "source_page": 8
+    },
+    {
+      "record_id": "NA23",
+      "title": "Himalayan Combination HC",
+      "field": "difficulty",
+      "current_value": "Moderate badge; body text also says Grade D",
+      "where_rendered": "PackageCard.tsx:32-33,131-134,170-172; PackageHero.tsx:96; CoverflowSwiper.tsx:361-364; InclusionsExclusions.tsx:84-88; PosterRail.tsx:16-24 (Nepal rail at journeys/page.tsx:65-72); TrendingJourneys.tsx:15-23",
+      "issue": "Unresolved Moderate-vs-Grade D conflict: difficultyVerified is incorrectly TRUE (string has no 'as printed'/'conflict'), the raw conflict is shown in hero/coverflow, and PosterRail/TrendingJourneys verdict() maps it to the word badge 'Moderate', silently discarding Grade D.",
+      "action": "REMOVE_FIELD",
+      "source_page": 8
+    },
+    {
+      "record_id": "HE25",
+      "title": "4 Day Nepal Mini Trek",
+      "field": "difficulty",
+      "current_value": "Easy badge; Grade D also printed",
+      "where_rendered": "PackageCard.tsx:32-33,131-134,170-172; PackageHero.tsx:96; CoverflowSwiper.tsx:361-364; InclusionsExclusions.tsx:84-88; PosterRail.tsx:16-24 (Nepal rail at journeys/page.tsx:65-72); TrendingJourneys.tsx:15-23",
+      "issue": "Unresolved Easy-vs-Grade D conflict: difficultyVerified incorrectly TRUE; verdict() maps it to 'Easy going', silently resolving the letter/word grade conflict and hiding 'Grade D'.",
+      "action": "REMOVE_FIELD",
+      "source_page": 8
+    },
+    {
+      "record_id": "HE27",
+      "title": "7 Day Nepal Mini Trek",
+      "field": "difficulty",
+      "current_value": "Easy badge; Grade D also printed",
+      "where_rendered": "PackageCard.tsx:32-33,131-134,170-172; PackageHero.tsx:96; CoverflowSwiper.tsx:361-364; InclusionsExclusions.tsx:84-88; PosterRail.tsx:16-24 (Nepal rail at journeys/page.tsx:65-72); TrendingJourneys.tsx:15-23",
+      "issue": "Unresolved Easy-vs-Grade D conflict: difficultyVerified incorrectly TRUE; verdict() maps it to 'Easy going', silently resolving the letter/word grade conflict.",
+      "action": "REMOVE_FIELD",
+      "source_page": 8
+    },
+    {
+      "record_id": "II7",
+      "title": "Golden Triangle",
+      "field": "derived_day_count",
+      "current_value": "3 (itinerary.length) vs printed 4 days",
+      "where_rendered": "PackageWorkspace.tsx:19,29 ('Day-by-Day (% Days)' tab); InteractiveItinerary.tsx:135 ('%d-Day Step-by-Step Experience'); RouteMap.tsx:35,117,140",
+      "issue": "A day count is derived from the number of itinerary entries and presented as a factual package label. For this record it contradicts the printed duration because the itinerary is compressed, partial or range-based. Rule 2.1 forbids inferring day counts.",
+      "action": "REMOVE_FIELD",
+      "source_page": 3
+    },
+    {
+      "record_id": "II8",
+      "title": "Glorious Goa Stopover",
+      "field": "derived_day_count",
+      "current_value": "2 (itinerary.length) vs printed 5 days",
+      "where_rendered": "PackageWorkspace.tsx:19,29 ('Day-by-Day (% Days)' tab); InteractiveItinerary.tsx:135 ('%d-Day Step-by-Step Experience'); RouteMap.tsx:35,117,140",
+      "issue": "A day count is derived from the number of itinerary entries and presented as a factual package label. For this record it contradicts the printed duration because the itinerary is compressed, partial or range-based. Rule 2.1 forbids inferring day counts.",
+      "action": "REMOVE_FIELD",
+      "source_page": 3
+    },
+    {
+      "record_id": "II9",
+      "title": "Glimpses of Kerala",
+      "field": "derived_day_count",
+      "current_value": "4 (itinerary.length) vs printed 6 days",
+      "where_rendered": "PackageWorkspace.tsx:19,29 ('Day-by-Day (% Days)' tab); InteractiveItinerary.tsx:135 ('%d-Day Step-by-Step Experience'); RouteMap.tsx:35,117,140",
+      "issue": "A day count is derived from the number of itinerary entries and presented as a factual package label. For this record it contradicts the printed duration because the itinerary is compressed, partial or range-based. Rule 2.1 forbids inferring day counts.",
+      "action": "REMOVE_FIELD",
+      "source_page": 3
+    },
+    {
+      "record_id": "II10",
+      "title": "Kashmir Package",
+      "field": "derived_day_count",
+      "current_value": "6 (itinerary.length) vs printed 7 days",
+      "where_rendered": "PackageWorkspace.tsx:19,29 ('Day-by-Day (% Days)' tab); InteractiveItinerary.tsx:135 ('%d-Day Step-by-Step Experience'); RouteMap.tsx:35,117,140",
+      "issue": "A day count is derived from the number of itinerary entries and presented as a factual package label. For this record it contradicts the printed duration because the itinerary is compressed, partial or range-based. Rule 2.1 forbids inferring day counts.",
+      "action": "REMOVE_FIELD",
+      "source_page": 4
+    },
+    {
+      "record_id": "HTI13",
+      "title": "Heritage Tour of India",
+      "field": "derived_day_count",
+      "current_value": "14 (itinerary.length) vs printed 15 days",
+      "where_rendered": "PackageWorkspace.tsx:19,29 ('Day-by-Day (% Days)' tab); InteractiveItinerary.tsx:135 ('%d-Day Step-by-Step Experience'); RouteMap.tsx:35,117,140",
+      "issue": "A day count is derived from the number of itinerary entries and presented as a factual package label. For this record it contradicts the printed duration because the itinerary is compressed, partial or range-based. Rule 2.1 forbids inferring day counts.",
+      "action": "REMOVE_FIELD",
+      "source_page": 4
+    },
+    {
+      "record_id": "HE18",
+      "title": "Kashmir, Zanskar and Ladakh Trek",
+      "field": "derived_day_count",
+      "current_value": "9 (itinerary.length) vs 24-day round trip",
+      "where_rendered": "PackageWorkspace.tsx:19,29 ('Day-by-Day (% Days)' tab); InteractiveItinerary.tsx:135 ('%d-Day Step-by-Step Experience'); RouteMap.tsx:35,117,140",
+      "issue": "A day count is derived from the number of itinerary entries and presented as a factual package label. For this record it contradicts the printed duration because the itinerary is compressed, partial or range-based. Rule 2.1 forbids inferring day counts.",
+      "action": "REMOVE_FIELD",
+      "source_page": 6
+    },
+    {
+      "record_id": "HE19",
+      "title": "Kashmir Combinations: Little Tibet",
+      "field": "derived_day_count",
+      "current_value": "12 (itinerary.length) vs 19-day round trip",
+      "where_rendered": "PackageWorkspace.tsx:19,29 ('Day-by-Day (% Days)' tab); InteractiveItinerary.tsx:135 ('%d-Day Step-by-Step Experience'); RouteMap.tsx:35,117,140",
+      "issue": "A day count is derived from the number of itinerary entries and presented as a factual package label. For this record it contradicts the printed duration because the itinerary is compressed, partial or range-based. Rule 2.1 forbids inferring day counts.",
+      "action": "REMOVE_FIELD",
+      "source_page": 6
+    },
+    {
+      "record_id": "KS22",
+      "title": "Kashmir Ski",
+      "field": "derived_day_count",
+      "current_value": "3 (itinerary.length) vs 7-day package",
+      "where_rendered": "PackageWorkspace.tsx:19,29 ('Day-by-Day (% Days)' tab); InteractiveItinerary.tsx:135 ('%d-Day Step-by-Step Experience'); RouteMap.tsx:35,117,140",
+      "issue": "A day count is derived from the number of itinerary entries and presented as a factual package label. For this record it contradicts the printed duration because the itinerary is compressed, partial or range-based. Rule 2.1 forbids inferring day counts.",
+      "action": "REMOVE_FIELD",
+      "source_page": 7
+    },
+    {
+      "record_id": "NA23",
+      "title": "Himalayan Combination HC",
+      "field": "derived_day_count",
+      "current_value": "7 anchor-day entries (itinerary.length) vs 20-day round trip",
+      "where_rendered": "PackageWorkspace.tsx:19,29 ('Day-by-Day (% Days)' tab); InteractiveItinerary.tsx:135 ('%d-Day Step-by-Step Experience'); RouteMap.tsx:35,117,140",
+      "issue": "A day count is derived from the number of itinerary entries and presented as a factual package label. For this record it contradicts the printed duration because the itinerary is compressed, partial or range-based. Rule 2.1 forbids inferring day counts.",
+      "action": "REMOVE_FIELD",
+      "source_page": 8
+    },
+    {
+      "record_id": "II12",
+      "title": "Delhi to Kathmandu",
+      "field": "itinerary[2].description; itinerary[5].description",
+      "current_value": "Day 3: 'Afternoon activity.'; Day 6: 'Morning city sightseeing tour; afternoon at leisure.'",
+      "where_rendered": "InteractiveItinerary.tsx:194,231-235; RouteMap.tsx:34-53,221-224",
+      "issue": "Flag states Day 3 has no detail and Day 6 was reconstructed from a fragment; publishing them as a complete day-by-day programme invents/reconstructs itinerary content.",
+      "action": "REMOVE_FIELD",
+      "source_page": 4
+    },
+    {
+      "record_id": "IT15",
+      "title": "India Nepal Combination Tour",
+      "field": "itinerary[10].description",
+      "current_value": "Day 11: 'Transfer for onward travel to Varanasi.'",
+      "where_rendered": "InteractiveItinerary.tsx:194,231-235; RouteMap.tsx:34-53",
+      "issue": "Flag states the brochure scan shows only the route for Day 11, with no description; the published sentence is an expansion of a fragment.",
+      "action": "REMOVE_FIELD",
+      "source_page": 5
+    },
+    {
+      "record_id": "HE19",
+      "title": "Kashmir Combinations: Little Tibet",
+      "field": "itinerary",
+      "current_value": "18 stages including a compressed day '05–11' for a '19-day round trip'",
+      "where_rendered": "InteractiveItinerary.tsx:94-136,159-259; RouteMap.tsx:30-69,117,140",
+      "issue": "Flag: 19-day round trip but only 18 stages; the day-by-day and map panels present the partial sequence as the complete programme.",
+      "action": "REMOVE_FIELD",
+      "source_page": 6
+    },
+    {
+      "record_id": "HE18",
+      "title": "Kashmir, Zanskar and Ladakh Trek",
+      "field": "itinerary",
+      "current_value": "Compressed day labels '04–18' and '19–20' with descriptions 'Trekking commences until Day 18' / 'Leh sightseeing'",
+      "where_rendered": "InteractiveItinerary.tsx:94-136,159-259; RouteMap.tsx:30-69,117,140",
+      "issue": "Flag: 24-day round trip with 15-day trek conflicts with a day list showing trekking Day 4-18, and several dates are compressed; detail is not a verified day-by-day itinerary.",
+      "action": "REMOVE_FIELD",
+      "source_page": 6
+    },
+    {
+      "record_id": "NA23",
+      "title": "Himalayan Combination HC",
+      "field": "itinerary",
+      "current_value": "Anchor days only: 1, 2, 3, 11, 14, 17, 20 for a '20-day round trip'",
+      "where_rendered": "InteractiveItinerary.tsx:94-136,159-259; RouteMap.tsx:30-69,117,140",
+      "issue": "Flag: brochure lists only anchor days and the intervening programme is overview prose; presenting 7 entries as the day-by-day itinerary implies a fabricated 7-day schedule.",
+      "action": "REMOVE_FIELD",
+      "source_page": 8
+    },
+    {
+      "record_id": "HE25",
+      "title": "4 Day Nepal Mini Trek",
+      "field": "itinerary[2]",
+      "current_value": "Day 3: 'Chowki Bhanjyang — Nagarkot to Chowki Bhanjyang.' (identical to Day 2)",
+      "where_rendered": "InteractiveItinerary.tsx:159-259; RouteMap.tsx:34-53",
+      "issue": "Flag: Day 2 and Day 3 repeat the same route; one stage is likely wrong, so the duplicated step must not be published as verified.",
+      "action": "REMOVE_FIELD",
+      "source_page": 8
+    },
+    {
+      "record_id": "KS22",
+      "title": "Kashmir Ski",
+      "field": "itinerary",
+      "current_value": "Day labels 1, '02–06', 7 ('Enjoy skiing at your leisure.')",
+      "where_rendered": "InteractiveItinerary.tsx:159-259; RouteMap.tsx:30-69,117,140",
+      "issue": "Compressed range is shown as a step-by-step itinerary; combined with the unresolved Kashmir Ski vs Enfield Motorbike Tour contents discrepancy this package's identity in the 27-package catalogue is unconfirmed.",
+      "action": "REMOVE_FIELD",
+      "source_page": 7
+    },
+    {
+      "record_id": "II7",
+      "title": "Golden Triangle",
+      "field": "inclusions_exclusions_source_reference",
+      "current_value": "Brochure Reference: II7 · Page 3",
+      "where_rendered": "InclusionsExclusions.tsx:82-91 (rendered on every /packages/[slug] page via PackageWorkspace.tsx:216-221)",
+      "issue": "Internal source metadata (brochure code and source page) is displayed to visitors; rule 3 says internal-only fields and source references should not be shown without an editorial reason.",
+      "action": "REMOVE_FIELD",
+      "source_page": 3
+    },
+    {
+      "record_id": "IT14",
+      "title": "North India Highlights",
+      "field": "inclusions/exclusions",
+      "current_value": "inclusions listed; exclusions listed",
+      "where_rendered": "InclusionsExclusions.tsx:26-27,40-80 via PackageWorkspace.tsx:216-221",
+      "issue": "Checked against known flag C-7: package-specific panels only, no generic brochure assumptions applied; no suppression needed.",
+      "action": "KEEP",
+      "source_page": 5
+    },
+    {
+      "record_id": "IT15",
+      "title": "India Nepal Combination Tour",
+      "field": "inclusions/exclusions",
+      "current_value": "no package-specific arrays; default 'Please contact us...' shown",
+      "where_rendered": "InclusionsExclusions.tsx:26-27,40-80 via PackageWorkspace.tsx:216-221",
+      "issue": "Checked against known flag C-7: package-specific panels only, no generic brochure assumptions applied; no suppression needed.",
+      "action": "KEEP",
+      "source_page": 5
+    },
+    {
+      "record_id": "IT16",
+      "title": "South India Highlight",
+      "field": "inclusions/exclusions",
+      "current_value": "no package-specific arrays; default 'Please contact us...' shown",
+      "where_rendered": "InclusionsExclusions.tsx:26-27,40-80 via PackageWorkspace.tsx:216-221",
+      "issue": "Checked against known flag C-7: package-specific panels only, no generic brochure assumptions applied; no suppression needed.",
+      "action": "KEEP",
+      "source_page": 5
+    }
+  ],
+  "catalogue_level_findings": [
+    {
+      "issue": "27 journeys/packages count advertised as verified",
+      "where": "app/admin/page.tsx:969 ('27 verified packages'), :1419 ('All 27 verified brochure itineraries'), :1677 ('27 / 27 Verified'); travel_packages_catalog.json:4 (package_count: 27). Client-side password gate at admin/page.tsx:201,425 only.",
+      "action": "WITHHOLD the count from all public/admin UI until the client confirms the final catalogue and resolves the KS22 Kashmir Ski vs Himalaya Enfield Motorbike Tour contents discrepancy; use non-numeric copy."
+    },
+    {
+      "issue": "difficultyVerified=false does not suppress grade badges",
+      "where": "data/catalogue.ts:27-28 computes difficultyVerified (false for 7 of 10 graded packages) but no component consumes it; PackageCard.tsx:32-33,131-134,170-172; PackageHero.tsx:96; CoverflowSwiper.tsx:361-364 render grade labels unconditionally.",
+      "action": "Gate every grade badge on difficultyVerified/client confirmation; suppress all unqualified or conflicted grade labels."
+    },
+    {
+      "issue": "Letter grades (Grade C/D) mapped to word grades",
+      "where": "components/journeys/PosterRail.tsx:16-24 and components/journeys/TrendingJourneys.tsx:15-23 verdict() maps strings containing 'easy'/'moderate'/'demanding' to 'Easy going'/'Moderate'/'Demanding'; PosterRail is used at journeys/page.tsx:65-72 for NA23/HE25/HE27.",
+      "action": "Remove the verdict() mapping; do not present any word grade for MTK21/NA23/HE25/HE27 until the client supplies the letter-to-word grading scale."
+    },
+    {
+      "issue": "Internal content_flags exposed verbatim on public pages",
+      "where": "PackageWorkspace.tsx:139-152 (20 packages); HouseboatStay.tsx:82-91 via houseboats/page.tsx:77 (1 service).",
+      "action": "Remove content_flags from public rendering and keep them only in the internal FACTS_TO_CONFIRM register."
+    },
+    {
+      "issue": "Internal source-page reference shown in inclusions panel",
+      "where": "InclusionsExclusions.tsx:84-89 renders 'Brochure Reference: <code> · Page <n>' on all 27 package pages.",
+      "action": "Remove the brochure code and sourcePage from the public panel; keep them in content data only."
+    },
+    {
+      "issue": "Derived 'nights' and day counts presented as package facts",
+      "where": "PackageSidebar.tsx:122-123 and CoverflowSwiper.tsx:358 render '<first token of duration> nights'; PackageWorkspace.tsx:19,29 and InteractiveItinerary.tsx:135 derive a day count from itinerary.length; SearchAndFilters.tsx:33-39 turns nights into day counts for filters/sorting.",
+      "action": "Remove all derived nights/day labels and the duration filter bucket logic; display only verbatim, confirmed duration strings."
+    },
+    {
+      "issue": "Stale flag count in current-state checklist",
+      "where": "docs/audits/current-state-checklist.md states 'Packages with content_flags: 19'; travel_packages_catalog.json contains 20 flagged packages.",
+      "action": "Correct the internal register to 20; do not publish the count."
+    }
+  ],
+  "independently_verified": [
+    {
+      "finding": "BROCHURE TRANSCRIPTION NOTE visible on /packages/kathmandu-pokhara",
+      "evidence": "Live page rendered the heading and the verbatim flag text"
+    },
+    {
+      "finding": "content_flags present on 21 catalogue records (20 packages + 1 service)",
+      "evidence": "app/src/data/travel_packages_catalog.json"
+    },
+    {
+      "finding": "PackageWorkspace.tsx:139-152 renders content_flags; HouseboatStay.tsx:82-91 renders houseboat flags",
+      "evidence": "source line inspection"
+    },
+    {
+      "finding": "PosterRail.tsx:16-24 and TrendingJourneys.tsx:15-23 map letter grades to word badges",
+      "evidence": "source line inspection; live /journeys shows 'Easy badge; Grade D also printed'"
+    },
+    {
+      "finding": "About page displays internal notes at lines 254, 269, 284 and attribution at 303",
+      "evidence": "source line inspection and live /about"
+    },
+    {
+      "finding": "EnquiryForm.tsx:400/403 render build-status wording; :416 claims encrypted direct transmission",
+      "evidence": "source line inspection; live /enquiry shows intake-active copy"
+    },
+    {
+      "finding": "Contact page :134/:139 switch between 'active' and 'configuration pending' build-status copy",
+      "evidence": "source line inspection"
+    },
+    {
+      "finding": "Admin page contains sample enquiries and 27-verified claims",
+      "evidence": "source lines 47-128, 969, 1419, 1677"
+    },
+    {
+      "finding": "catalogue package_count is 27 despite unresolved Enfield/KS22 discrepancy",
+      "evidence": "travel_packages_catalog.json:4"
+    }
+  ]
+}

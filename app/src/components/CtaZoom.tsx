@@ -17,7 +17,7 @@ if (typeof window !== "undefined") {
  * and floating monogram watermark.
  */
 interface CtaZoomProps {
-  image?: string;
+  image?: string | null;
   imageAlt?: string;
   eyebrow?: string;
   /** Heading. Supports a line break between the two halves. */
@@ -111,7 +111,7 @@ export default function CtaZoom({
       } ${sectionClassName}`}
     >
       {/* Zooming background image wrapper */}
-      <div
+      {image ? <div
         ref={imageRef}
         className="absolute inset-0 h-full w-full will-change-transform group/cta-photo"
       >
@@ -122,7 +122,7 @@ export default function CtaZoom({
           sizes="100vw"
           className="object-cover transition-transform duration-[1200ms] ease-out hover:scale-[1.04]"
         />
-      </div>
+      </div> : null}
 
       {/* Content */}
       <div
@@ -136,7 +136,7 @@ export default function CtaZoom({
         <p className="mx-auto mb-7 max-w-md font-sans text-sm leading-relaxed text-white/75">
           {body}
         </p>
-        <div>
+        {ctaLabel ? <div>
           <Link
             href={ctaHref}
             className="enquire-fill group inline-flex min-h-[44px] items-center gap-4 px-6 py-3.5 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#123438]"
@@ -146,7 +146,7 @@ export default function CtaZoom({
               →
             </span>
           </Link>
-        </div>
+        </div> : null}
       </div>
     </section>
   );

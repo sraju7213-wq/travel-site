@@ -5,7 +5,9 @@ import dynamic from "next/dynamic";
 import { useCallback, useEffect, useRef, useState } from "react";
 import BrandMark from "./BrandMark";
 import DesktopNavPanel from "./DesktopNavPanel";
-import { HEADER_LINKS, NAV_GROUPS } from "@/lib/navigation";
+import { HEADER_LINKS, NAV_GROUPS, type HeaderLink, type NavGroup, type NavLink } from "@/lib/navigation";
+import { useCms } from "@/components/cms/CmsProvider";
+import { safeCmsHref } from "@/lib/safeCmsHref";
 
 // The drawer is a large client component (quick-jump index of every journey,
 // shortcuts, gestures). Loading it on first open keeps it out of the initial
@@ -25,6 +27,14 @@ const MobileNav = dynamic(() => import("./MobileNav"), { ssr: false });
  * in the accessibility tree when the menu is closed.
  */
 export default function SiteHeader() {
+  const { settings, theme } = useCms();
+  const cmsHeaderLinks = (settings.navigation.headerLinks ?? []).filter((link) => link.visible !== false);
+  const headerLinks: HeaderLink[] = cmsHeaderLinks.length ? cmsHeaderLinks.map((link) => ({ ...link, label: link.label ?? "", href: link.href ?? "/" })) : HEADER_LINKS;
+  const cmsGroups = (settings.navigation.groups ?? []).filter((group) => group.visible !== false).map((group): NavGroup => ({ id: group.id, label: group.label, note: group.note ?? "", links: group.links.filter((link) => link.visible !== false).map((link): NavLink => ({ ...link, label: link.label ?? "", href: link.href ?? "/" })) }));
+  const navGroups: NavGroup[] = cmsGroups.length ? cmsGroups : NAV_GROUPS;
+  const headerCta = settings.navigation.headerCta?.label ? settings.navigation.headerCta : { label: "Enquire", href: "/enquiry" };
+  const sticky = settings.navigation.headerSticky !== false && theme.headerAppearance?.sticky !== false;
+  const transparent = settings.navigation.headerTransparent !== false && theme.headerAppearance?.transparent !== false;
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openGroup, setOpenGroup] = useState<string | null>(null);
@@ -55,7 +65,7 @@ export default function SiteHeader() {
     }, 150);
   }, [clearCloseTimer]);
 
-  const solid = scrolled || mobileOpen || openGroup !== null;
+  const solid = scrolled || mobileOpen || openGroup !== null || !transparent;
 
   useEffect(() => {
     let frame = 0;
@@ -126,9 +136,9 @@ export default function SiteHeader() {
     <>
       <header
         ref={headerRef}
-        className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+        className={`${sticky ? "fixed" : "relative"} top-0 left-0 right-0 z-50 transition-colors duration-300 ${
           solid
-            ? "border-b border-white/10 bg-[#0C1617]/95 backdrop-blur-md supports-[backdrop-filter]:bg-[#0C1617]/80"
+            ? "border-b border-white/10 bg-[var(--cms-header-background,#0C1617)]/95 backdrop-blur-md supports-[backdrop-filter]:bg-[var(--cms-header-background,#0C1617)]/80"
             : "bg-transparent"
         }`}
         role="banner"
@@ -139,16 +149,16 @@ export default function SiteHeader() {
 
             {/* Desktop navigation */}
             <nav className="hidden lg:flex lg:items-center lg:gap-0.5" aria-label="Main navigation">
-              {HEADER_LINKS.map((link) => {
+              {headerLinks.map((link) => {
                 const group = link.group
-                  ? NAV_GROUPS.find((g) => g.id === link.group)
+                  ? navGroups.find((g) => g.id === link.group)
                   : undefined;
 
                 if (!group) {
                   return (
                     <Link
                       key={link.href + link.label}
-                      href={link.href}
+                      href={safeCmsHref(link.href)}
                       className="rounded-lg px-3 py-2.5 font-accent text-[11px] font-medium uppercase tracking-[0.18em] text-white/75 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)]"
                     >
                       {link.label}
@@ -213,20 +223,20 @@ export default function SiteHeader() {
               })}
 
               <Link
-                href="/enquiry"
+                href={safeCmsHref(headerCta.href, "/enquiry")}
                 className="enquire-fill ml-3 inline-flex min-h-[44px] items-center justify-center px-5 py-2.5 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brass)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0C1617]"
               >
-                <span>Enquire</span>
+                <span>{headerCta.label}</span>
               </Link>
             </nav>
 
             {/* Mobile actions */}
             <div className="flex items-center gap-2 lg:hidden">
               <Link
-                href="/enquiry"
+                href={safeCmsHref(headerCta.href, "/enquiry")}
                 className="enquire-fill inline-flex min-h-[48px] items-center justify-center px-3.5 py-2 font-sans text-[10px] font-semibold uppercase tracking-[0.18em] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brass)] sm:px-4"
               >
-                <span>Enquire</span>
+                <span>{headerCta.label}</span>
               </Link>
 
               <button
@@ -255,7 +265,7 @@ export default function SiteHeader() {
         {/* Desktop dropdown panel */}
         {openGroup && (
           <DesktopNavPanel
-            group={NAV_GROUPS.find((g) => g.id === openGroup)!}
+            group={navGroups.find((g) => g.id === openGroup)!}
             onClose={() => {
               clearCloseTimer();
               setOpenGroup(null);

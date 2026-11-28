@@ -3,6 +3,8 @@ import Link from "next/link";
 import PageShell from "@/components/PageShell";
 import Container from "@/components/Container";
 import { BRAND } from "@/data/brandConfig";
+import { draftMode } from "next/headers";
+import { hasCmsSections, renderCmsBuiltIn, getCmsBuiltIn } from "@/components/cms/CmsBuiltInPage";
 
 export const metadata: Metadata = {
   title: `Privacy Notice — ${BRAND.name}`,
@@ -10,7 +12,9 @@ export const metadata: Metadata = {
     `Factual explanation of how personal data, enquiries, and contact information are processed by ${BRAND.name} in association with ${BRAND.operatorName}.`,
 };
 
-export default function PrivacyPage() {
+export default async function PrivacyPage() {
+  const { isEnabled: preview } = await draftMode(); const cmsPage = await getCmsBuiltIn("privacy", preview);
+  if (cmsPage && hasCmsSections(cmsPage, preview)) return <PageShell mainClassName="">{await renderCmsBuiltIn(cmsPage, preview)}</PageShell>;
   return (
     <PageShell>
       <Container>
@@ -60,12 +64,6 @@ export default function PrivacyPage() {
                 <li><strong className="text-white">Special Requests:</strong> Dietary requirements, high-altitude trekking experience, accommodation preferences, or specific inquiries provided in the free-text message field.</li>
                 <li><strong className="text-white">Technical Anti-Abuse Tokens:</strong> A client-generated unique submission identifier (used exclusively in-memory for 10 minutes to prevent duplicate double-submissions) and a hidden honeypot field (to block automated robotic spam).</li>
               </ul>
-              <div className="rounded-xl border border-white/10 bg-[#132325] p-5 text-xs sm:text-sm text-white/75">
-                <strong className="text-brass block font-accent uppercase tracking-wider mb-1">
-                  Technical Data Path:
-                </strong>
-                Submissions are transmitted securely over TLS 1.3 / HTTPS to our Next.js API handler (<code className="font-mono text-brass-soft">/api/enquiry</code>). When the backend database is configured, records are stored directly into our secure PostgreSQL database (<code className="font-mono text-brass-soft">enquiries</code> table) hosted on Supabase cloud infrastructure. Records are accessed solely by authenticated operators via a password-protected administrative console.
-              </div>
             </section>
 
             {/* Section 3: Unconfigured State */}

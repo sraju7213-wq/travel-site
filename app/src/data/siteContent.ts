@@ -225,7 +225,6 @@ export const PILLARS: Pillar[] = [
     linkLabel: "Explore wildlife journeys",
     highlights: [
       { title: "Diverse Safari Formats", detail: "Jeep safaris, jungle nature walks, and tranquil river canoe expeditions across reserves." },
-      { title: "Resident Naturalists", detail: "Accredited wildlife trackers and regional specialists interpret native flora and fauna." },
       { title: "Low-Impact Field Ethos", detail: "Respectful, ethical observation in premier national parks and protected habitats." },
     ],
   },
@@ -253,8 +252,8 @@ export const PILLARS: Pillar[] = [
     label: "Accommodation",
     title: "Character & Heritage Accommodation",
     image: pexels("17397822"),
-    tagline: "Handpicked Heritage Havelis, Palace Hotels & Boutique Stays",
-    statBadge: "Handpicked",
+    tagline: "Heritage Stays and Local Character",
+    statBadge: "Heritage",
     statLabel: "Historic Character",
     regionTag: "Centrally Located Stays",
     body:
@@ -296,12 +295,10 @@ export const PILLARS: Pillar[] = [
     statLabel: "Private Road Transit",
     regionTag: "Door-to-Door Pacing",
     body:
-      "Road transfers, accommodation and sightseeing are planned around your dates and party, with arrival and departure transfers included in the package inclusions.",
+      "Road transfers, accommodation and sightseeing are planned around your dates and party.",
     href: "/enquiry",
     linkLabel: "Talk to a travel designer",
     highlights: [
-      { title: "Private Chauffeur Transfers", detail: "Comfortable air-conditioned vehicles and vetted professional drivers for all road routes." },
-      { title: "Arrival & Departure Inclusions", detail: "Seamless airport greetings and station transfer logistics handled without stress." },
       { title: "Individual Tailor-Made Pacing", detail: "Flexible itineraries adapted to your specific dates, travel party, and desired rhythm." },
     ],
   },

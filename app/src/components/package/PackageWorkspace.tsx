@@ -5,7 +5,7 @@ import InclusionsExclusions from "@/components/InclusionsExclusions";
 import InteractiveItinerary from "@/components/InteractiveItinerary";
 import PackageGallery from "@/components/PackageGallery";
 import RouteMap from "@/components/RouteMap";
-import type { GalleryImage } from "@/data/catalogue";
+import { canShowItinerary, publicDayCount, type GalleryImage } from "@/data/catalogue";
 import type { PackageViewModel } from "@/types/travel";
 
 type TabId = "overview" | "itinerary" | "map" | "inclusions";
@@ -16,7 +16,8 @@ interface PackageWorkspaceProps {
 }
 
 export default function PackageWorkspace({ pkg, gallery }: PackageWorkspaceProps) {
-  const dayCount = pkg.itinerary?.length ?? 0;
+  const dayCount = publicDayCount(pkg) ?? 0;
+  const itineraryAllowed = canShowItinerary(pkg);
   const destinations = pkg.region.filter((r) => r !== "India" && r !== "Nepal");
   const [activeTab, setActiveTab] = useState<TabId>("overview");
   const [galleryOpen, setGalleryOpen] = useState(false);
@@ -24,12 +25,16 @@ export default function PackageWorkspace({ pkg, gallery }: PackageWorkspaceProps
 
   const tabs: Array<{ id: TabId; label: string; short: string }> = [
     { id: "overview", label: "Overview & Highlights", short: "Overview" },
-    {
-      id: "itinerary",
-      label: dayCount > 0 ? `Day-by-Day (${dayCount} Days)` : "Day-by-Day",
-      short: "Itinerary",
-    },
-    { id: "map", label: "Interactive Map", short: "Map" },
+    ...(itineraryAllowed && pkg.itineraryVisible !== false
+      ? [
+          {
+            id: "itinerary" as const,
+            label: dayCount > 0 ? `Day-by-Day (${dayCount} Days)` : "Day-by-Day",
+            short: "Itinerary",
+          },
+          { id: "map" as const, label: "Interactive Map", short: "Map" },
+        ]
+      : []),
     { id: "inclusions", label: "Inclusions & Info", short: "Details" },
   ];
 
@@ -134,22 +139,8 @@ export default function PackageWorkspace({ pkg, gallery }: PackageWorkspaceProps
             )}
           </div>
 
-          <p className="mt-4 max-w-3xl font-display text-sm leading-relaxed text-white/65">{pkg.summary}</p>
-
-          {pkg.content_flags.length > 0 && (
-            <div className="mt-4 rounded-lg border border-amber-500/25 bg-amber-950/20 px-4 py-3">
-              <p className="font-display text-[11px] font-semibold uppercase tracking-[0.14em] text-amber-300">
-                Brochure transcription note
-              </p>
-              <ul className="mt-1.5 space-y-1">
-                {pkg.content_flags.map((flag) => (
-                  <li key={flag} className="font-display text-xs leading-relaxed text-amber-100/75">
-                    • {flag}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+          <p className="mt-4 max-w-3xl font-display text-sm leading-relaxed text-white/65">{pkg.shortDescription ?? pkg.summary}</p>
+          {pkg.fullDescription && <p className="mt-4 max-w-3xl whitespace-pre-line font-sans text-sm leading-relaxed text-white/70">{pkg.fullDescription}</p>}
 
           <div className="mt-5">
             <PackageGallery
@@ -191,7 +182,7 @@ export default function PackageWorkspace({ pkg, gallery }: PackageWorkspaceProps
           hidden={activeTab !== "itinerary"}
           className="animate-fade-in"
         >
-          <InteractiveItinerary itinerary={pkg.itinerary} />
+          <InteractiveItinerary itinerary={itineraryAllowed && pkg.itineraryVisible !== false ? pkg.itinerary : []} />
         </div>
 
         {/* Map */}
@@ -202,7 +193,7 @@ export default function PackageWorkspace({ pkg, gallery }: PackageWorkspaceProps
           hidden={activeTab !== "map"}
           className="animate-fade-in"
         >
-          <RouteMap pkg={pkg} />
+          {itineraryAllowed && <RouteMap pkg={pkg} />}
         </div>
 
         {/* Inclusions */}
@@ -213,12 +204,14 @@ export default function PackageWorkspace({ pkg, gallery }: PackageWorkspaceProps
           hidden={activeTab !== "inclusions"}
           className="animate-fade-in"
         >
-          <InclusionsExclusions
+          {(pkg.inclusionsVisible !== false || pkg.exclusionsVisible !== false) && <InclusionsExclusions
             inclusions={pkg.inclusions}
             exclusions={pkg.exclusions}
-            brochureCode={pkg.brochure_code}
-            sourcePage={pkg.source_page}
-          />
+            showInclusions={pkg.inclusionsVisible !== false}
+            showExclusions={pkg.exclusionsVisible !== false}
+          />}
+          {(pkg.startingPoint || pkg.endingPoint || pkg.transportation || pkg.accommodationDetails || pkg.importantInformation || pkg.cancellationPolicy) && <dl className="mt-5 grid gap-3 text-sm md:grid-cols-2">{pkg.startingPoint && <div><dt className="text-white/50">Starting point</dt><dd>{pkg.startingPoint}</dd></div>}{pkg.endingPoint && <div><dt className="text-white/50">Ending point</dt><dd>{pkg.endingPoint}</dd></div>}{pkg.transportation && <div><dt className="text-white/50">Transportation</dt><dd>{pkg.transportation}</dd></div>}{pkg.accommodationDetails && <div><dt className="text-white/50">Accommodation</dt><dd>{pkg.accommodationDetails}</dd></div>}{pkg.importantInformation && <div className="md:col-span-2"><dt className="text-white/50">Important information</dt><dd className="whitespace-pre-line">{pkg.importantInformation}</dd></div>}{pkg.cancellationPolicy && <div className="md:col-span-2"><dt className="text-white/50">Cancellation policy</dt><dd className="whitespace-pre-line">{pkg.cancellationPolicy}</dd></div>}</dl>}
+          {(pkg.faqs?.some((faq) => faq.visible !== false) ?? false) && <section className="mt-6"><h3 className="font-serif text-xl">Package FAQs</h3><div className="mt-3 space-y-2">{pkg.faqs?.filter((faq) => faq.visible !== false).map((faq) => <details key={faq.question} className="rounded border border-white/10 p-3"><summary>{faq.question}</summary><p className="mt-2 text-sm text-white/65">{faq.answer}</p></details>)}</div></section>}
         </div>
       </div>
     </div>

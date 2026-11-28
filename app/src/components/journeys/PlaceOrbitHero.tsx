@@ -5,13 +5,11 @@ import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
 import { prefersReducedMotion } from "@/lib/motion";
-import { cleanDuration, placeLine } from "@/lib/packageDisplay";
-import { getAllPackages } from "@/data/catalogue";
+import { placeLine } from "@/lib/packageDisplay";
+import { publicDurationLabel } from "@/data/catalogue";
 import { getHeroJourneyImage } from "@/data/heroJourneys";
 import type { ResolvedPlace } from "@/data/places";
 import type { PackageViewModel } from "@/types/travel";
-
-const allPackages = getAllPackages();
 
 interface PlaceOrbitHeroProps {
   /** Quick-filter chips under the search field. */
@@ -475,7 +473,7 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
                 href={`/packages/${pkg.slug}`}
                 data-orbit-card
                 className={`jy-orbit-card ${densityClass}`}
-                aria-label={`${pkg.title} — ${cleanDuration(pkg.duration)}, ${placeLine(pkg)}. Open the itinerary.`}
+                aria-label={`${pkg.title} — ${publicDurationLabel(pkg)}, ${placeLine(pkg)}. Open the itinerary.`}
               >
               <span className="jy-orbit-tilt" data-orbit-tilt>
                 <Image
@@ -490,7 +488,7 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
                 <span className="jy-orbit-veil" aria-hidden="true" />
                 <span className="jy-orbit-top" aria-hidden="true">
                   <span className="jy-orbit-rank">{String(index + 1).padStart(2, "0")}</span>
-                  <span className="jy-orbit-days">{cleanDuration(pkg.duration)}</span>
+                  <span className="jy-orbit-days">{publicDurationLabel(pkg)}</span>
                 </span>
                 <span className="jy-orbit-label">
                   <span className="jy-orbit-name">{pkg.title}</span>
@@ -507,7 +505,7 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
                 <span className="jy-orbit-caption-title">{pkg.title}</span>
                 <span className="jy-orbit-caption-meta">
                   <span>{pkg.category}</span>
-                  <span>{cleanDuration(pkg.duration)}</span>
+                  <span>{publicDurationLabel(pkg)}</span>
                 </span>
               </span>
             </Link>
@@ -562,7 +560,7 @@ export default function PlaceOrbitHero({ places, journeys }: PlaceOrbitHeroProps
               </Link>
             ))}
             <Link href="#catalogue" className="jy-chip">
-              All {allPackages.length} journeys
+              All journeys
             </Link>
           </div>
         </div>

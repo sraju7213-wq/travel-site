@@ -6,6 +6,7 @@ import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { pexels } from "@/data/catalogue";
+import type { CmsSection } from "@/types/cms";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -15,7 +16,7 @@ if (typeof window !== "undefined") {
  * Editorial block matching Wilderness Destinations TextPlusTwoImageModule
  * with opposing dual-image scroll parallax.
  */
-export default function ImpactSection() {
+export default function ImpactSection({ section }: { section?: CmsSection }) {
   const sectionRef = useRef<HTMLElement>(null);
   const img1Ref = useRef<HTMLDivElement>(null);
   const img2Ref = useRef<HTMLDivElement>(null);
@@ -100,7 +101,7 @@ export default function ImpactSection() {
               className="group relative mt-10 aspect-[4/5] overflow-hidden bg-charcoal shadow-2xl sm:mt-16"
             >
               <Image
-                src={pexels("15774210")}
+                src={section?.images?.[0]?.url || section?.image || pexels("15774210")}
                 alt="Jodhpur blue city and Mehrangarh Fort"
                 fill
                 sizes="(min-width: 1024px) 22vw, 45vw"
@@ -113,7 +114,7 @@ export default function ImpactSection() {
               className="group relative aspect-[4/5] overflow-hidden bg-charcoal shadow-2xl"
             >
               <Image
-                src={pexels("32132398")}
+                src={section?.images?.[1]?.url || pexels("32132398")}
                 alt="Himalayan mountain range and prayer flags in Nepal"
                 fill
                 sizes="(min-width: 1024px) 22vw, 45vw"
@@ -127,19 +128,19 @@ export default function ImpactSection() {
           <div ref={textRef} className="relative lg:order-1">
             <p className="mb-6 flex items-center gap-4 font-sans text-[11px] font-medium uppercase tracking-[0.28em] text-[var(--color-wild-orange)]"><span className="h-px w-10 bg-[var(--color-wild-orange)]" />Curated regional programmes</p>
             <h2 className="mb-7 max-w-xl font-serif text-4xl font-light leading-[1.08] tracking-normal text-white sm:text-5xl lg:text-[3.65rem]">
-              Travel deeper.<br /><span className="text-white/65">Learn along the way.</span>
+              {section?.heading ?? <>Travel deeper.<br /><span className="text-white/65">Learn along the way.</span></>}
             </h2>
             <p className="mb-5 max-w-lg font-serif text-xl font-light italic leading-relaxed text-white/85 md:text-2xl">
-              Special-interest and student expeditions across India and Nepal.
+              {section?.subheading ?? "Special-interest and student expeditions across India and Nepal."}
             </p>
             <p className="mb-9 max-w-lg font-sans text-base font-light leading-7 text-white/65">
-              All special-interest programmes are escorted by qualified team leaders. Every itinerary is drawn directly from our brochure archives and shaped with meticulous care around your travel season, party size and regional interests.
+              {section?.description ?? "All special-interest programmes are escorted by qualified team leaders. Every itinerary is drawn directly from our brochure archives and shaped with meticulous care around your travel season, party size and regional interests."}
             </p>
             <Link
-              href="/about"
+              href={section?.ctaPrimary?.href ?? "/about"}
               className="group inline-flex items-center gap-5 border-b border-white/35 pb-3 font-sans text-xs font-medium uppercase tracking-[0.2em] text-white transition-colors hover:border-[var(--color-wild-orange)] hover:text-[var(--color-wild-orange)]"
             >
-              <span>Discover our approach</span>
+              <span>{section?.ctaPrimary?.label ?? "Discover our approach"}</span>
               <span aria-hidden="true" className="text-lg transition-transform duration-300 group-hover:translate-x-1.5">
                 ↗
               </span>

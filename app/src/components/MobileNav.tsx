@@ -6,21 +6,15 @@ import Image from "next/image";
 import { useBodyOverflowLock } from "@/hooks/useBodyOverflowLock";
 import { getRecentSlugs, pushRecent, getPins } from "@/lib/menuStorage";
 import { NAV_GROUPS, DESTINATION_LINKS, type NavLink } from "@/lib/navigation";
-import { getAllPackages, getPackageCardImage } from "@/data/catalogue";
-import { cleanDuration } from "@/lib/packageDisplay";
+import { publicDurationLabel, getPackageCardImageForPackage } from "@/data/catalogue";
+import { useCms } from "@/components/cms/CmsProvider";
+import { safeCmsHref } from "@/lib/safeCmsHref";
 
 interface MobileNavProps {
   open: boolean;
   onClose: () => void;
 }
 
-/** Every journey, so the quick-jump box can find a package by name or code. */
-const PACKAGE_LINKS: NavLink[] = getAllPackages().map((pkg) => ({
-  label: pkg.title,
-  href: `/packages/${pkg.slug}`,
-  description: `${pkg.brochure_code} · ${cleanDuration(pkg.duration)}`,
-  image: getPackageCardImage(pkg.slug),
-}));
 
 type Entry = NavLink & { group: string };
 
@@ -41,6 +35,11 @@ type Entry = NavLink & { group: string };
  * focus returns to the menu button, and the page behind it cannot scroll.
  */
 export default function MobileNav({ open, onClose }: MobileNavProps) {
+  const { settings, packages, destinations } = useCms();
+  const cmsGroups = (settings.navigation.groups ?? []).filter((group) => group.visible !== false).map((group) => ({ id: group.id, label: group.label, note: group.note ?? "", links: group.links.filter((link) => link.visible !== false).map((link) => ({ ...link, label: link.label ?? "", href: link.href ?? "/" })) }));
+  const navGroups = cmsGroups.length ? cmsGroups : NAV_GROUPS;
+  const destinationLinks = destinations.length ? destinations.map((destination) => ({ label: destination.name, href: `/destinations/${destination.slug ?? ""}`, description: destination.shortDescription ?? destination.tagline ?? "", image: destination.heroImage || destination.image || "" })) : DESTINATION_LINKS;
+  const packageLinks = packages.map((pkg) => ({ label: pkg.title, href: `/packages/${pkg.slug}`, description: `${pkg.brochure_code} · ${publicDurationLabel(pkg)}`, image: getPackageCardImageForPackage(pkg) }));
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
   const [query, setQuery] = useState("");
   const [mounted, setMounted] = useState(false);
@@ -58,25 +57,25 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
   // Destinations is a desktop-only mega-menu; on mobile its links are reached
   // through quick-jump search instead, so the group is excluded from the drawer.
   const mobileGroups = useMemo(
-    () => NAV_GROUPS.filter((g) => g.id !== "destinations"),
-    [],
+    () => navGroups.filter((g) => g.id !== "destinations"),
+    [navGroups],
   );
 
   /** Company links are surfaced as their own rows (not behind a collapsible)
    *  so each option is directly reachable — see "separate its options". */
   const companyGroup = useMemo(
-    () => NAV_GROUPS.find((g) => g.id === "company"),
-    [],
+    () => navGroups.find((g) => g.id === "company"),
+    [navGroups],
   );
   const allEntries = useMemo<Entry[]>(
     () => [
-      ...DESTINATION_LINKS.map((link) => ({ ...link, group: "Destinations" })),
+      ...destinationLinks.map((link) => ({ ...link, group: "Destinations" })),
       ...mobileGroups.flatMap((group) =>
         group.links.map((link) => ({ ...link, group: group.label })),
       ),
-      ...PACKAGE_LINKS.map((link) => ({ ...link, group: "Journeys" })),
+      ...packageLinks.map((link) => ({ ...link, group: "Journeys" })),
     ],
-    [mobileGroups],
+    [mobileGroups, destinationLinks, packageLinks],
   );
 
   const entriesByHref = useMemo(
@@ -176,7 +175,7 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
       setRecentSlugs(getRecentSlugs());
       onClose();
     },
-    [onClose],
+    [onClose, setRecentSlugs],
   );
 
   const q = query.trim().toLowerCase();
@@ -258,18 +257,18 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
             href="/"
             onClick={onClose}
             className="shrink-0 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)]"
-            aria-label="India Nepal Travel Center — home"
+            aria-label={`${settings.branding.name || "Website"} — home`}
           >
-            <Image src="/logo.png" alt="India Nepal Travel Center" width={108} height={36} className="h-8 w-auto" priority />
+            <Image src={settings.branding.headerLogo || "/logo.png"} alt={settings.branding.headerLogoAlt || settings.branding.name || "Website"} width={108} height={36} className="h-8 w-auto" priority />
           </Link>
 
           <div className="flex shrink-0 items-center gap-1.5">
             <Link
-              href="/enquiry"
+              href={safeCmsHref(settings.navigation.headerCta?.href ?? "/enquiry")}
               onClick={onClose}
               className="group inline-flex min-h-[44px] items-center justify-center px-3.5 py-2 font-sans text-[10px] font-semibold uppercase tracking-[0.16em] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brass)] transition-all duration-200 hover:shadow-[0_0_16px_rgba(190,138,81,0.3)] active:scale-95"
             >
-            <span className="transition-transform duration-200 group-hover:translate-x-0.5">Enquire</span>
+            <span className="transition-transform duration-200 group-hover:translate-x-0.5">{settings.navigation.headerCta?.label ?? "Enquire"}</span>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="ml-1 shrink-0 opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100">
               <path d="m9 18 6-6-6-6" />
             </svg>

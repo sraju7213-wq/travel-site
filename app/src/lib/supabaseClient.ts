@@ -1,21 +1,14 @@
 import { createClient } from "@supabase/supabase-js";
+import { SUPABASE_PUBLISHABLE_KEY, SUPABASE_URL, isSupabaseConfigured } from "@/lib/supabaseConfig";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://vvmlthlguleysyhmkcfx.supabase.co";
-const supabaseAnonKey =
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ2bWx0aGxndWxleXN5aG1rY2Z4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM0MzI2MTQsImV4cCI6MjEwOTAwODYxNH0.yAgf8hEgpdrcHoIZAtwDDTqTtqBlQYHU5UyGB-jhkjw";
+export const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+  auth: { persistSession: false, autoRefreshToken: false },
+});
 
-export const isSupabaseConfigured = Boolean(
-  (process.env.NEXT_PUBLIC_SUPABASE_URL || supabaseUrl) &&
-  (process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || supabaseAnonKey)
-);
+export { isSupabaseConfigured, SUPABASE_PUBLISHABLE_KEY, SUPABASE_URL };
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
-
-export function getSupabaseAdmin() {
-  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!serviceRoleKey) {
-    return supabase;
-  }
-  return createClient(supabaseUrl, serviceRoleKey);
+// Public forms use insert-only RLS. There is deliberately no anonymous
+// service-role fallback. Administrator operations use a verified user session.
+export function getSupabaseAdmin(): never {
+  throw new Error("Use a server-verified administrator Supabase session; no service-role fallback is available.");
 }

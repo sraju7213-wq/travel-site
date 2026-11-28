@@ -1,4 +1,4 @@
-import { getAllPackages, getPackageCardImage } from "./catalogue";
+import { getAllPackages, getPackageCardImageForPackage } from "./catalogue";
 import type { PackageViewModel } from "@/types/travel";
 
 /**
@@ -43,15 +43,15 @@ export const HERO_JOURNEY_IMAGES: Record<string, string> = {
  * same package card image the rest of the site uses.
  */
 export function getHeroJourneyImage(pkg: PackageViewModel): string {
-  return HERO_JOURNEY_IMAGES[pkg.id] ?? getPackageCardImage(pkg.slug);
+  return HERO_JOURNEY_IMAGES[pkg.id] ?? getPackageCardImageForPackage(pkg);
 }
 
 /**
  * Resolve the marquee ids against the live catalogue. Unknown ids are
  * dropped, so editing the list never breaks the build.
  */
-export function getHeroJourneys(): PackageViewModel[] {
-  const byId = new Map(getAllPackages().map((pkg) => [pkg.id, pkg]));
+export function getHeroJourneys(packages: PackageViewModel[] = getAllPackages()): PackageViewModel[] {
+  const byId = new Map(packages.map((pkg) => [pkg.id, pkg]));
   return HERO_JOURNEY_IDS.map((id) => byId.get(id)).filter(
     (pkg): pkg is PackageViewModel => Boolean(pkg),
   );

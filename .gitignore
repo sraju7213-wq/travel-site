@@ -29,6 +29,7 @@ yarn-error.log*
 # Deploy + tool caches
 .vercel/
 .turbo/
+supabase/.temp/
 .kilo/
 .commandcode/
 .muxel/

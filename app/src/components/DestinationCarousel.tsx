@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { DESTINATIONS } from "@/data/siteContent";
+import { DESTINATIONS, type Destination } from "@/data/siteContent";
 import MagneticButton from "@/components/ui/MagneticButton";
 import { DURATION, EASE, prefersReducedMotion } from "@/lib/motion";
 
@@ -18,7 +18,7 @@ if (typeof window !== "undefined") {
  * Premium editorial destination carousel with immersive photography,
  * layered text overlays for guaranteed readability, and refined interactions.
  */
-export default function DestinationCarousel() {
+export default function DestinationCarousel({ destinations = DESTINATIONS }: { destinations?: Destination[] }) {
   const [active, setActive] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [scrollY, setScrollY] = useState(0);
@@ -31,12 +31,12 @@ export default function DestinationCarousel() {
   const touchStartX = useRef<number | null>(null);
   const touchStartY = useRef<number | null>(null);
 
-  const total = DESTINATIONS.length;
-  const current = DESTINATIONS[active];
+  const total = destinations.length;
+  const current = destinations[active] ?? destinations[0];
   const prevIndex = (active - 1 + total) % total;
   const nextIndex = (active + 1) % total;
-  const prevDest = DESTINATIONS[prevIndex];
-  const nextDest = DESTINATIONS[nextIndex];
+  const prevDest = destinations[prevIndex];
+  const nextDest = destinations[nextIndex];
 
   const goTo = useCallback(
     (index: number) => {
@@ -152,6 +152,7 @@ export default function DestinationCarousel() {
   }, [active]);
 
   const parallaxOffset = (scrollY * 0.04) % 40;
+  if (!current || !prevDest || !nextDest) return null;
 
   return (
     <section
@@ -193,7 +194,7 @@ export default function DestinationCarousel() {
           aria-label="Destination regions"
           className="scrollbar-hide mb-8 sm:mb-12 flex items-center justify-start sm:justify-center gap-x-5 sm:gap-x-8 md:gap-x-10 overflow-x-auto overscroll-x-contain scroll-snap-x-mandatory pb-3 border-b border-white/20"
         >
-          {DESTINATIONS.map((d, i) => {
+          {destinations.map((d, i) => {
             const isActive = active === i;
             return (
               <button
@@ -237,7 +238,7 @@ export default function DestinationCarousel() {
             aria-label={`Explore ${current.name} destination`}
             className="group block relative aspect-[16/10] sm:aspect-[16/9] md:aspect-[16/9] w-full overflow-hidden shadow-2xl transition-all duration-700 will-change-transform"
           >
-            {DESTINATIONS.map((dest, i) => (
+            {destinations.map((dest, i) => (
               <div
                 key={dest.name}
                 aria-hidden={active !== i}
@@ -294,7 +295,7 @@ export default function DestinationCarousel() {
 
             {/* Dot pagination — mobile only, easy tap targets */}
             <div className="mt-5 flex items-center justify-center gap-2 md:hidden" role="group" aria-label="Choose destination">
-              {DESTINATIONS.map((d, i) => (
+              {destinations.map((d, i) => (
                 <button
                   key={d.name}
                   type="button"

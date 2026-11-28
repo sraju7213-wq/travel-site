@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { validateNewsletter, type NewsletterPayload } from "@/lib/enquiryValidation";
-import { getSupabaseAdmin } from "@/lib/supabaseClient";
+import { supabase } from "@/lib/supabaseClient";
 
 export async function POST(request: Request) {
   let body: Partial<NewsletterPayload>;
@@ -30,21 +30,17 @@ export async function POST(request: Request) {
 
   // 1. Direct recording in Supabase newsletters table
   try {
-    const supabase = getSupabaseAdmin();
     const { error: dbError } = await supabase
       .from("newsletters")
-      .upsert(
-        {
-          first_name: body.firstName?.trim() || null,
-          surname: body.surname?.trim() || null,
-          email: body.email?.trim().toLowerCase(),
-          country: body.country?.trim() || null,
-          consent: true,
-        },
-        { onConflict: "email" }
-      );
+      .insert({
+        first_name: body.firstName?.trim() || null,
+        surname: body.surname?.trim() || null,
+        email: body.email?.trim().toLowerCase(),
+        country: body.country?.trim() || null,
+        consent: true,
+      });
 
-    if (!dbError) {
+    if (!dbError || dbError.code === "23505") {
       return NextResponse.json({ ok: true });
     }
   } catch (err) {

@@ -4,8 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRef } from "react";
 import type { PackageViewModel } from "@/types/travel";
-import { getPackageCardImage } from "@/data/catalogue";
-import { cleanDuration, placeLine } from "@/lib/packageDisplay";
+import { getPackageCardImage, publicDurationLabel } from "@/data/catalogue";
+import { placeLine } from "@/lib/packageDisplay";
 
 interface SeasonRailProps {
   packages: PackageViewModel[];
@@ -98,7 +98,7 @@ export default function SeasonRail({ packages }: SeasonRailProps) {
                   <span className="jy-spot-rank" aria-hidden="true">
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  <span className="jy-spot-duration">{cleanDuration(pkg.duration)}</span>
+                  <span className="jy-spot-duration">{publicDurationLabel(pkg)}</span>
                   <div className="jy-spot-info">
                     <div className="min-w-0">
                       <h3 className="jy-spot-name">{pkg.title}</h3>

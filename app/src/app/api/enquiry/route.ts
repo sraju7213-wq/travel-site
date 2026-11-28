@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { validateEnquiry, type EnquiryPayload } from "@/lib/enquiryValidation";
-import { getPackageBySlug } from "@/data/catalogue";
-import { getSupabaseAdmin, isSupabaseConfigured } from "@/lib/supabaseClient";
+import { getPackageBySlugCms } from "@/lib/cmsDocuments";
+import { isSupabaseConfigured, supabase } from "@/lib/supabaseClient";
 import { BRAND } from "@/data/brandConfig";
 
 const DEDUPE_WINDOW_MS = 10 * 60 * 1000; // 10 minutes
@@ -102,7 +102,7 @@ export async function POST(request: Request) {
   }
 
   const packageSlug = typeof body.packageSlug === "string" ? body.packageSlug : null;
-  const pkg = packageSlug ? getPackageBySlug(packageSlug) : undefined;
+  const pkg = packageSlug ? await getPackageBySlugCms(packageSlug) : undefined;
   const submissionId = typeof body.submissionId === "string" ? body.submissionId : "";
 
   // 6. Deduplication check
@@ -116,8 +116,7 @@ export async function POST(request: Request) {
   // 7. Secure database storage via Supabase (if configured)
   if (isSupabaseConfigured) {
     try {
-      const supabase = getSupabaseAdmin();
-      const { data: record, error: dbError } = await supabase
+      const { error: dbError } = await supabase
         .from("enquiries")
         .insert({
           full_name: body.fullName?.trim(),
@@ -134,15 +133,13 @@ export async function POST(request: Request) {
           consent: body.consent !== false,
           submission_id: submissionId || null,
           status: "New",
-        })
-        .select("id")
-        .single();
+        });
 
-      if (!dbError && record) {
+      if (!dbError) {
         return NextResponse.json({
           ok: true,
           code: "enquiry_recorded",
-          id: record.id,
+          id: submissionId || undefined,
           message: "Your enquiry has been received and recorded.",
         });
       }

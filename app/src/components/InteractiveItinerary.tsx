@@ -12,7 +12,14 @@ import {
 interface ItineraryDay {
   day?: number | string;
   title?: string;
+  location?: string;
   description?: string;
+  activities?: string[];
+  meals?: string;
+  accommodation?: string;
+  images?: Array<{ url: string; alt?: string; caption?: string; visible?: boolean }>;
+  notes?: string;
+  visible?: boolean;
   stops?: string[];
   transfers?: string;
 }
@@ -96,7 +103,7 @@ export default function InteractiveItinerary({
   eyebrow = "Curated Daily Schedule",
   heading,
 }: InteractiveItineraryProps) {
-  const days = useMemo(() => itinerary ?? [], [itinerary]);
+  const days = useMemo(() => (itinerary ?? []).filter((day) => day.visible !== false), [itinerary]);
   const [expandedDays, setExpandedDays] = useState<Set<number>>(() => new Set());
 
   const allExpanded = days.length > 0 && expandedDays.size === days.length;
@@ -251,6 +258,9 @@ export default function InteractiveItinerary({
                     <span>{entry.transfers}</span>
                   </p>
                 )}
+                {(entry.location || entry.meals || entry.accommodation || entry.notes) && <dl className="mt-3 grid gap-2 text-xs text-white/65 sm:grid-cols-2">{entry.location && <div><dt className="text-white/45">Location</dt><dd>{entry.location}</dd></div>}{entry.meals && <div><dt className="text-white/45">Meals</dt><dd>{entry.meals}</dd></div>}{entry.accommodation && <div><dt className="text-white/45">Accommodation</dt><dd>{entry.accommodation}</dd></div>}{entry.notes && <div className="sm:col-span-2"><dt className="text-white/45">Notes</dt><dd>{entry.notes}</dd></div>}</dl>}
+                {entry.activities?.length ? <ul className="mt-3 list-disc space-y-1 pl-5 text-xs text-white/65">{entry.activities.map((activity) => <li key={activity}>{activity}</li>)}</ul> : null}
+                {entry.images?.filter((image) => image.visible !== false && image.url).length ? <div className="mt-3 grid gap-2 sm:grid-cols-2">{entry.images?.filter((image) => image.visible !== false && image.url).map((image, index) => <figure key={`${image.url}-${index}`}><img src={image.url} alt={image.alt ?? ""} className="aspect-[4/3] w-full rounded object-cover" />{image.caption && <figcaption className="mt-1 text-xs text-white/50">{image.caption}</figcaption>}</figure>)}</div> : null}
                   </div>
                 </div>
               </div>

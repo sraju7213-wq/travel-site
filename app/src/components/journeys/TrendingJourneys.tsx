@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { cleanDuration, placeLine } from "@/lib/packageDisplay";
-import { getPackageCardImage } from "@/data/catalogue";
+import { placeLine } from "@/lib/packageDisplay";
+import { difficultyBadge, getPackageCardImage, publicDurationLabel } from "@/data/catalogue";
 import type { PackageViewModel } from "@/types/travel";
 
 interface CoverflowProps {
@@ -12,17 +12,6 @@ interface CoverflowProps {
  * A "verdict" label derived from the journey's own difficulty rating in the
  * brochure — nothing invented, only the printed grade.
  */
-function verdict(pkg: PackageViewModel): { label: string; tone: string } | null {
-  const raw = pkg.difficulty?.toLowerCase() ?? "";
-  if (!raw) return null;
-  if (raw.includes("easy")) return { label: "Easy going", tone: "go" };
-  if (raw.includes("moderate")) return { label: "Moderate", tone: "timepass" };
-  if (raw.includes("demanding") || raw.includes("strenuous")) {
-    return { label: "Demanding", tone: "skip" };
-  }
-  return { label: pkg.difficulty?.split("(")[0].trim() ?? "Open level", tone: "muted" };
-}
-
 /**
  * TrendingJourneys
  * ---------------
@@ -40,7 +29,7 @@ export default function TrendingJourneys({ packages }: CoverflowProps) {
       >
         {/* Primary set */}
         {packages.map((pkg, index) => {
-          const badge = verdict(pkg);
+          const badge = difficultyBadge(pkg);
           return (
             <div key={`${pkg.id}-primary`} className="jy-coverflow-slide">
               <article className="jy-coverflow-card" data-tilt>
@@ -68,7 +57,7 @@ export default function TrendingJourneys({ packages }: CoverflowProps) {
                     <h3 className="jy-coverflow-title">{pkg.title}</h3>
                     <div className="jy-coverflow-meta">
                       <span className="font-mono text-[0.8125rem] text-white/70">
-                        {placeLine(pkg)} · {cleanDuration(pkg.duration)}
+                        {placeLine(pkg)} · {publicDurationLabel(pkg)}
                       </span>
                       {badge && (
                         <span className={`jy-pill jy-pill--${badge.tone}`}>{badge.label}</span>
@@ -98,7 +87,7 @@ export default function TrendingJourneys({ packages }: CoverflowProps) {
 
         {/* Duplicate set for 50% infinite translation loop */}
         {packages.map((pkg, index) => {
-          const badge = verdict(pkg);
+          const badge = difficultyBadge(pkg);
           return (
             <div
               key={`${pkg.id}-duplicate`}
@@ -131,7 +120,7 @@ export default function TrendingJourneys({ packages }: CoverflowProps) {
                     <h3 className="jy-coverflow-title">{pkg.title}</h3>
                     <div className="jy-coverflow-meta">
                       <span className="font-mono text-[0.8125rem] text-white/70">
-                        {placeLine(pkg)} · {cleanDuration(pkg.duration)}
+                        {placeLine(pkg)} · {publicDurationLabel(pkg)}
                       </span>
                       {badge && (
                         <span className={`jy-pill jy-pill--${badge.tone}`}>{badge.label}</span>

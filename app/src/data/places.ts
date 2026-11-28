@@ -153,8 +153,7 @@ export interface ResolvedPlace extends PlaceFeature {
 }
 
 /** Catalogue journeys that pass through a place, keyed by place name. */
-export function getJourneysByPlace(): Record<string, PackageViewModel[]> {
-  const packages = getAllPackages();
+export function getJourneysByPlace(packages: PackageViewModel[] = getAllPackages()): Record<string, PackageViewModel[]> {
   const grouped: Record<string, PackageViewModel[]> = {};
   for (const place of PLACE_FEATURES) {
     grouped[place.name] = packages.filter((pkg) =>
@@ -166,8 +165,7 @@ export function getJourneysByPlace(): Record<string, PackageViewModel[]> {
   return grouped;
 }
 
-export function getPlaces(): ResolvedPlace[] {
-  const packages = getAllPackages();
+export function getPlaces(packages: PackageViewModel[] = getAllPackages()): ResolvedPlace[] {
   return PLACE_FEATURES.map((place) => {
     const journeys = packages.filter((pkg) =>
       pkg.region.some((region) =>

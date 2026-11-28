@@ -5,6 +5,8 @@ import PageHero from "@/components/ui/PageHero";
 import PhotoFrame from "@/components/ui/PhotoFrame";
 import Reveal from "@/components/ui/Reveal";
 import { BRAND } from "@/data/brandConfig";
+import { draftMode } from "next/headers";
+import { hasCmsSections, renderCmsBuiltIn, getCmsBuiltIn } from "@/components/cms/CmsBuiltInPage";
 
 export const metadata = {
   title: `About Us — ${BRAND.name} & ${BRAND.operatorName}`,
@@ -83,13 +85,15 @@ const PROCESS_STEPS = [
   },
   {
     step: "04",
-    title: "Guaranteed departures*",
+    title: "Small groups or solo",
     description:
-      "Departures operate without minimum group quotas for solo travellers or small private groups up to 15, subject to mountain weather safety and pass access.",
+      "The brochure describes small groups of up to 15 or solo travellers, subject to mountain weather safety and pass access.",
   },
 ];
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const { isEnabled: preview } = await draftMode(); const cmsPage = await getCmsBuiltIn("about", preview);
+  if (cmsPage && hasCmsSections(cmsPage, preview)) return <PageShell mainClassName="">{await renderCmsBuiltIn(cmsPage, preview)}</PageShell>;
   return (
     <PageShell mainClassName="">
       {/* Hero */}
@@ -251,7 +255,6 @@ export default function AboutPage() {
                 />
                 <div className="mt-5">
                   <h4 className="font-serif text-2xl font-light text-white transition-colors duration-500 group-hover:text-[var(--color-brass-soft)]">Yousuf Baktoo</h4>
-                  <p className="mt-3 font-sans text-sm font-light leading-relaxed text-white/65">Mentioned in the brochure&apos;s founders passage as supervising specialist tours.</p>
                 </div>
               </div>
 
@@ -266,7 +269,6 @@ export default function AboutPage() {
                 />
                 <div className="mt-5">
                   <h4 className="font-serif text-2xl font-light text-white transition-colors duration-500 group-hover:text-[var(--color-brass-soft)]">Imtiaz Ahmad</h4>
-                  <p className="mt-3 font-sans text-sm font-light leading-relaxed text-white/65">Listed in the brochure&apos;s team profiles.</p>
                 </div>
               </div>
 
@@ -281,7 +283,6 @@ export default function AboutPage() {
                 />
                 <div className="mt-5">
                   <h4 className="font-serif text-2xl font-light text-white transition-colors duration-500 group-hover:text-[var(--color-brass-soft)]">Hashim</h4>
-                  <p className="mt-3 font-sans text-sm font-light leading-relaxed text-white/65">Listed in the brochure&apos;s team profiles.</p>
                 </div>
               </div>
             </Reveal>
@@ -298,11 +299,6 @@ export default function AboutPage() {
                 of up to 15 or as a solo traveller. The itineraries in this brochure outline what you can
                 expect; detailed information is available on request.
               </blockquote>
-              <figcaption className="mt-8 flex items-center justify-center gap-4 font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--color-wild-orange)]">
-                <span aria-hidden="true" className="h-px w-8 bg-[var(--color-wild-orange)]/60" />
-                &mdash; Baktoo family archives
-                <span aria-hidden="true" className="h-px w-8 bg-[var(--color-wild-orange)]/60" />
-              </figcaption>
             </figure>
           </Reveal>
         </Container>
@@ -369,8 +365,8 @@ export default function AboutPage() {
               <span className="block text-white/55">first morning on the trail</span>
             </h2>
             <p className="mt-6 font-sans text-sm font-light leading-relaxed text-white/70 md:text-base">
-              Every journey can be tailored to your dates, party size and interests. All tours are guaranteed
-              to depart with a small group of up to 15, or as a solo traveller; detailed itineraries are
+              Every journey can be tailored to your dates, party size and interests. The brochure
+              describes small groups of up to 15 or solo itineraries; detailed itineraries are
               prepared on request.
             </p>
           </Reveal>

@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { PackageViewModel } from "@/types/travel";
-import { getPackageCardImage } from "@/data/catalogue";
-import { cleanDuration, placeLine } from "@/lib/packageDisplay";
+import { difficultyBadge, getPackageCardImage, publicDurationLabel } from "@/data/catalogue";
+import { placeLine } from "@/lib/packageDisplay";
 
 interface PosterRailProps {
   packages: PackageViewModel[];
@@ -11,17 +11,6 @@ interface PosterRailProps {
   intro?: string;
   actionHref?: string;
   id: string;
-}
-
-function verdict(pkg: PackageViewModel): { label: string; tone: string } | null {
-  const raw = pkg.difficulty?.toLowerCase() ?? "";
-  if (!raw) return null;
-  if (raw.includes("easy")) return { label: "Easy going", tone: "go" };
-  if (raw.includes("moderate")) return { label: "Moderate", tone: "timepass" };
-  if (raw.includes("demanding") || raw.includes("strenuous")) {
-    return { label: "Demanding", tone: "skip" };
-  }
-  return { label: pkg.difficulty?.split("(")[0].trim() ?? "Open level", tone: "muted" };
 }
 
 /**
@@ -67,7 +56,7 @@ export default function PosterRail({
 
       <div className="jy-rail">
         {packages.map((pkg, index) => {
-          const badge = verdict(pkg);
+          const badge = difficultyBadge(pkg);
           return (
             <article className="jy-rail-card group" key={pkg.id}>
               <Link href={`/packages/${pkg.slug}`} aria-label={`${pkg.title} — view journey`}>
@@ -85,7 +74,7 @@ export default function PosterRail({
                   <span className="jy-rail-number" aria-hidden="true">
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  <span className="jy-rail-chip">{cleanDuration(pkg.duration)}</span>
+                  <span className="jy-rail-chip">{publicDurationLabel(pkg)}</span>
                   <span className="jy-rail-go" aria-hidden="true">
                     ↗
                   </span>

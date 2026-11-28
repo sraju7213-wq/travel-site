@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "images.pexels.com",
       },
+      {
+        protocol: "https",
+        hostname: "**.supabase.co",
+      },
     ],
     formats: ["image/avif", "image/webp"],
     // Smaller steps mean phones request 320/480w instead of over-fetching 640w.

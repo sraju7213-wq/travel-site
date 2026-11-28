@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { PackageViewModel } from "@/types/travel";
-import { pexels } from "@/data/catalogue";
+import { pexels, publicDurationLabel } from "@/data/catalogue";
 
 interface HouseboatJourneysProps {
   packages: PackageViewModel[];
@@ -74,7 +74,7 @@ export default function HouseboatJourneys({ packages }: HouseboatJourneysProps) 
                     {pkg.region.filter((r) => r !== "India" && r !== "Nepal").join(" · ") || pkg.primaryRegion}
                   </span>
                   <span className="mt-4 flex items-center justify-between border-t border-white/10 pt-3 font-sans text-[10px] uppercase tracking-[0.18em] text-white/60">
-                    <span>{pkg.duration}</span>
+                    <span>{publicDurationLabel(pkg)}</span>
                     <span
                       aria-hidden="true"
                       className="transition-transform duration-300 group-hover:translate-x-1 group-hover:text-[var(--color-wild-orange)]"

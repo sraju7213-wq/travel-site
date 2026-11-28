@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Container from "@/components/Container";
 import EnquireCta from "@/components/package/EnquireCta";
-import { getPackageCardImage } from "@/data/catalogue";
+import { getPackageCardImageForPackage, publicDifficulty, publicDurationLabel } from "@/data/catalogue";
 import type { PackageViewModel } from "@/types/travel";
 
 interface PackageHeroProps {
@@ -27,7 +27,7 @@ export default function PackageHero({ pkg }: PackageHeroProps) {
   const destinations = pkg.region.filter((r) => r !== "India" && r !== "Nepal");
 
   // Use the shared per-package image mapping for the hero photograph.
-  const heroSrc = getPackageCardImage(pkg.slug);
+  const heroSrc = getPackageCardImageForPackage(pkg);
 
   return (
     <section
@@ -35,7 +35,7 @@ export default function PackageHero({ pkg }: PackageHeroProps) {
     >
       {/* Background Photography with cinematic Ken Burns settle */}
       <div className="pkg-hero-photo absolute inset-0 pointer-events-none will-change-transform">
-        <Image
+        {heroSrc ? <Image
           src={heroSrc}
           alt={pkg.title}
           fill
@@ -43,7 +43,7 @@ export default function PackageHero({ pkg }: PackageHeroProps) {
           quality={90}
           sizes="100vw"
           className="object-cover object-center"
-        />
+        /> : null}
         {/* Layered cinematic atmospheric gradients */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#0C1617] via-[#0C1617]/80 to-[#0C1617]/50" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0C1617]/90 via-[#0C1617]/30 to-[#0C1617]/90" />
@@ -93,7 +93,7 @@ export default function PackageHero({ pkg }: PackageHeroProps) {
         <div className="flex flex-col gap-5 sm:gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="min-w-0 max-w-3xl">
             <p className="pkg-hero-rise pkg-hero-d2 mb-1.5 font-display text-[10px] font-semibold uppercase tracking-[0.2em] text-brass sm:text-xs sm:tracking-[0.25em]">
-              {pkg.category} · {pkg.difficulty ?? "Curated Expedition"}
+              {pkg.category} · {publicDifficulty(pkg) ?? "Curated Expedition"}
             </p>
 
             <h1 className="pkg-hero-rise pkg-hero-d3 font-serif text-2xl font-light leading-tight tracking-tight text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.8)] sm:text-4xl lg:text-5xl">
@@ -114,7 +114,7 @@ export default function PackageHero({ pkg }: PackageHeroProps) {
                   Duration
                 </span>
                 <span className="font-display text-xs font-semibold text-white sm:mt-0.5 sm:text-sm">
-                  {pkg.duration}
+                  {publicDurationLabel(pkg)}
                 </span>
               </div>
 

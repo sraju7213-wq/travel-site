@@ -9,7 +9,7 @@ import {
   type EnquiryPayload,
 } from "@/lib/enquiryValidation";
 import { BRAND } from "@/data/brandConfig";
-import { getPackageCardImage, pexels } from "@/data/catalogue";
+// Package imagery is supplied by the server from published CMS media.
 import ListboxSelect, { type ListboxOption } from "@/components/ui/ListboxSelect";
 
 export interface PackageOption {
@@ -18,6 +18,7 @@ export interface PackageOption {
   code: string;
   duration: string;
   category: string;
+  image?: string;
 }
 
 const CUSTOM = "__custom__";
@@ -250,12 +251,7 @@ export default function EnquiryForm({
           {chosen && (
             <div className="mt-8 rounded-[1rem] border border-white/10 bg-white/5 p-5 text-left flex items-center gap-4">
               <div className="relative h-16 w-16 rounded-image overflow-hidden flex-shrink-0 bg-charcoal">
-                <Image
-                  src={getPackageCardImage(chosen.slug)}
-                  alt={chosen.title}
-                  fill
-                  className="object-cover"
-                />
+                {chosen.image ? <Image src={chosen.image} alt={chosen.title} fill className="object-cover" /> : null}
               </div>
               <div>
                 <p className="text-xs font-display uppercase tracking-wider text-brass font-semibold">
@@ -299,13 +295,7 @@ export default function EnquiryForm({
           {/* Dynamic Journey Card */}
           <div className="overflow-hidden rounded-[1.25rem] border border-white/10 bg-[#132325] shadow-xl transition-all duration-300">
             <div className="relative aspect-[16/10] overflow-hidden bg-charcoal">
-              <Image
-                src={chosen ? getPackageCardImage(chosen.slug) : pexels("27593915")}
-                alt={chosen ? chosen.title : "Himalayan landscape"}
-                fill
-                sizes="(min-width: 1024px) 40vw, 100vw"
-                className="object-cover transition-transform duration-700 hover:scale-105"
-              />
+              {chosen?.image ? <Image src={chosen.image} alt={chosen.title} fill sizes="(min-width: 1024px) 40vw, 100vw" className="object-cover transition-transform duration-700 hover:scale-105" /> : null}
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
               <div className="absolute inset-x-5 bottom-4 text-white">
                 <span className="text-[0.65rem] font-display font-semibold uppercase tracking-[0.25em] text-brass block mb-1">
@@ -387,37 +377,6 @@ export default function EnquiryForm({
         {/* Right Column — Modern Form Card */}
         <div className="lg:col-span-7">
           <div className="rounded-[1.5rem] border border-white/10 bg-[#132325] p-7 sm:p-10 shadow-2xl text-white">
-            {/* System Status Banner */}
-            {!configured ? (
-              <div
-                role="status"
-                className="mb-8 rounded-image border border-amber-500/40 bg-amber-500/10 p-5 text-white"
-              >
-                <div className="flex items-start gap-3">
-                  <span className="text-amber-400 text-xl leading-none mt-0.5">ℹ️</span>
-                  <div>
-                    <h2 className="font-accent text-xs font-semibold uppercase tracking-wider text-amber-300 mb-1">
-                      Online Intake System Pending Activation
-                    </h2>
-                    <p className="font-sans text-xs leading-relaxed text-white/80">
-                      Online enquiry submission is currently inactive while backend intake systems are being finalized. Form inputs are disabled so that no personal contact data is collected or stored prematurely. To discuss an itinerary, please contact your travel agent directly quoting the journey code.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div className="mb-6 flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="font-accent text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-400">
-                  Concierge Intake Active
-                </span>
-                <span className="text-white/60">&bull;</span>
-                <span className="font-sans text-xs text-white/70">
-                  Encrypted transmission directly to reservations desk
-                </span>
-              </div>
-            )}
-
             {status === "failed" && statusMessage && (
               <div
                 ref={errorSummaryRef}

@@ -97,12 +97,22 @@
 }
 
 @layer components {
+  h1 { font-size: var(--font-heading-size, 3rem); }
+  .rounded-card { border-radius: var(--radius-card, 0.75rem); }
+  .rounded-button { border-radius: var(--radius-button, 0px); }
+  .rounded-image { border-radius: var(--radius-image, 0.5rem); }
   /* Primary button - Wilderness orange with ink text (7.3:1 on the accent) */
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-none border border-transparent px-6 py-3 font-accent text-xs font-semibold uppercase tracking-[0.24em] text-[#0C1617] bg-[var(--color-wild-orange)] hover:bg-[var(--color-wild-orange-hover)] hover:text-[#0C1617] transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-wild-orange)] focus-visible:ring-offset-2 active:scale-95 cursor-pointer;
+    @apply inline-flex items-center justify-center gap-2 border px-6 py-3 font-accent text-xs font-semibold uppercase tracking-[0.24em] transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-95 cursor-pointer;
+    border-radius: var(--radius-button, 0px);
+    border-width: var(--cms-button-border-width, 1px);
+    background-color: var(--cms-button-background, var(--color-wild-orange));
+    color: var(--cms-button-text, #0C1617);
+    --tw-ring-color: var(--color-wild-orange);
     box-shadow: 0 8px 20px -4px rgba(212, 147, 104, 0.2);
   }
   .btn-primary:hover {
+    background-color: var(--cms-button-hover, var(--color-wild-orange-hover));
     box-shadow: 0 12px 28px -4px rgba(212, 147, 104, 0.32);
   }
   
@@ -126,9 +136,10 @@
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    border: 1px solid var(--color-brass);
-    background: var(--color-wild-dark);
-    color: #fff;
+    border: var(--cms-button-border-width, 1px) solid var(--cms-button-background, var(--color-brass));
+    background: var(--cms-button-background, var(--color-wild-dark));
+    color: var(--cms-button-text, #fff);
+    border-radius: var(--radius-button, 0px);
     box-shadow: 0 6px 24px 0 rgba(0, 0, 0, 0.2);
     cursor: pointer;
     transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
@@ -139,7 +150,7 @@
     inset: 0 auto 0 0;
     width: 0;
     height: 100%;
-    background: var(--color-brass);
+    background: var(--cms-button-hover, var(--cms-button-background, var(--color-brass)));
     z-index: 0;
     transition: width 0.4s ease-in-out;
   }
@@ -157,7 +168,7 @@
   .enquire-fill:hover > svg,
   .enquire-fill:focus-visible > span,
   .enquire-fill:focus-visible > svg {
-    color: #0C1617;
+    color: var(--cms-button-text, #0C1617);
   }
   .enquire-fill:hover > span:first-child,
   .enquire-fill:hover > svg,

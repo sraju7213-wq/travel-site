@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { EXPERIENCES } from "@/data/siteContent";
+import { EXPERIENCES, type Experience } from "@/data/siteContent";
 import { DURATION, EASE, prefersReducedMotion } from "@/lib/motion";
 
 if (typeof window !== "undefined") {
@@ -62,11 +62,11 @@ function ExperienceCircleImage({ src, alt }: { src: string; alt: string }) {
   );
 }
 
-export default function ExperienceCarousel() {
+export default function ExperienceCarousel({ experiences = EXPERIENCES }: { experiences?: Experience[] }) {
   const trackRef = useRef<HTMLUListElement>(null);
 
   // Duplicating experiences ensures a 100% seamless infinite scroll loop with no visual jump
-  const duplicatedExperiences = [...EXPERIENCES, ...EXPERIENCES];
+  const duplicatedExperiences = [...experiences, ...experiences];
 
   // The track drifts a little slower than the raw marquee speed and eases to
   // a stop when the visitor hovers, so the motion never fights the pointer.

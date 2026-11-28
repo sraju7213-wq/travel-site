@@ -9,7 +9,7 @@ import CardViewSwitcher, { type CardViewMode } from "./ui/CardViewSwitcher";
 import ListboxSelect, { type ListboxOption } from "./ui/ListboxSelect";
 import { ACTIVITY_TAGS, activityLabel, packageHasActivity } from "@/lib/activities";
 import { useBodyOverflowLock } from "@/hooks/useBodyOverflowLock";
-import { CATEGORIES, type PackageViewModel } from "@/types/travel";
+import type { PackageViewModel } from "@/types/travel";
 
 interface FilterState {
   q: string;
@@ -31,6 +31,7 @@ const DURATION_BUCKETS = [
 ];
 
 function parseDays(durationStr: string): number {
+  if (!durationStr) return 0;
   const nightMatch = durationStr.match(/(\d+)\s*nights?/i);
   if (nightMatch) return parseInt(nightMatch[1], 10) + 1;
   const dayMatch = durationStr.match(/(\d+)\s*days?/i);
@@ -129,7 +130,7 @@ export default function SearchAndFilters({
 
   // Region options sorted by package presence
   const regions = useMemo(() => {
-    const all = getAllRegions();
+    const all = getAllRegions(packages);
     return all.sort((a, b) => {
       const countA = packages.filter((p) => p.region.includes(a)).length;
       const countB = packages.filter((p) => p.region.includes(b)).length;
@@ -140,14 +141,13 @@ export default function SearchAndFilters({
   // Listbox options: keep the trigger label clean and move counts into `meta`.
   const regionOptions = useMemo<ListboxOption[]>(
     () => [
-      { value: ALL, label: "All Regions", meta: `${packages.length} journeys` },
+      { value: ALL, label: "All Regions" },
       ...regions.map((r) => ({
         value: r,
         label: r,
-        meta: `${packages.filter((p) => p.region.includes(r)).length} journeys`,
       })),
     ],
-    [packages, regions]
+    [regions]
   );
 
   const activityOptions = useMemo<ListboxOption[]>(
@@ -203,9 +203,11 @@ export default function SearchAndFilters({
 
       let matchesDuration = true;
       if (state.duration !== ALL) {
-        const days = parseDays(pkg.duration);
+        const days = parseDays(String(pkg.durationDays ?? pkg.duration));
         const bucket = DURATION_BUCKETS.find((b) => b.value === state.duration);
-        if (bucket && bucket.min !== undefined && bucket.max !== undefined) {
+        if (days === 0) {
+          matchesDuration = false;
+        } else if (bucket && bucket.min !== undefined && bucket.max !== undefined) {
           matchesDuration = days >= bucket.min && days <= bucket.max;
         } else {
           matchesDuration = pkg.duration === state.duration;
@@ -227,9 +229,9 @@ export default function SearchAndFilters({
     return [...filtered].sort((a, b) => {
       switch (state.sort) {
         case "duration-short":
-          return parseDays(a.duration) - parseDays(b.duration);
+          return parseDays(String(a.durationDays ?? a.duration)) - parseDays(String(b.durationDays ?? b.duration));
         case "duration-long":
-          return parseDays(b.duration) - parseDays(a.duration);
+          return parseDays(String(b.durationDays ?? b.duration)) - parseDays(String(a.durationDays ?? a.duration));
         default:
           return a.title.localeCompare(b.title);
       }
@@ -410,15 +412,9 @@ export default function SearchAndFilters({
               }`}
             >
               <span>All Journeys</span>
-              <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${
-                state.category === ALL ? "bg-black/25 text-[#0C1617]" : "bg-black/30 text-white/85"
-              }`}>
-                {packages.length}
-              </span>
             </button>
 
-            {CATEGORIES.map((cat) => {
-              const count = packages.filter((p) => p.category === cat).length;
+            {Array.from(new Set(packages.map((pkg) => pkg.category).filter(Boolean))).sort().map((cat) => {
               const isSelected = state.category === cat;
               return (
                 <button
@@ -432,11 +428,6 @@ export default function SearchAndFilters({
                   }`}
                 >
                   <span>{cat}</span>
-                  <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${
-                    isSelected ? "bg-black/25 text-[#0C1617]" : "bg-black/30 text-white/85"
-                  }`}>
-                    {count}
-                  </span>
                 </button>
               );
             })}
@@ -483,13 +474,8 @@ export default function SearchAndFilters({
             <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
           </span>
           <span className="font-sans text-sm font-medium text-white/80">
-            <strong className="text-white font-semibold">{sorted.length}</strong> {sorted.length === 1 ? "journey" : "journeys"} available
+            Browse journeys
           </span>
-          {sorted.length < packages.length && (
-            <span className="text-xs text-white/60">
-              (filtered from {packages.length})
-            </span>
-          )}
         </div>
 
         <CardViewSwitcher mode={viewMode} onChange={setViewMode} />
@@ -637,7 +623,7 @@ export default function SearchAndFilters({
                 onClick={closeFilters}
                 className="flex-[2] h-12 rounded-xl bg-[var(--color-wild-orange)] font-sans text-xs font-bold uppercase tracking-wider text-[#0C1617]"
               >
-                Show {sorted.length} {sorted.length === 1 ? "Journey" : "Journeys"}
+                Show journeys
               </button>
             </div>
           </div>

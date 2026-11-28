@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import type { PackageViewModel } from "@/types/travel";
-import { getAllPackages, getPackageCardImage } from "@/data/catalogue";
+import { getAllPackages, getPackageCardImageForPackage, publicDifficulty } from "@/data/catalogue";
 
 interface PackageCardProps {
   pkg: PackageViewModel;
@@ -15,7 +15,7 @@ export default function PackageCard({ pkg, compact = false }: PackageCardProps) 
   const [imageError, setImageError] = useState(false);
 
   // Use the shared per-package image mapping for cards and related thumbnails.
-  const cardImage = getPackageCardImage(pkg.slug);
+  const cardImage = getPackageCardImageForPackage(pkg);
 
   // Show the places a journey actually goes, rather than the country heading.
   const stops = pkg.region.filter((r) => r !== "India" && r !== "Nepal");
@@ -29,8 +29,8 @@ export default function PackageCard({ pkg, compact = false }: PackageCardProps) 
     ? pkg.duration.split(";")[0].replace(/\(as printed\)/i, "").trim()
     : pkg.duration.replace(/\(as printed\)/i, "").replace(/per contents.*/i, "").trim();
 
-  // Clean difficulty grade
-  const cleanDifficulty = pkg.difficulty ? pkg.difficulty.split("(")[0].trim() : null;
+  // Difficulty is shown only when the printed grade is unambiguous.
+  const cleanDifficulty = publicDifficulty(pkg);
 
   // Related thumbnails shown beneath the hover face's details.
   const others = getAllPackages().filter((item) => item.slug !== pkg.slug);
@@ -38,8 +38,8 @@ export default function PackageCard({ pkg, compact = false }: PackageCardProps) 
     cardImage,
     ...[...others.filter((item) => item.category === pkg.category), ...others]
       .slice(0, 3)
-      .map((item) => getPackageCardImage(item.slug)),
-  ];
+      .map((item) => getPackageCardImageForPackage(item)),
+  ].filter((src) => src.length > 0);
 
   return (
     <article className="pkg-flip group h-full min-w-0" data-package-card>
@@ -55,7 +55,7 @@ export default function PackageCard({ pkg, compact = false }: PackageCardProps) 
               className="relative aspect-square w-28 shrink-0 overflow-hidden bg-black/40 sm:aspect-[16/13] sm:w-full"
               suppressHydrationWarning
             >
-              {!imageError ? (
+              {cardImage && !imageError ? (
                 <Image
                   src={cardImage}
                   alt={pkg.title}

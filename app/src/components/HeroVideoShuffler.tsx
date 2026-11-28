@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback, useSyncExternalStore } from "react";
-import { HERO_VIDEOS, HeroVideo, generateShuffledPlaylist } from "@/data/heroVideos";
+import { HERO_VIDEOS, HeroVideo } from "@/data/heroVideos";
 
 // Declare optional mobileVideoUrl property on HeroVideo in case it has not yet landed in heroVideos.ts
 declare module "@/data/heroVideos" {
@@ -16,6 +16,7 @@ const TOTAL_TICKS = (ROTATION_SECONDS * 1000) / TICK_INTERVAL_MS;
 
 interface HeroVideoShufflerProps {
   onVideoChange?: (video: HeroVideo) => void;
+  videos?: HeroVideo[];
 }
 
 // Subscribe to viewport width (<= 767px) for phone layout decisions
@@ -71,7 +72,8 @@ function getBlockVideoServerSnapshot(): boolean {
   return false;
 }
 
-export default function HeroVideoShuffler({ onVideoChange }: HeroVideoShufflerProps = {}) {
+export default function HeroVideoShuffler({ onVideoChange, videos }: HeroVideoShufflerProps = {}) {
+  const availableVideos = videos?.length ? videos : HERO_VIDEOS;
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   /**
@@ -91,14 +93,14 @@ export default function HeroVideoShuffler({ onVideoChange }: HeroVideoShufflerPr
   const isPhone = useSyncExternalStore(subscribePhone, getPhoneSnapshot, getPhoneServerSnapshot);
   const blockVideo = useSyncExternalStore(subscribeBlockVideo, getBlockVideoSnapshot, getBlockVideoServerSnapshot);
 
-  const [playlist, setPlaylist] = useState<HeroVideo[]>(HERO_VIDEOS);
+  const [playlist, setPlaylist] = useState<HeroVideo[]>(availableVideos);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [activeLayer, setActiveLayer] = useState<"A" | "B">("A");
 
   // Dual-buffer video sources for desktop crossfade
-  const [videoSrcA, setVideoSrcA] = useState<string>(HERO_VIDEOS[0]?.videoUrl || "");
+  const [videoSrcA, setVideoSrcA] = useState<string>(availableVideos[0]?.videoUrl || "");
   const [videoSrcB, setVideoSrcB] = useState<string>(
-    HERO_VIDEOS.length > 1 ? HERO_VIDEOS[1].videoUrl : HERO_VIDEOS[0]?.videoUrl || ""
+    availableVideos.length > 1 ? availableVideos[1].videoUrl : availableVideos[0]?.videoUrl || ""
   );
 
   // Track if current video is actively rendering frames
@@ -263,8 +265,9 @@ export default function HeroVideoShuffler({ onVideoChange }: HeroVideoShufflerPr
       // Keep the first clip (and its server-rendered poster) stable so the
       // initial LCP image is never replaced by a late client-side candidate.
       // Everything after it is still shuffled, so rotations stay non-repeating.
-      const rest = generateShuffledPlaylist().filter((video) => video !== HERO_VIDEOS[0]);
-      const shuffled = HERO_VIDEOS[0] ? [HERO_VIDEOS[0], ...rest] : rest;
+      const first = availableVideos[0];
+      const rest = [...availableVideos.slice(1)].sort(() => Math.random() - 0.5);
+      const shuffled = first ? [first, ...rest] : rest;
       setPlaylist(shuffled);
       playlistRef.current = shuffled;
       setCurrentIndex(0);
@@ -273,9 +276,9 @@ export default function HeroVideoShuffler({ onVideoChange }: HeroVideoShufflerPr
       setVideoSrcB(shuffled.length > 1 ? shuffled[1].videoUrl : shuffled[0]?.videoUrl || "");
     }, 0);
     return () => window.clearTimeout(timer);
-  }, []);
+  }, [availableVideos]);
 
-  const currentVideo = playlist[currentIndex] || HERO_VIDEOS[0];
+  const currentVideo = playlist[currentIndex] || availableVideos[0];
   useEffect(() => {
     onVideoChange?.(currentVideo);
   }, [currentVideo, onVideoChange]);
@@ -443,7 +446,7 @@ export default function HeroVideoShuffler({ onVideoChange }: HeroVideoShufflerPr
 
     // Desktop path: dual-buffer A/B crossfade on full-size videoUrl
     const nextLayer = activeLayerRef.current === "A" ? "B" : "A";
-    const nextSrc = currentList[clamped]?.videoUrl || HERO_VIDEOS[0].videoUrl;
+    const nextSrc = currentList[clamped]?.videoUrl || availableVideos[0]?.videoUrl || "";
 
     if (nextLayer === "A") {
       setVideoSrcA(nextSrc);
@@ -495,7 +498,7 @@ export default function HeroVideoShuffler({ onVideoChange }: HeroVideoShufflerPr
       cleanup();
     };
     transitionCleanupRef.current = wrappedCleanup;
-  }, []);
+  }, [availableVideos]);
 
   const handleNext = useCallback(() => {
     goToIndex(currentIndexRef.current + 1);
@@ -566,8 +569,8 @@ export default function HeroVideoShuffler({ onVideoChange }: HeroVideoShufflerPr
       {/* Direct local WebP: already optimised, so skip the /_next/image hop. */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={HERO_VIDEOS[0].posterUrl}
-        alt={HERO_VIDEOS[0].title}
+        src={availableVideos[0]?.posterUrl ?? ""}
+        alt={availableVideos[0]?.title ?? ""}
         fetchPriority="high"
         decoding="async"
         style={{

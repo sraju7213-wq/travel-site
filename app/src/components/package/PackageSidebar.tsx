@@ -2,7 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import EnquireCta from "@/components/package/EnquireCta";
 import type { PackageViewModel } from "@/types/travel";
-import { getPackageCardImage } from "@/data/catalogue";
+import { getPackageCardImageForPackage, publicDurationLabel } from "@/data/catalogue";
+
+function formatPackagePrice(amount: number, currency: string): string {
+  if (!currency) return String(amount);
+  try { return new Intl.NumberFormat("en", { style: "currency", currency }).format(amount); } catch { return `${currency} ${amount}`; }
+}
 
 interface PackageSidebarProps {
   pkg: PackageViewModel;
@@ -12,20 +17,26 @@ interface PackageSidebarProps {
 export default function PackageSidebar({ pkg, related }: PackageSidebarProps) {
   const destinations = pkg.region.filter((r) => r !== "India" && r !== "Nepal");
 
+  const duration = publicDurationLabel(pkg);
+  const pricing = pkg.pricing;
+  const hasPrice = typeof pricing?.basePrice === "number" && Number.isFinite(pricing.basePrice);
+  const priceLabel = hasPrice ? formatPackagePrice(pricing!.basePrice!, pricing?.currency ?? "") : "";
   const rows: Array<{ label: string; value: React.ReactNode }> = [
     { label: "Category", value: pkg.category },
-    { label: "Duration", value: pkg.duration },
-    { label: "Group size", value: "Small group (max 15) or solo" },
+    ...(duration ? [{ label: "Duration", value: duration }] : []),
+    ...(pricing?.showPricing && hasPrice ? [{ label: pricing.priceBasis === "per_group" ? "Price per group" : "Price per person", value: priceLabel }] : []),
+    ...(pricing?.showPricing && pricing.showStartingPrice && (pricing.startingPriceDisplay || hasPrice) ? [{ label: "Starting price", value: pricing.startingPriceDisplay || priceLabel }] : []),
+    ...(pricing?.showPricing && typeof pricing.childPrice === "number" ? [{ label: "Child pricing", value: formatPackagePrice(pricing.childPrice, pricing.currency ?? "") + (pricing.childAge ? ` (${pricing.childAge})` : "") }] : []),
+    ...(pricing?.showPricing && pricing.customPricingNotes ? [{ label: "Pricing notes", value: pricing.customPricingNotes }] : []),
+    ...(pricing?.showPricing && (pricing.seasonalPricing?.some((season) => season.visible !== false) ?? false) ? [{ label: "Seasonal pricing", value: <ul className="space-y-1">{pricing.seasonalPricing?.filter((season) => season.visible !== false).map((season, index) => <li key={season.id ?? index}>{season.label}{typeof season.price === "number" ? ` · ${formatPackagePrice(season.price, pricing.currency ?? "")}` : ""}{season.notes ? ` · ${season.notes}` : ""}</li>)}</ul> }] : []),
+    ...(pkg.groupSize ? [{ label: "Group size", value: String(pkg.groupSize ?? "") }] : []),
     {
       label: "Key destinations",
       value:
         destinations.length > 0 ? destinations.join(", ") : pkg.region.join(", "),
     },
-    { label: "Brochure code", value: pkg.brochure_code },
-    {
-      label: "Departure",
-      value: <span className="text-emerald-400">On request — no minimum group quota</span>,
-    },
+    ...(pkg.brochure_code ? [{ label: "Brochure code", value: pkg.brochure_code }] : []),
+    ...(pkg.departureNote ? [{ label: "Departure", value: String(pkg.departureNote) }] : []),
   ];
 
   return (
@@ -106,21 +117,20 @@ export default function PackageSidebar({ pkg, related }: PackageSidebarProps) {
                   className="group flex items-center gap-3 rounded-lg border border-white/10 bg-white/[0.02] p-2 transition hover:border-brass/60 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass will-change-transform"
                 >
                   <span className="relative h-12 w-14 shrink-0 overflow-hidden rounded bg-[#0C1617]">
-                    <Image
-                      src={getPackageCardImage(item.slug)}
+                    {getPackageCardImageForPackage(item) ? <Image
+                      src={getPackageCardImageForPackage(item)}
                       alt=""
                       fill
                       sizes="56px"
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
+                    /> : null}
                   </span>
                   <span className="min-w-0">
                     <span className="block truncate font-display text-xs font-semibold text-white transition-colors group-hover:text-brass">
                       {item.title}
                     </span>
                     <span className="mt-0.5 block truncate font-display text-[11px] text-white/60">
-                      {stops.length > 0 ? stops.slice(0, 3).join(", ") : item.primaryRegion} •{" "}
-                      {item.duration.split(" ")[0]} nights
+                      {stops.length > 0 ? stops.slice(0, 3).join(", ") : item.primaryRegion}
                     </span>
                     <span className="mt-0.5 block font-display text-[10px] uppercase tracking-[0.12em] text-brass">
                       {item.category} →

@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { placeLine } from "@/lib/packageDisplay";
-import { getPackageCardImage } from "@/data/catalogue";
+import { getPackageCardImage, publicDifficulty } from "@/data/catalogue";
 import type { PackageViewModel } from "@/types/travel";
 import "./coverflow.css";
 
@@ -340,27 +340,10 @@ export default function CoverflowSwiper({ packages }: CoverflowSwiperProps) {
 
                       <span className="text-white/30">·</span>
 
-                      {/* Duration */}
-                      <span className="inline-flex items-center gap-1 font-mono text-white/70">
-                        <svg
-                          width="12"
-                          height="12"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          className="text-brass"
-                          aria-hidden="true"
-                        >
-                          <circle cx="12" cy="12" r="10" />
-                          <polyline points="12 6 12 12 16 14" />
-                        </svg>
-                        <span>{pkg.duration.split(" ")[0]} nights</span>
-                      </span>
 
-                      {pkg.difficulty && (
+                      {publicDifficulty(pkg) && (
                         <span className="inline-flex items-center gap-1 font-sans text-xs text-white/70">
-                          {pkg.difficulty}
+                          {publicDifficulty(pkg)}
                         </span>
                       )}
                     </div>

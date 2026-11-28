@@ -16,6 +16,86 @@ export function slugify(text: string): string {
     .replace(/(^-|-$)/g, "");
 }
 
+/**
+ * Fields whose printed values are unresolved. Until the client confirms them,
+ * they are withheld from public UI rather than guessed or silently corrected.
+ */
+const WITHHELD_DIFFICULTY = new Set([
+  "markha-valley", "kashmir-zanskar-ladakh-trek", "kashmir-combinations-little-tibet",
+  "kashmir-mini-adventure", "vale-of-kashmir-trek", "trisuli-rafting",
+  "nepal-wildlife-safari", "himalayan-combination-nepal", "nepal-mini-trek-4-day",
+  "nepal-mini-trek-7-day",
+]);
+const WITHHELD_DURATION = new Set([
+  "kathmandu-pokhara", "discover-ladakh", "kashmir-package-7-day", "delhi-to-kathmandu",
+  "heritage-tour-india", "vale-of-kashmir-trek", "kashmir-zanskar-ladakh-trek",
+  "kashmir-combinations-little-tibet", "trisuli-rafting",
+]);
+const WITHHELD_DAY_COUNT = new Set([
+  "golden-triangle", "glorious-goa-stopover", "glimpses-of-kerala", "kashmir-package-7-day",
+  "heritage-tour-india", "kashmir-zanskar-ladakh-trek", "kashmir-combinations-little-tibet",
+  "kashmir-ski", "himalayan-combination-nepal",
+]);
+const WITHHELD_ITINERARY = new Set([
+  "kashmir-combinations-little-tibet", "kashmir-zanskar-ladakh-trek",
+  "himalayan-combination-nepal", "kashmir-ski",
+]);
+
+export function isDifficultyPublic(id: string, difficulty: string | null): boolean {
+  if (!difficulty || WITHHELD_DIFFICULTY.has(id)) return false;
+  // Conflict markers and letter grades must never become word badges.
+  if (/badge|grade\s+[a-z]|also|as printed|conflict|printed/i.test(difficulty)) return false;
+  return true;
+}
+
+/** Printed difficulty, or null when it is disputed and must be withheld. */
+function publicDifficultyLabelSafe(pkg: TravelCatalogue["packages"][number]): string | null {
+  return isDifficultyPublic(pkg.id, pkg.difficulty) ? pkg.difficulty : null;
+}
+
+export function publicDifficulty(pkg: PackageViewModel): string | null {
+  return isDifficultyPublic(pkg.id, pkg.difficulty) ? pkg.difficulty : null;
+}
+
+/** Word badge only for an unambiguous printed word grade; never maps C/D. */
+export function difficultyBadge(pkg: PackageViewModel): { label: string; tone: string } | null {
+  const raw = publicDifficulty(pkg);
+  if (!raw) return null;
+  if (/^easy/i.test(raw)) return { label: "Easy going", tone: "go" };
+  if (/^moderate/i.test(raw)) return { label: "Moderate", tone: "timepass" };
+  if (/^(demanding|strenuous)/i.test(raw)) return { label: "Demanding", tone: "skip" };
+  return null;
+}
+
+/** Published duration, or null when the printed value is disputed. */
+export function publicDuration(pkg: PackageViewModel): string | null {
+  if (WITHHELD_DURATION.has(pkg.id)) return null;
+  const raw = pkg.duration ?? "";
+  if (!raw || /conflict|as printed|;|unclear/i.test(raw)) return null;
+  return raw;
+}
+
+/** Cleaned duration label, or an empty string when the printed value is withheld. */
+export function publicDurationLabel(pkg: PackageViewModel): string {
+  const raw = publicDuration(pkg);
+  if (!raw) return "";
+  return raw
+    .split(";")[0]
+    .replace(/\(.*?\)/g, "")
+    .replace(/\s+(per|based)\b.*/i, "")
+    .trim();
+}
+
+/** Day count derived only when the itinerary is complete and undisputed. */
+export function publicDayCount(pkg: PackageViewModel): number | null {
+  if (WITHHELD_ITINERARY.has(pkg.id) || WITHHELD_DAY_COUNT.has(pkg.id)) return null;
+  return pkg.itinerary?.length ?? 0;
+}
+
+export function canShowItinerary(pkg: PackageViewModel): boolean {
+  return !WITHHELD_ITINERARY.has(pkg.id);
+}
+
 export function toPackageViewModel(pkg: TravelCatalogue["packages"][number]): PackageViewModel {
   const regions = pkg.region;
   const primaryRegion = regions[0] ?? "";
@@ -24,8 +104,13 @@ export function toPackageViewModel(pkg: TravelCatalogue["packages"][number]): Pa
   return {
     ...pkg,
     slug: slugify(pkg.id),
-    difficultyLabel: pkg.difficulty ?? null,
-    difficultyVerified: !!pkg.difficulty && !pkg.difficulty.includes("as printed") && !pkg.difficulty.includes("conflict"),
+    // Redact withheld fields from the view model so they are not shipped to
+    // the browser in the RSC payload either.
+    difficulty: isDifficultyPublic(pkg.id, pkg.difficulty) ? pkg.difficulty : null,
+    duration: WITHHELD_DURATION.has(pkg.id) ? "" : pkg.duration,
+    content_flags: [],
+    difficultyLabel: publicDifficultyLabelSafe(pkg),
+    difficultyVerified: isDifficultyPublic(pkg.id, pkg.difficulty),
     hasReviewFlags: pkg.content_flags.length > 0,
     multiCountry: regions.some((r) => r === "Nepal") && regions.some((r) => r === "India"),
     primaryRegion,
@@ -34,7 +119,7 @@ export function toPackageViewModel(pkg: TravelCatalogue["packages"][number]): Pa
 }
 
 export function toServiceViewModel(svc: TravelCatalogue["additional_services"][number]): ServiceViewModel {
-  return { ...svc, slug: slugify(svc.id) };
+  return { ...svc, slug: slugify(svc.id), content_flags: [] };
 }
 
 export function getAllPackages(): PackageViewModel[] {
@@ -61,27 +146,18 @@ export function getServiceBySlug(slug: string): ServiceViewModel | undefined {
   return getAllServices().find((s) => s.slug === slug);
 }
 
-export function getCategories(): { key: string; label: string; count: number }[] {
-  const packages = getAllPackages();
+export function getCategories(packages: PackageViewModel[] = getAllPackages()): { key: string; label: string; count: number }[] {
   const counts = new Map<string, number>();
   for (const p of packages) {
     counts.set(p.category, (counts.get(p.category) ?? 0) + 1);
   }
-  return (
-    [
-      "Stopovers",
-      "Images of India",
-      "India Tours",
-      "Himalayan Expeditions",
-      "Mini Trek in Kashmir",
-      "Nepal Adventure",
-    ] as const
-  ).map((key) => ({ key, label: key, count: counts.get(key) ?? 0 }));
+  const keys = Array.from(new Set([...counts.keys(), ...packages.map((pkg) => pkg.category).filter(Boolean)]));
+  return keys.map((key) => ({ key, label: key, count: counts.get(key) ?? 0 })).sort((a, b) => a.label.localeCompare(b.label));
 }
 
-export function getAllRegions(): string[] {
+export function getAllRegions(packages: PackageViewModel[] = getAllPackages()): string[] {
   const regions = new Set<string>();
-  for (const p of getAllPackages()) {
+  for (const p of packages) {
     for (const r of p.region) {
       regions.add(r);
     }
@@ -479,4 +555,20 @@ export function getPackageGallery(pkg: TravelPackage): GalleryImage[] {
  */
 export function getPackageCardImage(slug: string): string {
   return PACKAGE_IMAGES[slug]?.primary ?? `/images/packages/${slug}.jpg`;
+}
+
+/** CMS-aware package image selection. CMS packages never receive a fabricated fallback image. */
+export function getPackageCardImageForPackage(pkg: TravelPackage & Partial<PackageViewModel>): string {
+  const cms = pkg as TravelPackage & PackageViewModel;
+  const explicitHero = typeof cms.heroImage === "string" ? cms.heroImage : cms.heroImage?.url;
+  const explicitThumbnail = typeof cms.thumbnail === "string" ? cms.thumbnail : cms.thumbnail?.url;
+  const explicitCover = typeof cms.coverImage === "string" ? cms.coverImage : cms.coverImage?.url;
+  const galleryImage = (cms.gallery ?? []).find((image) => image.visible !== false && image.url)?.url;
+  const mediaImage = (cms.media ?? []).filter((image) => image.visible !== false).sort((a, b) => (a.order ?? 0) - (b.order ?? 0)).find((image) => image.url)?.url;
+  const selected = explicitHero || explicitThumbnail || explicitCover || galleryImage || mediaImage;
+  if (selected) return selected;
+  // CMS packages have an explicit empty media array; static brochure packages
+  // retain their already-published package imagery as migration fallback.
+  if (Array.isArray(cms.media) || Array.isArray(cms.gallery) || "heroImage" in pkg) return "";
+  return getPackageCardImage(cms.slug ?? slugify(pkg.id));
 }

@@ -1,3 +1,5 @@
+import type { CmsItineraryDay, CmsListItem, CmsMedia, CmsPackageFaq, CmsPackagePricing, CmsSeo, CmsStatus } from "@/types/cms";
+
 export interface TravelPackage {
   id: string;
   title: string;
@@ -11,17 +13,47 @@ export interface TravelPackage {
   source_page: number;
   content_flags: string[];
   /** Structured day-by-day itinerary, transcribed per package when available. */
-  itinerary?: Array<{
-    day?: number | string;
-    title?: string;
-    description?: string;
-    stops?: string[];
-    transfers?: string;
-  }>;
+  itinerary?: CmsItineraryDay[];
   /** Package-specific inclusions (never a blindly-applied generic panel). */
-  inclusions?: string[];
+  inclusions?: Array<string | CmsListItem>;
   /** Package-specific exclusions (never a blindly-applied generic panel). */
-  exclusions?: string[];
+  exclusions?: Array<string | CmsListItem>;
+}
+
+/** CMS-controlled fields added to every package without changing brochure source data. */
+export interface PackageCmsFields {
+  name?: string;
+  shortDescription?: string;
+  fullDescription?: string;
+  destination?: string;
+  destinationSlug?: string;
+  regionName?: string;
+  durationDays?: number | null;
+  durationNights?: number | null;
+  tourType?: string;
+  bestSeason?: string;
+  featured?: boolean;
+  status?: CmsStatus;
+  pricing?: CmsPackagePricing;
+  media?: CmsMedia[];
+  heroImage?: CmsMedia | string | null;
+  thumbnail?: CmsMedia | string | null;
+  coverImage?: CmsMedia | string | null;
+  gallery?: CmsMedia[];
+  additionalImages?: CmsMedia[];
+  itineraryVisible?: boolean;
+  inclusionsVisible?: boolean;
+  exclusionsVisible?: boolean;
+  startingPoint?: string;
+  endingPoint?: string;
+  transportation?: string;
+  accommodationDetails?: string;
+  importantInformation?: string;
+  cancellationPolicy?: string;
+  faqs?: CmsPackageFaq[];
+  relatedPackages?: string[];
+  seo?: CmsSeo;
+  [key: string]: unknown;
 }
 
 export interface AdditionalService {
@@ -44,7 +76,7 @@ export interface TravelCatalogue {
 }
 
 // Computed view-model fields derived from the raw record, never inventing data.
-export interface PackageViewModel extends TravelPackage {
+export interface PackageViewModel extends TravelPackage, PackageCmsFields {
   slug: string;
   difficultyLabel: string | null;
   difficultyVerified: boolean;

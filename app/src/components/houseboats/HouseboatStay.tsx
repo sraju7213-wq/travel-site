@@ -1,15 +1,10 @@
 import { HOUSEBOAT_ALONGSIDE, HOUSEBOAT_INCLUDED } from "@/data/houseboats";
 
-interface HouseboatStayProps {
-  /** Transcription caveats recorded against the brochure entry. */
-  flags: string[];
-}
-
 /**
  * Two-column "what is included / what to confirm" module — the reference
  * site's transparency pattern, applied to the brochure record.
  */
-export default function HouseboatStay({ flags }: HouseboatStayProps) {
+export default function HouseboatStay() {
   return (
     <section
       id="houseboat-stay"
@@ -79,16 +74,6 @@ export default function HouseboatStay({ flags }: HouseboatStayProps) {
                 responsibility of the Kashmir Government, and every booking is confirmed with the operator
                 before it is made.
               </p>
-              {flags.length > 0 && (
-                <ul className="mt-4 space-y-2 border-t border-[var(--color-wild-orange)]/20 pt-4">
-                  {flags.map((flag) => (
-                    <li key={flag} className="flex items-start gap-2.5">
-                      <span aria-hidden="true" className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-[var(--color-wild-orange)]" />
-                      <span className="font-sans text-xs font-light leading-relaxed text-white/60">{flag}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
             </div>
 
             <div className="border border-white/10 bg-[#0d2a2d] p-7">
